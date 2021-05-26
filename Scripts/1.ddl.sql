@@ -39,7 +39,7 @@ CREATE TABLE proj21_shop.MEMBER (
 	m_id           VARCHAR(100) NOT NULL COMMENT '아이디', -- 아이디
 	m_passwd       CHAR(41)     NOT NULL COMMENT '비밀번호', -- 비밀번호
 	m_name         VARCHAR(100) NOT NULL COMMENT '이름', -- 이름
-	m_phone        INT(11)      NOT NULL COMMENT '전화번호', -- 전화번호
+	m_phone        VARCHAR(11)      NOT NULL COMMENT '전화번호', -- 전화번호
 	m_birthday     INT          NULL     COMMENT '생년월일', -- 생년월일
 	m_gender       TINYINT      NOT NULL COMMENT '성별', -- 성별
 	m_question_num INT          NULL     COMMENT '본인확인질문번호', -- 본인확인질문번호

@@ -1,8 +1,40 @@
 -- 회원
 INSERT INTO proj21_shop.`member`
-(m_id, m_passwd, m_name, m_phone, m_birthday, m_gender, m_question_num, m_answer, m_email, m_join, m_point, m_total_buy, m_total_order, m_total_login, m_exit, m_addr, m_addr_de)
-VALUES('', '', '', 0, 0, 0, 0, '', '', '', 0, 0, 0, 0, 0, '', '');
-
+(m_id
+, m_passwd
+, m_name
+, m_phone
+, m_birthday
+, m_gender
+, m_question_num
+, m_answer
+, m_email
+, m_join
+, m_point
+, m_total_buy
+, m_total_order
+, m_total_login
+, m_exit
+, m_addr
+, m_addr_de)
+VALUES('test01'
+, password(123)
+, '이종윤'
+, '01012345678'
+, 19940817
+, 1
+, 1
+, 'test'
+, 'test@test.co.kr'
+, '20200101'
+, 2000
+, 0
+, 0
+, 1
+, 0
+, '대구광역시 남구 봉덕동 이천로 51'
+, '2층');
+select * from member;
 -- 주소
 INSERT INTO proj21_shop.address
 (m_id, m_addr, m_addr_de)
