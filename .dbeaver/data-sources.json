@@ -1,0 +1,50 @@
+{
+	"folders": {},
+	"connections": {
+		"mysql5-179a705828a-1bd512cf892bec1a": {
+			"provider": "mysql",
+			"driver": "mysql5",
+			"name": "localhost(root)",
+			"save-password": true,
+			"show-system-objects": true,
+			"read-only": false,
+			"configuration": {
+				"host": "localhost",
+				"port": "3306",
+				"url": "jdbc:mysql://localhost:3306/",
+				"home": "C:\\Program Files\\MySQL\\MySQL Server 5.7",
+				"type": "dev",
+				"auth-model": "native",
+				"handlers": {}
+			}
+		},
+		"mysql5-179a7080ebc-682a25f94ecbe936": {
+			"provider": "mysql",
+			"driver": "mysql5",
+			"name": "proj21_shop",
+			"save-password": true,
+			"show-system-objects": true,
+			"read-only": false,
+			"configuration": {
+				"host": "localhost",
+				"port": "3306",
+				"database": "proj21_shop",
+				"url": "jdbc:mysql://localhost:3306/proj21_shop",
+				"home": "C:\\Program Files\\MySQL\\MySQL Server 5.7",
+				"type": "dev",
+				"auth-model": "native",
+				"handlers": {}
+			}
+		}
+	},
+	"connection-types": {
+		"dev": {
+			"name": "Development",
+			"color": "255,255,255",
+			"description": "Regular development database",
+			"auto-commit": true,
+			"confirm-execute": false,
+			"confirm-data-change": false
+		}
+	}
+}

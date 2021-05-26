@@ -1,0 +1,3 @@
+[DEBUG] [2021-05-26 13:59] testOpenSession()
+[DEBUG] [2021-05-26 13:59] session org.apache.ibatis.session.defaults.DefaultSqlSession@36f1046f
+[DEBUG] [2021-05-26 13:59] testDataSource()
