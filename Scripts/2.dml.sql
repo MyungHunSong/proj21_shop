@@ -1,71 +1,117 @@
 -- 회원
 INSERT INTO proj21_shop.`member`
-(m_id
-, m_passwd
-, m_name
-, m_phone
-, m_birthday
-, m_gender
-, m_question_num
-, m_answer
-, m_email
-, m_join
-, m_point
-, m_total_buy
-, m_total_order
-, m_total_login
-, m_exit
-, m_addr
-, m_addr_de)
+				(m_id
+				, m_passwd
+				, m_name
+				, m_phone
+				, m_birthday
+				, m_gender
+				, m_question_num
+				, m_answer
+				, m_email
+				, m_join
+				, m_point
+				, m_total_buy
+				, m_total_order
+				, m_total_login
+				, m_exit
+				, m_addr
+				, m_addr_de)
 VALUES(
-'test01'
-, password(123)
-, '이종윤'
-, '010-1234-5678'
-, '1994-08-17'
-, 1
-, 1
-, 'test'
-, 'test@test.co.kr'
-, '20200101'
-, 2000
-, 0
-, 0
-, 1
-, 0
-, '대구광역시 남구 봉덕동 이천로 51'
-, '2층');
-select * from member;
-desc `member` ;
+				'test01'
+				, password(123)
+				, '이종윤'
+				, '010-1234-5678'
+				, '1994-08-17'
+				, 1
+				, 1
+				, 'test'
+				, 'test@test.co.kr'
+				, '20200101'
+				, 2000
+				, 0
+				, 0
+				, 1
+				, 0
+				, '대구광역시 남구 봉덕동 이천로 51'
+				, '2층');
 -- 주소
 INSERT INTO proj21_shop.address
-(m_id, m_addr, m_addr_de)
-VALUES('', '', '');
+			(m_id, m_addr, m_addr_de)
+values
+			('test01', '대구광역시 남구 봉덕동 이천로 51', '2층');
 
 -- 관리자
-INSERT INTO proj21_shop.admin
+INSERT INTO admin
 (ad_id, ad_pass)
-VALUES('', '');
+VALUES('manager', password(123));
 
 -- 제품
 INSERT INTO proj21_shop.product
-(pro_code, pro_category, pro_name, pro_price, pro_salesrate, pro_cre_date, pro_status, pro_color, pro_size, pro_quantity, pro_sold, pro_hits)
-VALUES('', 0, '', 0, 0, '', '', 0, 0, 0, 0, 0);
+(
+				pro_code
+				, pro_category
+				, pro_name
+				, pro_price
+				, pro_salesrate
+				, pro_cre_date
+				, pro_status
+				, pro_color
+				, pro_size
+				, pro_quantity
+				, pro_sold
+				, pro_hits
+)
+VALUES(
+				'1111'
+				, 1
+				, '반팔'
+				, 5000
+				, 0
+				, '20200927'
+				, '판매중'
+				, 1
+				, 0
+				, 0
+				, 0
+				, 0);
 
 -- 제품 이미지
 INSERT INTO proj21_shop.pro_img
 (pro_num, pro_imagefilename, pro_img_state)
-VALUES(0, '', 0);
+VALUES(1, '1111-1.jpg', 0);
 
 -- 장바구니
 INSERT INTO proj21_shop.cart
 (cart_m_Id, cart_pro_num, cart_pro_quantity)
-VALUES('', 0, 0);
+VALUES('1111', 0, 0);
 
 -- 주문 
 INSERT INTO proj21_shop.`order`
-(order_member_id, or_num, pro_num, order_member_name, order_pro_quantity, order_price, order_discount, receiver_name, receiver_tel1, receiver_tel2, delivery_addr, delivery_addr_de, delivery_status, request_to_delivery, order_date, who_pay, which_bank, acount_num)
-VALUES('', 0, 0, '', 0, 0, 0, '', 0, 0, '', '', '', '', '', '', '', 0);
+(order_member_id
+, or_num
+, pro_num
+, order_member_name
+, order_pro_quantity
+, order_price
+, order_discount
+, receiver_name
+, receiver_tel1
+, receiver_tel2
+, delivery_addr, delivery_addr_de, delivery_status, request_to_delivery, order_date, who_pay, which_bank, acount_num)
+VALUES(
+'test01'
+, 1
+, 1
+, '이종윤'
+, 2
+, 10000
+, 0
+, '이종윤'
+, 0
+, 0
+, '010-1234-5678'
+, '010-1234-5678', '', '', '', '', '', 0);
 
 -- Q&A
 INSERT INTO proj21_shop.qna

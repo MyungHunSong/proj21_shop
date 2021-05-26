@@ -66,6 +66,7 @@ ALTER TABLE proj21_shop.MEMBER
 -- Q&A
 CREATE TABLE proj21_shop.QNA (
 	q_index   INT           NOT NULL COMMENT 'auto_increment', -- 질문번호
+	q_pro_num INT           NOT NULL COMMENT '제품번호', -- 제품번호
 	q_title   VARCHAR(500)  NOT NULL COMMENT '질문제목', -- 질문제목
 	q_option  VARCHAR(100)  NULL     COMMENT '질문목록', -- 질문목록
 	q_member  VARCHAR(100)  NOT NULL COMMENT 'm_Id', -- 질문작성자
@@ -207,8 +208,8 @@ CREATE TABLE proj21_shop.ORDER (
 	order_price         INT           NULL     COMMENT '주문총금액', -- 주문총금액
 	order_discount      INT           NULL     COMMENT '총할인금액', -- 총할인금액
 	receiver_name       VARCHAR(100)  NOT NULL COMMENT '수령자이름', -- 수령자이름
-	receiver_tel1       INT           NOT NULL COMMENT '수령자번호', -- 수령자번호
-	receiver_tel2       INT           NULL     COMMENT '임시번호', -- 임시번호
+	receiver_tel1       VARCHAR(100)  NOT NULL COMMENT '수령자번호', -- 수령자번호
+	receiver_tel2       VARCHAR(100)  NULL     COMMENT '임시번호', -- 임시번호
 	delivery_addr       VARCHAR(500)  NOT NULL COMMENT '배송주소', -- 배송주소
 	delivery_addr_de    VARCHAR(500)  NOT NULL COMMENT '배송상세주소', -- 배송상세주소
 	delivery_status     VARCHAR(100)  NULL     COMMENT '배송상태', -- 배송상태
