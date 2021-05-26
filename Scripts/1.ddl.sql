@@ -217,7 +217,7 @@ CREATE TABLE proj21_shop.ORDER (
 	order_date          DATETIME      NOT NULL COMMENT 'default current_timestamp', -- 주문일
 	who_pay             VARCHAR(100)  NULL     COMMENT '결제자', -- 결제자
 	which_bank          VARCHAR(100)  NULL     COMMENT '은행', -- 은행
-	acount_num          INT           NULL     COMMENT '계좌번호' -- 계좌번호
+	acount_num          VARCHAR(100)  NULL     COMMENT '계좌번호' -- 계좌번호
 )
 COMMENT '주문';
 

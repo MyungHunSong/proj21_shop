@@ -84,11 +84,12 @@ VALUES(1, '1111-1.jpg', 0);
 -- 장바구니
 INSERT INTO proj21_shop.cart
 (cart_m_Id, cart_pro_num, cart_pro_quantity)
-VALUES('1111', 0, 0);
+VALUES('test01', 1, 1);
 
 -- 주문 
 INSERT INTO proj21_shop.`order`
-(order_member_id
+(
+order_member_id
 , or_num
 , pro_num
 , order_member_name
@@ -98,7 +99,15 @@ INSERT INTO proj21_shop.`order`
 , receiver_name
 , receiver_tel1
 , receiver_tel2
-, delivery_addr, delivery_addr_de, delivery_status, request_to_delivery, order_date, who_pay, which_bank, acount_num)
+, delivery_addr
+, delivery_addr_de
+, delivery_status
+, request_to_delivery
+, order_date
+, who_pay
+, which_bank
+, acount_num
+)
 VALUES(
 'test01'
 , 1
@@ -108,10 +117,17 @@ VALUES(
 , 10000
 , 0
 , '이종윤'
-, 0
-, 0
 , '010-1234-5678'
-, '010-1234-5678', '', '', '', '', '', 0);
+, '010-1234-5678'
+, '대구광역시 남구 봉덕동 이천로 51' 
+, '2층'
+,'배송완료'
+, '문앞' 
+, now()
+, '이종윤'
+, '국민'
+, 5000
+);
 
 -- Q&A
 INSERT INTO proj21_shop.qna
