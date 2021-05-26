@@ -17,11 +17,12 @@ INSERT INTO proj21_shop.`member`
 , m_exit
 , m_addr
 , m_addr_de)
-VALUES('test01'
+VALUES(
+'test01'
 , password(123)
 , '이종윤'
-, '01012345678'
-, 19940817
+, '010-1234-5678'
+, '1994-08-17'
 , 1
 , 1
 , 'test'
@@ -35,6 +36,7 @@ VALUES('test01'
 , '대구광역시 남구 봉덕동 이천로 51'
 , '2층');
 select * from member;
+desc `member` ;
 -- 주소
 INSERT INTO proj21_shop.address
 (m_id, m_addr, m_addr_de)
