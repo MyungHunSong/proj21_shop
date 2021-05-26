@@ -84,11 +84,12 @@ VALUES(1, '1111-1.jpg', 0);
 -- 장바구니
 INSERT INTO proj21_shop.cart
 (cart_m_Id, cart_pro_num, cart_pro_quantity)
-VALUES('1111', 0, 0);
+VALUES('test01', 1, 0);
 
 -- 주문 
 INSERT INTO proj21_shop.`order`
-(order_member_id
+(
+order_member_id
 , or_num
 , pro_num
 , order_member_name
@@ -98,7 +99,14 @@ INSERT INTO proj21_shop.`order`
 , receiver_name
 , receiver_tel1
 , receiver_tel2
-, delivery_addr, delivery_addr_de, delivery_status, request_to_delivery, order_date, who_pay, which_bank, acount_num)
+, delivery_addr
+, delivery_addr_de
+, delivery_status
+, request_to_delivery
+, order_date, who_pay
+, which_bank
+, acount_num
+)
 VALUES(
 'test01'
 , 1
@@ -111,19 +119,25 @@ VALUES(
 , 0
 , 0
 , '010-1234-5678'
-, '010-1234-5678', '', '', '', '', '', 0);
+, '010-1234-5678'
+, '판매중'
+, '문앞'
+, '2020-09-27'
+, '이종윤'
+, '국민'
+, '111111111');
 
 -- Q&A
-INSERT INTO proj21_shop.qna
-(q_title, q_option, q_member, q_content, q_file, q_date, q_hits, q_group, q_indent, q_step)
-VALUES('', '', '', '', '', '', 0, 0, 0, 0);
+INSERT INTO qna
+(q_pro_num, q_title, q_option, q_member, q_content, q_file, q_date, q_hits, q_group, q_indent, q_step)
+VALUES(1, 'test', 'test', 'test1', 'test', 'test', '2020-09-27', 0, 0, 0, 0);
 
 -- 후기
-INSERT INTO proj21_shop.review
+INSERT INTO review
 (pro_num, re_member, re_content, re_image, re_image2, re_date, re_stars)
-VALUES(0, '', '', '', '', '', 0);
+VALUES(1, 'test1', 'test', 'test.img', 'test2.img', '2020-09-27', 0);
 
 -- 후기 댓글 
 INSERT INTO proj21_shop.re_reply
 (re_rep_num, re_rep_member, re_rep_date)
-VALUES(0, '', '');
+VALUES(1, 'test1', '2020-09-27');
