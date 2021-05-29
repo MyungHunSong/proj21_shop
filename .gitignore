@@ -4,8 +4,10 @@
 # Ignore Gradle build output directory
 build
 /bin/
+
 /.classpath
 /classes/
+
 /test-classes/
 .project
 .settings/
