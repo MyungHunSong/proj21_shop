@@ -24,7 +24,7 @@ public class ContextSqlSession {
 		SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
 		factoryBean.setDataSource(dataSource);
 		factoryBean.setConfigLocation(applicationContext.getResource("classpath:/mybatis-config.xml"));
-		factoryBean.setMapperLocations(applicationContext.getResources("classpath:mappers/*Mapper.xml"));//pdf 72
+//		factoryBean.setMapperLocations(applicationContext.getResources("classpath:mappers/*Mapper.xml"));//pdf 72
 		return factoryBean;
 	}
 
