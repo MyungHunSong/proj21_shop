@@ -11,3 +11,5 @@ build
 /test-classes/
 .project
 .settings/
+
+/.dbeaver/
