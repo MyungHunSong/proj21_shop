@@ -202,7 +202,7 @@ CREATE TABLE `proj21_shop`.`ORDER` (
 	`order_member_id`     VARCHAR(100)  NULL     COMMENT '주문자아이디', -- 주문자아이디
 	`order_num`           INT           NOT NULL COMMENT '형식?', -- 주문번호
 	`pro_num`             INT           NOT NULL COMMENT '제품번호', -- 제품번호
-	`order_pro_num`       INT           NOT NULL COMMENT '주문자식별번호', -- 주문자식별번호
+	`order_pro_num`       INT           NOT null primary key AUTO_INCREMENT  COMMENT '주문자식별번호', -- 주문자식별번호
 	`order_member_name`   VARCHAR(100)  NOT NULL COMMENT '주문자이름', -- 주문자이름
 	`order_pro_quantity`  INT           NULL     COMMENT '주문수량', -- 주문수량
 	`order_price`         INT           NULL     COMMENT '주문총금액', -- 주문총금액
@@ -220,17 +220,6 @@ CREATE TABLE `proj21_shop`.`ORDER` (
 	`which_bank`          VARCHAR(100)  NULL     COMMENT '결제은행' -- 결제은행
 )
 COMMENT '주문';
-
--- 주문
-ALTER TABLE `proj21_shop`.`ORDER`
-	ADD CONSTRAINT `PK_ORDER` -- 주문 기본키
-		PRIMARY KEY (
-			`order_num`, -- 주문번호
-			`pro_num`    -- 제품번호
-		);
-	
-ALTER TABLE `proj21_shop`.`ORDER`
-	MODIFY COLUMN `order_pro_num` INT NOT NULL AUTO_INCREMENT COMMENT 'auto_increment(1)';
 
 -- 관리자
 CREATE TABLE `proj21_shop`.`Admin` (
