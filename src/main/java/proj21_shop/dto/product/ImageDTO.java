@@ -13,8 +13,8 @@ public class ImageDTO {
 	private String fileName;
 
 	/* 상품 num */
-	private int pro_num;
+	private int proNum;
 
 	/* 메인이미지 여부 */
-	private int pro_img_state;
+	private int proImgState;
 }

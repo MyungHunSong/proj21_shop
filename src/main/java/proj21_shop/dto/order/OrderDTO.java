@@ -3,29 +3,29 @@ package proj21_shop.dto.order;
 import java.sql.Date;
 
 public class OrderDTO {
-	private String order_member_id;
+	private String orderMemberId;
 	
-	private int order_num;
-	private int pro_num;
+	private int orderNum;
+	private int proNum;
 	
-	private String order_member_name;
-	private int order_pro_quantity;
-	private int order_price;
-	private int order_discount;
-	private String receiver_name;
-	private String receiver_tel1;
-	private String receiver_tel2;
-	private String delivery_addr1;
-	private String delivery_addr2;
-	private String delivery_addr3;
-	private String delivery_status;
-	private String request_to_delivery;
+	private String orderMemberName;
+	private int orderProQuantity;
+	private int orderPrice;
+	private int orderDiscount;
+	private String receiverName;
+	private String receiverTel1;
+	private String receiverTel2;
+	private String deliveryAddr1;
+	private String deliveryAddr2;
+	private String deliveryAddr3;
+	private String deliveryStatus;
+	private String requestToDelivery;
 	
-	private Date order_date;
+	private Date orderDate;
 	
-	private String who_pay;
-	private String which_bank;
-	private String acount_num;
+	private String whoPay;
+	private String whichBank;
+	private String acountNum;
 	
 	
 }

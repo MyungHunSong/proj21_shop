@@ -1,24 +1,33 @@
 package proj21_shop.dto.member;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 public class MemberDTO {
 	
-	private String member_id;
-	private String member_pwd;
-	private String member_pwd_confirm; //비밀번호확인
-	private String member_name;
-	private String member_hp;
-	private String member_birth;
-	private String member_gender;
-	private String member_pwd_q; //본인확인질문
-	private String member_pwd_a; //본인확인질문답변
-	private String member_email;
-	private Date member_cre_date;
-	private int member_point;
-	private int member_total_buy;
-	private int member_total_order;
-	private int member_total_login;
-	private int member_exit; // 0(=defult) 1(=exit)
+	private String memberId;
+	private String memberPwd;
+	
+	private String memberPwdConfirm; //비밀번호확인
+	
+	private String memberName;
+	private String memberHp;
+	private LocalDateTime memberBirth;
+	
+	private Gender memberGender; //0=남자 1=여자
+	
+	private String memberPwdQ; //본인확인질문
+	private String memberPwdA; //본인확인질문답변
+	private String memberAddr1; //우편번호
+	private String memberAddr2; //주소(도로명)
+	private String memberAddr3; //상세주소
+	private String memberAmail;
+	private Date memberCreDate;
+	private int memberPoint;
+	private int memberTotalBuy;
+	private int memberTotalOrder;
+	private int memberTotalLogin;
+	
+	private int memberExit; // 0(=defult) 1(=exit)
 	
 }
