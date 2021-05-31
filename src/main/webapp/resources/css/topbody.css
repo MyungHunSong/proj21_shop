@@ -1,0 +1,29 @@
+@charset "UTF-8";
+.top {
+	font-size: 15px;
+	text-align: center;
+}
+
+.top nav {
+	border-bottom: 3px solid gray;
+}
+
+.top nav ul {
+	list-style: none;
+}
+
+.top ul li {
+	display: inline-block;
+	margin: 20px;
+}
+
+.top nav ul li a{
+	text-decoration:none;
+	color: #000;
+	cursor: pointer;
+	outline: none;
+}
+
+.top nav li a:hover {
+	color:red;
+}
