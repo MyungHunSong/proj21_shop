@@ -1,0 +1,52 @@
+@charset "UTF-8";
+
+h1{
+	text-align: center;
+}
+#loginFormArea {
+	background: #DCFFF7;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	margin: auto;
+	width: 400px;
+	height: 300px;
+	border: 1px double #9AB9FF;
+	border-radius: 30px;
+	text-align: center;
+	box-shadow: 5px 5px 15px 5px gray;
+}
+
+div {
+	text-align: center;
+	border: none;
+}
+
+#selectButton {
+	color: white;
+	margin-top: 10px;
+	background: #FF7696;
+	border: 1px double #9AB9FF;
+	border-radius: 2px;
+}
+
+#memberButton{
+	color: white;
+	margin-top: 10px;
+	background: #FF7696;
+	border: 1px double #9AB9FF;
+	border-radius: 2px;
+}
+table {
+	width: 300px;
+	margin: auto;
+}
+
+table td:nth-child(1) {
+	text-align: right;
+	width: 180px
+}
+
+table td:nth-child(2) {
+	width: 200px
+}
