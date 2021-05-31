@@ -27,11 +27,11 @@ public class MvcConfig implements WebMvcConfigurer {
 		registry.jsp("/WEB-INF/view/", ".jsp");
 	}
 
-	/* 메인으로 바로 보내기*/
-	@Override
-	public void addViewControllers(ViewControllerRegistry registry) {
-		registry.addViewController("/main").setViewName("main");
-	}
+//	/* 메인으로 바로 보내기*/
+//	@Override
+//	public void addViewControllers(ViewControllerRegistry registry) {
+//		registry.addViewController("/include/main").setViewName("main");
+//	}
 	
 	@Bean
 	public MessageSource messageSource() {

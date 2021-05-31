@@ -3,34 +3,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-<link rel="stylesheet" href="css/mainContent.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
-<script>
-    $(document).ready(function(){
-      $('.slider').bxSlider({
-    	  slideWidth: 1200,
-    	  mode:'horizontal',
-    	  speed: 500,
-    	  moveSlides: 1,
-    	  auto: true,
-    	  autoHover:true
-      });
-    });
-</script>
-
+<link rel="stylesheet" href="/proj21_shop/resources/css/mainContent.css">
 </head>
 <body>
 <!-- 슬라이더 섹션 부분  -->
 <section id="home-main-section-slider">
 	<div class="home-main-slider-container">
   		<div class="slider">
-    		<div><a href=""><img alt="" src="images/slide1.jpg"></a></div>
-    		<div><a href=""><img src="images/slide2.jpg"></a></div>
-    		<div><a href=""><img src="images/slide3.jpg"></a></div>
-    		<div><a href=""><img src="images/slide4.jpg"></a></div>
+    		<div><a href=""><img src="resources/banner/images/slide1.jpg"></a></div>
+    		<div><a href=""><img src="resources/banner/images/slide2.jpg"></a></div>
+    		<div><a href=""><img src="resources/banner/images/slide3.jpg"></a></div>
+    		<div><a href=""><img src="resources/banner/images/slide4.jpg"></a></div>
   		</div>
  	</div>
  </section>

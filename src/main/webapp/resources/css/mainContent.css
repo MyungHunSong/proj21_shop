@@ -1,10 +1,10 @@
 @charset "UTF-8";
-/*슬라이더 중앙 배치*/
+
 .home-main-slider-container{
-	display: flex;
-	align-items: center;
-	justify-content: center;
+	margin: 0 auto;
+	text-align: center;
 }
+	
 /*바로가기(recommend,mostview) 중앙 배치*/
 .home-main-content-top{
 	display: flex;
@@ -36,4 +36,17 @@
 	background: gray;
 	height: 250px;
 	width: 400px
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	background-color: white;
+	font-size: 0.75em;
+	height: 100%;
+}
+
+.center h3{
+	text-align: center;
+	width: 80%;
 }
