@@ -9,11 +9,11 @@
 	/*위, 아래 이동 jquery문*/
 	$(function(){
 		$("#go_top").click(function(){
-			$('html, body').animate({scrollTop:0},200);
+			$('html, body').animate({scrollTop:0},100);
 			
 			var scrollHeight = $(document).height();
 			$("#go_bottom").click(function(){
-				$('html, body').animate({scrollTop:scrollHeight}, 200);
+				$('html, body').animate({scrollTop:scrollHeight}, 100);
 			});
 		});
 	});
@@ -35,7 +35,7 @@
 			<p>계좌 번호:940***-**-******</p>
 			<p>예금주:이태훈</p>
 		</section>
-		<div id="scrollMenu">
+		<div class="scrollMenu">
 			<img id="go_top" alt="상단으로 이동하기" 
 			src="http://cdn1-aka.makeshop.co.kr/design/smblue111/wib_2020/img/top_go.png">
 			<img id="go_bottom" alt="하단으로 이동하기" 
