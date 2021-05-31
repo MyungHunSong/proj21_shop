@@ -1,94 +1,62 @@
 -- 회원
 INSERT INTO proj21_shop.`member`
-				(m_id
-				, m_passwd
-				, m_name
-				, m_phone
-				, m_birthday
-				, m_gender
-				, m_question_num
-				, m_answer
-				, m_email
-				, m_join
-				, m_point
-				, m_total_buy
-				, m_total_order
-				, m_total_login
-				, m_exit
-				, m_addr
-				, m_addr_de)
-VALUES(
-				'test01'
-				, password(123)
-				, '이종윤'
-				, '010-1234-5678'
-				, '1994-08-17'
-				, 1
-				, 1
-				, 'test'
-				, 'test@test.co.kr'
-				, '20200101'
-				, 2000
-				, 0
-				, 0
-				, 1
-				, 0
-				, '대구광역시 남구 봉덕동 이천로 51'
-				, '2층');
+(m_id , m_passwd , m_name, m_phone, m_birthday, m_gender, m_addr1, m_addr2, m_addr3, m_question, m_answer, m_email)
+VALUES
+('test01', password(123), '이종가', '010-1234-5678', '1994-08-17', 1, 746858, '대구광역시 남구 봉덕동 이천로 51', '3층', '본인확인질문', '본인확인질문답변', 'test1@test.co.kr'),
+('test02', password(123), '이종나', '010-1234-5678', '1994-08-17', 1, 746851, '대구광역시 남구 봉덕동 이천로 52', '2층','본인확인질문', '본인확인질문답변', 'test2@test.co.kr'),
+('test03', password(123), '이종다', '010-1234-5678', '1994-08-17', 1, 746852, '대구광역시 남구 봉덕동 이천로 53', '1층','본인확인질문', '본인확인질문답변', 'test3@test.co.kr'),
+('test04', password(123), '이종라', '010-1234-5678', '1994-08-17', 0, 746853, '대구광역시 남구 봉덕동 이천로 54', '2층','본인확인질문', '본인확인질문답변', 'test4@test.co.kr'),
+('test05', password(123), '이종마', '010-1234-5678', '1994-08-17', 0, 746854, '대구광역시 남구 봉덕동 이천로 55', '3층','본인확인질문', '본인확인질문답변', 'test5@test.co.kr');
+
 -- 주소
 INSERT INTO proj21_shop.address
-			(m_id, m_addr, m_addr_de)
+			(m_id, m_addr1, m_addr2, m_addr3)
 values
-			('test01', '대구광역시 남구 봉덕동 이천로 51', '2층');
-
+			('test01', 746858, '대구광역시 남구 봉덕동 이천로 51', '3층'),
+			('test02', 746851, '대구광역시 남구 봉덕동 이천로 52', '2층'),
+			('test03', 746852, '대구광역시 남구 봉덕동 이천로 53', '1층'),
+			('test04', 746853, '대구광역시 남구 봉덕동 이천로 54', '2층'),
+			('test05', 746854, '대구광역시 남구 봉덕동 이천로 55', '3층');
 -- 관리자
 INSERT INTO admin
 (ad_id, ad_pass)
-VALUES('manager', password(123));
+VALUES('admin', password(123));
 
 -- 제품
+delete from product where pro_num = 101010;
+
+-- 제품 번호 101010 에서 10 : 옷 카테고리(예 : 반팔), 10: 옷 색상(예 : 검은색), 10 : 옷 사이즈(예 : s)
+desc product;
 INSERT INTO proj21_shop.product
-(
-				pro_code
-				, pro_category
-				, pro_name
-				, pro_price
-				, pro_salesrate
-				, pro_cre_date
-				, pro_status
-				, pro_color
-				, pro_size
-				, pro_quantity
-				, pro_sold
-				, pro_hits
+(pro_num, pro_category, pro_name, pro_price, pro_salesrate
+, pro_cre_date, pro_status, pro_color, pro_size, pro_quantity, pro_sold
 )
-VALUES(
-				'1111'
-				, 1
-				, '반팔'
-				, 5000
-				, 0
-				, '20200927'
-				, '판매중'
-				, 1
-				, 0
-				, 0
-				, 0
-				, 0);
+VALUES
+			(101010, 1, '반팔', 5000, 0 ,'20200927', '판매중', 1, 1, 0, 0),
+			(201010, 2, '긴팔', 5000, 0 ,'20200927', '판매중', 1, 1, 0, 0),
+			(301010, 3, '슬립리스', 5000, 0 ,'20200927', '판매중', 1, 1, 0, 0),
+			(401010, 4, '후디', 5000, 0 ,'20200927', '판매중', 1, 1, 0, 0),
+			(501010, 5, '셔츠', 5000, 0 ,'20200927', '판매중', 1, 1, 0, 0),
+			(601010, 6, '스웨트셔츠', 5000, 0 ,'20200927', '판매중', 1, 1, 0, 0);
 
 -- 제품 이미지
+desc pro_img ;
 INSERT INTO proj21_shop.pro_img
 (pro_num, pro_imagefilename, pro_img_state)
-VALUES(1, '1111-1.jpg', 0);
+values
+		(101010, '101010-1.jpg', 1),
+		(201010, '201010-1.jpg', 1),
+		(301010, '301010-1.jpg', 1),
+		(401010, '401010-1.jpg', 1),
+		(501010, '501010-1.jpg', 1),
+		(601010, '601010-1.jpg', 1);
 
+--  여기 까지
 -- 장바구니
 INSERT INTO proj21_shop.cart
 (cart_m_Id, cart_pro_num, cart_pro_quantity)
-<<<<<<< HEAD
 VALUES('test01', 1, 1);
-=======
 VALUES('test01', 1, 0);
->>>>>>> refs/heads/dml_및_sql_LTH
 
 -- 주문 
 INSERT INTO proj21_shop.`order`
@@ -107,12 +75,8 @@ order_member_id
 , delivery_addr_de
 , delivery_status
 , request_to_delivery
-<<<<<<< HEAD
 , order_date
 , who_pay
-=======
-, order_date, who_pay
->>>>>>> refs/heads/dml_및_sql_LTH
 , which_bank
 , acount_num
 )
@@ -127,7 +91,6 @@ VALUES(
 , '이종윤'
 , '010-1234-5678'
 , '010-1234-5678'
-<<<<<<< HEAD
 , '대구광역시 남구 봉덕동 이천로 51' 
 , '2층'
 ,'배송완료'
@@ -137,14 +100,12 @@ VALUES(
 , '국민'
 , 5000
 );
-=======
 , '판매중'
 , '문앞'
 , '2020-09-27'
 , '이종윤'
 , '국민'
 , '111111111');
->>>>>>> refs/heads/dml_및_sql_LTH
 
 -- Q&A
 INSERT INTO qna

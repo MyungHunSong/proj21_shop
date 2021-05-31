@@ -6,7 +6,7 @@ delete from `member` where m_name = '이종가';
 INSERT INTO proj21_shop.`member`
 (m_id , m_passwd , m_name, m_phone, m_birthday, m_gender, m_question, m_answer, m_email)
 VALUES(
-'test01', password(123), '이종가', '010-1234-5678', '1994-08-17', 1, '본인확인질문', '본인확인질문답변', 'test1@test.co.kr'
+'test01', password(123), '이종가', '010-1234-5678', '1994-08-17', 746857, '대구광역시 남구 봉덕동 이천로 51', '2층' , 1, '본인확인질문', '본인확인질문답변', 'test1@test.co.kr'
 'test02', password(123), '이종나', '010-1234-5678', '1994-08-17', 1, '본인확인질문', '본인확인질문답변', 'test2@test.co.kr'
 'test03', password(123), '이종다', '010-1234-5678', '1994-08-17', 1, '본인확인질문', '본인확인질문답변', 'test3@test.co.kr'
 'test04', password(123), '이종라', '010-1234-5678', '1994-08-17', 2, '본인확인질문', '본인확인질문답변', 'test4@test.co.kr'
