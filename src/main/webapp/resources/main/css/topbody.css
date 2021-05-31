@@ -2,10 +2,11 @@
 .top {
 	font-size: 15px;
 	text-align: center;
+	margin-bottom: 20px;
 }
 
 .top nav {
-	border-bottom: 3px solid gray;
+	border-bottom: 1px solid gray;
 }
 
 .top nav ul {
@@ -14,7 +15,7 @@
 
 .top ul li {
 	display: inline-block;
-	margin: 20px;
+	margin: 30px;
 }
 
 .top nav ul li a{

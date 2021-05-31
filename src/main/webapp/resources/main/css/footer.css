@@ -2,6 +2,7 @@
 footer {
 	border-top: 1px solid gray;
 	margin: auto;
+	margin-top: 20px;
 }
 
 footer section {
@@ -19,7 +20,7 @@ footer section {
 }
 
 /*고정된 상단,하단 이동 버튼 지정값*/
-.scrollMenu {
+#scrollMenu {
 	position: fixed;
 	top: 530px;
 	right: 50%;
