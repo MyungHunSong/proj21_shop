@@ -1,8 +1,7 @@
 @charset "UTF-8";
 
 .home-main-slider-container{
-	margin: 0 auto;
-	text-align: center;
+	display: inline-block;
 }
 	
 /*바로가기(recommend,mostview) 중앙 배치*/

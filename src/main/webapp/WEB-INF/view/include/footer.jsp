@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="/proj21_shop/resources/css/footer.css">
+<link rel="stylesheet" href="/proj21_shop/resources/main/css/footer.css">
 <script>
 	/*위, 아래 이동 jquery문*/
 	$(function(){
@@ -23,7 +23,7 @@
 	<footer>
 		<section class="bottom1">
 			<h3>Up Street</h3>
-			<img alt="곧 이미지" src="/proj21_shop/resources/banner/images/bot1.jpg">
+			<img alt="곧 이미지" src="/proj21_shop/resources/banner/bot1.jpg">
 		</section>
 		<section class="bottom2">
 			<p>쇼핑몰 주소 : 서울</p>

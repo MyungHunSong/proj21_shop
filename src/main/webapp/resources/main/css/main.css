@@ -1,6 +1,7 @@
 @charset "UTF-8";
 /*슬라이더 중앙 배치*/
 .container{
+	margin:0 auto;
 	width: 80%;
-	margin: 0 auto;
+	text-align: center;
 }
