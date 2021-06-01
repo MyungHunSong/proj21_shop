@@ -1,0 +1,37 @@
+@charset "UTF-8";
+
+section .faq&qna{
+	border: 1px solid #000;
+	width: 800px;
+}
+
+.btn{
+	list-style: none;
+	padding:0;
+	/* border:1px solid red; */
+	margin:0;
+	obverflow:hidden;
+}
+
+.btn li{
+	float:left;
+	border:1px solid #000;
+	background-color: gray;
+	cursor: pointer;
+}
+
+ .btn li.active{
+	background-color: #fff;
+} 
+
+ .tabs{}
+
+ .tabs div{
+	border: 1px solid #000;
+	height: 200px;
+	display: none;
+} 
+
+ .tabs div.active{
+	display: block;
+} 
