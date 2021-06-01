@@ -2,6 +2,7 @@
 header {}
 
 header h2 {
+	font-family: fantasy,"Times New Roman", serif; 
 	text-align: center;
 	font-size: 30px;
 	padding: 20px;
@@ -30,4 +31,9 @@ header ul li a{
 /*갓다댈시 빨간색으로*/
 header ul li a:hover {
 	color:red;
+}
+
+#headerImg{
+	width: 70px;
+	height: 70px;
 }

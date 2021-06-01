@@ -1,4 +1,11 @@
 @charset "UTF-8";
+
+footer h3{				
+	font-size: 25px;			
+	font-weight: bold;			
+	margin-top: 0px;			
+}
+
 footer {
 	border-top: 1px solid gray;
 	margin: auto;
@@ -32,4 +39,16 @@ footer section {
 #go_top, #go_bottom{
 	cursor:pointer;
  	color: #000;
+}
+
+/*리모콘 가로등 이미지*/
+#updownImg{				
+	width: 50px;				
+	height: 50px;			
+}					
+
+/*푸터 가로등 이미지.*/
+#footerImg{				
+	width: 50px;			
+	height: 50px;			
 }

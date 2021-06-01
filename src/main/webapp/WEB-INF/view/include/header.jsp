@@ -14,7 +14,10 @@
 			<li><a href="#">마이페이지</a></li>
 			<li><a href="#">고객센터</a></li>
 		</ul>
-		<h2>Up Street</h2>
+		<h2>
+			Up Street
+			<img alt="헤더 오른쪽 옷걸이" src="/proj21_shop/resources/banner/headerR.jpg" id="headerImg">
+		</h2>
 	</header>
 </body>
 </html>

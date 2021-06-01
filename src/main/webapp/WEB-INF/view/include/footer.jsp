@@ -22,7 +22,10 @@
 <body>
 	<footer>
 		<section class="bottom1">
-			<h3>Up Street</h3>
+			<h3>
+				<img alt="푸터 하단 가로등 이미지" src="/proj21_shop/resources/banner/footerL.jpg" id="footerImg">							
+				Up Street
+			</h3>
 			<img alt="곧 이미지" src="/proj21_shop/resources/banner/bot1.jpg">
 		</section>
 		<section class="bottom2">
@@ -36,6 +39,7 @@
 			<p>예금주:이태훈</p>
 		</section>
 		<div class="scrollMenu">
+		<img alt="리모컨 버튼 이미지" src="/proj21_shop/resources/banner/updown.jpg" id="updownImg">
 			<img id="go_top" alt="상단으로 이동하기" 
 			src="http://cdn1-aka.makeshop.co.kr/design/smblue111/wib_2020/img/top_go.png">
 			<img id="go_bottom" alt="하단으로 이동하기" 
