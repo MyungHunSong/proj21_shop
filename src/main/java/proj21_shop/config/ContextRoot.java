@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Import;
 @Import({ContextDataSource.class, ContextSqlSession.class, MvcConfig.class})
 @ComponentScan(basePackages = {
 	    "proj21_shop.service"
-	  , "proj21_shop.controller"
+	  , "proj21_shop.controller.member"
 		})
 public class ContextRoot {
 	

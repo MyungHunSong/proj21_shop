@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원 가입</title>
+<title>회원 정보 수정</title>
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -69,42 +69,33 @@
 				}).open();
 	}
 </script>
-<link rel="stylesheet" href="css/member/registerForm.css">
+<link rel="stylesheet" href="css/member/modifyForm.css">
 </head>
 <body>
-	<h2>회원가입</h2>
-	<section id="registerFormArea">
-		<form action="register" method="post">
+	<h2>회원 정보 수정</h2>
+	<section id="modifyFormArea">
+		<form action="modify" method="post">
 			<table class="type02">
 				<tr>
-					<th scope="row"><label for="name">이름</label></th>
-					<td><input type="text" name="name" id="name"></td>
+					<th scope="row"><label for="confirmQuestion">본인확인질문</label></th>
+					<td><select id="hint" name="hint">
+							<option value="hint_01">기억에 남는 추억의 장소는?</option>
+							<option value="hint_02">자신의 인생 좌우명은?</option>
+							<option value="hint_03">자신의 보물 제1호는?</option>
+							<option value="hint_04">가장 기억에 남는 선생님 성함은?</option>
+					</select></td>
 				</tr>
 				<tr>
-					<th scope="row"><label for="id">아이디</label></th>
-					<td><input type="text" name="id" id="id"></td>
+					<th scope="row"><label for="answer">답변</label></th>
+					<td><input type="text" name="answer" id="answer"></td>
 				</tr>
 				<tr>
-					<th scope="row"><label for="passwd">비밀번호</label></th>
-					<td><input type="password" name="passwd" id="passwd"></td>
+					<th scope="row"><label for="tel">전화 번호</label></th>
+					<td><input type="text" name="tel" id="tel"></td>
 				</tr>
 				<tr>
-					<th scope="row"><label for="passwdconfirm">비밀번호 확인</label></th>
-					<td><input type="password" name="passwdconfirm"
-						id="passwdconfirm"></td>
-				</tr>
-				<tr>
-					<th scope="row"><label for="tel">전화번호</label></th>
-					<td><input type="text" name="text" id="text"></td>
-				</tr>
-				<tr>
-					<th scope="row">생년월일</th>
-					<td><input type='date' name='birthday' value='1999-03-30' /></td>
-				</tr>
-				<tr>
-					<th scope="row"><label for="gender">성별</label></th>
-					<td><input type="radio" name="gender" value="male">남자
-						<input type="radio" name="gender" value="female">여자</td>
+					<th scope="row"><label for="email">이메일</label></th>
+					<td><input type="text" name="email" id="email"></td>
 				</tr>
 				<tr>
 					<th scope="row"><label for="address">주소</label></th>
@@ -118,22 +109,9 @@
 						<input type="text" id="sample4_extraAddress" placeholder="참고항목">
 					</td>
 				</tr>
-				<tr>
-					<th scope="row"><label for="confirmQ">본인확인질문</label></th>
-					<td><select id="hint" name="hint">
-							<option value="hint_01">기억에 남는 추억의 장소는?</option>
-							<option value="hint_02">자신의 인생 좌우명은?</option>
-							<option value="hint_03">자신의 보물 제1호는?</option>
-							<option value="hint_04">가장 기억에 남는 선생님 성함은?</option>
-					</select></td>
-				</tr>
-				<tr>
-					<th scope="row"><label for="답변">답변</label></th>
-					<td><input type="text" name="answer" id="answer"></td>
-				</tr>
 			</table>
 			<div>
-				<input type="submit" value="회원가입" id="registerButton" /> <input
+				<input type="submit" value="회원정보수정" id="registerButton" /> <input
 					type="reset" value="초기화" id="resetButton" /> <input type="button"
 					value="취소" id="cancelButton" onClick="history.go(-1)" />
 			</div>
