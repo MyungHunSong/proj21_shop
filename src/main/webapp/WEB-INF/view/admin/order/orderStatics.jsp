@@ -1,24 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR" isELIgnored="false"%>
-   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-   <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+	pageEncoding="EUC-KR" isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="contextPath" value="<%=request.getContextPath()%>" />
 <c:set var="totalAvenue" value="${viewMap.totalAvenue }" />
 <c:set var="totalOrderCount" value="${viewMap.totalOrderCount }" />
 
-		
+
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<meta http-equiv="x-ua-compatible" content="ie=edge">
-		
-		<title>Annual Sales - 2015</title>
-		
-	
-		
-	<!-- 	<style>
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+<title>Annual Sales - 2015</title>
+
+
+
+<!-- 	<style>
 			body {
 				background-color: #fafafa;
 				font-size: 16px;
@@ -69,13 +70,16 @@
 				width: 100%;
 			}			
 		</style> -->
-		
-		<!-- Scripts -->
-		<script src="${contextPath}/resources/admin/order/css/jquery/jquery-3.1.0.min.js"></script>
-		<script src="${contextPath}/resources/admin/order/css/tether/tether.min.js"></script>
-		<script src="${contextPath}/resources/admin/order/css/bootstrap/bootstrap4-alpha3.min.js"></script>
-		<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-	<script>
+
+<!-- Scripts -->
+<script
+	src="${contextPath}/resources/admin/order/css/jquery/jquery-3.1.0.min.js"></script>
+<script
+	src="${contextPath}/resources/admin/order/css/tether/tether.min.js"></script>
+<script
+	src="${contextPath}/resources/admin/order/css/bootstrap/bootstrap4-alpha3.min.js"></script>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<script>
 
    $(document).ready(function(){
       
@@ -101,7 +105,7 @@
    });
    
 </script>
-		<script>
+<script>
 			$(function () {
 				var totalRevenue = 15341110;
 				
@@ -227,10 +231,10 @@
 				
 			});
 		</script>
-		
-	</head>
-	<body>
-<!-- 		<div class="container">
+
+</head>
+<body>
+	<!-- 		<div class="container">
 			
 			
 			<div class="row m-b-1">
@@ -266,123 +270,141 @@
 				
 			</div> row
 		</div> container -->
-		
-		<div class="page-wrapper">
-            
-            <div class="container-fluid">
-                
-                
-                
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-body">
-                            
-                                <h3 class="card-title">총 수익 현황 &nbsp;<span class="tag tag-success" id="revenue-tag"><fmt:formatNumber value="${totalAvenue}" type="number" /> 원</span></h3>
-                                <br>
-                               <div class="card-block">
-									<div id="revenue-column-chart" style="height:400px;" ></div>
-								</div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-               
-   
-             
-                   <div class="row">
-                    <div class="col-md-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h3 class="card-title">상품별 주문 수요</h3>
-                     <br>
-                                <div style="height: 400px;" id="products-revenue-pie-chart"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h3 class="card-title">주문수</h3>
-                                <br>
-                                <div style="height: 400px;" id="orders-spline-chart"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-             
-             
-                  <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            
-                               
-                                <div class="chat-box scrollable" style="height:600px;">
-                                    <!--chat Row -->
-                                    <ul class="chat-list">
-                                        <!--chat Row -->
-                                        <li class="chat-item">
-                                            <div class="chat-img"><img src="${contextPath}/resources/banner/banner01.png" alt="user"></div>
-                                            <div class="chat-content">
-                                                <h6 class="font-medium">GOLDEN kiwi</h6>
-                                                <c:choose>
-                                              		<c:when test="${isLogOn == true && memberInfo !=null }">
-                                                		<div class="box bg-light-info">환영합니다 <a href="#" style="color:red;">${memberInfo.member_name }</a>님!</div> 
-                                                	</c:when> 
-                                                </c:choose>
-                                                
-                                            </div>
-                                            
-                                            <div class="chat-time">10:56 am</div>
-                                        </li>
-                                        <!--chat Row -->
-                                        <li class="chat-item">
-                                            <div class="chat-img"><img src="${contextPath}/resources/banner/banner01.png" alt="user"></div>
-                                            <div class="chat-content">
-                                                <h6 class="font-medium">GOLDEN kiwi</h6>
-                                                <c:choose>
-                                                <c:when test="${isLogOn == true && memberInfo !=null }">
-                                                <div class="box bg-light-info">로그아웃 하시겠어요?
-                                                <br><a href="${contextPath }/member/memberlogout.do">로그아웃하기</a></div>
-                                                
-                                                
-                                                </c:when>
-                                                </c:choose>
-                                            </div>
-                                            <div class="chat-time">10:57 am</div>
-                                        </li>
-                                        <!--chat Row -->
-                                     <!--    <li class="odd chat-item">
+
+	<div class="page-wrapper">
+
+		<div class="container-fluid">
+
+
+
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-body">
+
+							<h3 class="card-title">
+								총 수익 현황 &nbsp;<span class="tag tag-success" id="revenue-tag"><fmt:formatNumber
+										value="${totalAvenue}" type="number" /> 원</span>
+							</h3>
+							<br>
+							<div class="card-block">
+								<div id="revenue-column-chart" style="height: 400px;"></div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+			<div class="row">
+				<div class="col-md-6">
+					<div class="card">
+						<div class="card-body">
+							<h3 class="card-title">상품별 주문 수요</h3>
+							<br>
+							<div style="height: 400px;" id="products-revenue-pie-chart"></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="card">
+						<div class="card-body">
+							<h3 class="card-title">주문수</h3>
+							<br>
+							<div style="height: 400px;" id="orders-spline-chart"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="col-12">
+					<div class="card">
+
+
+						<div class="chat-box scrollable" style="height: 600px;">
+							<!--chat Row -->
+							<ul class="chat-list">
+								<!--chat Row -->
+								<li class="chat-item">
+									<div class="chat-img">
+										<img src="${contextPath}/resources/banner/banner01.png"
+											alt="user">
+									</div>
+									<div class="chat-content">
+										<h6 class="font-medium">GOLDEN kiwi</h6>
+										<c:choose>
+											<c:when test="${isLogOn == true && memberInfo !=null }">
+												<div class="box bg-light-info">
+													환영합니다 <a href="#" style="color: red;">${memberInfo.member_name }</a>님!
+												</div>
+											</c:when>
+										</c:choose>
+
+									</div>
+
+									<div class="chat-time">10:56 am</div>
+								</li>
+								<!--chat Row -->
+								<li class="chat-item">
+									<div class="chat-img">
+										<img src="${contextPath}/resources/banner/banner01.png"
+											alt="user">
+									</div>
+									<div class="chat-content">
+										<h6 class="font-medium">GOLDEN kiwi</h6>
+										<c:choose>
+											<c:when test="${isLogOn == true && memberInfo !=null }">
+												<div class="box bg-light-info">
+													로그아웃 하시겠어요? <br> <a
+														href="${contextPath }/member/memberlogout.do">로그아웃하기</a>
+												</div>
+
+
+											</c:when>
+										</c:choose>
+									</div>
+									<div class="chat-time">10:57 am</div>
+								</li>
+								<!--chat Row -->
+								<!--    <li class="odd chat-item">
                                             <div class="chat-content">
                                                 <div class="box bg-light-inverse">이번달 일정 보여줘.</div>
                                                 <br>
                                             </div>
                                         </li> -->
-                                       
-                                        
-                                                   
-                                        
-                                        
-                                         <!--chat Row -->
-                                        <li class="odd chat-item">
-                                            <div class="chat-content">
-                                                <div class="box bg-light-inverse">클라이언트 페이지로 보여줘.</div>
-                                                <br>
-                                            </div>
-                                            <div class="chat-time">10:59 am</div>
-                                        </li>
-                                        
-                                        <li class="chat-item">
-                                            <div class="chat-img"><img src="${contextPath}/resources/banner/banner01.png" alt="user"></div>
-                                            <div class="chat-content">
-                                                <h6 class="font-medium">GOLDEN kiwi</h6>
-                                               
-                                                <div class="box bg-light-info"><a href="${contextPath }/main/main.do">클라이언트 페이지 바로가기</a></div>
-                                            <div class="chat-time">10:57 am</div>
-                                        </li>
-                                        <!--chat Row -->
-                                    <!--     <li class="chat-item">
+
+
+
+
+
+								<!--chat Row -->
+								<li class="odd chat-item">
+									<div class="chat-content">
+										<div class="box bg-light-inverse">클라이언트 페이지로 보여줘.</div>
+										<br>
+									</div>
+									<div class="chat-time">10:59 am</div>
+								</li>
+
+								<li class="chat-item">
+									<div class="chat-img">
+										<img src="${contextPath}/resources/banner/banner01.png"
+											alt="user">
+									</div>
+									<div class="chat-content">
+										<h6 class="font-medium">GOLDEN kiwi</h6>
+
+										<div class="box bg-light-info">
+											<a href="${contextPath }/main/main.do">클라이언트 페이지 바로가기</a>
+										</div>
+										<div class="chat-time">10:57 am</div>
+								</li>
+								<!--chat Row -->
+								<!--     <li class="chat-item">
                                             <div class="chat-img"><img src="assets/images/users/3.jpg" alt="user"></div>
                                             <div class="chat-content">
                                                 <h6 class="font-medium">Angelina Rhodes</h6>
@@ -390,47 +412,56 @@
                                             </div>
                                             <div class="chat-time">11:00 am</div>
                                         </li> -->
-                                        <!--chat Row -->
-                                    </ul>
-                                </div>
-                            </div>
-                            
-                        </div>
-                    </div>
-             
-             
-             
-             
-             
-             
-              
-               
-            </div>
-        
-        </div>
-      
+								<!--chat Row -->
+							</ul>
+						</div>
+					</div>
+
+				</div>
+			</div>
 
 
 
-		
-	</body>
-	<script src="${contextPath}/resources/admin/assets/libs/jquery/dist/jquery.min.js"></script>
-    <script src="${contextPath}/resources/admin/dist/js/jquery.ui.touch-punch-improved.js"></script>
-    <script src="${contextPath}/resources/admin/dist/js/jquery-ui.min.js"></script>
-    <!-- Bootstrap tether Core JavaScript -->
-    <script src="${contextPath}/resources/admin/assets/libs/popper.js/dist/umd/popper.min.js"></script>
-    <script src="${contextPath}/resources/admin/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- slimscrollbar scrollbar JavaScript -->
-    <script src="${contextPath}/resources/admin/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
-    <script src="${contextPath}/resources/admin/assets/extra-libs/sparkline/sparkline.js"></script>
-    <!--Wave Effects -->
-    <script src="${contextPath}/resources/admin/dist/js/waves.js"></script>
-    <!--Menu sidebar -->
-    <script src="${contextPath}/resources/admin/dist/js/sidebarmenu.js"></script>
-    <!--Custom JavaScript -->
-    <script src="${contextPath}/resources/admin/dist/js/custom.min.js"></script>
-     <!-- this page js -->
-    <script src="${contextPath}/resources/admin/assets/libs/moment/min/moment.min.js"></script>
-    <script src="${contextPath}/resources/admin/assets/libs/fullcalendar/dist/fullcalendar.min.js"></script>
-    <script src="${contextPath}/resources/admin/dist/js/pages/calendar/cal-init.js"></script>
+
+
+
+
+
+		</div>
+
+	</div>
+
+
+
+
+
+</body>
+<script
+	src="${contextPath}/resources/admin/assets/libs/jquery/dist/jquery.min.js"></script>
+<script
+	src="${contextPath}/resources/admin/dist/js/jquery.ui.touch-punch-improved.js"></script>
+<script src="${contextPath}/resources/admin/dist/js/jquery-ui.min.js"></script>
+<!-- Bootstrap tether Core JavaScript -->
+<script
+	src="${contextPath}/resources/admin/assets/libs/popper.js/dist/umd/popper.min.js"></script>
+<script
+	src="${contextPath}/resources/admin/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- slimscrollbar scrollbar JavaScript -->
+<script
+	src="${contextPath}/resources/admin/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+<script
+	src="${contextPath}/resources/admin/assets/extra-libs/sparkline/sparkline.js"></script>
+<!--Wave Effects -->
+<script src="${contextPath}/resources/admin/dist/js/waves.js"></script>
+<!--Menu sidebar -->
+<script src="${contextPath}/resources/admin/dist/js/sidebarmenu.js"></script>
+<!--Custom JavaScript -->
+<script src="${contextPath}/resources/admin/dist/js/custom.min.js"></script>
+<!-- this page js -->
+<script
+	src="${contextPath}/resources/admin/assets/libs/moment/min/moment.min.js"></script>
+<script
+	src="${contextPath}/resources/admin/assets/libs/fullcalendar/dist/fullcalendar.min.js"></script>
+<script
+	src="${contextPath}/resources/admin/dist/js/pages/calendar/cal-init.js"></script>
 </html>
