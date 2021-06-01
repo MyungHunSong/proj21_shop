@@ -11,10 +11,11 @@ h1{
 	margin: auto;
 	width: 400px;
 	height: 300px;
-	border: 1px double #9AB9FF;
+	border: 1px double white;
 	border-radius: 30px;
 	text-align: center;
-	box-shadow: 5px 5px 15px 5px gray;
+	box-shadow: 5px 5px 10px 5px gray;
+	background: #fcf1f4
 }
 
 div {
@@ -26,16 +27,18 @@ div {
 	color: white;
 	margin-top: 10px;
 	background: #FF7696;
-	border: 1px double #9AB9FF;
+	border: 1px double #e7708d;
 	border-radius: 2px;
+	color: #fff;
 }
 
 #memberButton{
 	color: white;
 	margin-top: 10px;
 	background: #FF7696;
-	border: 1px double #9AB9FF;
+	border: 1px double #e7708d;
 	border-radius: 2px;
+	color: #fff;
 }
 table {
 	width: 300px;

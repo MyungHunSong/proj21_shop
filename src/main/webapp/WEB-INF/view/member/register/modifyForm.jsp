@@ -69,44 +69,51 @@
 				}).open();
 	}
 </script>
+<link rel="stylesheet" href="css/member/modifyForm.css">
 </head>
 <body>
-	<h3>회원 정보 수정</h3>
+	<h2>회원 정보 수정</h2>
 	<section id="modifyFormArea">
 		<form action="modify" method="post">
+			<table class="type02">
+				<tr>
+					<th scope="row"><label for="confirmQuestion">본인확인질문</label></th>
+					<td><select id="hint" name="hint">
+							<option value="hint_01">기억에 남는 추억의 장소는?</option>
+							<option value="hint_02">자신의 인생 좌우명은?</option>
+							<option value="hint_03">자신의 보물 제1호는?</option>
+							<option value="hint_04">가장 기억에 남는 선생님 성함은?</option>
+					</select></td>
+				</tr>
+				<tr>
+					<th scope="row"><label for="answer">답변</label></th>
+					<td><input type="text" name="answer" id="answer"></td>
+				</tr>
+				<tr>
+					<th scope="row"><label for="tel">전화 번호</label></th>
+					<td><input type="text" name="tel" id="tel"></td>
+				</tr>
+				<tr>
+					<th scope="row"><label for="email">이메일</label></th>
+					<td><input type="text" name="email" id="email"></td>
+				</tr>
+				<tr>
+					<th scope="row"><label for="address">주소</label></th>
+					<td><input type="text" id="sample4_postcode"
+						placeholder="우편번호"> <input type="button"
+						onclick="sample4_execDaumPostcode()" value="우편번호 찾기"> <br>
+						<input type="text" id="sample4_roadAddress" placeholder="도로명주소">
+						<input type="text" id="sample4_jibunAddress" placeholder="지번주소">
+						<span id="guide" style="color: #999; display: none"></span> <input
+						type="text" id="sample4_detailAddress" placeholder="상세주소">
+						<input type="text" id="sample4_extraAddress" placeholder="참고항목">
+					</td>
+				</tr>
+			</table>
 			<div>
-				<table>
-					<tr>
-						<td><label for="confirmQuestion">본인확인질문</label></td>
-					</tr>
-					<tr>
-						<td><label for="answer">답변</label></td>
-						<td><input type="text" name="answer" id="answer"></td>
-					</tr>
-					<tr>
-						<td><label for="tel">전화 번호</label></td>
-						<td><input type="text" name="tel" id="tel"></td>
-					</tr>
-					<tr>
-						<td><label for="email">이메일</label></td>
-						<td><input type="text" name="email" id="email"></td>
-					</tr>
-					<tr>
-						<td><label for="address">주소</label></td>
-						<td><input type="text" id="sample4_postcode"
-							placeholder="우편번호"> <input type="button"
-							onclick="sample4_execDaumPostcode()" value="우편번호 찾기"> <br>
-							<input type="text" id="sample4_roadAddress" placeholder="도로명주소">
-							<input type="text" id="sample4_jibunAddress" placeholder="지번주소">
-							<span id="guide" style="color: #999; display: none"></span> <input
-							type="text" id="sample4_detailAddress" placeholder="상세주소">
-							<input type="text" id="sample4_extraAddress" placeholder="참고항목">
-						</td>
-					</tr>
-				</table>
 				<input type="submit" value="회원정보수정" id="registerButton" /> <input
-					type="reset" value="초기화" /> <input type="button" value="취소"
-					id="cancel" onClick="history.go(-1)" />
+					type="reset" value="초기화" id="resetButton" /> <input type="button"
+					value="취소" id="cancelButton" onClick="history.go(-1)" />
 			</div>
 		</form>
 	</section>

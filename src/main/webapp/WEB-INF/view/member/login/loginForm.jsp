@@ -14,11 +14,11 @@
 			<div>
 				<table>
 					<tr>
-						<td><label for="id">ID </label></td>
+						<td><label for="id">아이디 </label></td>
 						<td><input type="text" name="id" id="id"></td>
 					</tr>
 					<tr>
-						<td><label for="passwd">PASSWORD </label></td>
+						<td><label for="passwd">비밀번호 </label></td>
 						<td><input type="password" name="passwd" id="passwd" /></td>
 				</table>
 				<input type="submit" value="로그인" id="selectButton" /><br> <input
