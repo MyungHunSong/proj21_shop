@@ -60,7 +60,8 @@ span{
 
 /*공정 거래 위원회 이미지.*/
 #same{
-	width: 120px
+	width: 200px;
+	height: 60px;
 }
 /*푸터 가로등 이미지.*/
 #footerImg{
