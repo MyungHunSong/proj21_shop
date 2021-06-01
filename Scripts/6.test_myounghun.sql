@@ -14,11 +14,11 @@ select * from `member`;
 
 
 -- 제품인서트
- insert into 
+/* insert into 
  `order`(order_member_id, order_num, pro_num, order_pro_num, order_member_name, order_pro_quantity, order_price, order_discount, receiver_name, receiver_tel1
  ,delivery_addr1, delivery_addr2, delivery_addr3, delivery_status, request_to_delivery, order_date, who_pay, which_bank)
  values('test01',2003,6034,0,'항산화',2,500000,0,'호잇차','010-4444-4444','708-1421','대구 광역시 매여로 2길 58','219번지','배송중','안전하게 오세요',now()
- ,'송명훈','국민');
+ ,'송명훈','국민');*/
  
 -- 1-1.qna작성시 인서트문이다.
 insert into qna(q_title, q_option, q_member, q_content,q_group,q_file,q_date)
