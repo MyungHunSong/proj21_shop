@@ -47,6 +47,9 @@ $(function(){
 		</div>
 		<div class="print">별점을 매겨주세요</div>
 	</div>
-	<textarea rows="5" cols="50" name= "review" id="review" placeholder="상품에 대한 평가를 20자 이상 작성해 주세요"></textarea>
+	<textarea rows="5" cols="50" name= "review" id="review" placeholder="상품에 대한 평가를 20자 이상 작성해 주세요"></textarea><br>
+	<input name="BOARD_FILE" type="file" id="BOARD_FILE"/><br>
+	<input name="BOARD_FILE" type="file" id="BOARD_FILE"/><br>
+	<input type="submit" value="등록" id="reviewButton"/><br>
 </body>
 </html>
