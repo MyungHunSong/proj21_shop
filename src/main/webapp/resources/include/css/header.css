@@ -1,14 +1,6 @@
 @charset "UTF-8";
 header {}
 
-header h2 {
-	font-family: fantasy,"Times New Roman", serif; 
-	text-align: center;
-	font-size: 30px;
-	padding: 20px;
-	margin-bottom: 5px;
-}
-
 header ul {
 	list-style: none;
 }
@@ -18,22 +10,22 @@ header ul li {
 	margin-left: 20px;
 }
 
-header ul li a {
-	text-decoration: none;
-}
-
 header ul li a{
 	text-decoration: none;
 	color: #000;
 	cursor: pointer;
 	outline: none;
+	font-size: 14px;
+	font-weight: bold;
 }
 /*갓다댈시 빨간색으로*/
 header ul li a:hover {
 	color:red;
 }
-
-#headerImg{
-	width: 70px;
-	height: 70px;
+/*옷걸이 이미지*/
+.headerImg{
+	width: 210px;
+	height: 170px;
+	margin-left: 30%;
+	cursor: pointer;
 }

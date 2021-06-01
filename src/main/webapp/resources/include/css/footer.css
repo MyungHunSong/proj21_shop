@@ -1,8 +1,6 @@
 @charset "UTF-8";
 
-footer h3{				
-	font-size: 25px;			
-	font-weight: bold;			
+footer h3{					
 	margin-top: 0px;			
 }
 
@@ -13,26 +11,38 @@ footer {
 }
 
 footer section {
-	width: 32%;
+	width: 30%;
 	float: left;
 	margin: 5px;
+	
 }
 
 .bottom1 {
-	font-size: 15px;
+	font-size: 15px;	
 }
 
-.bottom2 p {
-	font-size: 12px;
+span{
+	font-weight: bold;
 }
 
+.bottom2 {
+	font-size: 18px;
+	text-align:left;
+	padding-left:45px;
+}
+ .bottom3{
+ 	font-size: 18px;
+	text-align:left;
+	padding-left:45px;
+ }
+ 
 /*고정된 상단,하단 이동 버튼 지정값*/
 #scrollMenu {
 	position: fixed;
 	top: 530px;
 	right: 50%;
 	margin-right: -740px;
-	width: 5%;
+	width: 4%;
 }
 
 /*상단 하단 이미지. 변경 (마우스커서, 색깔)*/
@@ -42,13 +52,18 @@ footer section {
 }
 
 /*리모콘 가로등 이미지*/
-#updownImg{				
-	width: 50px;				
-	height: 50px;			
+.updownImg{				
+	width: 60px;				
+	height: 60px;	
+	cursor: pointer;		
 }					
 
+/*공정 거래 위원회 이미지.*/
+#same{
+	width: 120px
+}
 /*푸터 가로등 이미지.*/
-#footerImg{				
-	width: 50px;			
-	height: 50px;			
+#footerImg{
+	width: 150px;			
+	height: 150px;				
 }
