@@ -12,6 +12,6 @@ public class LoginController {
 	
 	@GetMapping
 	public String login(HttpSession session) {
-		return "/login/loginForm";
+		return "/member/login/loginForm";
 	}
 }

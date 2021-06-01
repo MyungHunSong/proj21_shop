@@ -12,7 +12,7 @@ public class RegisterController {
 	
 	@GetMapping
 	public String register(HttpSession session) {
-		return "/register/registerForm";
+		return "member/register/registerForm";
 	}
 
 }
