@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="/proj21_shop/resources/include/header.css">
+<link rel="stylesheet" href="/proj21_shop/resources/include/css/header.css">
 </head>
 <body>
 	<header>

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="/proj21_shop/resources/include/topbody.css">
+<link rel="stylesheet" href="/proj21_shop/resources/include/css/topbody.css">
 </head>
 <body>
 	<div class="top">
