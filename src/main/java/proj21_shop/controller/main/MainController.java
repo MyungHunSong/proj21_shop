@@ -1,4 +1,4 @@
-package proj21_shop.controller.lth;
+package proj21_shop.controller.main;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,7 +10,7 @@ public class MainController {
 	
 	@GetMapping
 	public String form() {
-		return "/include/main";
+		return "/main/main";
 	}
 	
 }

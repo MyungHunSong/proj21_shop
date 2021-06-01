@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="/proj21_shop/resources/main/css/footer.css">
+<link rel="stylesheet" href="/proj21_shop/resources/include/footer.css">
 <script>
 	/*위, 아래 이동 jquery문*/
 	$(function(){
