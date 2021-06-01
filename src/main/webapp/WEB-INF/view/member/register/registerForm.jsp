@@ -5,13 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>회원 가입</title>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js">
-var start_year="2015";// 시작할 년도
-var today = new Date(); var today_year= today.getFullYear();
-var index=0; for(var y=start_year; y<=today_year; y++){ //start_year ~ 현재 년도 
-	document.getElementById('select_year').options[index] = new Option(y, y); index++; } index=0; for(var m=1; m<=12; m++){ document.getElementById('select_month').options[index] = new Option(m, m); index++; } lastday(); function lastday(){ //년과 월에 따라 마지막 일 구하기 var Year=document.getElementById('select_year').value; var Month=document.getElementById('select_month').value; var day=new Date(new Date(Year,Month,1)-86400000).getDate(); var dayindex_len=document.getElementById('select_day').length; if(day>dayindex_len){ for(var i=(dayindex_len+1); i<=day; i++){ document.getElementById('select_day').options[i-1] = new Option(i, i); } } else if(day<dayindex_len){ for(var i=dayindex_len; i>=day; i--){ document.getElementById('select_day').options[i]=null; } } }
-
-</script>
 </head>
 <body>
 	<h3>회원가입</h3>
@@ -40,7 +33,12 @@ var index=0; for(var y=start_year; y<=today_year; y++){ //start_year ~ 현재 �
 						<td><label for="tel">전화번호</label></td>
 						<td><input type="text" name="text" id="text"></td>
 					</tr>
-					
+					<tr>
+						<td>생년월일</td>
+						<td><input type="text" name="year" id="year">년 <input
+							type="text" name="month" id="month">월 <input type="text"
+							name="day" id="day">일</td>
+					</tr>
 					<tr>
 						<td><label for="gender">성별</label></td>
 						<td><input type="radio" name="male" value="male">남자 <input
