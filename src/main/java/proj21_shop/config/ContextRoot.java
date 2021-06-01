@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 @Configuration
-@Import({ContextDataSource.class, ContextSqlSession.class, MvcConfig.class})
+@Import({ContextDataSource.class, ContextSqlSession.class, MvcConfig.class, TilesConfig.class})
 @ComponentScan(basePackages = {
 	    "proj21_shop.service"
 	  , "proj21_shop.controller"
