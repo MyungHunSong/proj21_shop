@@ -5,12 +5,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/prolist")
-public class productListController {
+@RequestMapping("/productlist")
+public class productController {
 
 	@GetMapping
 	public String form() {
 		return "/productList/productList";
 	}
-	
 }
