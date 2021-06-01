@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원 가입</title>
+<title>회원 정보 수정</title>
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -71,67 +71,42 @@
 </script>
 </head>
 <body>
-	<h3>회원가입</h3>
-	<section id="registerFormArea">
-		<form action="register" method="post">
-			<div>
-				<table>
-					<tr>
-						<td><label for="name">이름</label></td>
-						<td><input type="text" name="name" id="name"></td>
-					</tr>
-					<tr>
-						<td><label for="id">아이디</label></td>
-						<td><input type="text" name="id" id="id"></td>
-					</tr>
-					<tr>
-						<td><label for="passwd">비밀번호</label></td>
-						<td><input type="password" name="passwd" id="passwd"></td>
-					</tr>
-					<tr>
-						<td><label for="passwdconfirm">비밀번호 확인</label></td>
-						<td><input type="password" name="passwdconfirm"
-							id="passwdconfirm"></td>
-					</tr>
-					<tr>
-						<td><label for="tel">전화번호</label></td>
-						<td><input type="text" name="text" id="text"></td>
-					</tr>
-					<tr>
-						<td>생년월일</td>
-						<td><input type="text" name="year" id="year">년 <input
-							type="text" name="month" id="month">월 <input type="text"
-							name="day" id="day">일</td>
-					</tr>
-					<tr>
-						<td><label for="gender">성별</label></td>
-						<td><input type="radio" name="gender" value="male">남자
-							<input type="radio" name="gender" value="female">여자</td>
-					</tr>
-					<tr>
-						<td><label for="address">주소</label></td>
-						<td><input type="text" id="sample4_postcode"
-							placeholder="우편번호"> <input type="button"
-							onclick="sample4_execDaumPostcode()" value="우편번호 찾기"> <br>
-							<input type="text" id="sample4_roadAddress" placeholder="도로명주소">
-							<input type="text" id="sample4_jibunAddress" placeholder="지번주소">
-							<span id="guide" style="color: #999; display: none"></span> <input
-							type="text" id="sample4_detailAddress" placeholder="상세주소">
-							<input type="text" id="sample4_extraAddress" placeholder="참고항목">
-						</td>
-					</tr>
-					<tr>
-						<td><label for="confirmQ">본인확인질문</label></td>
-					</tr>
-					<tr>
-						<td><label for="답변">답변</label></td>
-					</tr>
-					</table>
-				<input type="submit" value="회원가입" id="registerButton" /> 
-				<input type="reset" value="초기화" /> 
-				<input type="button" value="취소"id="cancel" onClick="history.go(-1)" />
-			</div>
-		</form>
+	<h3>회원 정보 수정</h3>
+	<section id="modifyFormArea">
+		<div>
+			<table>
+				<tr>
+					<td><label for="confirmQuestion">본인확인질문</label></td>
+				</tr>
+				<tr>
+					<td><label for="answer">답변</label></td>
+					<td><input type="text" name="answer" id="answer"></td>
+				</tr>
+				<tr>
+					<td><label for="tel">전화 번호</label></td>
+					<td><input type="text" name="tel" id="tel"></td>
+				</tr>
+				<tr>
+					<td><label for="email">이메일</label></td>
+					<td><input type="text" name="email" id="email"></td>
+				</tr>
+				<tr>
+					<td><label for="address">주소</label></td>
+					<td><input type="text" id="sample4_postcode"
+						placeholder="우편번호"> <input type="button"
+						onclick="sample4_execDaumPostcode()" value="우편번호 찾기"> <br>
+						<input type="text" id="sample4_roadAddress" placeholder="도로명주소">
+						<input type="text" id="sample4_jibunAddress" placeholder="지번주소">
+						<span id="guide" style="color: #999; display: none"></span> <input
+						type="text" id="sample4_detailAddress" placeholder="상세주소">
+						<input type="text" id="sample4_extraAddress" placeholder="참고항목">
+					</td>
+				</tr>
+			</table>
+			<input type="submit" value="회원정보수정" id="registerButton" /> <input
+				type="reset" value="초기화" /> <input type="button" value="취소"
+				id="cancel" onClick="history.go(-1)" />
+		</div>
 	</section>
 </body>
 </html>
