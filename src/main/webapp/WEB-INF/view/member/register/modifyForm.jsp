@@ -73,40 +73,42 @@
 <body>
 	<h3>회원 정보 수정</h3>
 	<section id="modifyFormArea">
-		<div>
-			<table>
-				<tr>
-					<td><label for="confirmQuestion">본인확인질문</label></td>
-				</tr>
-				<tr>
-					<td><label for="answer">답변</label></td>
-					<td><input type="text" name="answer" id="answer"></td>
-				</tr>
-				<tr>
-					<td><label for="tel">전화 번호</label></td>
-					<td><input type="text" name="tel" id="tel"></td>
-				</tr>
-				<tr>
-					<td><label for="email">이메일</label></td>
-					<td><input type="text" name="email" id="email"></td>
-				</tr>
-				<tr>
-					<td><label for="address">주소</label></td>
-					<td><input type="text" id="sample4_postcode"
-						placeholder="우편번호"> <input type="button"
-						onclick="sample4_execDaumPostcode()" value="우편번호 찾기"> <br>
-						<input type="text" id="sample4_roadAddress" placeholder="도로명주소">
-						<input type="text" id="sample4_jibunAddress" placeholder="지번주소">
-						<span id="guide" style="color: #999; display: none"></span> <input
-						type="text" id="sample4_detailAddress" placeholder="상세주소">
-						<input type="text" id="sample4_extraAddress" placeholder="참고항목">
-					</td>
-				</tr>
-			</table>
-			<input type="submit" value="회원정보수정" id="registerButton" /> <input
-				type="reset" value="초기화" /> <input type="button" value="취소"
-				id="cancel" onClick="history.go(-1)" />
-		</div>
+		<form action="modify" method="post">
+			<div>
+				<table>
+					<tr>
+						<td><label for="confirmQuestion">본인확인질문</label></td>
+					</tr>
+					<tr>
+						<td><label for="answer">답변</label></td>
+						<td><input type="text" name="answer" id="answer"></td>
+					</tr>
+					<tr>
+						<td><label for="tel">전화 번호</label></td>
+						<td><input type="text" name="tel" id="tel"></td>
+					</tr>
+					<tr>
+						<td><label for="email">이메일</label></td>
+						<td><input type="text" name="email" id="email"></td>
+					</tr>
+					<tr>
+						<td><label for="address">주소</label></td>
+						<td><input type="text" id="sample4_postcode"
+							placeholder="우편번호"> <input type="button"
+							onclick="sample4_execDaumPostcode()" value="우편번호 찾기"> <br>
+							<input type="text" id="sample4_roadAddress" placeholder="도로명주소">
+							<input type="text" id="sample4_jibunAddress" placeholder="지번주소">
+							<span id="guide" style="color: #999; display: none"></span> <input
+							type="text" id="sample4_detailAddress" placeholder="상세주소">
+							<input type="text" id="sample4_extraAddress" placeholder="참고항목">
+						</td>
+					</tr>
+				</table>
+				<input type="submit" value="회원정보수정" id="registerButton" /> <input
+					type="reset" value="초기화" /> <input type="button" value="취소"
+					id="cancel" onClick="history.go(-1)" />
+			</div>
+		</form>
 	</section>
 </body>
 </html>
