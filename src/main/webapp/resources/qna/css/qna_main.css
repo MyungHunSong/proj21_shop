@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
+
 section .faq&qna{
 	border: 1px solid #000;
 	width: 800px;
@@ -28,7 +29,6 @@ section .faq&qna{
 
  .tabs div{
 	border: 1px solid #000;
-	height: 200px;
 	display: none;
 } 
 
