@@ -1,12 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper	namespace="proj21_shop.mapper.admin.order.AdminOrderMapper">
-	
+<mapper namespace="proj21_shop.mapper.admin.order.AdminOrderMapper">
+
 	<!-- 주문이 있는지 없는지 확인 -->
 	<select id="atLeastOneOrder" resultType="String">
 		select if(count(*)=0,'false','true')
-  		  from `order`
+		  from `order`
 	</select>
-	
-	
+	<!-- 총 판매 금액 -->
+	<select id="getTotalAvenue" resultType="int">
+		select sum(order_pro_quantity * order_price)
+		  from `order`
+	</select>
+	<!-- 총 주문 건 수 -->
+	<select id="getTotalOrderCount" resultType="int">
+		select count(distinct order_num)
+		  from `order`
+	</select>
+	<!-- 총 주문 수 -->
+	<select id="selectTotalOrders" resultType="int">
+		select count(*)
+		  from `order`
+	</select>
+	<!-- 배송 준비 중 수 -->
+	<select id="selectAllWaitingDelivery" resultType="int" parameterType="String">
+		select count(*)
+		  from `order`
+		 where delivery_status='배송준비중'
+	</select>
+	<!-- 배송 중 수 -->
+	<select id="selectAllOnDelivery" resultType="int" parameterType="String">
+		select count(*)
+		  from `order`
+		 where delivery_status='배송 중'
+	</select>
+	<!-- 배송 완료 수 -->
+	<select id="selectAllTotDoneDelivery" resultType="int" parameterType="String">
+		select count(*)
+		  from `order`
+		 where delivery_status='배송 완료'
+	</select>
+	<!-- 환불 완료 수 -->
+	<select id="selectAllDoneRefund" resultType="int" parameterType="String">
+		select count(*)
+		  from `order`
+		 where delivery_status='환불 완료'
+	</select>
+	<!-- 환불 대기 수 -->
+	<select id="selectAllWaitingRefund" resultType="int" parameterType="String">
+		select count(*)
+		  from `order`
+		 where delivery_status='환불 대기중'
+	</select>
+
+
+
 </mapper> 
