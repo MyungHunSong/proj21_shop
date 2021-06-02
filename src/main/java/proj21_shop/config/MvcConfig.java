@@ -1,10 +1,14 @@
 package proj21_shop.config;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
+import org.springframework.web.servlet.view.tiles3.TilesView;
+import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 
 //view용
 @Configuration
@@ -29,6 +33,22 @@ public class MvcConfig implements WebMvcConfigurer {
 //	public void addViewControllers(ViewControllerRegistry registry) {
 //		registry.addViewController("/include/main").setViewName("main");
 //	}
+	/* tile 경로*/
+	@Bean
+	public TilesConfigurer tilesConfigurer() {
+		final TilesConfigurer configurer = new TilesConfigurer();
+		// 해당 경로에 tiles.xml 파일을 넣음
+		configurer.setDefinitions(new String[] { "/WEB-INF/tiles/*.xml" });
+		configurer.setCheckRefresh(true);
+		return configurer;
+	}
 
-	
+	/* tile resolver*/
+	@Bean
+	public TilesViewResolver tilesViewResolver() {
+		final TilesViewResolver tilesViewResolver = new TilesViewResolver();
+		tilesViewResolver.setViewClass(TilesView.class);
+		tilesViewResolver.setOrder(1);
+		return tilesViewResolver;
+	}
 }
