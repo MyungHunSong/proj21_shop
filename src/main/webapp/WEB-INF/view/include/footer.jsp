@@ -41,13 +41,13 @@
 			<p>예금주: <span>이태훈</span></p>
 		</section>
 		<div id="scrollMenu">
-			<img alt="리모컨 버튼 이미지" src="/proj21_shop/resources/banner/updown.jpg" class="updownImg">
+			<p><img alt="리모컨 버튼 이미지" src="/proj21_shop/resources/banner/updown.jpg" class="updownImg"></p>
 			
-			<img id="go_top" alt="상단으로 이동하기" 
-			src="http://cdn1-aka.makeshop.co.kr/design/smblue111/wib_2020/img/top_go.png">
+			<p><img id="go_top" alt="상단으로 이동하기" 
+			src="http://cdn1-aka.makeshop.co.kr/design/smblue111/wib_2020/img/top_go.png"></p>
 			
-			<img id="go_bottom" alt="하단으로 이동하기" 
-			src="http://cdn1-aka.makeshop.co.kr/design/smblue111/wib_2020/img/bottom_go.png">
+			<p><img id="go_bottom" alt="하단으로 이동하기" 
+			src="http://cdn1-aka.makeshop.co.kr/design/smblue111/wib_2020/img/bottom_go.png"></p>
 		</div>
 		</footer>
 </body>

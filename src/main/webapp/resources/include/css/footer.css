@@ -41,10 +41,10 @@ footer section {
  
 /*고정된 상단,하단 이동 버튼 지정값*/
 #scrollMenu {
+	margin: 0;
 	position: fixed;
-	top: 530px;
-	right: 50%;
-
+	bottom: 150px;
+	right: 60px;
 }
 
 /*상단 하단 이미지. 변경 (마우스커서, 색깔)*/
