@@ -94,3 +94,66 @@
 [TRACE] [2021-06-02 14:08] <==        Row: 0
 [DEBUG] [2021-06-02 14:08] <==      Total: 1
 [DEBUG] [2021-06-02 14:08] 환불 대기중? >>0
+[DEBUG] [2021-06-02 15:48] test1AtLeastOneOrder()
+[DEBUG] [2021-06-02 15:48] ==>  Preparing: select if(count(*)=0,'false','true') from `order`
+[DEBUG] [2021-06-02 15:48] ==> Parameters: 
+[TRACE] [2021-06-02 15:48] <==    Columns: if(count(*)=0,'false','true')
+[TRACE] [2021-06-02 15:48] <==        Row: true
+[DEBUG] [2021-06-02 15:48] <==      Total: 1
+[DEBUG] [2021-06-02 15:48] 주문이 있나? >>true
+[DEBUG] [2021-06-02 15:48] test2GetTotalAvenue()
+[DEBUG] [2021-06-02 15:48] ==>  Preparing: select sum(order_pro_quantity * order_price) from `order`
+[DEBUG] [2021-06-02 15:48] ==> Parameters: 
+[TRACE] [2021-06-02 15:48] <==    Columns: sum(order_pro_quantity * order_price)
+[TRACE] [2021-06-02 15:48] <==        Row: 55000
+[DEBUG] [2021-06-02 15:48] <==      Total: 1
+[DEBUG] [2021-06-02 15:48] 총 판매 금액? >>55000
+[DEBUG] [2021-06-02 15:48] test3GetTotalOrderCount()
+[DEBUG] [2021-06-02 15:48] ==>  Preparing: select count(distinct order_num) from `order`
+[DEBUG] [2021-06-02 15:48] ==> Parameters: 
+[TRACE] [2021-06-02 15:48] <==    Columns: count(distinct order_num)
+[TRACE] [2021-06-02 15:48] <==        Row: 3
+[DEBUG] [2021-06-02 15:48] <==      Total: 1
+[DEBUG] [2021-06-02 15:48] 총 주문 건 수?3
+[DEBUG] [2021-06-02 15:48] test4SelectTotalOrders()
+[DEBUG] [2021-06-02 15:48] ==>  Preparing: select count(*) from `order`
+[DEBUG] [2021-06-02 15:48] ==> Parameters: 
+[TRACE] [2021-06-02 15:48] <==    Columns: count(*)
+[TRACE] [2021-06-02 15:48] <==        Row: 11
+[DEBUG] [2021-06-02 15:48] <==      Total: 1
+[DEBUG] [2021-06-02 15:48] 총 주문 수? >>11
+[DEBUG] [2021-06-02 15:48] test5SelectAllWaitingDelivery()
+[DEBUG] [2021-06-02 15:48] ==>  Preparing: select count(*) from `order` where delivery_status='배송준비중'
+[DEBUG] [2021-06-02 15:48] ==> Parameters: 
+[TRACE] [2021-06-02 15:48] <==    Columns: count(*)
+[TRACE] [2021-06-02 15:48] <==        Row: 11
+[DEBUG] [2021-06-02 15:48] <==      Total: 1
+[DEBUG] [2021-06-02 15:48] 배송준비중? >>11
+[DEBUG] [2021-06-02 15:48] test6SelectAllOnDelivery()
+[DEBUG] [2021-06-02 15:48] ==>  Preparing: select count(*) from `order` where delivery_status='배송 중'
+[DEBUG] [2021-06-02 15:48] ==> Parameters: 
+[TRACE] [2021-06-02 15:48] <==    Columns: count(*)
+[TRACE] [2021-06-02 15:48] <==        Row: 0
+[DEBUG] [2021-06-02 15:48] <==      Total: 1
+[DEBUG] [2021-06-02 15:48] 배송 중? >>0
+[DEBUG] [2021-06-02 15:48] test7SelectAllTotDoneDelivery()
+[DEBUG] [2021-06-02 15:48] ==>  Preparing: select count(*) from `order` where delivery_status='배송 완료'
+[DEBUG] [2021-06-02 15:48] ==> Parameters: 
+[TRACE] [2021-06-02 15:48] <==    Columns: count(*)
+[TRACE] [2021-06-02 15:48] <==        Row: 0
+[DEBUG] [2021-06-02 15:48] <==      Total: 1
+[DEBUG] [2021-06-02 15:48] 배송 완료? >>0
+[DEBUG] [2021-06-02 15:48] test8SelectAllDoneRefund()
+[DEBUG] [2021-06-02 15:48] ==>  Preparing: select count(*) from `order` where delivery_status='환불 완료'
+[DEBUG] [2021-06-02 15:48] ==> Parameters: 
+[TRACE] [2021-06-02 15:48] <==    Columns: count(*)
+[TRACE] [2021-06-02 15:48] <==        Row: 0
+[DEBUG] [2021-06-02 15:48] <==      Total: 1
+[DEBUG] [2021-06-02 15:48] 환불 완료? >>0
+[DEBUG] [2021-06-02 15:48] test9SelectAllWaitingRefund()
+[DEBUG] [2021-06-02 15:48] ==>  Preparing: select count(*) from `order` where delivery_status='환불 대기중'
+[DEBUG] [2021-06-02 15:48] ==> Parameters: 
+[TRACE] [2021-06-02 15:48] <==    Columns: count(*)
+[TRACE] [2021-06-02 15:48] <==        Row: 0
+[DEBUG] [2021-06-02 15:48] <==      Total: 1
+[DEBUG] [2021-06-02 15:48] 환불 대기중? >>0

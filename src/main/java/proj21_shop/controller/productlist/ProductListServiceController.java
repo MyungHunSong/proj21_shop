@@ -14,9 +14,9 @@ public class ProductListServiceController {
 
 	@Autowired
 	private ProductListService service;
-	
+
 	@GetMapping("/productlist")
-	public ResponseEntity<Object> products(){
-		return ResponseEntity.ok(service.showProducts(1,1));
+	public ResponseEntity<Object> products() {
+		return ResponseEntity.ok(service.showProducts(1, 1));
 	}
 }

@@ -40,7 +40,7 @@ public class AdminOrderMapperTest {
 	@Test
 	public void test2GetTotalAvenue() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
-		int res=mapper.getTotalAvenue();
+		int res=mapper.getTotalRevenue();
 		log.debug("총 판매 금액? >>" + res);
 
 	}

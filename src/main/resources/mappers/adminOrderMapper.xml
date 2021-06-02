@@ -8,7 +8,7 @@
 		  from `order`
 	</select>
 	<!-- 총 판매 금액 -->
-	<select id="getTotalAvenue" resultType="int">
+	<select id="getTotalRevenue" resultType="int">
 		select sum(order_pro_quantity * order_price)
 		  from `order`
 	</select>

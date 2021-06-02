@@ -5,16 +5,21 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-//@Controller("adminOrderController")
-//@RequestMapping("admin/order")
+import proj21_shop.service.admin.order.AdminOrderService;
+
+@Controller("adminOrderController")
+@RequestMapping("admin/order")
 public class AdminOrderController {
 
-//	@Autowired
-//	AdminOrderService adminOrderService;
+	@Autowired
+	AdminOrderService adminOrderService;
 //
 //	@RequestMapping(value = "/listOrders.do", method = { RequestMethod.POST, RequestMethod.GET })
 //	public ModelAndView listOrders(HttpServletRequest request, HttpServletResponse reponse,
@@ -106,19 +111,20 @@ public class AdminOrderController {
 //
 //	}
 
-//	@RequestMapping(value = "/orderStatics", method = { RequestMethod.POST, RequestMethod.GET })
-//	public ModelAndView searchMember(HttpServletRequest request, HttpServletResponse response) {
-//
-//		ModelAndView mav = new ModelAndView();
-//		String viewName = (String) request.getAttribute("viewName");
-//
-//		Map<String, Object> viewMap = adminOrderService.getOrderStatics();
-//
-//		mav.addObject("viewMap", viewMap);
-//		mav.setViewName(viewName);
-//		return mav;
-//
-//	}
+	@GetMapping
+	public ModelAndView searchMember(HttpServletRequest request, HttpServletResponse response) {
+
+		ModelAndView mav = new ModelAndView("/admin/order/orderStatics");
+		System.out.println(mav);
+		String viewName = (String) request.getAttribute("viewName");
+
+		Map<String, Object> viewMap = adminOrderService.getOrderStatics();
+
+		mav.addObject("viewMap", viewMap);
+		mav.setViewName(viewName);
+		return mav;
+
+	}
 
 //	@RequestMapping(value = "/requestRefund.do", method = { RequestMethod.POST, RequestMethod.GET })
 //	public ResponseEntity requestRefund(HttpServletRequest request, HttpServletResponse response,

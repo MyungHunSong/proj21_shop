@@ -5,7 +5,7 @@ public interface AdminOrderMapper {
 	String atLeastOneOrder();
 
 	// 총 판매 금액
-	int getTotalAvenue();
+	int getTotalRevenue();
 
 	// 총 주문 건 수
 	int getTotalOrderCount();
@@ -27,4 +27,5 @@ public interface AdminOrderMapper {
 
 	// 환불 대기 수
 	int selectAllWaitingRefund();
+	
 }
