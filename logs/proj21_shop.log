@@ -177,3 +177,28 @@
 [TRACE] [2021-06-01 20:37] <==        Row: 1113, 1, blackT, 5000, ê²€ì •ìƒ‰ ë°˜íŒ”í‹° Mì‚¬ì´ì¦ˆ ìž…ë‹ˆë‹¤., 10, 2021-06-01 09:08:52.0, íŒë§¤ì¤‘, 11, 3, 10, 0, 0, 0, 1, 1113.jpg, 1
 [TRACE] [2021-06-01 20:37] <==        Row: 1143, 1, blueT, 5000, íŒŒëž€ ë°˜íŒ”í‹° Mì‚¬ì´ì¦ˆ ìž…ë‹ˆë‹¤., 10, 2021-06-01 09:08:52.0, íŒë§¤ì¤‘, 14, 3, 10, 0, 0, 0, 4, 1143.jpg, 1
 [DEBUG] [2021-06-01 20:37] <==      Total: 5
+[DEBUG] [2021-06-02 08:45] testShowProducts()
+[DEBUG] [2021-06-02 08:45] ==>  Preparing: select p.pro_num,pro_category,pro_name,pro_price,pro_content,pro_salesrate ,pro_cre_date,pro_status,pro_color,pro_size,pro_quantity,pro_sold,pro_hits,re_replyCount ,pro_img_code,pro_imagefilename,pro_img_state from product p join pro_img i on p.pro_num = i.pro_num where pro_img_state = ? and pro_category = ?
+[DEBUG] [2021-06-02 08:45] ==> Parameters: 1(Integer), 1(Integer)
+[TRACE] [2021-06-02 08:45] <==    Columns: pro_num, pro_category, pro_name, pro_price, pro_content, pro_salesrate, pro_cre_date, pro_status, pro_color, pro_size, pro_quantity, pro_sold, pro_hits, re_replyCount, pro_img_code, pro_imagefilename, pro_img_state
+[TRACE] [2021-06-02 08:45] <==        Row: 1033, 1, grayT, 5000, È¸»ö ¹ÝÆÈÆ¼ M»çÀÌÁî ÀÔ´Ï´Ù., 10, 2021-06-01 09:08:52.0, ÆÇ¸ÅÁß, 3, 3, 10, 0, 0, 0, 2, 1033.jpg, 1
+[TRACE] [2021-06-02 08:45] <==        Row: 1043, 1, pinkT, 5000, ºÐÈ« ¹ÝÆÈÆ¼ M»çÀÌÁî ÀÔ´Ï´Ù., 10, 2021-06-01 09:08:52.0, ÆÇ¸ÅÁß, 4, 3, 10, 0, 0, 0, 5, 1043.jpg, 1
+[TRACE] [2021-06-02 08:45] <==        Row: 1093, 1, navyT, 5000, ³×ÀÌºñ ¹ÝÆÈÆ¼ M»çÀÌÁî ÀÔ´Ï´Ù., 10, 2021-06-01 09:08:52.0, ÆÇ¸ÅÁß, 9, 3, 10, 0, 0, 0, 3, 1093.jpg, 1
+[TRACE] [2021-06-02 08:45] <==        Row: 1113, 1, blackT, 5000, °ËÁ¤»ö ¹ÝÆÈÆ¼ M»çÀÌÁî ÀÔ´Ï´Ù., 10, 2021-06-01 09:08:52.0, ÆÇ¸ÅÁß, 11, 3, 10, 0, 0, 0, 1, 1113.jpg, 1
+[TRACE] [2021-06-02 08:45] <==        Row: 1143, 1, blueT, 5000, ÆÄ¶õ ¹ÝÆÈÆ¼ M»çÀÌÁî ÀÔ´Ï´Ù., 10, 2021-06-01 09:08:52.0, ÆÇ¸ÅÁß, 14, 3, 10, 0, 0, 0, 4, 1143.jpg, 1
+[DEBUG] [2021-06-02 08:45] <==      Total: 5
+[DEBUG] [2021-06-02 08:45] testShowProducts()
+[DEBUG] [2021-06-02 08:45] ==>  Preparing: select p.pro_num,pro_category,pro_name,pro_price,pro_content,pro_salesrate ,pro_cre_date,pro_status,pro_color,pro_size,pro_quantity,pro_sold,pro_hits,re_replyCount ,pro_img_code,pro_imagefilename,pro_img_state from product p join pro_img i on p.pro_num = i.pro_num where pro_img_state = ? and pro_category = ?
+[DEBUG] [2021-06-02 08:45] ==> Parameters: 1(Integer), 1(Integer)
+[TRACE] [2021-06-02 08:45] <==    Columns: pro_num, pro_category, pro_name, pro_price, pro_content, pro_salesrate, pro_cre_date, pro_status, pro_color, pro_size, pro_quantity, pro_sold, pro_hits, re_replyCount, pro_img_code, pro_imagefilename, pro_img_state
+[TRACE] [2021-06-02 08:45] <==        Row: 1033, 1, grayT, 5000, È¸»ö ¹ÝÆÈÆ¼ M»çÀÌÁî ÀÔ´Ï´Ù., 10, 2021-06-01 09:08:52.0, ÆÇ¸ÅÁß, 3, 3, 10, 0, 0, 0, 2, 1033.jpg, 1
+[TRACE] [2021-06-02 08:45] <==        Row: 1043, 1, pinkT, 5000, ºÐÈ« ¹ÝÆÈÆ¼ M»çÀÌÁî ÀÔ´Ï´Ù., 10, 2021-06-01 09:08:52.0, ÆÇ¸ÅÁß, 4, 3, 10, 0, 0, 0, 5, 1043.jpg, 1
+[TRACE] [2021-06-02 08:45] <==        Row: 1093, 1, navyT, 5000, ³×ÀÌºñ ¹ÝÆÈÆ¼ M»çÀÌÁî ÀÔ´Ï´Ù., 10, 2021-06-01 09:08:52.0, ÆÇ¸ÅÁß, 9, 3, 10, 0, 0, 0, 3, 1093.jpg, 1
+[TRACE] [2021-06-02 08:45] <==        Row: 1113, 1, blackT, 5000, °ËÁ¤»ö ¹ÝÆÈÆ¼ M»çÀÌÁî ÀÔ´Ï´Ù., 10, 2021-06-01 09:08:52.0, ÆÇ¸ÅÁß, 11, 3, 10, 0, 0, 0, 1, 1113.jpg, 1
+[TRACE] [2021-06-02 08:45] <==        Row: 1143, 1, blueT, 5000, ÆÄ¶õ ¹ÝÆÈÆ¼ M»çÀÌÁî ÀÔ´Ï´Ù., 10, 2021-06-01 09:08:52.0, ÆÇ¸ÅÁß, 14, 3, 10, 0, 0, 0, 4, 1143.jpg, 1
+[DEBUG] [2021-06-02 08:45] <==      Total: 5
+[DEBUG] [2021-06-02 08:45] testDataSource()
+[DEBUG] [2021-06-02 08:45] DataSourceHikariDataSource (HikariPool-1)
+[DEBUG] [2021-06-02 08:45] LoginTimeout 30
+[DEBUG] [2021-06-02 08:45] testOpenSession()
+[DEBUG] [2021-06-02 08:45] session org.apache.ibatis.session.defaults.DefaultSqlSession@19872157
