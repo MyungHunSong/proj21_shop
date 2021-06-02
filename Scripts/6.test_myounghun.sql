@@ -12,17 +12,12 @@ select * from product;
 select * from `order`;
 select * from `member`;
 
-
--- 제품인서트
-/* insert into 
- `order`(order_member_id, order_num, pro_num, order_pro_num, order_member_name, order_pro_quantity, order_price, order_discount, receiver_name, receiver_tel1
- ,delivery_addr1, delivery_addr2, delivery_addr3, delivery_status, request_to_delivery, order_date, who_pay, which_bank)
- values('test01',2003,6034,0,'항산화',2,500000,0,'호잇차','010-4444-4444','708-1421','대구 광역시 매여로 2길 58','219번지','배송중','안전하게 오세요',now()
- ,'송명훈','국민');*/
+-- count
+select count(*) from qna;
  
 -- 1-1.qna작성시 인서트문이다.
 insert into qna(q_title, q_option, q_member, q_content,q_group,q_file,q_date)
-values('뭔놈의 타이틀','환불해도','Johns','니가 가밧냐 하와이?',0,'test.jpg',now());
+values('제발','취소요청','test01','아니 무슨 취소가 안댄다는 거죠? 아 배달 왓네요',0,'test.jpg',now());
 
 -- 1-2. 주문번호 받아오기 -> 선택하기 누르면 조회창에 바로뜬다~.
 -- 첫번째 꺼는 회원 페이지에 나오는 내용.
@@ -38,5 +33,63 @@ where pro_num = 0;
 -- 1-3. 로그인을 햇다면 들어 가자마자 이름, 휴대전화, 이메일 다 뜸.
 select m_name, m_phone, m_email from `member`
 where m_id = 'test01';
+
+
+
+
+
+/*2. 보기용 목록 */
+-- qna 페이지에 들어갈시 먼저 볼수있는것들
+-- 2-1공지사항추가
+insert into qna(q_title, q_option, q_member, q_file, q_content ,q_group,q_date) 
+values('아이디 도용 관련 사항입니다.', '공지사항', '김GM', 'text.jpg', '도용해서 스팸올리면 진짜 스팸으로 만들어 버립니다.', 0 ,now());
+
+-- 2-2 공지사항일시 인덱스 번호를 공지로. 그리고 공지가 제일 위로 가게.
+select q_index, q_member, q_title, q_date, q_hits, q_option ,
+	case q_option
+		when q_option = '공지사항' then q_index
+		else '공지'
+	end '번호' 
+from qna
+order by q_option;
+
+-- 2-3. 검색하고(클릭) 삭제[회원 전용].
+select q_index, q_member, q_title, q_date, q_hits, q_option 
+from qna where q_option != '공지사항';
+
+-- 2-3-1. 트랜잭션. 회원이 자기 댓글 삭제.
+delete
+from qna
+where q_option != '공지사항' and q_member = 'test01';
+
+-- 2-3-2. 그런다음에 관리자 댓글도 삭제 대야함
+delete
+from qna 
+where q_option !='공지사항' and q_group = 7;
+
+select *
+ from qna
+where q_option != '공지사항' and q_member = 'Johns';
+
+-- 2-4. 조회수 증가.
+update qna 
+set q_hits = q_hits + 1
+where q_index = 1;
+
+
+/*3. 답글 작성시 보이는*/
+-- 답글은 관리자가 달수있다.
+-- (관리자)세션 권한이 있으면 ok, (회원)없다면 답글 작성이 안보이도록
+-- 3-1. 관리자용 답글 
+insert into qna(q_title, q_option, q_member, q_content,q_group ,q_date)
+values('[re]뭔놈의 타이틀','환불해도','김GM','죄송합니다 고갱님 앞으로 이런 실수 없더록 하겟습니다.',7 ,now());
+
+-- 3-2. 회원용 qna 삭제 (qna, 답글 같이 삭제 되야함)
+delete from qna where q_index = 3;
+delete from qna where q_group = 3;
+
+-- 3-3. qna 검색창.
+select * from qna where q_option like '%환불%';
+
 
 

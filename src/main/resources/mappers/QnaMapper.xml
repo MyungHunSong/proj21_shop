@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="proj21_shop.mapper.QnaMapper">
+	
+	<select id="selectByAllQnaPage" resultType="QnaDTO">
+		select q_index,
+			q_member, q_title, q_date, q_hits, q_option ,
+				case q_option
+					when q_option = '공지사항' then q_index
+				else '공지'
+				end '번호'
+			from qna
+		order by q_option;
+	</select>
+</mapper>
