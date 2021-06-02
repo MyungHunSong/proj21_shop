@@ -41,7 +41,10 @@ span{
 	top: 530px;
 	right: 50%;
 	margin-right: -840px;
-	width: 4%;
+	border:1px solid #80808003;
+	width: 60px;
+	height: 150px;
+	
 }
 
 /*상단 하단 이미지. 변경 (마우스커서, 색깔)*/

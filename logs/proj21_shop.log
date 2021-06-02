@@ -202,3 +202,8 @@
 [DEBUG] [2021-06-02 08:45] LoginTimeout 30
 [DEBUG] [2021-06-02 08:45] testOpenSession()
 [DEBUG] [2021-06-02 08:45] session org.apache.ibatis.session.defaults.DefaultSqlSession@19872157
+[DEBUG] [2021-06-02 19:37] testSelectByAllQnaPage()
+[DEBUG] [2021-06-02 19:38] testSelectByAllQnaPage()
+[DEBUG] [2021-06-02 19:38] testSelectByAllQnaPage()
+[DEBUG] [2021-06-02 19:41] testSelectByAllQnaPage()
+[DEBUG] [2021-06-02 19:47] testSelectByAllQnaPage()

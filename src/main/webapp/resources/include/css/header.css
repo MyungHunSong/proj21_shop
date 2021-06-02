@@ -24,8 +24,8 @@ header ul li a:hover {
 }
 /*옷걸이 이미지*/
 .headerImg{
+	margin-left: 340px;
 	width: 210px;
 	height: 170px;
-	margin-left: 30%;
 	cursor: pointer;
 }
