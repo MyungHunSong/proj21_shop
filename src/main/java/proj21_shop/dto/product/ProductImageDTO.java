@@ -7,7 +7,7 @@ public class ProductImageDTO {
 	private List<ProductDTO> proNum;
 	private int proImgCode;
 	private String proImagefilename;
-	private String proImgState;
+	private int proImgState;
 
 	public List<ProductDTO> getProNum() {
 		return proNum;
@@ -33,11 +33,11 @@ public class ProductImageDTO {
 		this.proImagefilename = proImagefilename;
 	}
 
-	public String getProImgState() {
+	public int getProImgState() {
 		return proImgState;
 	}
 
-	public void setProImgState(String proImgState) {
+	public void setProImgState(int proImgState) {
 		this.proImgState = proImgState;
 	}
 

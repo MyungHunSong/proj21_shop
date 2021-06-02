@@ -5,7 +5,7 @@ import java.sql.Date;
 public class ProductDTO {
 
 	private int proNum;
-	private String proCategory;
+	private int proCategory;
 	private String proName;
 	private String proPrice;
 	private String proContent; // 제품 설명
@@ -33,11 +33,11 @@ public class ProductDTO {
 		this.proNum = proNum;
 	}
 
-	public String getProCategory() {
+	public int getProCategory() {
 		return proCategory;
 	}
 
-	public void setProCategory(String proCategory) {
+	public void setProCategory(int proCategory) {
 		this.proCategory = proCategory;
 	}
 

@@ -14,14 +14,17 @@ footer section {
 	width: 30%;
 	float: left;
 	margin: 5px;
-	
 }
 
 .bottom1 {
 	font-size: 15px;	
 }
 
-span{
+.bottom2 span{
+	font-weight: bold;
+}
+
+.bottom3 span{
 	font-weight: bold;
 }
 
@@ -42,7 +45,7 @@ span{
 	top: 530px;
 	right: 50%;
 	margin-right: -740px;
-	width: 4%;
+	width: 3%;
 }
 
 /*상단 하단 이미지. 변경 (마우스커서, 색깔)*/

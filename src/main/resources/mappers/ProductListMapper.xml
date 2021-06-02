@@ -1,14 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="proj21_shop.mapper.ProductListMapper">
+<mapper namespace="proj21_shop.mapper.product.ProductListMapper">
 
 	<resultMap type="ProductImageDTO" id="ResProductImg">
 		<id column="pro_img_code" property="proImgCode" />
 		<result column="pro_imagefilename" property="proImagefilename" />
 		<result column="pro_img_state" property="proImgState" />
-		<collection property="proNum"  resultMap="proj21_shop.mapper.ProductMapper.ResProduct"/>
+		<collection property="proNum"  resultMap="ResProduct"/>
 	</resultMap>
 
+	<resultMap type="ProductDTO" id="ResProduct">
+		<id column = "pro_num" property="proNum" />
+		<result column="pro_category" property="proCategory" />
+		<result column="pro_name" property="proName" />
+		<result column="pro_price" property="proPrice" />
+		<result column="pro_content" property="proContent" />
+		<result column="pro_salesrate" property="proSalesrate" />
+		<result column="pro_cre_date" property="proCreDate" />
+		<result column="pro_status" property="proStatus" />
+		<result column="pro_color" property="proColor" />
+		<result column="pro_size" property="proSize" />
+		<result column="pro_quantity" property="proQuantity" />
+		<result column="pro_sold" property="proSold" />
+		<result column="pro_hits" property="proHits" />
+		<result column="re_replyCount" property="reReplyCount" />
+	</resultMap>
+	
 	<sql id="selectProductJoinProductImageSQL">
 		 select  p.pro_num,pro_category,pro_name,pro_price,pro_content,pro_salesrate
 		          ,pro_cre_date,pro_status,pro_color,pro_size,pro_quantity,pro_sold,pro_hits,re_replyCount
@@ -30,6 +47,11 @@
 	<select id="selectProductByProImgState" parameterType="int" resultMap="ResProductImg">
 		<include refid="selectProductJoinProductImageSQL"></include>
 		where pro_img_state = #{param1} and pro_category = #{param2} 
+	</select>
+
+	<select id="selectProductDetailByProNum" parameterType="int" resultMap="ResProductImg">
+		<include refid="selectProductJoinProductImageSQL"></include>
+		where p.pro_num = #{param1} 
 	</select>
 	
 	

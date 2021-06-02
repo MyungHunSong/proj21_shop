@@ -35,3 +35,7 @@ select pro_num,pro_category,pro_name,pro_price,pro_content,pro_salesrate,pro_cre
 delete
   from product
  where pro_category <=8000;
+ 
+-- 장바구니 검색
+select *
+  from cart;
