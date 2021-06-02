@@ -8,4 +8,6 @@ import proj21_shop.dto.product.ProductImageDTO;
 
 public interface ProductListService {
 	List<ProductImageDTO> showProducts(int proImgState,int proCategory);
+	
+	ProductImageDTO showProductDetailByProNum(int proNum);
 }

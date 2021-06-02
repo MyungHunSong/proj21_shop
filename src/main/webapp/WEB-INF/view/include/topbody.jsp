@@ -10,13 +10,13 @@
 	<div class="top">
 				<nav>
 					<ul>
-						<li><a href="#">반팔</a></li>
-						<li><a href="#">긴팔</a></li>
-						<li><a href="#">슬립리스</a></li>
-						<li><a href="#">후드</a></li>
-						<li><a href="#">셔츠</a></li>
-						<li><a href="#">스웨트 셔츠</a></li>
-						<li><a href="#">세일</a></li>
+						<li><a href="productlist?proImgState=1&proCategory=1">반팔</a></li>
+						<li><a href="productlist?proImgState=1&proCategory=2">긴팔</a></li>
+						<li><a href="productlist?proImgState=1&proCategory=3">슬립리스</a></li>
+						<li><a href="productlist?proImgState=1&proCategory=4">후드</a></li>
+						<li><a href="productlist?proImgState=1&proCategory=5">셔츠</a></li>
+						<li><a href="productlist?proImgState=1&proCategory=6">스웨트 셔츠</a></li>
+						<li><a href="productlist?proImgState=1&proCategory=1">세일</a></li>
 					</ul>
 				</nav>
 			</div>

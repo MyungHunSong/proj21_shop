@@ -1,0 +1,61 @@
+@charset "UTF-8";
+/* 옷,옷설명 정렬 */
+
+#ProductLoad{
+	display: flex;
+	align-items:initial;
+	justify-content: center;
+}
+
+.productImage img{
+	width: 600px;
+}
+
+.productInfo{
+	margin-top:20px;
+	text-align: left;
+	margin-left: 100px;
+	font-size:20px;
+}
+
+.productInfo strong{
+	font-size: 40px;
+}
+
+.productInfo span{
+	margin-left: 20px;
+}
+
+.productInfo select{
+	padding:5px;
+	width:300px;
+	font-size: 20px;
+}
+
+
+.submitBtns input{
+	width: 160px;
+	height: 50px;
+	margin: 15px;
+	border-radius: 10px;
+	color: white;
+	background: #FF7696;
+	font-size: 20px;
+}
+
+.calculator{
+	display: flex;
+	text-align:right;
+}
+.min, .max{
+	display:flex;
+	width: 40px;
+	height: 40px;
+	justify-content: center;
+    align-items: center;
+}
+.number{
+	width: 34px;
+	height: 35px;
+}
+

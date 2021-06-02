@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import proj21_shop.dto.product.ProductImageDTO;
-import proj21_shop.mapper.ProductListMapper;
+import proj21_shop.mapper.product.ProductListMapper;
 import proj21_shop.service.product.ProductListService;
 
 @Service
@@ -21,6 +21,12 @@ public class ProductListServiceImpl implements ProductListService{
 	public List<ProductImageDTO> showProducts(int proImgState,int proCategory) {
 		List<ProductImageDTO> list = mapper.selectProductByProImgState(proImgState,proCategory);
 		return list;
+	}
+
+	@Override
+	public ProductImageDTO showProductDetailByProNum(int proNum) {
+		ProductImageDTO product = mapper.selectProductDetailByProNum(proNum);
+		return product;
 	}
 	
 }

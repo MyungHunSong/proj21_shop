@@ -40,5 +40,13 @@ public class ProductListServiceTest {
 		List<ProductImageDTO> list = service.showProducts(1,1);
 		Assert.assertNotNull(list);
 	}
+	
+	@Test
+	public void testShowProductDetailByProNum() {
+		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName()+"()");
+		ProductImageDTO product = service.showProductDetailByProNum(1113);
+		Assert.assertNotNull(product);
+		System.out.println(product);
+	}
 
 }

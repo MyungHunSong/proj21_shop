@@ -17,7 +17,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import proj21_shop.config.ContextRoot;
 import proj21_shop.dto.product.ProductImageDTO;
-import proj21_shop.mapper.ProductListMapper;
+import proj21_shop.mapper.product.ProductListMapper;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { ContextRoot.class })
@@ -42,4 +42,12 @@ public class ProductListMapperTest {
 		System.out.println(list);
 	}
 
+	@Test
+	public void testShowProductDetailByProNum() {
+		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName()+"()");
+		ProductImageDTO product = mapper.selectProductDetailByProNum(1113);
+		Assert.assertNotNull(product);
+		System.out.println(product);
+	}
+	
 }
