@@ -33,7 +33,6 @@
 		<section class="bottom2">
 			<p>쇼핑몰 주소 : <span>서울</span></p>
 			<p>쇼핑몰 전화번호 : <span>02-444-4444</span></p>
-			<img alt="거래 위원회 이미지" src="/proj21_shop/resources/banner/bot1.jpg" id = "same">
 		</section>
 		<section class="bottom3">	
 			<p>영업 시간: <span>06:00 ~ 06:00</span></p>

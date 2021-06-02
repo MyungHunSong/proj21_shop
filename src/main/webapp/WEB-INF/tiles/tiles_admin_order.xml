@@ -24,6 +24,4 @@
 		<put-attribute name="title" value="주문 통계" />
 		<put-attribute name="body" value="/WEB-INF/views/admin/order/orderStatics.jsp" />
 	</definition>
-	
-
 </tiles-definitions>

@@ -13,7 +13,7 @@ footer {
 footer section {
 	width: 30%;
 	float: left;
-	margin: 5px;
+
 }
 
 .bottom1 {
@@ -44,8 +44,7 @@ footer section {
 	position: fixed;
 	top: 530px;
 	right: 50%;
-	margin-right: -740px;
-	width: 3%;
+
 }
 
 /*상단 하단 이미지. 변경 (마우스커서, 색깔)*/
@@ -61,11 +60,6 @@ footer section {
 	cursor: pointer;		
 }					
 
-/*공정 거래 위원회 이미지.*/
-#same{
-	width: 200px;
-	height: 60px;
-}
 /*푸터 가로등 이미지.*/
 #footerImg{
 	width: 150px;			
