@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>로그인</title>
-<link rel="stylesheet" href="css/member/loginForm.css">
+<link rel="stylesheet" href="/proj21_shop/resources/member/css/loginForm.css">
 </head>
 <body>
 	<h1>회원 로그인</h1>
