@@ -48,15 +48,6 @@ $(function() {
 			sCont += "<p>"+json.proNum[0].proStatus+"</p>";
 			sCont +="<p><select id='size'><option value='size01'>사이즈를 선택해주세요</option><option value='size_01'>XS</option><option value='size_02'>S</option><option value='size_03'>M</option><option value='size_04'>L</option><option value='size_05'>XL</option></select></p>"
 			sCont += "<p>"+json.proNum[0].proPrice+" 원</p>";
-/* 			sCont += "<div>"
-			sCont += "<input type='button'onclick='count('minus')'value='-'/>"
-			sCont += "<div id = 'result'>0</div>"
-			sCont += "<input type='button'onclick='count('plus')'value='+'/>"
-			sCont += "</div>" */
-			sCont += "<div class='submitBtns'>"
-			sCont += "<input type='submit' id='cart' value='장바구니' />"
-			sCont += "<input type='submit' id='purchase' value='구매하기' />"
-			sCont += "</div>"
 			sCont += "</div>"
 		    $("#ProductLoad").append(sCont);
 		
@@ -77,10 +68,28 @@ $(function() {
 <jsp:include page="/WEB-INF/view/include/header.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/view/include/topbody.jsp"></jsp:include>
 		<section id="ProductLoad"></section>
-			<input type='button'onclick='count("minus")'value='-'/>
-			<div id = "result">0</div>
-			<input type='button'onclick='count("plus")'value='+'/>
+		<div class="productLeft"></div>
+		<div class="productRight">
+			<div class="calculator">
+				<input class="cal" type='button'onclick='count("minus")'value='-'/>
+				<div class="cal" id = "result">0</div>
+				<input class="cal" type='button'onclick='count("plus")'value='+'/>
+			</div>
+			<div class='submitBtns'>
+				<input type='submit' id='cart' value='장바구니' />
+				<input type='submit' id='purchase' value='구매하기' />
+			</div>
+		</div>
 <jsp:include page="/WEB-INF/view/include/footer.jsp"></jsp:include>
 </div>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
