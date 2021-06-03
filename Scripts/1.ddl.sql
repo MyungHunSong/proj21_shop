@@ -183,7 +183,7 @@ CREATE TABLE proj21_shop.ORDER (
 	delivery_addr1      VARCHAR(500)  NOT NULL COMMENT '우편번호', -- 우편번호
 	delivery_addr2      VARCHAR(500)  NOT NULL COMMENT '배송주소', -- 배송주소
 	delivery_addr3      VARCHAR(500)  NOT NULL COMMENT '배송상세주소', -- 배송상세주소
-	delivery_status     VARCHAR(100)  NULL     COMMENT 'default 배송준비중', -- 배송상태
+	delivery_status     VARCHAR(100)  default '배송준비중' NULL     COMMENT 'default 배송준비중', -- 배송상태
 	request_to_delivery VARCHAR(1000) NULL     COMMENT '배송참고사항', -- 배송참고사항
 	order_date          DATETIME      default current_timestamp NOT NULL COMMENT 'default current_timestamp', -- 주문일
 	who_pay             VARCHAR(100)  NULL     COMMENT '결제자', -- 결제자
