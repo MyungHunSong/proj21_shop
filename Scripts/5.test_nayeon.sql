@@ -89,3 +89,5 @@ select order_member_name, receiver_tel1, receiver_tel2, delivery_addr, delivery_
 select order_price, order_discount
   from `order`
  where order_member_id = 'skdus2421';
+
+select m_id, m_passwd, m_name, m_phone, m_birthday, m_gender, m_addr1, m_addr2, m_addr3, m_question, m_answer, m_email, m_join, m_point, m_total_buy, m_total_order, m_total_login, m_exit from member;
