@@ -1,6 +1,5 @@
 @charset "UTF-8";
 /* 옷,옷설명 정렬 */
-
 #ProductLoad{
 	display: flex;
 	align-items:initial;
@@ -22,7 +21,7 @@
 	font-size: 40px;
 }
 
-.productInfo span{
+.review{
 	margin-left: 20px;
 }
 
@@ -45,7 +44,7 @@
 
 .calculator{
 	display: flex;
-	text-align:right;
+	align-items: center;
 }
 .min, .max{
 	display:flex;

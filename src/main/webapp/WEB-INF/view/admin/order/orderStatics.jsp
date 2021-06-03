@@ -1,9 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR" isELIgnored="false"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="contextPath" value="<%=request.getContextPath()%>" />
-<c:set var="totalAvenue" value="${viewMap.totalAvenue }" />
+<c:set var="totalRevenue" value="${viewMap.totalRevenue }" />
 <c:set var="totalOrderCount" value="${viewMap.totalOrderCount }" />
 
 
@@ -11,105 +10,42 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-<title>Annual Sales - 2015</title>
+<title>Annual Sales - 2021</title>
 
-
-
-<!-- 	<style>
-			body {
-				background-color: #fafafa;
-				font-size: 16px;
-				line-height: 1.5;
-			}
-			
-			h1,h2,h3,h4,h5,h6 {
-				font-weight: 400;	
-			}
-			
-			#header {
-				border-bottom: 5px solid #37474F;
-				color: #37474F;
-				margin-bottom: 1.5rem;
-				padding: 1rem 0;
-			}
-			
-			#revenue-tag {
-				font-weight: inherit !important;
-				border-radius: 0px !important;
-			}
-			
-			.card {
-				border: 0rem;
-				border-radius: 0rem;
-			}
-			
-			.card-header {
-				background-color: #37474F;
-				border-radius: 0 !important;
-				color:	white;
-				margin-bottom: 0;
-				padding:	1rem;
-			}
-			
-			.card-block {
-				border: 1px solid #cccccc;	
-			}
-			
-			.shadow {
-				box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14),
-										0 1px 18px 0 rgba(0, 0, 0, 0.12),
-										0 3px 5px -1px rgba(0, 0, 0, 0.2);
-			}
-			
-			#revenue-column-chart, #products-revenue-pie-chart, #orders-spline-chart {
-				height: 300px;
-				width: 100%;
-			}			
-		</style> -->
-
-<!-- Scripts -->
-<script
-	src="${contextPath}/resources/admin/order/css/jquery/jquery-3.1.0.min.js"></script>
-<script
-	src="${contextPath}/resources/admin/order/css/tether/tether.min.js"></script>
-<script
-	src="${contextPath}/resources/admin/order/css/bootstrap/bootstrap4-alpha3.min.js"></script>
+<script src="${contextPath}/resources/admin/order/css/jquery/jquery-3.1.0.min.js"></script>
+<script src="${contextPath}/resources/admin/order/css/tether/tether.min.js"></script>
+<script src="${contextPath}/resources/admin/order/css/bootstrap/bootstrap4-alpha3.min.js"></script>
+<!-- chart -->
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 <script>
 
-   $(document).ready(function(){
-      
+  /*  $(document).ready(function(){
    
-    $("#select_order").change(function(){
-         if($(this).val() =="member_code"){//유저코드일 경우
-            location.href="${contextPath}/admin/member/listMembers.do?action=member_code";
-         } 
-         else if($(this).val()=="member_name"){//이름일경우
-            location.href="${contextPath}/admin/member/listMembers.do?action=member_name";
-         }
-         else if($(this).val()=="member_point"){//포인트일경우
-            location.href="${contextPath}/admin/member/listMembers.do?action=member_point";
-         }
-         else if($(this).val()=="member_rank"){//등급일경우
-            location.href="${contextPath}/admin/member/listMembers.do?action=member_rank";
-         }
-         else{
-            location.href="${contextPath}/admin/member/listMembers.do";
-         }
-         
-      });
-   });
+	   $("#select_order").change(function(){
+	         if($(this).val() =="member_num"){//유저코드일 경우
+	            location.href="${contextPath}/admin/member/listMembers.do?action=member_num";
+	         } 
+	         else if($(this).val()=="member_name"){//이름일경우
+	            location.href="${contextPath}/admin/member/listMembers.do?action=member_name";
+	         }
+	         else if($(this).val()=="member_point"){//포인트일경우
+	            location.href="${contextPath}/admin/member/listMembers.do?action=member_point";
+	         }
+	         else{
+	            location.href="${contextPath}/admin/member/listMembers.do";
+	         }
+	      });
+   }); */
    
 </script>
 <script>
 			$(function () {
 				var totalRevenue = 15341110;
 				
-				// CanvasJS column chart to show revenue from Jan 2015 - Dec 2015
+				// CanvasJS column chart to show revenue from Jan 2020 - Dec 2020
 				var revenueColumnChart = new CanvasJS.Chart("revenue-column-chart", {
 					animationEnabled: true,
 					backgroundColor: "transparent",
@@ -127,7 +63,7 @@
 						cornerRadius: 0
 					},
 					data: [
-						{
+						{	
 							type: "column",
 							yValueFormatString: "###,###.##원",
 							dataPoints: [
@@ -141,7 +77,7 @@
 								{ x: new Date("1 Aug 2019"), y: 1165850 },
 								{ x: new Date("1 Sep 2019"), y: 1594150 },
 								{ x: new Date("1 Oct 2019"), y: 1501700 },
-								{ x: new Date("1 Nov 2019"), y: ${totalAvenue} },
+								{ x: new Date("1 Nov 2019"), y: ${totalRevenue} },
 								{ x: new Date("1 Dec 2019"), y: 0 }
 							]
 						}
@@ -234,48 +170,10 @@
 
 </head>
 <body>
-	<!-- 		<div class="container">
-			
-			
-			<div class="row m-b-1">
-				<div class="col-lg-12">
-					<div class="card shadow">
-						<h4 class="card-header">총 수익 현황 <span class="tag tag-success" id="revenue-tag">0원</span></h4>
-						<div class="card-block">
-							<div id="revenue-column-chart"></div>
-						</div>
-					</div>
-				</div>
-			</div> row
-
-			<div class="row m-b-1">
-				<div class="col-lg-6">
-					<div class="card shadow">
-						<h4 class="card-header">상품별 주문 수요</h4>
-						<div class="card-block">
-							<div id="products-revenue-pie-chart"></div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-lg-6">
-					<div class="card shadow">
-						<h4 class="card-header">주문수</h4>
-						<div class="card-block">
-							<div id="orders-spline-chart"></div>
-						</div>
-					</div>
-				</div>
-				
-				
-			</div> row
-		</div> container -->
 
 	<div class="page-wrapper">
 
 		<div class="container-fluid">
-
-
 
 			<div class="row">
 				<div class="col-md-12">
@@ -283,8 +181,7 @@
 						<div class="card-body">
 
 							<h3 class="card-title">
-								총 수익 현황 &nbsp;<span class="tag tag-success" id="revenue-tag"><fmt:formatNumber
-										value="${totalAvenue}" type="number" /> 원</span>
+								총 수익 현황 &nbsp;<span class="tag tag-success" id="revenue-tag"><fmt:formatNumber value="${totalRevenue}" type="number" /> 원</span>
 							</h3>
 							<br>
 							<div class="card-block">
@@ -331,11 +228,10 @@
 								<!--chat Row -->
 								<li class="chat-item">
 									<div class="chat-img">
-										<img src="${contextPath}/resources/banner/banner01.png"
-											alt="user">
+										<img src="${contextPath}/resources/banner/banner01.png" alt="user">
 									</div>
 									<div class="chat-content">
-										<h6 class="font-medium">GOLDEN kiwi</h6>
+										<h6 class="font-medium">Up street</h6>
 										<c:choose>
 											<c:when test="${isLogOn == true && memberInfo !=null }">
 												<div class="box bg-light-info">
@@ -351,16 +247,14 @@
 								<!--chat Row -->
 								<li class="chat-item">
 									<div class="chat-img">
-										<img src="${contextPath}/resources/banner/banner01.png"
-											alt="user">
+										<img src="${contextPath}/resources/banner/banner01.png" alt="user">
 									</div>
 									<div class="chat-content">
-										<h6 class="font-medium">GOLDEN kiwi</h6>
+										<h6 class="font-medium">Up street</h6>
 										<c:choose>
 											<c:when test="${isLogOn == true && memberInfo !=null }">
 												<div class="box bg-light-info">
-													로그아웃 하시겠어요? <br> <a
-														href="${contextPath }/member/memberlogout.do">로그아웃하기</a>
+													로그아웃 하시겠어요? <br> <a href="${contextPath }/member/memberlogout.do">로그아웃하기</a>
 												</div>
 
 
@@ -369,19 +263,6 @@
 									</div>
 									<div class="chat-time">10:57 am</div>
 								</li>
-								<!--chat Row -->
-								<!--    <li class="odd chat-item">
-                                            <div class="chat-content">
-                                                <div class="box bg-light-inverse">이번달 일정 보여줘.</div>
-                                                <br>
-                                            </div>
-                                        </li> -->
-
-
-
-
-
-								<!--chat Row -->
 								<li class="odd chat-item">
 									<div class="chat-content">
 										<div class="box bg-light-inverse">클라이언트 페이지로 보여줘.</div>
@@ -392,27 +273,14 @@
 
 								<li class="chat-item">
 									<div class="chat-img">
-										<img src="${contextPath}/resources/banner/banner01.png"
-											alt="user">
+										<img src="${contextPath}/resources/banner/banner01.png" alt="user">
 									</div>
 									<div class="chat-content">
-										<h6 class="font-medium">GOLDEN kiwi</h6>
-
+										<h6 class="font-medium">Up street</h6>
 										<div class="box bg-light-info">
-											<a href="${contextPath }/main/main.do">클라이언트 페이지 바로가기</a>
+											<a href="${contextPath }/main">클라이언트 페이지 바로가기</a>
 										</div>
-										<div class="chat-time">10:57 am</div>
 								</li>
-								<!--chat Row -->
-								<!--     <li class="chat-item">
-                                            <div class="chat-img"><img src="assets/images/users/3.jpg" alt="user"></div>
-                                            <div class="chat-content">
-                                                <h6 class="font-medium">Angelina Rhodes</h6>
-                                                <div class="box bg-light-info">Well we have good budget for the project</div>
-                                            </div>
-                                            <div class="chat-time">11:00 am</div>
-                                        </li> -->
-								<!--chat Row -->
 							</ul>
 						</div>
 					</div>
@@ -436,32 +304,23 @@
 
 
 </body>
-<script
-	src="${contextPath}/resources/admin/assets/libs/jquery/dist/jquery.min.js"></script>
-<script
-	src="${contextPath}/resources/admin/dist/js/jquery.ui.touch-punch-improved.js"></script>
+<script src="${contextPath}/resources/admin/assets/libs/jquery/dist/jquery.min.js"></script>
+<script src="${contextPath}/resources/admin/dist/js/jquery.ui.touch-punch-improved.js"></script>
 <script src="${contextPath}/resources/admin/dist/js/jquery-ui.min.js"></script>
+<!-- CDN 사용 -->
+<script src="${contextPath}/resources/admin/assets/libs/popper.js/dist/umd/popper.min.js"></script>
 <!-- Bootstrap tether Core JavaScript -->
-<script
-	src="${contextPath}/resources/admin/assets/libs/popper.js/dist/umd/popper.min.js"></script>
-<script
-	src="${contextPath}/resources/admin/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="${contextPath}/resources/admin/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- slimscrollbar scrollbar JavaScript -->
-<script
-	src="${contextPath}/resources/admin/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
-<script
-	src="${contextPath}/resources/admin/assets/extra-libs/sparkline/sparkline.js"></script>
+<script src="${contextPath}/resources/admin/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+<!-- Bullet chart -->
+<%-- <script src="${contextPath}/resources/admin/assets/extra-libs/sparkline/sparkline.js"></script> --%>
 <!--Wave Effects -->
 <script src="${contextPath}/resources/admin/dist/js/waves.js"></script>
-<!--Menu sidebar -->
+<!--Menu sidebar 사용-->
 <script src="${contextPath}/resources/admin/dist/js/sidebarmenu.js"></script>
-<!--Custom JavaScript -->
+<!--Custom JavaScript sidebar 애니메이션 효과를 주기 위한 UI 파일 -->
 <script src="${contextPath}/resources/admin/dist/js/custom.min.js"></script>
-<!-- this page js -->
-<script
-	src="${contextPath}/resources/admin/assets/libs/moment/min/moment.min.js"></script>
-<script
-	src="${contextPath}/resources/admin/assets/libs/fullcalendar/dist/fullcalendar.min.js"></script>
-<script
-	src="${contextPath}/resources/admin/dist/js/pages/calendar/cal-init.js"></script>
+<!-- 날짜 데이터 출력 및 수정 js -->
+<script src="${contextPath}/resources/admin/assets/libs/moment/min/moment.min.js"></script>
 </html>
