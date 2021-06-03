@@ -3,14 +3,21 @@
  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-	
+
 	<settings>
-		<setting name="mapUnderscoreToCamelCase" value="true"/>
+		<setting name="mapUnderscoreToCamelCase" value="true" />
 	</settings>
-	
+
 	<typeAliases>
-		<package name="proj21_shop.dto"/>
+		<package name="proj21_shop.dto" />
 	</typeAliases>
 
-	
+	<typeHandlers>
+		<typeHandler
+			handler="org.apache.ibatis.type.EnumOrdinalTypeHandler"
+			javaType="Gender" />
+		<package name="proj21_shop.dto.member" />
+	</typeHandlers>
+
+
 </configuration>

@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원 탈퇴</title>
+
 </head>
 <body>
 	<h3>회원탈퇴</h3>

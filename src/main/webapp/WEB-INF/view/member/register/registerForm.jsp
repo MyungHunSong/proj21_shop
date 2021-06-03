@@ -69,7 +69,7 @@
 				}).open();
 	}
 </script>
-<link rel="stylesheet" href="css/member/registerForm.css">
+<link rel="stylesheet" href="/proj21_shop/resources/member/css/registerForm.css">
 </head>
 <body>
 	<h2>회원가입</h2>

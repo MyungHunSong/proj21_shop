@@ -69,7 +69,7 @@
 				}).open();
 	}
 </script>
-<link rel="stylesheet" href="css/member/modifyForm.css">
+<link rel="stylesheet" href="/proj21_shop/resources/member/css/modifyForm.css">
 </head>
 <body>
 	<h2>회원 정보 수정</h2>
