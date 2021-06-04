@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-aaaa
+아이디 혹은 패스워드가 틀렸습니다.
 </body>
 </html>
