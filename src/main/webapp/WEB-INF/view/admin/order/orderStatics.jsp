@@ -22,7 +22,7 @@
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 <script>
 
-  /*  $(document).ready(function(){
+  $(document).ready(function(){
    
 	   $("#select_order").change(function(){
 	         if($(this).val() =="member_num"){//유저코드일 경우
@@ -38,7 +38,7 @@
 	            location.href="${contextPath}/admin/member/listMembers.do";
 	         }
 	      });
-   }); */
+   });
    
 </script>
 <script>
@@ -170,31 +170,27 @@
 
 </head>
 <body>
-
 	<div class="page-wrapper">
-
 		<div class="container-fluid">
-
 			<div class="row">
 				<div class="col-md-12">
 					<div class="card">
 						<div class="card-body">
-
 							<h3 class="card-title">
-								총 수익 현황 &nbsp;<span class="tag tag-success" id="revenue-tag"><fmt:formatNumber value="${totalRevenue}" type="number" /> 원</span>
+								총 수익 현황 &nbsp;
+							<span class="tag tag-success" id="revenue-tag">
+							<fmt:formatNumber value="${totalRevenue}" type="number" />
+							원
+							</span>
 							</h3>
 							<br>
 							<div class="card-block">
 								<div id="revenue-column-chart" style="height: 400px;"></div>
 							</div>
-
 						</div>
 					</div>
 				</div>
 			</div>
-
-
-
 			<div class="row">
 				<div class="col-md-6">
 					<div class="card">

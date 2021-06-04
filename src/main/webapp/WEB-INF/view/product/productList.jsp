@@ -16,7 +16,7 @@ $(function() {
 	var proCategory = ${proCategory};
 	$.get(contextPath + "/api/productlist/"+proImgState+"/"+proCategory, 
 	function(json) {
-		console.log(json);
+		/* console.log(json); */
 		var dataLength = json.length;
 		if (dataLength >= 1) {
 			console.log(json[1].proNum[0].proNum)
@@ -47,7 +47,8 @@ $(function() {
 				<th>사진이름</th>
 			</tr>
 		</thead>
-		<tbody id="load"></tbody>
+		<tbody id="load">
+		</tbody>
 	</table>
 
 
