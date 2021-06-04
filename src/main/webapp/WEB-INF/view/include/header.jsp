@@ -18,8 +18,8 @@
 	<header>
 		<ul>
 			<!-- 각자 넘어갈시 필요한 페이지를 기입해주세요. --> 
-			<li><a href="#">로그인</a></li>
-			<li><a href="#">회원가입</a></li>
+			<li><a href="login">로그인</a></li>
+			<li><a href="register">회원가입</a></li>
 			<li><a href="#">마이페이지</a></li>
 			<li><a href='<c:url value="/qna_main"/>'>고객센터</a></li>
 		</ul>

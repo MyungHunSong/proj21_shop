@@ -217,6 +217,8 @@ public class MemberDTO {
 	}
 	
 	public boolean matchPassword(String password) {
+		System.out.println("this.memberPwd : "+this.memberPwd);
+		System.out.println("password : "+password);
 		return this.memberPwd.equals(password);
 	}
 

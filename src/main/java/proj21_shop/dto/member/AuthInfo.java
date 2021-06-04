@@ -4,6 +4,13 @@ public class AuthInfo {
 	private String id;
 	private String email;
 	private String name;
+	
+	
+
+	public AuthInfo() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public AuthInfo(String id, String email, String name) {
 		this.id = id;
@@ -35,4 +42,10 @@ public class AuthInfo {
 		this.name = name;
 	}
 
+	@Override
+	public String toString() {
+		return String.format("AuthInfo [id=%s, email=%s, name=%s]", id, email, name);
+	}
+
+	
 }

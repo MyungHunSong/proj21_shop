@@ -30,18 +30,21 @@ public class LoginController {
             loginCommand.setId(rCookie.getValue());
             loginCommand.setRememberId(true);
         }
-
         return "/member/login/loginForm";
     }
 
     @PostMapping
     public String submit(LoginCommand loginCommand, Errors errors, HttpSession session, HttpServletResponse response) {
+
         if (errors.hasErrors())
-            return "/login/loginForm";
+            return "/member/login/loginForm";
+
         try {
+        	
+        	System.out.println(loginCommand.getPassword());
             AuthInfo authInfo = authService.authenicate(loginCommand.getId(), loginCommand.getPassword());
+            System.out.println(authInfo);
             session.setAttribute("authInfo", authInfo);
-            
             Cookie rememberCookie = new Cookie("REMEMBER", loginCommand.getId());
             rememberCookie.setPath("/");
             if (loginCommand.isRememberId()) {
@@ -51,11 +54,13 @@ public class LoginController {
             }
             response.addCookie(rememberCookie);
 
-            
+
             return "/member/login/loginSuccess";
+
         }catch (WrongIdPasswordException ex) {
+        	System.out.println(11111);
             errors.reject("idPasswordNotMatching");
-            return "/member/login/loginForm";
+            return "/member/login/loginFail";
         }
     }
 }
