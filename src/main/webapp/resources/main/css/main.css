@@ -1,6 +1,14 @@
 @charset "UTF-8";
+/* Fontawesome 4.7 */
+@import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+
+/* Google Web Fonts CDN */
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,400,500,700,900&display=swap');
+
+
 /*슬라이더 중앙 배치*/
 .container{
+	font-family: 'Noto Sans KR', sans-serif;
 	margin:0 auto;
 	width: 80%;
 	text-align: center;

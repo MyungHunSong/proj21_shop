@@ -42,4 +42,10 @@ public class AuthInfo {
 		this.name = name;
 	}
 
+	@Override
+	public String toString() {
+		return String.format("AuthInfo [id=%s, email=%s, name=%s]", id, email, name);
+	}
+
+	
 }
