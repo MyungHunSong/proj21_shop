@@ -13,7 +13,7 @@
 <script type="text/javascript">
 function count(type)  {
     // 결과를 표시할 element
-        const resultElement = document.getElementById('result');
+    var resultElement = document.getElementById('result');
 
     // 현재 화면에 표시된 값
     let number = resultElement.innerText;
@@ -24,16 +24,12 @@ function count(type)  {
     }else if(type === 'minus' && number > 0)  {
         number = parseInt(number) - 1;
     }
-
      // 결과 출력
      resultElement.innerText = number;
     }
 $(function() {
-	
 	var contextPath = "${contextPath}";
 	var proNum = ${proNum};
-	var n = 1;
-	
 	$.get(contextPath + "/api/productDetail/"+proNum, 
 	function(json) {
 		var sCont = "";
@@ -68,12 +64,11 @@ $(function() {
 <jsp:include page="/WEB-INF/view/include/header.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/view/include/topbody.jsp"></jsp:include>
 		<section id="ProductLoad"></section>
-		<div class="productLeft"></div>
 		<div class="productRight">
 			<div class="calculator">
-				<input class="cal" type='button'onclick='count("minus")'value='-'/>
+				<input class="cal btn" type='button'onclick='count("minus")'value='-'/>
 				<div class="cal" id = "result">0</div>
-				<input class="cal" type='button'onclick='count("plus")'value='+'/>
+				<input class="cal btn" type='button'onclick='count("plus")'value='+'/>
 			</div>
 			<div class='submitBtns'>
 				<input type='submit' id='cart' value='장바구니' />
