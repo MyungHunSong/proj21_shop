@@ -18,12 +18,25 @@
 	<header>
 		<ul>
 			<!-- 각자 넘어갈시 필요한 페이지를 기입해주세요. --> 
-			<li><a href="login">로그인</a></li>
+			<c:if test="${empty authInfo }">
+				<li><a href="login">로그인</a></li>
+			</c:if>
+			<c:if test="${!empty authInfo }">
+				<li><a href="logout">로그아웃</a></li>
+			</c:if>
 			<li><a href="register">회원가입</a></li>
 			<li><a href="#">마이페이지</a></li>
 			<li><a href='<c:url value="/qna_main"/>'>고객센터</a></li>
 		</ul>
-			<img alt="헤더 오른쪽 옷걸이" src="/proj21_shop/resources/banner/headerR.jpg" class="headerImg" >
+			<c:if test="${!empty authInfo }">
+			<br>
+					<p class="login_member mem_id"><strong>${authInfo.id }</strong>님 반갑습니다.</p>
+					<p class="login_member point">포인트: <strong>${authInfo.mPoint }P</strong>입니다</p>
+			</c:if>
+			<c:if test="${empty authInfo }">
+				<br>
+			</c:if>
+	<div class="main_img"><img alt="헤더 오른쪽 옷걸이" src="/proj21_shop/resources/banner/headerR.jpg" class="headerImg" ></div>
 	</header>
 </body>
 </html>

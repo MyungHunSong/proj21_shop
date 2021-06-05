@@ -40,10 +40,7 @@ public class LoginController {
             return "/member/login/loginForm";
 
         try {
-        	
-        	System.out.println(loginCommand.getPassword());
             AuthInfo authInfo = authService.authenicate(loginCommand.getId(), loginCommand.getPassword());
-            System.out.println(authInfo);
             session.setAttribute("authInfo", authInfo);
             Cookie rememberCookie = new Cookie("REMEMBER", loginCommand.getId());
             rememberCookie.setPath("/");
@@ -54,11 +51,9 @@ public class LoginController {
             }
             response.addCookie(rememberCookie);
 
-
-            return "/member/login/loginSuccess";
+            return "/main/main";
 
         }catch (WrongIdPasswordException ex) {
-        	System.out.println(11111);
             errors.reject("idPasswordNotMatching");
             return "/member/login/loginFail";
         }

@@ -7,9 +7,13 @@
 <head>
 <meta charset="UTF-8">
 <title>로그인</title>
+<link rel="stylesheet" href="/proj21_shop/resources/main/css/main.css">
 <link rel="stylesheet" href="/proj21_shop/resources/member/css/loginForm.css">
 </head>
 <body>
+<div class="container">
+<jsp:include page="/WEB-INF/view/include/header.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/view/include/topbody.jsp"></jsp:include>
 	<h1>회원 로그인</h1>
 	<section id="loginFormArea">
 		<form:form modelAttribute="loginCommand">
@@ -29,5 +33,7 @@
 			</div>
 		</form:form>
 	</section>
+<jsp:include page="/WEB-INF/view/include/footer.jsp"></jsp:include>
+</div>
 </body>
 </html>

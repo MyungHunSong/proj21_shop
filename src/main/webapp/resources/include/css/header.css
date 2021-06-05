@@ -15,7 +15,6 @@ header ul li a{
 	color: #000;
 	cursor: pointer;
 	outline: none;
-	font-size: 14px;
 	font-weight: bold;
 }
 /*갓다댈시 빨간색으로*/
@@ -24,8 +23,19 @@ header ul li a:hover {
 }
 /*옷걸이 이미지*/
 .headerImg{
-	margin-left: 340px;
 	width: 210px;
 	height: 170px;
 	cursor: pointer;
+}
+
+/* 로그인시 아이디와 포인트 표시 */
+.login_member{
+	font-size: 10px;
+	text-align: right;
+}
+.mem_id{
+	margin-bottom: 3px;
+}
+.point{
+	margin-top: 3px;
 }
