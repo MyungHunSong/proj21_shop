@@ -22,7 +22,7 @@ public class orderController {
 		return mav;
 	}
 	
-	@GetMapping("/productOrder")
+	@GetMapping("/productPurchase")
 	public ModelAndView getproductPurchase(@RequestParam(value = "proNum") Integer proNum) {
 		ModelAndView mav = new ModelAndView("product/productPurchase", "proNum",proNum);
 		return mav;
