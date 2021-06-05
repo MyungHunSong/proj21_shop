@@ -12,14 +12,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-
 <title>Annual Sales - 2021</title>
-
-<script src="${contextPath}/resources/admin/order/css/jquery/jquery-3.1.0.min.js"></script>
-<script src="${contextPath}/resources/admin/order/css/tether/tether.min.js"></script>
-<script src="${contextPath}/resources/admin/order/css/bootstrap/bootstrap4-alpha3.min.js"></script>
 <!-- chart -->
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script>
 
   $(document).ready(function(){
@@ -231,14 +228,11 @@
 										<c:choose>
 											<c:when test="${isLogOn == true && memberInfo !=null }">
 												<div class="box bg-light-info">
-													환영합니다 <a href="#" style="color: red;">${memberInfo.member_name }</a>님!
+													환영합니다 <a href="#" style="color: red;">${authInfo.id }</a>님!
 												</div>
 											</c:when>
 										</c:choose>
-
 									</div>
-
-									<div class="chat-time">10:56 am</div>
 								</li>
 								<!--chat Row -->
 								<li class="chat-item">
@@ -248,23 +242,19 @@
 									<div class="chat-content">
 										<h6 class="font-medium">Up street</h6>
 										<c:choose>
-											<c:when test="${isLogOn == true && memberInfo !=null }">
+											<c:when test="${!empty authInfo }">
 												<div class="box bg-light-info">
 													로그아웃 하시겠어요? <br> <a href="${contextPath }/member/memberlogout.do">로그아웃하기</a>
 												</div>
-
-
 											</c:when>
 										</c:choose>
 									</div>
-									<div class="chat-time">10:57 am</div>
 								</li>
 								<li class="odd chat-item">
 									<div class="chat-content">
 										<div class="box bg-light-inverse">클라이언트 페이지로 보여줘.</div>
 										<br>
 									</div>
-									<div class="chat-time">10:59 am</div>
 								</li>
 
 								<li class="chat-item">
@@ -285,12 +275,6 @@
 			</div>
 
 
-
-
-
-
-
-
 		</div>
 
 	</div>
@@ -300,23 +284,22 @@
 
 
 </body>
-<script src="${contextPath}/resources/admin/assets/libs/jquery/dist/jquery.min.js"></script>
-<script src="${contextPath}/resources/admin/dist/js/jquery.ui.touch-punch-improved.js"></script>
-<script src="${contextPath}/resources/admin/dist/js/jquery-ui.min.js"></script>
+
+<%-- <script src="${contextPath}/resources/admin/assets/libs/jquery/dist/jquery.min.js"></script> --%>
+<%-- <script src="${contextPath}/resources/admin/dist/js/jquery.ui.touch-punch-improved.js"></script> --%>
+<%-- <script src="${contextPath}/resources/admin/dist/js/jquery-ui.min.js"></script> --%>
 <!-- CDN 사용 -->
-<script src="${contextPath}/resources/admin/assets/libs/popper.js/dist/umd/popper.min.js"></script>
+<%-- <script src="${contextPath}/resources/admin/assets/libs/popper.js/dist/umd/popper.min.js"></script> --%>
 <!-- Bootstrap tether Core JavaScript -->
-<script src="${contextPath}/resources/admin/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+<%-- <script src="${contextPath}/resources/admin/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script> --%>
 <!-- slimscrollbar scrollbar JavaScript -->
-<script src="${contextPath}/resources/admin/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
 <!-- Bullet chart -->
 <%-- <script src="${contextPath}/resources/admin/assets/extra-libs/sparkline/sparkline.js"></script> --%>
 <!--Wave Effects -->
-<script src="${contextPath}/resources/admin/dist/js/waves.js"></script>
+<%-- <script src="${contextPath}/resources/admin/dist/js/waves.js"></script> --%>
 <!--Menu sidebar 사용-->
-<script src="${contextPath}/resources/admin/dist/js/sidebarmenu.js"></script>
+
 <!--Custom JavaScript sidebar 애니메이션 효과를 주기 위한 UI 파일 -->
-<script src="${contextPath}/resources/admin/dist/js/custom.min.js"></script>
 <!-- 날짜 데이터 출력 및 수정 js -->
-<script src="${contextPath}/resources/admin/assets/libs/moment/min/moment.min.js"></script>
+<%-- <script src="${contextPath}/resources/admin/assets/libs/moment/min/moment.min.js"></script> --%>
 </html>

@@ -24,7 +24,7 @@
 	padding: 5px;
 	margin-bottom: 5px;
 	border: 0px solid #bcbcbc;
-	background-color: lightgreen;
+	background-color: #FFFFFF;
 }
 
 #sidebar-left {
@@ -61,7 +61,6 @@
 		<div id="header">
 			<tiles:insertAttribute name="header" />
 		</div>
-
 		<div id="content">
 			<tiles:insertAttribute name="body" />
 		</div>
