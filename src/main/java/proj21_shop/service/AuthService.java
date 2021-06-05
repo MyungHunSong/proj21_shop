@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 import proj21_shop.dto.member.AuthInfo;
 import proj21_shop.dto.member.MemberDTO;
-import proj21_shop.dto.member.exception.WrongIdPasswordException;
+import proj21_shop.exception.WrongIdPasswordException;
 import proj21_shop.mapper.member.MemberMapper;
 
 @Service

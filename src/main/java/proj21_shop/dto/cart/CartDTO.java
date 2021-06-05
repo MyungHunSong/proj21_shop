@@ -1,9 +1,12 @@
 package proj21_shop.dto.cart;
 
+import proj21_shop.dto.member.MemberDTO;
+import proj21_shop.dto.product.ProductDTO;
+
 public class CartDTO {
 	private int cartNum;
-	private int cartMemberId;
-	private int cartProNum;
+	private MemberDTO memberId;
+	private ProductDTO cartProNum;
 	private int cartProQuantity;
 
 	public int getCartNum() {
@@ -14,19 +17,19 @@ public class CartDTO {
 		this.cartNum = cartNum;
 	}
 
-	public int getCartMemberId() {
-		return cartMemberId;
+	public MemberDTO getMemberId() {
+		return memberId;
 	}
 
-	public void setCartMemberId(int cartMemberId) {
-		this.cartMemberId = cartMemberId;
+	public void setMemberId(MemberDTO memberId) {
+		this.memberId = memberId;
 	}
 
-	public int getCartProNum() {
+	public ProductDTO getCartProNum() {
 		return cartProNum;
 	}
 
-	public void setCartProNum(int cartProNum) {
+	public void setCartProNum(ProductDTO cartProNum) {
 		this.cartProNum = cartProNum;
 	}
 
