@@ -6,6 +6,7 @@ header ul {
 }
 
 header ul li {
+	font-size:14px;
 	float: right;
 	margin-left: 20px;
 }
