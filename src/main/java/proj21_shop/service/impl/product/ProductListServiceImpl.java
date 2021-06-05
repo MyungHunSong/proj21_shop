@@ -15,17 +15,17 @@ import proj21_shop.service.product.ProductListService;
 public class ProductListServiceImpl implements ProductListService{
 	
 	@Autowired
-	private ProductListMapper mapper;
+	private ProductListService service;
 
 	@Override
 	public List<ProductImageDTO> showProducts(int proImgState,int proCategory) {
-		List<ProductImageDTO> list = mapper.selectProductByProImgState(proImgState,proCategory);
+		List<ProductImageDTO> list = service.showProducts(proImgState, proCategory);
 		return list;
 	}
 
 	@Override
 	public ProductImageDTO showProductDetailByProNum(int proNum) {
-		ProductImageDTO product = mapper.selectProductDetailByProNum(proNum);
+		ProductImageDTO product = service.showProductDetailByProNum(proNum);
 		return product;
 	}
 	
