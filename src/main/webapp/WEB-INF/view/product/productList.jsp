@@ -28,8 +28,10 @@ $(function(){
 	var contextPath = "${contextPath}";
 	var proImgState = ${proImgState};
 	var proCategory = ${proCategory};
+
 	$.get(contextPath + "/api/productlist/"+proImgState+"/"+proCategory,
 	function(json){
+
 		var dataLength = json.length;
 		if(dataLength >= 1){
 			var sCont = "";
