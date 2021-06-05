@@ -7,7 +7,8 @@
 }
 
 .productImage img{
-	width: 600px;
+	width: 340px;
+	height: 480px;
 }
 
 .productInfo{
@@ -15,6 +16,10 @@
 	text-align: left;
 	margin-left: 100px;
 	font-size:20px;
+}
+
+.productInfo p {
+	font-size: 15px;
 }
 
 .productInfo strong{
@@ -25,12 +30,14 @@
 	margin-left: 20px;
 }
 
+/* 사이즈 */
 .productInfo select{
 	padding:5px;
 	width:300px;
-	font-size: 20px;
+	font-size: 13px;
 }
 
+/* 장바구니 구매하기 버튼 */
 .submitBtns input{
 	width: 160px;
 	height: 50px;
@@ -45,6 +52,8 @@
 	color: white;
 }
 
+
+/* 수량 올라가는 부분 */
 .calculator{
 	display: flex;
 	align-items: center;
