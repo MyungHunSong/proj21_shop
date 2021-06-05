@@ -8,29 +8,19 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class orderController {
 
-	public ModelAndView getProductListByProCategory(
-				@RequestParam(value = "proImgState") Integer proImgState,
-				@RequestParam(value = "proCategory") Integer proCategory
-			) {
-		ModelAndView mav = new ModelAndView("product/productList", "proImgState",proImgState);
-		mav.addObject("proCategory",proCategory);
-		return mav;
-	}
+//	public ModelAndView getProductListByProCategory(
+//				@RequestParam(value = "proImgState") Integer proImgState,
+//				@RequestParam(value = "proCategory") Integer proCategory
+//			) {
+//		ModelAndView mav = new ModelAndView("product/productList", "proImgState",proImgState);
+//		mav.addObject("proCategory",proCategory);
+//		return mav;
+//	}
 	
-	public ModelAndView getProductDetailByProNum(@RequestParam(value = "proNum") Integer proNum) {
-		ModelAndView mav = new ModelAndView("product/productDetail", "proNum",proNum);
+	@GetMapping("/cart")
+	public ModelAndView getMemberProductCart(@RequestParam(value = "memId") String memId) {
+		ModelAndView mav = new ModelAndView("member/order/memberProductCart", "memId",memId);
 		return mav;
 	}
-	
-	@GetMapping("/productPurchase")
-	public ModelAndView getproductPurchase(@RequestParam(value = "proNum") Integer proNum) {
-		ModelAndView mav = new ModelAndView("product/productPurchase", "proNum",proNum);
-		return mav;
-	}
-	
-	@GetMapping("/productCart")
-	public ModelAndView getproductCart(@RequestParam(value = "proNum") Integer proNum) {
-		ModelAndView mav = new ModelAndView("product/productCart", "proNum",proNum);
-		return mav;
-	}
+ 
 }

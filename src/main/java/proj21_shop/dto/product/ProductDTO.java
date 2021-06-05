@@ -24,7 +24,7 @@ public class ProductDTO {
 
 	private String proImgfileName;
 	private Date proInputDate; // 제품 재 입고(update) 일
-
+ 
 	public int getProNum() {
 		return proNum;
 	}

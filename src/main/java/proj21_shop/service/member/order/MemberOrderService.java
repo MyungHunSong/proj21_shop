@@ -13,5 +13,5 @@ public interface MemberOrderService {
 	List<CartDTO> showCartsByMemberId(MemberDTO memId);
 
 	int insertCart(CartDTO cart);
-	int deleteCart(int cartNum);
+	int deleteCart(int proName);
 }
