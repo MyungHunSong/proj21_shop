@@ -29,5 +29,9 @@ public class AdminOrderController {
 		return mav;
 
 	}
+	@RequestMapping("header2")
+	public String header() {
+		return "/admin/order/header2";
+	}
 
 }
