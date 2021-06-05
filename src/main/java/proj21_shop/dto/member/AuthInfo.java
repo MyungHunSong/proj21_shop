@@ -4,12 +4,10 @@ public class AuthInfo {
 	private String id;
 	private String email;
 	private String name;
-	
+	private int mPoint;
 	
 
 	public AuthInfo() {
-		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public AuthInfo(String id, String email, String name) {
@@ -40,6 +38,14 @@ public class AuthInfo {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public int getmPoint() {
+		return mPoint;
+	}
+
+	public void setmPoint(int mPoint) {
+		this.mPoint = mPoint;
 	}
 
 	@Override
