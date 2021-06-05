@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="proj21_shop.mapper.member.order.MemberOrderMapper">
+
+<resultMap type="CartDTO" id="ResCart">
+		<id property="cartNum" column="cart_num"/>
+		<result property="cartProQuantity" column="cart_pro_quantity"/>
+		<association property="memberId" javaType="MemberDTO">
+			<result property= "memberId" column="cart_member_id"/>
+		</association>
+		<association property="cartProNum" javaType="ProductDTO" >
+			<result property="proNum" column="cart_pro_num"/>
+		</association>
+</resultMap>
+
+<!-- 	<resultMap type="CartDTO" id="ResCart">
+		<result property="cartProQuantity" column="cart_pro_quantity"/>
+		<association property="cartMemberId" autoMapping="true"></association>
+		<association property="cartProNum" autoMapping="true"></association>
+	</resultMap>
+ -->
+	<sql id="selectSQL">
+		select cart_num,cart_member_id,cart_pro_num,cart_pro_quantity
+          from cart
+	</sql>
+	
+	<select id="selectCartByMemberId" resultMap="ResCart">
+	<include refid="selectSQL"></include>
+    where cart_member_Id =#{memberId}
+	</select>
+		
+ 
+ 	<insert id="insertCart">
+		INSERT INTO cart
+			(cart_member_Id, cart_pro_num, cart_pro_quantity)
+		  values
+			(#{cartMemberId.memberId}, #{cartProNum.proNum}, #{cartProQuantity})
+	</insert>
+ 
+	<delete id="deleteCart">
+		delete 
+		   from cart
+		where cart_pro_num = #{cartProNum}
+	</delete>
+</mapper>
