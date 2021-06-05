@@ -1,5 +1,4 @@
-package proj21_shop.mapper.member.order;
-
+package proj21_shop.service.member.order;
 
 import java.util.List;
 
@@ -25,24 +24,24 @@ import proj21_shop.dto.product.ProductDTO;
 @ContextConfiguration(classes = { ContextRoot.class })
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @WebAppConfiguration
-public class MemberOrderMapperTest {
-private static final Log log = LogFactory.getLog(MemberOrderMapperTest.class);
+public class MemberOrderServiceTest {
+	private static final Log log = LogFactory.getLog(MemberOrderServiceTest.class);
 	
 	@Autowired
-	private MemberOrderMapper mapper;
-
+	private MemberOrderService service;
+	
 	@After
 	public void tearDown() throws Exception {
 		System.out.println();
 	}
 
 	@Test
-	public void test01SelectCartByMemberId() {
+	public void test01ShowCartsByMemberId() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		MemberDTO newMem = new MemberDTO();
 		newMem.setMemberId("test01");
 		
-		List<CartDTO> list = mapper.selectCartByMemberId(newMem);
+		List<CartDTO> list = service.showCartsByMemberId(newMem);
 		Assert.assertNotNull(list);
 	}
 
@@ -60,7 +59,7 @@ private static final Log log = LogFactory.getLog(MemberOrderMapperTest.class);
 		cart.setCartProNum(newPro);
 		cart.setCartProQuantity(1);
 		
-		int res = mapper.insertCart(cart);
+		int res = service.insertCart(cart);
 		Assert.assertEquals(1, res);
 		log.debug("res memid, proNum, 수량 >>" + res);
 	}
@@ -69,9 +68,9 @@ private static final Log log = LogFactory.getLog(MemberOrderMapperTest.class);
 	public void test03DeleteCart() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		
-		int res = mapper.deleteCart(1033);
+		int res = service.deleteCart(1033);
 		Assert.assertEquals(1, res);
 		log.debug("proNum >>" + res);
-		
 	}
+
 }

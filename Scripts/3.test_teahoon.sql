@@ -36,8 +36,22 @@ delete
   from product
  where pro_category <=8000;
  
--- 장바구니 검색
+-- 장바구니 
+desc cart;
+
 -- 장바구니 회원 아이디로 검색후 리스트 목록 보여주기
-select *
+select cart_num,cart_member_id,cart_pro_num,cart_pro_quantity
   from cart
 where cart_member_Id ='test01';
+
+-- 장바구니 추가
+INSERT INTO cart
+		(cart_member_Id, cart_pro_num, cart_pro_quantity)
+values
+		('test01', 6163, 1);
+
+-- 장바구니 삭제	
+delete 
+  from cart 
+where cart_pro_num = 1033;
+
