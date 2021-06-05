@@ -8,7 +8,7 @@
 
 .productImage img{
 	width: 340px;
-	height: 480px;
+	height: 460px;
 }
 
 .productInfo{
@@ -29,6 +29,22 @@
 .review{
 	margin-left: 20px;
 }
+
+/* 가격 css */
+.proSalerate{
+	font-weight: bold;
+	color: orange;
+}
+
+.proPrice{
+	color: #ccc;
+	text-decoration: line-through;
+}
+
+.proPriceSale{
+	font-weight: bold;
+}
+
 
 /* 사이즈 */
 .productInfo select{

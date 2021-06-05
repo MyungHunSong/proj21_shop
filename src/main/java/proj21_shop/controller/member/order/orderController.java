@@ -1,4 +1,4 @@
-package proj21_shop.controller.product;
+package proj21_shop.controller.member.order;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -6,9 +6,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class productController {
+public class orderController {
 
-	@GetMapping("/productlist")
 	public ModelAndView getProductListByProCategory(
 				@RequestParam(value = "proImgState") Integer proImgState,
 				@RequestParam(value = "proCategory") Integer proCategory
@@ -18,10 +17,20 @@ public class productController {
 		return mav;
 	}
 	
-	@GetMapping("/productDetail")
 	public ModelAndView getProductDetailByProNum(@RequestParam(value = "proNum") Integer proNum) {
 		ModelAndView mav = new ModelAndView("product/productDetail", "proNum",proNum);
 		return mav;
 	}
 	
+	@GetMapping("/productOrder")
+	public ModelAndView getproductPurchase(@RequestParam(value = "proNum") Integer proNum) {
+		ModelAndView mav = new ModelAndView("product/productPurchase", "proNum",proNum);
+		return mav;
+	}
+	
+	@GetMapping("/productCart")
+	public ModelAndView getproductCart(@RequestParam(value = "proNum") Integer proNum) {
+		ModelAndView mav = new ModelAndView("product/productCart", "proNum",proNum);
+		return mav;
+	}
 }

@@ -34,6 +34,10 @@ $(function() {
 	function(json) {
 		var proSalerate = json.proNum[0].proSalesrate;
 		var proPrice = json.proNum[0].proPrice;
+		var salePrice = ((100-proSalerate)/100)*proPrice;
+		/* 콤마 찍기용 */
+		var temp = proPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+		var add = salePrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 		var sCont = "";
 			sCont += "<div class = 'productImage'><img src="+contextPath+"/resources/product/images/"+json.proImagefilename+"></div>";
 			sCont += "<div class = 'productInfo'>"
@@ -45,18 +49,18 @@ $(function() {
 			sCont += "<p>"+json.proNum[0].proContent+"</p>";
 			sCont += "<p>"+json.proNum[0].proStatus+"</p>";
 			sCont +="<p><select id='size'><option value='size01'>사이즈를 선택해주세요</option><option value='size_01'>XS</option><option value='size_02'>S</option><option value='size_03'>M</option><option value='size_04'>L</option><option value='size_05'>XL</option></select></p>"
-			sCont += "<p>할인율 : "+proSalerate+"%</p>";
-			sCont += "<p>"+proPrice+proSalerate+" 원</p>";
-			sCont += "<p>"+proPrice*proSalerate+" 원</p>";
+			sCont += "<p class ='proPrice'>"+temp+" 원</p>";
+			sCont += "<span class ='proSalerate'>"+proSalerate+"%  </span>";
+			sCont += "<span class ='proPriceSale'>"+add+"원</span>";
 			sCont += "</div>"
 		    $("#ProductLoad").append(sCont);
 		
 		$('#cart').on("click", function() {
-			window.location.href = contextPath+"/cart?proNum="+json.proNum[0].proName;
+			window.location.href = contextPath+"/cart?proNum=${authInfo.id }";
 		});
 		
 		$('#purchase').on("click", function() {
-			window.location.href = contextPath+"/purchase?proNum="+ json.proNum[0].proName;
+			window.location.href = contextPath+"/purchase?proNum=${authInfo.id }";
 		});
 	});
 });
