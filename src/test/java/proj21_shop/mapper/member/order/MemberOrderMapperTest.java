@@ -35,7 +35,7 @@ private static final Log log = LogFactory.getLog(MemberOrderMapperTest.class);
 	public void tearDown() throws Exception {
 		System.out.println();
 	}
-
+ 
 	@Test
 	public void test01SelectCartByMemberId() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
@@ -45,7 +45,7 @@ private static final Log log = LogFactory.getLog(MemberOrderMapperTest.class);
 		List<CartDTO> list = mapper.selectCartByMemberId(newMem);
 		Assert.assertNotNull(list);
 	}
-
+ 
 	@Test
 	public void test02InsertCart() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
@@ -65,11 +65,11 @@ private static final Log log = LogFactory.getLog(MemberOrderMapperTest.class);
 		log.debug("res memid, proNum, 수량 >>" + res);
 	}
 
-	@Test
+	//@Test
 	public void test03DeleteCart() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		
-		int res = mapper.deleteCart(1033);
+		int res = mapper.deleteCart(6);
 		Assert.assertEquals(1, res);
 		log.debug("proNum >>" + res);
 		

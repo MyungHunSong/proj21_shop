@@ -56,7 +56,7 @@ $(function() {
 		    $("#ProductLoad").append(sCont);
 		
 		$('#cart').on("click", function() {
-			window.location.href = contextPath+"/cart?proNum=${authInfo.id }";
+			window.location.href = contextPath+"/cart?memId=${authInfo.id }";
 		});
 		
 		$('#purchase').on("click", function() {

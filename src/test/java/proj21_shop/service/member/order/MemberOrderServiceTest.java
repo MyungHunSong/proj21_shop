@@ -45,7 +45,7 @@ public class MemberOrderServiceTest {
 		Assert.assertNotNull(list);
 	}
 
-	@Test
+	@Test 
 	public void test02InsertCart() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		MemberDTO newMem = new MemberDTO();
@@ -68,7 +68,7 @@ public class MemberOrderServiceTest {
 	public void test03DeleteCart() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		
-		int res = service.deleteCart(1033);
+		int res = service.deleteCart(6);
 		Assert.assertEquals(1, res);
 		log.debug("proNum >>" + res);
 	}
