@@ -37,5 +37,7 @@ delete
  where pro_category <=8000;
  
 -- 장바구니 검색
+-- 장바구니 회원 아이디로 검색후 리스트 목록 보여주기
 select *
-  from cart;
+  from cart
+where cart_member_Id ='test01';

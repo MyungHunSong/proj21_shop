@@ -19,17 +19,17 @@ public class orderServiceController {
 	@Autowired
 	private ProductListService service;
 	
-	/* 옷목록화면 */
-	@GetMapping("/productlist/{proImgState}/{proCategory}")
-	public ResponseEntity<Object> products(@PathVariable int proImgState,@PathVariable int proCategory){
-		List<ProductImageDTO> list = service.showProducts(proImgState,proCategory);
-		return ResponseEntity.ok(list);
-	}
-	
-	/* 옷 상세보기 */
-	@GetMapping("/productDetail/{proNum}")
-	public ResponseEntity<Object> productDetail(@PathVariable int proNum){
-		ProductImageDTO product= service.showProductDetailByProNum(proNum);
-		return ResponseEntity.ok(product);
-	}
+//	/* 옷목록화면 */
+//	@GetMapping("/productlist/{proImgState}/{proCategory}")
+//	public ResponseEntity<Object> products(@PathVariable int proImgState,@PathVariable int proCategory){
+//		List<ProductImageDTO> list = service.showProducts(proImgState,proCategory);
+//		return ResponseEntity.ok(list);
+//	}
+//	
+//	/* 옷 상세보기 */
+//	@GetMapping("/productDetail/{proNum}")
+//	public ResponseEntity<Object> productDetail(@PathVariable int proNum){
+//		ProductImageDTO product= service.showProductDetailByProNum(proNum);
+//		return ResponseEntity.ok(product);
+//	}
 }
