@@ -1,4 +1,4 @@
-package proj21_shop.dto.member.exception;
+package proj21_shop.exception;
 
 public class WrongIdPasswordException extends RuntimeException {
 
