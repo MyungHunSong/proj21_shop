@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원 가입</title>
+<link rel="stylesheet" href="/proj21_shop/resources/main/css/main.css">
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -72,6 +73,9 @@
 <link rel="stylesheet" href="/proj21_shop/resources/member/css/registerForm.css">
 </head>
 <body>
+<div class="container">
+<jsp:include page="/WEB-INF/view/include/header.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/view/include/topbody.jsp"></jsp:include>
 	<h2>회원가입</h2>
 	<section id="registerFormArea">
 		<form action="register" method="post">
@@ -139,5 +143,7 @@
 			</div>
 		</form>
 	</section>
+<jsp:include page="/WEB-INF/view/include/footer.jsp"></jsp:include>
+</div>
 </body>
 </html>
