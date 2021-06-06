@@ -120,7 +120,7 @@ values
 INSERT INTO proj21_shop.cart
 		(cart_member_Id, cart_pro_num, cart_pro_quantity)
 values
-		('test01', 6163, 1);
+		('test01', 1033, 1);
 
 -- 주문 
 INSERT INTO proj21_shop.`order`
