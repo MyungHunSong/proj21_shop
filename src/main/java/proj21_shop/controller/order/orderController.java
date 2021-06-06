@@ -1,4 +1,4 @@
-package proj21_shop.controller.member.order;
+package proj21_shop.controller.order;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,9 +17,9 @@ public class orderController {
 //		return mav;
 //	}
 	
-	@GetMapping("/order/cart")
+	@GetMapping("/cart")
 	public ModelAndView getMemberProductCart(@RequestParam(value = "memId") String memId) {
-		ModelAndView mav = new ModelAndView("member/order/memberProductCart", "memId",memId);
+		ModelAndView mav = new ModelAndView("order/memberProductCart", "memId",memId);
 		return mav;
 	}
  
