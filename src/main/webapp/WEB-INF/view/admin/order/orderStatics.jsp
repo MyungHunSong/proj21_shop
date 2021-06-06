@@ -14,30 +14,11 @@
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <title>Annual Sales - 2021</title>
 <!-- chart -->
-<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<script>
-
-  $(document).ready(function(){
-   
-	   $("#select_order").change(function(){
-	         if($(this).val() =="member_num"){//유저코드일 경우
-	            location.href="${contextPath}/admin/member/listMembers.do?action=member_num";
-	         } 
-	         else if($(this).val()=="member_name"){//이름일경우
-	            location.href="${contextPath}/admin/member/listMembers.do?action=member_name";
-	         }
-	         else if($(this).val()=="member_point"){//포인트일경우
-	            location.href="${contextPath}/admin/member/listMembers.do?action=member_point";
-	         }
-	         else{
-	            location.href="${contextPath}/admin/member/listMembers.do";
-	         }
-	      });
-   });
-   
-</script>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<script src="${contextPath}/resources/admin/dist/js/custom.min.js"></script>
+<script src="${contextPath}/resources/admin/dist/js/sidebarmenu.js"></script>
 <script>
 			$(function () {
 				var totalRevenue = 15341110;
@@ -174,11 +155,8 @@
 					<div class="card">
 						<div class="card-body">
 							<h3 class="card-title">
-								총 수익 현황 &nbsp;
-							<span class="tag tag-success" id="revenue-tag">
-							<fmt:formatNumber value="${totalRevenue}" type="number" />
-							원
-							</span>
+								총 수익 현황 &nbsp; <span class="tag tag-success" id="revenue-tag"> <fmt:formatNumber value="${totalRevenue}" type="number" /> 원
+								</span>
 							</h3>
 							<br>
 							<div class="card-block">
@@ -210,7 +188,7 @@
 			</div>
 
 
-			<div class="row">
+<%-- 			<div class="row">
 				<div class="col-12">
 					<div class="card">
 
@@ -250,12 +228,6 @@
 										</c:choose>
 									</div>
 								</li>
-								<li class="odd chat-item">
-									<div class="chat-content">
-										<div class="box bg-light-inverse">클라이언트 페이지로 보여줘.</div>
-										<br>
-									</div>
-								</li>
 
 								<li class="chat-item">
 									<div class="chat-img">
@@ -272,7 +244,7 @@
 					</div>
 
 				</div>
-			</div>
+			</div> --%>
 
 
 		</div>

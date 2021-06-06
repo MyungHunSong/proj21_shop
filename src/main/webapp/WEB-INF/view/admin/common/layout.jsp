@@ -40,7 +40,7 @@
 }
 
 #content {
-	width: 75%;
+	width: 100%;
 	padding: 5px;
 	margin-right: 5px;
 	float: left;

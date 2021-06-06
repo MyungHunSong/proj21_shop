@@ -86,6 +86,12 @@
 						<li class="sidebar-item"><a href="${contextPath }/admin/order/listOrders.do" class="sidebar-link"><i class="mdi mdi-emoticon-cool"></i><span class="hide-menu"> 주문/배송 관리 </span></a></li>
 					</ul>
 				</li>
+				<li class="sidebar-item"><a class="sidebar-link has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-face"></i><span class="hide-menu">고객관리 </span></a>
+					<ul aria-expanded="false" class="collapse  first-level">
+						<li class="sidebar-item"><a href="${contextPath }/admin/product/listProducts.do" class="sidebar-link"><i class="mdi mdi-emoticon-cool"></i><span class="hide-menu"> 후기 관리 </span></a></li>
+						<li class="sidebar-item"><a href="${contextPath }/admin/order/listOrders.do" class="sidebar-link"><i class="mdi mdi-emoticon-cool"></i><span class="hide-menu"> 공지 사항 관리 </span></a></li>
+					</ul>
+				</li>
 			</ul>
 			</nav>
 			<!-- End Sidebar navigation -->

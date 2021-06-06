@@ -50,8 +50,12 @@ public class LoginController {
                 rememberCookie.setMaxAge(0);
             }
             response.addCookie(rememberCookie);
-
-            return "/main/main";
+            if(loginCommand.getId().equals("admin")) {
+            	
+            	return "redirect:/admin/order/orderStatics";
+            }
+      			  
+            return "redirect:/main";
 
         }catch (WrongIdPasswordException ex) {
             errors.reject("idPasswordNotMatching");
