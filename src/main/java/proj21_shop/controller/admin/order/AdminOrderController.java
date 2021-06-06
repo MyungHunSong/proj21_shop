@@ -27,11 +27,7 @@ public class AdminOrderController {
 		mav.addObject("viewMap", viewMap);
 		System.out.println(mav);
 		return mav;
+	}
 
-	}
-	@RequestMapping("header2")
-	public String header() {
-		return "/admin/order/header2";
-	}
 
 }
