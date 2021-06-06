@@ -40,7 +40,7 @@ let basket = {
     },
     //화면 업데이트
     updateUI: function () {
-        document.querySelector('#sum_p_num').textContent = '상품갯수: ' + this.totalCount.formatNumber() + '개';
+        document.querySelector('#sum_p_num').textContent = '상품개수: ' + this.totalCount.formatNumber() + '개';
         document.querySelector('#sum_p_price').textContent = '합계금액: ' + this.totalPrice.formatNumber() + '원';
     },
     //개별 수량 변경

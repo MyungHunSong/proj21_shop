@@ -14,19 +14,6 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $(function(){
-	$(".size span, .color span").on({
-		"click" : clickFnc
-	})
-	
-	$(".like").click(function() {
-		console.log(111)
-		$(".like").toggleClass("active");
-	})
-	
-	function clickFnc() {
-		$(this).addClass("active");
-		$(this).siblings().removeClass("active");
-	}
 	var contextPath = "${contextPath}";
 	var memId = "${memId}";
 	$.get(contextPath + "/api/memberProductCart/"+memId,
@@ -34,18 +21,36 @@ $(function(){
 		var dataLength = json.length;
 		if(dataLength >= 1){
 			var sCont = "";
+			
 			for(i = 0; i < dataLength; i++){
+				switch(json[i].cartProNum.proSize){
+					case 1:
+						json[i].cartProNum.proSize = "XS";
+						break;
+					case 2:
+						json[i].cartProNum.proSize = "S";
+						break;
+					case 3:
+						json[i].cartProNum.proSize = "M";
+						break;
+					case 4:
+						json[i].cartProNum.proSize = "L";
+						break;
+					case 5:
+						json[i].cartProNum.proSize = "XL";
+						break;
+				}
+				
 				sCont += "<div class='row data'>"
 				sCont +=		"<div class='subdiv'>"
-				/* sCont +=			"<input type='hidden' value="+cartNum+">" */
 				sCont +=			"<div class='check'><input type='checkbox' name='buy' value='260' onclick='javascript:basket.checkItem();''>&nbsp;</div>"
 				sCont +=			"<div class='img'><img src="+contextPath+"/resources/product/images/"+json[i].cartProNum.proImgfileName+" width='60'></div>"
 				sCont +=			"<div class='pname'>"
-				sCont +=       			"<span>"+json[i].cartProNum.proName+"</span>"
+				sCont +=       			"<span>"+json[i].cartProNum.proName+"("+json[i].cartProNum.proSize+")"+"</span>"
 				sCont +=  	  		"</div>"
 				sCont +=		"</div>"
 				sCont +=		"<div class='subdiv'>"
-				sCont +=			"<div class='basketprice'><input type='hidden' name='p_price' id='p_price1' class='p_price' value="+json[i].cartProNum.proPrice+">"+json[i].cartProNum.proPrice*0.01+"P</div>"
+				sCont +=			"<div class='basketprice'><input type='hidden' name='p_price' id='p_price1' class='p_price' value="+((100-json[i].cartProNum.proSalesrate)*json[i].cartProNum.proPrice)/100+">"+(100-json[i].cartProNum.proSalesrate)*json[i].cartProNum.proPrice*0.0001+"P</div>"
 				sCont +=			"<div class='num'>"
 				sCont +=				"<div class='updown'> "
 				sCont +=					"<input type='text' name='p_num"+i+"' id='p_num"+i+"' size='2' maxlength='4' class='p_num' value="+json[i].cartProQuantity+" onkeyup='javascript:basket.changePNum("+i+");'>"
@@ -53,27 +58,28 @@ $(function(){
 				sCont +=					"<span onclick='javascript:basket.changePNum("+i+");'><i class='fas fa-arrow-alt-circle-down down'></i></span>"
 				sCont +=				"</div>"
 				sCont +=			"</div>"
-				sCont +=			"<div class='sum'>"+json[i].cartProNum.proPrice*json[i].cartProQuantity+"</div> "
+				sCont +=			"<div class='sum'>"+(((100-json[i].cartProNum.proSalesrate)*json[i].cartProNum.proPrice*json[i].cartProQuantity)/100).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"원</div> "
 				sCont +=		"</div>"
 				sCont +=		"<div class='subdiv'>"
 				sCont +=			"<div class='basketcmd'><a href='javascript:void(0)' class='abutton' onclick='javascript:basket.delItem();''>삭제</a></div> "
 				sCont +=		"</div> "
+				sCont +=		"<input type = 'hidden' value = "+json[i].cartNum+">"
 				sCont +="</div> "
 
 			}
 			$(".load_row_data").append(sCont);
-			
 			$('#delButton').on("click", function(){
 				var data = {cartNum : $('.cartNum').val()};
+				console.log(data.cartNum);
 				$.ajax({
 					url: contextPath + "/api/memberProductCart/"+data.cartNum,
 					type: 'Delete',
 					success: function(res){
 						alert(res);
-						window.location.href = contextPath + "/cart?=memId="+${param.memId};
+						window.location.href = contextPath + "/order/cart?memId="+"${param.memId}";
 					},
 					error:function(request, status, error){
-						window.location.href = contextPath+"/cart?=memId="+${param.memId};
+						window.location.href = contextPath+"/order/cart?memId="+"${param.memId}";
 					}
 				});
 			}); 
@@ -86,6 +92,7 @@ $(function(){
 <div class="container">
 <jsp:include page="/WEB-INF/view/include/header.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/view/include/topbody.jsp"></jsp:include>
+
 <form name="orderform" id="orderform" method="post" class="orderform" action="/Page" onsubmit="return false;">
             <input type="hidden" name="cmd" value="order">
             <div class="basketdiv" id="basket">
@@ -93,7 +100,7 @@ $(function(){
                     <div class="subdiv">
                         <div class="check">선택</div>
                         <div class="img">이미지</div>
-                        <div class="pname">상품명</div>
+                        <div class="pname">상품명(사이즈)</div>
                     </div>
                     <div class="subdiv">
                         <div class="basketprice">적립금</div>
@@ -116,7 +123,7 @@ $(function(){
             </div>
     
             <div class="bigtext right-align sumcount" id="sum_p_num">상품개수: 0개</div>
-            <div class="bigtext right-align box blue summoney" id="sum_p_price">합계금액: 0원</div>
+            <div class="bigtext right-align box summoney" id="sum_p_price">합계금액: 0원</div>
     
             <div id="goorder" class="">
                 <div class="clear"></div>
@@ -125,6 +132,7 @@ $(function(){
                 </div>
             </div>
         </form>
+        
 <jsp:include page="/WEB-INF/view/include/footer.jsp"></jsp:include>
 </div>
 </body>
