@@ -17,7 +17,12 @@ public class QnaDTO {
 	private String qOp;
 	
 	
+	// 페이지 이동 시도
+	// 여기까지.
+	
+	
 
+	// 공지 - 번호
 	public String getqOp() {
 		return qOp;
 	}
@@ -25,6 +30,7 @@ public class QnaDTO {
 	public void setqOp(String qOp) {
 		this.qOp = qOp;
 	}
+	// 공지 - 번호
 
 	public QnaDTO() {}
 	

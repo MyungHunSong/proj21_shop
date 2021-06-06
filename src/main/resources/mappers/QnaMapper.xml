@@ -10,15 +10,26 @@
 		<result column="q_option" property="qOption"/>
 	</resultMap>
 	
+	<resultMap type="QnaDTO" id="qnaBoard">
+		<id column = ""/>
+	</resultMap>
+	
 <!-- q_member,q_title,q_date,q_hits,q_option -->
 	
 	<select id="selectByAllQnaPage" resultMap="resQna">
 		select  q_member, q_title, q_date, q_hits, q_option,
 		case q_option
-				when q_option = '공지사항' then q_index
+				when q_option = '공지' then q_index
 				else '공지'
 			end 'q_op' 
 	from qna
 	order by q_option
+	</select>
+	
+	<select id="selectPageList"  resultType="QnaDTO">
+		select q_index,q_title,q_option,q_member,q_content,q_file,q_date,q_hits,q_group,q_indent,q_step
+			from qna 
+			order by q_group desc, q_step asc
+		limit 0,10
 	</select>
 </mapper>

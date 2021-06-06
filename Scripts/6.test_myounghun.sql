@@ -48,27 +48,28 @@ insert into qna(q_title, q_option, q_member, q_file, q_content ,q_group,q_date)
 values('아이디 도용 관련 사항입니다.', '공지사항', '김GM', 'text.jpg', '도용해서 스팸올리면 진짜 스팸으로 만들어 버립니다.', 0 ,now());
 
 -- 2-2 공지사항일시 인덱스 번호를 공지로. 그리고 공지가 제일 위로 가게.
-select  q_index,q_member, q_title, q_date, q_hits, q_option,
+select  q_member, q_title, q_date, q_hits, q_option,
 	case q_option
-		when q_option = '공지사항' then q_index
+		when q_option = '공지' then q_index
 		else '공지'
 	end 'q_op' 
 from qna
 order by q_option;
 
-select  q_member, q_title, q_date, q_content, q_group, 
-	from qna
-	where q_index = q_group;
-
-
-
-
 select * from qna;
 
+-- 페이지 넘기기 q_step => 관련글 순서 즉 답글의 순서를 말한다.
+-- q_group 은 관련있는 글들끼리 묶어 놓은것이다.
+-- q_group 20이라면 => 같은 20이 쓴다면 이새끼는 답글단거 근데 멀로 구분하냐? q_step =1 이면 답글관련 q_step=0 이면 일반글 올린사람.
+select q_index,q_title,q_option,q_member,q_content,q_file,q_date,q_hits,q_group,q_indent,q_step
+from qna 
+order by q_group desc, q_step asc
+limit 0 , 10;
 
 -- 2-3. 검색하고(클릭) 삭제[회원 전용].
 select q_index, q_member, q_title, q_date, q_hits, q_option 
-from qna where q_option != '공지사항';
+from qna 
+where q_option != '공지사항' and q_index = 1;
 
 -- 2-3-1. 트랜잭션. 회원이 자기 댓글 삭제.
 delete

@@ -1,5 +1,6 @@
 package proj21_shop.mapper.qna;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.logging.Log;
@@ -31,12 +32,22 @@ public class QnaMapperTest {
 	}
 
 	@Test
-	public void testSelectByAllQnaPage() {
+	public void test01SelectByAllQnaPage() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getClassName()+"()");
 		
 		List<QnaDTO> qList = mapper.selectByAllQnaPage();
 		Assert.assertNotNull(qList);
 		qList.stream().forEach(System.out::println);
+	}
+	
+	@Test
+	public void test02TurnPageInfo() {
+		log.debug(Thread.currentThread().getStackTrace()[1].getClassName()+"()");
+		
+		ArrayList<QnaDTO> turnPage = mapper.selectPageList(1, 10);
+		Assert.assertNotNull(turnPage);
+		turnPage.stream().forEach(System.out::println);
+		
 	}
 
 }
