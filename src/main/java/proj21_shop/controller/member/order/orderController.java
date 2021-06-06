@@ -17,7 +17,7 @@ public class orderController {
 //		return mav;
 //	}
 	
-	@GetMapping("/cart")
+	@GetMapping("/order/cart")
 	public ModelAndView getMemberProductCart(@RequestParam(value = "memId") String memId) {
 		ModelAndView mav = new ModelAndView("member/order/memberProductCart", "memId",memId);
 		return mav;

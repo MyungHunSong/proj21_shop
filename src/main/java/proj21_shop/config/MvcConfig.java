@@ -2,13 +2,17 @@ package proj21_shop.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesView;
 import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
+
+import proj21_shop.interceptor.AuthCheckInterceptor;
 
 //view용
 @Configuration
@@ -33,6 +37,18 @@ public class MvcConfig implements WebMvcConfigurer {
 //	public void addViewControllers(ViewControllerRegistry registry) {
 //		registry.addViewController("/include/main").setViewName("main");
 //	}
+	
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+		registry.addInterceptor(authCheckInterceptor()).addPathPatterns("/order/cart/**");
+	}
+
+	@Bean
+	public HandlerInterceptor authCheckInterceptor() {
+		return new AuthCheckInterceptor();
+	}
+	
+	
 	/* tile 경로*/
 	@Bean
 	public TilesConfigurer tilesConfigurer() {
