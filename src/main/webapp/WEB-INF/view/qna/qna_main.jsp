@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="<%=request.getContextPath()%>" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,6 +32,31 @@
 			$(this).siblings(".desc").stop().slideUp();
 			$(this).next().stop().slideDown();
 		});
+	});
+	
+	$(function(){
+		var contextPath = "${contextPath}";
+		$.get(contextPath + "/api/qna",
+				function(json){
+			var dateLength = json.length;
+			console.log(json[0].qOption)
+			
+				if(dateLength >= 1){
+					var sCont = "";
+					for(i = 0; i<dateLength; i++){
+						sCont += "<tr>";
+						sCont += "<td>" + json[i].qOp + "</td>";
+						sCont += "<td>" + json[i].qMember + "</td>";
+						sCont += "<td>" + json[i].qOption + "</td>";
+						sCont += "<td>" + json[i].qTitle + "</td>";
+						sCont += "<td>" + json[i].qDate + "</td>";
+						sCont += "<td>" + json[i].qHit + "</td>";		
+						sCont += "</tr>";
+					}
+					$("#load:last-child").append(sCont);
+				}
+		});
+		
 	});
 </script>
 </head>
@@ -98,7 +125,22 @@
 				<!-- faq 끄트머리. -->
 				
 				<!-- Q&A 시작 -->
-				<div>Q&A</div>
+				<div id="qna_board">
+				Q&A
+				<table>
+					<tr>
+						<td>번호</td>
+						<td>작성자</td>
+						<td>문의사항</td>
+						<td>제목</td>
+						<td>날짜</td>
+						<td>조회수</td>
+					</tr>
+					<tbody id='load'>
+					</tbody>
+				</table>
+				</div>
+				
 				<!-- Q&A 종료-->
 			</div>
 		</section>

@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="proj21_shop.mapper.QnaMapper">
+<mapper namespace="proj21_shop.mapper.qna.QnaMapper">
+	 <resultMap type="QnaDTO" id="resQna">
+	 	<id column ="q_op" property="qOp"/>
+		<result column="q_member" property="qMember"/>
+		<result column="q_title" property="qTitle"/>
+		<result column="q_date" property="qDate"/>
+		<result column="q_hits" property="qHit"/>
+		<result column="q_option" property="qOption"/>
+	</resultMap>
 	
-	<select id="selectByAllQnaPage" resultType="QnaDTO">
-		select q_index,
-			q_member, q_title, q_date, q_hits, q_option ,
-				case q_option
-					when q_option = '공지사항' then q_index
+<!-- q_member,q_title,q_date,q_hits,q_option -->
+	
+	<select id="selectByAllQnaPage" resultMap="resQna">
+		select  q_member, q_title, q_date, q_hits, q_option,
+		case q_option
+				when q_option = '공지사항' then q_index
 				else '공지'
-				end '번호'
-			from qna
-		order by q_option;
+			end 'q_op' 
+	from qna
+	order by q_option
 	</select>
 </mapper>
