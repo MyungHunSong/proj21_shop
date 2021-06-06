@@ -188,7 +188,7 @@
 			</div>
 
 
-<%-- 			<div class="row">
+ 			<div class="row">
 				<div class="col-12">
 					<div class="card">
 
@@ -198,13 +198,9 @@
 							<ul class="chat-list">
 								<!--chat Row -->
 								<li class="chat-item">
-									<div class="chat-img">
-										<img src="${contextPath}/resources/banner/banner01.png" alt="user">
-									</div>
 									<div class="chat-content">
-										<h6 class="font-medium">Up street</h6>
 										<c:choose>
-											<c:when test="${isLogOn == true && memberInfo !=null }">
+											<c:when test="${authInfo !=null }">
 												<div class="box bg-light-info">
 													환영합니다 <a href="#" style="color: red;">${authInfo.id }</a>님!
 												</div>
@@ -214,15 +210,12 @@
 								</li>
 								<!--chat Row -->
 								<li class="chat-item">
-									<div class="chat-img">
-										<img src="${contextPath}/resources/banner/banner01.png" alt="user">
-									</div>
 									<div class="chat-content">
 										<h6 class="font-medium">Up street</h6>
 										<c:choose>
 											<c:when test="${!empty authInfo }">
 												<div class="box bg-light-info">
-													로그아웃 하시겠어요? <br> <a href="${contextPath }/member/memberlogout.do">로그아웃하기</a>
+													로그아웃 하시겠어요? <br> <a href="${contextPath }/logout">로그아웃하기</a>
 												</div>
 											</c:when>
 										</c:choose>
@@ -230,21 +223,19 @@
 								</li>
 
 								<li class="chat-item">
-									<div class="chat-img">
-										<img src="${contextPath}/resources/banner/banner01.png" alt="user">
-									</div>
 									<div class="chat-content">
 										<h6 class="font-medium">Up street</h6>
 										<div class="box bg-light-info">
 											<a href="${contextPath }/main">클라이언트 페이지 바로가기</a>
 										</div>
+									</div>
 								</li>
 							</ul>
 						</div>
 					</div>
 
 				</div>
-			</div> --%>
+			</div>
 
 
 		</div>
