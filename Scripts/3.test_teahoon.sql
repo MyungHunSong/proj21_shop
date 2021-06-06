@@ -40,7 +40,7 @@ delete
 desc cart;
 
 -- 장바구니 회원 아이디로 검색후 리스트 목록 보여주기
-select cart_num, c.cart_member_id, c.cart_pro_num, cart_pro_quantity, p.pro_imagefilename, p.pro_name, p.pro_price 
+select cart_num, c.cart_member_id, c.cart_pro_num, cart_pro_quantity, p.pro_imagefilename, p.pro_name, p.pro_price, p.pro_size, p.pro_salesrate
   from cart c join productall p on c.cart_pro_num = p.pro_num 
 where cart_member_Id ='test01';
 

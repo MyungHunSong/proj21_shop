@@ -57,11 +57,6 @@
         height: 60px;
         line-height: 60px;
     }
-      /*   .basketdiv .data .num .updown {
-            color: #0075ff;
-            font-size: 2em;
-            letter-spacing: -5px;
-        } */
         .basketdiv .check {
             width: 10%;
         }
@@ -86,8 +81,8 @@
     }
     .basketdiv .sum {
         width: 34%;
-      max-width: 80px;
-        color: #0000aa;
+      max-width: 69px;
+        color: orange;
     }
     .basketdiv .point {
         width: 50%;
@@ -161,12 +156,6 @@
     background-color: #d3e2c6;
 }
 
-.red {
-    color:#b00;
-}
-.blue {
-  color: #0075ff;
-}
 .basketrowcmd, .sumcount, .summoney{
   text-align: right;
   margin-bottom: 10px;
