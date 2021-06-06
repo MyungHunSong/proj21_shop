@@ -43,10 +43,10 @@ $(function(){
 				
 				sCont += "<div class='row data'>"
 				sCont +=		"<div class='subdiv'>"
-				sCont +=			"<div class='check'><input type='checkbox' name='buy' value='260' onclick='javascript:basket.checkItem();''>&nbsp;</div>"
+				sCont +=			"<div class='check'><input type='checkbox' class = 'checkItem' name='buy' value = "+json[i].cartNum+" onclick='javascript:basket.checkItem();''>&nbsp;</div>"
 				sCont +=			"<div class='img'><img src="+contextPath+"/resources/product/images/"+json[i].cartProNum.proImgfileName+" width='60'></div>"
 				sCont +=			"<div class='pname'>"
-				sCont +=       			"<span>"+json[i].cartProNum.proName+"("+json[i].cartProNum.proSize+")"+"</span>"
+				sCont +=       			"<span>"+json[i].cartNum+json[i].cartProNum.proName+"("+json[i].cartProNum.proSize+")"+"</span>"
 				sCont +=  	  		"</div>"
 				sCont +=		"</div>"
 				sCont +=		"<div class='subdiv'>"
@@ -60,22 +60,18 @@ $(function(){
 				sCont +=			"</div>"
 				sCont +=			"<div class='sum'>"+(((100-json[i].cartProNum.proSalesrate)*json[i].cartProNum.proPrice*json[i].cartProQuantity)/100).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"원</div> "
 				sCont +=		"</div>"
-				sCont +=		"<div class='subdiv'>"
-				sCont +=			"<div class='basketcmd'><a href='javascript:void(0)' class='abutton' onclick='javascript:basket.delItem();''>삭제</a></div> "
-				sCont +=		"</div> "
-				sCont +=		"<input type = 'hidden' value = "+json[i].cartNum+">"
 				sCont +="</div> "
-
 			}
 			$(".load_row_data").append(sCont);
+		
 			$('#delButton').on("click", function(){
-				var data = {cartNum : $('.cartNum').val()};
-				console.log(data.cartNum);
+				
+				var data = {cartNum : $('.checkItem').val()};
+				console.log($('.checkItem').val());
 				$.ajax({
 					url: contextPath + "/api/memberProductCart/"+data.cartNum,
 					type: 'Delete',
 					success: function(res){
-						alert(res);
 						window.location.href = contextPath + "/order/cart?memId="+"${param.memId}";
 					},
 					error:function(request, status, error){
@@ -109,7 +105,6 @@ $(function(){
                     </div>
                     <div class="subdiv">
     
-                        <div class="basketcmd">삭제</div>
                     </div>
                     <div class="split"></div>
                 </div>

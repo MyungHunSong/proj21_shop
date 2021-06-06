@@ -1,4 +1,4 @@
-package proj21_shop.service.impl.member.order;
+package proj21_shop.service.impl.order;
 
 import java.util.List;
 
@@ -8,14 +8,11 @@ import org.springframework.stereotype.Service;
 import proj21_shop.dto.cart.CartDTO;
 import proj21_shop.dto.member.MemberDTO;
 import proj21_shop.exception.MemberNotLoginException;
-import proj21_shop.mapper.member.order.MemberOrderMapper;
-import proj21_shop.service.member.order.MemberOrderService;
+import proj21_shop.mapper.order.MemberOrderMapper;
+import proj21_shop.service.order.MemberOrderService;
 
 @Service
 public class MemberOrderServiceImpl implements MemberOrderService {
-
-//	@Autowired
-//	private MemberOrderService service;
 
 	@Autowired
 	private MemberOrderMapper mapper;
@@ -38,6 +35,16 @@ public class MemberOrderServiceImpl implements MemberOrderService {
 	@Override
 	public int deleteCart(int cartNum) {
 		return mapper.deleteCart(cartNum);
+	}
+
+	@Override
+	public CartDTO selectCartByPronum(CartDTO cart) {
+		return mapper.selectCartByPronum(cart);
+	}
+
+	@Override
+	public int updateCart(CartDTO cart) {
+		return mapper.updateCart(cart);
 	}
 
 }

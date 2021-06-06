@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="proj21_shop.mapper.member.order.MemberOrderMapper">
+<mapper namespace="proj21_shop.mapper.order.MemberOrderMapper">
 
 <resultMap type="CartDTO" id="ResCart">
 		<id property="cartNum" column="cart_num"/>
@@ -18,6 +18,12 @@
 		select cart_num, c.cart_member_id, c.cart_pro_num, cart_pro_quantity, p.pro_imagefilename, p.pro_name, p.pro_price,p.pro_size, p.pro_salesrate 
  		  from cart c join productall p on c.cart_pro_num = p.pro_num 
 	</sql>
+	
+	<select id="selectCartByPronum" resultMap="ResCart">
+		 select cart_num,cart_member_Id,cart_pro_num,cart_pro_quantity
+          from cart
+        where cart_pro_num = #{cartProNum.proNum} and cart_member_Id = #{memberId.memberId}
+	</select>
 	
 	<select id="selectCartByMemberId" resultMap="ResCart">
 	<include refid="selectSQL"></include>
@@ -37,4 +43,11 @@
 		   from cart
 		where cart_num = #{cart_num}
 	</delete>
+	
+	<update id="updateCart">
+		update cart
+		   	 set cart_pro_quantity = cart_pro_quantity + #{cartProQuantity}
+	     where cart_pro_num = #{cartProNum.proNum}
+	</update>
+	
 </mapper>

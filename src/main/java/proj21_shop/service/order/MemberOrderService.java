@@ -1,4 +1,4 @@
-package proj21_shop.service.member.order;
+package proj21_shop.service.order;
 
 import java.util.List;
 
@@ -11,7 +11,9 @@ import proj21_shop.dto.member.MemberDTO;
 @Service
 public interface MemberOrderService {
 	List<CartDTO> showCartsByMemberId(MemberDTO memId);
-
+	CartDTO selectCartByPronum(CartDTO cart);
+	
 	int insertCart(CartDTO cart);
-	int deleteCart(int proName);
+	int deleteCart(int cartNum);
+	int updateCart(CartDTO cart);
 }

@@ -6,7 +6,6 @@ let basket = {
         document.querySelectorAll("input[name=buy]:checked").forEach(function (item) {
             item.parentElement.parentElement.parentElement.remove();
         });
-        //AJAX 서버 업데이트 전송
     
         //전송 처리 결과가 성공이면
         this.reCalc();
@@ -17,7 +16,6 @@ let basket = {
         document.querySelectorAll('.row.data').forEach(function (item) {
             item.remove();
           });
-          //AJAX 서버 업데이트 전송
         
           //전송 처리 결과가 성공이면
           this.totalCount = 0;

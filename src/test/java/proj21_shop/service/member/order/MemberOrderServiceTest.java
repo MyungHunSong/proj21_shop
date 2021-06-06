@@ -19,6 +19,7 @@ import proj21_shop.config.ContextRoot;
 import proj21_shop.dto.cart.CartDTO;
 import proj21_shop.dto.member.MemberDTO;
 import proj21_shop.dto.product.ProductDTO;
+import proj21_shop.service.order.MemberOrderService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { ContextRoot.class })
