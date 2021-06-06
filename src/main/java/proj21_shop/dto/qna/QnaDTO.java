@@ -14,7 +14,18 @@ public class QnaDTO {
 	private int qGroup;
 	private int qStep;
 	private int qIndent;
+	private String qOp;
 	
+	
+
+	public String getqOp() {
+		return qOp;
+	}
+
+	public void setqOp(String qOp) {
+		this.qOp = qOp;
+	}
+
 	public QnaDTO() {}
 	
 	public QnaDTO(String qOption) {
