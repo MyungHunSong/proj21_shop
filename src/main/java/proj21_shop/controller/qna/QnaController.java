@@ -12,5 +12,4 @@ public class QnaController {
 	public String form() {
 		return"/qna/qna_main";
 	}
-	
 }
