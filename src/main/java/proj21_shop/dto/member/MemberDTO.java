@@ -7,30 +7,30 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 public class MemberDTO {
-	
+
 	private String memberId;
 	private String memberPwd;
-	
-	private String memberPwdConfirm; //비밀번호확인
-	
+
+	private String memberPwdConfirm; // 비밀번호확인
+
 	private String memberName;
 	private String memberPh;
 	private LocalDateTime memberBirth;
-	
-	private Gender memberGender; //0=남자 1=여자
-	
-	private String memberPwdQ; //본인확인질문
-	private String memberPwdA; //본인확인질문답변
-	private String memberAddr1; //우편번호
-	private String memberAddr2; //주소(도로명)
-	private String memberAddr3; //상세주소
+
+	private Gender memberGender; // 0=남자 1=여자
+
+	private String memberPwdQ; // 본인확인질문
+	private String memberPwdA; // 본인확인질문답변
+	private String memberAddr1; // 우편번호
+	private String memberAddr2; // 주소(도로명)
+	private String memberAddr3; // 상세주소
 	private String memberEmail;
 	private Date memberCreDate;
 	private int memberPoint;
 	private int memberTotalBuy;
 	private int memberTotalOrder;
 	private int memberTotalLogin;
-	
+
 	private int memberExit; // 0(=defult) 1(=exit)
 
 	public MemberDTO() {
@@ -38,14 +38,12 @@ public class MemberDTO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public MemberDTO(String memberId, String memberPwd, String memberPwdConfirm, String memberName, String memberPh,
-			LocalDateTime memberBirth, Gender memberGender, String memberPwdQ, String memberPwdA, String memberAddr1,
-			String memberAddr2, String memberAddr3, String memberEmail, Date memberCreDate, int memberPoint,
-			int memberTotalBuy, int memberTotalOrder, int memberTotalLogin, int memberExit) {
+	public MemberDTO(String memberId, String memberPwd, String memberName, String memberPh, LocalDateTime memberBirth,
+			Gender memberGender, String memberPwdQ, String memberPwdA, String memberAddr1, String memberAddr2,
+			String memberAddr3, String memberEmail) {
 		super();
 		this.memberId = memberId;
 		this.memberPwd = memberPwd;
-		this.memberPwdConfirm = memberPwdConfirm;
 		this.memberName = memberName;
 		this.memberPh = memberPh;
 		this.memberBirth = memberBirth;
@@ -56,12 +54,6 @@ public class MemberDTO {
 		this.memberAddr2 = memberAddr2;
 		this.memberAddr3 = memberAddr3;
 		this.memberEmail = memberEmail;
-		this.memberCreDate = memberCreDate;
-		this.memberPoint = memberPoint;
-		this.memberTotalBuy = memberTotalBuy;
-		this.memberTotalOrder = memberTotalOrder;
-		this.memberTotalLogin = memberTotalLogin;
-		this.memberExit = memberExit;
 	}
 
 	public String getMemberId() {
@@ -215,10 +207,10 @@ public class MemberDTO {
 	public void setMemberExit(int memberExit) {
 		this.memberExit = memberExit;
 	}
-	
+
 	public boolean matchPassword(String password) {
-		System.out.println("this.memberPwd : "+this.memberPwd);
-		System.out.println("password : "+password);
+		System.out.println("this.memberPwd : " + this.memberPwd);
+		System.out.println("password : " + password);
 		return this.memberPwd.equals(password);
 	}
 
@@ -230,6 +222,5 @@ public class MemberDTO {
 				memberPwdA, memberAddr1, memberAddr2, memberAddr3, memberEmail, memberCreDate, memberPoint,
 				memberTotalBuy, memberTotalOrder, memberTotalLogin, memberExit);
 	}
-	
-	
+
 }

@@ -1,7 +1,15 @@
 -- nayeon test script
 -- 회원가입
-insert into member(m_id, m_passwd, m_name, m_phone, m_birthday, m_gender, m_question_num, m_answer, m_email, m_addr, m_addr_de)
-values ('skdus2421', 'skdus6559', '이나연', '010-5505-6559', '1997-09-12', 1, 1, '삿포로', 'skdus2421@naver.com', '대구광역시 북구 침산남로 19길 8', '202동 1301호');
+select * from member;
+desc member;
+
+insert 
+  into member(m_id, m_passwd, m_name, m_phone, m_birthday, m_gender, m_question, m_answer, m_addr1, m_addr2, m_addr3, m_email)
+values ('test06', password(123), '이종바', '010-1234-5678', '1994-08-17', 0, '기억에 남는 추억의 장소는?', '삿포로',  '41559', '대구 북구 침산남로19길 8', '202동 1301호', 'test6@test.co.kr');
+
+delete
+  from member 
+ where m_id = 'test06';
 
 -- 로그인
 select m_passwd 

@@ -1,4 +1,4 @@
-package proj21_shop.service;
+package proj21_shop.service.member;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
