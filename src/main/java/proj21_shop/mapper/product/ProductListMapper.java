@@ -10,4 +10,6 @@ public interface ProductListMapper {
 	List<ProductImageDTO> selectProductByProImgState(int proImgState, int proCategory);
 	
 	ProductImageDTO selectProductDetailByProNum(int proNum);
+	
+	int updateProhits(int proNum);
 }

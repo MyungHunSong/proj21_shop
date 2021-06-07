@@ -35,7 +35,7 @@ public class ProductListMapperTest {
 	}
 
 	@Test
-	public void testShowProducts() {
+	public void test01ShowProducts() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		List<ProductImageDTO> list =mapper.selectProductByProImgState(1, 1);
 		Assert.assertNotNull(list);
@@ -43,11 +43,18 @@ public class ProductListMapperTest {
 	}
 
 	@Test
-	public void testShowProductDetailByProNum() {
+	public void test02ShowProductDetailByProNum() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName()+"()");
 		ProductImageDTO product = mapper.selectProductDetailByProNum(1113);
 		Assert.assertNotNull(product);
 		System.out.println(product);
+	}
+	
+	@Test
+	public void test03UpdateProductDetailByProNum() {
+		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName()+"()");
+		int res = mapper.updateProhits(111);
+		Assert.assertEquals(1, res);
 	}
 	
 }

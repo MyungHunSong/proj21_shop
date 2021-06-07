@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class orderController {
+public class OrderController {
 
 //	public ModelAndView getProductListByProCategory(
 //				@RequestParam(value = "proImgState") Integer proImgState,

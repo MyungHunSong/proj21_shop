@@ -29,6 +29,7 @@ public class ProductServiceController {
 	/* 옷 상세보기 */
 	@GetMapping("/productDetail/{proNum}")
 	public ResponseEntity<Object> productDetail(@PathVariable int proNum){
+		service.updateProhits(proNum);
 		ProductImageDTO product= service.showProductDetailByProNum(proNum);
 		return ResponseEntity.ok(product);
 	}
