@@ -1,6 +1,5 @@
 package proj21_shop.controller.order;
 
-import java.net.URI;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import proj21_shop.dto.cart.CartDTO;
 import proj21_shop.dto.member.MemberDTO;
-import proj21_shop.mapper.order.MemberOrderMapper;
 import proj21_shop.service.order.MemberOrderService;
 
 @RestController
@@ -25,8 +23,6 @@ public class orderServiceController {
 	@Autowired
 	private MemberOrderService service;
 	
-	@Autowired
-	private MemberOrderMapper mapper;
 //	/* 장바구니 */
 	/* 장바구니 목록 */
 	@GetMapping("/memberProductCart/{memId}")
@@ -43,24 +39,14 @@ public class orderServiceController {
 		return ResponseEntity.ok(service.deleteCart(cart_num));
 	}
 	
-	
-//	/* 옷 상세보기 */
-//	@GetMapping("/productDetail/{proNum}")
-//	public ResponseEntity<Object> productDetail(@PathVariable int proNum){
-//		ProductImageDTO product= service.showProductDetailByProNum(proNum);
-//		return ResponseEntity.ok(product);
-//	}
-	
+	/* 장바구니 추가 */
 	@PostMapping("/memberProductCart")
 	public ResponseEntity<Object> insertCart(@RequestBody CartDTO cart){
+		System.out.println(1111);
 		if(service.selectCartByPronum(cart) == null) {
-			service.insertCart(cart);
-			URI uri = URI.create("/api/members"+cart.getMemberId().getMemberId());
-			return ResponseEntity.created(uri).body(cart.getCartProNum());	
+			return ResponseEntity.ok(service.insertCart(cart));	
 		}else if(service.selectCartByPronum(cart) != null){
-			service.updateCart(cart);
-			URI uri = URI.create("/api/members"+cart.getMemberId().getMemberId());
-			return ResponseEntity.created(uri).body(cart.getCartProNum());
+			return ResponseEntity.ok(service.updateCart(cart));
 		}
 		return null;
 	}
