@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="proj21_shop.mapper.admin.member.AdminMemberMapper">
+	<resultMap id="adminMemResult" type="MemberDTO" autoMapping="true">
+	</resultMap>
+
+
+	<!-- 회원 검색 조건문 -->
+	<select id="selectAllMembersList" resultType="MemberDTO" parameterType="map">
+		
+		SELECT m_id, m_name, m_gender, m_point, m_join, m_total_order, m_total_buy
+		  FROM MEMBER
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<!-- 아래 tutordId != null 조건이 참이면 앞부분에 where 자동 추가 -->
+			<if test="keyword != null and !keyword.equals('')">
+		            m_name=LIKE CONCAT('%',#{keyword},'%')
+		    </if>
+		    <!-- 만약 where가 추가 된 경우 and 절 추가, where 존재하지 않는 경우 where 추가하고 and 제거 -->
+		    <if test="courseName != null">
+		            and m_gender = 0 
+		    </if>
+		</trim>
+		 ORDER BY
+		<!-- 총 주문 금액 이 빈칸이 아닐때 -->
+		<if test="order_total_buy !=null and !order_total_buy.equals('')">
+			<choose>
+				<!-- total_buy_desc 이면 내림차순 정렬 -->
+				<when test="order_total_buy.equals('total_buy_desc')">
+					m_total_buy DESC,
+				</when>
+				<!-- total_buy_asc 이면 오름차순 정렬 -->
+				<when test="order_total_buy.equals('total_buy_asc')">
+					m_total_buy ASC,
+				</when>
+			</choose>
+		</if>
+		<!-- 총 주문 량 이 빈칸이 아닐때 -->
+		<if test="order_total_order !=null and !order_total_order.equals('')">
+			<choose>
+				<!-- total_order_desc 이면 내림차순 정렬 -->
+				<when test="order_total_order.equals('total_order_desc')">
+					m_total_order DESC,
+				</when>
+				<!-- total_order_desc 이면 내림차순 정렬 -->
+				<when test="order_total_order.equals('total_order_asc')">
+					m_total_order ASC,
+				</when>
+			</choose>
+		</if>
+					m_join DESC
+	</select>
+
+	<!-- 회원삭제 -->
+	<delete id="deleteMember" parameterType="String">
+		DELETE member
+		 WHERE m_id=#{memberId}
+	</delete>
+	
+	<!-- 총 회원수 -->
+	<select id="selectTotalMembers" resultType="int">
+		SELECT count(*)
+		  FROM MEMBER;
+	</select>
+
+	<!-- 남성 회원수 -->
+	<select id="selectAllMemberMen" resultType="int" parameterType="String">
+		SELECT count(*)
+		  FROM `member`
+		 WHERE m_gender = #{memberGender};
+	</select>
+
+	<!-- 여성 회원수 -->
+	<select id="selectAllMemberWomen" resultType="int" parameterType="String">
+		SELECT count(*)
+		  FROM `member`
+		 WHERE m_gender = #{memberGender};
+	</select>
+
+	<!-- 이름으로 검색한 회원 수 -->
+	<select id="selectedMembers" resultType="int" parameterType="map">
+		SELECT count(*)
+		  FROM `member`
+		<choose>
+			<when test="keyword != null and !keyword.equals('')">
+				WHERE m_name like CONCAT('%',#{keyword},'%');
+				<if test="memberGender !=null and !memberGender.equals('') and !memberGender.equals('all')">
+					and m_gender = #{memberGender};
+				</if>
+			</when>
+			<otherwise>
+				<if test="memberGender !=null  and !memberGender.equals('') and !memberGender.equals('all') ">
+					WHERE m_gender = #{memberGender};
+				</if>
+			</otherwise>
+		</choose>
+	</select>
+
+</mapper>
