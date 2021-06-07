@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -70,80 +72,86 @@
 				}).open();
 	}
 </script>
-<link rel="stylesheet" href="/proj21_shop/resources/member/css/registerForm.css">
+<link rel="stylesheet"
+	href="/proj21_shop/resources/member/css/registerForm.css">
 </head>
 <body>
-<div class="container">
-<jsp:include page="/WEB-INF/view/include/header.jsp"></jsp:include>
-<jsp:include page="/WEB-INF/view/include/topbody.jsp"></jsp:include>
-	<h2>회원가입</h2>
-	<section id="registerFormArea">
-		<form action="register" method="post">
-			<table class="type02">
-				<tr>
-					<th scope="row"><label for="name">이름</label></th>
-					<td><input type="text" name="name" id="name"></td>
-				</tr>
-				<tr>
-					<th scope="row"><label for="id">아이디</label></th>
-					<td><input type="text" name="id" id="id"></td>
-				</tr>
-				<tr>
-					<th scope="row"><label for="passwd">비밀번호</label></th>
-					<td><input type="password" name="passwd" id="passwd"></td>
-				</tr>
-				<tr>
-					<th scope="row"><label for="passwdconfirm">비밀번호 확인</label></th>
-					<td><input type="password" name="passwdconfirm"
-						id="passwdconfirm"></td>
-				</tr>
-				<tr>
-					<th scope="row"><label for="tel">전화번호</label></th>
-					<td><input type="text" name="text" id="text"></td>
-				</tr>
-				<tr>
-					<th scope="row">생년월일</th>
-					<td><input type='date' name='birthday' value='1999-03-30' /></td>
-				</tr>
-				<tr>
-					<th scope="row"><label for="gender">성별</label></th>
-					<td><input type="radio" name="gender" value="male">남자
-						<input type="radio" name="gender" value="female">여자</td>
-				</tr>
-				<tr>
-					<th scope="row"><label for="address">주소</label></th>
-					<td><input type="text" id="sample4_postcode"
-						placeholder="우편번호"> <input type="button"
-						onclick="sample4_execDaumPostcode()" value="우편번호 찾기"> <br>
-						<input type="text" id="sample4_roadAddress" placeholder="도로명주소">
-						<input type="text" id="sample4_jibunAddress" placeholder="지번주소">
-						<span id="guide" style="color: #999; display: none"></span> <input
-						type="text" id="sample4_detailAddress" placeholder="상세주소">
-						<input type="text" id="sample4_extraAddress" placeholder="참고항목">
-					</td>
-				</tr>
-				<tr>
-					<th scope="row"><label for="confirmQ">본인확인질문</label></th>
-					<td><select id="hint" name="hint">
-							<option value="hint_01">기억에 남는 추억의 장소는?</option>
-							<option value="hint_02">자신의 인생 좌우명은?</option>
-							<option value="hint_03">자신의 보물 제1호는?</option>
-							<option value="hint_04">가장 기억에 남는 선생님 성함은?</option>
-					</select></td>
-				</tr>
-				<tr>
-					<th scope="row"><label for="답변">답변</label></th>
-					<td><input type="text" name="answer" id="answer"></td>
-				</tr>
-			</table>
-			<div>
-				<input type="submit" value="회원가입" id="registerButton" /> <input
-					type="reset" value="초기화" id="resetButton" /> <input type="button"
-					value="취소" id="cancelButton" onClick="history.go(-1)" />
-			</div>
-		</form>
-	</section>
-<jsp:include page="/WEB-INF/view/include/footer.jsp"></jsp:include>
-</div>
+	<div class="container">
+		<jsp:include page="/WEB-INF/view/include/header.jsp"></jsp:include>
+		<jsp:include page="/WEB-INF/view/include/topbody.jsp"></jsp:include>
+		<h2>회원가입</h2>
+		<section id="registerFormArea">
+			<form:form modelAttribute="RegisterRequest">
+				<table class="type02">
+					<tr>
+						<th scope="row"><label for="name">이름</label></th>
+						<td><form:input path="memberName" /></td>
+					</tr>
+					<tr>
+						<th scope="row"><label for="id">아이디</label></th>
+						<td><form:input path="memberId" /></td>
+					</tr>
+					<tr>
+						<th scope="row"><label for="passwd">비밀번호</label></th>
+						<td><form:password path="memberPwd"/></td>
+					</tr>
+					<tr>
+						<th scope="row"><label for="passwdconfirm">비밀번호 확인</label></th>
+						<td><form:password path="memberPwdConfirm"/></td>
+					</tr>
+					<tr>
+						<th scope="row"><label for="email">이메일</label></th>
+						<td><form:input path="memberEmail" /></td>
+					</tr>
+					<tr>
+						<th scope="row"><label for="tel">전화번호</label></th>
+						<td><form:input path="memberPh" /></td>
+					</tr>
+					<tr>
+						<th scope="row"><label for="birthday">생년월일</label></th>
+						<td><form:input type="Date" path="memberBirth"
+								value='1999-03-30' /></td>
+					</tr>
+					<tr>
+						<th scope="row"><label for="gender">성별</label></th>
+						<td><form:radiobutton path="memberGender" value="0" />남자 <form:radiobutton
+								path="memberGender" value="1" />여자</td>
+					</tr>
+					<tr>
+						<th scope="row"><label for="address">주소</label></th>
+						<td><form:input type="text" id="sample4_postcode"
+							placeholder="우편번호" path="memberAddr1"/> <input
+							type="button" onclick="sample4_execDaumPostcode()"
+							value="우편번호 찾기"> <br> <form:input type="text"
+							id="sample4_roadAddress" path="memberAddr2" placeholder="도로명주소"/>
+							<input type="text" id="sample4_jibunAddress" placeholder="지번주소">
+							<span id="guide" style="color: #999; display: none"></span> <form:input
+							type="text" id="sample4_detailAddress" path="memberAddr3"
+							placeholder="상세주소"/> <input type="text"
+							id="sample4_extraAddress" placeholder="참고항목"></td>
+					</tr>
+					<tr>
+						<th scope="row"><label for="confirmQ">본인확인질문</label></th>
+						<td><select id="hint" name="memberPwdQ">
+								<option value="기억에 남는 추억의 장소는?">기억에 남는 추억의 장소는?</option>
+								<option value="자신의 인생 좌우명은?">자신의 인생 좌우명은?</option>
+								<option value="자신의 보물 제1호는?">자신의 보물 제1호는?</option>
+								<option value="가장 기억에 남는 선생님 성함은?">가장 기억에 남는 선생님 성함은?</option>
+						</select></td>
+					</tr>
+					<tr>
+						<th scope="row"><label for="answer">답변</label></th>
+						<td><form:input type="text" path="memberPwdA" id="answer"/></td>
+					</tr>
+				</table>
+				<div>
+					<input type="submit" value="회원가입" id="registerButton" /> <input
+						type="reset" value="초기화" id="resetButton" /> <input type="button"
+						value="취소" id="cancelButton" onClick="history.go(-1)" />
+				</div>
+			</form:form>
+		</section>
+		<jsp:include page="/WEB-INF/view/include/footer.jsp"></jsp:include>
+	</div>
 </body>
 </html>

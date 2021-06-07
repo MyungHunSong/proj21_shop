@@ -13,5 +13,7 @@ public interface MemberMapper {
 	List<MemberDTO> selectAll();
 
 	MemberDTO selectById(String id);
+	
+	int insertMember(MemberDTO member);
 
 }
