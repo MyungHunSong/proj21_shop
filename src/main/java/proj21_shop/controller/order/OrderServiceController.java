@@ -18,12 +18,12 @@ import proj21_shop.service.order.MemberOrderService;
 
 @RestController
 @RequestMapping("/api")
-public class orderServiceController {
+public class OrderServiceController {
  
 	@Autowired
 	private MemberOrderService service;
 	
-//	/* 장바구니 */
+	/* 장바구니 */
 	/* 장바구니 목록 */
 	@GetMapping("/memberProductCart/{memId}")
 	public ResponseEntity<Object> getCarts(@PathVariable String memId){
@@ -43,11 +43,7 @@ public class orderServiceController {
 	@PostMapping("/memberProductCart")
 	public ResponseEntity<Object> insertCart(@RequestBody CartDTO cart){
 		System.out.println(cart);
-		if(service.selectCartByPronum(cart) == null) {
-			return ResponseEntity.ok(service.insertCart(cart));	
-		}else if(service.selectCartByPronum(cart) != null){
-			return ResponseEntity.ok(service.updateCart(cart));
-		}
-		return null;
+		return ResponseEntity.ok(service.insertCart(cart));	
 	}
+	
 }

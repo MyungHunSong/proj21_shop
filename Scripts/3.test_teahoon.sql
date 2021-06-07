@@ -24,7 +24,6 @@ select *
 -- 제품 전체 검색(제품, 제품 이미지 조인문)
 DROP VIEW productall;
 
- 
 CREATE VIEW productall
 as
 select p.pro_num,pro_category,pro_name,pro_price,pro_content,pro_salesrate,pro_cre_date,pro_status,pro_color,pro_size,pro_quantity,pro_sold,pro_hits,re_replyCount
@@ -35,7 +34,16 @@ select p.pro_num,pro_category,pro_name,pro_price,pro_content,pro_salesrate,pro_c
 
 select pro_num,pro_category,pro_name,pro_price,pro_content,pro_salesrate,pro_cre_date,pro_status,pro_color,pro_size,pro_quantity,pro_sold,pro_hits,re_replyCount,pro_img_code,pro_imagefilename,pro_img_state 
   from productAll where pro_img_state = 1;
- 
+
+select * 
+  from productall
+where pro_img_state =1 and pro_num = 111;
+
+-- 제품 클릭시 조회수 +1
+update product 
+      set pro_hits = pro_hits + 1 
+ where pro_num = 111;      
+
 -- 제품 삭제
 delete
   from product
@@ -59,7 +67,7 @@ select * from cart where cart_pro_num  like '%';
 INSERT INTO cart
 		(cart_member_Id, cart_pro_num, cart_pro_quantity)
 values
-		('test01', 1111, 1);
+		('test01', 3111, 1);
 
 -- 장바구니 삭제	
 delete 

@@ -21,7 +21,6 @@ $(function(){
 		var dataLength = json.length;
 		if(dataLength >= 1){
 			var sCont = "";
-			
 			for(i = 0; i < dataLength; i++){
 				switch(json[i].cartProNum.proSize){
 					case 1:
@@ -41,10 +40,11 @@ $(function(){
 						break;
 				}
 				
+				
 				sCont += "<div class='row data'>"
 				sCont +=		"<div class='subdiv'>"
-				sCont +=			"<div class='check'><input type='checkbox' class = 'checkItem' name='buy' value = "+json[i].cartNum+" onclick='javascript:basket.checkItem();''>&nbsp;</div>"
-				sCont +=			"<div class='img'><img src="+contextPath+"/resources/product/images/"+json[i].cartProNum.proImgfileName+" width='60'></div>"
+				sCont +=			"<div class='check'><input type='checkbox' name = 'remove'  class = 'checkbox checkItem"+i+"' name='buy' value = "+json[i].cartNum+" onclick='javascript:basket.checkItem();''>&nbsp;</div>"
+				sCont +=			"<div class='img'><img src="+contextPath+"/resources/product/images/"+json[i].cartProNum.proImgfileName+" width='40' height='60'></div>"
 				sCont +=			"<div class='pname'>"
 				sCont +=       			"<span>"+json[i].cartNum+json[i].cartProNum.proName+"("+json[i].cartProNum.proSize+")"+"</span>"
 				sCont +=  	  		"</div>"
@@ -61,25 +61,38 @@ $(function(){
 				sCont +=			"<div class='sum'>"+(((100-json[i].cartProNum.proSalesrate)*json[i].cartProNum.proPrice*json[i].cartProQuantity)/100).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"원</div> "
 				sCont +=		"</div>"
 				sCont +="</div> "
+				
 			}
 			$(".load_row_data").append(sCont);
 		
-			$('#delButton').on("click", function(){
-				
-				var data = {cartNum : $('.checkItem').val()};
-				console.log($('.checkItem').val());
-				$.ajax({
-					url: contextPath + "/api/memberProductCart/"+data.cartNum,
-					type: 'Delete',
-					success: function(res){
-						window.location.href = contextPath + "/order/cart?memId="+"${param.memId}";
-					},
-					error:function(request, status, error){
-						window.location.href = contextPath+"/order/cart?memId="+"${param.memId}";
-					}
-				});
-			}); 
-		}
+			/* index값 호출 */
+			/* $(".checkbox").click(function(event){
+				j = $('.checkbox').index(this);
+				$(".checkItem"+j+"").on('click',function(){
+					$(".checkItem"+j+"").addClass('selectItem');	
+				})	 
+			}); */
+			/* $(".checkbox").click(function(event){
+				j = $('.checkbox').index(this);
+				$(".checkItem"+j+"").on('click',function(){
+					$(".checkItem"+j+"").addClass('selectItem');	
+				})	 */
+			
+			$(function(){
+				$("#allCheck").click(function checkAll(){
+					console.log(orderform.remove.length);
+						if(orderform.remove.length == undefined){
+							orderform.remove.checked = orderform.allCheck.checked;
+						}else{
+						for(var i=0;i<orderform.remove.length;i++){
+						orderform.remove[i].checked = orderform.allCheck.checked;
+							}
+						}
+					}); 
+			});
+			
+			} 
+		};
 	});
 });
 </script>
@@ -94,7 +107,7 @@ $(function(){
             <div class="basketdiv" id="basket">
                 <div class="row head">
                     <div class="subdiv">
-                        <div class="check">선택</div>
+                        <div class="check"><input type="checkbox" id="allCheck" name="allCheck"/></div>
                         <div class="img">이미지</div>
                         <div class="pname">상품명(사이즈)</div>
                     </div>
