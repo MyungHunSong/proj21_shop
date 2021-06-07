@@ -42,7 +42,7 @@ public class orderServiceController {
 	/* 장바구니 추가 */
 	@PostMapping("/memberProductCart")
 	public ResponseEntity<Object> insertCart(@RequestBody CartDTO cart){
-		System.out.println(1111);
+		System.out.println(cart);
 		if(service.selectCartByPronum(cart) == null) {
 			return ResponseEntity.ok(service.insertCart(cart));	
 		}else if(service.selectCartByPronum(cart) != null){
