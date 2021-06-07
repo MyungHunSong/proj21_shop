@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import proj21_shop.dto.member.Gender;
 import proj21_shop.dto.member.RegisterRequest;
 import proj21_shop.exception.DuplicateMemberException;
-import proj21_shop.service.member.MemberRegisterService;
+import proj21_shop.service.MemberRegisterService;
 
 @Controller
 @RequestMapping("/register")

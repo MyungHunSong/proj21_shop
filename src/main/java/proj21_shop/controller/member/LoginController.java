@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import proj21_shop.dto.member.AuthInfo;
 import proj21_shop.dto.member.LoginCommand;
 import proj21_shop.exception.WrongIdPasswordException;
-import proj21_shop.service.member.AuthService;
+import proj21_shop.service.AuthService;
 
 @Controller
 @RequestMapping("/login")
