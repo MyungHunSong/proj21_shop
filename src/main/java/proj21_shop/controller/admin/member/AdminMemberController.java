@@ -19,7 +19,7 @@ public class AdminMemberController {
 	@RequestMapping("listMembers")
 	public ModelAndView searchMember(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/admin/order/listMembers");
+		mav.setViewName("/admin/member/listMembers");
 		System.out.println(mav);
 		return mav;
 	}
