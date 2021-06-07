@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
+import proj21_shop.dto.qna.Criteria;
 import proj21_shop.dto.qna.QnaDTO;
 import proj21_shop.mapper.qna.QnaMapper;
 import proj21_shop.service.qna.QnaService;
@@ -20,5 +20,14 @@ public class QnaServiceImpl implements QnaService {
 	public List<QnaDTO> selectByAllQnaPage() {
 		return qMapper.selectByAllQnaPage();
 	}
+	
+	// 페이지 지정 limit(0~10)
+	@Override
+	public List<QnaDTO> selectPageList(Criteria cri) {
+		
+		return qMapper.selectPageList(cri);
+	}
+
+
 
 }

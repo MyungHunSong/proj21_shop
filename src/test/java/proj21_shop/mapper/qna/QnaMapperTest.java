@@ -15,6 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import proj21_shop.config.ContextRoot;
+import proj21_shop.dto.qna.Criteria;
 import proj21_shop.dto.qna.QnaDTO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -39,14 +40,18 @@ public class QnaMapperTest {
 		Assert.assertNotNull(qList);
 		qList.stream().forEach(System.out::println);
 	}
-	
+	 
 	@Test
 	public void test02TurnPageInfo() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getClassName()+"()");
 		
-		ArrayList<QnaDTO> turnPage = mapper.selectPageList(1, 10);
-		Assert.assertNotNull(turnPage);
-		turnPage.stream().forEach(System.out::println);
+		Criteria cri = new Criteria();
+		List<QnaDTO> listPage = mapper.selectPageList(cri);
+		
+		Assert.assertNotNull(listPage);
+		listPage.stream().forEach(System.out::println);
+		
+
 		
 	}
 

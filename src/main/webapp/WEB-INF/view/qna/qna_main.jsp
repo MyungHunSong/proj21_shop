@@ -139,8 +139,7 @@
 					<tbody id='load'>
 					</tbody>
 				</table>
-				</div>
-				
+				</div>		
 				<!-- Q&A 종료-->
 			</div>
 		</section>

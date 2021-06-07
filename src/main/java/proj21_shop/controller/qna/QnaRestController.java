@@ -21,4 +21,5 @@ public class QnaRestController {
 		System.out.println("selectAllQna");
 		return ResponseEntity.ok(qnaService.selectByAllQnaPage());
 	}
+	 
 }

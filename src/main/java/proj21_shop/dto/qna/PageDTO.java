@@ -1,71 +1,93 @@
 package proj21_shop.dto.qna;
 
 public class PageDTO {
-	private Integer displayRowCount = 10; // 출력할 갯수
-	private Integer rowStart; // 시작행번호
-	private Integer rowEnd; // 종료번호
-	private Integer totPage; // 전체페이지
-	private Integer totRow = 0; // 전체페이지 수
-	private Integer page; // 현재페이지
-	private Integer pageStart; // 시작페이지
-	private Integer pageEnd; // 종료페이지
+	private int totPage; // 게시판 글 전체 개수
+	private int displayRowCount = 10; // 게시판 화면에서 한번에 보여질 페이지 번호의 개수 ( 1,2,3,4,5,6,7,9,10)
+	
+	private int startPage; // 현재 화면에서 보이는 startPage 번호
+	private int endPage; // 현재 화면에 보이는 endPage 번호
+	
+	private boolean back; // 페이징 이전 버튼 활성화 여부
+	private boolean next; // 페이징 다음 버튼 활서화 여부
+
+	private Criteria cri;
 	
 	public PageDTO() {}
-	
-	public Integer getDisplayRowCount() {
-		return displayRowCount;
-	}
-	public void setDisplayRowCount(Integer displayRowCount) {
-		this.displayRowCount = displayRowCount;
-	}
-	public Integer getRowStart() {
-		return rowStart;
-	}
-	public void setRowStart(Integer rowStart) {
-		this.rowStart = rowStart;
-	}
-	public Integer getRowEnd() {
-		return rowEnd;
-	}
-	public void setRowEnd(Integer rowEnd) {
-		this.rowEnd = rowEnd;
-	}
-	public Integer getTotPage() {
+
+	public int getTotPage() {
 		return totPage;
 	}
-	public void setTotPage(Integer totPage) {
+ 
+	public void setTotPage(int totPage) {
 		this.totPage = totPage;
+		
+		calcData();
 	}
-	public Integer getTotRow() {
-		return totRow;
+	// 페이징 하기위한 조건.
+	private void calcData() {
+		endPage = (int)(Math.ceil(cri.getPage()/(double)displayRowCount) * displayRowCount);
+		
+		startPage = (endPage - displayRowCount)+1;
+		
+		//게시판의 실제 마지막 페이지 번호.
+		int tempEndPage = (int)(Math.ceil(totPage / (double)cri.getPerPageNum()));
+		
+		// endpage의 값은 tempEndPage보다 클수 없어야함.
+		if(endPage > tempEndPage) {
+			endPage = tempEndPage;
+		}
+		
+		back = startPage == 1? false:true;
+		next = endPage * cri.getPerPageNum() >= totPage ? false:true;
 	}
-	public void setTotRow(Integer totRow) {
-		this.totRow = totRow;
-	}
-	public Integer getPage() {
-		return page;
-	}
-	public void setPage(Integer page) {
-		this.page = page;
-	}
-	public Integer getPageStart() {
-		return pageStart;
-	}
-	public void setPageStart(Integer pageStart) {
-		this.pageStart = pageStart;
-	}
-	public Integer getPageEnd() {
-		return pageEnd;
-	}
-	public void setPageEnd(Integer pageEnd) {
-		this.pageEnd = pageEnd;
+	
+
+	public int getDisplayRowCount() {
+		return displayRowCount;
 	}
 
-	@Override
-	public String toString() {
-		return String.format(
-				"PageDTO [displayRowCount=%s, rowStart=%s, rowEnd=%s, totPage=%s, totRow=%s, page=%s, pageStart=%s, pageEnd=%s]",
-				displayRowCount, rowStart, rowEnd, totPage, totRow, page, pageStart, pageEnd);
+	public void setDisplayRowCount(int displayRowCount) {
+		this.displayRowCount = displayRowCount;
+	}
+
+	public int getStartPage() {
+		return startPage;
+	}
+
+	public void setStartPage(int startPage) {
+		this.startPage = startPage;
+	}
+
+	public int getEndPage() {
+		return endPage;
+	}
+
+	public void setEndPage(int endPage) {
+		this.endPage = endPage;
+	}
+
+	public boolean isBack() {
+		return back;
+	}
+
+	public void setBack(boolean back) {
+		this.back = back;
+	}
+
+	public boolean isNext() {
+		return next;
+	}
+
+	public void setNext(boolean next) {
+		this.next = next;
+	}
+
+	public Criteria getQnaDto() {
+		return cri;
+	}
+
+	public void setCri(Criteria cri) {
+		this.cri = cri;
 	}
 	
 	

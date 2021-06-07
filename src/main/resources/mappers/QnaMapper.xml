@@ -10,10 +10,6 @@
 		<result column="q_option" property="qOption"/>
 	</resultMap>
 	
-	<resultMap type="QnaDTO" id="qnaBoard">
-		<id column = ""/>
-	</resultMap>
-	
 <!-- q_member,q_title,q_date,q_hits,q_option -->
 	
 	<select id="selectByAllQnaPage" resultMap="resQna">
@@ -26,10 +22,13 @@
 	order by q_option
 	</select>
 	
+	<!-- 페이지 넘기는 방법. -->
 	<select id="selectPageList"  resultType="QnaDTO">
 		select q_index,q_title,q_option,q_member,q_content,q_file,q_date,q_hits,q_group,q_indent,q_step
 			from qna 
 			order by q_group desc, q_step asc
-		limit 0,10
+		limit #{startPage},#{perPageNum}
 	</select>
+	
+	<!-- Criteria page  ,Criteria perPageNum -->
 </mapper>

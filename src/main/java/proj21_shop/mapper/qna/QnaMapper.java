@@ -1,8 +1,8 @@
 package proj21_shop.mapper.qna;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import proj21_shop.dto.qna.Criteria;
 import proj21_shop.dto.qna.QnaDTO;
 
 public interface QnaMapper {
@@ -11,6 +11,7 @@ public interface QnaMapper {
 	// 고객센터 QNA 화면 목록.
 	List<QnaDTO> selectByAllQnaPage();
 	// qna 페이지 추가 & 10 초과시 넘기기.
-	ArrayList<QnaDTO> selectPageList(int page, int limit);
-	
+	List<QnaDTO> selectPageList(Criteria cri);
+	// qna페이지 토탈 개수 구하기
+	int selectPageListCount(Criteria cri);
 }
