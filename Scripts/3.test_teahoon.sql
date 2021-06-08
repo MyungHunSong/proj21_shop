@@ -67,7 +67,7 @@ select * from cart where cart_pro_num  like '%';
 INSERT INTO cart
 		(cart_member_Id, cart_pro_num, cart_pro_quantity)
 values
-		('test01', 3111, 1);
+		('test01', 1111, 1);
 
 -- 장바구니 삭제	
 delete 
