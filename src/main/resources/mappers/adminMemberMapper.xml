@@ -13,11 +13,11 @@
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
 			<!-- 아래 tutordId != null 조건이 참이면 앞부분에 where 자동 추가 -->
 			<if test="keyword != null and !keyword.equals('')">
-		            m_name=LIKE CONCAT('%',#{keyword},'%')
+		            m_name LIKE CONCAT('%',#{keyword},'%')
 		    </if>
 		    <!-- 만약 where가 추가 된 경우 and 절 추가, where 존재하지 않는 경우 where 추가하고 and 제거 -->
-		    <if test="courseName != null">
-		            and m_gender = 0 
+		    <if test="memberGender != null">
+		            and m_gender = #{memberGender}
 		    </if>
 		</trim>
 		 ORDER BY
@@ -66,30 +66,30 @@
 	<select id="selectAllMemberMen" resultType="int" parameterType="String">
 		SELECT count(*)
 		  FROM `member`
-		 WHERE m_gender = #{memberGender};
+		 WHERE m_gender = 0;
 	</select>
 
 	<!-- 여성 회원수 -->
 	<select id="selectAllMemberWomen" resultType="int" parameterType="String">
 		SELECT count(*)
 		  FROM `member`
-		 WHERE m_gender = #{memberGender};
+		 WHERE m_gender = 1;
 	</select>
 
-	<!-- 이름으로 검색한 회원 수 -->
+	<!-- 검색한 회원 수 -->
 	<select id="selectedMembers" resultType="int" parameterType="map">
 		SELECT count(*)
 		  FROM `member`
 		<choose>
 			<when test="keyword != null and !keyword.equals('')">
-				WHERE m_name like CONCAT('%',#{keyword},'%');
+				WHERE m_name like CONCAT('%',#{keyword},'%')
 				<if test="memberGender !=null and !memberGender.equals('') and !memberGender.equals('all')">
-					and m_gender = #{memberGender};
+					and m_gender = #{memberGender}
 				</if>
 			</when>
 			<otherwise>
 				<if test="memberGender !=null  and !memberGender.equals('') and !memberGender.equals('all') ">
-					WHERE m_gender = #{memberGender};
+					WHERE m_gender = #{memberGender}
 				</if>
 			</otherwise>
 		</choose>
