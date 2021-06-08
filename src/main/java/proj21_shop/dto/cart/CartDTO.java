@@ -41,4 +41,10 @@ public class CartDTO {
 		this.cartProQuantity = cartProQuantity;
 	}
 
+	@Override
+	public String toString() {
+		return String.format("cartNum=%s memberId=%s cartProNum=%s cartProQuantity=%s", cartNum, memberId,
+				cartProNum, cartProQuantity);
+	}
+
 }
