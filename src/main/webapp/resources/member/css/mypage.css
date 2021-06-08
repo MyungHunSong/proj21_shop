@@ -1,0 +1,40 @@
+@charset "UTF-8";
+#mypage{
+	text-align: center;
+}
+
+.box1{
+	display: inline-block;
+	width:200px;
+	height:200px;
+	background: #a47dd6;
+	margin:5px;
+}
+.box2{
+	display: inline-block;
+	width:200px;
+	height:200px;
+	background: #d673a4;
+	margin:5px;
+}
+.box3{
+	display: inline-block;
+	width:200px;
+	height:200px;
+	background: #dcb38a;
+	margin:5px;
+}
+.box4{
+	display: inline-block;
+	width:200px;
+	height:200px;
+	background: #e2e2a4;
+	margin:5px;
+}
+.box5{
+	display: inline-block;
+	width:200px;
+	height:200px;
+	background: #d2eaec;
+	margin:5px;
+}

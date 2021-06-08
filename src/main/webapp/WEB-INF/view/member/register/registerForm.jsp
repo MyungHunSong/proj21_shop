@@ -130,7 +130,7 @@
 							id="sample4_extraAddress" placeholder="참고항목"></td>
 					</tr>
 					<tr>
-						<th scope="row"><label for="confirmQ">본인확인질문</label></th>
+						<th scope="row"><label for="confirmQuestion">본인확인질문</label></th>
 						<td><select id="hint" name="memberPwdQ">
 								<option value="기억에 남는 추억의 장소는?">기억에 남는 추억의 장소는?</option>
 								<option value="자신의 인생 좌우명은?">자신의 인생 좌우명은?</option>
