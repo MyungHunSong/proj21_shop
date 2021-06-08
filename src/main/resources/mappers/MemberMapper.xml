@@ -51,4 +51,10 @@
 		values (#{memberId}, password(#{memberPwd}), #{memberName}, #{memberPh}, #{memberBirth}, #{memberGender}, #{memberPwdQ}, #{memberPwdA}, #{memberAddr1}, #{memberAddr2}, #{memberAddr3}, #{memberEmail})
 
 	</insert>
+	
+	<update id="updateMember" parameterType="MemberDTO">
+		update member
+   		   set m_phone = #{memberPh}, m_email = #{memberEmail}, m_addr1 = #{memberAddr1}, m_addr2 = #{memberAddr2}, m_addr3 = #{memberAddr3}
+	 	 where m_id = #{memberId};
+	</update>
 </mapper>

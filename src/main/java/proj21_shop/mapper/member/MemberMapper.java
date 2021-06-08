@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 
 import proj21_shop.dto.member.MemberDTO;
 
-@Component
 public interface MemberMapper {
 
 	List<MemberDTO> selectAll();
@@ -15,5 +14,7 @@ public interface MemberMapper {
 	MemberDTO selectById(String id);
 	
 	int insertMember(MemberDTO member);
+	
+	int updateMember(MemberDTO member);
 
 }

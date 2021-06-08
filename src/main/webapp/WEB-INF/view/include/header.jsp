@@ -25,7 +25,7 @@
 				<li><a href="logout">로그아웃</a></li>
 			</c:if>
 			<li><a href="register">회원가입</a></li>
-			<li><a href="#">마이페이지</a></li>
+			<li><a href="mypage">마이페이지</a></li>
 			<li><a href='<c:url value="/qna_main"/>'>고객센터</a></li>
 		</ul>
 			<c:if test="${!empty authInfo }">
