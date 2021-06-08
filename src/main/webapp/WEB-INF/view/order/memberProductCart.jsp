@@ -43,7 +43,7 @@ $(function(){
 				
 				sCont += "<div class='row data'>"
 				sCont +=		"<div class='subdiv'>"
-				sCont +=			"<div class='check'><input type='checkbox' name = 'remove'  class = 'checkbox checkItem"+i+"' name='buy' value = "+json[i].cartNum+" onclick='javascript:basket.checkItem();''>&nbsp;</div>"
+				sCont +=			"<div class='check'><input type='checkbox' name = 'remove'  class = 'checkbox' name='buy' value = "+json[i].cartNum+" onclick='javascript:basket.checkItem();''>&nbsp;</div>"
 				sCont +=			"<div class='img'><img src="+contextPath+"/resources/product/images/"+json[i].cartProNum.proImgfileName+" width='40' height='60'></div>"
 				sCont +=			"<div class='pname'>"
 				sCont +=       			"<span>"+json[i].cartNum+json[i].cartProNum.proName+"("+json[i].cartProNum.proSize+")"+"</span>"
@@ -65,36 +65,38 @@ $(function(){
 			}
 			$(".load_row_data").append(sCont);
 		
-			/* index값 호출 */
-			/* $(".checkbox").click(function(event){
-				j = $('.checkbox').index(this);
-				$(".checkItem"+j+"").on('click',function(){
-					$(".checkItem"+j+"").addClass('selectItem');	
-				})	 
-			}); */
-			/* $(".checkbox").click(function(event){
-				j = $('.checkbox').index(this);
-				$(".checkItem"+j+"").on('click',function(){
-					$(".checkItem"+j+"").addClass('selectItem');	
-				})	 */
-			
 			$(function(){
 				$("#allCheck").click(function checkAll(){
 					console.log(orderform.remove.length);
 						if(orderform.remove.length == undefined){
 							orderform.remove.checked = orderform.allCheck.checked;
 						}else{
-						for(var i=0;i<orderform.remove.length;i++){
-						orderform.remove[i].checked = orderform.allCheck.checked;
+							for(var i=0;i<orderform.remove.length;i++){
+								orderform.remove[i].checked = orderform.allCheck.checked;
 							}
 						}
 					}); 
 			});
+				
+		 			$('#delButton').on("click", function(){
 			
-			} 
-		};
+					var data = {cartNum : $("input:checkbox[name = 'remove']:checked").val()};
+						console.log(data.cartNum);
+						$.ajax({
+							url: contextPath + "/api/memberProductCart/"+data.cartNum,
+							type: 'Delete' ,
+							success: function(res){
+								window.location.href = contextPath + "/cart?memId="+"${param.memId}";
+							},
+							error:function(request, status, error){
+								window.location.href = contextPath+"/cart?memId="+"${param.memId}";
+							}
+						});
+					});  	
+			}
+		});
 	});
-});
+
 </script>
 </head>
 <body>
