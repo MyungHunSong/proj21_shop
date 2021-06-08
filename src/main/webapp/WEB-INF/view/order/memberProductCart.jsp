@@ -6,9 +6,9 @@
 <html>
 <head>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-<link rel="stylesheet" href="/proj21_shop/resources/main/css/main.css">
-<link rel="stylesheet" href="${contextPath }/resources/member/css/memberProductCart.css">
-<script type="text/javascript" src="${contextPath }/resources/member/js/memberProductCart.js"></script>  
+<link rel="stylesheet" href="${contextPath }/resources/main/css/main.css">
+<link rel="stylesheet" href="${contextPath }/resources/order/css/memberProductCart.css">
+<script type="text/javascript" src="${contextPath }/resources/order/js/memberProductCart.js"></script>  
 <meta charset="UTF-8">
 <title>장바구니</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -22,6 +22,7 @@ $(function(){
 		if(dataLength >= 1){
 			var sCont = "";
 			for(i = 0; i < dataLength; i++){
+				
 				switch(json[i].cartProNum.proSize){
 					case 1:
 						json[i].cartProNum.proSize = "XS";
@@ -50,9 +51,10 @@ $(function(){
 				sCont +=  	  		"</div>"
 				sCont +=		"</div>"
 				sCont +=		"<div class='subdiv'>"
-				sCont +=			"<div class='basketprice'><input type='hidden' name='p_price' id='p_price1' class='p_price' value="+((100-json[i].cartProNum.proSalesrate)*json[i].cartProNum.proPrice)/100+">"+(100-json[i].cartProNum.proSalesrate)*json[i].cartProNum.proPrice*0.0001+"P</div>"
+				sCont +=			"<div class='basketprice'>"+(100-json[i].cartProNum.proSalesrate)*json[i].cartProNum.proPrice*0.0001*json[i].cartProQuantity+"P</div>"
 				sCont +=			"<div class='num'>"
 				sCont +=				"<div class='updown'> "
+				sCont +=       			"<input type='hidden' name='p_price' id='p_price1' class='p_price' value="+((100-json[i].cartProNum.proSalesrate)*json[i].cartProNum.proPrice)/100+"/>"
 				sCont +=					"<input type='text' name='p_num"+i+"' id='p_num"+i+"' size='2' maxlength='4' class='p_num' value="+json[i].cartProQuantity+" onkeyup='javascript:basket.changePNum("+i+");'>"
 				sCont +=					"<span onclick='javascript:basket.changePNum("+i+");'><i class='fas fa-arrow-alt-circle-up up'></i></span>"
 				sCont +=					"<span onclick='javascript:basket.changePNum("+i+");'><i class='fas fa-arrow-alt-circle-down down'></i></span>"
@@ -65,6 +67,7 @@ $(function(){
 			}
 			$(".load_row_data").append(sCont);
 		
+			// 모두 체크
 			$(function(){
 				$("#allCheck").click(function checkAll(){
 					console.log(orderform.remove.length);
@@ -77,19 +80,20 @@ $(function(){
 						}
 					}); 
 			});
-				
-		 			$('#delButton').on("click", function(){
 			
+			//#delButton을 누르면 체크박스 타입이고 name = remove인 input이 체크 되었는지 확인 후 값을 얻어내서 cartNum에 값을 저장하고 ajax를 이용해 단일삭제
+		 			$('#delButton').on("click", function(){
 					var data = {cartNum : $("input:checkbox[name = 'remove']:checked").val()};
 						console.log(data.cartNum);
 						$.ajax({
 							url: contextPath + "/api/memberProductCart/"+data.cartNum,
 							type: 'Delete' ,
 							success: function(res){
-								window.location.href = contextPath + "/cart?memId="+"${param.memId}";
+								window.location.href = contextPath + "/cart?memId=${authInfo.id }";
 							},
 							error:function(request, status, error){
-								window.location.href = contextPath+"/cart?memId="+"${param.memId}";
+								alert("제품을 선택해주세요")
+								window.location.href = contextPath+"/cart?memId=${authInfo.id }";
 							}
 						});
 					});  	
@@ -128,8 +132,7 @@ $(function(){
     		</div>
 
             <div class="right-align basketrowcmd">
-                <a href="javascript:void(0)" id="delButton" class="abutton" onclick="javascript:basket.delCheckedItem();">선택상품삭제</a>
-                <a href="javascript:void(0)" class="abutton" onclick="javascript:basket.delAllItem();">장바구니비우기</a>
+                <a href="javascript:void(0)" id="delButton" class="abutton">선택상품삭제</a>
             </div>
     
             <div class="bigtext right-align sumcount" id="sum_p_num">상품개수: 0개</div>
@@ -138,7 +141,7 @@ $(function(){
             <div id="goorder" class="">
                 <div class="clear"></div>
                 <div class="buttongroup center-align cmd">
-                    <a href="javascript:void(0);">선택한 상품 주문</a>
+                    <a href="#">선택한 상품 주문</a>
                 </div>
             </div>
         </form>

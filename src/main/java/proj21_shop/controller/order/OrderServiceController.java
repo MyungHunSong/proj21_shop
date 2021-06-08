@@ -1,5 +1,6 @@
 package proj21_shop.controller.order;
 
+import java.net.URI;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,10 +41,12 @@ public class OrderServiceController {
 	}
 	
 	/* 장바구니 추가 */
-	@PostMapping("/memberProductCart")
+	@PostMapping("/memberProductCart/")
 	public ResponseEntity<Object> insertCart(@RequestBody CartDTO cart){
 		System.out.println(cart);
-		return ResponseEntity.ok(service.insertCart(cart));	
+		service.insertCart(cart);
+		URI  uri = URI.create("/api/memberProductCart"+cart.getMemberId().getMemberId());
+		return ResponseEntity.created(uri).body(cart.getMemberId().getMemberId());	
 	}
 	
 }

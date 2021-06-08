@@ -107,7 +107,6 @@
         width: 100%;
     }
     .basketdiv .data .pname {
-        text-align: left !important;
       line-height: 1.2 !important;
     }
     .basketdiv .data .price, .basketdiv .data .sum, .basketdiv .data .point {

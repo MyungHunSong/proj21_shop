@@ -153,4 +153,14 @@ public class ProductDTO {
 		this.proInputDate = proInputDate;
 	}
 
+	@Override
+	public String toString() {
+		return String.format(
+				"ProductDTO [proNum=%s, proCategory=%s, proName=%s, proPrice=%s, proContent=%s, proSalesrate=%s, proCreDate=%s, proStatus=%s, proColor=%s, proSize=%s, proQuantity=%s, proSold=%s, proHits=%s, reReplyCount=%s, proImgfileName=%s, proInputDate=%s]",
+				proNum, proCategory, proName, proPrice, proContent, proSalesrate, proCreDate, proStatus, proColor,
+				proSize, proQuantity, proSold, proHits, reReplyCount, proImgfileName, proInputDate);
+	}
+
+	
+	
 }
