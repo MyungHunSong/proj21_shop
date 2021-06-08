@@ -1,6 +1,8 @@
 package proj21_shop.dto.member;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 public class RegisterRequest {
 	private String memberName;
@@ -9,7 +11,8 @@ public class RegisterRequest {
 	private String memberPwdConfirm;
 	private String memberEmail;
 	private String memberPh;
-	private LocalDateTime memberBirth;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate memberBirth;
 	private Gender memberGender;
 	private String memberAddr1;
 	private String memberAddr2;
@@ -65,11 +68,11 @@ public class RegisterRequest {
 		this.memberPh = memberPh;
 	}
 
-	public LocalDateTime getMemberBirth() {
+	public LocalDate getMemberBirth() {
 		return memberBirth;
 	}
 
-	public void setMemberBirth(LocalDateTime memberBirth) {
+	public void setMemberBirth(LocalDate memberBirth) {
 		this.memberBirth = memberBirth;
 	}
 

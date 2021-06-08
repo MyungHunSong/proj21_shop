@@ -1,10 +1,7 @@
 package proj21_shop.dto.member;
 
 import java.sql.Date;
-import java.time.LocalDateTime;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.time.LocalDate;
 
 public class MemberDTO {
 
@@ -15,7 +12,7 @@ public class MemberDTO {
 
 	private String memberName;
 	private String memberPh;
-	private LocalDateTime memberBirth;
+	private LocalDate memberBirth;
 
 	private Gender memberGender; // 0=남자 1=여자
 
@@ -38,7 +35,7 @@ public class MemberDTO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public MemberDTO(String memberId, String memberPwd, String memberName, String memberPh, LocalDateTime memberBirth,
+	public MemberDTO(String memberId, String memberPwd, String memberName, String memberPh, LocalDate memberBirth,
 			Gender memberGender, String memberPwdQ, String memberPwdA, String memberAddr1, String memberAddr2,
 			String memberAddr3, String memberEmail) {
 		super();
@@ -96,11 +93,11 @@ public class MemberDTO {
 		this.memberPh = memberPh;
 	}
 
-	public LocalDateTime getMemberBirth() {
+	public LocalDate getMemberBirth() {
 		return memberBirth;
 	}
 
-	public void setMemberBirth(LocalDateTime memberBirth) {
+	public void setMemberBirth(LocalDate memberBirth) {
 		this.memberBirth = memberBirth;
 	}
 

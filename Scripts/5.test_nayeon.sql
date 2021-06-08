@@ -102,3 +102,5 @@ select m_id, m_passwd, m_name, m_phone, m_birthday, m_gender, m_addr1, m_addr2, 
   from member;
 
 select * from member;
+
+delete from member where m_id = 'test06';
