@@ -13,7 +13,7 @@ public interface AdminMemberMapper {
 	 * MemberDTO selectMemberByCertain(Map searchMap);
 	 */
 
-	List<MemberDTO> selectAllMembersList(Map pagingMap);//
+	List<MemberDTO> selectAllMembersList(Map<String, Object> pagingMap);//
 	
 	int selectTotalMembers();//
 
