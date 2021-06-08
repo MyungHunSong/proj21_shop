@@ -109,13 +109,12 @@
 					</tr>
 					<tr>
 						<th scope="row"><label for="birthday">생년월일</label></th>
-						<td><form:input type="Date" path="memberBirth"
-								value='1999-03-30' /></td>
+						<td><form:input type="Date" path="memberBirth"/></td>
 					</tr>
 					<tr>
 						<th scope="row"><label for="gender">성별</label></th>
-						<td><form:radiobutton path="memberGender" value="0" />남자 <form:radiobutton
-								path="memberGender" value="1" />여자</td>
+						<td><form:radiobutton path="memberGender" value="MALE" />남자 <form:radiobutton
+								path="memberGender" value="FEMALE" />여자</td>
 					</tr>
 					<tr>
 						<th scope="row"><label for="address">주소</label></th>
