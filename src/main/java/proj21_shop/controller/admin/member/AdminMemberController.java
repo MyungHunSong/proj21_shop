@@ -21,6 +21,7 @@ public class AdminMemberController {
 	@Autowired
 	AdminMemberService adminMemberService;
 
+	
 	@RequestMapping("listMembers") // 회원목록 리스트로 뽑아내기
 	public ModelAndView listMembers(HttpServletRequest request, HttpServletResponse response,
 			@RequestParam(value = "memberTotalBuy", required = false) String memberTotalBuy,
@@ -32,18 +33,18 @@ public class AdminMemberController {
 		if (session.getAttribute("side_menu") != null) {
 			session.removeAttribute("side_menu");
 		}
-		String viewName = (String) request.getAttribute("viewName");// viewName가져오기
 		ModelAndView mav = new ModelAndView();
-//		String _section = (String) request.getParameter("section"); // 섹션값가져오기
+		String _section = (String) request.getParameter("section"); // 섹션값가져오기
 //		String _pageNum = (String) request.getParameter("pageNum"); // 페이지넘버가져오기
 		
-//		int section = Integer.parseInt(((_section == null) ? "1" : _section)); // int로 변환
+		int section = Integer.parseInt(((_section == null) ? "1" : _section)); // int로 변환
 //		int pageNum = Integer.parseInt(((_pageNum == null) ? "1" : _pageNum));
 		
 		Map<String, Object> pagingMap = new HashMap<String, Object>();
 		
 		session.setAttribute("side_menu", "side_member");
-		
+		session.setAttribute("width", "600");
+//		
 //		System.out.println("section : " + section);
 //		System.out.println("pageNum : " + pageNum);
 		System.out.println("memberTotalBuy : " + memberTotalBuy);
@@ -51,8 +52,6 @@ public class AdminMemberController {
 		System.out.println("memberGender : " + memberGender);
 		System.out.println("keyword : " + keyword);
 		
-//		pagingMap.put("section", section);
-//		pagingMap.put("pageNum", pageNum);
 		pagingMap.put("memberTotalBuy", memberTotalBuy);
 		pagingMap.put("memberTotalOrder", memberTotalOrder);
 		pagingMap.put("memberGender", memberGender);
@@ -61,17 +60,21 @@ public class AdminMemberController {
 	
 	
 		 //최종으로 jsp에 보내줄 Map생성 이쪽에 membersList 그리고 Paging,section번호까지 담아서 보내줄거임
-		
 		Map<String,Object> membersMap=adminMemberService.listMembers(pagingMap);
+		System.out.println("key : " + membersMap.get("membersList"));
 //		membersMap.put("section", section);
 //		membersMap.put("pageNum", pageNum);
+		System.out.println("memberTotalBuy2 : " + memberTotalBuy);
+		System.out.println("memberTotalOrder2 : " + memberTotalOrder);
+		System.out.println("memberGender2 : " + memberGender);
+		System.out.println("keyword2 : " + keyword);
 		membersMap.put("memberTotalBuy", memberTotalBuy);
 		membersMap.put("memberTotalOrder", memberTotalOrder);
 		membersMap.put("memberGender", memberGender);
 		membersMap.put("keyword", keyword);
 		mav.addObject("membersMap",membersMap); // 회원정보를 담은 membersMap를 바인딩
-		mav.setViewName(viewName);
-	
+		mav.setViewName("admin/member/listMembers");
+		System.out.println("mav"+mav);
 	return mav;
 	}
 }

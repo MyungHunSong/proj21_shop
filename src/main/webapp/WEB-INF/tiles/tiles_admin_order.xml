@@ -4,7 +4,7 @@
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
 
-	<definition name="/admin/order/*"
+	<definition name="admin/order/*"
 		template="/WEB-INF/view/admin/common/layout.jsp">
 		<put-attribute name="title" value="레이아웃 페이지" />
 		<put-attribute name="header" value="/WEB-INF/view/admin/common/header.jsp" />

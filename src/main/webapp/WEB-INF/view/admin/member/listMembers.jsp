@@ -8,9 +8,9 @@
 <c:set var="allMen" value="${membersMap.allMen }" />
 <c:set var="allWomen" value="${membersMap.allWomen }" />
 
-<c:set var="order_total_buy" value="${membersMap.order_total_buy }" />
-<c:set var="order_total_order" value="${membersMap.order_total_order }" />
-<c:set var="member_gender" value="${membersMap.member_gender }" />
+<c:set var="memberTotalBuy" value="${membersMap.memberTotalBuy }" />
+<c:set var="memberTotalOrder" value="${membersMap.memberTotalOrder }" />
+<c:set var="memberGender" value="${membersMap.memberGender }" />
 <c:set var="keyword" value="${membersMap.keyword }" />
 
 <c:set var="selectedMembers" value="${membersMap.selectedMembers }" />
@@ -79,22 +79,46 @@ a {
 }
 </style>
 <title>회원정보 리스트</title>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="${contextPath}/resources/admin/dist/js/custom.min.js"></script>
-<script src="${contextPath}/resources/admin/dist/js/sidebarmenu.js"></script>
+<script src="${contextPath}/resources/admin/assets/libs/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="${contextPath}/resources/admin/assets/libs/popper.js/dist/umd/popper.min.js"></script>
+    <script src="${contextPath}/resources/admin/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="${contextPath}/resources/admin/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+    <script src="${contextPath}/resources/admin/assets/extra-libs/sparkline/sparkline.js"></script>
+    <!--Wave Effects -->
+    <script src="${contextPath}/resources/admin/dist/js/waves.js"></script>
+    <!--Menu sidebar -->
+    <script src="${contextPath}/resources/admin/dist/js/sidebarmenu.js"></script>
+    <!--Custom JavaScript -->
+    <script src="${contextPath}/resources/admin/dist/js/custom.min.js"></script>
+    <!--This page JavaScript -->
+    <!-- <script src="dist/js/pages/dashboards/dashboard1.js"></script> -->
+    <!-- Charts js Files -->
+    <script src="${contextPath}/resources/admin/assets/libs/flot/excanvas.js"></script>
+    <script src="${contextPath}/resources/admin/assets/libs/flot/jquery.flot.js"></script>
+    <script src="${contextPath}/resources/admin/assets/libs/flot/jquery.flot.pie.js"></script>
+    <script src="${contextPath}/resources/admin/assets/libs/flot/jquery.flot.time.js"></script>
+    <script src="${contextPath}/resources/admin/assets/libs/flot/jquery.flot.stack.js"></script>
+    <script src="${contextPath}/resources/admin/assets/libs/flot/jquery.flot.crosshair.js"></script>
+    <script src="${contextPath}/resources/admin/assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
+    <script src="${contextPath}/resources/admin/dist/js/pages/chart/chart-page-init.js"></script>
 <script>
 	function member_search() {
 
-		var order_total_buy = $('#order_total_buy').val();
-		var order_total_order = $('#order_total_order').val();
-		var member_gender = $('input:radio[name=member_gender]:checked').val();
-		var keyword = $('#member_name').val();
+		var memberTotalBuy = $('#memberTotalBuy').val();
+		var memberTotalOrder = $('#memberTotalOrder').val();
+		var memberGender = $('input:radio[name=memberGender]:checked').val();
+		var keyword = $('#memberName').val();
 
-		$('#container').load('${contextPath}/admin/member/listMembers', {
-			order_total_buy : order_total_buy,
-			order_total_order : order_total_order,
-			member_gender : member_gender,
+		console.log(memberTotalBuy)
+		console.log(memberTotalOrder)
+		console.log(memberGender)
+		console.log(keyword)
+		
+		$('#container').load('${contextPath}/admin/member/listMembers' ,{
+			memberTotalBuy : memberTotalBuy,
+			memberTotalOrder : memberTotalOrder,
+			memberGender : memberGender,
 			keyword : keyword
 		});
 
@@ -104,8 +128,6 @@ a {
 <body>
 <section>
 <div class="container-fluid">
-${memberList }
-${totMembers }
 	<div class="row">
 	<!-- column -->
     	<div class="col-12">
@@ -118,7 +140,7 @@ ${totMembers }
 	<section>
 		<div id="listOrdersByStatus">
 			<ul class="smallul">
-				<li>회원&nbsp;<a href="${contextPath }/admin/member/listMembers">${allMember }</a> 건|</li>
+				<li>회원&nbsp;<a href="${contextPath }/admin/member/listMembers">${totMembers }</a> 건|</li>
 				<li>남성회원&nbsp;<a href="${contextPath }/admin/member/listMembers">${allMen }</a>건 |</li>
 				<li>여성회원&nbsp;<a href="${contextPath }/admin/member/listMembers">${allWomen }</a>건 |</li>
 			</ul>
@@ -130,28 +152,28 @@ ${totMembers }
 			<tr>
 				<td colspan="2">회원 검색&nbsp;&nbsp;</td>
 				<td colspan="5" class="pleft">
-					회원 이름 : <input type="text" name="member_name" placeholder="회원 이름을 입력하세요" id="member_name" />				
+					회원 이름 : <input type="text" name="memberName" placeholder="회원 이름을 입력하세요" id="memberName" />				
 				 </td>
 			</tr>
 			<tr>
 				<td colspan="2">회원성별 구분&nbsp;&nbsp;</td>
 				<td colspan="5" class="pleft">
-					<input type="radio" value="all" name="member_gender" checked >전체
-					<input type="radio" value="남자" name="member_gender" >남성
-					<input type="radio" value="여자" name="member_gender" >여성
+					<input type="radio" value="" name="memberGender" checked >전체
+					<input type="radio" value="남자" name="memberGender" >남성
+					<input type="radio" value="여자" name="memberGender" >여성
 				 </td>
 			</tr>
 			<tr>
 				<td colspan="2">회원 분류&nbsp;&nbsp;</td>
 				<td colspan="5" class="pleft">
 					
-					<select id="order_total_buy" name="order_total_buy">
+					<select id="memberTotalBuy" name="memberTotalBuy">
 						<option value="" selected>--총 결제금액 분류 선택--</option>
 						<option value="total_buy_desc">결제금액 많은 순</option>
 						<option value="total_buy_asc">결제금액 적은 순</option>
 					</select>
 					
-					<select id="order_total_order" name="order_total_order">
+					<select id="memberTotalOrder" name="memberTotalOrder">
 						<option value="" selected>--총 결제횟수 분류 선택--</option>
 						<option value="total_order_desc">결제횟수 많은 순</option>
 						<option value="total_order_asc">결제횟수 적은 순</option>
@@ -162,6 +184,7 @@ ${totMembers }
 			<tr>
 				<td colspan="7">
 					<input type="button" value="검색" onClick="member_search()" />&nbsp;&nbsp;<input type="reset" value="초기화" />
+					
 				</td>
 			</tr>
 		</table>
@@ -187,84 +210,65 @@ ${totMembers }
 			<c:when test="${membersList !=null}"> <!-- 등록된 회원이 있을때 -->
 				<c:forEach var="member" items="${membersList }">
 					<tr style="text-align: center;">
-						<td><a href="${contextPath }/admin/member/viewMember?member_code=${member.member_code}" style="">${member.member_id }</a></td>
-						<td><a href="${contextPath }/admin/member/viewMember?member_code=${member.member_code}">${member.member_name }</a></td>
-						<td>${member.member_gender }</td>
-						<td><fmt:formatNumber value="${member.member_total_buy }" type="number" /> 원</td>
-						<td>${member.member_total_order } 회</td>
-						<td>${member.member_lately_date }</td>
-						<td>${member.member_cre_date }</td>
+						<td><a href="${contextPath }/admin/member/viewMember?memberId=${member.memberId}" style="">${member.memberId }</a></td>
+						<td><a href="${contextPath }/admin/member/viewMember?memberId=${member.memberId}">${member.memberName }</a></td>
+						<td>${member.memberGender }</td>
+						<td><fmt:formatNumber value="${member.memberTotalBuy }" type="number" /> 원</td>
+						<td>${member.memberTotalOrder } 회</td>
+						<td>${member.memberCreDate }</td>
 					</tr> 
 				</c:forEach>
 			</c:when>
 		</c:choose>
 	</table>
 	<br>
-	 	<c:if test="${totMembers !=null}">
-		<c:choose>
-			<c:when test="${selectedMembers >200 }">
-		<c:forEach var="page" begin="1" end="20" step="1">
-			<c:if test="${section >1 && page==1 }"> <!--페이지번호가 1일때 pre나오게 하기 -->
-				<a href="${contextPath }/admin/member/listMembers?section=${section-1}&pageNum=${(section-1)*20+1}">%nbsp; pre </a>
-			</c:if>
-				<a href="${contextPath }/admin/member/listMembers?section=${section}&pageNum=${page}">${(section-1)*20+page }</a>
-			<c:if test="${page==10} }"><!--페이지수가 10일때 다음으로 next나오게 하기  -->
-				<a href="${contextPath }/admin/member/listMembers?section=${section+1}&pageNum=${section*20+1}">&nbsp; next</a>
-			</c:if>	
-			
-		</c:forEach>
-		</c:when>
-		<c:when test="${selectedMembers==200 }">
-			<c:forEach var="page" begin="1" end="20" step="1">
-				<a href="#">${page }</a>
-			</c:forEach>
-		</c:when>
-		
-		<c:when test="${selectedMembers <200 }">
-			<c:forEach var="page" begin="1" end="${selectedMembers/20+1 }" step="1">
-				<c:choose>
-					<c:when test="${page==pageNum }">
-						<a class="sel-page" href="${contextPath }/admin/member/listMembers?
-						section=${section}
-						&pageNum=${page}
-						&order_lately_date=${order_lately_date}
-						&order_total_buy=${order_total_buy}
-						&order_total_order=${order_total_order}
-						&member_gender=${member_gender}
-						&keyword=${keyword}"
-						>${page }</a>
-					</c:when>
-					<c:otherwise>
-						<a class="no-uline" href="${contextPath }/admin/member/listMembers?
-						section=${section}
-						&pageNum=${page}
-						&order_lately_date=${order_lately_date}
-						&order_total_buy=${order_total_buy}
-						&order_total_order=${order_total_order}
-						&member_gender=${member_gender}
-						&keyword=${keyword}">${page }</a>
-					</c:otherwise>
-				</c:choose>
-			</c:forEach>
-		</c:when>
-	</c:choose>
-	</c:if>
-                    
-       
-	  
+	 	<%-- <c:if test="${totMembers !=null}">
+			<c:choose>
+				<c:when test="${selectedMembers >200 }">
+					<c:forEach var="page" begin="1" end="20" step="1">
+						<c:if test="${section >1 && page==1 }"> <!--페이지번호가 1일때 pre나오게 하기 -->
+							<a href="${contextPath }/admin/member/listMembers?section=${section-1}&pageNum=${(section-1)*20+1}">%nbsp; pre </a>
+						</c:if>
+							<a href="${contextPath }/admin/member/listMembers?section=${section}&pageNum=${page}">${(section-1)*20+page }</a>
+						<c:if test="${page==10} }"><!--페이지수가 10일때 다음으로 next나오게 하기  -->
+							<a href="${contextPath }/admin/member/listMembers?section=${section+1}&pageNum=${section*20+1}">&nbsp; next</a>
+						</c:if>	
+						
+					</c:forEach>
+				</c:when>
+				
+				<c:when test="${selectedMembers <200 }">
+					<c:forEach var="page" begin="1" end="${selectedMembers/20+1 }" step="1">
+						<c:choose>
+							<c:when test="${page==pageNum }">
+								<a class="sel-page" href="${contextPath }/admin/member/listMembers?
+								&order_total_buy=${memberTotalBuy}
+								&order_total_order=${memberTotalOrder}
+								&member_gender=${memberGender}
+								&keyword=${keyword}"
+								>${page }</a>
+							</c:when>
+							<c:otherwise>
+								<a class="no-uline" href="${contextPath }/admin/member/listMembers?
+								&order_total_buy=${memberTotalBuy}
+								&order_total_order=${memberTotalOrder}
+								&member_gender=${memberGender}
+								&keyword=${keyword}">${page }</a>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+				</c:when>
+			</c:choose>
+		</c:if> --%>
 	</form>
-                        </div>
-                  
-               
-                
-                    </div>
-                    <!-- column -->
-                    
-                </div>
-                <!-- ============================================================== -->
-                <!-- Recent comment and chats -->
-                <!-- ============================================================== -->
-            </div>
+    </div>
+    </div>
+    <!-- column -->
+    </div>
+            <!-- ============================================================== -->
+            <!-- Recent comment and chats -->
+            <!-- ============================================================== -->
+    </div>
             <!-- ============================================================== -->
             <!-- End Container fluid  -->
             <!-- ============================================================== -->

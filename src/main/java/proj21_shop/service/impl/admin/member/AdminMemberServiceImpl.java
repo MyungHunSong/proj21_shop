@@ -36,6 +36,10 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 		selectedMembers = adminMemberMapper.selectedMembers(pagingMap);
 		
 		
+		System.out.println("======allMen : " + allMen);
+		System.out.println("======allWomen : " + allWomen);
+		System.out.println("======totMembers : " + totMembers);
+		System.out.println("======membersList : " + membersList);
 		System.out.println("======selectedMembers : " + selectedMembers);
 		membersMap.put("membersList", membersList);
 		membersMap.put("totMembers", totMembers);
