@@ -40,11 +40,15 @@ public class AdminMemberMapperTest {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("keyword", "이종");
-		map.put("memberGender", 0);
-		map.put("order_total_buy","total_buy_desc");
+		map.put("memberTotalBuy", "total_buy_desc");
 		List<MemberDTO> list = mapper.selectAllMembersList(map);
 		Assert.assertNotNull(list);
 		System.out.println();
+		for (MemberDTO t : list) {
+			if (t.toString() != null) {
+				System.out.println(t.toString());
+			}
+		}
 	}
 
 	@Test
