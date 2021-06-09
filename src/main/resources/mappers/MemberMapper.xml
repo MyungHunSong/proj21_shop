@@ -1,37 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="proj21_shop.mapper.member.MemberMapper">
-	
+
 	<resultMap type="MemberDTO" id="ResMember">
-		<id property="memberId" column="m_id"/>
-		<result property="memberPwd" column="m_passwd"/>
-		<result property="memberName" column="m_name"/>
-		<result property="memberPh" column="m_phone"/>
-		<result property="memberBirth" column="m_birthday"/>
-		<result property="memberGender" column="m_gender"/>
-		<result property="memberAddr1" column="m_addr1"/>
-		<result property="memberAddr2" column="m_addr2"/>
-		<result property="memberAddr3" column="m_addr3"/>
-		<result property="memberPwdQ" column="m_question"/>
-		<result property="memberPwdA" column="m_answer"/>
-		<result property="memberEmail" column="m_email"/>
-		<result property="memberCreDate" column="m_join"/>
-		<result property="memberPoint" column="m_point"/>
-		<result property="memberTotalBuy" column="m_total_buy"/>
-		<result property="memberTotalOrder" column="m_total_order"/>
-		<result property="memberTotalLogin" column="m_total_login"/>
-		<result property="memberExit" column="m_exit"/>
+		<id property="memberId" column="m_id" />
+		<result property="memberPwd" column="m_passwd" />
+		<result property="memberName" column="m_name" />
+		<result property="memberPh" column="m_phone" />
+		<result property="memberBirth" column="m_birthday" />
+		<result property="memberGender" column="m_gender" />
+		<result property="memberAddr1" column="m_addr1" />
+		<result property="memberAddr2" column="m_addr2" />
+		<result property="memberAddr3" column="m_addr3" />
+		<result property="memberPwdQ" column="m_question" />
+		<result property="memberPwdA" column="m_answer" />
+		<result property="memberEmail" column="m_email" />
+		<result property="memberCreDate" column="m_join" />
+		<result property="memberPoint" column="m_point" />
+		<result property="memberTotalBuy" column="m_total_buy" />
+		<result property="memberTotalOrder" column="m_total_order" />
+		<result property="memberTotalLogin" column="m_total_login" />
+		<result property="memberExit" column="m_exit" />
 	</resultMap>
 
 	<sql id="selectSQL">
-		select m_id, m_passwd, m_name, m_phone, m_birthday, m_gender, m_addr1, m_addr2, m_addr3, m_question, m_answer, m_email, m_join, m_point, m_total_buy, m_total_order, m_total_login, m_exit
+		select m_id, m_passwd, m_name, m_phone, m_birthday,
+		m_gender, m_addr1, m_addr2, m_addr3, m_question, m_answer, m_email,
+		m_join, m_point, m_total_buy, m_total_order, m_total_login, m_exit
 		from member
 	</sql>
-	
+
 	<sql id="whereSQL">
 		<where>
 			<if test="m_id != null">
-					and m_id = #{memberId}
+				and m_id = #{memberId}
 			</if>
 		</where>
 	</sql>
@@ -39,22 +41,34 @@
 	<select id="selectAll" resultMap="ResMember">
 		<include refid="selectSQL"></include>
 	</select>
-	
-	<select id="selectById" resultMap="ResMember" parameterType="String">
+
+	<select id="selectById" resultMap="ResMember"
+		parameterType="String">
 		<include refid="selectSQL"></include>
 		<include refid="whereSQL"></include>
 	</select>
-	
+
 	<insert id="insertMember" parameterType="MemberDTO">
-		insert 
-		  into member(m_id, m_passwd, m_name, m_phone, m_birthday, m_gender, m_question, m_answer, m_addr1, m_addr2, m_addr3, m_email)
-		values (#{memberId}, password(#{memberPwd}), #{memberName}, #{memberPh}, #{memberBirth}, #{memberGender}, #{memberPwdQ}, #{memberPwdA}, #{memberAddr1}, #{memberAddr2}, #{memberAddr3}, #{memberEmail})
+		insert
+		into member(m_id, m_passwd, m_name, m_phone, m_birthday, m_gender,
+		m_question, m_answer, m_addr1, m_addr2, m_addr3, m_email)
+		values
+		(#{memberId}, password(#{memberPwd}), #{memberName}, #{memberPh},
+		#{memberBirth}, #{memberGender}, #{memberPwdQ}, #{memberPwdA},
+		#{memberAddr1}, #{memberAddr2}, #{memberAddr3}, #{memberEmail})
 
 	</insert>
-	
+
 	<update id="updateMember" parameterType="MemberDTO">
 		update member
-   		   set m_phone = #{memberPh}, m_email = #{memberEmail}, m_addr1 = #{memberAddr1}, m_addr2 = #{memberAddr2}, m_addr3 = #{memberAddr3}
-	 	 where m_id = #{memberId};
+		set m_phone = #{memberPh}, m_email = #{memberEmail}, m_addr1 =
+		#{memberAddr1}, m_addr2 = #{memberAddr2}, m_addr3 = #{memberAddr3}
+		where m_id = #{memberId};
+	</update>
+
+	<update id="deleteMember" parameterType="MemberDTO">
+		update member
+		set m_exit = 0
+		where m_id = #{memberId};
 	</update>
 </mapper>

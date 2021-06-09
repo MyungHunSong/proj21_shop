@@ -37,6 +37,13 @@ public class MemberDTO {
 		// TODO Auto-generated constructor stub
 	}
 
+	public MemberDTO(String memberId, int memberExit) {
+		super();
+		this.memberId = memberId;
+		this.memberExit = memberExit;
+	}
+
+
 	public MemberDTO(String memberId, String memberName, Gender memberGender, Date memberCreDate, int memberTotalBuy, int memberTotalOrder) {
 		super();
 		this.memberId = memberId;
@@ -47,7 +54,8 @@ public class MemberDTO {
 		this.memberTotalOrder = memberTotalOrder;
 	}
 
-	public MemberDTO(String memberId, String memberPwd, String memberName, String memberPh, LocalDateTime memberBirth,
+
+	public MemberDTO(String memberId, String memberPwd, String memberName, String memberPh, LocalDate memberBirth,
 			Gender memberGender, String memberPwdQ, String memberPwdA, String memberAddr1, String memberAddr2,
 			String memberAddr3, String memberEmail) {
 		super();
