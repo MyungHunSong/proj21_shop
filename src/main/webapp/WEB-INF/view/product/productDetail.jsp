@@ -78,11 +78,8 @@ $(function() {
 							window.location.href = contextPath+"/cart?memId=${authInfo.id }"; 
 						},
 						error : function(request, status, error){
-							alert(JSON.stringify(newCart))
-							alert("code:" + request.status + "\n" + "message:"
-									+ request.responseText + "\n" + "error:"
-									+ error);
-							 window.location.href = contextPath + "/productDetail?proNum="+${proNum} 
+							alert("로그인 창으로 이동하겠습니다.")
+							 window.location.href = contextPath + "/login"
 						} 
 					})
 			

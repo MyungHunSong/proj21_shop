@@ -7,10 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import proj21_shop.dto.cart.CartDTO;
@@ -49,4 +51,14 @@ public class OrderServiceController {
 		return ResponseEntity.created(uri).body(cart.getMemberId().getMemberId());	
 	}
 	
+	@PatchMapping("/memberProductCart/{pro_num}")
+	public ResponseEntity<Object> updateCartByProductName(@PathVariable int pro_num, @RequestBody CartDTO cart){
+		System.out.println(cart);
+		if(service.selectCartByPronum(cart) != null) {
+			return ResponseEntity.ok(service.updateCart(cart));
+		}else {
+			System.out.println("변경 실패");
+			return null;	
+		}
+	}
 }

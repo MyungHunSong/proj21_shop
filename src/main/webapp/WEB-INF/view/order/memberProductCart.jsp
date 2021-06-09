@@ -47,7 +47,7 @@ $(function(){
 				sCont +=			"<div class='check'><input type='checkbox' name = 'remove'  class = 'checkbox' name='buy' value = "+json[i].cartNum+" onclick='javascript:basket.checkItem();''>&nbsp;</div>"
 				sCont +=			"<div class='img'><img src="+contextPath+"/resources/product/images/"+json[i].cartProNum.proImgfileName+" width='40' height='60'></div>"
 				sCont +=			"<div class='pname'>"
-				sCont +=       			"<span>"+json[i].cartNum+json[i].cartProNum.proName+"("+json[i].cartProNum.proSize+")"+"</span>"
+				sCont +=       			"<span>"+json[i].cartProNum.proName+"("+json[i].cartProNum.proSize+")"+"</span>"
 				sCont +=  	  		"</div>"
 				sCont +=		"</div>"
 				sCont +=		"<div class='subdiv'>"
