@@ -89,7 +89,7 @@
 				</tr>
 				<tr>
 					<th scope="row"><label for="answer">답변</label></th>
-					<td><form:input type="text" path="memberPwdA" id="answer" /></td>
+					<td><form:input path="memberPwdA" id="answer" /></td>
 				</tr>
 				<tr>
 					<th scope="row"><label for="tel">전화 번호</label></th>

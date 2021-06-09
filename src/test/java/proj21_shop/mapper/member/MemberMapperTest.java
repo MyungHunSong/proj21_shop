@@ -52,7 +52,7 @@ public class MemberMapperTest {
 		log.debug(member.toString());
 	}
 
-	//@Test
+	@Test
 	public void test03InsertMember() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		MemberDTO member = new MemberDTO("test06", "123", "이종바", "010-1234-5678", LocalDate.of(1994, 8, 17),
@@ -62,14 +62,23 @@ public class MemberMapperTest {
 		log.debug(member.toString());
 
 	}
-	
+
 	@Test
 	public void test04UpdateMember() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
-		MemberDTO member = new MemberDTO("test06", "010-9876-5432", "12345", "대구광역시 북구 침산남로 14길 50", "504동 1002호", "test06@hanmail.net");
+		MemberDTO member = new MemberDTO("test06", "010-9876-5432", "12345", "대구광역시 북구 침산남로 14길 50", "504동 1002호",
+				"test06@hanmail.net");
 		int res = mapper.updateMember(member);
 		Assert.assertEquals(1, res);
 		log.debug(member.toString());
 	}
 
+	@Test
+	public void test05DeleteMember() {
+		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
+		MemberDTO member = new MemberDTO("test06", 0);
+		int res = mapper.deleteMember(member);
+		Assert.assertEquals(1, res);
+		log.debug(member.toString());
+	}
 }
