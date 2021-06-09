@@ -81,7 +81,7 @@ select m_passwd
 
 update member
    set m_exit = 0
- where m_id = 'skdus2421';
+ where m_id = 'test06';
 
 -- 주문 상세 내역 페이지 //상품정보에 사진을 어떻게 넣는지 모르겠어서 번호로 우선 넣어놓기로 함, 적립금 어떻게 해야할지 모르겠음
 select or_num, pro_num, order_price, order_pro_quantity, delivery_status, order_date 
@@ -101,5 +101,6 @@ select order_price, order_discount
 select m_id, m_passwd, m_name, m_phone, m_birthday, m_gender, m_addr1, m_addr2, m_addr3, m_question, m_answer, m_email, m_join, m_point, m_total_buy, m_total_order, m_total_login, m_exit
   from member where m_id = 'test06';
 
-
+select * from member;
+ 
 delete from member where m_id = 'test06';

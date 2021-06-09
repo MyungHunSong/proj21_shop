@@ -15,7 +15,7 @@
 		<div class="box3"><a href="#">BASCKET</a></div>
 		<br>
 		<div class="box4"><a href="#">ORDER</a></div>
-		<div class="box5"><a href="#">QUIT(회원 탈퇴)</a></div>
+		<div class="box5"><a href="delete">QUIT(회원 탈퇴)</a></div>
 	</section>
 </body>
 </html>
