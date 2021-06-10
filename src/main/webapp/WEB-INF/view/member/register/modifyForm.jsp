@@ -74,6 +74,8 @@
 	href="/proj21_shop/resources/member/css/modifyForm.css">
 </head>
 <body>
+	<jsp:include page="/WEB-INF/view/include/header.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/view/include/topbody.jsp"></jsp:include>
 	<h2>회원 정보 수정</h2>
 	<section id="modifyFormArea">
 		<form:form modelAttribute="ModifyRequest">
@@ -120,5 +122,6 @@
 			</div>
 		</form:form>
 	</section>
+	<jsp:include page="/WEB-INF/view/include/footer.jsp"></jsp:include>
 </body>
 </html>

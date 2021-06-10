@@ -29,12 +29,10 @@ public class DeleteController {
 
 	@PostMapping
 	public String Delete(@ModelAttribute("DeleteRequest") DeleteRequest req, Errors errors, HttpSession session) {
-		System.out.println("aaa");
 		if (errors.hasErrors()) {
 			return "/member/delete/deleteForm";
 		}
 		try {
-			System.out.println("aaaaa");
 			AuthInfo authInfo = (AuthInfo) session.getAttribute("authInfo");
 			memberDeleteService.delete(authInfo.getId(), req);
 		} catch (MemberNotFoundException e) {

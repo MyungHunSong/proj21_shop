@@ -16,7 +16,7 @@ $(function(){
 		var starRate = $(this).index() + 1;
 		/* $('.print').text(starRate); */
 		var notice = ['별로에요', '보통이에요', '그냥 그래요', '맘에 들어요', '아주 좋아요'];
-		$('.print').html('<img src="images/star-lv' +starRate + '.png">' + notice[starRate-1]);
+		$('.print').html('<img src="/proj21_shop/resources/member/images/star-lv' +starRate + '.png">' + notice[starRate-1]);
 		
 	/* 	if(starRate == 1){
 			$('.print').html('<img src="images/star-lv1.png">' + '별로에요');
@@ -32,7 +32,8 @@ $(function(){
 	})
 });
 </script>
-<link rel = "stylesheet" href="css/review/review.css"/>
+<link rel="stylesheet"
+	href="/proj21_shop/resources/member/css/reviewForm.css" />
 </head>
 <body>
 	<h2>스타일 후기 작성</h2>
