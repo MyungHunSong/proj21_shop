@@ -22,9 +22,10 @@
 				
 				$(".tabs div").removeClass("active");
 				$(".tabs div").eq($(this).index()).addClass("active");
+				
+				
 			});
-		});
-		
+		}); 
 	$(function(){
 		$(".title").click(function(){
 			$(this).addClass("slide");
@@ -34,6 +35,7 @@
 			$(this).next().stop().slideDown();
 		});
 	});
+
 	
 	/* $(function(){
 		var contextPath = "${contextPath}";
@@ -67,13 +69,13 @@
 	<div class = "container">
 		<jsp:include page="/WEB-INF/view/include/header.jsp"></jsp:include>
 		<jsp:include page="/WEB-INF/view/include/topbody.jsp"></jsp:include>
-		
+			
 		<!-- FAQ, QNA 페이지 -->
-		<section class="faq&qna">
 			<ul class="btn">
 				<li class="active">FAQ</li>
 				<li>Q&A</li>		
-			</ul>			
+			</ul>	
+					
 			<div class="tabs">
 				<div class="active">
 				<article>				
@@ -127,10 +129,10 @@
 				</div>
 				<!-- faq 끄트머리. -->
 				
-				<!-- Q&A 시작 -->
+				<!-- Q&A 시작 -->				
 				<div id="qna_board">
 				Q&A
-				<table>
+				<table >
 					<tr>
 						<td>번호</td>
 						<td>작성자</td>
@@ -153,46 +155,28 @@
 					</tbody> -->
 				</table>	
 				
-				
-				
-				
-				
-				
-				
-				
-				
 				<!-- 페이징 -->
 				<ul class="pagination">
 					<c:if test="${pageMaker.prev}">
-						<%-- <li><a href="/proj21_shop/listPaging?page=${pageMaker.startPage - 1}">이전</a></li> --%>
-						<li><a href="${pageMaker.startPage - 1}">[이전]</a></li>
+						<li><a href="/proj21_shop/listPaging?page=${pageMaker.startPage - 1}">이전</a></li>
 					</c:if>
 					
-							<c:forEach begin="${pageMaker.startPage}"
-								end="${pageMaker.endPage}" var="idx">
+							<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
 								<li<c:out value="${pageMaker.cri.page == idx}"/>>								
-								<%-- <a href="/proj21_shop/listPaging?page=${idx}">${idx}</a> --%>
-								<a href="${idx}">${idx}</a>
+								<a href="/proj21_shop/listPaging?page=${idx}">${idx}</a>
 							</li>
 						</c:forEach>
 						
 					<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-						<%-- <li><a href="/proj21_shop/listPaging?page=${pageMaker.endPage + 1}">다음</a></li> --%>
-						<li><a href="${pageMaker.endPage + 1}">다음</a></li>
+						<li><a href="/proj21_shop/listPaging?page=${pageMaker.endPage + 1}">다음</a></li>
+						
 					</c:if>
 				</ul>
 			<!-- 페이징 끝 -->
-			
-			
-			
-			
-			
-
-			
 			</div>		
 			<!-- Q&A 종료-->
 		</div>
-		</section>
+		
 		<!-- FAQ,QNA 페이즈 끝 -->
 	<jsp:include page="/WEB-INF/view/include/footer.jsp"></jsp:include>
 </div>

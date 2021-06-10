@@ -18,7 +18,7 @@ public class QnaController {
 	// qna 목록.
 	@GetMapping("/qna_main")
 	public String listCriteria(Criteria cri, Model model) {
-		System.out.println("accccccccccccccccccccccc");
+		
 		model.addAttribute("articles", service.listCriteria(cri));
 		
 		return"/qna/qna_main";
