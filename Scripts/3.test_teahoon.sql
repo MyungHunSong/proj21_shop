@@ -90,4 +90,6 @@ where cart_pro_num = 1113;
 
 select * from cart;
 
-	
+delete 
+  from cart
+where cart_member_id = 'test01' and cart_num in (66,67); 

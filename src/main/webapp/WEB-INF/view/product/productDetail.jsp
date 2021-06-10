@@ -67,21 +67,24 @@ $(function() {
 						    },
 						    "cartProQuantity": parseInt($('#result').text())
 						}
-					$.ajax({
-						url : contextPath + "/api/memberProductCart/",
-						type:"POST",
-						contentType : "application/json; charset=utf-8",
-						datatype : "json",
-						cache : false,
-						data: JSON.stringify(newCart),
-						success : function(res){
-							window.location.href = contextPath+"/cart?memId=${authInfo.id }"; 
-						},
-						error : function(request, status, error){
-							alert("로그인 창으로 이동하겠습니다.")
-							 window.location.href = contextPath + "/login"
-						} 
-					})
+					
+						$.ajax({
+							url : contextPath + "/api/memberProductCart/",
+							type:"POST",
+							contentType : "application/json; charset=utf-8",
+							datatype : "json",
+							cache : false,
+							data: JSON.stringify(newCart),
+							success : function(res){
+								window.location.href = contextPath+"/cart?memId=${authInfo.id }"; 
+							},
+							error : function(request, status, error){
+								alert("로그인 창으로 이동하겠습니다.")
+								 window.location.href = contextPath + "/login"
+							} 
+						})
+					
+					
 			
 		}); 
 		
