@@ -41,7 +41,7 @@ public class MemberDTO {
 		this.memberId = memberId;
 		this.memberExit = memberExit;
 	}
-
+ 
 	public MemberDTO(String memberId, String memberPh, String memberAddr1, String memberAddr2, String memberAddr3, String memberEmail) {
 		super();
 		this.memberId = memberId;
