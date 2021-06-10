@@ -29,7 +29,7 @@
 		<div class="box5">
 			<a href="delete">QUIT(회원 탈퇴)</a>
 		</div>
+		<jsp:include page="/WEB-INF/view/include/footer.jsp"></jsp:include>
 	</section>
-	<jsp:include page="/WEB-INF/view/include/footer.jsp"></jsp:include>
 </body>
 </html>
