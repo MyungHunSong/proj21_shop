@@ -66,14 +66,14 @@ update member
 
 -- 주문 내역(입력 후 검색)
 select * from `order`;
+select * from `member`;
 
-select o.or_num, o.pro_num, o.order_date, o.order_pro_quantity, o.order_price, o.delivery_status, p.pro_name, r.re_date 
-  from `order` o
-  join product p
-    on o.pro_num = p.pro_num
-  join review r 
-    on p.pro_num = r.pro_num;
-    
+select o.order_num, pi2.pro_imagefilename, (o.order_price * 0.01), 
+  from `order` o 
+  join `member` m
+    on o.order_member_id = m.m_id
+  join pro_img pi2
+    on o.pro_num = pi2.pro_num;
 -- 회원 탈퇴(비밀번호 검색 후 일치하면 탈퇴)
 select m_passwd
   from member
@@ -104,3 +104,5 @@ select m_id, m_passwd, m_name, m_phone, m_birthday, m_gender, m_addr1, m_addr2, 
 select * from member;
  
 delete from member where m_id = 'test06';
+
+select * from review;
