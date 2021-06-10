@@ -11,4 +11,6 @@ public interface ProductListService {
 	List<ProductImageDTO> showProducts(int proImgState,int proCategory);
 	
 	ProductImageDTO showProductDetailByProNum(int proNum);
+	
+	int updateProhits(int proNum);
 }

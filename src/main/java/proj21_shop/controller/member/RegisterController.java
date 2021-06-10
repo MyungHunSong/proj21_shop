@@ -1,8 +1,6 @@
 package proj21_shop.controller.member;
 
 
-import java.util.Enumeration;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +10,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import proj21_shop.dto.member.Gender;
 import proj21_shop.dto.member.RegisterRequest;
 import proj21_shop.exception.DuplicateMemberException;
 import proj21_shop.service.MemberRegisterService;

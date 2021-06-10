@@ -47,7 +47,7 @@ private static final Log log = LogFactory.getLog(MemberOrderMapperTest.class);
 		Assert.assertNotNull(list);
 	}
  
-	//@Test
+	@Test
 	public void test02InsertCart() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		MemberDTO newMem = new MemberDTO();
@@ -66,11 +66,11 @@ private static final Log log = LogFactory.getLog(MemberOrderMapperTest.class);
 		log.debug("res memid, proNum, 수량 >>" + res);
 	}
 
-	//@Test
+	@Test
 	public void test03DeleteCart() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		
-		int res = mapper.deleteCart(6);
+		int res = mapper.deleteCart(69);
 		Assert.assertEquals(1, res);
 		log.debug("proNum >>" + res);
 		

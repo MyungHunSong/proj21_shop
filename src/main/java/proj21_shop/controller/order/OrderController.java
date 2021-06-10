@@ -6,16 +6,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class orderController {
-
-//	public ModelAndView getProductListByProCategory(
-//				@RequestParam(value = "proImgState") Integer proImgState,
-//				@RequestParam(value = "proCategory") Integer proCategory
-//			) {
-//		ModelAndView mav = new ModelAndView("product/productList", "proImgState",proImgState);
-//		mav.addObject("proCategory",proCategory);
-//		return mav;
-//	}
+public class OrderController {
 	
 	@GetMapping("/cart")
 	public ModelAndView getMemberProductCart(@RequestParam(value = "memId") String memId) {

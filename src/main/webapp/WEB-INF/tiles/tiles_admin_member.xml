@@ -3,27 +3,12 @@
        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
-	<definition name="admin_baseLayout"
-		template="/WEB-INF/views/admin/common/layout.jsp">
+	<definition name="admin/member/*"
+		template="/WEB-INF/view/admin/common/layout.jsp">
 		<put-attribute name="title" value="레이아웃 페이지" />
-		<put-attribute name="header" value="/WEB-INF/views/admin/common/header.jsp" />
-		<put-attribute name="side" value="/WEB-INF/views/admin/common/side.jsp" />
-		<put-attribute name="body" value="" />
-		<put-attribute name="footer" value="/WEB-INF/views/admin/common/footer.jsp" />
+		<put-attribute name="header" value="/WEB-INF/view/admin/common/header.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/admin/member/{1}.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/view/admin/common/footer.jsp" />
 	</definition>
 
-	<definition name="/admin/member/listMembers" extends="admin_baseLayout">
-		<put-attribute name="title" value="회원정보 목록" />
-		<put-attribute name="body" value="/WEB-INF/views/admin/member/listMembers.jsp" />
-	</definition>
-	
-	<definition name="/admin/member/viewMember" extends="admin_baseLayout">
-		<put-attribute name="title" value="회원정보 상세보기" />
-		<put-attribute name="body" value="/WEB-INF/views/admin/member/viewMember.jsp" />
-	</definition>
-	
-	<definition name="/admin/member/memberStatics" extends="admin_baseLayout">
-		<put-attribute name="title" value="회원 통계" />
-		<put-attribute name="body" value="/WEB-INF/views/admin/member/memberStatics.jsp" />
-	</definition>
 </tiles-definitions>

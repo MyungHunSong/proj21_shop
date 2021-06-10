@@ -1,6 +1,6 @@
 package proj21_shop.mapper.member;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.apache.ibatis.logging.Log;
@@ -55,7 +55,7 @@ public class MemberMapperTest {
 	@Test
 	public void test03InsertMember() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
-		MemberDTO member = new MemberDTO("test06", "123", "이종바", "010-1234-5678", LocalDateTime.of(1994, 8, 17, 0, 0),
+		MemberDTO member = new MemberDTO("test06", "123", "이종바", "010-1234-5678", LocalDate.of(1994, 8, 17),
 				Gender.FEMALE, "기억에 남는 추억의 장소는?", "삿포로", "41559", "대구 북구 침산남로19길 8", "202동 1301호", "test6@test.co.kr");
 		int res = mapper.insertMember(member);
 		Assert.assertEquals(1, res);
@@ -63,4 +63,22 @@ public class MemberMapperTest {
 
 	}
 
+	@Test
+	public void test04UpdateMember() {
+		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
+		MemberDTO member = new MemberDTO("test06", "010-9876-5432", "12345", "대구광역시 북구 침산남로 14길 50", "504동 1002호",
+				"test06@hanmail.net");
+		int res = mapper.updateMember(member);
+		Assert.assertEquals(1, res);
+		log.debug(member.toString());
+	}
+
+	@Test
+	public void test05DeleteMember() {
+		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
+		MemberDTO member = new MemberDTO("test06", 0);
+		int res = mapper.deleteMember(member);
+		Assert.assertEquals(1, res);
+		log.debug(member.toString());
+	}
 }

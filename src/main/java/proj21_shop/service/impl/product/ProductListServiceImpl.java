@@ -12,24 +12,24 @@ import proj21_shop.service.product.ProductListService;
 @Service
 public class ProductListServiceImpl implements ProductListService{
 	
-//	@Autowired
-//	private ProductListService service;
-
 	@Autowired
 	private ProductListMapper service;
 	
 	@Override
 	public List<ProductImageDTO> showProducts(int proImgState,int proCategory) {
-//		List<ProductImageDTO> list = service.showProducts(proImgState, proCategory);
 		List<ProductImageDTO> list = service.selectProductByProImgState(proImgState, proCategory);
 		return list;
 	}
 
 	@Override
 	public ProductImageDTO showProductDetailByProNum(int proNum) {
-//		ProductImageDTO product = service.showProductDetailByProNum(proNum);
 		ProductImageDTO product = service.selectProductDetailByProNum(proNum);
 		return product;
+	}
+
+	@Override
+	public int updateProhits(int proNum) {
+		return service.updateProhits(proNum);
 	}
 	
 }

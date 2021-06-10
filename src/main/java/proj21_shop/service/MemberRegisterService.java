@@ -12,10 +12,10 @@ import proj21_shop.mapper.member.MemberMapper;
 public class MemberRegisterService {
 
 	@Autowired
-	private MemberMapper memberMapper;
+	private MemberMapper mapper;
 
 	public String regist(RegisterRequest req)  {
-		MemberDTO member = memberMapper.selectById(req.getMemberId());
+		MemberDTO member = mapper.selectById(req.getMemberId());
 
 		if (member != null) {
 			throw new DuplicateMemberException("dup id"+req.getMemberId());
@@ -25,7 +25,7 @@ public class MemberRegisterService {
 				req.getMemberPh(), req.getMemberBirth(), req.getMemberGender(), req.getMemberPwdQ(),
 				req.getMemberPwdA(), req.getMemberAddr1(), req.getMemberAddr2(), req.getMemberAddr3(),
 				req.getMemberEmail());
-		memberMapper.insertMember(newMember);
+		mapper.insertMember(newMember);
 		return newMember.getMemberId();
 	}
 

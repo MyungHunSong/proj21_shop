@@ -109,13 +109,12 @@
 					</tr>
 					<tr>
 						<th scope="row"><label for="birthday">생년월일</label></th>
-						<td><form:input type="Date" path="memberBirth"
-								value='1999-03-30' /></td>
+						<td><form:input type="Date" path="memberBirth"/></td>
 					</tr>
 					<tr>
 						<th scope="row"><label for="gender">성별</label></th>
-						<td><form:radiobutton path="memberGender" value="0" />남자 <form:radiobutton
-								path="memberGender" value="1" />여자</td>
+						<td><form:radiobutton path="memberGender" value="MALE" />남자 <form:radiobutton
+								path="memberGender" value="FEMALE" />여자</td>
 					</tr>
 					<tr>
 						<th scope="row"><label for="address">주소</label></th>
@@ -131,7 +130,7 @@
 							id="sample4_extraAddress" placeholder="참고항목"></td>
 					</tr>
 					<tr>
-						<th scope="row"><label for="confirmQ">본인확인질문</label></th>
+						<th scope="row"><label for="confirmQuestion">본인확인질문</label></th>
 						<td><select id="hint" name="memberPwdQ">
 								<option value="기억에 남는 추억의 장소는?">기억에 남는 추억의 장소는?</option>
 								<option value="자신의 인생 좌우명은?">자신의 인생 좌우명은?</option>

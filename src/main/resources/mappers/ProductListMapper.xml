@@ -55,5 +55,10 @@
 		where p.pro_num = #{param1} 
 	</select>
 	
-	
+	<!-- 옷 상세정보 들어갔을때 조회수+1  -->
+	<update id="updateProhits">
+		update product 
+             set pro_hits = pro_hits + 1 
+         where pro_num = #{param1};
+	</update>
 </mapper>
