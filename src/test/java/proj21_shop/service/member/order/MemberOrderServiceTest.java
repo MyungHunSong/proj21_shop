@@ -65,11 +65,11 @@ public class MemberOrderServiceTest {
 		log.debug("res memid, proNum, 수량 >>" + res);
 	}
 
-	//@Test
+	@Test
 	public void test03DeleteCart() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		
-		int res = service.deleteCart(6);
+		int res = service.deleteCart(70);
 		Assert.assertEquals(1, res);
 		log.debug("proNum >>" + res);
 	}

@@ -70,7 +70,7 @@ private static final Log log = LogFactory.getLog(MemberOrderMapperTest.class);
 	public void test03DeleteCart() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		
-		int res = mapper.deleteCart(6);
+		int res = mapper.deleteCart(69);
 		Assert.assertEquals(1, res);
 		log.debug("proNum >>" + res);
 		

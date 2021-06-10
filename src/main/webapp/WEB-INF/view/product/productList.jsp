@@ -17,7 +17,6 @@ $(function(){
 	})
 	
 	$(".like").click(function() {
-		console.log(111)
 		$(".like").toggleClass("active");
 	})
 	

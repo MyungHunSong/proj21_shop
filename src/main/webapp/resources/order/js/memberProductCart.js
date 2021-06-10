@@ -34,10 +34,9 @@ let basket = {
             if(item.parentElement.parentElement.parentElement.previousElementSibling.firstElementChild.firstElementChild.checked == true){
                 var count = parseInt(item.getAttribute('value'));
                 this.totalCount += count;
-                var price = item.parentElement.parentElement.previousElementSibling.firstElementChild.getAttribute('value');
-                this.totalPrice += count * price;
-                var point = item.parentElement.parentElement.previousElementSibling.firstElementChild.getAttribute('value');
-                this.totalPoint += count * price * 0.01;
+                var price = item.previousElementSibling.getAttribute('value');
+       			var price2 = parseInt(price.split('/'));
+                this.totalPrice += count * price2;
             }
         }, this); // forEach 2번째 파라메터로 객체를 넘겨서 this 가 객체리터럴을 가리키도록 함. - thisArg
     },
