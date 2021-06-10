@@ -63,8 +63,14 @@
 	</div>
 	<br>
 	<div class="review">
-		<textarea id="content" cols="45" rows="10" placeholder="상품에 대한 평가를 20자 이상 작성해 주세요"></textarea>
-		<br> <br> <input type="submit" value="등록" id="reviewButton" />
+		<textarea id="content" cols="45" rows="10"
+			placeholder="상품에 대한 평가를 20자 이상 작성해 주세요"></textarea>
+		<br>
+		<div class="file">
+			<input type="file" id="imgButton" /> <br>
+			 <input type="file" id="imgButton" />
+		</div>
+		<br> <input type="submit" value="등록" id="reviewButton" />
 		<jsp:include page="/WEB-INF/view/include/footer.jsp"></jsp:include>
 	</div>
 </body>

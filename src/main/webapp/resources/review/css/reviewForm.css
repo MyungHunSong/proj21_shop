@@ -79,3 +79,7 @@ li {
 	border-radius: 2px;
 	color: #fff;
 }
+
+.file{
+	text-align: flex;
+}
