@@ -23,7 +23,7 @@ public class AdminOrderController {
 	public ModelAndView searchMember(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
 		Map<String, Object> viewMap = adminOrderService.getOrderStatics();
-		mav.setViewName("/admin/order/orderStatics");
+		mav.setViewName("admin/order/orderStatics");
 		mav.addObject("viewMap", viewMap);
 		System.out.println(mav);
 		return mav;

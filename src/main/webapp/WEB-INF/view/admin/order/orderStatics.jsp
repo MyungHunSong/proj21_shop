@@ -15,8 +15,11 @@
 <title>Annual Sales - 2021</title>
 <!-- chart -->
 
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<script src="${contextPath}/resources/admin/order/css/tether/tether.min.js"></script>
+<script src="${contextPath}/resources/admin/order/css/bootstrap/bootstrap4-alpha3.min.js"></script>
 <script src="${contextPath}/resources/admin/dist/js/custom.min.js"></script>
 <script src="${contextPath}/resources/admin/dist/js/sidebarmenu.js"></script>
 <script>
@@ -188,7 +191,7 @@
 			</div>
 
 
- 			<div class="row">
+			<div class="row">
 				<div class="col-12">
 					<div class="card">
 
@@ -245,24 +248,23 @@
 
 
 
-
 </body>
 
-<%-- <script src="${contextPath}/resources/admin/assets/libs/jquery/dist/jquery.min.js"></script> --%>
-<%-- <script src="${contextPath}/resources/admin/dist/js/jquery.ui.touch-punch-improved.js"></script> --%>
-<%-- <script src="${contextPath}/resources/admin/dist/js/jquery-ui.min.js"></script> --%>
+<script src="${contextPath}/resources/admin/dist/js/jquery.ui.touch-punch-improved.js"></script>
+<script src="${contextPath}/resources/admin/dist/js/jquery-ui.min.js"></script>
 <!-- CDN 사용 -->
-<%-- <script src="${contextPath}/resources/admin/assets/libs/popper.js/dist/umd/popper.min.js"></script> --%>
+<script src="${contextPath}/resources/admin/assets/libs/popper.js/dist/umd/popper.js"></script>
+<script src="${contextPath}/resources/admin/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
 <!-- Bootstrap tether Core JavaScript -->
-<%-- <script src="${contextPath}/resources/admin/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script> --%>
+<script src="${contextPath}/resources/admin/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- slimscrollbar scrollbar JavaScript -->
 <!-- Bullet chart -->
-<%-- <script src="${contextPath}/resources/admin/assets/extra-libs/sparkline/sparkline.js"></script> --%>
+<script src="${contextPath}/resources/admin/assets/extra-libs/sparkline/sparkline.js"></script>
 <!--Wave Effects -->
-<%-- <script src="${contextPath}/resources/admin/dist/js/waves.js"></script> --%>
+<script src="${contextPath}/resources/admin/dist/js/waves.js"></script>
 <!--Menu sidebar 사용-->
 
 <!--Custom JavaScript sidebar 애니메이션 효과를 주기 위한 UI 파일 -->
 <!-- 날짜 데이터 출력 및 수정 js -->
-<%-- <script src="${contextPath}/resources/admin/assets/libs/moment/min/moment.min.js"></script> --%>
+<script src="${contextPath}/resources/admin/assets/libs/moment/min/moment.min.js"></script>
 </html>
