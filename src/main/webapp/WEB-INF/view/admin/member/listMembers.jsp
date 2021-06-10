@@ -33,47 +33,38 @@
 table {
 	border-spacing: 30px;
 }
-
 tr {
 	text-align: center;
 }
-
 th {
 	padding: 5px 20px 5px 20px;
 	background-color: #1f262d;
 }
-
 td {
 	padding: 5px 10px 5px 10px;
 	word-break: keep-all;
 }
-
 ul {
 	margin: 0px;
 	padding: 0px 10px 0px 15px;
 }
-
 li {
 	margin: 0;
 	padding-right: 10px;
 	border: 0;
 	float: left;
 }
-
 a {
 	text-decoration: none;
 	color: #000000;
 }
-
 #chartContainer {
 	display: block;
 	padding: 0px;
 }
-
 .pleft {
 	text-align: left;
 }
-
 .smallul {
 	list-style: none;
 }
@@ -101,15 +92,12 @@ a {
     <script src="${contextPath}/resources/admin/assets/libs/flot/jquery.flot.stack.js"></script>
     <script src="${contextPath}/resources/admin/assets/libs/flot/jquery.flot.crosshair.js"></script>
     <script src="${contextPath}/resources/admin/assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
-    <script src="${contextPath}/resources/admin/dist/js/pages/chart/chart-page-init.js"></script>
 <script>
 	function member_search() {
-
 		var memberTotalBuy = $('#memberTotalBuy').val();
 		var memberTotalOrder = $('#memberTotalOrder').val();
 		var memberGender = $('input:radio[name=memberGender]:checked').val();
 		var keyword = $('#memberName').val();
-
 		console.log(memberTotalBuy)
 		console.log(memberTotalOrder)
 		console.log(memberGender)
@@ -121,7 +109,6 @@ a {
 			memberGender : memberGender,
 			keyword : keyword
 		});
-
 	}
 </script>
 </head>
@@ -141,8 +128,8 @@ a {
 		<div id="listOrdersByStatus">
 			<ul class="smallul">
 				<li>회원&nbsp;<a href="${contextPath }/admin/member/listMembers">${totMembers }</a> 건|</li>
-				<li>남성회원&nbsp;<a href="${contextPath }/admin/member/listMembers">${allMen }</a>건 |</li>
-				<li>여성회원&nbsp;<a href="${contextPath }/admin/member/listMembers">${allWomen }</a>건 |</li>
+				<li>남성회원&nbsp;<a href="${contextPath }/admin/member/listMembers">${allWomen }</a>건 |</li>
+				<li>여성회원&nbsp;<a href="${contextPath }/admin/member/listMembers">${allMen }</a>건 |</li>
 			</ul>
 		</div>
 	</section>
@@ -159,9 +146,9 @@ a {
 				<td colspan="2">회원성별 구분&nbsp;&nbsp;</td>
 				<td colspan="5" class="pleft">
 					<input type="radio" value="" name="memberGender" checked >전체
-					<input type="radio" value="남자" name="memberGender" >남성
-					<input type="radio" value="여자" name="memberGender" >여성
-				 </td>
+					<input type="radio" value="1" name="memberGender" >남성
+					<input type="radio" value="0" name="memberGender" >여성
+				</td>
 			</tr>
 			<tr>
 				<td colspan="2">회원 분류&nbsp;&nbsp;</td>

@@ -40,7 +40,7 @@
 		            m_name LIKE CONCAT('%',#{keyword},'%')
 		    </if>
 		    <!-- 만약 where가 추가 된 경우 and 절 추가, where 존재하지 않는 경우 where 추가하고 and 제거 -->
-		    <if test="memberGender != null">
+		    <if test="memberGender != null and !memberGender.equals('')">
 		            and m_gender = #{memberGender}
 		    </if>
 		</trim>

@@ -11,7 +11,7 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<link href="${contextPath}/resources/css/default.css" rel="stylesheet" type="text/css" media="screen">
+<%-- <link href="${contextPath}/resources/css/default.css" rel="stylesheet" type="text/css" media="screen"> --%>
 <style>
 #container {
 	width: 100%;
