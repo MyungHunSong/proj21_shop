@@ -7,16 +7,12 @@
  * q_step 말그대로 질문순서.
  */
 
+
 SELECT * from qna;
 select * from product;
 select * from `order`;
 select * from `member`;
 select  q_member,q_title,q_date,q_hits,q_option from qna;
-
-
-
--- count
-select count(*) from qna;
  
 -- 1-1.qna작성시 인서트문이다.
 insert into qna(q_title, q_option, q_member, q_content,q_group,q_file,q_date)
@@ -25,10 +21,12 @@ values('제발','취소요청','test01','아니 무슨 취소가 안댄다는 �
 -- 1-2. 주문번호 받아오기 -> 선택하기 누르면 조회창에 바로뜬다~.
 -- 첫번째 꺼는 회원 페이지에 나오는 내용.
 -- 두번째는 클릭시 번호가 넘어갸아한다.
+
 select pi1.pro_imagefilename, p.pro_name, p.pro_content, o.pro_num, o.order_date 
-from `order` o join product p on o.pro_num = p.pro_num
-join pro_img pi1 on p.pro_num = pi1.pro_num
+	from `order` o join product p on o.pro_num = p.pro_num
+	join pro_img pi1 on p.pro_num = pi1.pro_num
 where p.pro_num = ?;
+
 -- 요것이 주문번호가 넘어가게 해주는것.
 select order_num from `order`
 where pro_num = 0;
@@ -52,23 +50,58 @@ select  q_member, q_title, q_date, q_hits, q_option,
 	case q_option
 		when q_option = '공지' then q_index
 		else '공지'
-	end 'q_op' 
+	end 'q_op'
 from qna
-order by q_option;
+order by q_option, q_date desc;
 
 select * from qna;
 
 -- 페이지 넘기기 q_step => 관련글 순서 즉 답글의 순서를 말한다.
 -- q_group 은 관련있는 글들끼리 묶어 놓은것이다.
 -- q_group 20이라면 => 같은 20이 쓴다면 이새끼는 답글단거 근데 멀로 구분하냐? q_step =1 이면 답글관련 q_step=0 이면 일반글 올린사람.
+-- 페이지 0~ 10 까지
 select q_index,q_title,q_option,q_member,q_content,q_file,q_date,q_hits,q_group,q_indent,q_step
-from qna 
-order by q_group desc, q_step asc
-limit 0 , 10;
+	from qna 
+	where q_index >0
+	order by	q_index desc, q_date desc
+limit 0, 10;
+
+-- 페이지 토탈 카운트 구하기.
+select
+	count(*) 
+	from qna;
+
+-- 페이징 처리 목록	
+select q_index,q_title,q_option,q_member,q_content,q_file,q_date,q_hits,q_group,q_indent,q_step,
+		case q_option
+	when q_option = '공지' then q_index 
+		else '공지' 
+	end 'q_op'
+		from qna 
+	where q_index >0
+		order by	q_op desc, q_index desc , q_date desc
+limit 10, 10;	
+-- 페이징 총 갯수
+select 
+			count(q_index)  
+		from qna
+		where q_index > 0;
+	
+
+INSERT INTO qna
+(q_title, q_option, q_member, q_content, q_file)
+values
+('ff기요', '제품상담', 'test03', '환불이 안돼여..', '첨부파일'),
+('반품관련공지', '공지', 'admin', '배송이 출발하면 반품이 안됩니다.', '첨부파일');	
+
+
+		
+
+		
 
 -- 2-3. 검색하고(클릭) 삭제[회원 전용].
 select q_index, q_member, q_title, q_date, q_hits, q_option 
-from qna 
+	from qna 
 where q_option != '공지사항' and q_index = 1;
 
 -- 2-3-1. 트랜잭션. 회원이 자기 댓글 삭제.

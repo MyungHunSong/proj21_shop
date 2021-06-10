@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @MapperScan("proj21_shop.mapper")
 public class ContextSqlSession {
-	
+	 
 	@Autowired
 	ApplicationContext applicationContext;
 
@@ -23,8 +23,10 @@ public class ContextSqlSession {
 	public SqlSessionFactoryBean sqlSessionFactory(DataSource dataSource) throws Exception {
 		SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
 		factoryBean.setDataSource(dataSource);
+		
 		factoryBean.setConfigLocation(applicationContext.getResource("classpath:/mybatis-config.xml"));
 		factoryBean.setMapperLocations(applicationContext.getResources("classpath:mappers/*Mapper.xml"));//pdf 72
+		
 		return factoryBean;
 	}
 

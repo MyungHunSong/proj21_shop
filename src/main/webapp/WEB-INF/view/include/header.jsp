@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
+<c:set var="contextPath" value="<%=request.getContextPath()%>" />    
 <html>
 <head>
 <meta charset="UTF-8">
@@ -25,8 +26,13 @@
 				<li><a href="logout">로그아웃</a></li>
 			</c:if>
 			<li><a href="register">회원가입</a></li>
+
 			<li><a href="mypage">마이페이지</a></li>
-			<li><a href='<c:url value="/qna_main"/>'>고객센터</a></li>
+			<li><a href='<c:url value="/listPaging"/>'>고객센터</a></li>
+
+			
+
+
 		</ul>
 			<c:if test="${!empty authInfo }">
 			<br>

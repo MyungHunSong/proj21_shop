@@ -14,15 +14,12 @@ public class QnaDTO {
 	private int qGroup;
 	private int qStep;
 	private int qIndent;
+	
+	public QnaDTO() {}
+	 
+	// 공지 번호
 	private String qOp;
 	
-	
-	// 페이지 이동 시도
-	// 여기까지.
-	
-	
-
-	// 공지 - 번호
 	public String getqOp() {
 		return qOp;
 	}
@@ -30,9 +27,8 @@ public class QnaDTO {
 	public void setqOp(String qOp) {
 		this.qOp = qOp;
 	}
-	// 공지 - 번호
-
-	public QnaDTO() {}
+	// 요까지
+	
 	
 	public QnaDTO(String qOption) {
 		this.qOption = qOption;

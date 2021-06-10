@@ -18,7 +18,7 @@ public class QnaRestController {
 	// 제이슨 으로 받아오는 페이지(데이터 넘겨주기)
 	@GetMapping("/qna")
 	public ResponseEntity<Object> qna(){
-		System.out.println("selectAllQna");
+		System.out.println("selectByAllQnaPage");
 		return ResponseEntity.ok(qnaService.selectByAllQnaPage());
 	}
 }

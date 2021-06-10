@@ -1,72 +1,98 @@
 package proj21_shop.dto.qna;
 
 public class PageDTO {
-	private Integer displayRowCount = 10; // 출력할 갯수
-	private Integer rowStart; // 시작행번호
-	private Integer rowEnd; // 종료번호
-	private Integer totPage; // 전체페이지
-	private Integer totRow = 0; // 전체페이지 수
-	private Integer page; // 현재페이지
-	private Integer pageStart; // 시작페이지
-	private Integer pageEnd; // 종료페이지
+	private Criteria cri;
+	
+	private int totalCount;
+	private int startPage;
+	private int endPage;
+	private boolean prev;
+	private boolean next;
+	
+	private int displayPageNum=10;
+	
 	
 	public PageDTO() {}
 	
-	public Integer getDisplayRowCount() {
-		return displayRowCount;
-	}
-	public void setDisplayRowCount(Integer displayRowCount) {
-		this.displayRowCount = displayRowCount;
-	}
-	public Integer getRowStart() {
-		return rowStart;
-	}
-	public void setRowStart(Integer rowStart) {
-		this.rowStart = rowStart;
-	}
-	public Integer getRowEnd() {
-		return rowEnd;
-	}
-	public void setRowEnd(Integer rowEnd) {
-		this.rowEnd = rowEnd;
-	}
-	public Integer getTotPage() {
-		return totPage;
-	}
-	public void setTotPage(Integer totPage) {
-		this.totPage = totPage;
-	}
-	public Integer getTotRow() {
-		return totRow;
-	}
-	public void setTotRow(Integer totRow) {
-		this.totRow = totRow;
-	}
-	public Integer getPage() {
-		return page;
-	}
-	public void setPage(Integer page) {
-		this.page = page;
-	}
-	public Integer getPageStart() {
-		return pageStart;
-	}
-	public void setPageStart(Integer pageStart) {
-		this.pageStart = pageStart;
-	}
-	public Integer getPageEnd() {
-		return pageEnd;
-	}
-	public void setPageEnd(Integer pageEnd) {
-		this.pageEnd = pageEnd;
+	public Criteria getCri() {
+		return cri;
 	}
 
-	@Override
-	public String toString() {
-		return String.format(
-				"PageDTO [displayRowCount=%s, rowStart=%s, rowEnd=%s, totPage=%s, totRow=%s, page=%s, pageStart=%s, pageEnd=%s]",
-				displayRowCount, rowStart, rowEnd, totPage, totRow, page, pageStart, pageEnd);
+	public PageDTO(Criteria cri, int totalCount) {
+		this.cri = cri;
+		this.totalCount = totalCount;
+	}
+
+	public void setCri(Criteria cri) {
+		this.cri = cri;
 	}
 	
+	public int getTotalCount() {
+		return totalCount;
+	}
+
+	public void setTotalCount(int totalCount) {
+		this.totalCount = totalCount;
+		calcData();
+	}
 	
+	private void calcData() {
+		endPage = (int)(Math.ceil(cri.getPage()/(double)displayPageNum) * displayPageNum);
+		
+		startPage = (endPage - displayPageNum)+1;
+		
+		if(startPage <= 0) {
+			startPage = 1;
+		}
+		
+		int tempEndPage = (int)(Math.ceil(totalCount/ (double) cri.getPerPageNum()));
+		
+		
+		if(endPage> tempEndPage) {
+			endPage= tempEndPage;
+		}
+		
+		prev = startPage == 1? false:true;
+		next = endPage * cri.getPerPageNum() >= totalCount ? false:true;
+	}
+
+	public int getStartPage() {
+		return startPage;
+	}
+
+	public void setStartPage(int startPage) {
+		this.startPage = startPage;
+	}
+
+	public int getEndPage() {
+		return endPage;
+	}
+
+	public void setEndPage(int endPage) {
+		this.endPage = endPage;
+	}
+
+	public boolean isPrev() {
+		return prev;
+	}
+
+	public void setPrev(boolean prev) {
+		this.prev = prev;
+	}
+
+	public boolean isNext() {
+		return next;
+	}
+
+	public void setNext(boolean next) {
+		this.next = next;
+	}
+
+	public int getDisplayPageNum() {
+		return displayPageNum;
+	}
+
+	public void setDisplayPageNum(int displayPageNum) {
+		this.displayPageNum = displayPageNum;
+	}
 }
