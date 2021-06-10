@@ -1,7 +1,10 @@
 package proj21_shop.mapper.member.order;
 
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.logging.Log;
 import org.apache.ibatis.logging.LogFactory;
@@ -37,7 +40,7 @@ private static final Log log = LogFactory.getLog(MemberOrderMapperTest.class);
 		System.out.println();
 	}
  
-	@Test
+	//@Test
 	public void test01SelectCartByMemberId() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		MemberDTO newMem = new MemberDTO();
@@ -47,7 +50,7 @@ private static final Log log = LogFactory.getLog(MemberOrderMapperTest.class);
 		Assert.assertNotNull(list);
 	}
  
-	@Test
+	//@Test
 	public void test02InsertCart() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		MemberDTO newMem = new MemberDTO();
@@ -66,43 +69,48 @@ private static final Log log = LogFactory.getLog(MemberOrderMapperTest.class);
 		log.debug("res memid, proNum, 수량 >>" + res);
 	}
 
-	@Test
+	//@Test
 	public void test03DeleteCart() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		
 		int res = mapper.deleteCart(69);
 		Assert.assertEquals(1, res);
 		log.debug("proNum >>" + res);
-		
 	}
 	
 	@Test
-	public void test04SelectCartByPronum() {
+	public void test04SelectCartByCartNum() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		CartDTO cart = new CartDTO();
-		ProductDTO pro =new ProductDTO();
-		pro.setProNum(1113);
-		
-		MemberDTO mem = new MemberDTO();
-		mem.setMemberId("test01");
-		cart.setCartProNum(pro);
-		cart.setMemberId(mem);
-		CartDTO sel = mapper.selectCartByPronum(cart);
+		cart.setCartNum(122);
+		CartDTO sel = mapper.selectCartByCartNum(cart);
 		Assert.assertNotNull(sel);
 	}
 	
-	@Test
+	//@Test
 	public void test05UpdateCart() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 
-		ProductDTO pro = new ProductDTO();
-		pro.setProNum(1113);
-		
 		CartDTO cart = new CartDTO();
-		cart.setCartProNum(pro);
+		cart.setCartNum(122);
 		cart.setCartProQuantity(1);
 		int res = mapper.updateCart(cart);
 		Assert.assertEquals(1, res);
+	}
+	
+	//@Test
+	public void test06DeleteCarts() {
+		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
+		List<Integer> cartNums = new ArrayList<Integer>();
+		cartNums.add(104);
+		cartNums.add(105);
+		cartNums.add(106);
+		System.out.println(cartNums);
+		
+		
+		int res = mapper.deleteCarts(cartNums);
+		Assert.assertEquals(3, res);
+		log.debug("proNum >>" + res);
 	}
 
 }
