@@ -34,7 +34,7 @@ let basket = {
             if(item.parentElement.parentElement.parentElement.previousElementSibling.firstElementChild.firstElementChild.checked == true){
                 var count = parseInt(item.getAttribute('value'));
                 this.totalCount += count;
-                var price = item.previousElementSibling.getAttribute('value');
+                var price = item.parentElement.firstElementChild.getAttribute('value');
        			var price2 = parseInt(price.split('/'));
                 this.totalPrice += count * price2;
             }
@@ -52,11 +52,11 @@ let basket = {
         var newval = event.target.classList.contains('up') ? p_num+1 : event.target.classList.contains('down') ? p_num-1 : event.target.value;
         
         if (parseInt(newval) < 1 || parseInt(newval) > 99) { return false; }
-
+		
         item.setAttribute('value', newval);
         item.value = newval;
 
-        var price = item.previousElementSibling.getAttribute('value');
+        var price = item.parentElement.firstElementChild.getAttribute('value');
        	var price2 = parseInt(price.split('/'));
         item.parentElement.parentElement.nextElementSibling.textContent = (newval * price2).formatNumber()+"원";
         item.parentElement.parentElement.previousElementSibling.textContent = (newval * price2 * 0.01).formatNumber()+"P";

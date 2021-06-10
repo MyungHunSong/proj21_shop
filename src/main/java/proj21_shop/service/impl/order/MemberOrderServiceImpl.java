@@ -38,8 +38,8 @@ public class MemberOrderServiceImpl implements MemberOrderService {
 	}
 
 	@Override
-	public CartDTO selectCartByPronum(CartDTO cart) {
-		return mapper.selectCartByPronum(cart);
+	public CartDTO selectCartByCartNum(CartDTO cart) {
+		return mapper.selectCartByCartNum(cart);
 	}
 
 	@Override
