@@ -55,7 +55,7 @@ public class MemberDTO {
 	}
 
 
-	public MemberDTO(String memberId, String memberPwd, String memberName, String memberPh, LocalDate memberBirth,
+	public MemberDTO(String memberId, String memberPwd, String memberName, String memberPh, LocalDateTime memberBirth,
 			Gender memberGender, String memberPwdQ, String memberPwdA, String memberAddr1, String memberAddr2,
 			String memberAddr3, String memberEmail) {
 		super();
