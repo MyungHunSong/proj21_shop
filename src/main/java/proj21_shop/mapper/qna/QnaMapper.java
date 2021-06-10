@@ -7,11 +7,16 @@ import proj21_shop.dto.qna.QnaDTO;
 
 public interface QnaMapper {
 	// 전체 검색용
-	QnaDTO selectByAll();
+	List<QnaDTO> selectByAll();
 	// 고객센터 QNA 화면 목록.
 	List<QnaDTO> selectByAllQnaPage();
-	// qna 페이지 추가 & 10 초과시 넘기기.
-	List<QnaDTO> selectPageList(Criteria cri);
-	// qna페이지 토탈 개수 구하기
-	int selectPageListCount(Criteria cri);
+	 
+	List<QnaDTO> getList();
+	
+	// qna 페이지 번호
+	public List<QnaDTO> listPaging(int page);
+	// 페이징에 필요한것.
+	List<QnaDTO> listCriteria(Criteria cri);
+	int countArticles(Criteria cri);
+	
 }

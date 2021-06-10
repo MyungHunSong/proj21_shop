@@ -1,14 +1,15 @@
 package proj21_shop.mapper.qna;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.logging.Log;
 import org.apache.ibatis.logging.LogFactory;
 import org.junit.After;
 import org.junit.Assert;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -21,6 +22,7 @@ import proj21_shop.dto.qna.QnaDTO;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {ContextRoot.class})
 @WebAppConfiguration
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class QnaMapperTest {
 	protected static final Log log = LogFactory.getLog(QnaMapperTest.class);
 	
@@ -46,13 +48,26 @@ public class QnaMapperTest {
 		log.debug(Thread.currentThread().getStackTrace()[1].getClassName()+"()");
 		
 		Criteria cri = new Criteria();
-		List<QnaDTO> listPage = mapper.selectPageList(cri);
+		cri.setPage(2);
+		cri.setPerPageNum(10);
 		
-		Assert.assertNotNull(listPage);
-		listPage.stream().forEach(System.out::println);
+		List<QnaDTO> list = mapper.listCriteria(cri);
+		Assert.assertNotNull(cri);
+		list.stream().forEach(System.out::println);
 		
-
-		
+ 
+		//List<QnaDTO> articles = mapper.listCriteria(cri);
+		//Assert.assertNotNull(articles);
+		//articles.stream().forEach(System.out::println);
 	}
 
+	//@Test
+	public void test03TotalCount() {
+		log.debug(Thread.currentThread().getStackTrace()[1].getClassName()+"()");
+		
+		//int res = mapper.selectTotalCount();
+		//Assert.assertNotNull(res);
+		//System.out.println(res);
+		
+	}
 }

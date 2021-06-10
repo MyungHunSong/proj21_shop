@@ -10,9 +10,23 @@
 		<result column="q_option" property="qOption"/>
 	</resultMap>
 	
-<!-- q_member,q_title,q_date,q_hits,q_option -->
+	<resultMap type="QnaDTO" id="ArticleResultMap">
+		<id column ="q_index" property="qIndex"/>
+		<result column="q_op" property="qOp"/>
+		<result column="q_title" property="qTitle"/>
+		<result column="q_option" property="qOption"/>
+		<result column="q_member" property="qMember"/>
+		<result column="q_content" property="qContent"/>
+		<result column="q_file" property="qFile"/>
+		<result column="q_date" property="qDate"/>
+		<result column="q_hits" property="qHit"/>
+		<result column="q_group" property="qGroup"/>
+		<result column="q_indent" property="qIndent"/>
+		<result column="q_step" property="qStep"/>
+	</resultMap>
 	
-	<select id="selectByAllQnaPage" resultMap="resQna">
+	<!-- list가 두개로 겹치니 답이없다 다시 한다. -->	
+	 <select id="selectByAllQnaPage" resultMap="resQna">
 		select  q_member, q_title, q_date, q_hits, q_option,
 		case q_option
 				when q_option = '공지' then q_index
@@ -21,14 +35,37 @@
 	from qna
 	order by q_option
 	</select>
-	
-	<!-- 페이지 넘기는 방법. -->
-	<select id="selectPageList"  resultType="QnaDTO">
-		select q_index,q_title,q_option,q_member,q_content,q_file,q_date,q_hits,q_group,q_indent,q_step
-			from qna 
-			order by q_group desc, q_step asc
-		limit #{startPage},#{perPageNum}
+
+	 <select id="countArticles" resultType="int">
+	 <![CDATA[
+		select 
+			count(q_index)  
+		from qna 
+		where q_index > 0
+	]]>
 	</select>
 	
-	<!-- Criteria page  ,Criteria perPageNum -->
+	<select id="listPaging" resultMap="ArticleResultMap">
+	<![CDATA[
+		select q_index,q_title,q_option,q_member,q_content,q_file,q_date,q_hits,q_group,q_indent,q_step
+				from qna 
+					where q_index >0
+				order by	q_index desc, q_date desc
+		limit #{page}, 10
+	]]> 
+	</select>
+	
+	<select id="listCriteria" resultMap="ArticleResultMap">
+		<![CDATA[
+		select q_index,q_title,q_option,q_member,q_content,q_file,q_date,q_hits,q_group,q_indent,q_step,
+			case q_option
+				when q_option = '공지' then q_index 
+				else '공지' 
+			end 'q_op'
+				from qna 
+					where q_index >0
+				order by	q_op desc, q_date desc
+		limit #{pageStart}, #{perPageNum}
+		]]> 
+		</select>
 </mapper>

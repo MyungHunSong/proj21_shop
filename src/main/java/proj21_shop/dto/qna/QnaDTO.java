@@ -16,7 +16,7 @@ public class QnaDTO {
 	private int qIndent;
 	
 	public QnaDTO() {}
-	
+	 
 	// 공지 번호
 	private String qOp;
 	
@@ -28,8 +28,6 @@ public class QnaDTO {
 		this.qOp = qOp;
 	}
 	// 요까지
-	
-	
 	
 	
 	public QnaDTO(String qOption) {

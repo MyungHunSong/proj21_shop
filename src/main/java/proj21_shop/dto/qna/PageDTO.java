@@ -1,53 +1,59 @@
 package proj21_shop.dto.qna;
 
 public class PageDTO {
-	private int totPage; // 게시판 글 전체 개수
-	private int displayRowCount = 10; // 게시판 화면에서 한번에 보여질 페이지 번호의 개수 ( 1,2,3,4,5,6,7,9,10)
-	
-	private int startPage; // 현재 화면에서 보이는 startPage 번호
-	private int endPage; // 현재 화면에 보이는 endPage 번호
-	
-	private boolean back; // 페이징 이전 버튼 활성화 여부
-	private boolean next; // 페이징 다음 버튼 활서화 여부
-
 	private Criteria cri;
 	
+	private int totalCount;
+	private int startPage;
+	private int endPage;
+	private boolean prev;
+	private boolean next;
+	
+	private int displayPageNum=10;
+	
+	
 	public PageDTO() {}
+	
+	public Criteria getCri() {
+		return cri;
+	}
 
-	public int getTotPage() {
-		return totPage;
+	public PageDTO(Criteria cri, int totalCount) {
+		this.cri = cri;
+		this.totalCount = totalCount;
 	}
- 
-	public void setTotPage(int totPage) {
-		this.totPage = totPage;
-		
-		calcData();
-	}
-	// 페이징 하기위한 조건.
-	private void calcData() {
-		endPage = (int)(Math.ceil(cri.getPage()/(double)displayRowCount) * displayRowCount);
-		
-		startPage = (endPage - displayRowCount)+1;
-		
-		//게시판의 실제 마지막 페이지 번호.
-		int tempEndPage = (int)(Math.ceil(totPage / (double)cri.getPerPageNum()));
-		
-		// endpage의 값은 tempEndPage보다 클수 없어야함.
-		if(endPage > tempEndPage) {
-			endPage = tempEndPage;
-		}
-		
-		back = startPage == 1? false:true;
-		next = endPage * cri.getPerPageNum() >= totPage ? false:true;
+
+	public void setCri(Criteria cri) {
+		this.cri = cri;
 	}
 	
-
-	public int getDisplayRowCount() {
-		return displayRowCount;
+	public int getTotalCount() {
+		return totalCount;
 	}
 
-	public void setDisplayRowCount(int displayRowCount) {
-		this.displayRowCount = displayRowCount;
+	public void setTotalCount(int totalCount) {
+		this.totalCount = totalCount;
+		calcData();
+	}
+	
+	private void calcData() {
+		endPage = (int)(Math.ceil(cri.getPage()/(double)displayPageNum) * displayPageNum);
+		
+		startPage = (endPage - displayPageNum)+1;
+		
+		if(startPage <= 0) {
+			startPage = 1;
+		}
+		
+		int tempEndPage = (int)(Math.ceil(totalCount/ (double) cri.getPerPageNum()));
+		
+		
+		if(endPage> tempEndPage) {
+			endPage= tempEndPage;
+		}
+		
+		prev = startPage == 1? false:true;
+		next = endPage * cri.getPerPageNum() >= totalCount ? false:true;
 	}
 
 	public int getStartPage() {
@@ -66,12 +72,12 @@ public class PageDTO {
 		this.endPage = endPage;
 	}
 
-	public boolean isBack() {
-		return back;
+	public boolean isPrev() {
+		return prev;
 	}
 
-	public void setBack(boolean back) {
-		this.back = back;
+	public void setPrev(boolean prev) {
+		this.prev = prev;
 	}
 
 	public boolean isNext() {
@@ -82,13 +88,11 @@ public class PageDTO {
 		this.next = next;
 	}
 
-	public Criteria getQnaDto() {
-		return cri;
+	public int getDisplayPageNum() {
+		return displayPageNum;
 	}
 
-	public void setCri(Criteria cri) {
-		this.cri = cri;
+	public void setDisplayPageNum(int displayPageNum) {
+		this.displayPageNum = displayPageNum;
 	}
-	
-	
 }

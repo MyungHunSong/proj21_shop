@@ -10,5 +10,13 @@ import proj21_shop.dto.qna.QnaDTO;
 @Service
 public interface QnaService {
 	List<QnaDTO> selectByAllQnaPage();
-	List<QnaDTO> selectPageList(Criteria cri);
+
+	int selectTotalCount();
+
+	// qna 페이지 번호
+	public List<QnaDTO> listPaging(int page);
+
+	// 페이징에 필요한것.
+	List<QnaDTO> listCriteria(Criteria cri);
+	int countArticles(Criteria cri);
 }

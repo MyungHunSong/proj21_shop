@@ -13,11 +13,6 @@ select * from product;
 select * from `order`;
 select * from `member`;
 select  q_member,q_title,q_date,q_hits,q_option from qna;
-
-
-
--- count
-select count(*) from qna;
  
 -- 1-1.qna작성시 인서트문이다.
 insert into qna(q_title, q_option, q_member, q_content,q_group,q_file,q_date)
@@ -55,9 +50,9 @@ select  q_member, q_title, q_date, q_hits, q_option,
 	case q_option
 		when q_option = '공지' then q_index
 		else '공지'
-	end 'q_op' 
+	end 'q_op'
 from qna
-order by q_option;
+order by q_option, q_date desc;
 
 select * from qna;
 
@@ -67,15 +62,42 @@ select * from qna;
 -- 페이지 0~ 10 까지
 select q_index,q_title,q_option,q_member,q_content,q_file,q_date,q_hits,q_group,q_indent,q_step
 	from qna 
-	order by
-	q_group desc
-	, q_step asc
-	, q_date
+	where q_index >0
+	order by	q_index desc, q_date desc
 limit 0, 10;
 
 -- 페이지 토탈 카운트 구하기.
-select count(*) from qna
-where q_index = ;
+select
+	count(*) 
+	from qna;
+
+-- 페이징 처리 목록	
+select q_index,q_title,q_option,q_member,q_content,q_file,q_date,q_hits,q_group,q_indent,q_step,
+		case q_option
+	when q_option = '공지' then q_index 
+		else '공지' 
+	end 'q_op'
+		from qna 
+	where q_index >0
+		order by	q_op desc, q_index desc , q_date desc
+limit 10, 10;	
+-- 페이징 총 갯수
+select 
+			count(q_index)  
+		from qna
+		where q_index > 0;
+	
+
+INSERT INTO qna
+(q_title, q_option, q_member, q_content, q_file)
+values
+('ff기요', '제품상담', 'test03', '환불이 안돼여..', '첨부파일'),
+('반품관련공지', '공지', 'admin', '배송이 출발하면 반품이 안됩니다.', '첨부파일');	
+
+
+		
+
+		
 
 -- 2-3. 검색하고(클릭) 삭제[회원 전용].
 select q_index, q_member, q_title, q_date, q_hits, q_option 

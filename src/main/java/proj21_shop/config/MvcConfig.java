@@ -31,6 +31,7 @@ public class MvcConfig implements WebMvcConfigurer {
 		registry.jsp("/WEB-INF/view/", ".jsp");
 		registry.order(2);
 	}
+	
 
 //	/* 메인으로 바로 보내기*/
 //	@Override
