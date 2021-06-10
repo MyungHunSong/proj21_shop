@@ -57,7 +57,7 @@
 					m_total_buy ASC,
 				</when>
 			</choose>
-		</if>
+		</if>  
 		<!-- 총 주문 량 이 빈칸이 아닐때 -->
 		<if test="memberTotalOrder !=null and !memberTotalOrder.equals('')">
 			<choose>
@@ -69,7 +69,7 @@
 				<when test="memberTotalOrder.equals('total_order_asc')">
 					m_total_order ASC,
 				</when>
-			</choose>
+			</choose> 
 		</if>
 					m_join DESC
 	</select>
