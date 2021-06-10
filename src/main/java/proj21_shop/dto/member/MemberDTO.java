@@ -1,9 +1,10 @@
 package proj21_shop.dto.member;
 
 import java.sql.Date;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import org.springframework.stereotype.Component;
+
 @Component
 public class MemberDTO {
 
@@ -14,7 +15,7 @@ public class MemberDTO {
 
 	private String memberName;
 	private String memberPh;
-	private LocalDateTime memberBirth;
+	private LocalDate memberBirth;
 
 	private Gender memberGender; // 0=남자 1=여자
 
@@ -33,8 +34,6 @@ public class MemberDTO {
 	private int memberExit; // 0(=defult) 1(=exit)
 
 	public MemberDTO() {
-		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public MemberDTO(String memberId, int memberExit) {
@@ -43,21 +42,18 @@ public class MemberDTO {
 		this.memberExit = memberExit;
 	}
 
-
-	public MemberDTO(String memberId, String memberName, Gender memberGender, Date memberCreDate, int memberTotalBuy, int memberTotalOrder) {
+	public MemberDTO(String memberId, String memberPh, String memberAddr1, String memberAddr2, String memberAddr3, String memberEmail) {
 		super();
 		this.memberId = memberId;
-		this.memberName = memberName;
-		this.memberGender = memberGender;
-		this.memberCreDate = memberCreDate;
-		this.memberTotalBuy = memberTotalBuy;
-		this.memberTotalOrder = memberTotalOrder;
+		this.memberPh = memberPh;
+		this.memberAddr1 = memberAddr1;
+		this.memberAddr2 = memberAddr2;
+		this.memberAddr3 = memberAddr3;
+		this.memberEmail = memberEmail;
 	}
 
-
-	public MemberDTO(String memberId, String memberPwd, String memberName, String memberPh, LocalDateTime memberBirth,
-			Gender memberGender, String memberPwdQ, String memberPwdA, String memberAddr1, String memberAddr2,
-			String memberAddr3, String memberEmail) {
+	public MemberDTO(String memberId, String memberPwd, String memberName, String memberPh, LocalDate memberBirth, Gender memberGender,
+			String memberPwdQ, String memberPwdA, String memberAddr1, String memberAddr2, String memberAddr3, String memberEmail) {
 		super();
 		this.memberId = memberId;
 		this.memberPwd = memberPwd;
@@ -113,11 +109,11 @@ public class MemberDTO {
 		this.memberPh = memberPh;
 	}
 
-	public LocalDateTime getMemberBirth() {
+	public LocalDate getMemberBirth() {
 		return memberBirth;
 	}
 
-	public void setMemberBirth(LocalDateTime memberBirth) {
+	public void setMemberBirth(LocalDate memberBirth) {
 		this.memberBirth = memberBirth;
 	}
 
@@ -235,9 +231,8 @@ public class MemberDTO {
 	public String toString() {
 		return String.format(
 				"MemberDTO [memberId=%s, memberPwd=%s, memberPwdConfirm=%s, memberName=%s, memberPh=%s, memberBirth=%s, memberGender=%s, memberPwdQ=%s, memberPwdA=%s, memberAddr1=%s, memberAddr2=%s, memberAddr3=%s, memberEmail=%s, memberCreDate=%s, memberPoint=%s, memberTotalBuy=%s, memberTotalOrder=%s, memberTotalLogin=%s, memberExit=%s]",
-				memberId, memberPwd, memberPwdConfirm, memberName, memberPh, memberBirth, memberGender, memberPwdQ,
-				memberPwdA, memberAddr1, memberAddr2, memberAddr3, memberEmail, memberCreDate, memberPoint,
-				memberTotalBuy, memberTotalOrder, memberTotalLogin, memberExit);
+				memberId, memberPwd, memberPwdConfirm, memberName, memberPh, memberBirth, memberGender, memberPwdQ, memberPwdA, memberAddr1,
+				memberAddr2, memberAddr3, memberEmail, memberCreDate, memberPoint, memberTotalBuy, memberTotalOrder, memberTotalLogin, memberExit);
 	}
 
 }
