@@ -25,6 +25,7 @@ public class CartDTO {
 		this.memberId = memberId;
 	}
 
+
 	public ProductDTO getCartProNum() {
 		return cartProNum;
 	}

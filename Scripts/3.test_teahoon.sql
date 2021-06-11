@@ -71,26 +71,26 @@ values
 		('test01', 1111, 1);
 
 -- 장바구니 삭제	
+/*장바구니 개별삭제*/
 delete 
-  from cart 
-where cart_pro_num = 1033;
+   from cart
+where cart_num = 110
+
+/*장바구니 여러개 한번에 삭제*/
+delete 
+  from cart
+where cart_num in (100);
+
+/*장바구니 추가 시 이미 있는 제품인 경우 수량 증가*/
 
 select * 
   from cart
-where cart_pro_num = 1033 and cart_member_Id = 'test01';
+where cart_pro_num = 4073 and cart_member_Id = 'test01';
 
+select cart_num, c.cart_member_id, c.cart_pro_num, cart_pro_quantity, p.pro_imagefilename, p.pro_name, p.pro_price,p.pro_size, p.pro_salesrate 
+  from cart c join productall p on c.cart_pro_num = p.pro_num
+where cart_num = 149;
 
- select cart_num, c.cart_member_id, c.cart_pro_num, cart_pro_quantity, p.pro_imagefilename, p.pro_name, p.pro_price,p.pro_size, p.pro_salesrate 
-   from cart c 
-    join productall p on c.cart_pro_num = p.pro_num where cart_member_Id = 'test01';
-
-/*장바구니 추가 시 이미 있는 제품인 경우 수량 증가*/
-update cart
-	set cart_pro_quantity = cart_pro_quantity + 1
-where cart_pro_num = 1113;
-
-select * from cart;
-
-delete 
-  from cart
-where cart_num in (100); 
+select cart_num, c.cart_member_id, c.cart_pro_num, cart_pro_quantity, p.pro_imagefilename, p.pro_name, p.pro_price,p.pro_size, p.pro_salesrate 
+  from cart c join productall p on c.cart_pro_num = p.pro_num
+where cart_member_Id = 'test01';

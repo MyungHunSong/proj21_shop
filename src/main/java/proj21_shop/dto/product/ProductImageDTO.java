@@ -1,19 +1,17 @@
 package proj21_shop.dto.product;
 
-import java.util.List;
-
 public class ProductImageDTO {
 	
-	private List<ProductDTO> proNum;
+	private int proNum;
 	private int proImgCode;
 	private String proImagefilename;
 	private int proImgState;
 
-	public List<ProductDTO> getProNum() {
+	public int getProNum() {
 		return proNum;
 	}
 
-	public void setProNum(List<ProductDTO> proNum) {
+	public void setProNum(int proNum) {
 		this.proNum = proNum;
 	}
 

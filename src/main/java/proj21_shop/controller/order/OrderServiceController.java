@@ -35,7 +35,9 @@ public class OrderServiceController {
 	public ResponseEntity<Object> getCarts(@PathVariable String memId){
 		MemberDTO mem = new MemberDTO();
 		mem.setMemberId(memId);
-		List<CartDTO> list = service.showCartsByMemberId(mem);
+		CartDTO cart = new CartDTO();
+		cart.setMemberId(mem);
+		List<CartDTO> list = service.showCartsByMemberId(cart);
 		return ResponseEntity.ok(list);
 	}
 
@@ -55,6 +57,7 @@ public class OrderServiceController {
 	/* 장바구니 추가 */
 	@PostMapping("/memberProductCart/")
 	public ResponseEntity<Object> insertCart(@RequestBody CartDTO cart){
+		System.out.println(cart);
 		service.insertCart(cart);
 		URI  uri = URI.create("/api/memberProductCart"+cart.getMemberId().getMemberId());
 		return ResponseEntity.created(uri).body(cart.getMemberId().getMemberId());	
@@ -63,7 +66,7 @@ public class OrderServiceController {
 	/* 장바구니 수량 변경 */
 	@PatchMapping("/memberProductCart/{cartNum}")
 	public ResponseEntity<Object> updateCartByProductName(@PathVariable int cartNum, @RequestBody CartDTO cart){
-		if(service.selectCartByCartNum(cart) != null) {
+		if(service.showCartsByMemberId(cart) != null) {
 			return ResponseEntity.ok(service.updateCart(cart));
 		}else {
 			System.out.println("변경 실패");

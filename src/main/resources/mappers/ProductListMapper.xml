@@ -6,7 +6,7 @@
 		<id column="pro_img_code" property="proImgCode" />
 		<result column="pro_imagefilename" property="proImagefilename" />
 		<result column="pro_img_state" property="proImgState" />
-		<collection property="proNum"  resultMap="ResProduct"/>
+		<result column="pro_num" property="proNum"/>
 	</resultMap>
 
 	<resultMap type="ProductDTO" id="ResProduct">
@@ -24,6 +24,7 @@
 		<result column="pro_sold" property="proSold" />
 		<result column="pro_hits" property="proHits" />
 		<result column="re_replyCount" property="reReplyCount" />
+		<result column="pro_imagefilename" property="proImgfileName"/>
 	</resultMap>
 	
 	<sql id="selectProductJoinProductImageSQL">
@@ -32,25 +33,15 @@
 		          ,pro_img_code,pro_imagefilename,pro_img_state
           from  product p join pro_img i on p.pro_num = i.pro_num
 	</sql>
-
-	<sql id="whereSQL">
-		<where>
-			<if test="proCategory != 0">
-				and pro_category = #{proCategory}
-			</if>
-			<if test="proImgState != 0">
-				and pro_img_state = #{proImgState}
-			</if>
-		</where>
-	</sql>
+	
 	<!-- 옷카테고리별 목록 검색 -->
-	<select id="selectProductByProImgState" parameterType="int" resultMap="ResProductImg">
+	<select id="selectProductByProImgState" parameterType="int" resultMap="ResProduct">
 		<include refid="selectProductJoinProductImageSQL"></include>
 		where pro_img_state = #{param1} and pro_category = #{param2} 
 	</select>
 
 	<!-- 옷 상세정보 보기 -->
-	<select id="selectProductDetailByProNum" parameterType="int" resultMap="ResProductImg">
+	<select id="selectProductDetailByProNum" parameterType="int" resultMap="ResProduct">
 		<include refid="selectProductJoinProductImageSQL"></include>
 		where p.pro_num = #{param1} 
 	</select>

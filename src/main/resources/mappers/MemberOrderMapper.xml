@@ -18,19 +18,26 @@
 		select cart_num, c.cart_member_id, c.cart_pro_num, cart_pro_quantity, p.pro_imagefilename, p.pro_name, p.pro_price,p.pro_size, p.pro_salesrate 
  		  from cart c join productall p on c.cart_pro_num = p.pro_num 
 	</sql>
-	
-	<select id="selectCartByCartNum" resultMap="ResCart">
-		 select cart_num,cart_member_Id,cart_pro_num,cart_pro_quantity
-          from cart
-        where cart_num = #{cartNum}
-	</select>
+
+	<sql id="whreeSQL">
+		<where>
+			<if test="cartNum != 0">
+				and cart_num = #{cartNum}
+			</if>
+			<if test="memberId != null">
+				and cart_member_Id =#{memberId.memberId}
+			</if>
+			<if test="cartProNum != null">
+				and cart_pro_num =#{cartProNum.proNum}
+			</if>		
+		</where>
+	</sql>
 	
 	<select id="selectCartByMemberId" resultMap="ResCart">
-	<include refid="selectSQL"></include>
-    where cart_member_Id =#{memberId}
+		<include refid="selectSQL"></include>
+        <include refid="whreeSQL"></include>
 	</select>
 		
- 
  	<insert id="insertCart">
 		INSERT INTO cart
 			(cart_member_Id, cart_pro_num, cart_pro_quantity)

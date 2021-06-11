@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import proj21_shop.dto.product.ProductImageDTO;
+import proj21_shop.dto.product.ProductDTO;
 import proj21_shop.mapper.product.ProductListMapper;
 import proj21_shop.service.product.ProductListService;
 
@@ -16,14 +16,14 @@ public class ProductListServiceImpl implements ProductListService{
 	private ProductListMapper service;
 	
 	@Override
-	public List<ProductImageDTO> showProducts(int proImgState,int proCategory) {
-		List<ProductImageDTO> list = service.selectProductByProImgState(proImgState, proCategory);
+	public List<ProductDTO> showProducts(int proImgState,int proCategory) {
+		List<ProductDTO> list = service.selectProductByProImgState(proImgState, proCategory);
 		return list;
 	}
 
 	@Override
-	public ProductImageDTO showProductDetailByProNum(int proNum) {
-		ProductImageDTO product = service.selectProductDetailByProNum(proNum);
+	public ProductDTO showProductDetailByProNum(int proNum) {
+		ProductDTO product = service.selectProductDetailByProNum(proNum);
 		return product;
 	}
 

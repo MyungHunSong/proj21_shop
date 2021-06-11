@@ -41,12 +41,17 @@ public class MemberOrderServiceTest {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		MemberDTO newMem = new MemberDTO();
 		newMem.setMemberId("test01");
+		ProductDTO pro = new ProductDTO();
+		pro.setProNum(4072);
 		
-		List<CartDTO> list = service.showCartsByMemberId(newMem);
+		CartDTO cart = new CartDTO();
+		cart.setCartProNum(pro);
+		cart.setMemberId(newMem);
+		List<CartDTO> list = service.showCartsByMemberId(cart);
 		Assert.assertNotNull(list);
 	}
 
-	@Test 
+	//@Test 
 	public void test02InsertCart() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		MemberDTO newMem = new MemberDTO();
@@ -65,7 +70,7 @@ public class MemberOrderServiceTest {
 		log.debug("res memid, proNum, 수량 >>" + res);
 	}
 
-	@Test
+	//@Test
 	public void test03DeleteCart() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		
