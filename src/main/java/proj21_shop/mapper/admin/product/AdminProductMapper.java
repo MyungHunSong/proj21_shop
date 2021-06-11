@@ -21,8 +21,8 @@ public interface AdminProductMapper {
 	int selectOutProducts();
 	//<!-- 조건 별 제품 리스트 뽑아오기 -->
 	List<ProductDTO> selectAllProducts(Map<String, Object> pagingMap);
-	
-//	int selectedTotalProducts(Map pagingMap);
+	//<!-- 검색한 제품 수 -->
+	int selectedTotalProducts(Map pagingMap);
 	
 //	int selectOrderedTotal(Map pagingMap);
 	

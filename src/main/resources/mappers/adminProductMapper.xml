@@ -111,4 +111,20 @@
 			AND
 		 	(#{section,jdbcType=NUMERIC}-1)*200+#{pageNum,jdbcType=NUMERIC}*20
 	</select>
+	
+	<!-- 검색한 제품 수 -->
+	<select id="selectedTotalProducts" resultType="int" parameterType="map">
+		SELECT count(pro_num)
+		  FROM product
+		 WHERE pro_num >0
+	    <if test="pro_category !=null and !pro_category.equals('')">
+			AND pro_category=#{pro_category}        
+	    </if>
+	    <if test="pro_status !=null and !pro_status.equals('all') ">
+			AND pro_status=#{pro_status}        
+	    </if>
+	    <if test="keyword !=null and !keyword.equals('')">
+	        AND pro_name like CONCAT('%',#{keyword},'%')
+	    </if>
+	</select>
 </mapper>
