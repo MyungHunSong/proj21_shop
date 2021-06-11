@@ -3,7 +3,7 @@
 <mapper namespace="proj21_shop.mapper.admin.product.adminProductMapper">
 
  <!-- PRODUCT -->
-	<!-- <resultMap id="adminProductResult" type="ProductDTO">
+	<resultMap id="adminProductResult" type="ProductDTO">
 	
 		<result property="proNum" column="pro_num" />
 		<result property="proName" column="pro_name" />
@@ -25,7 +25,6 @@
 		
 	</resultMap>
 	
-	Product_Detail 
 	<resultMap id="productDetailResult" type="productImageDTO">
 	
 		<result property="proImgCode" column="pro_img_code" />
@@ -34,51 +33,47 @@
 		<result property="proImgState" column="pro_img_state" />
 		
 	</resultMap>
-	총 제품 수
+	<!-- 총 제품 수 -->
 	<select id="selectTotalProducts" resultType="int" >
 			select count(pro_num) from product	
 	</select>
-	새로나온 제품 기준 30일
+	<!-- 신상품 -->
 	<select id="selectNewProducts" resultType="int" >
-			select count(pro_num) from product	where DATE_ADD(pro_cre_date, INTERVAL 30 DAY)>=NOW();
+			select count(pro_num) from product	where pro_status='신상'
 	</select>
-	판매량이 많은 제품
+	<!-- 판매량이 많은 제품 -->
 	<select id="selectBestProducts" resultType="int" >
-			select count(pro_num) from product	where pro_sold>=10
+			select count(pro_num) from product	where pro_status='최고'
 	</select>
-	세일중인 제품
+	<!-- 세일중인 제품 -->
 	<select id="selectOffProducts" resultType="int" >
-			select count(pro_num) from product	where pro_salesrate>0
+			select count(pro_num) from product	where pro_status='세일'
 	</select>
-	후기수 가 많은 제품
+	<!-- 추천상품 -->
 	<select id="selectSteadyProducts" resultType="int" >
-			select count(pro_num) from product	where re_replyCount>=2
+			select count(pro_num) from product	where pro_status='추천'
 	</select>
-	판매 중지된 상품
+	<!-- 판매 중지된 상품 -->
 	<select id="selectOutProducts" resultType="int" >
 			select count(pro_num) from product	where pro_status='품절'	
 	</select>
-
+	<!-- 조건 별 제품 리스트 뽑아오기 -->
 	<select id="selectAllProducts" parameterType="java.util.Map" resultMap="adminProductResult">
-		select a.* from (
-		select rownum rn ,b.*, c.pro_imageFileName
-		from product b , product_image c
-		where b.pro_code=c.pro_code and
-		b.pro_code in (select e.pro_code from product_detail e) and
-		c.pro_imagefileType='main_image'
-		<if test="direct_pro_status !=null and !direct_pro_status.equals('')">
-			and b.pro_status=#{direct_pro_status}
+		SELECT a.*
+  		  FROM (SELECT FORMAT(@ROWNUM := @ROWNUM+1, 0) AS rn ,b.*,c.pro_imagefilename
+		          FROM product b JOIN pro_img c ON b.pro_num = c.pro_num
+		         WHERE (@ROWNUM:=0)=0
+		 		       AND c.pro_img_state=1
+		<if test="pro_category !=null and !pro_category.equals('')">
+					   AND b.pro_category=#{pro_category}
 		</if>
 		<if test="pro_status !=null and !pro_status.equals('all') ">
-			and b.pro_status=#{pro_status}
-		</if>
-		<if test="pro_category !=null and !pro_category.equals('')">
-			and b.pro_category=#{pro_category}
+					   AND b.pro_status=#{pro_status}
 		</if>
 		<if test="keyword !=null and !keyword.equals('')">
-			and pro_name like '%'||#{keyword}||'%'
+					   AND b.pro_name LIKE CONCAT('%','','%')
 		</if>
-		order by
+					 ORDER BY
 		<if test="order_price !=null and !order_price.equals('')">
 			<choose>
 				<when test="order_price.equals('price_desc')">
@@ -101,17 +96,19 @@
 		</if>
 		<if test="order_count !=null and !order_count.equals('')">
 			<choose>
-				<when test="order_count.equals('count_desc')">
-					b.pro_count DESC ,
+				<when test="order_hits.equals('hits_desc')">
+					b.pro_hits DESC ,
 				</when>
-				<when test="order_count.equals('count_asc')">
-					b.pro_count ASC ,
+				<when test="order_hits.equals('hits_asc')">
+					b.pro_hits ASC ,
 				</when>
 			</choose>
 		</if>
-		b.pro_code
-		) a where rn between (#{section,jdbcType=NUMERIC}-1)*200+(#{pageNum,jdbcType=NUMERIC}-1)*20+1
-		and
-		(#{section,jdbcType=NUMERIC}-1)*200+#{pageNum,jdbcType=NUMERIC}*20
-	</select> -->
+					b.pro_code)a
+		 WHERE rn
+		 	BETWEEN
+		 	(#{section,jdbcType=NUMERIC}-1)*200+(#{pageNum,jdbcType=NUMERIC}-1)*20+1
+			AND
+		 	(#{section,jdbcType=NUMERIC}-1)*200+#{pageNum,jdbcType=NUMERIC}*20
+	</select>
 </mapper>
