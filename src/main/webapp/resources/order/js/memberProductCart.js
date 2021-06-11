@@ -71,7 +71,7 @@ let basket = {
         this.updateUI();
     },
     delItem: function () {
-        event.target.parentElement.parentElement.parentElement.remove();
+        event.target.parentElement.parentElement.parentElement.parentElement.remove();
         this.reCalc();
         this.updateUI();
     }

@@ -60,12 +60,23 @@ $(function(){
 					sCont +=				"</div>"
 					sCont +=			"</div>"
 					sCont +=			"<div class='sum'>"+(((100-json[i].cartProNum.proSalesrate)*json[i].cartProNum.proPrice*json[i].cartProQuantity)/100).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"원</div> "
+					sCont +=			"<div class='subdiv'>"
+					sCont +=			"<input type='hidden' name='p_del'  class='p_del' value="+json[i].cartNum+"/>"
+					sCont +=			      "<div class='basketcmd'><a href='javascript:void(0)' class='delButton abutton' onclick='javascript:basket.delItem();'>삭제</a></div>"
+					sCont +=			"</div>"
 					sCont +=		"</div>"
 					sCont +="</div> "
 					
 				}
 			$(".load_row_data").append(sCont);
+				
 			}
+			
+			$('.delButton').on("click",function(){
+				var numItem = $(this).parent().parent().children('.p_del').val()
+				var cartNum = parseInt(numItem.split('/'));
+				delCart(cartNum)
+			})
 			
 			$('.upBtn').on("click", function(){
 				var cartNum = $(this).val();
@@ -156,11 +167,25 @@ $(function(){
 					} 
 				}); 
 			});
-		 		
-			
-			
-		
-			
+		 	
+			// 단일 삭제 하기
+			function delCart(cartNum){
+				console.log(cartNum)
+				
+				 $.ajax({
+					url: contextPath + "/api/memberProductCart/" + cartNum,
+					type: 'delete' ,
+					contentType : "application/json; charset=utf-8",
+					datatype : "json",
+					data: JSON.stringify(cartNum),
+					success: function(res){
+					},
+					error:function(request, status, error){
+						alert("code:"+request.status+"\n"+"message:"
+				                  +request.responseText+"\n"+"error:"+error);
+					} 
+				}); 
+			}
 	});
 </script>
 </head>
@@ -184,7 +209,6 @@ $(function(){
                         <div class="sum">가격</div>
                     </div>
                     <div class="subdiv">
-    
                     </div>
                     <div class="split"></div>
                 </div>
