@@ -62,7 +62,7 @@ select * from qna;
 -- 페이지 0~ 10 까지
 select q_index,q_title,q_option,q_member,q_content,q_file,q_date,q_hits,q_group,q_indent,q_step
 	from qna 
-	where q_index >0
+	where q_index >0 
 	order by	q_index desc, q_date desc
 limit 0, 10;
 
