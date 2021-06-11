@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import proj21_shop.service.impl.admin.product.AdminProductService;
+import proj21_shop.service.admin.product.AdminProductService;
 
 @Controller("adminProductController")
 @RequestMapping("/admin/product/")
