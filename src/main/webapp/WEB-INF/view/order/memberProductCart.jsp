@@ -54,9 +54,9 @@ $(function(){
 					sCont +=			"<div class='num'>"
 					sCont +=				"<div class='updown'> "
 					sCont +=       			"<input type='hidden' name='p_price' id='p_price1' class='p_price' value="+((100-json[i].cartProNum.proSalesrate)*json[i].cartProNum.proPrice)/100+"/>"
-					sCont +=					"<span class='up1' onclick='javascript:basket.changePNum("+i+");'><button id = 'upBtn' value="+json[i].cartNum+" class='up fas fa-arrow-alt-circle-up countBtn'></button></span>"
+					sCont +=					"<span class='up1' onclick='javascript:basket.changePNum("+i+");'><button id = 'upBtn' value="+json[i].cartNum+" class='up fas fa-arrow-alt-circle-up countBtn upBtn'></button></span>"
 					sCont +=					"<input type='text' name='p_num"+i+"' id='p_num"+i+"' size='2' maxlength='4' class='p_num' value="+json[i].cartProQuantity+" onkeyup='javascript:basket.changePNum("+i+");' readonly>"
-					sCont +=					"<span onclick='javascript:basket.changePNum("+i+");'><button id = 'downBtn' value="+json[i].cartNum+" class='fas fa-arrow-alt-circle-down down countBtn'></button></span>"
+					sCont +=					"<span onclick='javascript:basket.changePNum("+i+");'><button id = 'downBtn' value="+json[i].cartNum+" class='fas fa-arrow-alt-circle-down down countBtn downBtn'></button></span>"
 					sCont +=				"</div>"
 					sCont +=			"</div>"
 					sCont +=			"<div class='sum'>"+(((100-json[i].cartProNum.proSalesrate)*json[i].cartProNum.proPrice*json[i].cartProQuantity)/100).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"원</div> "
@@ -67,15 +67,55 @@ $(function(){
 			$(".load_row_data").append(sCont);
 			}
 			
-			$('.countBtn').on("click", function(){
+			$('.upBtn').on("click", function(){
 				var cartNum = $(this).val();
-				var countNum = $(this).parent().children('.p_num0').text()
-				console.log(countNum);
-				/* count(cartNum) */
+				var countNum = $(this).parent().parent().children('.p_num').val()
+				var cN = parseInt(countNum)+1
+				if(cN == 99){
+					cN = 98;
+				}
+				count(cartNum, cN)
+			}) 
+
+			$('.downBtn').on("click", function(){
+				var cartNum = $(this).val();
+				var countNum = $(this).parent().parent().children('.p_num').val()
+				var cN = parseInt(countNum)-1
+				if(cN == 0){
+					cN = 1;
+				}
+				count(cartNum, cN)
 			}) 
 			
 		});
 			
+	
+		/* 장바구니 수량 변경시 update(function) */
+		function count(cartNum, cN){
+			console.log(cartNum)
+			console.log(cN)
+			var cartItem = {
+					  "cartNum": cartNum,
+					  "cartProQuantity": cN
+					}
+			$.ajax({
+				url: contextPath + "/api/memberProductCart/" + cartNum,
+				type: 'Patch' ,
+				contentType : "application/json; charset=utf-8",
+				datatype : "json",
+				data: JSON.stringify(cartItem),
+				success: function(res){
+					/* window.location.href = contextPath + "/cart?memId=${authInfo.id }"; */ 
+				},
+				error:function(request, status, error){
+					 alert("code:"+request.status+"\n"+"message:"
+			                  +request.responseText+"\n"+"error:"+error);
+					/* window.location.href = contextPath+"/cart?memId=${authInfo.id }"; */
+				} 
+			})
+		}
+	
+	
 		// 모두 체크
 		$("#allCheck").click(function checkAll(){
 				if(orderform.remove.length == undefined){
@@ -117,26 +157,7 @@ $(function(){
 				}); 
 			});
 		 		
-			/* 장바구니 수량 변경시 update(function) */
-			function count(cartNum){
-				console.log(cartNum)
-				$.ajax({
-					url: contextPath + "/api/memberProductCart/" + cartNum,
-					type: 'Patch' ,
-					contentType : "application/json; charset=utf-8",
-					datatype : "json",
-					data: JSON.stringify(cartNum),
-					success: function(res){
-						alert(cartNum)
-						/* window.location.href = contextPath + "/cart?memId=${authInfo.id }"; */
-					},
-					error:function(request, status, error){
-						 alert("code:"+request.status+"\n"+"message:"
-				                  +request.responseText+"\n"+"error:"+error);
-						/* window.location.href = contextPath+"/cart?memId=${authInfo.id }"; */
-					} 
-				})
-			}
+			
 			
 		
 			
@@ -148,7 +169,7 @@ $(function(){
 <jsp:include page="/WEB-INF/view/include/header.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/view/include/topbody.jsp"></jsp:include>
 
-<form name="orderform" id="orderform" method="post" class="orderform" action="/Page" onsubmit="return false;">
+	<form name="orderform" id="orderform" method="post" class="orderform" action="/Page" onsubmit="return false;">
             <input type="hidden" name="cmd" value="order">
             <div class="basketdiv" id="basket">
                 <div class="row head">
@@ -185,6 +206,7 @@ $(function(){
                 </div>
             </div>
         </form>
+        
 <jsp:include page="/WEB-INF/view/include/footer.jsp"></jsp:include>
 </div>
 </body>

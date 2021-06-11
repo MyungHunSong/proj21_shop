@@ -57,7 +57,7 @@
 	
 	<update id="updateCart">
 		update cart
-		   	 set cart_pro_quantity = cart_pro_quantity + #{cartProQuantity}
+		   	 set cart_pro_quantity = #{cartProQuantity}
 	     where cart_num= #{cartNum}
 	</update>
 	

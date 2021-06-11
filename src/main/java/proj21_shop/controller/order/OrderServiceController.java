@@ -61,9 +61,8 @@ public class OrderServiceController {
 	}
 	
 	/* 장바구니 수량 변경 */
-	@PatchMapping("/memberProductCart/{pro_num}")
-	public ResponseEntity<Object> updateCartByProductName(@PathVariable int pro_num, @RequestBody CartDTO cart){
-		System.out.println(cart);
+	@PatchMapping("/memberProductCart/{cartNum}")
+	public ResponseEntity<Object> updateCartByProductName(@PathVariable int cartNum, @RequestBody CartDTO cart){
 		if(service.selectCartByCartNum(cart) != null) {
 			return ResponseEntity.ok(service.updateCart(cart));
 		}else {
