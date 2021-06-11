@@ -1,15 +1,17 @@
-package proj21_shop.service.admin.product;
+package proj21_shop.service.impl.admin.product;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import proj21_shop.dto.product.ProductDTO;
 import proj21_shop.mapper.admin.product.AdminProductMapper;
-import proj21_shop.service.impl.admin.product.AdminProductService;
+import proj21_shop.service.admin.product.AdminProductService;
 
+@Service
 public class AdminProductServiceImpl implements AdminProductService {
 	@Autowired
 	AdminProductMapper adminProductMapper;
