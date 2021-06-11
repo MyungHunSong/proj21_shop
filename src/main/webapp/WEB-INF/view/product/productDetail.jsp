@@ -32,22 +32,23 @@ $(function() {
 	var proNum = ${proNum};
 	$.get(contextPath + "/api/productDetail/"+proNum, 
 	function(json) {
-		var proSalerate = json.proNum[0].proSalesrate;
-		var proPrice = json.proNum[0].proPrice;
+		var proSalerate = json.proSalesrate;
+		var proPrice = parseInt(json.proPrice);
 		var salePrice = ((100-proSalerate)/100)*proPrice;
 		/* 콤마 찍기용 */
 		var temp = proPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 		var add = salePrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 		var sCont = "";
-			sCont += "<div class = 'productImage'><img src="+contextPath+"/resources/product/images/"+json.proImagefilename+"></div>";
+		console.log(json)
+			sCont += "<div class = 'productImage'><img src="+contextPath+"/resources/product/images/"+json.proImgfileName+"></div>";
 			sCont += "<div class = 'productInfo'>"
 			sCont += "<div class = 'productInfoName'>"
-			sCont += "<strong>"+json.proNum[0].proName+"</strong>";
-			sCont += "<span class = 'review'>"+json.proNum[0].reReplyCount+"개 리뷰 보기</span>";
+			sCont += "<strong>"+json.proName+"</strong>";
+			sCont += "<span class = 'review'>"+json.reReplyCount+"개 리뷰 보기</span>";
 			sCont += "</div>"
-			sCont += "<p> 조회수 : "+json.proNum[0].proHits+"</p>";
-			sCont += "<p>"+json.proNum[0].proContent+"</p>";
-			sCont += "<p>"+json.proNum[0].proStatus+"</p>";
+			sCont += "<p> 조회수 : "+json.proHits+"</p>";
+			sCont += "<p>"+json.proContent+"</p>";
+			sCont += "<p>"+json.proStatus+"</p>";
 			sCont +="<p><select id='size'><option value='size01'>사이즈를 선택해주세요</option><option value='1'>XS</option><option value='2'>S</option><option value='3'>M</option><option value='4'>L</option><option value='5'>XL</option></select></p>"
 			sCont += "<p class ='proPrice'>"+temp+" 원</p>";
 			sCont += "<span class ='proSalerate'>"+proSalerate+"%  </span>";

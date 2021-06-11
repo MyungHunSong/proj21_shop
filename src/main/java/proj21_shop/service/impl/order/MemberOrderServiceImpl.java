@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import proj21_shop.dto.cart.CartDTO;
-import proj21_shop.dto.member.MemberDTO;
 import proj21_shop.exception.MemberNotLoginException;
 import proj21_shop.mapper.order.MemberOrderMapper;
 import proj21_shop.service.order.MemberOrderService;
@@ -18,7 +17,7 @@ public class MemberOrderServiceImpl implements MemberOrderService {
 	private MemberOrderMapper mapper;
 
 	@Override
-	public List<CartDTO> showCartsByMemberId(MemberDTO memId) {
+	public List<CartDTO> showCartsByMemberId(CartDTO memId) {
 		if (memId == null) {
 			throw new MemberNotLoginException();
 		}
@@ -35,11 +34,6 @@ public class MemberOrderServiceImpl implements MemberOrderService {
 	@Override
 	public int deleteCart(int cartNum) {
 		return mapper.deleteCart(cartNum);
-	}
-
-	@Override
-	public CartDTO selectCartByCartNum(CartDTO cart) {
-		return mapper.selectCartByCartNum(cart);
 	}
 
 	@Override

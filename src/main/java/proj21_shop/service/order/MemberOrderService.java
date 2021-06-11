@@ -10,8 +10,7 @@ import proj21_shop.dto.member.MemberDTO;
 
 @Service
 public interface MemberOrderService {
-	List<CartDTO> showCartsByMemberId(MemberDTO memId);
-	CartDTO selectCartByCartNum(CartDTO cart);
+	List<CartDTO> showCartsByMemberId(CartDTO memId);
 	
 	int insertCart(CartDTO cart);
 	int deleteCart(int cartNum);

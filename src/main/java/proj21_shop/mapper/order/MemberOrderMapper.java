@@ -6,8 +6,7 @@ import proj21_shop.dto.cart.CartDTO;
 import proj21_shop.dto.member.MemberDTO;
 
 public interface MemberOrderMapper {
-	List<CartDTO> selectCartByMemberId(MemberDTO memId);
-	CartDTO selectCartByCartNum(CartDTO cart);
+	List<CartDTO> selectCartByMemberId(CartDTO memId);
 	
 	int insertCart(CartDTO cart);
 	int deleteCart(int cartNum);

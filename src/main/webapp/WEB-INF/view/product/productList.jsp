@@ -35,12 +35,13 @@ $(function(){
 		if(dataLength >= 1){
 			var sCont = "";
 			for(i = 0; i < dataLength; i++){
+				console.log(json)
 				sCont += "<div class='item'>";
-				sCont += "<td><a href='productDetail?proNum=" + json[i].proNum[0].proNum + "'><img src="+contextPath+"/resources/product/images/"+json[i].proImagefilename+"></a></td>";
+				sCont += "<td><a href='productDetail?proNum=" + json[i].proNum + "'><img src="+contextPath+"/resources/product/images/"+json[i].proImgfileName+"></a></td>";
 				sCont += "<div class='detail'>"
 				sCont += "<div class='title'>"
-				sCont += "<h2><em>"+ json[i].proNum[0].proName +"</em></h2>"
-				sCont +="<span class='price'>"+ json[i].proNum[0].proPrice +"</span>"       
+				sCont += "<h2><em>"+ json[i].proName +"</em></h2>"
+				sCont +="<span class='price'>"+ json[i].proPrice +"</span>"       
 				sCont +="</div>"
 				sCont +="<div class='info'>"
 				sCont +="<div class='size'>"

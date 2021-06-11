@@ -4,13 +4,13 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import proj21_shop.dto.product.ProductImageDTO;
+import proj21_shop.dto.product.ProductDTO;
 
 @Service
 public interface ProductListService {
-	List<ProductImageDTO> showProducts(int proImgState,int proCategory);
+	List<ProductDTO> showProducts(int proImgState,int proCategory);
 	
-	ProductImageDTO showProductDetailByProNum(int proNum);
+	ProductDTO showProductDetailByProNum(int proNum);
 	
 	int updateProhits(int proNum);
 }

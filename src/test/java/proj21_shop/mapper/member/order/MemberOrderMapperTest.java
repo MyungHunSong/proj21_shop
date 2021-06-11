@@ -40,12 +40,14 @@ private static final Log log = LogFactory.getLog(MemberOrderMapperTest.class);
 		System.out.println();
 	}
  
-	//@Test
+	@Test
 	public void test01SelectCartByMemberId() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
-		MemberDTO newMem = new MemberDTO();
-		newMem.setMemberId("test01");
-		
+		CartDTO newMem = new CartDTO();
+		MemberDTO mem = new MemberDTO();
+		mem.setMemberId("test01");
+		newMem.setMemberId(mem);
+		System.out.println(newMem);
 		List<CartDTO> list = mapper.selectCartByMemberId(newMem);
 		Assert.assertNotNull(list);
 	}
@@ -82,8 +84,8 @@ private static final Log log = LogFactory.getLog(MemberOrderMapperTest.class);
 	public void test04SelectCartByCartNum() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		CartDTO cart = new CartDTO();
-		cart.setCartNum(122);
-		CartDTO sel = mapper.selectCartByCartNum(cart);
+		cart.setCartNum(149);
+		List<CartDTO> sel = mapper.selectCartByMemberId(cart);
 		Assert.assertNotNull(sel);
 	}
 	
