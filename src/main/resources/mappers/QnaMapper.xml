@@ -25,7 +25,7 @@
 		<result column="q_step" property="qStep"/>
 	</resultMap>
 	
-	<!-- list가 두개로 겹치니 답이없다 다시 한다. -->	
+	<!--  list가 두개로 겹치니 답이없다 다시 한다. 	
 	 <select id="selectByAllQnaPage" resultMap="resQna">
 		select  q_member, q_title, q_date, q_hits, q_option,
 		case q_option
@@ -34,7 +34,7 @@
 			end 'q_op' 
 	from qna
 	order by q_option
-	</select>
+	</select> -->
 
 	 <select id="countArticles" resultType="int">
 	 <![CDATA[
@@ -45,6 +45,7 @@
 	]]>
 	</select>
 	
+	<!-- 페이지 번호 받아오는 쿼리 ex([이전] 1,2,3,4,5,6,7,8,9,10 [다음]) 요론곳 -->
 	<select id="listPaging" resultMap="ArticleResultMap">
 	<![CDATA[
 		select q_index,q_title,q_option,q_member,q_content,q_file,q_date,q_hits,q_group,q_indent,q_step
@@ -55,6 +56,8 @@
 	]]> 
 	</select>
 	
+	
+	<!-- 페이징 하는곳에 목록창(1 페이지에 10개뛰우기, 2페이지에 10개뛰우기)  -->
 	<select id="listCriteria" resultMap="ArticleResultMap">
 		<![CDATA[
 		select q_index,q_title,q_option,q_member,q_content,q_file,q_date,q_hits,q_group,q_indent,q_step,
