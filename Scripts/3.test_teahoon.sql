@@ -20,6 +20,7 @@ select *
   from admin;
 select *
   from `order`;
+ 
 
 -- 제품 전체 검색(제품, 제품 이미지 조인문)
 DROP VIEW productall;
