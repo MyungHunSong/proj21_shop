@@ -178,7 +178,7 @@ select pro_num, pro_category, pro_name, pro_price, pro_content, pro_salesrate, p
 /* 총 제품 수 */
 select count(pro_num) from product	;
 /* 새로나온 제품 기준 30일 */
-select count(pro_num) from product	where DATE_ADD(pro_cre_date, INTERVAL 30 DAY)>=NOW();
+select count(pro_num) from product	where DATE_ADD(pro_cre_date, INTERVAL 3 MONTH)>=NOW();
 /* 판매량이 많은 제품  */
 select count(pro_num) from product	where pro_sold>=10;
 /* 세일중인 제품 */
@@ -191,19 +191,55 @@ select count(pro_num) from product	where pro_status='품절';
 
 SELECT count(DATE_ADD(pro_cre_date, INTERVAL 30 DAY))
   FROM product;
+
+SELECT a.*
+  FROM (SELECT FORMAT(@ROWNUM := @ROWNUM+1, 0) AS rn ,b.*,c.pro_imagefilename
+		  FROM product b JOIN pro_img c ON b.pro_num = c.pro_num
+		 WHERE (@rownum:=0)=0
+		 		AND c.pro_img_state=1
+				AND b.pro_category=1
+				AND b.pro_status='판매중'
+				AND b.pro_name LIKE CONCAT('%','','%')
+		 ORDER BY b.pro_price DESC
+		    	 ,b.pro_salesrate DESC
+		 		 ,b.pro_hits DESC
+		 		 ,b.pro_num)a
+ WHERE rn between 1 AND 20;
+
+select *
+from product p ;
  
- select a.* from (
-		select rownum rn ,b.*, c.pro_imageFileName
-		from product b , product_image c
-		where b.pro_code=c.pro_code and
-		b.pro_code in (select e.pro_code from product_detail e) and
-		c.pro_imagefileType='main_image'
-			and b.pro_status=#{direct_pro_status}
-			and b.pro_status=#{pro_status}
-			and b.pro_category=#{pro_category}
-			and pro_name like '%'||#{keyword}||'%'
-		order by
-		<if test="order_price !=null and !order_price.equals('')">
+select *
+  from pro_img ;		 		
+ 
+SELECT @rownum:=@rownum+1 AS rn ,b.*,c.*
+		  FROM product b JOIN pro_img c ON b.pro_num = c.pro_num
+		 WHERE (@rownum:=0)=0 
+		 		AND c.pro_img_state=1
+				AND b.pro_category=1
+				AND b.pro_status='판매중'
+				AND pro_name LIKE CONCAT('%','','%')
+		 ORDER BY b.pro_price DESC
+		    	 ,b.pro_salesrate DESC
+		 		 ,b.pro_hits DESC
+		 		 ,b.pro_num;		  
+		 		
+		
+SELECT @rownum:=@rownum+1 AS rn ,b.*,c.*
+  FROM product b JOIN pro_img c ON b.pro_num = c.pro_num
+ WHERE (@rownum:=0)=0 
+ 	AND c.pro_img_state=1
+ 	<IF test="pro_category !=null and !pro_category.equals('')">
+			AND b.pro_category=#{pro_category}
+	</IF>
+	<IF test="pro_status !=null and !pro_status.equals('all') ">
+			AND b.pro_status=#{pro_status}
+	</IF>
+	<IF test="keyword !=null and !keyword.equals('')">
+			AND pro_name LIKE CONCAT('%','','%')
+	</IF>
+	ORDER BY
+	<if test="order_price !=null and !order_price.equals('')">
 			<choose>
 				<when test="order_price.equals('price_desc')">
 					b.pro_price DESC ,
@@ -225,15 +261,16 @@ SELECT count(DATE_ADD(pro_cre_date, INTERVAL 30 DAY))
 		</if>
 		<if test="order_count !=null and !order_count.equals('')">
 			<choose>
-				<when test="order_count.equals('count_desc')">
-					b.pro_count DESC ,
+				<when test="order_hits.equals('hits_desc')">
+					b.pro_hits DESC ,
 				</when>
-				<when test="order_count.equals('count_asc')">
-					b.pro_count ASC ,
+				<when test="order_hits.equals('hits_asc')">
+					b.pro_hits ASC ,
 				</when>
 			</choose>
 		</if>
-		b.pro_code
-		)a where rn between (#{section,jdbcType=NUMERIC}-1)*200+(#{pageNum,jdbcType=NUMERIC}-1)*20+1
+			b.pro_code
+		) a WHERE rn between (#{section,jdbcType=NUMERIC}-1)*200+(#{pageNum,jdbcType=NUMERIC}-1)*20+1
 		and
 		(#{section,jdbcType=NUMERIC}-1)*200+#{pageNum,jdbcType=NUMERIC}*20
+;
