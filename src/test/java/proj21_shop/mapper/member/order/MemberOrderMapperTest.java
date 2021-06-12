@@ -2,9 +2,7 @@ package proj21_shop.mapper.member.order;
 
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.logging.Log;
 import org.apache.ibatis.logging.LogFactory;
@@ -23,7 +21,7 @@ import proj21_shop.config.ContextRoot;
 import proj21_shop.dto.cart.CartDTO;
 import proj21_shop.dto.member.MemberDTO;
 import proj21_shop.dto.product.ProductDTO;
-import proj21_shop.mapper.order.cartMapper;
+import proj21_shop.mapper.order.CartMapper;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { ContextRoot.class })
@@ -33,14 +31,14 @@ public class MemberOrderMapperTest {
 private static final Log log = LogFactory.getLog(MemberOrderMapperTest.class);
 	
 	@Autowired
-	private cartMapper mapper;
+	private CartMapper mapper;
 
 	@After
 	public void tearDown() throws Exception {
 		System.out.println();
 	}
  
-	@Test
+	//@Test
 	public void test01SelectCartByMemberId() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		CartDTO newMem = new CartDTO();
@@ -121,4 +119,16 @@ private static final Log log = LogFactory.getLog(MemberOrderMapperTest.class);
 		log.debug("proNum >>" + res);
 	}
 
+	@Test
+	public void test07ChooseCartByCartNum() {
+		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
+		
+		List<Integer> cartNum = new ArrayList<>();
+		cartNum.add(182);
+		cartNum.add(186);
+		System.out.println(cartNum);
+		
+		List<CartDTO> list = mapper.chooseCartByMemberId(cartNum);
+		Assert.assertNotNull(list);
+	}
 }

@@ -11,6 +11,9 @@ import proj21_shop.dto.cart.CartDTO;
 public interface CartService {
 	List<CartDTO> showCartsByMemberId(CartDTO memId);
 	
+	/* 장바구니에서 선택된 항목 주문페이지로 검색 */
+	List<CartDTO> chooseCartByMemberId(List<Integer> cartNum);
+	
 	int insertCart(CartDTO cart);
 	int deleteCart(int cartNum);
 	int deleteCarts(List<Integer> list);
