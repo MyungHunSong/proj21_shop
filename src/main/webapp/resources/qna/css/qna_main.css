@@ -1,10 +1,6 @@
 @charset "UTF-8";
 
 
-section .faq&qna{
-	border: 1px solid #000;
-	width: 800px;
-}
 
 .btn{
 	list-style: none;

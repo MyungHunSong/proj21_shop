@@ -17,6 +17,7 @@ $(function(){
 	
 	var contextPath = "${contextPath}";
 	var memId = "${memId}";
+	
 	$.get(contextPath + "/api/memberProductCart/"+memId,
 		function(json){
 			var dataLength = json.length;
@@ -54,28 +55,79 @@ $(function(){
 					sCont +=			"<div class='num'>"
 					sCont +=				"<div class='updown'> "
 					sCont +=       			"<input type='hidden' name='p_price' id='p_price1' class='p_price' value="+((100-json[i].cartProNum.proSalesrate)*json[i].cartProNum.proPrice)/100+"/>"
-					sCont +=					"<span class='up1' onclick='javascript:basket.changePNum("+i+");'><button id = 'upBtn' value="+json[i].cartNum+" class='up fas fa-arrow-alt-circle-up countBtn'></button></span>"
+					sCont +=					"<span class='up1' onclick='javascript:basket.changePNum("+i+");'><button id = 'upBtn' value="+json[i].cartNum+" class='up fas fa-arrow-alt-circle-up countBtn upBtn'></button></span>"
 					sCont +=					"<input type='text' name='p_num"+i+"' id='p_num"+i+"' size='2' maxlength='4' class='p_num' value="+json[i].cartProQuantity+" onkeyup='javascript:basket.changePNum("+i+");' readonly>"
-					sCont +=					"<span onclick='javascript:basket.changePNum("+i+");'><button id = 'downBtn' value="+json[i].cartNum+" class='fas fa-arrow-alt-circle-down down countBtn'></button></span>"
+					sCont +=					"<span onclick='javascript:basket.changePNum("+i+");'><button id = 'downBtn' value="+json[i].cartNum+" class='fas fa-arrow-alt-circle-down down countBtn downBtn'></button></span>"
 					sCont +=				"</div>"
 					sCont +=			"</div>"
 					sCont +=			"<div class='sum'>"+(((100-json[i].cartProNum.proSalesrate)*json[i].cartProNum.proPrice*json[i].cartProQuantity)/100).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"원</div> "
+					sCont +=			"<div class='subdiv'>"
+					sCont +=			"<input type='hidden' name='p_del'  class='p_del' value="+json[i].cartNum+"/>"
+					sCont +=			      "<div class='basketcmd'><a href='javascript:void(0)' class='delButton abutton' onclick='javascript:basket.delItem();'>삭제</a></div>"
+					sCont +=			"</div>"
 					sCont +=		"</div>"
 					sCont +="</div> "
 					
 				}
 			$(".load_row_data").append(sCont);
+				
 			}
 			
-			$('.countBtn').on("click", function(){
+			$('.delButton').on("click",function(){
+				var numItem = $(this).parent().parent().children('.p_del').val()
+				var cartNum = parseInt(numItem.split('/'));
+				delCart(cartNum)
+			})
+			
+			$('.upBtn').on("click", function(){
 				var cartNum = $(this).val();
-				var countNum = $(this).parent().children('.p_num0').text()
-				console.log(countNum);
-				/* count(cartNum) */
+				var countNum = $(this).parent().parent().children('.p_num').val()
+				var cN = parseInt(countNum)+1
+				if(cN == 99){
+					cN = 98;
+				}
+				count(cartNum, cN)
+			}) 
+
+			$('.downBtn').on("click", function(){
+				var cartNum = $(this).val();
+				var countNum = $(this).parent().parent().children('.p_num').val()
+				var cN = parseInt(countNum)-1
+				if(cN == 0){
+					cN = 1;
+				}
+				count(cartNum, cN)
 			}) 
 			
 		});
 			
+	
+		/* 장바구니 수량 변경시 update(function) */
+		function count(cartNum, cN){
+			console.log(cartNum)
+			console.log(cN)
+			var cartItem = {
+					  "cartNum": cartNum,
+					  "cartProQuantity": cN
+					}
+			$.ajax({
+				url: contextPath + "/api/memberProductCart/" + cartNum,
+				type: 'Patch' ,
+				contentType : "application/json; charset=utf-8",
+				datatype : "json",
+				data: JSON.stringify(cartItem),
+				success: function(res){
+					/* window.location.href = contextPath + "/cart?memId=${authInfo.id }"; */ 
+				},
+				error:function(request, status, error){
+					 alert("code:"+request.status+"\n"+"message:"
+			                  +request.responseText+"\n"+"error:"+error);
+					/* window.location.href = contextPath+"/cart?memId=${authInfo.id }"; */
+				} 
+			})
+		}
+	
+	
 		// 모두 체크
 		$("#allCheck").click(function checkAll(){
 				if(orderform.remove.length == undefined){
@@ -88,20 +140,23 @@ $(function(){
 				}
 			}); 
 			
-			
 			//#delButton을 누르면 체크박스 타입이고 name = remove인 input이 체크 되었는지 확인 후 값을 얻어내서 cartNum에 값을 저장하고 ajax를 이용해 단일삭제
  			$('#delButton').on("click", function(){
-    
- 			/* 여러개 체크된값 가져오기 */
- 			var data_arr = [];
- 			$("input:checkbox[name = 'remove']:checked").each(function(){
- 				var item = $(this).val();
- 				data_arr.push(item);
- 			})
- 			
-			var cartNums = {cartNum : [data_arr]}; 
-				 
-				 $.ajax({
+ 				
+ 				/* 여러개 체크된값 가져오기 */
+	 			var data_arr = [];
+	 			$("input:checkbox[name = 'remove']:checked").each(function(){
+	 					var item = $(this).val();
+	 					data_arr.push(item);
+	 			})	
+	 				
+				var cartNums = {cartNum : [data_arr]}; 
+				delCarts(cartNums)				 
+			});
+		 	
+			// 배열로 여러개 받아서 삭제 하기
+			function delCarts(cartNums){
+				$.ajax({
 					url: contextPath + "/api/memberProductCarts",
 					type: 'post' ,
 					contentType : "application/json; charset=utf-8",
@@ -109,36 +164,64 @@ $(function(){
 					data: JSON.stringify(cartNums.cartNum[0]),
 					success: function(res){
 						window.location.href = contextPath + "/cart?memId=${authInfo.id }";
-					},
+						},
 					error:function(request, status, error){
 						alert("제품을 선택해주세요")
-						window.location.href = contextPath+"/cart?memId=${authInfo.id }";
+					window.location.href = contextPath+"/cart?memId=${authInfo.id }";
 					} 
-				}); 
-			});
-		 		
-			/* 장바구니 수량 변경시 update(function) */
-			function count(cartNum){
-				console.log(cartNum)
-				$.ajax({
+				});
+			}
+			
+			// 단일 삭제 하기
+			function delCart(cartNum){
+				
+				 $.ajax({
 					url: contextPath + "/api/memberProductCart/" + cartNum,
-					type: 'Patch' ,
+					type: 'delete' ,
 					contentType : "application/json; charset=utf-8",
 					datatype : "json",
 					data: JSON.stringify(cartNum),
 					success: function(res){
-						alert(cartNum)
-						/* window.location.href = contextPath + "/cart?memId=${authInfo.id }"; */
 					},
 					error:function(request, status, error){
-						 alert("code:"+request.status+"\n"+"message:"
+						alert("code:"+request.status+"\n"+"message:"
 				                  +request.responseText+"\n"+"error:"+error);
-						/* window.location.href = contextPath+"/cart?memId=${authInfo.id }"; */
 					} 
-				})
+				}); 
 			}
 			
-		
+			/* 선택한 상품 주문 버튼 클릭 */
+			$(".orderBtn").on("click",function(){
+				var data_arr = [];
+	 			$("input:checkbox[name = 'remove']:checked").each(function(){
+	 					var item = $(this).val();
+	 					data_arr.push(item);
+	 			})	
+	 				
+				var cartNums = {cartNum : [data_arr]};
+	 			selectOrderProduct(cartNums) 
+				
+			})
+			
+			/* 선택한 버튼으로 검색후 주문페이지로 이동하기 */
+			function selectOrderProduct(cartNums){
+				$.ajax({
+					url: contextPath + "/api/chooseProductCarts",
+					type: 'post' ,
+					contentType : "application/json; charset=utf-8",
+					datatype : "json",
+					data: JSON.stringify(cartNums.cartNum[0]),
+					success: function(res){
+						console.log(cartNums.cartNum[0])
+						window.location.href = contextPath+"/order?memId=${authInfo.id }";
+					},
+					error:function(request, status, error){
+						alert("code:"+request.status+"\n"+"message:"
+				                  +request.responseText+"\n"+"error:"+error);
+						/* window.location.href = contextPath+"/cart?memId=${authInfo.id }"; */
+					}  
+				});
+			}
 			
 	});
 </script>
@@ -148,7 +231,7 @@ $(function(){
 <jsp:include page="/WEB-INF/view/include/header.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/view/include/topbody.jsp"></jsp:include>
 
-<form name="orderform" id="orderform" method="post" class="orderform" action="/Page" onsubmit="return false;">
+	<form name="orderform" id="orderform" method="post" class="orderform" action="/Page" onsubmit="return false;">
             <input type="hidden" name="cmd" value="order">
             <div class="basketdiv" id="basket">
                 <div class="row head">
@@ -163,7 +246,6 @@ $(function(){
                         <div class="sum">가격</div>
                     </div>
                     <div class="subdiv">
-    
                     </div>
                     <div class="split"></div>
                 </div>
@@ -181,10 +263,11 @@ $(function(){
             <div id="goorder">
                 <div class="clear"></div>
                 <div class="buttongroup center-align cmd">
-                    <a href="#">선택한 상품 주문</a>
+                    <a class = "orderBtn">선택한 상품 주문</a>
                 </div>
             </div>
         </form>
+        
 <jsp:include page="/WEB-INF/view/include/footer.jsp"></jsp:include>
 </div>
 </body>

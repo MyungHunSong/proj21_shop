@@ -7,7 +7,7 @@ public class PageDTO {
 	private int startPage;
 	private int endPage;
 	private boolean prev;
-	private boolean next;
+	private boolean next; 
 	
 	private int displayPageNum=10;
 	

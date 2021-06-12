@@ -7,7 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class ProductController {
-
+ 
 	@GetMapping("/productlist")
 	public ModelAndView getProductListByProCategory(
 				@RequestParam(value = "proImgState") Integer proImgState,
@@ -17,7 +17,7 @@ public class ProductController {
 		mav.addObject("proCategory",proCategory);
 		return mav;
 	}
-	
+	 
 	@GetMapping("/productDetail")
 	public ModelAndView getProductDetailByProNum(@RequestParam(value = "proNum") Integer proNum) {
 		ModelAndView mav = new ModelAndView("product/productDetail", "proNum",proNum);

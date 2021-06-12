@@ -5,7 +5,7 @@ public class Criteria {
 		private int page;
 	    private int perPageNum;
 	    private QnaDTO qOp;
-	    
+	      
 	    public QnaDTO getqOp() {
 			return qOp;
 		}

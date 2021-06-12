@@ -5,15 +5,17 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import proj21_shop.dto.cart.CartDTO;
-import proj21_shop.dto.member.MemberDTO;
 
 
 @Service
-public interface MemberOrderService {
-	List<CartDTO> showCartsByMemberId(MemberDTO memId);
-	CartDTO selectCartByCartNum(CartDTO cart);
+public interface CartService {
+	List<CartDTO> showCartsByMemberId(CartDTO memId);
+	
+	/* 장바구니에서 선택된 항목 주문페이지로 검색 */
+	List<CartDTO> chooseCartByMemberId(List<Integer> cartNum);
 	
 	int insertCart(CartDTO cart);
 	int deleteCart(int cartNum);
+	int deleteCarts(List<Integer> list);
 	int updateCart(CartDTO cart);
 }

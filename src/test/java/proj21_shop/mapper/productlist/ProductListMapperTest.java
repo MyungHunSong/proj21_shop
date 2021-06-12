@@ -16,7 +16,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import proj21_shop.config.ContextRoot;
-import proj21_shop.dto.product.ProductImageDTO;
+import proj21_shop.dto.product.ProductDTO;
 import proj21_shop.mapper.product.ProductListMapper;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -37,7 +37,7 @@ public class ProductListMapperTest {
 	@Test
 	public void test01ShowProducts() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
-		List<ProductImageDTO> list =mapper.selectProductByProImgState(1, 1);
+		List<ProductDTO> list =mapper.selectProductByProImgState(1, 1);
 		Assert.assertNotNull(list);
 		System.out.println(list);
 	}
@@ -45,12 +45,12 @@ public class ProductListMapperTest {
 	@Test
 	public void test02ShowProductDetailByProNum() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName()+"()");
-		ProductImageDTO product = mapper.selectProductDetailByProNum(1113);
+		ProductDTO product = mapper.selectProductDetailByProNum(1113);
 		Assert.assertNotNull(product);
 		System.out.println(product);
 	}
 	
-	@Test
+	//@Test
 	public void test03UpdateProductDetailByProNum() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName()+"()");
 		int res = mapper.updateProhits(111);

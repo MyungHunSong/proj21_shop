@@ -19,7 +19,7 @@ import proj21_shop.config.ContextRoot;
 import proj21_shop.dto.cart.CartDTO;
 import proj21_shop.dto.member.MemberDTO;
 import proj21_shop.dto.product.ProductDTO;
-import proj21_shop.service.order.MemberOrderService;
+import proj21_shop.service.order.CartService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { ContextRoot.class })
@@ -29,7 +29,7 @@ public class MemberOrderServiceTest {
 	private static final Log log = LogFactory.getLog(MemberOrderServiceTest.class);
 	
 	@Autowired
-	private MemberOrderService service;
+	private CartService service;
 	
 	@After
 	public void tearDown() throws Exception {
@@ -41,12 +41,17 @@ public class MemberOrderServiceTest {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		MemberDTO newMem = new MemberDTO();
 		newMem.setMemberId("test01");
+		ProductDTO pro = new ProductDTO();
+		pro.setProNum(4072);
 		
-		List<CartDTO> list = service.showCartsByMemberId(newMem);
+		CartDTO cart = new CartDTO();
+		cart.setCartProNum(pro);
+		cart.setMemberId(newMem);
+		List<CartDTO> list = service.showCartsByMemberId(cart);
 		Assert.assertNotNull(list);
 	}
 
-	@Test 
+	//@Test 
 	public void test02InsertCart() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		MemberDTO newMem = new MemberDTO();
@@ -65,7 +70,7 @@ public class MemberOrderServiceTest {
 		log.debug("res memid, proNum, 수량 >>" + res);
 	}
 
-	@Test
+	//@Test
 	public void test03DeleteCart() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		
