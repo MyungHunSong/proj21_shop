@@ -7,6 +7,7 @@ public class ProductImageDTO {
 	private String proImagefilename;
 	private int proImgState;
 
+
 	public int getProNum() {
 		return proNum;
 	}
