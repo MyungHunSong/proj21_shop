@@ -22,9 +22,9 @@ public interface AdminProductMapper {
 	//<!-- 조건 별 제품 리스트 뽑아오기 -->
 	List<ProductDTO> selectAllProducts(Map<String, Object> pagingMap);
 	//<!-- 검색한 제품 수 -->
-	int selectedTotalProducts(Map pagingMap);
-	
-//	int selectOrderedTotal(Map pagingMap);
+	int selectedTotalProducts(Map<String, Object> pagingMap);
+	// 주문 상품수
+	int selectOrderedTotal(Map<String, Object> pagingMap);
 	
 //	List<ProductDTO> selectAllProductsDetail();
 }

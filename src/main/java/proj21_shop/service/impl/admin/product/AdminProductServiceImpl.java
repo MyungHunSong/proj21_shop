@@ -11,25 +11,33 @@ import proj21_shop.dto.product.ProductDTO;
 import proj21_shop.mapper.admin.product.AdminProductMapper;
 import proj21_shop.service.admin.product.AdminProductService;
 
-@Service
+@Service("adminProductService")
 public class AdminProductServiceImpl implements AdminProductService {
 	@Autowired
 	AdminProductMapper adminProductMapper;
+
 	@Override
-	public Map listProducts(Map pagingMap) {
-		
-		Map<String,Object> productsMap=new HashMap();
-		
-		List<ProductDTO> productsList=adminProductMapper.selectAllProducts(pagingMap); //��ǰ��� ��������
-		int totProducts=adminProductMapper.selectTotalProducts();//��ü����
-		 int selectedProducts=adminProductMapper.selectedTotalProducts(pagingMap); 
-		 System.out.println(" selectedProducts:"+selectedProducts);
-		int newProducts=adminProductMapper.selectNewProducts();//����ǰ����
-		int bestProducts=adminProductMapper.selectBestProducts();//����Ʈ��������
-		int steadyProducts=adminProductMapper.selectSteadyProducts();//���׵𼿷�����
-		int offProducts=adminProductMapper.selectOffProducts();//�����߰���
-		int outProducts=adminProductMapper.selectOutProducts();//ǰ������
-		int orderedTotal=adminProductMapper.selectOrderedTotal(pagingMap);
+	public Map<String, Object> listProducts(Map<String, Object> pagingMap) {
+		Map<String, Object> productsMap = new HashMap<String, Object>();
+
+		List<ProductDTO> productsList = adminProductMapper.selectAllProducts(pagingMap);
+		int selectedProducts = adminProductMapper.selectedTotalProducts(pagingMap);
+		int totProducts = adminProductMapper.selectTotalProducts();
+		int newProducts = adminProductMapper.selectNewProducts();
+		int bestProducts = adminProductMapper.selectBestProducts();
+		int steadyProducts = adminProductMapper.selectSteadyProducts();
+		int offProducts = adminProductMapper.selectOffProducts();
+		int outProducts = adminProductMapper.selectOutProducts();
+		int orderedTotal = adminProductMapper.selectOrderedTotal(pagingMap);
+
+		System.out.println("service에서 =productsList:"+productsList);    
+		System.out.printf("service에서 =totProducts:%s\n", totProducts);      
+		System.out.printf("service에서 =bestProducts:%s\n", bestProducts);    
+		System.out.printf("service에서 =newProducts:%s\n", newProducts);      
+		System.out.printf("service에서 =steadyProducts:%s\n", steadyProducts);
+		System.out.printf("service에서 =offProducts:%s\n", offProducts);      
+		System.out.printf("service에서 =outProducts:%s\n", outProducts);      
+		System.out.printf("service에서 =orderedTotal:%s\n", orderedTotal);    
 		
 		productsMap.put("productsList", productsList);
 		productsMap.put("totProducts", totProducts);
@@ -39,12 +47,10 @@ public class AdminProductServiceImpl implements AdminProductService {
 		productsMap.put("offProducts", offProducts);
 		productsMap.put("outProducts", outProducts);
 		productsMap.put("orderedTotal", orderedTotal);
-		 productsMap.put("selectedProducts", selectedProducts); 
 		
-		List<ProductDTO> modelList=adminProductMapper.selectAllProductsDetail();
-		
-		productsMap.put("modelList", modelList);
-		
+		productsMap.put("selectedProducts", selectedProducts);
+
 		return productsMap;
 	}
+
 }

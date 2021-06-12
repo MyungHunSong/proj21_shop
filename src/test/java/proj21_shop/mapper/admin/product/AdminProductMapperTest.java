@@ -79,7 +79,9 @@ public class AdminProductMapperTest {
 	public void test7SelectedTotalProducts() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("pro_name", "T");
+		map.put("proCategory", 1);
+		map.put("proStatus", "판매중");
+		map.put("keyword", "T");
 		int res = mapper.selectedTotalProducts(map);
 		Assert.assertNotNull(res);
 		log.debug("검색한 제품 수?" + res);
@@ -91,9 +93,11 @@ public class AdminProductMapperTest {
 	public void test8SelectAllProducts() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("pro_category", 1);
-		map.put("pro_state", "판매중");
-		map.put("pro_name", "T");
+		map.put("section", 1);
+		map.put("pageNum", 1);
+//		map.put("proCategory", 1);
+//		map.put("proStatus", "판매중");
+//		map.put("keyword", "T");
 		List<ProductDTO> list = mapper.selectAllProducts(map);
 		Assert.assertNotNull(list);
 		System.out.println();
@@ -102,6 +106,19 @@ public class AdminProductMapperTest {
 				System.out.println(t.toString());
 			}
 		}
+	}
+	
+	@Test
+	public void test9SelectOrderedTotal() {
+		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("proStatus", "판매중");
+		map.put("keyword", "T");
+		map.put("proCategory", 1);
+		int res = mapper.selectOrderedTotal(map);
+		Assert.assertNotNull(res);
+		log.debug("판매중인 수?" + res);
+		System.out.println();
 	}
 
 }

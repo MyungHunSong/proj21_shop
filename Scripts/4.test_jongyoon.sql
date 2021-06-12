@@ -274,3 +274,13 @@ SELECT @rownum:=@rownum+1 AS rn ,b.*,c.*
 		and
 		(#{section,jdbcType=NUMERIC}-1)*200+#{pageNum,jdbcType=NUMERIC}*20
 ;
+
+
+: SELECT a.* FROM (SELECT FORMAT(@ROWNUM := @ROWNUM+1, 0) AS rn ,b.*,c.pro_imagefilename FROM product b JOIN pro_img c ON b.pro_num = c.pro_num WHERE (@ROWNUM:=0)=0 AND c.pro_img_state=1 AND b.pro_name LIKE CONCAT('%',?,'%') ORDER BY b.pro_code)a WHERE rn BETWEEN (?-1)*200+(?-1)*20+1 AND (?-1)*200+?*20
+DEBUG
+
+SELECT a.* FROM (SELECT FORMAT(@ROWNUM := @ROWNUM+1, 0) AS rn ,b.*,c.pro_imagefilename FROM ( SELECT @ROWNUM :=0 ) R, product b JOIN pro_img c ON b.pro_num = c.pro_num WHERE c.pro_img_state=1 ORDER BY b.pro_num)a WHERE rn BETWEEN (1-1)*200+(2-1)*20+1 AND (1-1)*200+2*20;
+
+
+
+SELECT a.* FROM (SELECT FORMAT(@ROWNUM := @ROWNUM+1, 0) AS rn ,b.*,c.pro_imagefilename FROM product b JOIN pro_img c ON b.pro_num = c.pro_num WHERE (@ROWNUM:=0)=0 AND c.pro_img_state=1 ORDER BY b.pro_num)a;

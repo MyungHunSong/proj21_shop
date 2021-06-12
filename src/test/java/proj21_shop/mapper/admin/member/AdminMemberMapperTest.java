@@ -80,7 +80,7 @@ public class AdminMemberMapperTest {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("keyword", "이종");
-		map.put("memberGender", 0);
+		map.put("memberGender", "FEMALE");
 		int res = mapper.selectedMembers(map);
 		Assert.assertNotNull(res);
 		log.debug("검색한 회원 수?" + res);
