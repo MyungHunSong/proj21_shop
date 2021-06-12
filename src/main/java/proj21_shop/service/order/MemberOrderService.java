@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import proj21_shop.dto.cart.CartDTO;
-import proj21_shop.dto.member.MemberDTO;
 
 
 @Service
@@ -14,5 +13,6 @@ public interface MemberOrderService {
 	
 	int insertCart(CartDTO cart);
 	int deleteCart(int cartNum);
+	int deleteCarts(List<Integer> list);
 	int updateCart(CartDTO cart);
 }

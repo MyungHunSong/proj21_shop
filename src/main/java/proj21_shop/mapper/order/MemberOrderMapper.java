@@ -9,6 +9,6 @@ public interface MemberOrderMapper {
 	
 	int insertCart(CartDTO cart);
 	int deleteCart(int cartNum);
-	int deleteCarts(List<Integer> map);
+	int deleteCarts(List<Integer> list);
 	int updateCart(CartDTO cart);
 }

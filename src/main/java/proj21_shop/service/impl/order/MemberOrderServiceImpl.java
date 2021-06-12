@@ -41,4 +41,9 @@ public class MemberOrderServiceImpl implements MemberOrderService {
 		return mapper.updateCart(cart);
 	}
 
+	@Override
+	public int deleteCarts(List<Integer> list) {
+		return mapper.deleteCarts(list);
+	}
+
 }
