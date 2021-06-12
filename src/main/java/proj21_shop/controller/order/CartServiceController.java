@@ -3,6 +3,8 @@ package proj21_shop.controller.order;
 import java.net.URI;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -85,4 +87,24 @@ public class CartServiceController {
 		
 		return ResponseEntity.ok(service.showCartsByMemberId(cart));
 	} 
+	
+	/*선택된 장바구니번호를 검색후 주문페이지로 이동 */
+	@PostMapping("/chooseProductCarts")
+	public ResponseEntity<Object> chooseCartsByCartNums(@RequestBody List<Integer> cartNums,HttpSession session){
+		/*cartNum = "[23,43,25]"*/
+		 List<CartDTO> list = service.chooseCartByMemberId(cartNums);  
+		session.setAttribute("cartNums", cartNums);
+		return ResponseEntity.ok(list);
+	}
+	
+	@GetMapping("/chooseProductCart/{cartNum}")
+	public ResponseEntity<Object> getChooseCarts(@PathVariable int cartNum){
+		
+		CartDTO cart = new CartDTO();
+		cart.setCartNum(cartNum);
+		
+		List<CartDTO> list = service.showCartsByMemberId(cart);
+		
+		return ResponseEntity.ok(list);
+	}
 }
