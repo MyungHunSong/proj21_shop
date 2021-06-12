@@ -17,14 +17,14 @@ import org.springframework.web.bind.annotation.RestController;
 import proj21_shop.dto.cart.CartDTO;
 import proj21_shop.dto.member.MemberDTO;
 import proj21_shop.dto.product.ProductDTO;
-import proj21_shop.service.order.MemberOrderService;
+import proj21_shop.service.order.CartService;
 
 @RestController
 @RequestMapping("/api")
 public class CartServiceController {
  
 	@Autowired
-	private MemberOrderService service;
+	private CartService service;
 	
 	/* 장바구니 */
 	/* 장바구니 목록 */

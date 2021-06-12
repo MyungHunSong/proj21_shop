@@ -4,7 +4,7 @@ import java.util.List;
 
 import proj21_shop.dto.cart.CartDTO;
 
-public interface MemberOrderMapper {
+public interface cartMapper {
 	List<CartDTO> selectCartByMemberId(CartDTO memId);
 	
 	int insertCart(CartDTO cart);

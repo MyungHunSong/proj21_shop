@@ -8,7 +8,7 @@ import proj21_shop.dto.cart.CartDTO;
 
 
 @Service
-public interface MemberOrderService {
+public interface CartService {
 	List<CartDTO> showCartsByMemberId(CartDTO memId);
 	
 	int insertCart(CartDTO cart);
