@@ -33,4 +33,6 @@ public class ProductServiceController {
 		ProductDTO product= service.showProductDetailByProNum(proNum);
 		return ResponseEntity.ok(product);
 	}
+	
+	
 }

@@ -35,7 +35,6 @@ $(function(){
 		if(dataLength >= 1){
 			var sCont = "";
 			for(i = 0; i < dataLength; i++){
-				console.log(json)
 				sCont += "<div class='item'>";
 				sCont += "<td><a href='productDetail?proNum=" + json[i].proNum + "'><img src="+contextPath+"/resources/product/images/"+json[i].proImgfileName+"></a></td>";
 				sCont += "<div class='detail'>"
