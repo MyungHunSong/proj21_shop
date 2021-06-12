@@ -140,10 +140,6 @@ $(function(){
 				}
 			}); 
 			
-			
-			
-			
-		
 			//#delButton을 누르면 체크박스 타입이고 name = remove인 input이 체크 되었는지 확인 후 값을 얻어내서 cartNum에 값을 저장하고 ajax를 이용해 단일삭제
  			$('#delButton').on("click", function(){
  				
@@ -203,29 +199,30 @@ $(function(){
 	 			})	
 	 				
 				var cartNums = {cartNum : [data_arr]};
-	 			console.log(cartNums.cartNum[0])
-	 			/* selectOrderProduct(cartNums) */
+	 			selectOrderProduct(cartNums) 
 				
 			})
 			
 			/* 선택한 버튼으로 검색후 주문페이지로 이동하기 */
 			function selectOrderProduct(cartNums){
 				$.ajax({
-					url: contextPath + "/api/memberProductCarts",
+					url: contextPath + "/api/chooseProductCarts",
 					type: 'post' ,
 					contentType : "application/json; charset=utf-8",
 					datatype : "json",
 					data: JSON.stringify(cartNums.cartNum[0]),
 					success: function(res){
-						/* window.location.href = contextPath+"/order?memId=${authInfo.id }"; */
+						console.log(cartNums.cartNum[0])
+						window.location.href = contextPath+"/order?memId=${authInfo.id }";
 					},
 					error:function(request, status, error){
 						alert("code:"+request.status+"\n"+"message:"
 				                  +request.responseText+"\n"+"error:"+error);
 						/* window.location.href = contextPath+"/cart?memId=${authInfo.id }"; */
-					} 
+					}  
 				});
 			}
+			
 	});
 </script>
 </head>
