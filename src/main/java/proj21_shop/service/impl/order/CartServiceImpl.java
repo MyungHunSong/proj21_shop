@@ -7,14 +7,14 @@ import org.springframework.stereotype.Service;
 
 import proj21_shop.dto.cart.CartDTO;
 import proj21_shop.exception.MemberNotLoginException;
-import proj21_shop.mapper.order.MemberOrderMapper;
-import proj21_shop.service.order.MemberOrderService;
+import proj21_shop.mapper.order.cartMapper;
+import proj21_shop.service.order.CartService;
 
 @Service
-public class MemberOrderServiceImpl implements MemberOrderService {
+public class CartServiceImpl implements CartService {
 
 	@Autowired
-	private MemberOrderMapper mapper;
+	private cartMapper mapper;
 
 	@Override
 	public List<CartDTO> showCartsByMemberId(CartDTO memId) {

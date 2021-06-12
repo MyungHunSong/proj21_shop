@@ -23,7 +23,7 @@ import proj21_shop.config.ContextRoot;
 import proj21_shop.dto.cart.CartDTO;
 import proj21_shop.dto.member.MemberDTO;
 import proj21_shop.dto.product.ProductDTO;
-import proj21_shop.mapper.order.MemberOrderMapper;
+import proj21_shop.mapper.order.cartMapper;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { ContextRoot.class })
@@ -33,7 +33,7 @@ public class MemberOrderMapperTest {
 private static final Log log = LogFactory.getLog(MemberOrderMapperTest.class);
 	
 	@Autowired
-	private MemberOrderMapper mapper;
+	private cartMapper mapper;
 
 	@After
 	public void tearDown() throws Exception {

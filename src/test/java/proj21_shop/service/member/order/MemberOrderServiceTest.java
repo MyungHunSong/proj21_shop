@@ -19,7 +19,7 @@ import proj21_shop.config.ContextRoot;
 import proj21_shop.dto.cart.CartDTO;
 import proj21_shop.dto.member.MemberDTO;
 import proj21_shop.dto.product.ProductDTO;
-import proj21_shop.service.order.MemberOrderService;
+import proj21_shop.service.order.CartService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { ContextRoot.class })
@@ -29,7 +29,7 @@ public class MemberOrderServiceTest {
 	private static final Log log = LogFactory.getLog(MemberOrderServiceTest.class);
 	
 	@Autowired
-	private MemberOrderService service;
+	private CartService service;
 	
 	@After
 	public void tearDown() throws Exception {
