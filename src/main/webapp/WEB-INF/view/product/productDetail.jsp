@@ -85,17 +85,16 @@ function count(type)  {
 					cache : false,
 					success : function(res){
 						if(test.responseJSON.length == 0){
-							alert("없는거라 추가")
 							insertCart();
 						}else if(test.responseJSON.length == 1){
-							alert("있는거라 원래 있던거 수정")
 							var cartNum = test.responseJSON[0].cartNum
 							var cN = test.responseJSON[0].cartProQuantity+parseInt($('#result').text())
 							updateCart(cartNum, cN) 
 						}
 					},
 					error : function(request, status, error){
-						alert("실패")
+						alert("로그인 창으로 이동하겠습니다.")
+						window.location.href = contextPath + "/login"
 					}
 				})
 						
