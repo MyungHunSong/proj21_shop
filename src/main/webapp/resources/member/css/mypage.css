@@ -8,43 +8,33 @@
 	display: inline-block;
 	width: 200px;
 	height: 200px;
-	background: #a47dd6;
-	margin: 5px;
+	margin: 10px;
 }
 
 .box2 {
 	display: inline-block;
 	width: 200px;
 	height: 200px;
-	background: #d673a4;
-	margin: 5px;
+	margin: 10px;
 }
 
 .box3 {
 	display: inline-block;
 	width: 200px;
 	height: 200px;
-	background: #dcb38a;
-	margin: 5px;
+	margin: 10px;
 }
 
 .box4 {
 	display: inline-block;
 	width: 200px;
 	height: 200px;
-	background: #3CB371;
-	margin: 5px;
+	margin: 10px;
 }
 
 .box5 {
 	display: inline-block;
 	width: 200px;
 	height: 200px;
-	background: #73E1E1;
-	margin: 5px;
-}
-
-a {
-	color: white;
-	text-decoration: none;
+	margin: 10px;
 }

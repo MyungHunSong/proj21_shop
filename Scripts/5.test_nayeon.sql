@@ -28,8 +28,11 @@ insert into review
 values (1, 1, '이나연', '옷이 너무 맘에 드네요', 'insert1.jpg', 'insert2.jpg', '2021-5-26', 5);
 
 -- 후기 내역
-select pro_num, re_member, re_content, re_image, re_date
-  from review;
+select r.re_num,p.pro_name, r.re_image, r.re_content, r.re_stars, r.re_date
+  from review r
+  join product p
+	on r.pro_num = p.pro_num
+ where r.re_member = 'test01';
 
 -- 후기 수정
 update review

@@ -79,6 +79,7 @@
 	<h2>회원 정보 수정</h2>
 	<section id="modifyFormArea">
 		<form:form modelAttribute="ModifyRequest">
+		<form:errors/>
 			<table class="type02">
 				<tr>
 					<th scope="row"><label for="confirmQuestion">본인확인질문</label></th>
