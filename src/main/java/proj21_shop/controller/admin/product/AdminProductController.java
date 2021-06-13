@@ -1,18 +1,28 @@
 package proj21_shop.controller.admin.product;
 
+import java.io.File;
+import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.logging.log4j.core.util.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import proj21_shop.dto.member.MemberDTO;
 import proj21_shop.service.admin.product.AdminProductService;
 
 @Controller("adminProductController")
@@ -24,13 +34,13 @@ public class AdminProductController {
 
 	@RequestMapping("listProducts")
 	public ModelAndView addNewProductMain(
-			@RequestParam(value = "total", required = false) String total,
+			@RequestParam(value="total", required=false) String total,
 			@RequestParam(value = "proName", required = false) String keyword,
 			@RequestParam(value = "proStatus", required = false) String proStatus,
 			@RequestParam(value = "proCategory", required = false) String proCategory,
-			@RequestParam(value = "proPrice", required = false) String proPrice,
-			@RequestParam(value = "proSalesRate", required = false) String proSalesRate,
-			@RequestParam(value = "proHits", required = false) String proHits,
+			@RequestParam(value = "orderPrice", required = false) String orderPrice,
+			@RequestParam(value = "orderSalesRate", required = false) String orderSalesRate,
+			@RequestParam(value = "orderHits", required = false) String orderHits,
 			HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session=request.getSession();
 		if(session.getAttribute("side_menu") !=null){
@@ -41,15 +51,14 @@ public class AdminProductController {
 		System.out.println("RequestParam==keyword :"+keyword);
 		System.out.println("RequestParam==proStatus :"+proStatus);
 		System.out.println("RequestParam==proCategory :"+proCategory);
-		System.out.println("RequestParam==proPrice :"+proPrice);
-		System.out.println("RequestParam==proSalesRate :"+proSalesRate);
-		System.out.println("RequestParam==proHits :"+proHits);
+		System.out.println("RequestParam==orderPrice :"+orderPrice);
+		System.out.println("RequestParam==orderSalesRate :"+orderSalesRate);
+		System.out.println("RequestParam==orderHits :"+orderHits);
 		
 		ModelAndView mav = new ModelAndView();
-		
 
-		Map<String,Object> pagingMap=new HashMap(); 
-		Map<String,Object> productsMap=new HashMap(); 
+		Map<String,Object> pagingMap=new HashMap<String, Object>(); 
+		Map<String,Object> productsMap=new HashMap<String, Object>(); 
 		String _section=(String)request.getParameter("section"); 
 		String _pageNum=(String)request.getParameter("pageNum"); 
 		
@@ -59,13 +68,13 @@ public class AdminProductController {
 		
 		pagingMap.put("section", section); 
 		pagingMap.put("pageNum", pageNum); 
-		pagingMap.put("total", total); 
+		pagingMap.put("total", total);
 		pagingMap.put("keyword", keyword); 
 		pagingMap.put("proStatus", proStatus); 
 		pagingMap.put("proCategory", proCategory); 
-		pagingMap.put("proPrice", proPrice); 
-		pagingMap.put("proSalesRate", proSalesRate);
-		pagingMap.put("proHits", proHits); 
+		pagingMap.put("orderPrice", orderPrice); 
+		pagingMap.put("orderSalesRate", orderSalesRate);
+		pagingMap.put("orderHits", orderHits); 
 		
 		productsMap=adminProductService.listProducts(pagingMap);
 		System.out.println("key : " + productsMap.get("productsList"));
@@ -74,18 +83,18 @@ public class AdminProductController {
 		productsMap.put("pageNum", pageNum); 
 		productsMap.put("keyword", keyword); 
 		productsMap.put("proCategory", proCategory); 
-		productsMap.put("proPrice", proPrice); 
-		productsMap.put("proSalesRate", proSalesRate); 
-		productsMap.put("proHits", proHits); 
+		productsMap.put("orderPrice", orderPrice); 
+		productsMap.put("orderSalesRate", orderSalesRate); 
+		productsMap.put("orderHits", orderHits); 
 		productsMap.put("proStatus", proStatus); 
 		
 		System.out.println("productsMap :section="+section );
 		System.out.println("productsMap :pageNum="+pageNum );
 		System.out.println("productsMap :keyword="+keyword );
 		System.out.println("productsMap :proCategory="+proCategory );
-		System.out.println("productsMap :proPrice="+proPrice );
-		System.out.println("productsMap :proSalesRate="+proSalesRate );
-		System.out.println("productsMap :proHits="+proHits );
+		System.out.println("productsMap :orderPrice="+orderPrice );
+		System.out.println("productsMap :orderSalesRate="+orderSalesRate );
+		System.out.println("productsMap :orderHits="+orderHits );
 		System.out.println("productsMap :proStatus="+proStatus );
 		
 		mav.addObject("productsMap",productsMap);
@@ -93,5 +102,7 @@ public class AdminProductController {
 		
 		return mav;
 	}
+	
+	
 
 }

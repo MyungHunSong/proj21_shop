@@ -1,7 +1,8 @@
+DELETE FROM product WHERE pro_num < 10000;
 
 /*제품 사이즈별로*/
 
-INSERT INTO proj21_shop.product
+INSERT IGNORE INTO proj21_shop.product
 	(pro_num, pro_category, pro_name, pro_price, pro_content, pro_salesrate, pro_color, pro_size, pro_quantity)
 values
 	(1111, 1, 'blackT',    5000, '검정색 반팔티 XS사이즈 입니다.'  , 10 , 11, 1, 10),
@@ -162,7 +163,7 @@ values
 	
 /*제품이미지 사이즈별로*/
 
-INSERT INTO proj21_shop.pro_img
+INSERT IGNORE INTO proj21_shop.pro_img
 		(pro_num , pro_imagefilename, pro_img_state)
 values
 		(1111, '1113.jpg',0),
@@ -323,7 +324,7 @@ values
 
 /*제품 목록용*/	
 	
-INSERT INTO proj21_shop.product
+INSERT IGNORE INTO proj21_shop.product
 	(pro_num, pro_category, pro_name, pro_price, pro_content, pro_salesrate, pro_color, pro_size, pro_quantity)
 VALUES
 	(111, 1, 'blackT',    5000, '검정색 반팔티 M사이즈 입니다.'  , 10 , 11,0, 10),
@@ -359,7 +360,7 @@ VALUES
 	(616, 6, '테일러스튜디오(basic) FG 맨투맨',			5000, 'basic 맨투맨 M사이즈 입니다.', 0  , 16, 0, 10);	
 	
 	
-INSERT INTO proj21_shop.pro_img
+INSERT IGNORE INTO proj21_shop.pro_img
 		(pro_num, pro_imagefilename, pro_img_state)
 values
 		(111, '1113.jpg', 1),

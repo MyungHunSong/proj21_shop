@@ -22,11 +22,11 @@
 <c:set var="pageNum"  value="${productsMap.pageNum}"  />
 <c:set var="keyword"  value="${productsMap.keyword}"  />
 <c:set var="proCategory"  value="${productsMap.proCategory}"  />
-<c:set var="proPrice"  value="${productsMap.proPrice}"  />
-<c:set var="proSalesRate"  value="${productsMap.proSalesRate}"  />
-<c:set var="proHits"  value="${productsMap.proHits}"  />
+<c:set var="orderPrice"  value="${productsMap.orderPrice}"  />
+<c:set var="orderSalesRate"  value="${productsMap.orderSalesRate}"  />
+<c:set var="orderHits"  value="${productsMap.orderHits}"  />
 <c:set var="proStatus"  value="${productsMap.proStatus}"  />
-<c:set var="proedTotal"  value="${productsMap.proedTotal}"  />
+<c:set var="orderedTotal"  value="${productsMap.orderedTotal}"  />
 <c:set var="selectedProducts"  value="${productsMap.selectedProducts}"  />
 
 
@@ -43,7 +43,7 @@
 	    <!--Custom JavaScript -->
 	    <script src="${contextPath}/resources/admin/dist/js/custom.min.js"></script>
 	    <!--This page JavaScript -->
-	    <script src="dist/js/pages/dashboards/dashboard1.js"></script>
+	   <%--  <script src="${contextPath}/resources/admin/dist/js/pages/dashboards/dashboard1.js"></script> --%>
 	    <!-- Charts js Files -->
 	    <script src="${contextPath}/resources/admin/assets/libs/flot/excanvas.js"></script>
 	    <script src="${contextPath}/resources/admin/assets/libs/flot/jquery.flot.js"></script>
@@ -61,15 +61,15 @@
 		    var proName=$('#proName').val();
 		    var proStatus=$('input:radio[name=proStatus]:checked').val();
 		    var proCategory=$('#select1').val();
-		    var proPrice=$('#select2').val();
-		    var proSalesRate=$('#select3').val();
-		    var proHits=$('#select4').val();
+		    var orderPrice=$('#select2').val();
+		    var orderSalesRate=$('#select3').val();
+		    var orderHits=$('#select4').val();
 		    
 		
 	
 		         $('#container').load('${contextPath}/admin/product/listProducts' , 
-		        		 { proName : proName, proCategory : proCategory, proPrice :proPrice, 
-		        	  proSalesRate : proSalesRate, proHits : proHits, proStatus : proStatus
+		        		 { proName : proName, proCategory : proCategory, orderPrice :orderPrice, 
+		         	orderSalesRate : orderSalesRate, orderHits : orderHits, proStatus : proStatus
 		        		 });  
 		   });
 	
@@ -204,7 +204,7 @@
 			<tr>
 				<td colspan="2">상품구분&nbsp;&nbsp;</td>
 				<td colspan="5"  class="pleft">
-					<input type="radio" value="all" name="proStatus" checked >전체
+					<input type="radio" value="" name="proStatus" checked >전체
 					<input type="radio" value="newseller" name="proStatus" >신제품
 					<input type="radio" value="bestseller" name="proStatus" >베스트셀러
 					<input type="radio" value="steadyseller" name="proStatus" >스테디셀러
@@ -228,19 +228,19 @@
 			   	 			<option value="악세사리">악세사리</option>
 					</select>
 					
-					<select id="select2" name="proPrice">
+					<select id="select2" name="orderPrice">
 						<option value="">--가격분류 선택--</option>
 						<option value="price_desc">가격 높은순</option>
 						<option value="price_asc">가격 낮은순</option>
 					</select>
 					
-					<select  id="select3"  name="proSalesRate">
+					<select  id="select3"  name="orderSalesRate">
 						<option value="" selected>--판매량분류 선택--</option>	
 						<option value="salesRate_desc">판매량 많은순</option>				
 						<option value="salesRate_asc">판매량 적은순</option>				
 					</select>
 					
-					<select  id="select4" name="proHits">
+					<select  id="select4" name="orderHits">
 						<option value="">--조회수분류 선택--</option>					
 						<option value="hits_desc">조회수 많은순</option>					
 						<option value="hits_asc">조회수 적은순</option>					
@@ -339,7 +339,7 @@
 					<c:if test="${section >1 && page==1 }"> <!--페이지번호가 1일때 pre나오게 하기 -->
 						<a href="${contextPath }/admin/product/listProducts?section=${section-1}&pageNum=${(section-1)*20+1}">%nbsp; pre </a>
 					</c:if>
-					<a href="${contextPath }/admin/product/listProducts?section=${section}&pageNum=${page}">${(section-1)*20+page }</a>
+						<a href="${contextPath }/admin/product/listProducts?section=${section}&pageNum=${page}">${(section-1)*20+page }</a>
 					<c:if test="${page==10} }"><!--페이지수가 10일때 다음으로 next나오게 하기  -->
 						<a href="${contextPath }/admin/product/listProducts?section=${section+1}&pageNum=${section*20+1}">&nbsp; next</a>
 					</c:if>	
@@ -348,7 +348,9 @@
 			
 			<c:when test="${selectedProducts==200 }">
 				<c:forEach var="page" begin="1" end="20" step="1">
-					<a href="#">${page }</a>
+					<a href="#">
+					${page }
+					</a>
 				</c:forEach>
 			</c:when>
 		
@@ -361,21 +363,25 @@
 								&pageNum=${page}
 								&proName=${keyword}
 								&proCategory=${proCategory}
-								&proPrice=${proPrice}
-								&proSalesRate=${proSalesRate}
-								&proHits=${proHits}
-								&proStatus=${proStatus}">${page}</a>
+								&orderPrice=${orderPrice}
+								&orderSalesRate=${orderSalesRate}
+								&orderHits=${orderHits}
+								&proStatus=${proStatus}">
+								${page}
+								</a>
 						</c:when>
 						<c:otherwise>
 							<a class="no-uline" href="${contextPath }/admin/product/listProducts?
-							section=${section}
-							&pageNum=${page}
-							&proName=${keyword}
-							&proCategory=${proCategory}
-							&proPrice=${proPrice}
-							&proSalesRate=${proSalesRate}
-							&proHits=${proHits}
-							&proStatus=${proStatus}">${page }</a>
+								section=${section}
+								&pageNum=${page}
+								&proName=${keyword}
+								&proCategory=${proCategory}
+								&orderPrice=${orderPrice}
+								&orderSalesRate=${orderSalesRate}
+								&orderHits=${orderHits}
+								&proStatus=${proStatus}">
+								${page }
+							</a>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>

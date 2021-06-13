@@ -68,44 +68,44 @@
 		<if test="proCategory !=null and !proCategory.equals('')">
 					   AND b.pro_category=#{proCategory}
 		</if>
-		<if test="proStatus !=null and !proStatus.equals('all') ">
+		<if test="proStatus !=null and !proStatus.equals('') ">
 					   AND b.pro_status=#{proStatus}
 		</if>
 		<if test="keyword !=null and !keyword.equals('')">
 					   AND b.pro_name LIKE CONCAT('%',#{keyword},'%')
 		</if>
 					 ORDER BY
-		<if test="proPrice !=null and !proPrice.equals('')">
+		<if test="orderPrice !=null and !orderPrice.equals('')">
 			<choose>
-				<when test="proPrice.equals('price_desc')">
+				<when test="orderPrice.equals('price_desc')">
 					b.pro_price DESC ,
 				</when>
-				<when test="proPrice.equals('price_asc')">
+				<when test="orderPrice.equals('price_asc')">
 					b.pro_price ASC ,
 				</when>
 			</choose>
 		</if>
-		<if test="proSalesrate !=null and !proSalesrate.equals('')">
+		<if test="orderSalesrate !=null and !orderSalesrate.equals('')">
 			<choose>
-				<when test="proSalesrate.equals('salesRate_desc')">
+				<when test="orderSalesrate.equals('salesRate_desc')">
 					b.pro_salesrate DESC ,
 				</when>
-				<when test="proSalesrate.equals('salesRate_asc')">
+				<when test="orderSalesrate.equals('salesRate_asc')">
 					b.pro_salesrate ASC ,
 				</when>
 			</choose>
 		</if>
-		<if test="proHits !=null and !proHits.equals('')">
+		<if test="orderHits !=null and !orderHits.equals('')">
 			<choose>
-				<when test="proHits.equals('hits_desc')">
+				<when test="orderHits.equals('hits_desc')">
 					b.pro_hits DESC ,
 				</when>
-				<when test="proHits.equals('hits_asc')">
+				<when test="orderHits.equals('hits_asc')">
 					b.pro_hits ASC ,
 				</when>
 			</choose>
 		</if>
-					rn)a
+					b.pro_num)a
 		 WHERE rn
 		 	BETWEEN
 		 	(#{section,jdbcType=NUMERIC}-1)*200+(#{pageNum,jdbcType=NUMERIC}-1)*20+1
@@ -121,7 +121,7 @@
 	    <if test="proCategory !=null and !proCategory.equals('')">
 			AND pro_category=#{proCategory}        
 	    </if>
-	    <if test="proStatus !=null and !proStatus.equals('all') ">
+	    <if test="proStatus !=null and !proStatus.equals('') ">
 			AND pro_status=#{proStatus}        
 	    </if>
 	    <if test="keyword !=null and !keyword.equals('')">
@@ -139,19 +139,19 @@
 		</choose>
 		
 		<choose>
-			<when test="proStatus !=null and !proStatus.equals('all') and keyword !=null and !keyword.equals('')">
+			<when test="proStatus !=null and !proStatus.equals('') and keyword !=null and !keyword.equals('')">
 				and pro_status=#{proStatus}  
 			</when>
 			
-			<when test="proStatus !=null and !proStatus.equals('all') and keyword ==null and keyword.equals('')">
+			<when test="proStatus !=null and !proStatus.equals('') and keyword ==null and keyword.equals('')">
 				where pro_status=#{proStatus}  
 			</when>
 		</choose>
 		<choose>
-			<when test="proCategory !=null and !proCategory.equals('') and keyword !=null and !keyword.equals('') and proStatus !=null and !proStatus.equals('all')">
+			<when test="proCategory !=null and !proCategory.equals('') and keyword !=null and !keyword.equals('') and proStatus !=null and !proStatus.equals('')">
 				and pro_category=#{proCategory}   
 			</when>
-			<when test="proCategory !=null and !proCategory.equals('') and keyword ==null and keyword.equals('') and proStatus ==null and proStatus.equals('all')">
+			<when test="proCategory !=null and !proCategory.equals('') and keyword ==null and keyword.equals('') and proStatus ==null and proStatus.equals('')">
 				where pro_category=#{proCategory}  
 			</when>
 		</choose>
