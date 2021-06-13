@@ -38,6 +38,7 @@ public class AdminProductServiceImpl implements AdminProductService {
 		System.out.printf("service에서 =offProducts:%s\n", offProducts);      
 		System.out.printf("service에서 =outProducts:%s\n", outProducts);      
 		System.out.printf("service에서 =orderedTotal:%s\n", orderedTotal);    
+		System.out.printf("service에서 =selectedProducts:%s\n", selectedProducts);    
 		
 		productsMap.put("productsList", productsList);
 		productsMap.put("totProducts", totProducts);
@@ -47,7 +48,6 @@ public class AdminProductServiceImpl implements AdminProductService {
 		productsMap.put("offProducts", offProducts);
 		productsMap.put("outProducts", outProducts);
 		productsMap.put("orderedTotal", orderedTotal);
-		
 		productsMap.put("selectedProducts", selectedProducts);
 
 		return productsMap;
