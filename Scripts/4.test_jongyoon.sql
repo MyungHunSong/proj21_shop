@@ -276,11 +276,43 @@ SELECT @rownum:=@rownum+1 AS rn ,b.*,c.*
 ;
 
 
-: SELECT a.* FROM (SELECT FORMAT(@ROWNUM := @ROWNUM+1, 0) AS rn ,b.*,c.pro_imagefilename FROM product b JOIN pro_img c ON b.pro_num = c.pro_num WHERE (@ROWNUM:=0)=0 AND c.pro_img_state=1 AND b.pro_name LIKE CONCAT('%',?,'%') ORDER BY b.pro_code)a WHERE rn BETWEEN (?-1)*200+(?-1)*20+1 AND (?-1)*200+?*20
-DEBUG
 
 SELECT a.* FROM (SELECT FORMAT(@ROWNUM := @ROWNUM+1, 0) AS rn ,b.*,c.pro_imagefilename FROM ( SELECT @ROWNUM :=0 ) R, product b JOIN pro_img c ON b.pro_num = c.pro_num WHERE c.pro_img_state=1 ORDER BY b.pro_num)a WHERE rn BETWEEN (1-1)*200+(4-1)*20+1 AND (1-1)*200+4*20;
 
 
+-- 제품 추가
+SELECT pro_num.nextval FROM DUAL;
+SELECT * FROM product;
 
-SELECT a.* FROM (SELECT FORMAT(@ROWNUM := @ROWNUM+1, 0) AS rn ,b.*,c.pro_imagefilename FROM product b JOIN pro_img c ON b.pro_num = c.pro_num WHERE (@ROWNUM:=0)=0 AND c.pro_img_state=1 ORDER BY b.pro_num)a;
+INSERT INTO proj21_shop.product
+	(pro_num, pro_category, pro_name, pro_price, pro_content, pro_salesrate, pro_color, pro_size, pro_quantity)
+VALUES
+	(1119, 1, 'blackT', 5000, '검정색 반팔티 TEST사이즈 입니다.'  , 10 , 11, 9, 10);
+
+insert into product 
+					   (pro_num, pro_category, pro_name, pro_price, pro_content, pro_salesrate, pro_status
+					   , pro_color, pro_size, pro_quantity)
+				values
+					  (1999, 1, 'TestT', 5000, 'TEST색 반팔티 TEST사이즈 입니다.', 10, '세일', 99, 9, 10);
+					 
+DELETE FROM product WHERE pro_num=1999;
+
+DELETE FROM product WHERE pro_num=2999;
+SELECT LAST_INSERT_ID();
+SELECT *from (select max(seq)+1 from tbl_board) NEXT;
+SELECT * FROM pro_img;
+
+INSERT INTO pro_img
+		(pro_num, pro_imagefilename, pro_img_state)
+values
+		(1999, '1999.jpg', 1),
+		(1999, '1999-1.jpg', 0),
+		(1999, '1999-2.jpg', 0);
+insert 
+  into product (pro_num, pro_category, pro_name, pro_price, pro_content
+					, pro_salesrate, pro_status , pro_color, pro_size, pro_quantity)
+values (?, ?, ?, ?, ?, ?, ? , ?, ?, ?);
+DELETE FROM pro_img 
+WHERE pro_num=1999;
+DELETE FROM pro_img 
+WHERE pro_num=2999;

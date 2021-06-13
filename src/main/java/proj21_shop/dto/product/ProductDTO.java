@@ -16,8 +16,8 @@ public class ProductDTO {
 	private String proStatus; // 제품 상태
 	private int proColor;
 	private int proSize;
-	private String proQuantity;
-	private String proSold;
+	private int proQuantity;
+	private int proSold;
 
 	private int proHits;
 	private int reReplyCount;
@@ -25,6 +25,23 @@ public class ProductDTO {
 	private String proImgfileName;
 	private Date proInputDate; // 제품 재 입고(update) 일
  
+	public ProductDTO(int proNum, int proCategory, String proName, int proPrice, String proContent, int proSalesrate, String proStatus,
+			int proColor, int proSize, int proQuantity) {
+		this.proNum = proNum;
+		this.proCategory = proCategory;
+		this.proName = proName;
+		this.proPrice = proPrice;
+		this.proContent = proContent;
+		this.proSalesrate = proSalesrate;
+		this.proStatus = proStatus;
+		this.proColor = proColor;
+		this.proSize = proSize;
+		this.proQuantity = proQuantity;
+	}
+
+	public ProductDTO() {
+	}
+
 	public int getProNum() {
 		return proNum;
 	}
@@ -105,19 +122,19 @@ public class ProductDTO {
 		this.proSize = proSize;
 	}
 
-	public String getProQuantity() {
+	public int getProQuantity() {
 		return proQuantity;
 	}
 
-	public void setProQuantity(String proQuantity) {
+	public void setProQuantity(int proQuantity) {
 		this.proQuantity = proQuantity;
 	}
 
-	public String getProSold() {
+	public int getProSold() {
 		return proSold;
 	}
 
-	public void setProSold(String proSold) {
+	public void setProSold(int proSold) {
 		this.proSold = proSold;
 	}
 
