@@ -4,6 +4,7 @@ import java.util.List;
 
 import proj21_shop.dto.qna.Criteria;
 import proj21_shop.dto.qna.QnaDTO;
+import proj21_shop.dto.qna.SearchCriteria;
 
 public interface QnaMapper {
 	// 전체 검색용
@@ -19,4 +20,8 @@ public interface QnaMapper {
 	List<QnaDTO> listCriteria(Criteria cri);
 	int countArticles(Criteria cri);
 	
+	// 검색창 만들기.
+	List<QnaDTO> listSearch(SearchCriteria searchCriteria);
+	
+	int countSearchedArticles(SearchCriteria searchCriteria);
 }

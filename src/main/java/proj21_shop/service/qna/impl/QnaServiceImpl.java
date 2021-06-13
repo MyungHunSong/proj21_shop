@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import proj21_shop.dto.qna.Criteria;
 import proj21_shop.dto.qna.QnaDTO;
+import proj21_shop.dto.qna.SearchCriteria;
 import proj21_shop.mapper.qna.QnaMapper;
 import proj21_shop.service.qna.QnaService;
 @Service
@@ -51,5 +52,18 @@ public class QnaServiceImpl implements QnaService {
 	public int countArticles(Criteria cri) {
 		
 		return mapper.countArticles(cri);
+	}
+
+	// page 검색어 sql 구문.
+	@Override
+	public List<QnaDTO> listSearch(SearchCriteria searchCriteria) {
+		
+		return mapper.listSearch(searchCriteria);
+	}
+
+	@Override
+	public int countSearchedArticles(SearchCriteria searchCriteria) {
+		
+		return mapper.countSearchedArticles(searchCriteria);
 	}
 }

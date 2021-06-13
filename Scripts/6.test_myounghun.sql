@@ -78,9 +78,10 @@ select q_index,q_title,q_option,q_member,q_content,q_file,q_date,q_hits,q_group,
 		else '공지' 
 	end 'q_op'
 		from qna 
-	where q_index >0
+	where q_index >0 and q_option like concat('%', '제품문의', '%') 
 		order by	q_op desc, q_index desc , q_date desc
-limit 10, 10;	
+limit 1, 10;	
+
 -- 페이징 총 갯수
 select 
 			count(q_index)  
@@ -91,28 +92,29 @@ select
 INSERT INTO qna
 (q_title, q_option, q_member, q_content, q_file)
 values
-('요기요', '제품상담', 'test03', '환불이 안돼여..', '첨부파일'),
-('앗항', '환불', 'test03', '먼데..', '첨부파일'),
-('배고파', '뒤짐?', 'test04', '먼데..', '첨부파일'),
-('앗항', '상태', 'test05', '먼데..', '첨부파일'),
-('앗항', '환불', 'test06', '먼데..', '첨부파일'),
-('앗항', '검거', 'test07', '먼데..', '첨부파일'),
-('앗항', '금액', 'test08', '먼데..', '첨부파일'),
-('앗항', '위문', 'test09', '먼데..', '첨부파일'),
-('앗항', '제품상담', 'test10', 'ㄴㄴㄴㄴ먼데..', '첨부파일'),
-('앗항', '제품건의', 'test11', '먼ㅎㅎㅎ데..', '첨부파일'),
-('앗항', '환불요청', 'test12', '먼ㄷㄱㄷㄱ데..', '첨부파일'),
-('앗항', '제품상담', 'test13', '먼ㄹㄹㄹ데..', '첨부파일'),
-('앗항', '해돌라고', 'test14', '먼데..', '첨부파일'),
-('앗항', '해돌라고', 'test15', '먼데..', '첨부파일'),
-('앗항', '해돌라고', 'test16', '먼데..', '첨부파일'),
+('요기요', '주문결제', 'test03', '환불이 안돼여..', '첨부파일'),
+('앗항', '주문결제', 'test03', '먼데..', '첨부파일'),
+('배고파', '주문결제?', 'test04', '먼데..', '첨부파일'),
+('앗항', '주문결제', 'test05', '먼데..', '첨부파일'),
+('앗항', '기타', 'test06', '먼데..', '첨부파일'),
+('앗항', '기타', 'test07', '먼데..', '첨부파일'),
+('앗항', '기타', 'test08', '먼데..', '첨부파일'),
+('앗항', '기타', 'test09', '먼데..', '첨부파일'),
+('앗항', '회원관련', 'test10', 'ㄴㄴㄴㄴ먼데..', '첨부파일'),
+('앗항', '회원관련', 'test11', '먼ㅎㅎㅎ데..', '첨부파일'),
+('앗항', '포인트 º 적립금', 'test12', '먼ㄷㄱㄷㄱ데..', '첨부파일'),
+('앗항', '포인트 º 적립금', 'test13', '먼ㄹㄹㄹ데..', '첨부파일'),
+('앗항', '포인트 º 적립금', 'test14', '먼데..', '첨부파일'),
+('앗항', '환불문의', 'test15', '먼데..', '첨부파일'),
+('앗항', '환불문의', 'test16', '먼데..', '첨부파일'),
 ('반품관련공지', '공지', 'admin', '배송이 출발하면 반품이 안됩니다.', '첨부파일'),	
 ('환불관련공지', '공지', 'admin', '전화하세욧 환불 하시려믄.', '첨부파일');	
 
+INSERT INTO qna
+(q_title, q_option, q_member, q_content, q_file)
+values
+('요기요', '제품문의', 'test04', '환불이 안돼여..', '첨부파일');
 
-		
-
-		
 
 -- 2-3. 검색하고(클릭) 삭제[회원 전용].
 select q_index, q_member, q_title, q_date, q_hits, q_option 
@@ -138,8 +140,61 @@ update qna
 set q_hits = q_hits + 1
 where q_index = 1;
 
+/*
+ * 공지는 볼순 있는데 작성은 관리자만.
+ 검색어 넣기.
+ '제품문의'
+'환불문의'
+'포인트 º 적립금'
+'회원관련'
+'기타'
+'주문결제'*/
+select * from qna;
+select q_index,q_title,q_option,q_member,q_content,q_file,q_date,q_hits,q_group,q_indent,q_step
+	from qna
+	where q_option = '환불문의'
+	order by	q_index desc , q_date desc
+limit 0, 10;
 
-/*3. 답글 작성시 보이는*/
+
+
+
+
+
+
+-- => 요5가지가. 회원관련 문의다.
+-- 즉 저6가지 이외에는 콤보 박스에 들어가면 안된다. ㅇㅋ?*/
+/*3. 회원이 할수 있는 추가, 수정, 삭제*/
+select * from qna
+where q_option='제품문의' and q_option != '공지사항';
+
+select * from qna;
+
+
+
+-- 인서트 q_index 랑 q_group 같아야 답글을 달떄 q_group으로 판단 할수 있다.
+select * from qna;
+
+insert into qna(q_member, q_option, q_title, q_content, q_date, q_hits, q_file,q_group)
+values
+('송명훈', '환불문의', '시바 이게멉니까?','실밥이 무슨 지렁이마냥 기어나와 있는데... ', now(), 0, 'text.jpg',q_index = q_group);
+
+-- 답글 
+insert into qna(q_member, q_option, q_title, q_content, q_date , q_group)
+values('김태환', '머래노 병신이', '한심한 종자야', q_group = )
+
+-- 수정.
+update qna 
+	set q_title='이건또 뭡니까?', q_content = '실밥만 터진게 아니네 ㅅㅂ..', q_file= 'text1.jpg', q_date = now() 
+	where q_index = 88;
+
+-- 삭제.
+delete 
+from qna
+where q_index = 88 and q_member = '송명훈';
+
+
+/*4. 답글 작성시 보이는*/
 -- 답글은 관리자가 달수있다.
 -- (관리자)세션 권한이 있으면 ok, (회원)없다면 답글 작성이 안보이도록
 -- 3-1. 관리자용 답글 
