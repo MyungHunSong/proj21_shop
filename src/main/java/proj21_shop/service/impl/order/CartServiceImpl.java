@@ -3,18 +3,19 @@ package proj21_shop.service.impl.order;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Service;
 
 import proj21_shop.dto.cart.CartDTO;
 import proj21_shop.exception.MemberNotLoginException;
-import proj21_shop.mapper.order.MemberOrderMapper;
-import proj21_shop.service.order.MemberOrderService;
+import proj21_shop.mapper.order.CartMapper;
+import proj21_shop.service.order.CartService;
 
 @Service
-public class MemberOrderServiceImpl implements MemberOrderService {
+public class CartServiceImpl implements CartService {
 
 	@Autowired
-	private MemberOrderMapper mapper;
+	private CartMapper mapper;
 
 	@Override
 	public List<CartDTO> showCartsByMemberId(CartDTO memId) {
@@ -39,6 +40,16 @@ public class MemberOrderServiceImpl implements MemberOrderService {
 	@Override
 	public int updateCart(CartDTO cart) {
 		return mapper.updateCart(cart);
+	}
+
+	@Override
+	public int deleteCarts(List<Integer> list) {
+		return mapper.deleteCarts(list);
+	}
+
+	@Override
+	public List<CartDTO> chooseCartByMemberId(List<Integer> cartNum) {
+		return mapper.chooseCartByMemberId(cartNum);
 	}
 
 }

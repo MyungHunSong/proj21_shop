@@ -13,6 +13,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import proj21_shop.config.ContextRoot;
+
+import proj21_shop.dto.product.ProductDTO;
+
 import proj21_shop.mapper.productlist.ProductListMapperTest;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -33,16 +36,20 @@ public class ProductListServiceTest {
 	@Test
 	public void testShowProducts() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
-		//List<ProductImageDTO> list = service.showProducts(1,1);
-		//Assert.assertNotNull(list);
+
+		List<ProductDTO> list = service.showProducts(1,1);
+		Assert.assertNotNull(list);
+
 	}
 	
 	@Test
 	public void testShowProductDetailByProNum() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName()+"()");
-		//ProductImageDTO product = service.showProductDetailByProNum(1113);
-		//Assert.assertNotNull(product);
-		//System.out.println(product);
+
+		ProductDTO product = service.showProductDetailByProNum(1113);
+		Assert.assertNotNull(product);
+		System.out.println(product);
+
 	}
 
 }

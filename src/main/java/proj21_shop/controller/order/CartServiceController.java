@@ -3,6 +3,8 @@ package proj21_shop.controller.order;
 import java.net.URI;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,18 +18,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import proj21_shop.dto.cart.CartDTO;
 import proj21_shop.dto.member.MemberDTO;
-import proj21_shop.mapper.order.MemberOrderMapper;
-import proj21_shop.service.order.MemberOrderService;
+import proj21_shop.dto.product.ProductDTO;
+import proj21_shop.service.order.CartService;
 
 @RestController
 @RequestMapping("/api")
-public class OrderServiceController {
- 
+public class CartServiceController {
+  
 	@Autowired
-	private MemberOrderService service;
-	
-	@Autowired 
-	private MemberOrderMapper mapper;
+	private CartService service;
 	
 	/* 장바구니 */
 	/* 장바구니 목록 */
@@ -35,9 +34,12 @@ public class OrderServiceController {
 	public ResponseEntity<Object> getCarts(@PathVariable String memId){
 		MemberDTO mem = new MemberDTO();
 		mem.setMemberId(memId);
+		
 		CartDTO cart = new CartDTO();
 		cart.setMemberId(mem);
+		
 		List<CartDTO> list = service.showCartsByMemberId(cart);
+		
 		return ResponseEntity.ok(list);
 	}
 
@@ -51,13 +53,12 @@ public class OrderServiceController {
 	@PostMapping("/memberProductCarts")
 	public ResponseEntity<Object> delCartsByCartNums(@RequestBody List<Integer> cart_num){
 		/*cart_num = "[23,43,25]"*/ 
-		return ResponseEntity.ok(mapper.deleteCarts(cart_num));
+		return ResponseEntity.ok(service.deleteCarts(cart_num));
 	}
 	
 	/* 장바구니 추가 */
 	@PostMapping("/memberProductCart/")
 	public ResponseEntity<Object> insertCart(@RequestBody CartDTO cart){
-		System.out.println(cart);
 		service.insertCart(cart);
 		URI  uri = URI.create("/api/memberProductCart"+cart.getMemberId().getMemberId());
 		return ResponseEntity.created(uri).body(cart.getMemberId().getMemberId());	
@@ -66,12 +67,44 @@ public class OrderServiceController {
 	/* 장바구니 수량 변경 */
 	@PatchMapping("/memberProductCart/{cartNum}")
 	public ResponseEntity<Object> updateCartByProductName(@PathVariable int cartNum, @RequestBody CartDTO cart){
-		if(service.showCartsByMemberId(cart) != null) {
-			return ResponseEntity.ok(service.updateCart(cart));
-		}else {
-			System.out.println("변경 실패");
-			return null;	
-		}
+		return ResponseEntity.ok(service.updateCart(cart));
 	}
 	
+	/* 장바구니 추가 하기전 검색 CartDTO cart = new CartDTO();를 만들자(매개변수로 받으면 안됌)*/
+	@GetMapping("/selectCartByIdAndProNum/{memberId}/{proNum}")
+	public ResponseEntity<Object> selectProductByMemberIdAndProNum(@PathVariable String memberId, @PathVariable int proNum){
+		
+		MemberDTO member = new MemberDTO();
+		member.setMemberId(memberId);
+		
+		ProductDTO product = new ProductDTO();
+		product.setProNum(proNum);
+		
+		CartDTO cart = new CartDTO();
+		
+		cart.setMemberId(member);
+		cart.setCartProNum(product);
+		
+		return ResponseEntity.ok(service.showCartsByMemberId(cart));
+	} 
+	
+	/*선택된 장바구니번호를 검색후 주문페이지로 이동 */
+	@PostMapping("/chooseProductCarts")
+	public ResponseEntity<Object> chooseCartsByCartNums(@RequestBody List<Integer> cartNums,HttpSession session){
+		/*cartNum = "[23,43,25]"*/
+		 List<CartDTO> list = service.chooseCartByMemberId(cartNums);  
+		session.setAttribute("cartNums", cartNums);
+		return ResponseEntity.ok(list);
+	}
+	
+	@GetMapping("/chooseProductCart/{cartNum}")
+	public ResponseEntity<Object> getChooseCarts(@PathVariable int cartNum){
+		
+		CartDTO cart = new CartDTO();
+		cart.setCartNum(cartNum);
+		
+		List<CartDTO> list = service.showCartsByMemberId(cart);
+		
+		return ResponseEntity.ok(list);
+	}
 }

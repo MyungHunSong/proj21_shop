@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="proj21_shop.mapper.order.MemberOrderMapper">
+<mapper namespace="proj21_shop.mapper.order.CartMapper">
 
 <resultMap type="CartDTO" id="ResCart">
 		<id property="cartNum" column="cart_num"/>
@@ -19,7 +19,7 @@
  		  from cart c join productall p on c.cart_pro_num = p.pro_num 
 	</sql>
 
-	<sql id="whreeSQL">
+	<sql id="whereSQL">
 		<where>
 			<if test="cartNum != 0">
 				and cart_num = #{cartNum}
@@ -35,9 +35,21 @@
 	
 	<select id="selectCartByMemberId" resultMap="ResCart">
 		<include refid="selectSQL"></include>
-        <include refid="whreeSQL"></include>
+        <include refid="whereSQL"></include>
+	</select>
+	
+	<select id="chooseCartByMemberId" resultMap="ResCart">
+		<include refid="selectSQL"></include>
+		<where>
+			cart_num in
+				<foreach  collection="list" item = "cartNum" index = "index" open = "(" close = ")" separator=",">
+					#{cartNum}
+				</foreach>
+		</where>
 	</select>
 		
+	
+	
  	<insert id="insertCart">
 		INSERT INTO cart
 			(cart_member_Id, cart_pro_num, cart_pro_quantity)
@@ -59,7 +71,7 @@
 				<foreach  collection="list" item = "cartNum" index = "index" open = "(" close = ")" separator=",">
 					#{cartNum}
 				</foreach>
-			</where>
+		</where>
 	</delete>
 	
 	<update id="updateCart">

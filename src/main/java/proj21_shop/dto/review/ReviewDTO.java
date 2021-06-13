@@ -2,7 +2,10 @@ package proj21_shop.dto.review;
 
 import java.sql.Date;
 
+import proj21_shop.dto.product.ProductDTO;
+
 public class ReviewDTO {
+	private ProductDTO proName;
 
 	private int reviewNum;
 	private int proNum;
@@ -16,6 +19,14 @@ public class ReviewDTO {
 
 	private int reviewReplyCount;
 	private int reviewStar;
+
+	public ProductDTO getProName() {
+		return proName;
+	}
+
+	public void setProName(ProductDTO proName) {
+		this.proName = proName;
+	}
 
 	public int getReviewNum() {
 		return reviewNum;

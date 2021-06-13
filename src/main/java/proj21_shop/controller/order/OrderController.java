@@ -14,4 +14,10 @@ public class OrderController {
 		return mav;
 	}
  
+	@GetMapping("/order")
+	public ModelAndView orderProductCart(@RequestParam(value = "memId") String memId) {
+		ModelAndView mav = new ModelAndView("order/memberProductOrder", "memId",memId);
+		return mav;
+	} 
 }
+ 

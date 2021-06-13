@@ -15,6 +15,7 @@
 	<h3>회원탈퇴</h3>
 	<section id="deleteFormArea">
 		<form:form modelAttribute="DeleteRequest">
+		<form:errors/>
 			<table class="type02">
 				<tr>
 					<th scope="row"><label for="passwd">비밀번호</label></th>

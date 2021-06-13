@@ -3,7 +3,7 @@
 <mapper namespace="proj21_shop.mapper.admin.product.AdminProductMapper">
 
  <!-- PRODUCT -->
-	<!-- <resultMap id="adminProductResult" type="ProductDTO">
+	<resultMap id="adminProductResult" type="ProductDTO" >
 	
 		<result property="proNum" column="pro_num" />
 		<result property="proName" column="pro_name" />
@@ -22,11 +22,10 @@
 		<result property="proQuantity" column="pro_quantity" />
 		<result property="proHits" column="pro_hits" />
 		<result property="proSold" column="pro_sold" />
-		
+		 
 	</resultMap>
 	
-	Product_Detail 
-	<resultMap id="productDetailResult" type="productImageDTO">
+ 	 <resultMap id="productImgResult" type="ProductImageDTO">
 	
 		<result property="proImgCode" column="pro_img_code" />
 		<result property="proNum" column="pro_num" />
@@ -34,84 +33,165 @@
 		<result property="proImgState" column="pro_img_state" />
 		
 	</resultMap>
-	총 제품 수
+	
+	
+	
+		
+	<!-- <delete id="deleteCourses" parameterType="map">
+		delete from courses
+		<where>
+		    course_id IN
+		    <foreach item="courseId" collection="courseIds" open="(" close=")" separator=",">
+		            #{courseId}
+		    </foreach>
+		</where>
+	</delete> -->
+	
+	
+	<!-- 제품 추가 -->
+	<insert id="insertNewProduct">
+				insert into product 
+					   (pro_num, pro_category, pro_name, pro_price, pro_content, pro_salesrate, pro_status
+					   , pro_color, pro_size, pro_quantity)
+				values
+					   (#{proNum}, #{proCategory}, #{proName}, #{proPrice}, #{proContent}, #{proSalesrate}, #{proStatus}
+					   , #{proColor}, #{proSize}, #{proQuantity})
+		<!-- 제품 번호를 리턴값으로 받아오기 -->
+		
+	
+	</insert>
+	
+	<!-- 제품 이미지 추가 -->
+	<insert id="insertProductImageFile" parameterType="map">
+		 insert into pro_img (pro_num, pro_imageFileName, pro_img_state)
+		 values
+		<foreach item="item" collection="list" separator=" ," >
+			 (#{item.proNum}, #{item.proImagefilename}, #{item.proImgState})
+		</foreach>
+		
+	</insert>
+	
+	<!-- 총 제품 수 -->
 	<select id="selectTotalProducts" resultType="int" >
 			select count(pro_num) from product	
 	</select>
-	새로나온 제품 기준 30일
+	<!-- 신상품 -->
 	<select id="selectNewProducts" resultType="int" >
-			select count(pro_num) from product	where DATE_ADD(pro_cre_date, INTERVAL 30 DAY)>=NOW();
+			select count(pro_num) from product	where pro_status='신상'
 	</select>
-	판매량이 많은 제품
+	<!-- 판매량이 많은 제품 -->
 	<select id="selectBestProducts" resultType="int" >
-			select count(pro_num) from product	where pro_sold>=10
+			select count(pro_num) from product	where pro_status='최고'
 	</select>
-	세일중인 제품
+	<!-- 세일중인 제품 -->
 	<select id="selectOffProducts" resultType="int" >
-			select count(pro_num) from product	where pro_salesrate>0
+			select count(pro_num) from product	where pro_status='세일'
 	</select>
-	후기수 가 많은 제품
+	<!-- 추천상품 -->
 	<select id="selectSteadyProducts" resultType="int" >
-			select count(pro_num) from product	where re_replyCount>=2
+			select count(pro_num) from product	where pro_status='추천'
 	</select>
-	판매 중지된 상품
+	<!-- 판매 중지된 상품 -->
 	<select id="selectOutProducts" resultType="int" >
 			select count(pro_num) from product	where pro_status='품절'	
 	</select>
-
-	<select id="selectAllProducts" parameterType="java.util.Map" resultMap="adminProductResult">
-		select a.* from (
-		select rownum rn ,b.*, c.pro_imageFileName
-		from product b , product_image c
-		where b.pro_code=c.pro_code and
-		b.pro_code in (select e.pro_code from product_detail e) and
-		c.pro_imagefileType='main_image'
-		<if test="direct_pro_status !=null and !direct_pro_status.equals('')">
-			and b.pro_status=#{direct_pro_status}
+	
+	<!-- 조건 별 제품 리스트 뽑아오기 -->
+	<select id="selectAllProducts" resultMap="adminProductResult">
+		SELECT a.*
+  		  FROM (SELECT @ROWNUM := @ROWNUM+1 AS rn ,b.*,c.pro_imagefilename
+		          FROM ( SELECT @ROWNUM :=0 ) R, product b JOIN pro_img c ON b.pro_num = c.pro_num
+		         WHERE c.pro_img_state=1
+		<if test="proCategory !=null and !proCategory.equals('')">
+					   AND b.pro_category=#{proCategory}
 		</if>
-		<if test="pro_status !=null and !pro_status.equals('all') ">
-			and b.pro_status=#{pro_status}
-		</if>
-		<if test="pro_category !=null and !pro_category.equals('')">
-			and b.pro_category=#{pro_category}
+		<if test="proStatus !=null and !proStatus.equals('') ">
+					   AND b.pro_status=#{proStatus}
 		</if>
 		<if test="keyword !=null and !keyword.equals('')">
-			and pro_name like '%'||#{keyword}||'%'
+					   AND b.pro_name LIKE CONCAT('%',#{keyword},'%')
 		</if>
-		order by
-		<if test="order_price !=null and !order_price.equals('')">
+					 ORDER BY
+		<if test="orderPrice !=null and !orderPrice.equals('')">
 			<choose>
-				<when test="order_price.equals('price_desc')">
+				<when test="orderPrice.equals('price_desc')">
 					b.pro_price DESC ,
 				</when>
-				<when test="order_price.equals('price_asc')">
+				<when test="orderPrice.equals('price_asc')">
 					b.pro_price ASC ,
 				</when>
 			</choose>
 		</if>
-		<if test="order_salesRate !=null and !order_salesRate.equals('')">
+		<if test="orderSalesrate !=null and !orderSalesrate.equals('')">
 			<choose>
-				<when test="order_salesRate.equals('salesRate_desc')">
+				<when test="orderSalesrate.equals('salesRate_desc')">
 					b.pro_salesrate DESC ,
 				</when>
-				<when test="order_salesRate.equals('salesRate_asc')">
+				<when test="orderSalesrate.equals('salesRate_asc')">
 					b.pro_salesrate ASC ,
 				</when>
 			</choose>
 		</if>
-		<if test="order_count !=null and !order_count.equals('')">
+		<if test="orderHits !=null and !orderHits.equals('')">
 			<choose>
-				<when test="order_count.equals('count_desc')">
-					b.pro_count DESC ,
+				<when test="orderHits.equals('hits_desc')">
+					b.pro_hits DESC ,
 				</when>
-				<when test="order_count.equals('count_asc')">
-					b.pro_count ASC ,
+				<when test="orderHits.equals('hits_asc')">
+					b.pro_hits ASC ,
 				</when>
 			</choose>
 		</if>
-		b.pro_code
-		) a where rn between (#{section,jdbcType=NUMERIC}-1)*200+(#{pageNum,jdbcType=NUMERIC}-1)*20+1
-		and
-		(#{section,jdbcType=NUMERIC}-1)*200+#{pageNum,jdbcType=NUMERIC}*20
-	</select> -->
+					b.pro_num)a
+		 WHERE rn
+		 	BETWEEN
+		 	(#{section,jdbcType=NUMERIC}-1)*200+(#{pageNum,jdbcType=NUMERIC}-1)*20+1
+			AND
+		 	(#{section,jdbcType=NUMERIC}-1)*200+#{pageNum,jdbcType=NUMERIC}*20
+	</select>
+	
+	<!-- 검색한 제품 수 -->
+	<select id="selectedTotalProducts" resultType="int" parameterType="map">
+		SELECT count(pro_num)
+		  FROM product
+		 WHERE pro_num >0
+	    <if test="proCategory !=null and !proCategory.equals('')">
+			AND pro_category=#{proCategory}        
+	    </if>
+	    <if test="proStatus !=null and !proStatus.equals('') ">
+			AND pro_status=#{proStatus}        
+	    </if>
+	    <if test="keyword !=null and !keyword.equals('')">
+	        AND pro_name like CONCAT('%',#{keyword},'%')
+	    </if>
+	</select>
+	
+	<!-- 주문한 제품수 -->
+	<select id="selectOrderedTotal" parameterType="map" resultType="int">
+		select count(*) from product  
+		<choose>
+			<when test="keyword !=null and !keyword.equals('')">
+				where pro_name like CONCAT('%',#{keyword},'%')
+			</when>
+		</choose>
+		
+		<choose>
+			<when test="proStatus !=null and !proStatus.equals('') and keyword !=null and !keyword.equals('')">
+				and pro_status=#{proStatus}  
+			</when>
+			
+			<when test="proStatus !=null and !proStatus.equals('') and keyword ==null and keyword.equals('')">
+				where pro_status=#{proStatus}  
+			</when>
+		</choose>
+		<choose>
+			<when test="proCategory !=null and !proCategory.equals('') and keyword !=null and !keyword.equals('') and proStatus !=null and !proStatus.equals('')">
+				and pro_category=#{proCategory}   
+			</when>
+			<when test="proCategory !=null and !proCategory.equals('') and keyword ==null and keyword.equals('') and proStatus ==null and proStatus.equals('')">
+				where pro_category=#{proCategory}  
+			</when>
+		</choose>
+	</select>
+	
 </mapper>

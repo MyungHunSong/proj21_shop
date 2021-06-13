@@ -7,6 +7,13 @@ public class ProductImageDTO {
 	private String proImagefilename;
 	private int proImgState;
 
+
+	public ProductImageDTO(int proNum, String proImagefilename, int proImgState) {
+		this.proNum = proNum;
+		this.proImagefilename = proImagefilename;
+		this.proImgState = proImgState;
+	}
+
 	public int getProNum() {
 		return proNum;
 	}
