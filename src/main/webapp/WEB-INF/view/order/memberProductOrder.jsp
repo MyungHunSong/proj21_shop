@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="form"  uri="http://www.springframework.org/tags/form" %>
 <c:set var="contextPath" value="<%=request.getContextPath()%>" />     
 <!DOCTYPE html>
 <html>
@@ -9,6 +10,8 @@
 <link rel="stylesheet" href="/proj21_shop/resources/main/css/main.css">
 <link rel="stylesheet" href="${contextPath }/resources/order/css/memberOrderProduct.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script type="text/javascript" src="${contextPath }/resources/order/js/memberAddress.js"></script>  
 <script type="text/javascript">
 $(function(){
 	var contextPath = "${contextPath}";
@@ -94,6 +97,11 @@ $(function(){
 	
 	}
 	
+	/* 요청사항 직접입력 클릭시 */
+	$("#div_selectbox").on("click",function(){
+		console.log($(this.val))
+	})
+	
 	
 	
 });
@@ -104,35 +112,75 @@ $(function(){
 <div class="container">
 <jsp:include page="/WEB-INF/view/include/header.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/view/include/topbody.jsp"></jsp:include>
-	<h2 class="order_menu_title">현재 주문 상품 내역</h2>
-	<form name="orderform" id="orderform" method="post" class="orderform" action="/Page" onsubmit="return false;">
-            <input type="hidden" name="cmd" value="order">
+<h1 class="order_menu_title ">현재 주문 상품 내역</h1>
+<form name="orderform" id="orderform" method="post" class="orderform" action="/Page" onsubmit="return false;">
             <div class="basketdiv" id="basket">
                 <div class="row head">
-                    <div class="subdiv">
-                        <div class="check"></div>
-                        <div class="img">이미지</div>
-                        <div class="pname">상품명(사이즈)</div>
-                    </div>
-                    <div class="subdiv">
-                        <div class="basketprice">적립금</div>
-                        <div class="num">수량</div>
-                        <div class="sum">가격</div>
-                    </div>
-                    <div class="subdiv">
-                    </div>
-                    <div class="split"></div>
-               </div>
-        	<div class="load_row_data">
-            </div>
+	                    <div class="subdiv">
+	                        <div class="check"></div>
+	                        <div class="img">이미지</div>
+	                        <div class="pname">상품명(사이즈)</div>
+	                    </div>
+	                    <div class="subdiv">
+	                        <div class="basketprice">적립금</div>
+	                        <div class="num">수량</div>
+	                        <div class="sum">가격</div>
+	                    </div>
+               	 </div>
+               	 <div></div>
+        		<div class="load_row_data"></div>
     		</div>
-            <div class="right-align basketrowcmd">
-            </div>
-    	<h2 class="order_menu_title">주문자 정보</h2>
-
-    	<h2 class="order_menu_title">배송 정보</h2>
+    		
+		<!-- 구매자 정보 -->    
+    	<div class="order_member_info">
+    		<h1 class="order_menu_title order_menu_title_margin order_mem">구매자 정보</h1>
+					<p>
+						<input type="text" placeholder="이름">
+					</p>
+					<p>
+						<input type="text" placeholder="전화번호">
+						- <input type="text">
+						- <input type="text">
+					</p>
+					<p>
+						<input type="email" placeholder="이메일">
+					</p>
+					
+		
     	
-    	<h2 class="order_menu_title">결제 정보</h2>
+    	<!-- 수령자 정보 -->
+    		<h1 class="order_menu_title order_menu_title_margin">수령자 정보</h1>
+    		<p>
+				<input type="text" placeholder="수령인">
+			</p>
+			<p>
+				<input type="text" placeholder="전화번호">
+				- <input type="text">
+				- <input type="text">
+			</p>
+			<p>
+				<select name="div_selectbox" id = 'div_selectbox'>
+					<option value="">배송 시 요청사항을 선택해주세요</option>
+					<option value="부재 시 경비실에 맡겨 주세요">부재 시 경비실에 맡겨 주세요</option>
+					<option value="부재 시 택배함에 넣어주세요">부재 시 택배함에 넣어주세요</option>
+					<option value="부재 시 집앞에 놔주세요">부재 시 집앞에 놔주세요</option>
+					<option value="배송전 연락 바랍니다">배송전 연락 바랍니다</option>			
+					<option value="파손의 위험이 있는 물건입니다. 배송 시 주위해주세요">파손의 위험이 있는 물건입니다. 배송 시 주위해주세요</option>			
+					<option value="etc">직접 입력</option>
+				</select>
+					<br>
+					<textarea id="etc_textarea" name="etc_textarea"  placeholder="최대 50자까지 입력 가능합니다."></textarea>
+			</p>
+    		<input type="text" id="sample4_postcode" placeholder="우편번호"/> 
+			<input type="button" onclick="sample4_execDaumPostcode()"value="우편번호 찾기"> <br> 
+			<input type="text" id="sample4_roadAddress" placeholder="도로명주소"/>
+			<input type="hidden" id="sample4_jibunAddress" placeholder="지번주소">
+			<span id="guide" style="color: #999; display: none"></span> 
+			<input type="text" id="sample4_detailAddress" placeholder="상세주소"/> 
+			<input type="text" id="sample4_extraAddress" placeholder="참고항목">
+		</div>
+		<!-- 결제정보 -->
+    	<h1 class="order_menu_title order_menu_title_margin">결제 정보</h1>
             
             <div class="bigtext right-align sumcount" class="sum_p_num">상품개수: 0개</div>
     
@@ -152,7 +200,7 @@ $(function(){
             		</tr>
             	</tbody>
             </table>
-        </form>
+</form> 
         
 <jsp:include page="/WEB-INF/view/include/footer.jsp"></jsp:include>
 </div>
