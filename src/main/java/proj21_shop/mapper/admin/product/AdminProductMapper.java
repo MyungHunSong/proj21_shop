@@ -1,12 +1,14 @@
 package proj21_shop.mapper.admin.product;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import proj21_shop.dto.product.ProductDTO;
+import proj21_shop.dto.product.ProductImageDTO;
 
 public interface AdminProductMapper {
-
+// ==================제품 리스트 불러오기========================
 	//<!-- 총 제품 수 -->
 	int selectTotalProducts();
 	//<!-- 신상품 수 -->
@@ -27,4 +29,8 @@ public interface AdminProductMapper {
 	int selectOrderedTotal(Map<String, Object> pagingMap);
 	
 //	List<ProductDTO> selectAllProductsDetail();
+// ==================제품 추가========================
+	int insertNewProduct(ProductDTO newpro);
+	
+	int insertProductImageFile(Map<String, Object> map);
 }
