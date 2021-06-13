@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="proj21_shop.mapper.review.MyReviewMapper">
+
+	<resultMap type="ReviewDTO" id="resReview">
+		<id property="reviewNum" column="re_num" />
+		<result property="reviewImagefilename1" column="re_image" />
+		<result property="reviewContent" column="re_content" />
+		<result property="reviewStar" column="re_stars" />
+		<result property="reviewDate" column="re_date" />
+		<association property="proName" javaType="ProductDTO"
+			autoMapping="true">
+			<result property="proName" column="pro_name" />
+		</association>
+	</resultMap>
+
+	<select id="selectReviewByMember" resultMap="resReview">
+		select r.re_num,
+		p.pro_name, r.re_image,
+		r.re_content, r.re_stars, r.re_date
+		from review
+		r
+		join product p
+		on
+		r.pro_num = p.pro_num
+		where r.re_member = #{memberId};
+	</select>
+
+</mapper>

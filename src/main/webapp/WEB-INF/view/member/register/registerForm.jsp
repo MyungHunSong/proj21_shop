@@ -81,6 +81,7 @@
 		<h2>회원가입</h2>
 		<section id="registerFormArea">
 			<form:form modelAttribute="RegisterRequest">
+			<form:errors/>
 				<table class="type02">
 					<tr>
 						<th scope="row"><label for="name">이름</label></th>
