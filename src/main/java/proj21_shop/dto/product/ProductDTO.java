@@ -7,10 +7,10 @@ public class ProductDTO {
 	private int proNum;
 	private int proCategory;
 	private String proName;
-	private String proPrice;
+	private int proPrice;
 	private String proContent; // 제품 설명
 
-	private String proSalesrate;
+	private int proSalesrate;
 	private Date proCreDate;
 
 	private String proStatus; // 제품 상태
@@ -49,11 +49,11 @@ public class ProductDTO {
 		this.proName = proName;
 	}
 
-	public String getProPrice() {
+	public int getProPrice() {
 		return proPrice;
 	}
 
-	public void setProPrice(String proPrice) {
+	public void setProPrice(int proPrice) {
 		this.proPrice = proPrice;
 	}
 
@@ -65,11 +65,11 @@ public class ProductDTO {
 		this.proContent = proContent;
 	}
 
-	public String getProSalesrate() {
+	public int getProSalesrate() {
 		return proSalesrate;
 	}
 
-	public void setProSalesrate(String proSalesrate) {
+	public void setProSalesrate(int proSalesrate) {
 		this.proSalesrate = proSalesrate;
 	}
 

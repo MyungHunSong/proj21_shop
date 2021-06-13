@@ -223,7 +223,97 @@
 	color : #757575;
 }
 
-.etc_textarea{
-	
+#etc_textarea{
+	display: none;
+	width:	394px;
+	height: 50px;
 }
+
+#etc_textarea.active{
+	display: block;
+}
+
+#payment_information{
+	width: 100%;
+}
+/* 결제정보 */
+#payment_information .payment_information_p_price{
+	width: 20%;
+	font-size: 30px;
+}
+
+#payment_information .payment_information_p_orderprice{
+	width: 40%;
+	font-size: 30px;
+}
+
+/* 결제정보 숫자부분 */
+
+
+#payment_information .payment_information_sign{
+	width: 20%;
+	font-size: 50px;
+}
+
+#payment_information .sum_p_price{
+	width: 20%;
+	font-size: 25px;
+}
+
+#payment_information .sum_p_sale{
+	width: 20%;
+	font-size: 25px;
+	color: orange;
+}
+
+#payment_information .sum_p_orderprice{
+	width: 40%;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.payInfo{
+	text-align: left;
+}
+
+.payInfo p{
+	font-size: 20px;
+}
+
+.check_point{
+	margin-left: 60px;
+}
+
+.use_point{
+	border : none;
+	font-size: 20px;
+	text-align: right;
+	width: 100px;
+	border: 1px solid #ccc;
+}
+
+/* 주문하기 취소하기 버튼 */
+.order_btns_group{
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+}
+
+.order_btns{
+	border: 1px solid #ccc;
+	width: 200px;
+	margin-top: 100px;
+	padding : 10px;
+	font-size: 30px;
+	cursor: pointer;
+	background: black;
+	color: white;
+}
+
+.order_btns:hover{
+	border: 1px solid #ccc;
+	background: white;
+	color: black;
+}
+
 

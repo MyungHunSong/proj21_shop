@@ -103,3 +103,10 @@ WHERE cart_num in (182,187);
 select cart_num, c.cart_member_id, c.cart_pro_num, cart_pro_quantity, p.pro_imagefilename, p.pro_name, p.pro_price,p.pro_size, p.pro_salesrate 
   from cart c join productall p on c.cart_pro_num = p.pro_num 
 where cart_num = 212;		  
+
+/*제품주문*/
+select * from member;
+/*회원포인트 부여*/
+update `member` 
+       set  m_point = 2000, m_total_buy = m_total_buy + 주문금액, m_total_order = m_total_buy + 1
+ where  m_id = 'test01' ;    
