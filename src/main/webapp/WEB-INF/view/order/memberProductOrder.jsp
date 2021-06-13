@@ -18,11 +18,14 @@ $(function(){
 	var memId =  "${memId}";
 	var cartNums = ${cartNums};
 	
+	var total_member_point = ${authInfo.mPoint};
+	var total_member_point_fmt = total_member_point.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"P";
+	
 	/* 원래 판매 금액 */
-	var sumPrice = 0;
+	var sum_price = 0;
 	
 	/* 결제 예정 금액 */
-	var sumOrderPrice = 0;
+	var sum_order_price = 0;
 	
 	/* 결제 상품 개수 */
 	var sumNum = 0;
@@ -80,18 +83,21 @@ $(function(){
 										sCont +=		"</div>"
 										sCont +="</div> "
 										
-										sumOrderPrice += (((100-json[i].cartProNum.proSalesrate)*json[i].cartProNum.proPrice*json[i].cartProQuantity)/100);
+										sum_order_price += (((100-json[i].cartProNum.proSalesrate)*json[i].cartProNum.proPrice*json[i].cartProQuantity)/100);
 										sumNum += json[i].cartProQuantity;
 										sumSale += (((json[i].cartProNum.proSalesrate)*json[i].cartProNum.proPrice*json[i].cartProQuantity)/100);
-										sumPrice	+= json[i].cartProNum.proPrice*json[i].cartProQuantity
+										sum_price	+= json[i].cartProNum.proPrice*json[i].cartProQuantity
 							}
 								$(".load_row_data").append(sCont);
 								
 					}
 					$('.sum_p_num').text("상품개수 : "+sumNum+"개")
-					$('.sum_p_orderprice').text((sumOrderPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"원"))
+					$('.sum_p_orderprice').text((sum_order_price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"원"))
 					$('.sum_p_sale').text((sumSale.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"원"))
-					$('.sum_p_price').text((sumPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"원"))
+					$('.sum_p_price').text((sum_price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"원"))
+					
+					$('.actual_order_price').val(sum_order_price)
+					$('.sum_price').val(sum_price)
 		})
 		/* 계산하기 */
 	
@@ -99,12 +105,66 @@ $(function(){
 	
 	/* 요청사항 직접입력 클릭시 */
 	$("#div_selectbox").on("click",function(){
-		console.log($(this.val))
+		var test = $(this).val()
+		if(test == "etc"){
+			$("#etc_textarea").addClass('active')
+		}else{
+			$("#etc_textarea").removeClass('active')
+		}
 	})
 	
+	/* 회원 포인트 */
+	$('#member_point').text(total_member_point_fmt)
 	
 	
-});
+	/* 회원 포인트 사용 */
+	$("input:checkbox[name='check_point']").on("click",function(){
+		var actual_price = sum_order_price
+		var actual_price_fmt = sum_order_price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+		var actual_price_fmt_one = sum_order_price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"원"
+		var price = sum_price - actual_price 
+		var price_fmt = (sum_price - actual_price).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"원" 
+		
+		
+		var after_total_member_point = total_member_point - actual_price
+		var after_total_member_point_fmt = after_total_member_point.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"P"
+		
+		
+		if($("input:checkbox[name='check_point']").is(":checked") == true) {
+			/* 실제 내야할 금액이 포인트 보다 크다면 전체 사용시 부족한 모든 포인트 사용*/
+			if($('.actual_order_price').val() > ${authInfo.mPoint}){
+				$('.use_point').val((${authInfo.mPoint}).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","))	
+			}
+			/* 실제 내야할 금액이 포인트 보다 작다면 전체 사용시 지불해야할 금액만큼 포인트 사용*/
+			else if($('.actual_order_price').val() <= ${authInfo.mPoint}){
+				$('.use_point').val(actual_price_fmt)
+				$('.sum_p_sale').text($('.sum_p_price').text())
+				$('.sum_p_orderprice').text("0원")
+				$('#member_point').text(after_total_member_point_fmt)
+			}
+			
+		}else{
+			
+			$('.use_point').val(0)
+			$('.sum_p_sale').text(price_fmt)
+			$('.sum_p_orderprice').text(actual_price_fmt_one)
+			
+			/* 포인트 계산 */
+			$('#member_point').text(total_member_point_fmt)
+		}
+		
+		 
+	})
+		
+	/* 회원정보 set하기 버튼*/
+	$("input:radio[name = 'set_member_order_info']").on("click",function(){
+		if($("input:radio[name = 'set_member_order_info']").is(":checked") == true){
+			console.log(222)
+		}
+	})
+	
+})
+
 </script>
 <title>상품 구매 페이지</title>
 </head>
@@ -134,6 +194,8 @@ $(function(){
 		<!-- 구매자 정보 -->    
     	<div class="order_member_info">
     		<h1 class="order_menu_title order_menu_title_margin order_mem">구매자 정보</h1>
+			  <input type="radio" name = "set_member_order_info" /><span style="font-size: 15px; color: black;">기존 회원 정보로 주문</span>&nbsp;&nbsp; 
+			  <input type="radio" name = "set_member_order_info"/> <span style="font-size: 15px; color: black;">신규 정보로 주문</span>
 					<p>
 						<input type="text" placeholder="이름">
 					</p>
@@ -169,7 +231,7 @@ $(function(){
 					<option value="etc">직접 입력</option>
 				</select>
 					<br>
-					<textarea id="etc_textarea" name="etc_textarea"  placeholder="최대 50자까지 입력 가능합니다."></textarea>
+					<textarea id="etc_textarea" name="etc_textarea" placeholder="최대 30자까지 입력 가능합니다."></textarea>
 			</p>
     		<input type="text" id="sample4_postcode" placeholder="우편번호"/> 
 			<input type="button" onclick="sample4_execDaumPostcode()"value="우편번호 찾기"> <br> 
@@ -179,27 +241,47 @@ $(function(){
 			<input type="text" id="sample4_detailAddress" placeholder="상세주소"/> 
 			<input type="text" id="sample4_extraAddress" placeholder="참고항목">
 		</div>
+		
 		<!-- 결제정보 -->
     	<h1 class="order_menu_title order_menu_title_margin">결제 정보</h1>
-            
-            <div class="bigtext right-align sumcount" class="sum_p_num">상품개수: 0개</div>
-    
-            <table>
+            <table id="payment_information">
             	<thead>
             		<tr>
-            			<td>상품금액</td>
-            			<td>할인금액</td>
-            			<td>결제예정금액</td>
+            			<td class="payment_information_p_price">상품금액</td>
+            			<td class="payment_information_sign"></td>
+            			<td class="payment_information_p_price">할인금액</td>
+            			<td>
+            				<input class = "actual_order_price" type="hidden" value='sum_order_price'>
+            			</td>
+            			<td class="payment_information_p_orderprice">결제예정금액</td>
             		</tr>
             	</thead>
             	<tbody>
             		<tr>
-            			<td class="sum_p_price" ></td>
+            			<td class="sum_p_price" >
+            				<input class = "sum_price" type="hidden" value='sum_price'>
+            			</td>
+            			<td class="payment_information_sign">-</td>
             			<td class="sum_p_sale"></td>
+            			<td class="payment_information_sign">=</td>
             			<td class="sum_p_orderprice"></td>
             		</tr>
             	</tbody>
             </table>
+            <div class="payInfo">
+	            <p>적립금 사용 : 
+	            	<input type="text" class="use_point" value="0"> P<input type="checkbox" name="check_point" class="check_point" >
+	            	<span>모두사용</span>
+	            	<span style="font-size: 14px; color: #444444;">  사용가능한 포인트 : </span> 
+	            	<span id="member_point" style="font-size: 14px; color: #444444;"></span>
+	            </p>
+	            <p>결제 방법 </p>
+	            <p>무통장 입금 : <span>국민은행 계좌번호  940***-**-******  예금주 : ***</span></p>
+            </div>
+            <div class="order_btns_group">
+            <input class = 'order_btns' type="submit" value="주문하기">
+            <input class = 'order_btns' type="submit" value="취소하기">
+            </div>
 </form> 
         
 <jsp:include page="/WEB-INF/view/include/footer.jsp"></jsp:include>
