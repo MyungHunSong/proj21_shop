@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import proj21_shop.dto.qna.Criteria;
 import proj21_shop.dto.qna.QnaDTO;
+import proj21_shop.dto.qna.SearchCriteria;
 
 @Service
 public interface QnaService {
@@ -19,4 +20,8 @@ public interface QnaService {
 	// 페이징에 필요한것.
 	List<QnaDTO> listCriteria(Criteria cri);
 	int countArticles(Criteria cri);
+	
+	// page검색어 sql 구문.
+	List<QnaDTO> listSearch(SearchCriteria searchCriteria);
+	int countSearchedArticles(SearchCriteria searchCriteria);
 }

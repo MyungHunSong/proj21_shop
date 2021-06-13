@@ -12,7 +12,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <meta charset="UTF-8">
 <title>QNA페이지</title>
-<link rel="stylesheet" href="/proj21_shop/resources/qna/css/qna_qna.css"">
+<link rel="stylesheet" href="/proj21_shop/resources/qna/css/qna_qna.css">
 <script type="text/javascript">
 $(function(){
 	var contextPath = "${contextPath}";
@@ -36,6 +36,29 @@ $(function(){
 				}
 				$("#load").append(sCont);
 			}
+			
+		$('#go_other').on
+		("click",
+				function(json){
+				var idx = {
+					"page":{
+						"page":parseInt(${page})
+					}			
+			}
+			$.ajax({
+			 	url:contextPath+"/api/qna/",
+			 	type:"GET",
+			 	contentType:"application/json; charset=utf-8",
+			 	datatype:"json",
+			 	cache:false,
+			 	data:JSON.stringify(idx),
+			 	success:function(res){
+			 		 window.location.href= contextPath + "/listPaging?page=${page}"	
+			 	},
+			});
+			
+		});
+		
 	});
 });
 
@@ -44,6 +67,7 @@ $(function(){
 <body>
 	<!-- Q&A 시작 -->
 		<div id="qna_board">
+			<jsp:include page="/WEB-INF/view/qna/qna_list.jsp"></jsp:include>
 			<table class="qna_table">
 				<tr>
 					<td>번호</td>
@@ -60,21 +84,28 @@ $(function(){
 			<div class="div_pagenation">
 			<ul class="pagination">
 				<c:if test="${pageMaker.prev}">
-					<li><a
-						href="/proj21_shop/listPaging?page=${pageMaker.startPage - 1}">이전</a></li>
+				<!--  	<li><a href="/proj21_shop/listPaging?page=${pageMaker.startPage - 1}">이전</a></li> -->
+						<!-- (uri을 이용한)검색조건 수정. -->
+				<li><a href="/proj21_shop/listPaging${pageMaker.makeSearch(pageMaker.startPage - 1)}">[이전]</a></li> 
 				</c:if>
 
 				<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}"
 					var="idx">
-					<li <c:out value="${pageMaker.cri.page == idx}"/>><a
-						href="/proj21_shop/listPaging?page=${idx}">${idx}</a></li>
+					<li <c:out value="${pageMaker.cri.page == idx}"/>>
+							<%-- <a href="/proj21_shop/listPaging?page=${idx}" id="go_other">${idx}</a></li> --%>
+							<!-- 검색조건 수정. -->
+						<a href="/proj21_shop/listPaging${pageMaker.makeSearch(idx)}" id="go_other">${idx}</a>
 				</c:forEach>
-
+				
 				<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-					<li><a
-						href="/proj21_shop/listPaging?page=${pageMaker.endPage + 1}">다음</a></li>
+					<li>
+							<!-- <a href="/proj21_shop/listPaging?page=${pageMaker.endPage + 1}">[다음]</a> -->
+							<!-- 검색조건 수정. -->
+						<a href="/proj21_shop/listPaging?${pageMaker.makeSearch(pageMaker.endPage+1)}">[다음]</a> 
+					</li>
 				</c:if>
 			</ul>
+			<!-- 로그인 시만 가능하다 로그인 안했다? 그럼 로그인 페이지로. -->
 			</div>
 			<!-- 페이징 끝 -->
 		</div>

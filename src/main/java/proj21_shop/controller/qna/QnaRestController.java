@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import proj21_shop.dto.qna.Criteria;
+import proj21_shop.dto.qna.SearchCriteria;
 import proj21_shop.service.qna.QnaService;
 
 @RestController
@@ -23,8 +24,11 @@ public class QnaRestController {
 	@GetMapping("/qna/{page}")
 	public ResponseEntity<Object> qna(@PathVariable int page){
 		System.out.println("listCriteria");
-		Criteria cri = new Criteria();
-		cri.setPage(page);
-		return ResponseEntity.ok(qnaService.listCriteria(cri));
+		
+		SearchCriteria searchCriteria = new SearchCriteria();
+		searchCriteria.setPage(page);
+		
+//		return ResponseEntity.ok(qnaService.listCriteria(searchCriteria)); => 검색어 수정전
+		return ResponseEntity.ok(qnaService.listSearch(searchCriteria));
 	}
 }

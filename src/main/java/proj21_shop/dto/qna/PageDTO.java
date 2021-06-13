@@ -1,5 +1,11 @@
 package proj21_shop.dto.qna;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
+
 public class PageDTO {
 	private Criteria cri;
 	
@@ -55,6 +61,31 @@ public class PageDTO {
 		prev = startPage == 1? false:true;
 		next = endPage * cri.getPerPageNum() >= totalCount ? false:true;
 	}
+	
+	// uri 자동생성 메서드 추가
+	public String makeSearch(int page) {
+		UriComponents uriComponents = UriComponentsBuilder.newInstance()
+		.queryParam("page", page)
+		.queryParam("pagePageNum",cri.getPerPageNum())
+		.queryParam("searchType", ((SearchCriteria) cri).getKeyword())
+		.build();
+		
+		return uriComponents.toUriString();
+	}
+	
+	private String encoding(String keyword) {
+		if(keyword == null || keyword.trim().length() == 0) {
+			return "";
+		}
+		
+		try {
+			return URLEncoder.encode(keyword, "UTF-8");
+		}catch (UnsupportedEncodingException e) {
+			return "";
+		}
+	}
+	// uri 끝
+	
 
 	public int getStartPage() {
 		return startPage;

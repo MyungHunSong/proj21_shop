@@ -28,6 +28,7 @@
 			<li><a href="register">회원가입</a></li>
 
 			<li><a href="mypage">마이페이지</a></li>
+			
 			<li><a href='<c:url value="/listPaging?page=1"/>'>고객센터</a></li>
 
 			
