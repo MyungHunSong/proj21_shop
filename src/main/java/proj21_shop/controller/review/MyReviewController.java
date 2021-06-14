@@ -28,4 +28,9 @@ public class MyReviewController {
 		return ResponseEntity.ok(service.selectQnaByMember(memberId));
 	}
 	
+	@GetMapping("/detailreview/{memberId}")
+	public ResponseEntity<Object> mydetailreview(@PathVariable String memberId){
+		return ResponseEntity.ok(service.selectDetailReviewByMember(memberId));
+	}
+	
 } 

@@ -13,7 +13,7 @@
 			location.href='main';
 		});
 		
-	if($(authInfo).)
+	/* if($(authInfo).) */
 		
 	});
 	

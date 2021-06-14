@@ -13,4 +13,10 @@ public class BoardController {
 		ModelAndView mav = new ModelAndView("board/boardList", "memberId", memberId);
 		return mav;
 	}
+	
+	@GetMapping("/detailreview")
+	public ModelAndView getDetailReview(@RequestParam(value="memberId")String memberId) {
+		ModelAndView mav = new ModelAndView("review/reviewForm", "memberId", memberId);
+		return mav;
+	}
 }

@@ -46,6 +46,18 @@ select r.re_num,p.pro_name, r.re_image, r.re_content, r.re_stars, r.re_date
  where r.re_member = 'test01';
 
 -- 후기 수정
+select * from review;
+select * from product;
+select * from pro_img;
+
+select pi2.pro_imagefilename, p.pro_name, p.pro_color, p.pro_size, r.re_stars, r.re_content 
+  from review r 
+  join product p
+    on r.pro_num = p.pro_num
+  join pro_img pi2
+    on p.pro_num = pi2.pro_num
+ where r.re_member = 'test01';
+    
 update review
    set re_content = '옷에 실밥이 너무 많아요', re_image = 'update1.jpg', re_image2 = 'update2.jpg', re_stars = 4
  where re_num = 1;

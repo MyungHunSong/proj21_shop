@@ -47,4 +47,12 @@ public class MyReviewMapperTest {
 		List<QnaDTO> list = mapper.selectQnaByMember("test01");
 		Assert.assertNotNull(list);
 	}
+	
+	@Test
+	public void test03SelectDetailReviewByMember() {
+		log.debug(Thread.currentThread().getStackTrace()[1].getClassName()+"()");
+		List<ReviewDTO> list = mapper.selectDetailReviewByMember("test01");
+		Assert.assertNotNull(list);
+	}
+	
 }
