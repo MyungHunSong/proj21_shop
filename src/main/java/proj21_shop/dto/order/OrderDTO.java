@@ -31,6 +31,8 @@ public class OrderDTO {
 	private String whichBank;
 	private String acountNum;
 
+	
+	
 	public String getOrderMemberId() {
 		return orderMemberId;
 	}
@@ -191,4 +193,15 @@ public class OrderDTO {
 		this.proName = proName;
 	}
 
+	@Override
+	public String toString() {
+		return String.format(
+				"OrderDTO [orderMemberId=%s, proNum=%s, orderProNum=%s, orderMemberName=%s, orderProQuantity=%s, orderPrice=%s, orderDiscount=%s, receiverName=%s, receiverTel1=%s, receiverTel2=%s, deliveryAddr1=%s, deliveryAddr2=%s, deliveryAddr3=%s, deliveryStatus=%s, requestToDelivery=%s, proName=%s, orderDate=%s, whoPay=%s, whichBank=%s, acountNum=%s]",
+				orderMemberId, proNum, orderProNum, orderMemberName, orderProQuantity, orderPrice, orderDiscount,
+				receiverName, receiverTel1, receiverTel2, deliveryAddr1, deliveryAddr2, deliveryAddr3, deliveryStatus,
+				requestToDelivery, proName, orderDate, whoPay, whichBank, acountNum);
+	}
+
+	
+	
 }
