@@ -245,7 +245,7 @@
 						<option value="hits_desc">조회수 많은순</option>					
 						<option value="hits_asc">조회수 적은순</option>					
 					</select>
-				
+					
 				 </td>
 			</tr>
 			<tr>
