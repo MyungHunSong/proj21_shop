@@ -16,7 +16,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import proj21_shop.config.ContextRoot;
-import proj21_shop.dto.member.MemberDTO;
+import proj21_shop.dto.qna.QnaDTO;
 import proj21_shop.dto.review.ReviewDTO;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {ContextRoot.class})
@@ -35,10 +35,16 @@ public class MyReviewMapperTest {
 	}
 
 	@Test
-	public void testSelectReviewByMember() {
+	public void test01SelectReviewByMember() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getClassName()+"()");
 		List<ReviewDTO> list = mapper.selectReviewByMember("test01");
 		Assert.assertNotNull(list);
 	}
 
+	@Test
+	public void test02SelectQnaByMember() {
+		log.debug(Thread.currentThread().getStackTrace()[1].getClassName()+"()");
+		List<QnaDTO> list = mapper.selectQnaByMember("test01");
+		Assert.assertNotNull(list);
+	}
 }

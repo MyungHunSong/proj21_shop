@@ -1,6 +1,9 @@
 -- nayeon test script
+
 -- 회원가입
 select * from member;
+desc review;
+select * from review;
 desc member;
 
 insert 
@@ -44,11 +47,9 @@ update review
 insert into `order` 
 values ('skdus2421', 1, 1, '이나연', 1, 10000, 100, '이나연', '010-5505-6559', '053-523-6559', '대구광역시 북구 침산남로 19길 8', '202동 1301호', '배송중', '문앞에 나둬주세요', '2021-05-28', '이나연', '농협', 3021058);
 
-select o.or_num, o.receiver_tel1, q.q_file, q.q_title, q.q_member, q.q_date
-  from `order` o 
-  join qna q
-    on o.order_member_name = q.q_member;
-
+select q_index, q_file, q_title, q_member, q_date 
+  from qna 
+ where q_member = 'test01';
 
 -- Q&A 수정(Q&A 입력 후 수정)
 insert into qna(q_pro_num, q_title, q_option, q_member, q_content, q_file, q_date, q_hits, q_group, q_indent, q_step)
