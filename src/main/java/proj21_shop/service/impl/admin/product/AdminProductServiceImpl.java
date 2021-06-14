@@ -55,7 +55,7 @@ public class AdminProductServiceImpl implements AdminProductService {
 
 		return productsMap;
 	}
-// 안녕하세요.
+// 안녕하세요.ㅇㅇ
 	@Override
 	public int addNewProduct(Map newProductMap) {
 		System.out.println("service에서 =newProductMap:"+newProductMap);    
