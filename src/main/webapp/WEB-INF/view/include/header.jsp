@@ -12,7 +12,12 @@
 		$('.headerImg').click(function(){
 			location.href='main';
 		});
+		
+	if($(authInfo).)
+		
 	});
+	
+	
 </script>
 </head>
 <body>
@@ -25,8 +30,15 @@
 			<c:if test="${!empty authInfo }">
 				<li><a href="logout">로그아웃</a></li>
 			</c:if>
-			<li><a href="register">회원가입</a></li>
-
+			
+			<c:if test="${empty authInfo }">
+				<li><a href="register" id="memberShip">회원가입</a></li>
+			</c:if>		
+			
+			<c:if test="${!empty authInfo }">
+				<li><a href="register" id="memberShip" style="display: none">회원가입</a></li>
+			</c:if>		
+			
 			<li><a href="mypage">마이페이지</a></li>
 			
 			<li><a href='<c:url value="/listPaging?page=1"/>'>고객센터</a></li>

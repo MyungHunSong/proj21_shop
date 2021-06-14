@@ -1,10 +1,10 @@
 -- Myoung Hun test script
 /* q_option => 질문유형 1. 환불 요청 -> 파손 ~ 2. 공지사항
- * q_member => m_id =>세션에 잇는 정보를 통해 request처서 가져온다.
- *  q_hits => q_hits = q_hits+1 볼때마다 1식 올라가게 
- *  q_group => 질문번호 와 답글번호 => 질문번호에 대한 답글을 달면 q_group 질문번호의 숫자에 맞게 달림.
- * q_indent => 그 질문에대한 답글수.
- * q_step 말그대로 질문순서.
+  q_member => m_id =>세션에 잇는 정보를 통해 request처서 가져온다.
+  q_hits => q_hits = q_hits+1 볼때마다 1식 올라가게 
+  q_group => 질문번호 와 답글번호 => 질문번호에 대한 답글을 달면 q_group 질문번호의 숫자에 맞게 달림.
+  q_indent => 그 질문에대한 답글수.
+  q_step 말그대로 질문순서.
  */
 
 
@@ -72,48 +72,76 @@ select
 	from qna;
 
 -- 페이징 처리 목록	
+/*
+ * 공지는 볼순 있는데 작성은 관리자만.
+ 검색어 넣기.
+ '제품문의'
+'환불문의'
+'포인트 º 적립금'
+'회원관련'
+'기타'
+'주문결제'*/
+
+alter table qna auto_increment=1;
+set @count = 0;
+update qna set auto_increment q_index  = @count:=@count+1;
+
+
+
 select q_index,q_title,q_option,q_member,q_content,q_file,q_date,q_hits,q_group,q_indent,q_step,
 		case q_option
-	when q_option = '공지' then q_index 
+	when q_option = '공지' then q_index
 		else '공지' 
 	end 'q_op'
 		from qna 
-	where q_index >0 and q_option like concat('%', '제품문의', '%') 
+	where q_index > 0 and q_option = '제품문의' 
 		order by	q_op desc, q_index desc , q_date desc
-limit 1, 10;	
+limit 1, 10;
+
+
+
+delete 
+	from qna
+where q_index < 200;
+
+INSERT INTO qna
+	(q_title, q_option, q_member, q_content, q_file, q_date, q_group)
+values
+('요기요', '주문결제', 'test03', '환불이 안돼여..', '첨부파일', now(), q_group = q_index),
+('요기요', '주문결제', 'test03', '환불이 안돼여..', '첨부파일', now(), q_group = q_index),
+('앗항', '주문결제', 'test03', '잘못된거 같은데요?..', '첨부파일',now(),q_group = q_index),
+('배고파', '주문결제?', 'test04', '돈이왜 500언더 빠져나가죠?..', '첨부파일',now(),q_group = q_index),
+('이게뭐조', '주문결제', 'test05', '먼데..', '첨부파일',now(),q_group = q_index),
+('할말이 없네요', '기타', 'test06', '먼데..', '첨부파일',now(),q_group = q_index),
+('제흐발', '기타', 'test07', '먼데..', '첨부파일',now(),q_group = q_index),
+('무엇이?', '기타', 'test08', '먼데..', '첨부파일',now(),q_group = q_index),
+('앗항', '기타', 'test09', '먼데..', '첨부파일',now(),q_group = q_index),
+('앗항', '기타', 'test20', 'ㅋㅋㅋㅋ어이가 없네..', '첨부파일',now(),q_group = q_index),
+('앗항', '회원관련', 'test10', 'ㄴㄴㄴㄴ먼데..', '첨부파일',now(),q_group = q_index),
+('앗항', '회원관련', 'test11', '먼ㅎㅎㅎ데..', '첨부파일',now(),q_group = q_index),
+('앗항', '포인트 º 적립금', 'test12', '먼ㄷㄱㄷㄱ데..', '첨부파일',now(),q_group = q_index),
+('앗항', '포인트 º 적립금', 'test13', '먼ㄹㄹㄹ데..', '첨부파일',now(),q_group = q_index),
+('앗항', '포인트 º 적립금', 'test14', '먼데..', '첨부파일',now(),q_group = q_index),
+('앗항', '환불문의', 'test15', '먼데..', '첨부파일',now(),q_group = q_index),
+('앗항', '환불문의', 'test16', '먼데..', '첨부파일',now(),q_group = q_index),
+('앗항', '제품문의', 'test11', '오?', '첨부파일', now(),q_group = q_index),
+('앗항', '제품문의', 'test31', '하...시바 일안하냐?', '첨부파일', now(),q_group = q_index),
+('환불관련공지', '공지', 'admin', '전화하세욧 환불 하시려믄.', '첨부파일',now(),0);
+
+-- ('반품관련공지', '공지', 'admin', '배송이 출발하면 반품이 안됩니다.', '첨부파일',now()),	
+	
 
 -- 페이징 총 갯수
 select 
-			count(q_index)  
-		from qna
-		where q_index > 0;
+	count(q_index)  
+	from qna
+where q_index > 0;
 	
 
 INSERT INTO qna
-(q_title, q_option, q_member, q_content, q_file)
+	(q_title, q_option, q_member, q_content, q_file)
 values
-('요기요', '주문결제', 'test03', '환불이 안돼여..', '첨부파일'),
-('앗항', '주문결제', 'test03', '먼데..', '첨부파일'),
-('배고파', '주문결제?', 'test04', '먼데..', '첨부파일'),
-('앗항', '주문결제', 'test05', '먼데..', '첨부파일'),
-('앗항', '기타', 'test06', '먼데..', '첨부파일'),
-('앗항', '기타', 'test07', '먼데..', '첨부파일'),
-('앗항', '기타', 'test08', '먼데..', '첨부파일'),
-('앗항', '기타', 'test09', '먼데..', '첨부파일'),
-('앗항', '회원관련', 'test10', 'ㄴㄴㄴㄴ먼데..', '첨부파일'),
-('앗항', '회원관련', 'test11', '먼ㅎㅎㅎ데..', '첨부파일'),
-('앗항', '포인트 º 적립금', 'test12', '먼ㄷㄱㄷㄱ데..', '첨부파일'),
-('앗항', '포인트 º 적립금', 'test13', '먼ㄹㄹㄹ데..', '첨부파일'),
-('앗항', '포인트 º 적립금', 'test14', '먼데..', '첨부파일'),
-('앗항', '환불문의', 'test15', '먼데..', '첨부파일'),
-('앗항', '환불문의', 'test16', '먼데..', '첨부파일'),
-('반품관련공지', '공지', 'admin', '배송이 출발하면 반품이 안됩니다.', '첨부파일'),	
-('환불관련공지', '공지', 'admin', '전화하세욧 환불 하시려믄.', '첨부파일');	
-
-INSERT INTO qna
-(q_title, q_option, q_member, q_content, q_file)
-values
-('요기요', '제품문의', 'test04', '환불이 안돼여..', '첨부파일');
+	('요기요', '제품문의', 'test04', '환불이 안돼여..', '첨부파일');
 
 
 -- 2-3. 검색하고(클릭) 삭제[회원 전용].
@@ -139,27 +167,6 @@ where q_option != '공지사항' and q_member = 'Johns';
 update qna 
 set q_hits = q_hits + 1
 where q_index = 1;
-
-/*
- * 공지는 볼순 있는데 작성은 관리자만.
- 검색어 넣기.
- '제품문의'
-'환불문의'
-'포인트 º 적립금'
-'회원관련'
-'기타'
-'주문결제'*/
-select * from qna;
-select q_index,q_title,q_option,q_member,q_content,q_file,q_date,q_hits,q_group,q_indent,q_step
-	from qna
-	where q_option = '환불문의'
-	order by	q_index desc , q_date desc
-limit 0, 10;
-
-
-
-
-
 
 
 -- => 요5가지가. 회원관련 문의다.
@@ -208,12 +215,15 @@ delete from qna where q_group = 3;
 -- 3-3. qna 검색창.
 select * from qna where q_option like '%환불%';
 
+select q_index,q_title,q_option,q_member,q_content,q_file,q_date,q_hits,q_group,q_indent,q_step,
+			case q_option
+				when q_option = '공지' then q_index 
+				else '공지' 
+			end 'q_op'
+				from qna 
+					where q_index >0
+				order by	q_op desc, q_date desc
+		limit 0, 10;
 
 
-select  case q_option,  q_member, q_title, q_date, q_hits,
-		when q_option = '공지사항' then q_index
-		else '공지'
-	end '번호' 
-from qna
-order by q_option;
 

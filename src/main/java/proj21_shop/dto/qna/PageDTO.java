@@ -7,7 +7,7 @@ import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
 public class PageDTO {
-	private Criteria cri;
+	private SearchCriteria cri;
 	
 	private int totalCount;
 	private int startPage;
@@ -24,12 +24,12 @@ public class PageDTO {
 		return cri;
 	}
 
-	public PageDTO(Criteria cri, int totalCount) {
+	public PageDTO(SearchCriteria cri, int totalCount) {
 		this.cri = cri;
 		this.totalCount = totalCount;
 	}
 
-	public void setCri(Criteria cri) {
+	public void setCri(SearchCriteria cri) {
 		this.cri = cri;
 	}
 	
@@ -66,8 +66,8 @@ public class PageDTO {
 	public String makeSearch(int page) {
 		UriComponents uriComponents = UriComponentsBuilder.newInstance()
 		.queryParam("page", page)
-		.queryParam("pagePageNum",cri.getPerPageNum())
-		.queryParam("searchType", ((SearchCriteria) cri).getKeyword())
+		.queryParam("pagePageNum", cri.getPerPageNum())
+		.queryParam("searchType", cri.getSearchType())
 		.build();
 		
 		return uriComponents.toUriString();
@@ -84,6 +84,17 @@ public class PageDTO {
 			return "";
 		}
 	}
+	
+	// makeQuery(int page)
+	public String makeQuery(int page) {
+		UriComponents uriComponents = UriComponentsBuilder.newInstance()
+				.queryParam("page", page)
+				.queryParam("perPageNum", cri.getPerPageNum())
+				.build();
+		
+		return uriComponents.toUriString();	
+	}
+	
 	// uri 끝
 	
 

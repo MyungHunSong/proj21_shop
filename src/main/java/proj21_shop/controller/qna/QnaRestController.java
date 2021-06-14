@@ -8,27 +8,47 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import proj21_shop.dto.qna.Criteria;
+import proj21_shop.dto.qna.PageDTO;
 import proj21_shop.dto.qna.SearchCriteria;
 import proj21_shop.service.qna.QnaService;
 
 @RestController
 @RequestMapping("/api")
 public class QnaRestController {
-	// 제이슨 으로 받아오는 페이지
+	
 	@Autowired
 	private QnaService qnaService;
 	 
-	// 제이슨 으로 받아오는 페이지(데이터 넘겨주기)
+
 	// @PathVariable => 경로를 변수화 해주는 어노테이션.
 	// @PathVariable 을 사용하지 않았을 경우 도메인 /no = 1, @pathVariable을 사용할 경우 도메인 /1
 	@GetMapping("/qna/{page}")
-	public ResponseEntity<Object> qna(@PathVariable int page){
-		System.out.println("listCriteria");
-		
+	public ResponseEntity<Object> qna(@PathVariable int page){	
 		SearchCriteria searchCriteria = new SearchCriteria();
-		searchCriteria.setPage(page);
-		
-//		return ResponseEntity.ok(qnaService.listCriteria(searchCriteria)); => 검색어 수정전
+		searchCriteria.setPage(page);	
+
 		return ResponseEntity.ok(qnaService.listSearch(searchCriteria));
 	}
+	
+	@GetMapping("/qna/{page}/{perPageNum}/{searchType}")
+	public ResponseEntity<Object> qna(
+			@PathVariable int page
+			,@PathVariable int perPageNum
+			, @PathVariable String searchType){
+		
+		PageDTO dto = new PageDTO();
+		SearchCriteria sCri = new SearchCriteria();
+		
+		sCri.setPage(page);
+		System.out.println("1.RestController Page => searchCriteria : " + sCri);
+		sCri.setPerPageNum(perPageNum);
+		System.out.println("2.RestController Page => searchCriteria : " + sCri);
+		
+		sCri.setSearchType(searchType);
+		System.out.println("3.RestController Page => searchCriteria : " + sCri);
+		dto.setCri(sCri);
+		System.out.println("4.RestController Page => searchCriteria : " + sCri);
+		return ResponseEntity.ok(qnaService.listSearch(sCri));
+	}
+	
 }

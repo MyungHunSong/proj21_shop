@@ -41,5 +41,8 @@ public class QnaServiceTest {
 		Assert.assertNotNull(list);
 		list.stream().forEach(System.out::println);
 	}
+	
+
+
 
 }

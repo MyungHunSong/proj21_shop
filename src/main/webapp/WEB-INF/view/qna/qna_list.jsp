@@ -1,3 +1,4 @@
+<%@page import="proj21_shop.dto.qna.SearchCriteria"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -12,32 +13,29 @@
 <script>
 $(function(){
 	$("#searchBtn").on("click", function(event){
-		self.location= "/proj21_shop/listPaging${pageMaker.makeSearch(1)}"
-		+"&searchType=" +$("select option:selected").val()
-		+"&keyword=" + encodeURIComponent($("#keywrodInput").val());
+		self.location= "/proj21_shop/listPaging${pageMaker.makeQuery(1)}"
+		+"&searchType=" +$("select option:selected").val(); 
 	}) 
-
+	<%-- ${searchCriteria.searchType eq 'b' ? 'selected' : ' '} --%>
 }); 
 </script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
+
 	<div class="search_qna">
-				<select name="searchType" id = "searchType">
-				<!-- 
-					/*
-					'전체검색' = a
+	<!-- '전체검색' = a
 					'공지' = b
 					'제품문의' = c 
 						'환불문의' = d 
 						'포인트 º 적립금' = e 
 						'회원관련' = f
 						'주문결제' = g
-						'기타' = h
-				-->
+						'기타' = h -->
+				<select name="searchType" id = "searchType">	
 					<option value="a"><c:out value="${searchCriteria.searchType == null ? 'selected' : ' '}"/>==전채검색==</option>
-					<option value="b"><c:out value="${searchCriteria.searchType eq 'b' ? 'selected' : ' '}"/>공지</option>
+					<option value="b"><c:out value="${searchCriteria.searchType == 'b' ? 'selected' : ' '}"/>공지</option>
 					<option value="c"><c:out value="${searchCriteria.searchType eq 'c' ? 'selected' : ' '}"/>제품문의</option>
 					<option value="d"><c:out value="${searchCriteria.searchType eq 'd' ? 'selected' : ' '}"/>환불문의</option>
 					<option value="e"><c:out value="${searchCriteria.searchType eq 'e' ? 'selected' : ' '}"/>포인트 º 적립금</option>
@@ -49,7 +47,7 @@ $(function(){
 				 name="keyword" id="keywordInput"  value = "${searchCriteria.keyword}" placeholder="검색어를 입력해 주세요">
 				<button type="button" id="searchBtn">검색</button>
 				<button type="button" id="insertBtn">글쓰기</button>
-			</div>
+		</div>
 			
 			
 </body>
