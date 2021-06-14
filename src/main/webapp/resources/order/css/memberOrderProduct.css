@@ -236,6 +236,10 @@
 #paymentInformation{
 	width: 100%;
 }
+
+#sample4_roadAddress{
+	width: 300px;
+}
 /* 결제정보 */
 #paymentInformation .paymentInformationPPrice{
 	width: 20%;

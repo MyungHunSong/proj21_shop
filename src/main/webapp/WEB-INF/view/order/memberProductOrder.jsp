@@ -175,14 +175,15 @@ $(function(){
 		var newPrice = parseInt(sumPrice - sumOrderPrice) + parseInt(consumePoint)
 		
 		/* 포인트 추가로 적용된 제품 가격 */
-		var orderPrice = sumOrderPrice - consumePoint
+		var oldOrderPrice = sumOrderPrice
+		var newOrderPrice = sumOrderPrice - consumePoint
 		
 		
 		
 		if(!regexp.test(consumePoint)){
 			$('#memberPoint').text("숫자를 입력해주세요")
 		}else if(consumePoint <= totalMemberPoint){
-			$('.sumPOrderprice').text(orderPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"원")
+			$('.sumPOrderprice').text(newOrderPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"원")
 			$('.sumPSale').text(newPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"원")
 			$('#memberPoint').text(res.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"P")
 			if(consumePoint == ""){
@@ -190,14 +191,61 @@ $(function(){
 			}
 		}else if(consumePoint > totalMemberPoint){
 			$('#memberPoint').text("사용 가능한 포인트를 초과하였습니다.")
+			$('.sumPSale').text(oldPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"원")
+			$('.sumPOrderprice').text(oldOrderPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"원")
 		}
 		
+		if(newOrderPrice < 0){
+			$('#memberPoint').text("모두 사용 버튼을 눌러주세요")
+		}
 	})
+	
 	
 	/* 회원정보 set하기 버튼*/
 	$("input:radio[name = 'setMemberOrderInfo']").on("click",function(){
 		if($("input:radio[name = 'setMemberOrderInfo']").is(":checked") == true){
-			console.log(222)
+			var chooseInfo = $(this).val()
+			if(chooseInfo == "memberInfo"){
+				$.get(contextPath + "/api/existOrderMember/"+memId,
+					function(json){
+					var memberPh = json.memberPh
+					var setPh = memberPh.split("-")
+					$('#memberName').val(json.memberName)
+					$('#memberEmail').val(json.memberEmail)
+					$('#memberTel1').val(setPh[0])
+					$('#memberTel2').val(setPh[1])
+					$('#memberTel3').val(setPh[2])
+					$('#sample4_postcode').val(json.memberAddr1)
+					$('#sample4_roadAddress').val(json.memberAddr2)
+					$('#sample4_detailAddress').val(json.memberAddr3)
+				})
+					
+					
+						/* $('#memberName').val("이태훈") */
+			}else if(chooseInfo == "newMemberInfo"){
+				$("input:radio[name='setSameMemberInfo']").prop("checked",false)
+				$('#memberName').val("")
+				$('#memberEmail').val("")
+				$('#memberTel1').val("")
+				$('#memberTel2').val("")
+				$('#memberTel3').val("")
+				$('#sample4_postcode').val("")
+				$('#sample4_roadAddress').val("")
+				$('#sample4_detailAddress').val("")
+				$('.receiver').val("")
+				$('.receiverTel1').val("")
+				$('.receiverTel2').val("")
+				$('.receiverTel3').val("")
+			}
+		}
+	})
+	
+	$("input:radio[name='setSameMemberInfo']").on("click",function(){
+		if($(this).is(":checked") == true){
+			$('.receiver').val($('#memberName').val())
+			$('.receiverTel1').val($('#memberTel1').val())
+			$('.receiverTel2').val($('#memberTel2').val())
+			$('.receiverTel3').val($('#memberTel3').val())
 		}
 	})
 	
@@ -232,35 +280,36 @@ $(function(){
 		<!-- 구매자 정보 -->    
     	<div class="orderMemberInfo">
     		<h1 class="orderMenuTitle orderMenuTitleMargin orderMem">구매자 정보</h1>
-			  <input type="radio" name = "setMemberOrderInfo" /><span style="font-size: 15px; color: black;">기존 회원 정보로 주문</span>&nbsp;&nbsp; 
-			  <input type="radio" name = "setMemberOrderInfo"/> <span style="font-size: 15px; color: black;">신규 정보로 주문</span>
+			  <input type="radio" name = "setMemberOrderInfo" value="memberInfo"/><span style="font-size: 15px; color: black;">기존 회원 정보로 주문</span>&nbsp;&nbsp; 
+			  <input type="radio" name = "setMemberOrderInfo" value="newMemberInfo"/> <span style="font-size: 15px; color: black;">신규 정보로 주문</span>
 					<p>
-						<input type="text" placeholder="이름">
+						<input type="text" id="memberName" placeholder="이름">
 					</p>
 					<p>
-						<input type="text" placeholder="전화번호">
-						- <input type="text">
-						- <input type="text">
+						<input type="text" id = "memberTel1" placeholder="전화번호">
+						- <input id = "memberTel2" type="text">
+						- <input id = "memberTel3" type="text">
 					</p>
 					<p>
-						<input type="email" placeholder="이메일">
+						<input id = "memberEmail" type="email" placeholder="이메일">
 					</p>
 					
 		
     	
     	<!-- 수령자 정보 -->
     		<h1 class="orderMenuTitle orderMenuTitleMargin">수령자 정보</h1>
+    		<input type="radio" name = "setSameMemberInfo" value="setSameMemberInfo"/><span style="font-size: 15px; color: black;">구매자 정보와 동일</span>
     		<p>
-				<input type="text" placeholder="수령인">
+				<input type="text" class="receiver" placeholder="수령인">
 			</p>
 			<p>
-				<input type="text" placeholder="전화번호">
-				- <input type="text">
-				- <input type="text">
+				<input type="text" class="receiverTel1" placeholder="전화번호">
+				- <input type="text" class="receiverTel2">
+				- <input type="text" class="receiverTel3">
 			</p>
 			<p>
 				<select name="divSelectbox" id = 'divSelectbox'>
-					<option value="">배송 시 요청사항을 선택해주세요</option>
+					<option value="notRequest">배송 시 요청사항을 선택해주세요</option>
 					<option value="부재 시 경비실에 맡겨 주세요">부재 시 경비실에 맡겨 주세요</option>
 					<option value="부재 시 택배함에 넣어주세요">부재 시 택배함에 넣어주세요</option>
 					<option value="부재 시 집앞에 놔주세요">부재 시 집앞에 놔주세요</option>

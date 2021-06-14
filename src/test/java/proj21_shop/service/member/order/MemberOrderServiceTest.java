@@ -42,10 +42,8 @@ public class MemberOrderServiceTest {
 		MemberDTO newMem = new MemberDTO();
 		newMem.setMemberId("test01");
 		ProductDTO pro = new ProductDTO();
-		pro.setProNum(4072);
 		
 		CartDTO cart = new CartDTO();
-		cart.setCartProNum(pro);
 		cart.setMemberId(newMem);
 		List<CartDTO> list = service.showCartsByMemberId(cart);
 		Assert.assertNotNull(list);

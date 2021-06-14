@@ -170,7 +170,6 @@ ALTER TABLE proj21_shop.PRO_IMG
 -- 주문
 CREATE TABLE proj21_shop.ORDER (
 	order_member_id     VARCHAR(100)  NULL     COMMENT '주문자아이디', -- 주문자아이디
-	order_num           INT           NOT NULL COMMENT '210530', -- 주문번호
 	pro_num             INT           NOT NULL COMMENT '101010', -- 제품번호
 	order_pro_num       INT           NOT NULL COMMENT 'auto_increment(1)', -- 주문식별번호
 	order_member_name   VARCHAR(100)  NOT NULL COMMENT '주문자이름', -- 주문자이름
