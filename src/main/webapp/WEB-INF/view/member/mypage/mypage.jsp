@@ -25,7 +25,7 @@
 		</div>
 		<br>
 		<div class="box4">
-			<a href="#"><img alt="order" src="/proj21_shop/images/order.jpg"></a>
+			<a href="myorder?memberId=${authInfo.id}"><img alt="order" src="/proj21_shop/images/order.jpg"></a>
 		</div>
 		<div class="box5">
 			<a href ="delete"><img alt="quit" src="/proj21_shop/images/quit.jpg"></a>
