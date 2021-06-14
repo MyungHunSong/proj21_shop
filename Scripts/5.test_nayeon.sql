@@ -22,6 +22,7 @@ select m_passwd
 -- 로그인 시 로그인 수 증가
 select * from member;
 
+
 update member
    set m_total_login = m_total_login + 1
  where m_id = 'test01';
@@ -78,13 +79,13 @@ update member
 -- 주문 내역(입력 후 검색)
 select * from `order`;
 select * from `member`;
+select * from product;
 
-select o.order_num, pi2.pro_imagefilename, (o.order_price * 0.01), 
-  from `order` o 
-  join `member` m
-    on o.order_member_id = m.m_id
-  join pro_img pi2
-    on o.pro_num = pi2.pro_num;
+select o.order_pro_num, p.pro_name, o.order_date, o.order_pro_quantity, o.order_price, o.delivery_status
+  from `order` o
+  join product p 
+ where order_member_id = 'test01';
+
 -- 회원 탈퇴(비밀번호 검색 후 일치하면 탈퇴)
 select m_passwd
   from member
@@ -94,10 +95,10 @@ update member
    set m_exit = 0
  where m_id = 'test06';
 
--- 주문 상세 내역 페이지 //상품정보에 사진을 어떻게 넣는지 모르겠어서 번호로 우선 넣어놓기로 함, 적립금 어떻게 해야할지 모르겠음
+-- 주문 상세 내역 페이지 
 select or_num, pro_num, order_price, order_pro_quantity, delivery_status, order_date 
   from `order`
- where order_member_id = 'skdus2421';
+ where order_member_id = 'test01';
  
 -- 배송지 정보
 select order_member_name, receiver_tel1, receiver_tel2, delivery_addr, delivery_addr_de 
