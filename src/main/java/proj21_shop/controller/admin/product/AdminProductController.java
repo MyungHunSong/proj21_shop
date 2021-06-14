@@ -124,8 +124,6 @@ public class AdminProductController {
 		}
 		
 		HttpSession session=multipartRequest.getSession();
-		MemberDTO memberDTO=(MemberDTO)session.getAttribute("memberInfo");
- 		String register=memberDTO.getMemberId();
  		
  		List<ProductImageDTO> imageFileList=upload(multipartRequest);
 //		if(imageFileList !=null && imageFileList.size() !=0) { //null check
