@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-.order_menu_title{
+.orderMenuTitle{
 	text-align: left;
 	color: #505050;
 }
@@ -179,7 +179,7 @@
     font-size: 0.8125em;
 }
 
-.orderform .p_num {
+.orderform .pNum {
     text-align: center;
     width: 40px;
     font-size: 25px;
@@ -190,59 +190,59 @@
 	cursor: pointer;
 }
 
-.order_menu_title_margin{
+.orderMenuTitleMargin{
 	margin-top: 100px;
 }
 
 /* 구매자정보 */
-.order_member_info{
+.orderMemberInfo{
 	clear:left;
 	text-align: left;
 	border-top : 1px dashed #ccc;
 }
 
-.order_mem{
+.orderMem{
 	clear:left;
 }
 
-.order_member_info input {
+.orderMemberInfo input {
 	padding: 8px;
 	font-size: 15px;
 }
 
-.order_member_info span {
+.orderMemberInfo span {
 	color : #757575;
 	font-size: 8px;
 	padding-left: 5px;
 }
 /* 수령자 정보 */
-#div_selectbox{
+#divSelectbox{
 	padding: 8px;
 	font-size: 15px;
 	margin-bottom: 10px;
 	color : #757575;
 }
 
-#etc_textarea{
+#etcTextarea{
 	display: none;
 	width:	394px;
 	height: 50px;
 }
 
-#etc_textarea.active{
+#etcTextarea.active{
 	display: block;
 }
 
-#payment_information{
+#paymentInformation{
 	width: 100%;
 }
 /* 결제정보 */
-#payment_information .payment_information_p_price{
+#paymentInformation .paymentInformationPPrice{
 	width: 20%;
 	font-size: 30px;
 }
 
-#payment_information .payment_information_p_orderprice{
+#paymentInformation .paymentInformationPOrderprice{
 	width: 40%;
 	font-size: 30px;
 }
@@ -250,23 +250,23 @@
 /* 결제정보 숫자부분 */
 
 
-#payment_information .payment_information_sign{
+#paymentInformation .paymentInformationSign{
 	width: 20%;
 	font-size: 50px;
 }
 
-#payment_information .sum_p_price{
+#paymentInformation .sumPPrice{
 	width: 20%;
 	font-size: 25px;
 }
 
-#payment_information .sum_p_sale{
+#paymentInformation .sumPSale{
 	width: 20%;
 	font-size: 25px;
 	color: orange;
 }
 
-#payment_information .sum_p_orderprice{
+#paymentInformation .sumPOrderprice{
 	width: 40%;
 	font-size: 28px;
 	font-weight: bold;
@@ -280,11 +280,11 @@
 	font-size: 20px;
 }
 
-.check_point{
+.checkPoint{
 	margin-left: 60px;
 }
 
-.use_point{
+.usePoint{
 	border : none;
 	font-size: 20px;
 	text-align: right;
@@ -293,13 +293,13 @@
 }
 
 /* 주문하기 취소하기 버튼 */
-.order_btns_group{
+.orderBtnsGroup{
 	display: flex;
 	align-items: center;
 	justify-content: space-evenly;
 }
 
-.order_btns{
+.orderBtns{
 	border: 1px solid #ccc;
 	width: 200px;
 	margin-top: 100px;
@@ -310,7 +310,7 @@
 	color: white;
 }
 
-.order_btns:hover{
+.orderBtns:hover{
 	border: 1px solid #ccc;
 	background: white;
 	color: black;
