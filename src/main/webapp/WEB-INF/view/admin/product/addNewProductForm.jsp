@@ -101,7 +101,6 @@ margin-top:5%;
 			reader.readAsDataURL(input.files[0]);
 		}
 	}
-
 	var cnt = 1;
 	function fn_addFile() {
 
@@ -119,61 +118,18 @@ margin-top:5%;
 		obj.action = "${contextPath}/admin/product/listProducts";
 		obj.submit();
 	}
-	$(document).ready(function() {
+	
 
-		$("#pro_sale").change(function() {
-
-			var originalPrice = $("#pro_price").val();
-			if ($("#pro_sale").val() != null) {
-				var discount = $("#pro_sale").val() / 100;
-				var salesPrice = originalPrice - (originalPrice * discount);
-
-			}
-			$("#pro_price").val(salesPrice);
-
-		});
-
-	});
-	function itemChange() {
-		var top = [ "반소매", "긴소매", "후디", "민소매", "네오프렌" ];
-		var coat = [ "트렌치코트", "자켓", "무스탕 퍼", "울 코트", "핸드메이드" ];
-		var shirts = [ "체크/줄무늬", "헨리/차이나", "패턴", "데님", "베이직", "반팔셔츠" ];
-		var knit = [ "터틀넥", "라운드", "가디건", "조끼" ];
-		var bottom = [ "슬랙스", "청바지", "코튼", "반바지", "트레이닝" ];
-		var outer = [ "자켓", "코트", "패딩", "가죽", "집업/조끼", "무스탕", "수트" ];
-		var shoes = [ "스니커즈", "슬립온", "로퍼", "옥스포드", "부츠/하이", "샌들" ];
-		var acc = [ "양말", "모자", "벨트", "반지", "팔찌", "가방", "목걸이", "안경", "시계", "머플러/스카프", "넥타이" ];
-
-		var selectedItem = $("#pro_category").val();
-		var changeItem;
-
-		if (selectedItem == '상의') {
-			changeItem = top;
-		} else if (selectedItem == '코트') {
-			changeItem = coat;
-		} else if (selectedItem == '셔츠') {
-			changeItem = shirts;
-		} else if (selectedItem == '니트') {
-			changeItem = knit;
-		} else if (selectedItem == '하의') {
-			changeItem = bottom;
-		} else if (selectedItem == '아우터') {
-			changeItem = outer;
-		} else if (selectedItem == '신발') {
-			changeItem = shoes;
-		} else if (selectedItem == '악세사리') {
-			changeItem = acc;
-		}
-
-		$("#pro_category_detail").empty();
-
-		for (var i = 0; i < changeItem.length; i++) {
-			var option = $("<option value='"+changeItem[i]+"'>" + changeItem[i] + "</option>");
-			$("#pro_category_detail").append(option);
-
-		}
-	}
 	/* pro_category_detail */
+</script>
+<script type="text/javascript">
+$(function(){
+	
+	$("#proNum").on("click",function(){
+		var category = $('#proCategory').val()+ $('#proColor').val()+ $('#proSize').val()
+		$('#proNum').val(category)
+	})	
+})
 </script>
 <body>
 	<div class="container-fluid">
@@ -201,77 +157,69 @@ margin-top:5%;
 							<table style="min-width: 50%;">
 								<tr>
 									<td>상품 카테고리</td>
-									<td><select name="proCategory" onchange="itemChange();" id="proCategory">
-											<option value="카테고리 설정">카테고리 설정</option>
-											<option value="코트">코트</option>
-											<option value="상의">상의</option>
-											<option value="셔츠">셔츠</option>
-											<option value="니트">니트</option>
-											<option value="하의">하의</option>
-											<option value="아우터">아우터</option>
-											<option value="신발">신발</option>
-											<option value="악세사리">악세사리</option>
-									</select></td>
+									<td>
+										<select name="proCategory" id="proCategory">
+												<option value="1">반팔</option>
+												<option value="2">긴팔</option>
+												<option value="3">슬립리스</option>
+												<option value="4">후드</option>
+												<option value="5">셔츠</option>
+												<option value="6">스웻셔츠</option>
+										</select>
+									</td>
 								</tr>
 								<tr>
 									<td>상품 이름</td>
-									<td class="b"><input type="text" name="pro_name" size="39" /></td>
+									<td class="b"><input type="text" name="proName" size="39" /></td>
 								</tr>
 								<tr>
 									<td>상품 구분</td>
-									<td class="b"><select name="pro_status">
-											<option value="newseller" selected>신제품</option>
-											<option value="bestseller">베스트셀러</option>
-											<option value="steadyseller">스테디셀러</option>
-											<option value="onSale">할인중</option>
-											<option value="buy_out">품절</option>
+									<td class="b"><select name="proStatus">
+											<option value="신상" selected>신상</option>
+											<option value="최고">최고</option>
+											<option value="세일">세일</option>
+											<option value="추천">추천</option>
+											<option value="품절">품절</option>
 									</select></td>
 								</tr>
 								<tr>
 									<td>상품 가격</td>
-									<td class="b"><input type="text" name="pro_price" id="pro_price" size="39" /></td>
+									<td class="b"><input type="text" name="proPrice" id="proPrice" size="39" /></td>
 								</tr>
 								<tr>
 									<td>상품 할인율</td>
-									<td class="b"><input type="text" name="pro_sale" id="pro_sale" size="39" /> %</td>
+									<td class="b"><input type="text" name="proSalesrate" id="proSalesrate" size="39" /> %</td>
 								</tr>
 
 								<tr>
 									<td>상품 색상</td>
-									<td class="b"><select name="pro_color">
+									<td class="b"><select name="proColor" id="proColor">
 											<!-- 색상추가 일치시키기 -->
-											<option value="오트밀" selected>오트밀</option>
-											<option value="블랙">블랙</option>
-											<option value="카멜">카멜</option>
-											<option value="그레이">그레이</option>
-											<option value="브라운">브라운</option>
-											<option value="베이지">베이지</option>
-											<option value="베이지 체크">베이지 체크</option>
-											<option value="핑크">핑크</option>
-											<option value="연핑크">연핑크</option>
-											<option value="아이보리">아이보리</option>
-											<option value="딥에메랄드">딥에메랄드</option>
-											<option value="와인">와인</option>
-											<option value="크림">크림</option>
-											<option value="스카이">스카이</option>
-											<option value="라벤더">라벤더</option>
-											<option value="진베이지">진베이지</option>
-											<option value="카키그레이">카키그레이</option>
-											<option value="화이트">화이트</option>
-											<option value="연베이지">연베이지</option>
-											<option value="그레이베이지">그레이베이지</option>
+											<option value="01" selected>화이트</option>
+											<option value="02">아이보리</option>
+											<option value="03">그레이</option>
+											<option value="04">핑크</option>
+											<option value="05">옐로우</option>
+											<option value="06">민트</option>
+											<option value="07">그린</option>
+											<option value="08">퍼플</option>
+											<option value="09">네이비</option>
+											<option value="11">블랙</option>
+											<option value="12">브라운</option>
+											<option value="13">오랜지</option>
+											<option value="14">블루</option>
+											<option value="15">레드</option>
+											<option value="16">베이지</option>
 									</select></td>
 								</tr>
 								<tr>
 									<td>상품 사이즈</td>
-									<td class="b"><select name="pro_size">
-											<option value="Free" selected>Free</option>
-											<option value="XS">XS</option>
-											<option value="S">S</option>
-											<option value="M">M</option>
-											<option value="L">L</option>
-											<option value="XL">XL</option>
-											<option value="XXL">XXL</option>
+									<td class="b"><select name="proSize" id="proSize">
+											<option value="1">XS</option>
+											<option value="2">S</option>
+											<option value="3" selected>M</option>
+											<option value="4">L</option>
+											<option value="5">XL</option>
 
 									</select></td>
 
@@ -282,22 +230,23 @@ margin-top:5%;
 								<tr>
 									<td>판매 재고</td>
 									<td class="b">
-										<!--지금 애 스트링으로 받아옴  --> <input type="text" name="pro_quantity" size="39" /> 개
+										<input type="text" name="proQuantity" size="39" /> 개
 									</td>
 								</tr>
 
 								<tr>
 									<td>상품 설명</td>
-									<td class="b"><textarea rows="8" cols="39" name="pro_content"></textarea></td>
+									<td class="b"><textarea rows="8" cols="39" name="proContent"></textarea></td>
 								</tr>
 								<tr>
 									<td>메인 이미지 추가</td>
-									<td class="b"><input type="file" value="메인 이미지 등록" id="main" name="main_image" onchange="readURL(this,this.id);" /> <input type="button" value="디테일 이미지 추가" onClick="fn_addFile()" /></td>
+									<td class="b">
+									<input type="file" value="메인 이미지 등록" id="main" name="1" onchange="readURL(this,this.id);" />
+									<input type="button" value="디테일 이미지 추가" onClick="fn_addFile()" />
+									</td>
 								</tr>
 								<tr>
 									<td>상품 이미지 등록</td>
-
-
 									<td colspan="2">
 										<div id="detail_list"></div>
 										<div id="image_list">
@@ -307,7 +256,14 @@ margin-top:5%;
 									</td>
 								</tr>
 								<tr>
-									<td colspan="4"><input type="submit" value="상품 등록하기" /> <input type="button" value="목록창으로 돌아가기" onClick="backToList(this.form)" /></td>
+									<td>상품 코드</td>
+									<td class="b"><input type="text" id="proNum" name="proNum" size="39" readonly="readonly" value="클릭하여 상품번호 생성"/></td>
+								</tr>
+								<tr>
+									<td colspan="4">
+									<input type="submit" class = "register" value="상품 등록하기" />
+									<input type="button" value="목록창으로 돌아가기" onClick="backToList(this.form)" />
+									</td>
 								</tr>
 							</table>
 						</center>

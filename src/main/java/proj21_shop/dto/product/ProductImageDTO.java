@@ -1,12 +1,20 @@
 package proj21_shop.dto.product;
 
 public class ProductImageDTO {
-	
+
 	private int proNum;
 	private int proImgCode;
 	private String proImagefilename;
-	private int proImgState;
+	private String proImageFileType;
+	public String getProImageFileType() {
+		return proImageFileType;
+	}
 
+	public void setProImageFileType(String proImageFileType) {
+		this.proImageFileType = proImageFileType;
+	}
+
+	private int proImgState;
 
 	public ProductImageDTO(int proNum, String proImagefilename, int proImgState) {
 		this.proNum = proNum;
@@ -51,8 +59,8 @@ public class ProductImageDTO {
 
 	@Override
 	public String toString() {
-		return String.format("ProductImageDTO [proNum=%s, proImgCode=%s, proImagefilename=%s, proImgState=%s]", proNum,
-				proImgCode, proImagefilename, proImgState);
+		return String.format("ProductImageDTO [proNum=%s, proImgCode=%s, proImagefilename=%s, proImgState=%s]", proNum, proImgCode, proImagefilename,
+				proImgState);
 	}
 
 }

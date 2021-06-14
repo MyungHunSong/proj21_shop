@@ -53,6 +53,7 @@
 <script src="${contextPath}/resources/admin/assets/libs/flot/jquery.flot.crosshair.js"></script>
 <script src="${contextPath}/resources/admin/assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
 <script src="${contextPath}/resources/admin/dist/js/pages/chart/chart-page-init.js"></script>
+
 <script>
 	$(document).ready(function(){
 		
