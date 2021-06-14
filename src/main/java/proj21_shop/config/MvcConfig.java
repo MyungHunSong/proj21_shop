@@ -2,6 +2,7 @@ package proj21_shop.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -49,6 +50,14 @@ public class MvcConfig implements WebMvcConfigurer {
 		return new AuthCheckInterceptor();
 	}
 	
+	@Bean
+	public CommonsMultipartResolver multipartResolver() {
+		CommonsMultipartResolver multipartResolver=new CommonsMultipartResolver();
+		multipartResolver.setMaxUploadSize(52428800);
+		multipartResolver.setMaxInMemorySize(52428800);
+		multipartResolver.setDefaultEncoding("utf-8");
+		return multipartResolver;
+	}
 	
 	/* tile 경로*/
 	@Bean

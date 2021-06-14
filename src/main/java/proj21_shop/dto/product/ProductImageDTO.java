@@ -14,6 +14,9 @@ public class ProductImageDTO {
 		this.proImgState = proImgState;
 	}
 
+	public ProductImageDTO() {
+	}
+
 	public int getProNum() {
 		return proNum;
 	}

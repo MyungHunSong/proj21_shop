@@ -300,7 +300,7 @@ DELETE FROM product WHERE pro_num=1999;
 DELETE FROM product WHERE pro_num=2999;
 SELECT LAST_INSERT_ID();
 SELECT *from (select max(seq)+1 from tbl_board) NEXT;
-SELECT * FROM pro_img;
+SELECT * FROM pro_img WHERE pro_num=2999;
 
 INSERT INTO pro_img
 		(pro_num, pro_imagefilename, pro_img_state)

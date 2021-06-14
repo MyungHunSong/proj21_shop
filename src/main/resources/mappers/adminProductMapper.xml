@@ -49,7 +49,7 @@
 	
 	
 	<!-- 제품 추가 -->
-	<insert id="insertNewProduct">
+	<insert id="insertNewProduct" parameterType="Map">
 				insert into product 
 					   (pro_num, pro_category, pro_name, pro_price, pro_content, pro_salesrate, pro_status
 					   , pro_color, pro_size, pro_quantity)
@@ -57,8 +57,6 @@
 					   (#{proNum}, #{proCategory}, #{proName}, #{proPrice}, #{proContent}, #{proSalesrate}, #{proStatus}
 					   , #{proColor}, #{proSize}, #{proQuantity})
 		<!-- 제품 번호를 리턴값으로 받아오기 -->
-		
-	
 	</insert>
 	
 	<!-- 제품 이미지 추가 -->
@@ -68,7 +66,6 @@
 		<foreach item="item" collection="list" separator=" ," >
 			 (#{item.proNum}, #{item.proImagefilename}, #{item.proImgState})
 		</foreach>
-		
 	</insert>
 	
 	<!-- 총 제품 수 -->

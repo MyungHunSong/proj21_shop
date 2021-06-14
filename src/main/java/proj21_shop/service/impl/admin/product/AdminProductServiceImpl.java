@@ -1,5 +1,6 @@
 package proj21_shop.service.impl.admin.product;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,11 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import proj21_shop.dto.product.ProductDTO;
+import proj21_shop.dto.product.ProductImageDTO;
 import proj21_shop.mapper.admin.product.AdminProductMapper;
 import proj21_shop.service.admin.product.AdminProductService;
 
 @Service("adminProductService")
 public class AdminProductServiceImpl implements AdminProductService {
+	
 	@Autowired
 	AdminProductMapper adminProductMapper;
 
@@ -51,6 +54,21 @@ public class AdminProductServiceImpl implements AdminProductService {
 		productsMap.put("selectedProducts", selectedProducts);
 
 		return productsMap;
+	}
+
+	@Override
+	public int addNewProduct(Map newProductMap) {
+		adminProductMapper.insertNewProduct(newProductMap);
+		int proNum=(int) newProductMap.get("proNum");
+		
+		ArrayList<ProductImageDTO> imageFileList=(ArrayList)newProductMap.get("imageFileList");
+		for(ProductImageDTO productImageDTO : imageFileList) {
+			productImageDTO.setProNum(proNum);
+		}
+		adminProductMapper.insertProductImageFile(imageFileList);
+		
+		
+		return proNum;
 	}
 
 }
