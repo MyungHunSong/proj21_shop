@@ -64,7 +64,7 @@
 	<br>
 	<div class="review">
 		<textarea id="content" cols="45" rows="10"
-			placeholder="상품에 대한 평가를 20자 이상 작성해 주세요"></textarea>
+placeholder="상품에 대한 평가를 20자 이상 작성해 주세요"></textarea>
 		<br>
 		<div class="file">
 			<input type="file" id="imgButton" /> <br>

@@ -5,6 +5,7 @@ import org.apache.ibatis.logging.LogFactory;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,21 +46,18 @@ public class OrderMapperTest {
 		Assert.assertNotNull(addressDTO);
 	}
 
-	//@Test
+	@Test
 	public void test02InsertOrder() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		/*
 		 * ('test01', 6163, '이종윤', 1, 5000, 0, '이종윤', '010-1234-5678', '010-1234-5678',
 		 * 54545,'대구광역시 남구 봉덕동 이천로 51', '2층', '배송참고사항', '이종윤', '국민');
 		 */
-		ProductDTO pro = new ProductDTO();
-		pro.setProNum(6163);
 		
 		OrderDTO orderDTO = new OrderDTO();
 		
-		
 		orderDTO.setOrderMemberId("test01");
-		orderDTO.setProName(pro);
+		orderDTO.setProNum(6163);
 		orderDTO.setOrderMemberName("이종윤");
 		orderDTO.setOrderProQuantity(1);
 		orderDTO.setOrderPrice(5000);

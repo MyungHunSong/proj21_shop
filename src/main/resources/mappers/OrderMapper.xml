@@ -14,7 +14,7 @@
 			, receiver_name, receiver_tel1, receiver_tel2, delivery_addr1, delivery_addr2, delivery_addr3
 			, request_to_delivery, who_pay, which_bank)
 		 values
-			(#{orderMemberId}, #{proName.proNum}, #{orderMemberName}, #{orderProQuantity}, #{orderPrice}, #{orderDiscount}
+			(#{orderMemberId}, #{proNum}, #{orderMemberName}, #{orderProQuantity}, #{orderPrice}, #{orderDiscount}
 			, #{receiverName}, #{receiverTel1}, #{receiverTel2}, #{deliveryAddr1}, #{deliveryAddr2}, #{deliveryAddr3}
 			, #{requestToDelivery}, #{whoPay}, #{whichBank});
 	</insert>

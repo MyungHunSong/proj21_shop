@@ -24,6 +24,7 @@ public class OrderDTO {
 	private String deliveryAddr3;
 	private String deliveryStatus;
 	private String requestToDelivery;
+	
 	private ProductDTO proName;
 	private Date orderDate;
 
