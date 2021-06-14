@@ -25,6 +25,63 @@
 		<result column="q_step" property="qStep"/>
 	</resultMap>
 	
+	<sql id="search">
+		<where>
+				and q_index > 0
+			<if test="searchType != null">
+				<if test="searchType == 'b'.toString()">
+					and q_option like concat('%', '공지', '%')
+				</if>
+				<if test="searchType == 'c'.toString()">
+					and q_option like concat('%', '제품문의', '%')
+				</if>
+				<if test="searchType == 'd'.toString()">
+					and q_option like concat('%', '환불문의', '%')
+				</if>
+				<if test="searchType == 'e'.toString()">
+					and q_option like concat('%', '포인트 º 적립금', '%')
+				</if>
+				<if test="searchType == 'f'.toString()">
+					and q_option like concat('%', '회원관련', '%')
+				</if>
+				<if test="searchType == 'g'.toString()">
+					and q_option like concat('%', '주문결제', '%')
+				</if>
+				<if test="searchType == 'h'.toString()">
+					and q_option like concat('%', '기타', '%')
+				</if>
+			</if>
+		</where>
+	</sql>
+	
+	<!-- 검색어 기능 --> 
+		<select id="listSearch" resultMap="ArticleResultMap">
+		<![CDATA[
+			select q_index,q_title,q_option,q_member,q_content,q_file,q_date,q_hits,q_group,q_indent,q_step,
+				case q_option
+					when q_option = '공지' then q_index 
+					else '공지' 
+				end 'q_op'
+					from qna 
+			]]> 
+				<include refid="search"/>
+		<![CDATA[
+					order by	q_op desc, q_index desc, q_date desc
+			limit #{pageStart}, #{perPageNum}
+		]]>
+		</select>
+		
+		<select id="countSearchedArticles" resultType="int">
+			<![CDATA[
+				select 
+						count(q_index)   
+					from qna 
+			]]>
+			<include refid="search"/>
+		</select>
+	
+	
+	
 	 <select id="countArticles" resultType="int">
 	 <![CDATA[
 		select 
@@ -61,57 +118,7 @@
 		]]> 
 		</select>
 		
-		<!-- 검색어 기능 --> 
-		<select id="listSearch" resultMap="ArticleResultMap">
-		<![CDATA[
-			select q_index,q_title,q_option,q_member,q_content,q_file,q_date,q_hits,q_group,q_indent,q_step,
-				case q_option
-					when q_option = '공지' then q_index 
-					else '공지' 
-				end 'q_op'
-					from qna 
-						where q_index >0 
-			]]> 
-				<include refid="search"/>
-		<![CDATA[
-					order by	q_op desc, q_index desc, q_date desc
-			limit #{pageStart}, #{perPageNum}
-		]]>
-		</select>
 		
-		<select id="countSearchedArticles" resultType="int">
-			<![CDATA[
-				select 
-						count(q_index)   
-					from qna 
-				where q_index > 0 
-			]]>
-			<include refid="search"/>
-		</select>
 		
-		<sql id="search">
-		<if test="searchType != null">
-			<if test="searchType == 'b'.toString()">
-				and q_option like concat('%', #{keyword}, '%')
-			</if>
-			<if test="searchType == 'c'.toString()">
-				and q_option like concat('%', #{keyword}, '%')
-			</if>
-			<if test="searchType == 'd'.toString()">
-				and q_option like concat('%', #{keyword}, '%')
-			</if>
-			<if test="searchType == 'e'.toString()">
-				and q_option like concat('%', #{keyword}, '%')
-			</if>
-			<if test="searchType == 'f'.toString()">
-				and q_option like concat('%', #{keyword}, '%')
-			</if>
-			<if test="searchType == 'g'.toString()">
-				and q_option like concat('%', #{keyword}, '%')
-			</if>
-			<if test="searchType == 'h'.toString()">
-				and q_option like concat('%', #{keyword}, '%')
-			</if>
-		</if>	
-		</sql>
+		
 </mapper>

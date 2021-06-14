@@ -3,6 +3,8 @@ package proj21_shop.dto.qna;
 public class SearchCriteria extends Criteria {
 	private String searchType;
 	private String keyword;
+
+	
 	
 	public SearchCriteria() {}
 	

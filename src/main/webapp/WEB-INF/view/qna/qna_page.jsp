@@ -16,9 +16,12 @@
 <script type="text/javascript">
 $(function(){
 	var contextPath = "${contextPath}";
-	var page = ${page}
+	var page=${page};
+	var perPageNum=${perPageNum};
+	var searchType ="${searchType}";
 	
-	$.get(contextPath + "/api/qna/"+page,
+	
+	$.get(contextPath + "/api/qna/"+ page +"/" + perPageNum + "/" + searchType,
 	function(json){
 		var dateLength = json.length;
 		
@@ -36,6 +39,7 @@ $(function(){
 				}
 				$("#load").append(sCont);
 			}
+		});
 			
 		$('#go_other').on
 		("click",
@@ -45,7 +49,7 @@ $(function(){
 						"page":parseInt(${page})
 					}			
 			}
-			$.ajax({
+			 $.ajax({
 			 	url:contextPath+"/api/qna/",
 			 	type:"GET",
 			 	contentType:"application/json; charset=utf-8",
@@ -60,7 +64,7 @@ $(function(){
 		});
 		
 	});
-});
+
 
 </script>
 </head>
@@ -101,7 +105,7 @@ $(function(){
 					<li>
 							<!-- <a href="/proj21_shop/listPaging?page=${pageMaker.endPage + 1}">[다음]</a> -->
 							<!-- 검색조건 수정. -->
-						<a href="/proj21_shop/listPaging?${pageMaker.makeSearch(pageMaker.endPage+1)}">[다음]</a> 
+						<a href="/proj21_shop/listPaging${pageMaker.makeSearch(pageMaker.endPage+1)}">[다음]</a> 
 					</li>
 				</c:if>
 			</ul>
