@@ -24,7 +24,7 @@
 					sCont += "<td>" + json[i].reviewContent + "</td>";
 					sCont += "<td>" + json[i].reviewStar + "</td>";
 					sCont += "<td>" + json[i].reviewDate + "</td>";
-					sCont += "<td> 후기수정 하러가기 </td>";
+					sCont += "<td> <a후기수정 하러가기 </td>";
 					sCont += "<tr>";
 				}
 
