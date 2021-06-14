@@ -18,5 +18,8 @@ public interface MemberMapper {
 	int updateMember(MemberDTO member);
 	
 	int deleteMember(MemberDTO member);
+	
+	int updateTotalLogin(MemberDTO member);
+
 
 }

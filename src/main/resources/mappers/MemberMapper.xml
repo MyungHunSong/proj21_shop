@@ -50,25 +50,40 @@
 
 	<insert id="insertMember" parameterType="MemberDTO">
 		insert
-		into member(m_id, m_passwd, m_name, m_phone, m_birthday, m_gender,
-		m_question, m_answer, m_addr1, m_addr2, m_addr3, m_email)
+		into member(m_id,
+		m_passwd, m_name, m_phone, m_birthday, m_gender,
+		m_question, m_answer,
+		m_addr1, m_addr2, m_addr3, m_email)
 		values
-		(#{memberId}, password(#{memberPwd}), #{memberName}, #{memberPh},
-		#{memberBirth}, #{memberGender}, #{memberPwdQ}, #{memberPwdA},
-		#{memberAddr1}, #{memberAddr2}, #{memberAddr3}, #{memberEmail})
+		(#{memberId},
+		password(#{memberPwd}), #{memberName}, #{memberPh},
+		#{memberBirth},
+		#{memberGender}, #{memberPwdQ}, #{memberPwdA},
+		#{memberAddr1},
+		#{memberAddr2}, #{memberAddr3}, #{memberEmail})
 
 	</insert>
 
 	<update id="updateMember" parameterType="MemberDTO">
 		update member
-		set m_phone = #{memberPh}, m_email = #{memberEmail}, m_addr1 =
-		#{memberAddr1}, m_addr2 = #{memberAddr2}, m_addr3 = #{memberAddr3}
-		where m_id = #{memberId};
+		set m_phone
+		= #{memberPh}, m_email = #{memberEmail}, m_addr1 =
+		#{memberAddr1},
+		m_addr2 = #{memberAddr2}, m_addr3 = #{memberAddr3}
+		where m_id =
+		#{memberId};
 	</update>
 
 	<update id="deleteMember" parameterType="MemberDTO">
 		update member
-		set m_exit = 0
+		set m_exit
+		= 0
 		where m_id = #{memberId};
+	</update>
+
+	<update id="updateTotalLogin" parameterType="MemberDTO">
+		update member
+		set m_total_login = m_total_login + 1
+		where m_id = #{memberId}
 	</update>
 </mapper>
