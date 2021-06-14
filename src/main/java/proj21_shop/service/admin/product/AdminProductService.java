@@ -4,4 +4,6 @@ import java.util.Map;
 
 public interface AdminProductService {
 	Map<String, Object> listProducts(Map<String, Object> pagingMap);
+	
+	int addNewProduct(Map newProductMap);
 }

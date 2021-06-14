@@ -41,12 +41,23 @@ public class AdminProductMapperTest {
 	public void test1InsertNewProduct() {
 	    log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 
-	    ProductDTO newProduct = new ProductDTO(2999, 2,"Test옷", 5000,"Test색 test종류 Test사이즈 입니다.", 10, "신상",99,9,10);
+//	    ProductDTO newProduct = new ProductDTO(2999, 2,"Test옷", 5000,"Test색 test종류 Test사이즈 입니다.", 10, "신상",99,9,10);
 //	    new ProductDTO(3999, 3,"Test옷", 5000,"Test색 test종류 Test사이즈 입니다.", 10, "최고",99,9,10));
 //	    new ProductDTO(4999, 4,"Test옷", 5000,"Test색 test종류 Test사이즈 입니다.", 10, "추천",99,9,10));
+	    Map<String, Object> map = new HashMap<String, Object>();
+	    map.put("proNum",2999);
+	    map.put("proCategory",2);
+	    map.put("proName","Test옷");
+	    map.put("proPrice",5000);
+	    map.put("proContent","Test색 test종류 Test사이즈 입니다.");
+	    map.put("proSalesrate",10);
+	    map.put("proStatus","신상");
+	    map.put("proColor",99);
+	    map.put("proSize",9);
+	    map.put("proQuantity",10);
+	    int res = mapper.insertNewProduct(map);
 	    
-	    int res = mapper.insertNewProduct(newProduct);
-	  
+	    System.out.println("res========================="+res);
 	    Assert.assertEquals(1, res);
 	}
 	@Test
@@ -63,9 +74,8 @@ public class AdminProductMapperTest {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("list", list);
 		
-		int res = mapper.insertProductImageFile(map);
+		mapper.insertProductImageFile(list);
 		
-		Assert.assertEquals(3, res);
 	}
 
 //	@Test

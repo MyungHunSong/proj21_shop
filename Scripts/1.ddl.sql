@@ -131,7 +131,7 @@ CREATE TABLE proj21_shop.PRODUCT (
 	pro_content   VARCHAR(1000) NULL     COMMENT '제품설명', -- 제품설명
 	pro_salesrate INT           NULL     COMMENT '제품세일', -- 제품세일
 	pro_cre_date  DATETIME      default current_timestamp NULL     COMMENT 'default current_timestamp', -- 제품생성일
-	pro_status    VARCHAR(50)   default '판매중' NULL     COMMENT 'default 판매중', -- 제품상태
+	pro_status    VARCHAR(50)   default '신상' NULL     COMMENT 'default 신상', -- 제품상태
 	pro_color     INT           NULL     COMMENT 'enum', -- 제품색상
 	pro_size      INT           NULL     COMMENT 'enum', -- 제품사이즈
 	pro_quantity  INT           NULL     COMMENT '제품수량', -- 제품수량
@@ -153,7 +153,7 @@ CREATE TABLE proj21_shop.PRO_IMG (
 	pro_num           INT          NULL     COMMENT '제품번호', -- 제품번호
 	pro_img_code      INT          NOT NULL COMMENT 'auto_increment', -- 이미지번호
 	pro_imagefilename VARCHAR(100) NULL     COMMENT '이미지', -- 이미지
-	pro_img_state     TINYINT      default 0 NULL     COMMENT 'default 0' -- 메인이미지여부
+	pro_img_state     TINYINT      default 1 NULL     COMMENT 'default 0' -- 메인이미지여부
 )
 COMMENT '제품이미지';
 

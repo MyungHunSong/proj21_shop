@@ -30,7 +30,7 @@ public interface AdminProductMapper {
 	
 //	List<ProductDTO> selectAllProductsDetail();
 // ==================제품 추가========================
-	int insertNewProduct(ProductDTO newpro);
+	int insertNewProduct(Map newproduct);
 	
-	int insertProductImageFile(Map<String, Object> map);
+	void insertProductImageFile(ArrayList<ProductImageDTO> imageFileList);
 }
