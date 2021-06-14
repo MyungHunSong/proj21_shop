@@ -48,9 +48,10 @@ where pro_img_state =1 and pro_num = 111;
 
 -- 제품 클릭시 조회수 +1
 update product 
-      set pro_hits = pro_hits + 1 
+      set pro_hits = pro_hits - 1  
  where pro_num = 111;      
 
+select * from product p where pro_num = 111;
 -- 제품 삭제
 delete
   from product
@@ -127,7 +128,7 @@ where m_id = 'test01' and m_addr1 = 746858 and m_addr2 = '대구광역시 남구
 INSERT INTO proj21_shop.address
 			(m_id,  m_addr1, m_addr2, m_addr3)
 values
-			('test01', 746858, '대구광역시 남구 봉덕동 이천로 51', '3층')
+			('test01', 746858, '대구광역시 남구 봉덕동 이천로 51', '3층');
 
 /*주문 테이블에 제품 등록*/
 INSERT INTO proj21_shop.`order`
@@ -136,9 +137,17 @@ INSERT INTO proj21_shop.`order`
 values
 ('test01', 6163, '이종윤', 1, 5000, 0, '이종윤', '010-1234-5678', '010-1234-5678', 54545,'대구광역시 남구 봉덕동 이천로 51', '2층', '배송참고사항', '이종윤', '국민');
 
+INSERT INTO proj21_shop.`order` 
+					(order_member_id, pro_num, order_member_name, order_pro_quantity, order_price, order_discount , receiver_name, receiver_tel1, receiver_tel2, delivery_addr1, delivery_addr2, delivery_addr3 , request_to_delivery, who_pay, which_bank) 
+values (?, ?, ?, ?, ?, ? , ?, ?, ?, ?, ?, ? , ?, ?, ?);
+
+select * from product where pro_num = 6163;
+
+select * from `member` where m_id = 'test01';
+
 /*팔린 제품 수량 만큼 제품 재고 감소*/
-select * from product;
+select * from product where pro_num = 6163;
 update product 
-	   set pro_quantity = pro_quantity - 1 and pro_sold = pro_sold +
- where pro_num = 1033;	   
+	   set pro_quantity = pro_quantity + 10 , pro_sold = pro_sold +  1
+ where pro_num = 6163;	   
 select * from `order`;

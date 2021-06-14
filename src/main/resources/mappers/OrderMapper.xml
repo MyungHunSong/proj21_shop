@@ -28,13 +28,13 @@
 	
 	<update id="updateMember">
 		update `member` 
-       		 set  m_point = #{memberPoint} and m_total_buy = m_total_buy + #{memberTotalBuy} and m_total_order = m_total_order + #{memberTotalOrder}
+       		 set  m_point = #{memberPoint} , m_total_buy = m_total_buy + #{memberTotalBuy} , m_total_order = m_total_order + #{memberTotalOrder}
  		where  m_id = #{memberId} ;	
 	</update>
 	
 	<update id="updateProduct">
 		update product 
-	   		 set pro_quantity = pro_quantity - #{proQuantity} and pro_sold = pro_sold + #{proSold}
+	   		 set pro_quantity = pro_quantity - #{proQuantity} , pro_sold = pro_sold + #{proSold}
 		 where pro_num = #{proNum};
 	</update>	
 </mapper>
