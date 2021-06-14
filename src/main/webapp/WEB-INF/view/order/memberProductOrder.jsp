@@ -118,7 +118,7 @@ $(function(){
 	$('#memberPoint').text(totalMemberPointFmt)
 	
 	
-	/* 회원 포인트 사용 */
+	/* 회원 포인트 사용 모두사용버튼 클릭시*/
 	$("input:checkbox[name='checkPoint']").on("click",function(){
 		/* 결제 예정 금액 */
 		var actualPrice = sumOrderPrice
@@ -159,9 +159,41 @@ $(function(){
 			/* 포인트 계산 */
 			$('#memberPoint').text(totalMemberPointFmt)
 		}
-		
 	})
 		
+	/* 키보드입력으로 포인트 사용 */
+	$('.usePoint').keyup(function(e){
+		/* 정규표현식 숫자만 */
+		var regexp = /^[0-9]*$/
+		var consumePoint = $(this).val()
+		
+		/* 사용된 포인트 */
+		var res = totalMemberPoint - consumePoint
+		
+		/* 원래금액 - 할인된 결제 금액 = 할인금액 에 추가 사용할 포인트를 더한값*/
+		var oldPrice = parseInt(sumPrice - sumOrderPrice);
+		var newPrice = parseInt(sumPrice - sumOrderPrice) + parseInt(consumePoint)
+		
+		/* 포인트 추가로 적용된 제품 가격 */
+		var orderPrice = sumOrderPrice - consumePoint
+		
+		
+		
+		if(!regexp.test(consumePoint)){
+			$('#memberPoint').text("숫자를 입력해주세요")
+		}else if(consumePoint <= totalMemberPoint){
+			$('.sumPOrderprice').text(orderPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"원")
+			$('.sumPSale').text(newPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"원")
+			$('#memberPoint').text(res.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"P")
+			if(consumePoint == ""){
+				$('.sumPSale').text(oldPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"원")
+			}
+		}else if(consumePoint > totalMemberPoint){
+			$('#memberPoint').text("사용 가능한 포인트를 초과하였습니다.")
+		}
+		
+	})
+	
 	/* 회원정보 set하기 버튼*/
 	$("input:radio[name = 'setMemberOrderInfo']").on("click",function(){
 		if($("input:radio[name = 'setMemberOrderInfo']").is(":checked") == true){
