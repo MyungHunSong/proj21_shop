@@ -26,7 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import proj21_shop.dto.member.MemberDTO;
+import proj21_shop.dto.product.ProductDTO;
 import proj21_shop.dto.product.ProductImageDTO;
 import proj21_shop.service.admin.product.AdminProductService;
 
@@ -115,16 +115,35 @@ public class AdminProductController {
 		response.setContentType("text/html; charset=utf-8");
 		String imageFileName=null;
 		Map<String,Object> newProductMap=new HashMap();
+		Map<String,Object> newProductMap2=new HashMap();
+		
+		System.out.println(multipartRequest.getParameter("proCategory"));
+		System.out.println(multipartRequest.getParameter("proNum"));
+		System.out.println(multipartRequest.getParameter("proContent"));
+		System.out.println(multipartRequest.getParameter("proQuantity"));
+		System.out.println(multipartRequest.getParameter("proSize"));
+		System.out.println(multipartRequest.getParameter("proColor"));
+		System.out.println(multipartRequest.getParameter("proSalesrate"));
+		System.out.println(multipartRequest.getParameter("proPrice"));
+		System.out.println(multipartRequest.getParameter("proStatus"));
 		
 		Enumeration enu=multipartRequest.getParameterNames();
 		while(enu.hasMoreElements()) {
 			String name=(String)enu.nextElement();
 			String value=multipartRequest.getParameter(name);
-			newProductMap.put(name, value);
+			newProductMap2.put(name, value); 
 		}
 		
-		HttpSession session=multipartRequest.getSession();
- 		
+		newProductMap.put("proContent",multipartRequest.getParameter("proContent"));
+		newProductMap.put("proStatus",multipartRequest.getParameter("proStatus"));
+		newProductMap.put("proNum",Integer.parseInt(multipartRequest.getParameter("proNum")));
+		newProductMap.put("proCategory",Integer.parseInt(multipartRequest.getParameter("proCategory")));
+		newProductMap.put("proQuantity",Integer.parseInt(multipartRequest.getParameter("proQuantity")));
+		newProductMap.put("proSize",Integer.parseInt(multipartRequest.getParameter("proSize")));
+		newProductMap.put("proColor",Integer.parseInt(multipartRequest.getParameter("proColor")));
+		newProductMap.put("proSalesrate",Integer.parseInt(multipartRequest.getParameter("proSalesrate")));
+		newProductMap.put("proPrice",Integer.parseInt(multipartRequest.getParameter("proPrice")));
+		
  		List<ProductImageDTO> imageFileList=upload(multipartRequest);
 //		if(imageFileList !=null && imageFileList.size() !=0) { //null check
 //			for(ProductImageDTO productImageDTO : imageFileList) {
@@ -138,12 +157,13 @@ public class AdminProductController {
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		
 		try {
-			int pro_code=adminProductService.addNewProduct(newProductMap); 
+			adminProductService.addNewProduct(newProductMap); 
+			String proNum=multipartRequest.getParameter("proNum");
 			if(imageFileList !=null && imageFileList.size() !=0) {
 				for(ProductImageDTO productImageDTO : imageFileList) {
 				imageFileName=productImageDTO.getProImagefilename();
 				File srcFile=new File(CURR_IMAGE_REPO_PATH+"\\"+"temp"+"\\"+imageFileName);
-				File destDir=new File(CURR_IMAGE_REPO_PATH+"\\"+pro_code);
+				File destDir=new File(CURR_IMAGE_REPO_PATH+"\\"+proNum);
 				FileUtils.moveFileToDirectory(srcFile, destDir, true);
 				}
 			}
@@ -180,20 +200,41 @@ public class AdminProductController {
 		return mav;
 	}
 	private List<ProductImageDTO> upload(MultipartHttpServletRequest multipartRequest) throws IOException {
+		
+		Iterator fileNames2 = multipartRequest.getFileNames();
+		while(fileNames2.hasNext())
+		{
+		String fileName = (String) fileNames2.next(); //파일 네임
+		MultipartFile mFile = multipartRequest.getFile(fileName);
+		String originalFileName = mFile.getOriginalFilename(); //오리지널 파일 네임
+		System.out.println("originalFileName>>="+originalFileName);
+		}
+		
 		List<ProductImageDTO> fileList= new ArrayList<ProductImageDTO>();
 		Iterator<String> fileNames = multipartRequest.getFileNames();
 		while(fileNames.hasNext()){
 			ProductImageDTO productImageDTO =new ProductImageDTO();
+			
 			String fileName = fileNames.next();
-			productImageDTO.setProImgState(Integer.valueOf(fileName));
+			System.out.println("fileName>>>>>>>>>>>>>"+fileName);
+			productImageDTO.setProImageFileType(fileName);
+			
 			MultipartFile mFile = multipartRequest.getFile(fileName);
+			System.out.println("mFile>>>>>>>>>>>>>"+mFile.getName());
 			String originalFileName=mFile.getOriginalFilename();
+			
 			productImageDTO.setProImagefilename(originalFileName);
+			System.out.println("originalFileName>>>>>>>>>>>>>"+originalFileName);
 			fileList.add(productImageDTO);
+			System.out.println("fileList>>>>>>>>>>>>>"+fileList);
 			
 			File file = new File(CURR_IMAGE_REPO_PATH +"\\"+ fileName);
 			if(mFile.getSize()!=0){
+				System.out.println(mFile.getSize()!=0);
 				if(! file.exists()){ 
+					System.out.println(!file.exists());
+					System.out.println(file.getParentFile());
+					System.out.println("제발ppppppppppppppppp"+file.getParentFile().mkdirs());
 					if(file.getParentFile().mkdirs()){ 
 							file.createNewFile(); 
 					}
