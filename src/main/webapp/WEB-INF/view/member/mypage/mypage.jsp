@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet"
 	href="/proj21_shop/resources/member/css/mypage.css" />
 </head>
@@ -14,7 +15,7 @@
 		<jsp:include page="/WEB-INF/view/include/topbody.jsp"></jsp:include>
 		<h3>마이페이지</h3>
 		<div class="box1">
-			<a href="#"><img alt="board" src="/proj21_shop/images/board.jpg"></a>
+			<a href="board?memberId=${authInfo.id}"><img alt="board" src="/proj21_shop/images/board.jpg"></a>
 		</div>
 		<div class="box2">
 			<a href="modify"><img alt="membership" src="/proj21_shop/images/membership.jpg" ></a>

@@ -14,6 +14,14 @@
 		</association>
 	</resultMap>
 
+	<resultMap type="QnaDTO" id="resQna">
+		<id property="qIndex" column="q_index" />
+		<result property="qFile" column="q_file" />
+		<result property="qTitle" column="q_title" />
+		<result property="qMember" column="q_member" />
+		<result property="qDate" column="q_date" />
+	</resultMap>
+
 	<select id="selectReviewByMember" resultMap="resReview">
 		select r.re_num,
 		p.pro_name, r.re_image,
@@ -26,4 +34,10 @@
 		where r.re_member = #{memberId};
 	</select>
 
+	<select id="selectQnaByMember" resultMap="resQna">
+		select q_index, q_file,
+		q_title, q_member, q_date
+		from qna
+		where q_member = #{memberId};
+	</select>
 </mapper>

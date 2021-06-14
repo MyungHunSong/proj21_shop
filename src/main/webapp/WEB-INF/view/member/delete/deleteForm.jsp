@@ -8,6 +8,7 @@
 <title>회원 탈퇴</title>
 <link rel="stylesheet"
 	href="/proj21_shop/resources/member/css/deleteForm.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/view/include/header.jsp"></jsp:include>
@@ -15,7 +16,7 @@
 	<h3>회원탈퇴</h3>
 	<section id="deleteFormArea">
 		<form:form modelAttribute="DeleteRequest">
-		<form:errors/>
+			<form:errors />
 			<table class="type02">
 				<tr>
 					<th scope="row"><label for="passwd">비밀번호</label></th>

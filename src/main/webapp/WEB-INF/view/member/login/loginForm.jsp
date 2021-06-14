@@ -9,6 +9,7 @@
 <title>로그인</title>
 <link rel="stylesheet" href="/proj21_shop/resources/main/css/main.css">
 <link rel="stylesheet" href="/proj21_shop/resources/member/css/loginForm.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <div class="container">
