@@ -18,6 +18,7 @@ $(function(){
 	var memId =  "${memId}";
 	var cartNums = ${cartNums};
 	
+	/* 유저 포인트 */
 	var total_member_point = ${authInfo.mPoint};
 	var total_member_point_fmt = total_member_point.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"P";
 	
@@ -28,10 +29,10 @@ $(function(){
 	var sum_order_price = 0;
 	
 	/* 결제 상품 개수 */
-	var sumNum = 0;
+	var sum_num = 0;
 
 	/* 할인된 금액 */
-	var sumSale = 0;
+	var sum_sale = 0;
 	
 	for(j = 0; j < cartNums.length; j++){
 		
@@ -84,16 +85,16 @@ $(function(){
 										sCont +="</div> "
 										
 										sum_order_price += (((100-json[i].cartProNum.proSalesrate)*json[i].cartProNum.proPrice*json[i].cartProQuantity)/100);
-										sumNum += json[i].cartProQuantity;
-										sumSale += (((json[i].cartProNum.proSalesrate)*json[i].cartProNum.proPrice*json[i].cartProQuantity)/100);
+										sum_num += json[i].cartProQuantity;
+										sum_sale += (((json[i].cartProNum.proSalesrate)*json[i].cartProNum.proPrice*json[i].cartProQuantity)/100);
 										sum_price	+= json[i].cartProNum.proPrice*json[i].cartProQuantity
 							}
 								$(".load_row_data").append(sCont);
 								
 					}
-					$('.sum_p_num').text("상품개수 : "+sumNum+"개")
+					$('.sum_p_num').text("상품개수 : "+sum_num+"개")
 					$('.sum_p_orderprice').text((sum_order_price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"원"))
-					$('.sum_p_sale').text((sumSale.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"원"))
+					$('.sum_p_sale').text((sum_sale.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"원"))
 					$('.sum_p_price').text((sum_price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"원"))
 					
 					$('.actual_order_price').val(sum_order_price)
@@ -119,9 +120,12 @@ $(function(){
 	
 	/* 회원 포인트 사용 */
 	$("input:checkbox[name='check_point']").on("click",function(){
+		/* 결제 예정 금액 */
 		var actual_price = sum_order_price
 		var actual_price_fmt = sum_order_price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
 		var actual_price_fmt_one = sum_order_price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"원"
+		
+		/* 원래 판매 금액 - 결제 예정 금액 = 할인금액*/
 		var price = sum_price - actual_price 
 		var price_fmt = (sum_price - actual_price).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"원" 
 		
@@ -131,9 +135,11 @@ $(function(){
 		
 		
 		if($("input:checkbox[name='check_point']").is(":checked") == true) {
-			/* 실제 내야할 금액이 포인트 보다 크다면 전체 사용시 부족한 모든 포인트 사용*/
+			/* 실제 내야할 금액이 포인트 보다 크다면 전체 사용시 모든 포인트 사용후 사용한 포인트 만큼 할인금액 + , 결제예정금액 -*/
 			if($('.actual_order_price').val() > ${authInfo.mPoint}){
-				$('.use_point').val((${authInfo.mPoint}).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","))	
+				$('.use_point').val((${authInfo.mPoint}).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","))
+				$('.sum_p_sale').text((price + total_member_point).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"원")
+				$('.sum_p_orderprice').text((actual_price - total_member_point).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"원")
 			}
 			/* 실제 내야할 금액이 포인트 보다 작다면 전체 사용시 지불해야할 금액만큼 포인트 사용*/
 			else if($('.actual_order_price').val() <= ${authInfo.mPoint}){
@@ -153,7 +159,6 @@ $(function(){
 			$('#member_point').text(total_member_point_fmt)
 		}
 		
-		 
 	})
 		
 	/* 회원정보 set하기 버튼*/
