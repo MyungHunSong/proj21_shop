@@ -15,7 +15,7 @@ public class AuthService {
 	private MemberMapper mapper;
 	
 	public AuthInfo authenicate(String id, String password) {
-		MemberDTO member = mapper.selectById(id);
+		MemberDTO member = mapper.selectById (id);
 		if(member==null) {
 			throw new WrongIdPasswordException();
 		}
@@ -23,6 +23,7 @@ public class AuthService {
 			throw new WrongIdPasswordException();
 		}
 		AuthInfo au =  new AuthInfo(member.getMemberId(), member.getMemberEmail(), member.getMemberName());
+		mapper.updateTotalLogin(member); //로그인 시 로그인 수 증가
 		au.setmPoint(member.getMemberPoint());
 		return au;
 	}

@@ -74,11 +74,21 @@ public class MemberMapperTest {
 	}
 
 	@Test
-	public void test05DeleteMember() {
+	public void test05DeleteMember() { 
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		MemberDTO member = new MemberDTO("test06", 0);
 		int res = mapper.deleteMember(member);
 		Assert.assertEquals(1, res);
 		log.debug(member.toString());
+	}
+	
+	@Test
+	public void test06UpdateTotalLogin() {
+		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
+		MemberDTO member = new MemberDTO();
+		member.setMemberId("test01");
+		int res = mapper.updateTotalLogin(member);
+		Assert.assertEquals(1, res);
+		
 	}
 }

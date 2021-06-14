@@ -19,6 +19,13 @@ select m_passwd
   from member
  where m_id = 'skdus2421';
 
+-- 로그인 시 로그인 수 증가
+select * from member;
+
+update member
+   set m_total_login = m_total_login + 1
+ where m_id = 'test01';
+
 -- 후기 내용 클릭
 select re_num, pro_num, re_member, re_content, re_image, re_image2, re_date, re_stars
   from review;
