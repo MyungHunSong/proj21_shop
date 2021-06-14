@@ -25,6 +25,13 @@ select *
 -- 제품 전체 검색(제품, 제품 이미지 조인문)
 DROP VIEW productall;
 
+select * from productall where pro_img_state = 1;
+
+update pro_img 
+	set pro_img_state = 0
+where pro_num  > 1000;
+
+
 CREATE VIEW productall
 as
 select p.pro_num,pro_category,pro_name,pro_price,pro_content,pro_salesrate,pro_cre_date,pro_status,pro_color,pro_size,pro_quantity,pro_sold,pro_hits,re_replyCount

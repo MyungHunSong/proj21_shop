@@ -5,12 +5,13 @@ import java.sql.Date;
 import proj21_shop.dto.product.ProductDTO;
 
 public class OrderDTO {
+	
 	private String orderMemberId;
 
-	private int orderNum;
-	private int proNum;
+	private int proNum;//제품번호
 
-	private int orderProNum;
+	private int orderProNum;//식별번호
+	
 	private String orderMemberName;
 	private int orderProQuantity;
 	private int orderPrice;
@@ -36,14 +37,6 @@ public class OrderDTO {
 
 	public void setOrderMemberId(String orderMemberId) {
 		this.orderMemberId = orderMemberId;
-	}
-
-	public int getOrderNum() {
-		return orderNum;
-	}
-
-	public void setOrderNum(int orderNum) {
-		this.orderNum = orderNum;
 	}
 
 	public int getProNum() {
