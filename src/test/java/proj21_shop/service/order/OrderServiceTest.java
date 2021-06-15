@@ -67,6 +67,7 @@ public class OrderServiceTest {
 		orderDTO.setWhoPay("이종윤");
 		orderDTO.setWhichBank("국민");
 		
+		
 		int res = service.trInsertOrder(orderDTO);
 		Assert.assertEquals(3,res);
 	}

@@ -252,7 +252,24 @@ $(function(){
 		
 	})
 	
-	
+	/*구입하기 function()*/
+	function insertOrder(){
+		$.ajax({
+			url: contextPath + "/api/orderInfo",
+			type: 'post' ,
+			contentType : "application/json; charset=utf-8",
+			datatype : "json",
+			data: JSON.stringify(cartNums.cartNum[0]),
+			success: function(res){
+				/* window.location.href = contextPath + "/cart?memId=${authInfo.id }"; */
+			},
+			error:function(request, status, error){
+				alert("code:"+request.status+"\n"+"message:"
+		                  +request.responseText+"\n"+"error:"+error);
+				/* window.location.href = contextPath+"/cart?memId=${authInfo.id }"; */
+			} 
+		});
+	}
 })
 
 </script>

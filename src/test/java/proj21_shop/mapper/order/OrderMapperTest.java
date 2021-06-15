@@ -1,5 +1,8 @@
 package proj21_shop.mapper.order;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.ibatis.logging.Log;
 import org.apache.ibatis.logging.LogFactory;
 import org.junit.After;
@@ -34,7 +37,7 @@ public class OrderMapperTest {
 		System.out.println();
 	}
 
-	@Test
+	//@Test
 	public void test01SelectAddress() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		AddressDTO address = new AddressDTO();
@@ -48,7 +51,7 @@ public class OrderMapperTest {
 		
 	}
 
-	//@Test
+	@Test
 	public void test02InsertOrder() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		/*
@@ -76,9 +79,13 @@ public class OrderMapperTest {
 		
 		System.out.println(orderDTO);
 		
-		int res = mapper.insertOrder(orderDTO);
+		List<OrderDTO> order = new ArrayList<>();
+		order.add(orderDTO);
+		order.add(orderDTO);
+		System.out.println(order);
+		int res = mapper.insertOrder(order);
 		
-		Assert.assertEquals(1, res);
+		Assert.assertEquals(2, res);
 	}
 
 	//@Test
