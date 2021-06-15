@@ -23,4 +23,7 @@ public interface QnaMapper {
 	// 검색창 만들기.
 	List<QnaDTO> listSearch(SearchCriteria searchCriteria);
 	int countSearchedArticles(SearchCriteria searchCriteria);
+	
+	//번호 클릭시 내용 보이기
+	QnaDTO selectQnaContent(int qIndex);
 }

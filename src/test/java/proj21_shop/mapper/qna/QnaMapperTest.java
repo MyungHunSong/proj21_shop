@@ -76,4 +76,15 @@ public class QnaMapperTest {
 		Assert.assertNotNull(list);
 		list.stream().forEach(System.out::println);
 	}
+	
+	@Test
+	public void test05SelectIndex() {
+		log.debug(Thread.currentThread().getStackTrace()[1].getClassName()+"()");
+		
+			QnaDTO dto = mapper.selectQnaContent(1);
+			
+			Assert.assertNotNull(dto);
+			System.out.println(dto.toString());
+			
+	}
 }

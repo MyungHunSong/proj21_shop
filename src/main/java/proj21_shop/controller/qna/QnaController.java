@@ -6,7 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import proj21_shop.dto.qna.PageDTO;
+import proj21_shop.dto.qna.QnaDTO;
 import proj21_shop.dto.qna.SearchCriteria;
+import proj21_shop.service.qna.QnaInsertService;
 import proj21_shop.service.qna.QnaService;
 
 @Controller
@@ -14,6 +16,8 @@ public class QnaController {
 		
 	@Autowired
 	private QnaService service;
+	@Autowired
+	private QnaInsertService qInsertService;
 	 	
 	@GetMapping("/qna_main")
 	public String listCriteria(SearchCriteria sCri, Model model) {		
@@ -52,5 +56,19 @@ public class QnaController {
  
 	    return "/qna/qna_main";
 	}
+	
+	@GetMapping("/qna_detail")
+	public String selectQnaDetail(Integer qIndex, Model model, QnaDTO dto) {
+		
+		dto.setqIndex(qIndex);
+		System.out.println(qIndex);
+		model.addAttribute("qIndex", dto.getqIndex());
+		System.out.println(qIndex);
+		
+		model.addAttribute("qDetail", qInsertService.selectQnaContent(qIndex));
+		return "/qna/qna_detail";
+		
+	}
+	
 	
 }

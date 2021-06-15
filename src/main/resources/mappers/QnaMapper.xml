@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="proj21_shop.mapper.qna.QnaMapper">
-	 <resultMap type="QnaDTO" id="resQna">
-	 	<id column ="q_op" property="qOp"/>
-		<result column="q_member" property="qMember"/>
-		<result column="q_title" property="qTitle"/>
-		<result column="q_date" property="qDate"/>
-		<result column="q_hits" property="qHit"/>
-		<result column="q_option" property="qOption"/>
-	</resultMap>
-	
+	 
 	<resultMap type="QnaDTO" id="ArticleResultMap">
 		<id column ="q_index" property="qIndex"/>
 		<result column="q_op" property="qOp"/>
@@ -111,7 +103,7 @@
 	</select>
 	
 	
-	<!-- 페이징 하는곳에 목록창(1 페이지에 10개뛰우기, 2페이지에 10개뛰우기)  -->
+	 <!-- 페이징 하는곳에 목록창(1 페이지에 10개뛰우기, 2페이지에 10개뛰우기) -->
 	<select id="listCriteria" resultMap="ArticleResultMap">
 		<![CDATA[
 		select q_index,q_title,q_option,q_member,q_content,q_file,q_date,q_hits,q_group,q_indent,q_step,
@@ -124,6 +116,13 @@
 				order by	q_op desc, q_date desc
 		limit #{pageStart}, #{perPageNum}
 		]]> 
+		</select>
+		
+		<select id="selectQnaContent" resultMap = "ArticleResultMap">
+			 select  
+				q_index,q_title,q_option,q_member,q_content,q_file,q_date,q_hits,q_group,q_indent,q_step 
+				from qna 
+			where q_index = #{qIndex}
 		</select>
 		
 		

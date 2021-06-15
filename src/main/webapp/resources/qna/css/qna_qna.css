@@ -1,4 +1,17 @@
 @charset "UTF-8";
+
+.clickOption{
+	cursor: pointer;
+}
+
+.clickContent{
+	 display: none;
+}
+
+.clickContent.active{
+	 display: contents;	
+}
+
 #qna_board{
 	margin: auto;
 }

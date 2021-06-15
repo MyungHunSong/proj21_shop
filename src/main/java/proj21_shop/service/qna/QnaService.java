@@ -24,4 +24,7 @@ public interface QnaService {
 	// page검색어 sql 구문.
 	List<QnaDTO> listSearch(SearchCriteria searchCriteria);
 	int countSearchedArticles(SearchCriteria searchCriteria);
+	
+	
+	
 }
