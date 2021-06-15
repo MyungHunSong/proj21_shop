@@ -6,13 +6,15 @@ import proj21_shop.dto.product.ProductDTO;
 import proj21_shop.dto.product.ProductImageDTO;
 
 public class ReviewDTO {
+	private String memberId;
+	private int proNum;
+
 	private ProductDTO proName;
 
 	private int reviewNum;
-	private int proNum;
+	
 	private ProductImageDTO proImagefilename;
 
-	private String memberId;
 	private String reviewContent;
 	private String reviewImagefilename1;
 	private String reviewImagefilename2;

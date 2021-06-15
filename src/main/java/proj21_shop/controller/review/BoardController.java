@@ -15,8 +15,9 @@ public class BoardController {
 	}
 	
 	@GetMapping("/detailreview")
-	public ModelAndView getDetailReview(@RequestParam(value="memberId")String memberId) {
+	public ModelAndView getDetailReview(@RequestParam(value="memberId")String memberId, @RequestParam(value="proNum") int proNum){
 		ModelAndView mav = new ModelAndView("review/reviewForm", "memberId", memberId);
+		mav.addObject("proNum",proNum);
 		return mav;
 	}
 }

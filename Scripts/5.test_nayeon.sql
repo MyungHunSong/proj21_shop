@@ -22,7 +22,6 @@ select m_passwd
 -- 로그인 시 로그인 수 증가
 select * from member;
 
-
 update member
    set m_total_login = m_total_login + 1
  where m_id = 'test01';
@@ -39,7 +38,14 @@ insert into review
 values (1, 1, '이나연', '옷이 너무 맘에 드네요', 'insert1.jpg', 'insert2.jpg', '2021-5-26', 5);
 
 -- 후기 내역
-select r.re_num,p.pro_name, r.re_image, r.re_content, r.re_stars, r.re_date
+select * from product;
+select * from review;
+desc review;
+
+insert into review(re_num, pro_num, re_member, re_content, re_image, re_image2, re_stars)
+values (2, 1033, 'test01', '맘에 들어요. 감사합니다.', 'review_test.jpg', 'review_test.jpg', 3);
+
+select r.re_num,p.pro_name, r.re_image, r.re_image2, r.re_content, r.re_stars, r.re_date
   from review r
   join product p
 	on r.pro_num = p.pro_num
@@ -50,18 +56,17 @@ select * from review;
 select * from product;
 select * from pro_img;
 
-select pi2.pro_imagefilename, p.pro_name, p.pro_color, p.pro_size, r.re_stars, r.re_content 
+select pi2.pro_imagefilename, p.pro_name, p.pro_color, p.pro_size, r.re_stars, r.re_content, r.re_image, r.re_image2 
   from review r 
   join product p
     on r.pro_num = p.pro_num
   join pro_img pi2
     on p.pro_num = pi2.pro_num
- where r.re_member = 'test01';
+ where r.re_member = 'test01' and p.pro_num = '1033';
     
 update review
    set re_content = '옷에 실밥이 너무 많아요', re_image = 'update1.jpg', re_image2 = 'update2.jpg', re_stars = 4
  where re_num = 1;
-
 
 -- Q&A 내역(주문 입력 후 내역 조회) 
 insert into `order` 
@@ -108,8 +113,10 @@ update member
  where m_id = 'test06';
 
 -- 주문 상세 내역 페이지 
-select or_num, pro_num, order_price, order_pro_quantity, delivery_status, order_date 
-  from `order`
+select o.order_pro_num, pi2.pro_imagefilename, o.order_price, o.order_pro_quantity, o.delivery_status, o.order_date
+  from `order` o
+  join pro_img pi2
+    on o.pro_num = pi2.pro_num 
  where order_member_id = 'test01';
  
 -- 배송지 정보

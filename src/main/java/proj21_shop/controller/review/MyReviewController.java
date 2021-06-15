@@ -5,9 +5,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import proj21_shop.dto.order.OrderDTO;
+import proj21_shop.dto.review.ReviewDTO;
 import proj21_shop.service.review.MyReviewService;
 
 @RestController
@@ -28,9 +29,12 @@ public class MyReviewController {
 		return ResponseEntity.ok(service.selectQnaByMember(memberId));
 	}
 	
-	@GetMapping("/detailreview/{memberId}")
-	public ResponseEntity<Object> mydetailreview(@PathVariable String memberId){
-		return ResponseEntity.ok(service.selectDetailReviewByMember(memberId));
+	@GetMapping("/detailreview/{memberId}/{proNum}")
+	public ResponseEntity<Object> mydetailreview(@PathVariable String memberId, @PathVariable int proNum){
+		ReviewDTO reviewDTO = new ReviewDTO();
+		reviewDTO.setMemberId(memberId);
+		reviewDTO.setProNum(proNum);
+		return ResponseEntity.ok(service.selectDetailReviewByMember(reviewDTO));
 	}
 	
 } 

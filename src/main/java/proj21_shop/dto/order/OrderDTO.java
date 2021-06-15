@@ -3,15 +3,19 @@ package proj21_shop.dto.order;
 import java.sql.Date;
 
 import proj21_shop.dto.product.ProductDTO;
+import proj21_shop.dto.product.ProductImageDTO;
+import proj21_shop.dto.review.ReviewDTO;
 
 public class OrderDTO {
-	
+
 	private String orderMemberId;
 
-	private int proNum;//제품번호
+	private int proNum;// 제품번호
 
-	private int orderProNum;//식별번호
-	
+	private int orderProNum;// 식별번호
+
+	private ProductImageDTO productImageDTO;
+
 	private String orderMemberName;
 	private int orderProQuantity;
 	private int orderPrice;
@@ -24,7 +28,7 @@ public class OrderDTO {
 	private String deliveryAddr3;
 	private String deliveryStatus;
 	private String requestToDelivery;
-	
+
 	private ProductDTO proName;
 	private Date orderDate;
 
@@ -32,8 +36,14 @@ public class OrderDTO {
 	private String whichBank;
 	private String acountNum;
 
-	
-	
+	public ProductImageDTO getProductImageDTO() {
+		return productImageDTO;
+	}
+
+	public void setProductImageDTO(ProductImageDTO productImageDTO) {
+		this.productImageDTO = productImageDTO;
+	}
+
 	public String getOrderMemberId() {
 		return orderMemberId;
 	}
@@ -203,6 +213,4 @@ public class OrderDTO {
 				requestToDelivery, proName, orderDate, whoPay, whichBank, acountNum);
 	}
 
-	
-	
 }

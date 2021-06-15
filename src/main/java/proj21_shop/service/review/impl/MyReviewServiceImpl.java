@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import proj21_shop.dto.order.OrderDTO;
 import proj21_shop.dto.qna.QnaDTO;
 import proj21_shop.dto.review.ReviewDTO;
 import proj21_shop.mapper.review.MyReviewMapper;
@@ -27,8 +28,8 @@ public class MyReviewServiceImpl implements MyReviewService {
 	}
 
 	@Override
-	public List<ReviewDTO> selectDetailReviewByMember(String memberId) {
-		return mapper.selectDetailReviewByMember(memberId);
+	public List<ReviewDTO> selectDetailReviewByMember(ReviewDTO reviewDTO) {
+		return mapper.selectDetailReviewByMember(reviewDTO);
 	}
 
 }

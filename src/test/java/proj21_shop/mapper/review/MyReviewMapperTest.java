@@ -16,6 +16,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import proj21_shop.config.ContextRoot;
+import proj21_shop.dto.order.OrderDTO;
 import proj21_shop.dto.qna.QnaDTO;
 import proj21_shop.dto.review.ReviewDTO;
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -41,7 +42,7 @@ public class MyReviewMapperTest {
 		Assert.assertNotNull(list);
 	}
 
-	@Test
+	//@Test
 	public void test02SelectQnaByMember() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getClassName()+"()");
 		List<QnaDTO> list = mapper.selectQnaByMember("test01");
@@ -51,7 +52,10 @@ public class MyReviewMapperTest {
 	@Test
 	public void test03SelectDetailReviewByMember() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getClassName()+"()");
-		List<ReviewDTO> list = mapper.selectDetailReviewByMember("test01");
+		ReviewDTO reviewDTO = new ReviewDTO();
+		reviewDTO.setMemberId("test01");
+		reviewDTO.setProNum(1033);
+		List<ReviewDTO> list = mapper.selectDetailReviewByMember(reviewDTO);
 		Assert.assertNotNull(list);
 	}
 	
