@@ -68,6 +68,7 @@ public class PageDTO {
 		.queryParam("page", page)
 		.queryParam("pagePageNum", cri.getPerPageNum())
 		.queryParam("searchType", cri.getSearchType())
+		.queryParam("keyword", encoding(cri.getKeyword()))
 		.build();
 		
 		return uriComponents.toUriString();

@@ -14,9 +14,9 @@
 $(function(){
 	$("#searchBtn").on("click", function(event){
 		self.location= "/proj21_shop/listPaging${pageMaker.makeQuery(1)}"
-		+"&searchType=" +$("select option:selected").val(); 
+		+"&searchType=" +$("select option:selected").val()
+		+"&keyword=" + encodeURIComponent($("#keywordInput").val());
 	}) 
-	<%-- ${searchCriteria.searchType eq 'b' ? 'selected' : ' '} --%>
 }); 
 </script>
 <meta charset="UTF-8">

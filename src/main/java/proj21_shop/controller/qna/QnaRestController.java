@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import proj21_shop.dto.qna.Criteria;
 import proj21_shop.dto.qna.PageDTO;
 import proj21_shop.dto.qna.SearchCriteria;
 import proj21_shop.service.qna.QnaService;
@@ -24,31 +23,55 @@ public class QnaRestController {
 	// @PathVariable 을 사용하지 않았을 경우 도메인 /no = 1, @pathVariable을 사용할 경우 도메인 /1
 	@GetMapping("/qna/{page}")
 	public ResponseEntity<Object> qna(@PathVariable int page){	
-		SearchCriteria searchCriteria = new SearchCriteria();
-		searchCriteria.setPage(page);	
-
-		return ResponseEntity.ok(qnaService.listSearch(searchCriteria));
+		SearchCriteria sCriteria = new SearchCriteria();
+		System.out.println(sCriteria);
+		sCriteria.setPage(page);	
+		
+		
+		return ResponseEntity.ok(qnaService.listSearch(sCriteria));
+	}
+	
+	@GetMapping("/qna/{page}/{perPageNum}/{searchType}/{keyword}")
+	public ResponseEntity<Object> qna(
+			@PathVariable int page
+			,@PathVariable int perPageNum
+			,@PathVariable String searchType
+			,@PathVariable String keyword){
+		
+		PageDTO dto = new PageDTO();
+		SearchCriteria sCri = new SearchCriteria();
+		
+		sCri.setPage(page);
+		sCri.setPerPageNum(perPageNum);	
+		sCri.setSearchType(searchType);
+		
+		if(keyword == null) {
+			return ResponseEntity.ok(qnaService.listSearch(sCri));
+		}else {
+			sCri.setKeyword(keyword);	
+		}
+		System.out.println(keyword);
+		dto.setCri(sCri);
+		return ResponseEntity.ok(qnaService.listSearch(sCri));
 	}
 	
 	@GetMapping("/qna/{page}/{perPageNum}/{searchType}")
 	public ResponseEntity<Object> qna(
 			@PathVariable int page
 			,@PathVariable int perPageNum
-			, @PathVariable String searchType){
+			,@PathVariable String searchType)
+			{
 		
 		PageDTO dto = new PageDTO();
 		SearchCriteria sCri = new SearchCriteria();
 		
 		sCri.setPage(page);
-		System.out.println("1.RestController Page => searchCriteria : " + sCri);
-		sCri.setPerPageNum(perPageNum);
-		System.out.println("2.RestController Page => searchCriteria : " + sCri);
-		
+		sCri.setPerPageNum(perPageNum);	
 		sCri.setSearchType(searchType);
-		System.out.println("3.RestController Page => searchCriteria : " + sCri);
+		
 		dto.setCri(sCri);
-		System.out.println("4.RestController Page => searchCriteria : " + sCri);
 		return ResponseEntity.ok(qnaService.listSearch(sCri));
 	}
+	
 	
 }

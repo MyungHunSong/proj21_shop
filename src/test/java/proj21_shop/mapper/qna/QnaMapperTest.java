@@ -68,7 +68,8 @@ public class QnaMapperTest {
 		
 		SearchCriteria sCri = new SearchCriteria();
 		sCri.setPage(1);
-		sCri.setSearchType("c");
+		sCri.setSearchType("a");
+		sCri.setKeyword("");
 		
 		List<QnaDTO> list = mapper.listSearch(sCri);
 		
