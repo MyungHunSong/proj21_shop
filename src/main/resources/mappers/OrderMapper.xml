@@ -2,7 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="proj21_shop.mapper.order.OrderMapper">
 	
-	<select id="selectAddress" resultType="AddressDTO">
+	<resultMap type="AddressDTO" id="ResAddress">
+		<result column="m_id" property="memberId"/>
+		<result column="m_addr1" property="memberAddr1"/>
+		<result column="m_addr1" property="memberAddr2"/>
+		<result column="m_addr1" property="memberAddr3"/>
+	</resultMap>
+	
+	<select id="selectAddress" resultMap="ResAddress">
 		 select addr_num,m_id,m_addr1,m_addr2,m_addr3 
   	  	  from address
 		where m_id = #{memberId} and m_addr1 = #{memberAddr1} and m_addr2 = #{memberAddr2} and m_addr3 = #{memberAddr3};
@@ -28,13 +35,13 @@
 	
 	<update id="updateMember">
 		update `member` 
-       		 set  m_point = #{memberPoint} , m_total_buy = m_total_buy + #{memberTotalBuy} , m_total_order = m_total_order + #{memberTotalOrder}
+       		 set  m_point = m_point + #{memberPoint} , m_total_buy = m_total_buy + #{memberTotalBuy} , m_total_order = m_total_order + #{memberTotalOrder}
  		where  m_id = #{memberId} ;	
 	</update>
 	
 	<update id="updateProduct">
 		update product 
 	   		 set pro_quantity = pro_quantity - #{proQuantity} , pro_sold = pro_sold + #{proSold}
-		 where pro_num = #{proNum.pronum};
+		 where pro_num = #{proNum};
 	</update>	
 </mapper>

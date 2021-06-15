@@ -118,14 +118,14 @@ select * from member;
 
 /*회원포인트 부여*/
 update `member` 
-       set  m_point = 5000 and m_total_buy = m_total_buy +  and m_total_order = m_total_order
+       set  m_point = m_point + 50 , m_total_buy = m_total_buy + 5000 , m_total_order = m_total_order + 1
  where  m_id = 'test01' ;    
 
 /*새로운 주소 등록*/
 /*동일한 주소 있나 검색후 null 이면 새로운 주소로 등록*/
 select addr_num,m_id,m_addr1,m_addr2,m_addr3 
   from address
-where m_id = 'test01' and m_addr1 = 746858 and m_addr2 = '대구광역시 남구 봉덕동 이천로 51' and m_addr3 = '3층';
+where m_id = 'test02' and m_addr1 = 746858 and m_addr2 = '대구광역시 남구 봉덕동 이천로 51' and m_addr3 = '3층';
 
 INSERT INTO proj21_shop.address
 			(m_id,  m_addr1, m_addr2, m_addr3)
@@ -154,7 +154,11 @@ update product
  where pro_num = 6163;	   
 
 select * from `order`;
+select * from `member`;
 
 /*주문내역삭제*/
-
 delete from `order`where order_pro_num > 20;
+
+select * from address;
+
+delete from address where addr_num > 10; 

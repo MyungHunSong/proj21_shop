@@ -39,4 +39,10 @@ public class AddressDTO {
 		this.memberAddr3 = memberAddr3;
 	}
 
+	@Override
+	public String toString() {
+		return String.format("AddressDTO [memberId=%s, memberAddr1=%s, memberAddr2=%s, memberAddr3=%s]", memberId,
+				memberAddr1, memberAddr2, memberAddr3);
+	}
+	
 }

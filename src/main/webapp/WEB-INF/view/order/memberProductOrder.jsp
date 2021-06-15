@@ -73,7 +73,6 @@ $(function(){
 										sCont +=			"<div class='basketprice'>"+(100-json[i].cartProNum.proSalesrate)*json[i].cartProNum.proPrice*0.0001*json[i].cartProQuantity+"P</div>"
 										sCont +=			"<div class='num'>"
 										sCont +=				"<div class='updown'> "
-										sCont +=       			"<input type='hidden' name='pPrice' id='pPrice1' class='pPrice' value="+((100-json[i].cartProNum.proSalesrate)*json[i].cartProNum.proPrice)/100+"/>"
 										sCont +=					"<input type='text' name='pNum"+i+"' id='pNum"+i+"' size='2' maxlength='4' class='pNum' value="+json[i].cartProQuantity+" onkeyup='javascript:basket.changePNum("+i+");' readonly>"
 										sCont +=				"</div>"
 										sCont +=			"</div>"
@@ -248,6 +247,12 @@ $(function(){
 		}
 	})
 	
+	/* 주문하기 버튼 클릭 */
+	$('#prodOrderBtn').on("click",function(){
+		
+	})
+	
+	
 })
 
 </script>
@@ -365,7 +370,7 @@ $(function(){
 	            <p>무통장 입금 : <span>국민은행 계좌번호  940***-**-******  예금주 : ***</span></p>
             </div>
             <div class="orderBtnsGroup">
-            <input class = 'orderBtns' type="submit" value="주문하기">
+            <input id="prodOrderBtn" class = 'orderBtns' type="submit" value="주문하기">
             <input class = 'orderBtns' type="submit" value="취소하기">
             </div>
 </form> 
