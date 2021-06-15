@@ -4,7 +4,9 @@
 
 	<resultMap type="ReviewDTO" id="resReview">
 		<id property="reviewNum" column="re_num" />
+		<result property="proNum" column="pro_num"/>
 		<result property="reviewImagefilename1" column="re_image" />
+		<result property="reviewImagefilename2" column="re_image2"/>
 		<result property="reviewContent" column="re_content" />
 		<result property="reviewStar" column="re_stars" />
 		<result property="reviewDate" column="re_date" />
@@ -18,14 +20,17 @@
 		<id property="proNum" column="pro_num" />
 		<result property="reviewStar" column="re_stars" />
 		<result property="reviewContent" column="re_content" />
+		<result property="reviewImagefilename1" column="re_image"/>
+		<result property="reviewImagefilename2" column="re_image2"/>
 		<association property="proImagefilename"
 			javaType="ProductImageDTO" autoMapping="true">
 			<result property="proImagefilename" column="pro_imagefilename" />
 		</association>
-		<association property="proName" javaType="ProductDTO" autoMapping="true">
+		<association property="proName" javaType="ProductDTO"
+			autoMapping="true">
 			<result property="proName" column="pro_name" />
-			<result property="proColor" column="pro_color"/>
-			<result property="proSize" column="pro_size"/>
+			<result property="proColor" column="pro_color" />
+			<result property="proSize" column="pro_size" />
 		</association>
 	</resultMap>
 
@@ -39,7 +44,7 @@
 
 	<select id="selectReviewByMember" resultMap="resReview">
 		select r.re_num,
-		p.pro_name, r.re_image,
+		p.pro_num, p.pro_name, r.re_image, r.re_image2,
 		r.re_content, r.re_stars, r.re_date
 		from review
 		r
@@ -58,13 +63,13 @@
 
 	<select id="selectDetailReviewByMember"
 		resultMap="resDetailReview">
-		select pi2.pro_imagefilename, p.pro_name, p.pro_color,
-		p.pro_size, r.re_stars, r.re_content
+		select p.pro_num,pi2.pro_imagefilename, p.pro_name, p.pro_color, p.pro_size,
+		r.re_stars, r.re_content, r.re_image, r.re_image2
 		from review r
 		join product p
 		on r.pro_num = p.pro_num
 		join pro_img pi2
 		on p.pro_num = pi2.pro_num
-		where r.re_member = #{memberId}
+		where r.re_member = #{memberId} and p.pro_num = #{proNum}
 	</select>
 </mapper>

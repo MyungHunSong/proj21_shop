@@ -12,19 +12,21 @@
 	$(function() {
 		var contextPath = "${contextPath}";
 		var memberId = "${memberId}";
-
+		var proNum = "${proNum}";
+		console.log(proNum);
 		$.get(contextPath + "/api/myreview/" + memberId, function(json) {
 			var dataLength = json.length;
 			if (dataLength >= 1) {
 				var sCont = "";
 				for (i = 0; i < dataLength; i++) {
+					console.log(json)
 					sCont += "<tr>";
 					sCont += "<td>" + json[i].proName.proName + "</td>";
 					sCont += "<td><img src=" + contextPath + "/resources/review/images/" + json[i].reviewImagefilename1 + " width='80' height='60'></td>";
 					sCont += "<td>" + json[i].reviewContent + "</td>";
 					sCont += "<td>" + json[i].reviewStar + "</td>";
 					sCont += "<td>" + json[i].reviewDate + "</td>";
-					sCont += "<td> 후기수정 하러가기 </td>";
+					sCont += "<td><a href='detailreview?memberId=" + memberId +"&proNum=" + json[i].proNum + "'>후기수정 하러가기</a></td>";
 					sCont += "<tr>";
 				}
 

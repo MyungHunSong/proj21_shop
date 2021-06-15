@@ -7,4 +7,5 @@ import proj21_shop.dto.order.OrderDTO;
 public interface MyOrderListMapper {
 
 	List<OrderDTO> selectOrderByMember(String memberId);
+	List<OrderDTO> selectOrderDetailByMember(String memberId);
 }

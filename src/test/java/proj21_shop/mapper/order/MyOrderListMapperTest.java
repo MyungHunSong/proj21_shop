@@ -39,5 +39,11 @@ public class MyOrderListMapperTest {
 		List<OrderDTO> list = mapper.selectOrderByMember("test01");
 		Assert.assertNotNull(list.toString());
 	}
-
+	
+	@Test
+	public void testSelectOrderDetailByMember() {
+		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
+		List<OrderDTO> list = mapper.selectOrderDetailByMember("test01");
+		Assert.assertNotNull(list.toString());
+	}
 }

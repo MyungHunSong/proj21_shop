@@ -13,12 +13,35 @@
 		</association>
 	</resultMap>
 
+	<resultMap type="OrderDTO" id="resDetailOrder">
+		<id property="orderProNum" column="order_pro_num" />
+		<result property="orderPrice" column="order_price" />
+		<result property="orderProQuantity" column="order_pro_quantity" />
+		<result property="deliveryStatus" column="delivery_status"/>
+		<result property="orderDate" column="order_date"/>
+		<association property="productImageDTO"
+			javaType="ProductImageDTO" autoMapping="true">
+			<result property="proImagefilename" column="pro_imagefilename" />
+		</association>
+	</resultMap>
+
 	<select id="selectOrderByMember" resultMap="resOrder">
-		select o.order_pro_num, p.pro_name, o.order_date, o.order_pro_quantity,
+		select
+		o.order_pro_num, p.pro_name, o.order_date, o.order_pro_quantity,
 		o.order_price, o.delivery_status
 		from `order` o
 		join product p
-		where order_member_id = #{memberId}
+		  on o.pro_num = p.pro_num
+		where
+		order_member_id = #{memberId}
 	</select>
 
+	<select id="selectOrderDetailByMember" resultMap="resDetailOrder">
+		select o.order_pro_num, pi2.pro_imagefilename,
+		o.order_price, o.order_pro_quantity, o.delivery_status, o.order_date
+		from `order` o
+		join pro_img pi2
+		on o.pro_num = pi2.pro_num
+		where order_member_id = #{memberId}
+	</select>
 </mapper>

@@ -8,5 +8,5 @@ import proj21_shop.dto.review.ReviewDTO;
 public interface MyReviewMapper {
 	List<ReviewDTO> selectReviewByMember(String memberId);
 	List<QnaDTO> selectQnaByMember(String memberId);
-	List<ReviewDTO> selectDetailReviewByMember(String memberId);
+	List<ReviewDTO> selectDetailReviewByMember(ReviewDTO reviewDTO);
 }

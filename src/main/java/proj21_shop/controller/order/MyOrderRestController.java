@@ -19,5 +19,9 @@ public class MyOrderRestController {
 	public ResponseEntity<Object> myorder(@PathVariable String memberId) {
 		return ResponseEntity.ok(service.selectOrderByMember(memberId));
 	}
-
+	
+	@GetMapping("mydetailorder/{memberId}")
+	public ResponseEntity<Object> myorderdetail(@PathVariable String memberId){
+		return ResponseEntity.ok(service.selectOrderDetailByMember(memberId));
+	}
 }
