@@ -57,7 +57,6 @@ public class OrderServiceImpl implements OrderService {
 			if(orderMapper.selectAddress(addressDTO) == null) { 
 				   orderMapper.insertMemberAddress(addressDTO); 
 			}
-
 			//제품 수량이 주문 수량 보다 많을 때만 구입가능
 			if(checkProd.getProQuantity() >= orderDTO.getOrderProQuantity()) {
 				System.out.println("checkProd >>" +checkProd);
@@ -72,7 +71,6 @@ public class OrderServiceImpl implements OrderService {
 				System.out.println("orderDTO >>" +orderDTO);
 				throw new toMuchOrderExeption("죄송합니다 제품 수량이 부족합니다.");
 			}
-			
 			
 			res += orderMapper.deletCart(orderDTO);
 			res += orderMapper.updateMember(memberDTO);
