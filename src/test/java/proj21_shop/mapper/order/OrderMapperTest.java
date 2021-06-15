@@ -51,7 +51,7 @@ public class OrderMapperTest {
 		
 	}
 
-	@Test
+	//@Test
 	public void test02InsertOrder() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		/*
@@ -128,6 +128,18 @@ public class OrderMapperTest {
 		productDTO.setProNum(6163);
 		
 		int res = mapper.updateProduct(productDTO);
+		Assert.assertEquals(1,res);
+	}
+
+	@Test
+	public void test06DelteCart() {
+		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
+		
+		OrderDTO orderDTO = new OrderDTO();
+		orderDTO.setOrderMemberId("test05");
+		orderDTO.setProNum(4073);
+		
+		int res = mapper.deletCart(orderDTO);
 		Assert.assertEquals(1,res);
 	}
 

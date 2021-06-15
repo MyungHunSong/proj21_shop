@@ -12,6 +12,8 @@ public interface OrderMapper {
 	/* 제품 주문시 주소 검색 */
 	AddressDTO selectAddress(AddressDTO addressDTO);
 	
+	ProductDTO selectProdByProNum(int proNum);
+	
 	/* 제품 주문 */
 	int insertOrder(List<OrderDTO> orderDTO);
 
@@ -23,4 +25,7 @@ public interface OrderMapper {
 	
 	/* 제품 주문후 물건 재고 감소, 누적판매수 증가*/
 	int updateProduct(ProductDTO productDTO);
+	
+	/* 주문 후 주문 된 제품 장바구니 삭제 */
+	int deletCart(OrderDTO orderDTO);
 }

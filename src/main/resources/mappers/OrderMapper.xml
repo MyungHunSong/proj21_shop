@@ -46,4 +46,17 @@
 	   		 set pro_quantity = pro_quantity - #{proQuantity} , pro_sold = pro_sold + #{proSold}
 		 where pro_num = #{proNum};
 	</update>	
+	
+	<delete id="deletCart">
+		delete 
+ 		  from cart
+		where cart_member_Id = #{orderMemberId} and cart_pro_num = #{proNum}
+	</delete>
+	
+	<select id="selectProdByProNum" resultType="ProductDTO">
+		select pro_num ,pro_quantity
+  	      from product
+		where pro_num = #{proNum} 
+	</select>
+	
 </mapper>

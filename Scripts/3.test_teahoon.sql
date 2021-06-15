@@ -5,9 +5,9 @@ select *
 select *
   from member;
 select *
-  from pro_img;
-select *
   from product;
+ select *
+  from pro_img;
 select *
   from qna;
 select *
@@ -20,8 +20,6 @@ select *
   from admin;
 select *
   from `order`;
-
- 
 
 
 -- 제품 전체 검색(제품, 제품 이미지 조인문)
@@ -156,9 +154,13 @@ update product
 select * from `order`;
 select * from `member`;
 
-/*주문내역삭제*/
-delete from `order`where order_pro_num > 20;
+/*주문 하고 난후 장바구니 삭제*/
 
-select * from address;
+delete 
+   from cart 
+where cart_member_Id = ? and cart_pro_num = ?;
 
-delete from address where addr_num > 10; 
+select pro_num 
+  from product
+where pro_num = ?;
+  

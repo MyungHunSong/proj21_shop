@@ -1,5 +1,8 @@
 package proj21_shop.service.order;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.ibatis.logging.Log;
 import org.apache.ibatis.logging.LogFactory;
 import org.junit.After;
@@ -14,7 +17,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import proj21_shop.config.ContextRoot;
-import proj21_shop.dto.member.AddressDTO;
 import proj21_shop.dto.member.MemberDTO;
 import proj21_shop.dto.order.OrderDTO;
 import proj21_shop.mapper.order.OrderMapper;
@@ -67,9 +69,14 @@ public class OrderServiceTest {
 		orderDTO.setWhoPay("이종윤");
 		orderDTO.setWhichBank("국민");
 		
+		List<OrderDTO> orderList = new ArrayList<>();
+		orderList.add(orderDTO);
+		orderList.add(orderDTO);
+		orderList.add(orderDTO);
 		
-		int res = service.trInsertOrder(orderDTO);
-		Assert.assertEquals(3,res);
+		
+		int res = service.trInsertOrder(orderList);
+		Assert.assertEquals(5,res);
 	}
 
 }
