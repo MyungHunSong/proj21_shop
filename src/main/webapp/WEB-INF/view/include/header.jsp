@@ -11,9 +11,7 @@
 	$(function(){
 		$('.headerImg').click(function(){
 			location.href='main';
-		});
-		
-	if($(authInfo).)
+		})
 		
 	});
 	
@@ -41,7 +39,7 @@
 			
 			<li><a href="mypage">마이페이지</a></li>
 			
-			<li><a href='<c:url value="/listPaging?page=1"/>'>고객센터</a></li>
+			<li><a href='<c:url value="/listPaging?page=1&perPageNum=10&searchType=a&keyword="/>'>고객센터</a></li>
 
 			
 

@@ -115,13 +115,13 @@ values
 ('할말이 없네요', '기타', 'test06', '먼데..', '첨부파일',now(),q_group = q_index),
 ('제흐발', '기타', 'test07', '먼데..', '첨부파일',now(),q_group = q_index),
 ('무엇이?', '기타', 'test08', '먼데..', '첨부파일',now(),q_group = q_index),
-('앗항', '기타', 'test09', '먼데..', '첨부파일',now(),q_group = q_index),
-('앗항', '기타', 'test20', 'ㅋㅋㅋㅋ어이가 없네..', '첨부파일',now(),q_group = q_index),
-('앗항', '회원관련', 'test10', 'ㄴㄴㄴㄴ먼데..', '첨부파일',now(),q_group = q_index),
-('앗항', '회원관련', 'test11', '먼ㅎㅎㅎ데..', '첨부파일',now(),q_group = q_index),
-('앗항', '포인트 º 적립금', 'test12', '먼ㄷㄱㄷㄱ데..', '첨부파일',now(),q_group = q_index),
-('앗항', '포인트 º 적립금', 'test13', '먼ㄹㄹㄹ데..', '첨부파일',now(),q_group = q_index),
-('앗항', '포인트 º 적립금', 'test14', '먼데..', '첨부파일',now(),q_group = q_index),
+('제발', '기타', 'test09', '먼데..', '첨부파일',now(),q_group = q_index),
+('이건', '기타', 'test20', 'ㅋㅋㅋㅋ어이가 없네..', '첨부파일',now(),q_group = q_index),
+('회원때문에 올려요', '회원관련', 'test10', 'ㄴㄴㄴㄴ먼데..', '첨부파일',now(),q_group = q_index),
+('발행', '회원관련', 'test11', '먼ㅎㅎㅎ데..', '첨부파일',now(),q_group = q_index),
+('포인트에 관해서', '포인트 º 적립금', 'test12', '먼ㄷㄱㄷㄱ데..', '첨부파일',now(),q_group = q_index),
+('돈얼마 싸인줄 어디서 아나요?', '포인트 º 적립금', 'test13', '먼ㄹㄹㄹ데..', '첨부파일',now(),q_group = q_index),
+('답없네', '포인트 º 적립금', 'test14', '먼데..', '첨부파일',now(),q_group = q_index),
 ('앗항', '환불문의', 'test15', '먼데..', '첨부파일',now(),q_group = q_index),
 ('앗항', '환불문의', 'test16', '먼데..', '첨부파일',now(),q_group = q_index),
 ('앗항', '제품문의', 'test11', '오?', '첨부파일', now(),q_group = q_index),
@@ -221,9 +221,10 @@ select q_index,q_title,q_option,q_member,q_content,q_file,q_date,q_hits,q_group,
 				else '공지' 
 			end 'q_op'
 				from qna 
-					where q_index >0
-				order by	q_op desc, q_date desc
-		limit 0, 10;
+					where q_index >0 and q_option like concat('%', '결제', '%') and q_title like concat('%', '','%')
+				order by	q_op desc, q_date desc;
+				
+
 
 
 

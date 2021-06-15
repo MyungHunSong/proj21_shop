@@ -19,9 +19,11 @@ $(function(){
 	var page=${page};
 	var perPageNum=${perPageNum};
 	var searchType ="${searchType}";
+	var keyword = "${keyword}";
 	
+	$.get(
+			contextPath + "/api/qna/"+ page +"/" + perPageNum + "/" + searchType + "/" + keyword,
 	
-	$.get(contextPath + "/api/qna/"+ page +"/" + perPageNum + "/" + searchType,
 	function(json){
 		var dateLength = json.length;
 		
@@ -40,7 +42,7 @@ $(function(){
 				$("#load").append(sCont);
 			}
 		});
-			
+	
 		$('#go_other').on
 		("click",
 				function(json){
@@ -64,6 +66,8 @@ $(function(){
 		});
 		
 	});
+
+
 
 
 </script>

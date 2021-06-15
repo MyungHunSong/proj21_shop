@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import proj21_shop.dto.qna.Criteria;
 import proj21_shop.dto.qna.PageDTO;
 import proj21_shop.dto.qna.SearchCriteria;
 import proj21_shop.service.qna.QnaService;
@@ -17,8 +16,9 @@ public class QnaController {
 	private QnaService service;
 	 	
 	@GetMapping("/qna_main")
-	public String listCriteria(SearchCriteria searchCriteria, Model model) {		
-		model.addAttribute("articles", service.listSearch(searchCriteria));
+	public String listCriteria(SearchCriteria sCri, Model model) {		
+		model.addAttribute("articles", service.listSearch(sCri));
+		System.out.println("QnaController Cirteria =>" + service.listCriteria(sCri));
 		
 		return"/qna/qna_main";
 	}	
@@ -42,9 +42,12 @@ public class QnaController {
 		
 		model.addAttribute("perPageNum", searchCriteria.getPerPageNum());
 		model.addAttribute("searchType", searchCriteria.getSearchType());
+		model.addAttribute("keyword", searchCriteria.getKeyword());
 		
-		model.addAttribute("articles", service.listSearch(searchCriteria));
-
+		System.out.println("QNAController searchType : "+ searchCriteria);
+		System.out.println(keyword);
+		
+		model.addAttribute("articles", service.listCriteria(searchCriteria));
 	    model.addAttribute("pageMaker", pageMaker);
  
 	    return "/qna/qna_main";
