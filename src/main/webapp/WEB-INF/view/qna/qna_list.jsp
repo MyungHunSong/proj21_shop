@@ -17,6 +17,11 @@ $(function(){
 		+"&searchType=" +$("select option:selected").val()
 		+"&keyword=" + encodeURIComponent($("#keywordInput").val());
 	}) 
+	
+	$("#goList").on("click", function(event){
+		self.location = "/proj21_shop/listPaging${pageMaker.makeQuery(1)}"
+		+"&searchType=" +$("select option:selected").val();
+	})
 }); 
 </script>
 <meta charset="UTF-8">
@@ -47,6 +52,7 @@ $(function(){
 				 name="keyword" id="keywordInput"  value = "${searchCriteria.keyword}" placeholder="검색어를 입력해 주세요">
 				<button type="button" id="searchBtn">검색</button>
 				<button type="button" id="insertBtn">글쓰기</button>
+				<button type="button" id="goList">목록</button>
 		</div>
 			
 			

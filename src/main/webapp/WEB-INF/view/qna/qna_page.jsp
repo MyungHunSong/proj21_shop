@@ -26,7 +26,7 @@ $(function(){
 	
 	function(json){
 		var dateLength = json.length;
-		
+
 			if(dateLength >= 1){
 				var sCont = "";
 				for(i = 0; i<dateLength; i++){
@@ -38,6 +38,7 @@ $(function(){
 					sCont += "<td>" + json[i].qDate + "</td>";
 					sCont += "<td>" + json[i].qHit + "</td>";		
 					sCont += "</tr>";
+					
 				}
 				$("#load").append(sCont);
 			}
