@@ -12,7 +12,6 @@
 		$('.headerImg').click(function(){
 			location.href='main';
 		})
-		
 	});
 	
 	

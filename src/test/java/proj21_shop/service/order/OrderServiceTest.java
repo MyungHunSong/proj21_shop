@@ -1,6 +1,4 @@
-package proj21_shop.mapper.review;
-
-import java.util.List;
+package proj21_shop.service.order;
 
 import org.apache.ibatis.logging.Log;
 import org.apache.ibatis.logging.LogFactory;
@@ -16,18 +14,18 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import proj21_shop.config.ContextRoot;
-import proj21_shop.dto.qna.QnaDTO;
-import proj21_shop.dto.review.ReviewDTO;
+import proj21_shop.dto.member.MemberDTO;
+import proj21_shop.dto.order.OrderDTO;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {ContextRoot.class})
 @WebAppConfiguration
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-
-public class MyReviewMapperTest {
-	protected static final Log log = LogFactory.getLog(MyReviewMapperTest.class);
+public class OrderServiceTest {
+	protected static final Log log = LogFactory.getLog(OrderServiceTest.class);
 	
 	@Autowired
-	private MyReviewMapper mapper;
+	public OrderService service;
 	
 	@After
 	public void tearDown() throws Exception {
@@ -35,24 +33,19 @@ public class MyReviewMapperTest {
 	}
 
 	@Test
-	public void test01SelectReviewByMember() {
+	public void test01SelectById() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getClassName()+"()");
-		List<ReviewDTO> list = mapper.selectReviewByMember("test01");
-		Assert.assertNotNull(list);
+		MemberDTO member = service.selectById("test01");
+		Assert.assertNotNull(member);
 	}
+	
 
-	@Test
-	public void test02SelectQnaByMember() {
-		log.debug(Thread.currentThread().getStackTrace()[1].getClassName()+"()");
-		List<QnaDTO> list = mapper.selectQnaByMember("test01");
-		Assert.assertNotNull(list);
-	}
-	
-	@Test
-	public void test03SelectDetailReviewByMember() {
-		log.debug(Thread.currentThread().getStackTrace()[1].getClassName()+"()");
-		List<ReviewDTO> list = mapper.selectDetailReviewByMember("test01");
-		Assert.assertNotNull(list);
-	}
-	
+	/*
+	 * @Test public void test02trInsertOrder() {
+	 * log.debug(Thread.currentThread().getStackTrace()[1].getClassName()+"()");
+	 * OrderDTO orderDTO = new OrderDTO(); orderDTO.setOrderMemberId(orderMemberId);
+	 * orderDTO.setProNum(proNum); orderDTO.setOrderMemberName(orderMemberName); int
+	 * res = service.trInsertOrder(orderDTO); Assert.assertEquals(3,res); }
+	 */
+
 }

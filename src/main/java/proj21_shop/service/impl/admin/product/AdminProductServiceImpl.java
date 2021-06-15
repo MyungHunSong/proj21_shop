@@ -55,11 +55,13 @@ public class AdminProductServiceImpl implements AdminProductService {
 
 		return productsMap;
 	}
-
+// 안녕하세요.ㅇㅇ
 	@Override
 	public int addNewProduct(Map newProductMap) {
+		System.out.println("service에서 =newProductMap:"+newProductMap);    
 		adminProductMapper.insertNewProduct(newProductMap);
 		int proNum=(int) newProductMap.get("proNum");
+		System.out.println("proNum==>>>>"+proNum);
 		
 		ArrayList<ProductImageDTO> imageFileList=(ArrayList)newProductMap.get("imageFileList");
 		for(ProductImageDTO productImageDTO : imageFileList) {

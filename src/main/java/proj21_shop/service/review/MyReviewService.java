@@ -11,4 +11,5 @@ import proj21_shop.dto.review.ReviewDTO;
 public interface MyReviewService {
 	List<ReviewDTO> selectReviewByMember(String memberId);
 	List<QnaDTO> selectQnaByMember(String memberId);
+	List<ReviewDTO> selectDetailReviewByMember(String memberId);
 }

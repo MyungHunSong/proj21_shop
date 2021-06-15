@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="contextPath" value="<%=request.getContextPath()%>" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,7 +37,45 @@
 						}else{
 							$('.print').html('<img src="images/star-lv5.png">' + '아주 좋아요');
 						} */
-				})
+		})
+		var contextPath = "${contextPath}";
+		var memberId = "${memberId}";
+		
+		$.get(contextPath + "/api/detailreview/" + memberId, 
+		function(json){
+			switch(json[0].proName.proSize){
+			case 1:
+				json[0].proName.proSize = "XS";
+				break;
+			case 2:
+				json[0].proName.proSize = "S";
+				break;
+			case 3:
+				json[0].proName.proSize = "M";
+				break;
+			case 4:
+				json[0].proName.proSize = "L";
+				break;
+			case 5:
+				json[0].proName.proSize = "XL";
+				break;
+		}
+			
+			
+			console.log(json)
+			console.log(json[0].proName.proName)
+			
+			var sCont = "";
+			sCont += "<li>" + json[0].proName.proName + "</li>"
+			sCont += "<li>" + json[0].proName.proColor +"</li>" 
+			sCont += "<li>" + json[0].proName.proSize +"</li>" 
+			
+				
+			$("#load").append(sCont);
+		})
+			
+		
+				
 	});
 </script>
 </head>
@@ -45,11 +85,7 @@
 	<h2>스타일 후기 작성</h2>
 	<div class='asd'>
 		<img src="/proj21_shop/images/product.jpg" width="70" height="70">
-		<ul>
-			<li>라이트웨이트 테이퍼드 밴딩 크롭 슬랙스</li>
-			<li>[블랙]</li>
-			<li>32</li>
-		</ul>
+		<ul id="load"></ul>
 	</div>
 	<div class="bsd">
 		<div class="star-rating">
@@ -64,11 +100,11 @@
 	<br>
 	<div class="review">
 		<textarea id="content" cols="45" rows="10"
-			placeholder="상품에 대한 평가를 20자 이상 작성해 주세요"></textarea>
+placeholder="상품에 대한 평가를 20자 이상 작성해 주세요"></textarea>
 		<br>
 		<div class="file">
-			<input type="file" id="imgButton" /> <br>
-			 <input type="file" id="imgButton" />
+			<input type="file" id="imgButton" /> <br> <input type="file"
+				id="imgButton" />
 		</div>
 		<br> <input type="submit" value="등록" id="reviewButton" />
 		<jsp:include page="/WEB-INF/view/include/footer.jsp"></jsp:include>

@@ -283,6 +283,7 @@ SELECT a.* FROM (SELECT FORMAT(@ROWNUM := @ROWNUM+1, 0) AS rn ,b.*,c.pro_imagefi
 -- 제품 추가
 SELECT pro_num.nextval FROM DUAL;
 SELECT * FROM product;
+SELECT * FROM `order`;
 
 INSERT INTO proj21_shop.product
 	(pro_num, pro_category, pro_name, pro_price, pro_content, pro_salesrate, pro_color, pro_size, pro_quantity)

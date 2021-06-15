@@ -112,7 +112,6 @@ function count(type)  {
 					    },
 					    "cartProQuantity": parseInt($('#result').text())
 					}
-				
 					$.ajax({
 						url : contextPath + "/api/memberProductCart/",
 						type:"POST",
@@ -121,7 +120,8 @@ function count(type)  {
 						cache : false,
 						data: JSON.stringify(newCart),
 						success : function(res){
-							window.location.href = contextPath+"/cart?memId=${authInfo.id }"; 
+							console.log(res)
+							window.location.href = contextPath+"/cart?memId=${authInfo.id }";
 						},
 						error : function(request, status, error){
 							alert("로그인 창으로 이동하겠습니다.")

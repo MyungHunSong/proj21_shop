@@ -70,7 +70,9 @@ public class CartServiceController {
 		return ResponseEntity.ok(service.updateCart(cart));
 	}
 	
-	/* 장바구니 추가 하기전 검색 CartDTO cart = new CartDTO();를 만들자(매개변수로 받으면 안됌)*/
+	/* 장바구니 추가 하기전 검색 CartDTO cart = new CartDTO();를 만들자(매개변수로 받으면 안됌) 
+	 *  view 만들자(productAll) 
+	 */
 	@GetMapping("/selectCartByIdAndProNum/{memberId}/{proNum}")
 	public ResponseEntity<Object> selectProductByMemberIdAndProNum(@PathVariable String memberId, @PathVariable int proNum){
 		

@@ -26,4 +26,9 @@ public class MyReviewServiceImpl implements MyReviewService {
 		return mapper.selectQnaByMember(memberId);
 	}
 
+	@Override
+	public List<ReviewDTO> selectDetailReviewByMember(String memberId) {
+		return mapper.selectDetailReviewByMember(memberId);
+	}
+
 }
