@@ -34,7 +34,7 @@ public class OrderMapperTest {
 		System.out.println();
 	}
 
-	//@Test
+	@Test
 	public void test01SelectAddress() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		AddressDTO address = new AddressDTO();
@@ -79,7 +79,7 @@ public class OrderMapperTest {
 		Assert.assertEquals(1, res);
 	}
 
-	//@Test
+	@Test
 	public void test03UpdateMember() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		MemberDTO memberDTO = new MemberDTO();
@@ -92,7 +92,7 @@ public class OrderMapperTest {
 		Assert.assertEquals(1,res);
 	}
 
-	//@Test
+	@Test
 	public void test04InsertMemberAddress() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		
@@ -100,13 +100,13 @@ public class OrderMapperTest {
 		address.setMemberId("test01");
 		address.setMemberAddr1("54545");
 		address.setMemberAddr2("대구광역시 남구 봉덕동 이천로 51");
-		address.setMemberAddr3("4층");
+		address.setMemberAddr3("10층");
 		
 		int res = mapper.insertMemberAddress(address);
 		Assert.assertEquals(1,res);
 	}
 
-	//@Test
+	@Test
 	public void test05UpdateProduct() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		ProductDTO pro = new ProductDTO();

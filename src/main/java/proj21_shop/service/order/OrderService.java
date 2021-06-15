@@ -13,5 +13,5 @@ public interface OrderService {
 	/* 회원아이디로 검색후 기존 회원 정보 자동으로 설정*/
 	MemberDTO selectById(String id);
 	
-	void trInsertOrder(OrderDTO orderDTO);
+	int trInsertOrder(OrderDTO orderDTO);
 }

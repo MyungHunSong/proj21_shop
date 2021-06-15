@@ -15,6 +15,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import proj21_shop.config.ContextRoot;
 import proj21_shop.dto.member.MemberDTO;
+import proj21_shop.dto.order.OrderDTO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {ContextRoot.class})
@@ -32,10 +33,19 @@ public class OrderServiceTest {
 	}
 
 	@Test
-	public void testSelectById() {
+	public void test01SelectById() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getClassName()+"()");
 		MemberDTO member = service.selectById("test01");
 		Assert.assertNotNull(member);
 	}
+	
+
+	/*
+	 * @Test public void test02trInsertOrder() {
+	 * log.debug(Thread.currentThread().getStackTrace()[1].getClassName()+"()");
+	 * OrderDTO orderDTO = new OrderDTO(); orderDTO.setOrderMemberId(orderMemberId);
+	 * orderDTO.setProNum(proNum); orderDTO.setOrderMemberName(orderMemberName); int
+	 * res = service.trInsertOrder(orderDTO); Assert.assertEquals(3,res); }
+	 */
 
 }

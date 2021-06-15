@@ -28,7 +28,8 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	@Transactional
-	public void trInsertOrder(OrderDTO orderDTO) {
+	public int trInsertOrder(OrderDTO orderDTO) {
+		int res = 0;
 		MemberDTO memberDTO = new MemberDTO();	
 		memberDTO.setMemberTotalBuy(orderDTO.getOrderPrice());
 		memberDTO.setMemberTotalOrder(1);
@@ -45,13 +46,15 @@ public class OrderServiceImpl implements OrderService {
 		productDTO.setProSold(orderDTO.getOrderPrice());
 		productDTO.setProNum(orderDTO.getOrderProNum());
 		
-		orderMapper.insertOrder(orderDTO);
-		orderMapper.updateMember(memberDTO);
+		res += orderMapper.insertOrder(orderDTO);
+		res += orderMapper.updateMember(memberDTO);
 		
-		if(orderMapper.selectAddress(addressDTO) != null) {
-			orderMapper.insertMemberAddress(addressDTO);
-		}
+		/*
+		 * if(orderMapper.selectAddress(addressDTO) != null) { res +=
+		 * orderMapper.insertMemberAddress(addressDTO); }
+		 */
 		
-		orderMapper.updateProduct(productDTO);
+		res += orderMapper.updateProduct(productDTO);
+		return res;
 	}
 }

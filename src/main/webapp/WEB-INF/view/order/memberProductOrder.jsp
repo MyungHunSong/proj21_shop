@@ -35,7 +35,6 @@ $(function(){
 	var sumSale = 0;
 	
 	for(j = 0; j < cartNums.length; j++){
-		
 		$.get(contextPath + "/api/chooseProductCart/"+cartNums[j],
 			function(json){
 							
