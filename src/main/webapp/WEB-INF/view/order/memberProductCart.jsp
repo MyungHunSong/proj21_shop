@@ -99,8 +99,10 @@ $(function(){
 				count(cartNum, cN)
 			}) 
 			
-		});
-			
+		});/*end function*/
+		
+	
+	
 	
 		/* 장바구니 수량 변경시 update(function) */
 		function count(cartNum, cN){
@@ -138,90 +140,90 @@ $(function(){
 					}
 					javascript:basket.checkItem();
 				}
-			}); 
+		}); 
 			
-			//#delButton을 누르면 체크박스 타입이고 name = remove인 input이 체크 되었는지 확인 후 값을 얻어내서 cartNum에 값을 저장하고 ajax를 이용해 단일삭제
- 			$('#delButton').on("click", function(){
+		//#delButton을 누르면 체크박스 타입이고 name = remove인 input이 체크 되었는지 확인 후 값을 얻어내서 cartNum에 값을 저장하고 ajax를 이용해 단일삭제
+		$('#delButton').on("click", function(){
+				
+				/* 여러개 체크된값 가져오기 */
+ 			var data_arr = [];
+ 			$("input:checkbox[name = 'remove']:checked").each(function(){
+ 					var item = $(this).val();
+ 					data_arr.push(item);
+ 			})	
  				
- 				/* 여러개 체크된값 가져오기 */
-	 			var data_arr = [];
-	 			$("input:checkbox[name = 'remove']:checked").each(function(){
-	 					var item = $(this).val();
-	 					data_arr.push(item);
-	 			})	
-	 				
-				var cartNums = {cartNum : [data_arr]}; 
-				delCarts(cartNums)				 
+			var cartNums = {cartNum : [data_arr]}; 
+			delCarts(cartNums)				 
+		});
+	 	
+		// 배열로 여러개 받아서 삭제 하기
+		function delCarts(cartNums){
+			$.ajax({
+				url: contextPath + "/api/memberProductCarts",
+				type: 'post' ,
+				contentType : "application/json; charset=utf-8",
+				datatype : "json",
+				data: JSON.stringify(cartNums.cartNum[0]),
+				success: function(res){
+					window.location.href = contextPath + "/cart?memId=${authInfo.id }";
+					},
+				error:function(request, status, error){
+					alert("제품을 선택해주세요")
+				window.location.href = contextPath+"/cart?memId=${authInfo.id }";
+				} 
 			});
-		 	
-			// 배열로 여러개 받아서 삭제 하기
-			function delCarts(cartNums){
-				$.ajax({
-					url: contextPath + "/api/memberProductCarts",
-					type: 'post' ,
-					contentType : "application/json; charset=utf-8",
-					datatype : "json",
-					data: JSON.stringify(cartNums.cartNum[0]),
-					success: function(res){
-						window.location.href = contextPath + "/cart?memId=${authInfo.id }";
-						},
-					error:function(request, status, error){
-						alert("제품을 선택해주세요")
-					window.location.href = contextPath+"/cart?memId=${authInfo.id }";
-					} 
-				});
-			}
+		}
+		
+		// 단일 삭제 하기
+		function delCart(cartNum){
 			
-			// 단일 삭제 하기
-			function delCart(cartNum){
-				
-				 $.ajax({
-					url: contextPath + "/api/memberProductCart/" + cartNum,
-					type: 'delete' ,
-					contentType : "application/json; charset=utf-8",
-					datatype : "json",
-					data: JSON.stringify(cartNum),
-					success: function(res){
-					},
-					error:function(request, status, error){
-						alert("code:"+request.status+"\n"+"message:"
-				                  +request.responseText+"\n"+"error:"+error);
-					} 
-				}); 
-			}
+			 $.ajax({
+				url: contextPath + "/api/memberProductCart/" + cartNum,
+				type: 'delete' ,
+				contentType : "application/json; charset=utf-8",
+				datatype : "json",
+				data: JSON.stringify(cartNum),
+				success: function(res){
+				},
+				error:function(request, status, error){
+					alert("code:"+request.status+"\n"+"message:"
+			                  +request.responseText+"\n"+"error:"+error);
+				} 
+			}); 
+		}
+		
+		/* 선택한 상품 주문 버튼 클릭 */
+		$(".orderBtn").on("click",function(){
+			var data_arr = [];
+ 			$("input:checkbox[name = 'remove']:checked").each(function(){
+ 					var item = $(this).val();
+ 					data_arr.push(item);
+ 			})	
+ 				
+			var cartNums = {cartNum : [data_arr]};
+ 			selectOrderProduct(cartNums) 
 			
-			/* 선택한 상품 주문 버튼 클릭 */
-			$(".orderBtn").on("click",function(){
-				var data_arr = [];
-	 			$("input:checkbox[name = 'remove']:checked").each(function(){
-	 					var item = $(this).val();
-	 					data_arr.push(item);
-	 			})	
-	 				
-				var cartNums = {cartNum : [data_arr]};
-	 			selectOrderProduct(cartNums) 
-				
-			})
-			
-			/* 선택한 버튼으로 검색후 주문페이지로 이동하기 */
-			function selectOrderProduct(cartNums){
-				$.ajax({
-					url: contextPath + "/api/chooseProductCarts",
-					type: 'post' ,
-					contentType : "application/json; charset=utf-8",
-					datatype : "json",
-					data: JSON.stringify(cartNums.cartNum[0]),
-					success: function(res){
-						console.log(cartNums.cartNum[0])
-						window.location.href = contextPath+"/order?memId=${authInfo.id }";
-					},
-					error:function(request, status, error){
-						alert("code:"+request.status+"\n"+"message:"
-				                  +request.responseText+"\n"+"error:"+error);
-						/* window.location.href = contextPath+"/cart?memId=${authInfo.id }"; */
-					}  
-				});
-			}
+		})
+		
+		/* 선택한 버튼으로 검색후 주문페이지로 이동하기 */
+		function selectOrderProduct(cartNums){
+			$.ajax({
+				url: contextPath + "/api/chooseProductCarts",
+				type: 'post' ,
+				contentType : "application/json; charset=utf-8",
+				datatype : "json",
+				data: JSON.stringify(cartNums.cartNum[0]),
+				success: function(res){
+					console.log(cartNums.cartNum[0])
+					window.location.href = contextPath+"/order?memId=${authInfo.id }";
+				},
+				error:function(request, status, error){
+					alert("code:"+request.status+"\n"+"message:"
+			                  +request.responseText+"\n"+"error:"+error);
+					/* window.location.href = contextPath+"/cart?memId=${authInfo.id }"; */
+				}  
+			});
+		}
 			
 	});
 </script>

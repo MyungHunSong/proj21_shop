@@ -34,14 +34,30 @@ $(function(){
 	/* 할인된 금액 */
 	var sumSale = 0;
 	
+	/* 주문정보리스트 */
+	var orderItems = [];
+	
+	var orderItem = {};
+	
 	for(j = 0; j < cartNums.length; j++){
 		$.get(contextPath + "/api/chooseProductCart/"+cartNums[j],
 			function(json){
-							
 				var dataLength = json.length;
 					if(dataLength >= 1){
 						var sCont = "";
 							for(i = 0; i < dataLength; i++){
+								
+								/* 주문 할때 사용할 정보 */
+			
+									 orderItem ={
+											  "orderMemberId":"${authInfo.id }",
+											  "proNum": json[i].cartProNum.proNum,
+											  "orderProQuantity":json[i].cartProQuantity,
+											  "orderPrice":json[i].cartProNum.proPrice*json[i].cartProQuantity,
+											  "orderDiscount":((json[i].cartProNum.proSalesrate)*json[i].cartProNum.proPrice*json[i].cartProQuantity)/100
+									}
+								
+									 orderItems.push(orderItem)
 									
 									switch(json[i].cartProNum.proSize){
 									case 1:
@@ -62,31 +78,32 @@ $(function(){
 									}
 									
 									sCont += "<div class='row data'>"
-										sCont +=		"<div class='subdiv'>"
-										sCont +=			"<div class='check'>&nbsp;</div>"
-										sCont +=			"<div class='img'><img src="+contextPath+"/resources/product/images/"+json[i].cartProNum.proImgfileName+" width='40' height='60'></div>"
-										sCont +=			"<div class='pname'>"
-										sCont +=       			"<span>"+json[i].cartProNum.proName+"("+json[i].cartProNum.proSize+")"+"</span>"
-										sCont +=  	  		"</div>"
-										sCont +=		"</div>"
-										sCont +=		"<div class='subdiv'>"
-										sCont +=			"<div class='basketprice'>"+(100-json[i].cartProNum.proSalesrate)*json[i].cartProNum.proPrice*0.0001*json[i].cartProQuantity+"P</div>"
-										sCont +=			"<div class='num'>"
-										sCont +=				"<div class='updown'> "
-										sCont +=       			"<input type='hidden' name='pPrice' id='pPrice1' class='pPrice' value="+((100-json[i].cartProNum.proSalesrate)*json[i].cartProNum.proPrice)/100+"/>"
-										sCont +=					"<input type='text' name='pNum"+i+"' id='pNum"+i+"' size='2' maxlength='4' class='pNum' value="+json[i].cartProQuantity+" onkeyup='javascript:basket.changePNum("+i+");' readonly>"
-										sCont +=				"</div>"
-										sCont +=			"</div>"
-										sCont +=			"<div class='sum'>"+(((100-json[i].cartProNum.proSalesrate)*json[i].cartProNum.proPrice*json[i].cartProQuantity)/100).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"원</div> "
-										sCont +=			"<div class='subdiv'>"
-										sCont +=			"</div>"
-										sCont +=		"</div>"
-										sCont +="</div> "
-										
-										sumOrderPrice += (((100-json[i].cartProNum.proSalesrate)*json[i].cartProNum.proPrice*json[i].cartProQuantity)/100);
-										sumNum += json[i].cartProQuantity;
-										sumSale += (((json[i].cartProNum.proSalesrate)*json[i].cartProNum.proPrice*json[i].cartProQuantity)/100);
-										sumPrice	+= json[i].cartProNum.proPrice*json[i].cartProQuantity
+									sCont +=		"<div class='subdiv'>"
+									sCont +=			"<div class='check'>&nbsp;</div>"
+									sCont +=			"<div class='img'><img src="+contextPath+"/resources/product/images/"+json[i].cartProNum.proImgfileName+" width='40' height='60'></div>"
+									sCont +=			"<div class='pname'>"
+									sCont +=					"<input id = 'productItem' type = 'hidden' value = "+json[i].cartNum+">"
+									sCont +=       			"<span>"+json[i].cartProNum.proName+"("+json[i].cartProNum.proSize+")"+"</span>"
+									sCont +=  	  		"</div>"
+									sCont +=		"</div>"
+									sCont +=		"<div class='subdiv'>"
+									sCont +=			"<div class='basketprice'>"+(100-json[i].cartProNum.proSalesrate)*json[i].cartProNum.proPrice*0.0001*json[i].cartProQuantity+"P</div>"
+									sCont +=			"<div class='num'>"
+									sCont +=				"<div class='updown'> "
+									sCont +=					"<input type='text' name='pNum"+i+"' id='pNum"+i+"' size='2' maxlength='4' class='pNum' value="+json[i].cartProQuantity+" onkeyup='javascript:basket.changePNum("+i+");' readonly>"
+									sCont +=				"</div>"
+									sCont +=			"</div>"
+									sCont +=			"<div class='sum'>"+(((100-json[i].cartProNum.proSalesrate)*json[i].cartProNum.proPrice*json[i].cartProQuantity)/100).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"원</div> "
+									sCont +=			"<div class='subdiv'>"
+									sCont +=			"</div>"
+									sCont +=		"</div>"
+									sCont +="</div> "
+									
+									sumOrderPrice += (((100-json[i].cartProNum.proSalesrate)*json[i].cartProNum.proPrice*json[i].cartProQuantity)/100);
+									sumNum += json[i].cartProQuantity;
+									sumSale += (((json[i].cartProNum.proSalesrate)*json[i].cartProNum.proPrice*json[i].cartProQuantity)/100);
+									sumPrice	+= json[i].cartProNum.proPrice*json[i].cartProQuantity
+									
 							}
 								$(".loadRowData").append(sCont);
 								
@@ -248,6 +265,48 @@ $(function(){
 		}
 	})
 	
+	
+	/* 주문하기 버튼 클릭 */
+	$('#prodOrderBtn').on("click",function(){
+		insertOrder(orderItems)			
+	})
+	
+	/*구입하기 function()*/
+	function insertOrder(orderItem){
+		
+		/* 주문 할때 사용할 정보 */
+		for(i = 0; i < orderItem.length; i++){
+			orderItem[i].orderMemberName = $('#memberName').val()		
+			orderItem[i].receiverName = $('.receiver').val()
+			orderItem[i].receiverTel1 = $('.receiverTel1').val()+"-"+$('.receiverTel2').val()+"-"+$('.receiverTel3').val();
+			orderItem[i].receiverTel2 = $('.receiverTel1').val()+"-"+$('.receiverTel2').val()+"-"+$('.receiverTel3').val();
+			orderItem[i].deliveryAddr1 = $('#sample4_postcode').val();
+			orderItem[i].deliveryAddr2 = $('#sample4_roadAddress').val();
+			orderItem[i].deliveryAddr3 = $('#sample4_detailAddress').val();
+			orderItem[i].requestToDelivery = $('#divSelectbox').val();
+			orderItem[i].whoPay = "이종윤";
+			orderItem[i].whichBank = "국민";
+		}
+			
+		console.log(orderItem) 
+		$.ajax({
+			url: contextPath + "/api/orderInfo",
+			type: 'post' ,
+			contentType : "application/json; charset=utf-8",
+			datatype : "json",
+			data: JSON.stringify(orderItem),
+			success: function(res){
+				alert("이용해주셔서 감사합니다.")
+				 /* window.location.href = contextPath + "/cart?memId=${authInfo.id }"; */ 
+			},
+			error:function(request, status, error){
+				alert("제품 수량이 부족합니다.");
+/* 				alert("code:"+request.status+"\n"+"message:"
+		                  +request.responseText+"\n"+"error:"+error); */
+				 /* window.location.href = contextPath+"/cart?memId=${authInfo.id }";  */
+			} 
+		}); 
+	}
 })
 
 </script>
@@ -365,7 +424,7 @@ $(function(){
 	            <p>무통장 입금 : <span>국민은행 계좌번호  940***-**-******  예금주 : ***</span></p>
             </div>
             <div class="orderBtnsGroup">
-            <input class = 'orderBtns' type="submit" value="주문하기">
+            <input id="prodOrderBtn" class = 'orderBtns' type="submit" value="주문하기">
             <input class = 'orderBtns' type="submit" value="취소하기">
             </div>
 </form> 

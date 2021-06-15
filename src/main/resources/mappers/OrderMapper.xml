@@ -2,7 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="proj21_shop.mapper.order.OrderMapper">
 	
-	<select id="selectAddress" resultType="AddressDTO">
+	<resultMap type="AddressDTO" id="ResAddress">
+		<result column="m_id" property="memberId"/>
+		<result column="m_addr1" property="memberAddr1"/>
+		<result column="m_addr1" property="memberAddr2"/>
+		<result column="m_addr1" property="memberAddr3"/>
+	</resultMap>
+	
+	<select id="selectAddress" resultMap="ResAddress">
 		 select addr_num,m_id,m_addr1,m_addr2,m_addr3 
   	  	  from address
 		where m_id = #{memberId} and m_addr1 = #{memberAddr1} and m_addr2 = #{memberAddr2} and m_addr3 = #{memberAddr3};
@@ -14,9 +21,11 @@
 			, receiver_name, receiver_tel1, receiver_tel2, delivery_addr1, delivery_addr2, delivery_addr3
 			, request_to_delivery, who_pay, which_bank)
 		 values
-			(#{orderMemberId}, #{proNum}, #{orderMemberName}, #{orderProQuantity}, #{orderPrice}, #{orderDiscount}
-			, #{receiverName}, #{receiverTel1}, #{receiverTel2}, #{deliveryAddr1}, #{deliveryAddr2}, #{deliveryAddr3}
-			, #{requestToDelivery}, #{whoPay}, #{whichBank});
+		 <foreach collection="list" item="item" separator="," index="index">
+			(#{item.orderMemberId}, #{item.proNum}, #{item.orderMemberName}, #{item.orderProQuantity}, #{item.orderPrice}, #{item.orderDiscount}
+			, #{item.receiverName}, #{item.receiverTel1}, #{item.receiverTel2}, #{item.deliveryAddr1}, #{item.deliveryAddr2}, #{item.deliveryAddr3}
+			, #{item.requestToDelivery}, #{item.whoPay}, #{item.whichBank})
+		</foreach>
 	</insert>
 	
 	<insert id="insertMemberAddress">
@@ -28,7 +37,7 @@
 	
 	<update id="updateMember">
 		update `member` 
-       		 set  m_point = #{memberPoint} , m_total_buy = m_total_buy + #{memberTotalBuy} , m_total_order = m_total_order + #{memberTotalOrder}
+       		 set  m_point = m_point + #{memberPoint} , m_total_buy = m_total_buy + #{memberTotalBuy} , m_total_order = m_total_order + #{memberTotalOrder}
  		where  m_id = #{memberId} ;	
 	</update>
 	
@@ -37,4 +46,17 @@
 	   		 set pro_quantity = pro_quantity - #{proQuantity} , pro_sold = pro_sold + #{proSold}
 		 where pro_num = #{proNum};
 	</update>	
+	
+	<delete id="deletCart">
+		delete 
+ 		  from cart
+		where cart_member_Id = #{orderMemberId} and cart_pro_num = #{proNum}
+	</delete>
+	
+	<select id="selectProdByProNum" resultType="ProductDTO">
+		select pro_num ,pro_quantity
+  	      from product
+		where pro_num = #{proNum} 
+	</select>
+	
 </mapper>

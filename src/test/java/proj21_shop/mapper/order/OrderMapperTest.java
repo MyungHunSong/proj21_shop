@@ -1,5 +1,8 @@
 package proj21_shop.mapper.order;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.ibatis.logging.Log;
 import org.apache.ibatis.logging.LogFactory;
 import org.junit.After;
@@ -34,7 +37,7 @@ public class OrderMapperTest {
 		System.out.println();
 	}
 
-	@Test
+	//@Test
 	public void test01SelectAddress() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		AddressDTO address = new AddressDTO();
@@ -43,10 +46,12 @@ public class OrderMapperTest {
 		address.setMemberAddr3("3층");
 		address.setMemberId("test01");
 		AddressDTO addressDTO = mapper.selectAddress(address);
+		System.out.println(addressDTO);
 		Assert.assertNotNull(addressDTO);
+		
 	}
 
-	@Test
+	//@Test
 	public void test02InsertOrder() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		/*
@@ -74,12 +79,16 @@ public class OrderMapperTest {
 		
 		System.out.println(orderDTO);
 		
-		int res = mapper.insertOrder(orderDTO);
+		List<OrderDTO> order = new ArrayList<>();
+		order.add(orderDTO);
+		order.add(orderDTO);
+		System.out.println(order);
+		int res = mapper.insertOrder(order);
 		
-		Assert.assertEquals(1, res);
+		Assert.assertEquals(2, res);
 	}
 
-	@Test
+	//@Test
 	public void test03UpdateMember() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		MemberDTO memberDTO = new MemberDTO();
@@ -92,7 +101,7 @@ public class OrderMapperTest {
 		Assert.assertEquals(1,res);
 	}
 
-	@Test
+	//@Test
 	public void test04InsertMemberAddress() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		
@@ -106,7 +115,7 @@ public class OrderMapperTest {
 		Assert.assertEquals(1,res);
 	}
 
-	@Test
+	//@Test
 	public void test05UpdateProduct() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		ProductDTO pro = new ProductDTO();
@@ -119,6 +128,18 @@ public class OrderMapperTest {
 		productDTO.setProNum(6163);
 		
 		int res = mapper.updateProduct(productDTO);
+		Assert.assertEquals(1,res);
+	}
+
+	@Test
+	public void test06DelteCart() {
+		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
+		
+		OrderDTO orderDTO = new OrderDTO();
+		orderDTO.setOrderMemberId("test05");
+		orderDTO.setProNum(4073);
+		
+		int res = mapper.deletCart(orderDTO);
 		Assert.assertEquals(1,res);
 	}
 

@@ -94,7 +94,7 @@ public class CartServiceController {
 	@PostMapping("/chooseProductCarts")
 	public ResponseEntity<Object> chooseCartsByCartNums(@RequestBody List<Integer> cartNums,HttpSession session){
 		/*cartNum = "[23,43,25]"*/
-		 List<CartDTO> list = service.chooseCartByMemberId(cartNums);  
+		List<CartDTO> list = service.chooseCartByMemberId(cartNums);  
 		session.setAttribute("cartNums", cartNums);
 		return ResponseEntity.ok(list);
 	}

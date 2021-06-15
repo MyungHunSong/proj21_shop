@@ -34,7 +34,7 @@ public class ProductListMapperTest {
 		System.out.println();
 	}
 
-	@Test
+	//@Test
 	public void test01ShowProducts() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		List<ProductDTO> list =mapper.selectProductByProImgState(1, 1);

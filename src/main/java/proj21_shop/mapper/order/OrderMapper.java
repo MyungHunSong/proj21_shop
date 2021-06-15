@@ -1,5 +1,7 @@
 package proj21_shop.mapper.order;
 
+import java.util.List;
+
 import proj21_shop.dto.member.AddressDTO;
 import proj21_shop.dto.member.MemberDTO;
 import proj21_shop.dto.order.OrderDTO;
@@ -10,8 +12,10 @@ public interface OrderMapper {
 	/* 제품 주문시 주소 검색 */
 	AddressDTO selectAddress(AddressDTO addressDTO);
 	
+	ProductDTO selectProdByProNum(int proNum);
+	
 	/* 제품 주문 */
-	int insertOrder(OrderDTO orderDTO);
+	int insertOrder(List<OrderDTO> orderDTO);
 
 	/* 제품 주문 후 회원 포인트 변경, 누적 사용액 변경, 누적 주문수 변경*/
 	int updateMember(MemberDTO memberDTO);
@@ -21,4 +25,7 @@ public interface OrderMapper {
 	
 	/* 제품 주문후 물건 재고 감소, 누적판매수 증가*/
 	int updateProduct(ProductDTO productDTO);
+	
+	/* 주문 후 주문 된 제품 장바구니 삭제 */
+	int deletCart(OrderDTO orderDTO);
 }

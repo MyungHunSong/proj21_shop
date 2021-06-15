@@ -5,9 +5,9 @@ select *
 select *
   from member;
 select *
-  from pro_img;
-select *
   from product;
+ select *
+  from pro_img;
 select *
   from qna;
 select *
@@ -20,7 +20,7 @@ select *
   from admin;
 select *
   from `order`;
- 
+
 
 -- 제품 전체 검색(제품, 제품 이미지 조인문)
 DROP VIEW productall;
@@ -116,14 +116,14 @@ select * from member;
 
 /*회원포인트 부여*/
 update `member` 
-       set  m_point = 5000 and m_total_buy = m_total_buy +  and m_total_order = m_total_order
+       set  m_point = m_point + 50 , m_total_buy = m_total_buy + 5000 , m_total_order = m_total_order + 1
  where  m_id = 'test01' ;    
 
 /*새로운 주소 등록*/
 /*동일한 주소 있나 검색후 null 이면 새로운 주소로 등록*/
 select addr_num,m_id,m_addr1,m_addr2,m_addr3 
   from address
-where m_id = 'test01' and m_addr1 = 746858 and m_addr2 = '대구광역시 남구 봉덕동 이천로 51' and m_addr3 = '3층';
+where m_id = 'test02' and m_addr1 = 746858 and m_addr2 = '대구광역시 남구 봉덕동 이천로 51' and m_addr3 = '3층';
 
 INSERT INTO proj21_shop.address
 			(m_id,  m_addr1, m_addr2, m_addr3)
@@ -150,4 +150,17 @@ select * from product where pro_num = 6163;
 update product 
 	   set pro_quantity = pro_quantity + 10 , pro_sold = pro_sold +  1
  where pro_num = 6163;	   
+
 select * from `order`;
+select * from `member`;
+
+/*주문 하고 난후 장바구니 삭제*/
+
+delete 
+   from cart 
+where cart_member_Id = ? and cart_pro_num = ?;
+
+select pro_num 
+  from product
+where pro_num = ?;
+  

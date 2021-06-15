@@ -1,5 +1,7 @@
 package proj21_shop.controller.order;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,7 +32,7 @@ public class OrderServiceController {
 	
 	/*주문 테이블에 제품 등록*/
 	@PostMapping("/orderInfo")
-	public ResponseEntity<Object> getOrderInfo(@RequestBody OrderDTO orderDTO){
+	public ResponseEntity<Object> getOrderInfo(@RequestBody List<OrderDTO> orderDTO){
 		System.out.println(orderDTO);
 		return ResponseEntity.ok(service.trInsertOrder(orderDTO));
 	}
