@@ -204,17 +204,25 @@ where q_index = 88 and q_member = '송명훈';
 /*4. 답글 작성시 보이는*/
 -- 답글은 관리자가 달수있다.
 -- (관리자)세션 권한이 있으면 ok, (회원)없다면 답글 작성이 안보이도록
--- 3-1. 관리자용 답글 
-insert into qna(q_title, q_option, q_member, q_content,q_group ,q_date)
-values('[re]뭔놈의 타이틀','환불해도','김GM','죄송합니다 고갱님 앞으로 이런 실수 없더록 하겟습니다.',7 ,now());
+ 
+
+-- 1번째 인덱스로 셀렉트 번호찾고 내용보이기..
+select  
+	q_index,q_title,q_option,q_member,q_content,q_file,q_date,q_hits,q_group,q_indent,q_step
+	from qna
+where q_index = 1;
+
+-- 관리자용 답글
+-- 인덱스 번호를 받아서 답글 작성.
+insert into qna(q_ ,q_content, q_date)
+	values('');
+
 
 -- 3-2. 회원용 qna 삭제 (qna, 답글 같이 삭제 되야함)
 delete from qna where q_index = 3;
 delete from qna where q_group = 3;
 
 -- 3-3. qna 검색창.
-select * from qna where q_option like '%환불%';
-
 select q_index,q_title,q_option,q_member,q_content,q_file,q_date,q_hits,q_group,q_indent,q_step,
 			case q_option
 				when q_option = '공지' then q_index 

@@ -26,24 +26,43 @@ $(function(){
 	
 	function(json){
 		var dateLength = json.length;
-
 			if(dateLength >= 1){
 				var sCont = "";
 				for(i = 0; i<dateLength; i++){
 					sCont += "<tr>";
-					sCont += "<td>" + json[i].qOp + "</td>";
+					/* sCont += "<td><a  id = 'detailClick' href='/proj21_shop/qna_detail?qIndex="+ json[i].qIndex +" '>" + json[i].qOp + "</a></td>"; */
+					sCont += "<td class = 'clickOption'>"+json[i].qOp + "</td>"; 
+					sCont += "<input type = 'hidden' value = "+ json[i].qIndex +">"; 
+					/* sCont += "<td>" + +json[i].qOp + "</td>"; */
 					sCont += "<td>" + json[i].qMember + "</td>";
 					sCont += "<td>" + json[i].qOption + "</td>";
 					sCont += "<td>" + json[i].qTitle + "</td>";
 					sCont += "<td>" + json[i].qDate + "</td>";
 					sCont += "<td>" + json[i].qHit + "</td>";		
 					sCont += "</tr>";
-					
+					sCont += "<tr class = 'clickContent'>";
+					sCont += "<td>content</td>";	
+					sCont += "<td colspan = '5' ><img src='/proj21_shop/resources/banner/headerR.jpg' style = 'width : 30px;'/><span>	"+ json[i].qContent+"</span>"+json[i].qDate+"</td>";	
+					sCont += "</tr>";
 				}
 				$("#load").append(sCont);
 			}
+			$('.clickOption').on('click',function(){
+					var idx = $(this).next().val()
+					console.log(idx)
+					if($(this).parent().next().hasClass('active')){
+						$('.clickOption').parent().next().removeClass('active')	
+					}else{
+						$(this).parent().next().addClass('active')	
+					}
+			})
 		});
-	
+		
+		
+/* 		$('.clickOption').on("click",
+		
+		});
+ */	
 		$('#go_other').on
 		("click",
 				function(json){
@@ -60,17 +79,14 @@ $(function(){
 			 	cache:false,
 			 	data:JSON.stringify(idx),
 			 	success:function(res){
-			 		 window.location.href= contextPath + "/listPaging?page=${page}"	
-			 	},
+			 		 window.location.href= contextPath +"/api/qna/"+ page +"/" + perPageNum + "/" + searchType + "/" + keyword
+			 		 // "/api/qna/"+ 
+			 	}
 			});
 			
 		});
 		
 	});
-
-
-
-
 </script>
 </head>
 <body>
@@ -86,7 +102,10 @@ $(function(){
 					<td>날짜</td>
 					<td>조회수</td>
 				</tr>
-				<tbody id='load'></tbody>
+				<tbody id='load'>
+					
+				</tbody>
+						
 			</table>
 
 			<!-- 페이징 -->

@@ -40,7 +40,7 @@ $(function(){
 						'기타' = h -->
 				<select name="searchType" id = "searchType">	
 					<option value="a"><c:out value="${searchCriteria.searchType == null ? 'selected' : ' '}"/>==전채검색==</option>
-					<option value="b"><c:out value="${searchCriteria.searchType == 'b' ? 'selected' : ' '}"/>공지</option>
+					<option value="b"><c:out value="${searchCriteria.searchType eq 'b' ? 'selected' : ' '}"/>공지</option>
 					<option value="c"><c:out value="${searchCriteria.searchType eq 'c' ? 'selected' : ' '}"/>제품문의</option>
 					<option value="d"><c:out value="${searchCriteria.searchType eq 'd' ? 'selected' : ' '}"/>환불문의</option>
 					<option value="e"><c:out value="${searchCriteria.searchType eq 'e' ? 'selected' : ' '}"/>포인트 º 적립금</option>
