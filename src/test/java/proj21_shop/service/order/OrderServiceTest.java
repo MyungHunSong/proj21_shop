@@ -40,12 +40,29 @@ public class OrderServiceTest {
 	}
 	
 
-	/*
-	 * @Test public void test02trInsertOrder() {
-	 * log.debug(Thread.currentThread().getStackTrace()[1].getClassName()+"()");
-	 * OrderDTO orderDTO = new OrderDTO(); orderDTO.setOrderMemberId(orderMemberId);
-	 * orderDTO.setProNum(proNum); orderDTO.setOrderMemberName(orderMemberName); int
-	 * res = service.trInsertOrder(orderDTO); Assert.assertEquals(3,res); }
-	 */
+	@Test
+	public void test02trInsertOrder() {
+		log.debug(Thread.currentThread().getStackTrace()[1].getClassName()+"()");
+		OrderDTO orderDTO = new OrderDTO();
+		
+		orderDTO.setOrderMemberId("test01");
+		orderDTO.setProNum(6163);
+		orderDTO.setOrderMemberName("이종윤");
+		orderDTO.setOrderProQuantity(1);
+		orderDTO.setOrderPrice(5000);
+		orderDTO.setOrderDiscount(0);
+		orderDTO.setReceiverName("이종윤");
+		orderDTO.setReceiverTel1("010-1234-5678");
+		orderDTO.setReceiverTel2("010-1234-5678");
+		orderDTO.setDeliveryAddr1("54545");
+		orderDTO.setDeliveryAddr2("대구광역시 남구 봉덕동 이천로 51");
+		orderDTO.setDeliveryAddr3("2층");
+		orderDTO.setRequestToDelivery("배송참고사항");
+		orderDTO.setWhoPay("이종윤");
+		orderDTO.setWhichBank("국민");
+		
+		int res = service.trInsertOrder(orderDTO);
+		Assert.assertEquals(3,res);
+	}
 
 }

@@ -20,7 +20,9 @@ select *
   from admin;
 select *
   from `order`;
+
  
+
 
 -- 제품 전체 검색(제품, 제품 이미지 조인문)
 DROP VIEW productall;
@@ -150,4 +152,9 @@ select * from product where pro_num = 6163;
 update product 
 	   set pro_quantity = pro_quantity + 10 , pro_sold = pro_sold +  1
  where pro_num = 6163;	   
+
 select * from `order`;
+
+/*주문내역삭제*/
+
+delete from `order`where order_pro_num > 20;

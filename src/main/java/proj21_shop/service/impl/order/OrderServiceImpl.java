@@ -31,6 +31,7 @@ public class OrderServiceImpl implements OrderService {
 	public int trInsertOrder(OrderDTO orderDTO) {
 		int res = 0;
 		MemberDTO memberDTO = new MemberDTO();	
+		memberDTO.setMemberId(orderDTO.getOrderMemberId());
 		memberDTO.setMemberTotalBuy(orderDTO.getOrderPrice());
 		memberDTO.setMemberTotalOrder(1);
 		memberDTO.setMemberPoint((int)(orderDTO.getOrderPrice()*0.01));
@@ -44,15 +45,16 @@ public class OrderServiceImpl implements OrderService {
 		ProductDTO productDTO = new ProductDTO();
 		productDTO.setProQuantity(orderDTO.getOrderProQuantity());
 		productDTO.setProSold(orderDTO.getOrderPrice());
-		productDTO.setProNum(orderDTO.getOrderProNum());
+		productDTO.setProNum(orderDTO.getProNum());
 		
 		res += orderMapper.insertOrder(orderDTO);
 		res += orderMapper.updateMember(memberDTO);
 		
-		/*
-		 * if(orderMapper.selectAddress(addressDTO) != null) { res +=
-		 * orderMapper.insertMemberAddress(addressDTO); }
-		 */
+		
+		if(orderMapper.selectAddress(addressDTO) != null) { 
+		   res += orderMapper.insertMemberAddress(addressDTO); 
+	   	}
+		 
 		
 		res += orderMapper.updateProduct(productDTO);
 		return res;

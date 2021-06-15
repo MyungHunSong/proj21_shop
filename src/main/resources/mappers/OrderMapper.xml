@@ -35,6 +35,6 @@
 	<update id="updateProduct">
 		update product 
 	   		 set pro_quantity = pro_quantity - #{proQuantity} , pro_sold = pro_sold + #{proSold}
-		 where pro_num = #{proNum};
+		 where pro_num = #{proNum.pronum};
 	</update>	
 </mapper>
