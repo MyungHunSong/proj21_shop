@@ -115,6 +115,7 @@ update member
 
 -- 주문 상세 내역 페이지 
 select * from `order` o ;
+select * from product;
 select * from review;
 desc `order` ;
 
@@ -124,9 +125,9 @@ values ('test01', 210530, 5083, '이종윤', 1, 5000, 0, '이종윤', '010-1234-
 select o.order_pro_num, pi2.pro_imagefilename, o.order_price, o.order_pro_quantity, o.delivery_status, o.order_date, o.order_member_name , o.receiver_tel1, o.receiver_tel2, o.delivery_addr1 , o.delivery_addr2, o.delivery_addr3, o.request_to_delivery
   from `order` o
   join pro_img pi2
-    on o.pro_num = pi2.pro_num 
- where o.order_member_id = 'test01' and o.order_pro_num = 1;
- 
+    on o.pro_num = pi2.pro_num
+ where o.order_member_id = 'test01' and o.pro_num = 1033;
+
 -- 배송지 정보
 select * from `order` o ;
 

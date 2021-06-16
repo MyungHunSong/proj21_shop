@@ -13,11 +13,12 @@
 		var contextPath = "${contextPath}";
 		var memberId = "${memberId}";
 		var orderProNum = "${orderProNum}";
+		var proNum = "${proNum}";
 
 		$
 				.get(
 						contextPath + "/api/detailorder/" + memberId + "/"
-								+ orderProNum,
+								+ proNum,
 						function(json) {
 							console.log(json);
 
