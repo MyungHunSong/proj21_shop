@@ -1,5 +1,6 @@
 package proj21_shop.service.impl.order;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,6 @@ import proj21_shop.dto.product.ProductDTO;
 import proj21_shop.exception.toMuchOrderExeption;
 import proj21_shop.mapper.member.MemberMapper;
 import proj21_shop.mapper.order.OrderMapper;
-import proj21_shop.mapper.product.ProductListMapper;
 import proj21_shop.service.order.OrderService;
 
 @Service
@@ -33,16 +33,40 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	@Transactional
 	public int trInsertOrder(List<OrderDTO> order) {
+		
+		System.out.println(order);
 		int res = 0;
-
+		
+		/*할인된금액*/
+		int pSale = 0;
+		
+		/*제품 구입시 사용한 포인트 */
+		int usePoint = 0;
+		
+		/*제품 구입시 추가되는 포인트*/
+		int plusPoint = 0;
+		
 		/* orderDTO = {OrderDTO{}, OrderDTO{}, OrderDTO{}} */
 		AddressDTO addressDTO = new AddressDTO();
 		MemberDTO memberDTO = new MemberDTO();	
 		ProductDTO productDTO = new ProductDTO();
+		
 		for(OrderDTO orderDTO : order) {
+			ProductDTO checkProd = orderMapper.selectProdByProNum(orderDTO.getProNum());	
 			
-			ProductDTO checkProd = orderMapper.selectProdByProNum(orderDTO.getProNum());
-			System.out.println(checkProd);
+			/*제품 기본 할인된 금액*/
+			pSale += checkProd.getProPrice()*checkProd.getProSalesrate()*0.01;
+			
+			plusPoint += (int)((checkProd.getProPrice()-((checkProd.getProPrice()*checkProd.getProSalesrate())*0.01))*0.01); 
+		}
+		
+		
+		for(OrderDTO orderDTO : order) {
+			ProductDTO checkProd = orderMapper.selectProdByProNum(orderDTO.getProNum());	
+			
+			System.out.println("usePoint >> " + usePoint);
+			
+			usePoint = orderDTO.getOrderDiscount() - pSale;
 			
 			addressDTO.setMemberId(orderDTO.getOrderMemberId());
 			addressDTO.setMemberAddr1(orderDTO.getDeliveryAddr1());
@@ -52,30 +76,32 @@ public class OrderServiceImpl implements OrderService {
 			memberDTO.setMemberId(orderDTO.getOrderMemberId());
 			memberDTO.setMemberTotalBuy(orderDTO.getOrderPrice());
 			memberDTO.setMemberTotalOrder(1);
-			memberDTO.setMemberPoint((int)((orderDTO.getOrderPrice()-orderDTO.getOrderDiscount())*0.01));
+			memberDTO.setMemberPoint(plusPoint - usePoint);
 			
 			if(orderMapper.selectAddress(addressDTO) == null) { 
 				   orderMapper.insertMemberAddress(addressDTO); 
 			}
-			//제품 수량이 주문 수량 보다 많을 때만 구입가능
+			//제품 수량이 주문 수량 보다 많거나 같을때 구입가능
 			if(checkProd.getProQuantity() >= orderDTO.getOrderProQuantity()) {
-				System.out.println("checkProd >>" +checkProd);
-				System.out.println("orderDTO >>" +orderDTO);
 				productDTO.setProQuantity(orderDTO.getOrderProQuantity());
-				productDTO.setProSold(orderDTO.getOrderPrice());
+				productDTO.setProSold(checkProd.getProPrice());
 				productDTO.setProNum(orderDTO.getProNum());
 				res += orderMapper.updateProduct(productDTO);
 				
 			}else {
-				System.out.println("checkProd >>" +checkProd);
-				System.out.println("orderDTO >>" +orderDTO);
 				throw new toMuchOrderExeption("죄송합니다 제품 수량이 부족합니다.");
 			}
 			
 			res += orderMapper.deletCart(orderDTO);
 			res += orderMapper.updateMember(memberDTO);
-			
+			orderDTO.setOrderPrice(orderDTO.getOrderPrice());
+			orderDTO.setOrderDiscount(orderDTO.getOrderDiscount());
 		}
+		
+
+		System.out.println(pSale);
+		System.out.println(usePoint);
+		System.out.println(plusPoint);
 		
 		res += orderMapper.insertOrder(order);
 		

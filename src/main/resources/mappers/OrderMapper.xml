@@ -16,12 +16,15 @@
 	</select>
 	
 	<insert id="insertOrder">
+		<selectKey resultType="int" keyProperty="orderProNum" order="BEFORE">
+        SELECT MAX(order_pro_num)+1 FROM `order`        
+    	</selectKey>
 		INSERT INTO proj21_shop.`order`
 						(order_pro_num,order_member_id, pro_num, order_member_name, order_pro_quantity, order_price, order_discount, 
  						receiver_name, receiver_tel1, receiver_tel2, delivery_addr1, delivery_addr2, delivery_addr3, request_to_delivery, who_pay, which_bank)
 		 values
 		 <foreach collection="list" item="item" separator="," index="index">
-			(#{item.order_pro_num},#{item.orderMemberId}, #{item.proNum}, #{item.orderMemberName}, #{item.orderProQuantity}, #{item.orderPrice}, #{item.orderDiscount}
+			(#{orderProNum},#{item.orderMemberId}, #{item.proNum}, #{item.orderMemberName}, #{item.orderProQuantity}, #{item.orderPrice}, #{item.orderDiscount}
 			, #{item.receiverName}, #{item.receiverTel1}, #{item.receiverTel2}, #{item.deliveryAddr1}, #{item.deliveryAddr2}, #{item.deliveryAddr3}
 			, #{item.requestToDelivery}, #{item.whoPay}, #{item.whichBank})
 		</foreach>
@@ -53,7 +56,7 @@
 	</delete>
 	
 	<select id="selectProdByProNum" resultType="ProductDTO">
-		select pro_num ,pro_quantity
+		select pro_num ,pro_quantity, pro_price, pro_salesrate
   	      from product
 		where pro_num = #{proNum} 
 	</select>

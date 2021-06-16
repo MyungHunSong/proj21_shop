@@ -17,6 +17,8 @@ $(function(){
 	var contextPath = "${contextPath}";
 	var memId =  "${memId}";
 	var cartNums = ${cartNums};
+	var consumePoint = 0;
+	
 	
 	/* 유저 포인트 */
 	var totalMemberPoint = ${authInfo.mPoint};
@@ -46,15 +48,13 @@ $(function(){
 					if(dataLength >= 1){
 						var sCont = "";
 							for(i = 0; i < dataLength; i++){
-								
+								var point = parseInt((100-json[i].cartProNum.proSalesrate)*json[i].cartProNum.proPrice*0.0001*json[i].cartProQuantity);
 								/* 주문 할때 사용할 정보 */
 			
 									 orderItem ={
 											  "orderMemberId":"${authInfo.id }",
 											  "proNum": json[i].cartProNum.proNum,
-											  "orderProQuantity":json[i].cartProQuantity,
-											  "orderPrice":json[i].cartProNum.proPrice*json[i].cartProQuantity,
-											  "orderDiscount":((json[i].cartProNum.proSalesrate)*json[i].cartProNum.proPrice*json[i].cartProQuantity)/100
+											  "orderProQuantity":json[i].cartProQuantity
 									}
 								
 									 orderItems.push(orderItem)
@@ -87,7 +87,7 @@ $(function(){
 									sCont +=  	  		"</div>"
 									sCont +=		"</div>"
 									sCont +=		"<div class='subdiv'>"
-									sCont +=			"<div class='basketprice'>"+(100-json[i].cartProNum.proSalesrate)*json[i].cartProNum.proPrice*0.0001*json[i].cartProQuantity+"P</div>"
+									sCont +=			"<div class='basketprice'>"+point+"P</div>"
 									sCont +=			"<div class='num'>"
 									sCont +=				"<div class='updown'> "
 									sCont +=					"<input type='text' name='pNum"+i+"' id='pNum"+i+"' size='2' maxlength='4' class='pNum' value="+json[i].cartProQuantity+" onkeyup='javascript:basket.changePNum("+i+");' readonly>"
@@ -110,7 +110,7 @@ $(function(){
 					}
 					$('.sumPNum').text("상품개수 : "+sumNum+"개")
 					$('.sumPOrderprice').text((sumOrderPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"원"))
-					$('.sumPSale').text((sumSale.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"원"))
+					$('.sumPSale').text((sumSale.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"P"))
 					$('.sumPPrice').text((sumPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"원"))
 					
 					$('.actualOrderPrice').val(sumOrderPrice)
@@ -154,7 +154,7 @@ $(function(){
 			/* 실제 내야할 금액이 포인트 보다 크다면 전체 사용시 모든 포인트 사용후 사용한 포인트 만큼 할인금액 + , 결제예정금액 -*/
 			if($('.actualOrderPrice').val() > ${authInfo.mPoint}){
 				$('.usePoint').val((${authInfo.mPoint}).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","))
-				$('.sumPSale').text((price + totalMemberPoint).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"원")
+				$('.sumPSale').text((price + totalMemberPoint).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"P")
 				$('.sumPOrderprice').text((actualPrice - totalMemberPoint).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"원")
 				$('#memberPoint').text("0P")
 			}
@@ -181,7 +181,7 @@ $(function(){
 	$('.usePoint').keyup(function(e){
 		/* 정규표현식 숫자만 */
 		var regexp = /^[0-9]*$/
-		var consumePoint = $(this).val()
+		consumePoint = $(this).val()
 		
 		/* 사용된 포인트 */
 		var res = totalMemberPoint - consumePoint
@@ -200,14 +200,14 @@ $(function(){
 			$('#memberPoint').text("숫자를 입력해주세요")
 		}else if(consumePoint <= totalMemberPoint){
 			$('.sumPOrderprice').text(newOrderPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"원")
-			$('.sumPSale').text(newPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"원")
+			$('.sumPSale').text(newPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"P")
 			$('#memberPoint').text(res.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"P")
 			if(consumePoint == ""){
-				$('.sumPSale').text(oldPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"원")
+				$('.sumPSale').text(oldPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"P")
 			}
 		}else if(consumePoint > totalMemberPoint){
 			$('#memberPoint').text("사용 가능한 포인트를 초과하였습니다.")
-			$('.sumPSale').text(oldPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"원")
+			$('.sumPSale').text(oldPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"P")
 			$('.sumPOrderprice').text(oldOrderPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"원")
 		}
 		
@@ -273,7 +273,18 @@ $(function(){
 	
 	/*구입하기 function()*/
 	function insertOrder(orderItem){
+		var pSale = $('.sumPSale').text();
+		var pS = pSale.substring(0, pSale.indexOf("P"));
+		var p = pS.split(",");
+		var salePrice = "";
+		for(i = 0; i <p.length; i++){
+			salePrice += p[i];
+		}
+		console.log(salePrice)
 		
+			
+		
+		console.log(p[0])
 		/* 주문 할때 사용할 정보 */
 		for(i = 0; i < orderItem.length; i++){
 			orderItem[i].orderMemberName = $('#memberName').val()		
@@ -286,8 +297,10 @@ $(function(){
 			orderItem[i].requestToDelivery = $('#divSelectbox').val();
 			orderItem[i].whoPay = "이종윤";
 			orderItem[i].whichBank = "국민";
+			orderItem[i].orderPrice=sumOrderPrice;
+			orderItem[i].orderDiscount= parseInt(salePrice);
 		}
-			
+		
 		console.log(orderItem) 
 		$.ajax({
 			url: contextPath + "/api/orderInfo",
@@ -297,15 +310,15 @@ $(function(){
 			data: JSON.stringify(orderItem),
 			success: function(res){
 				alert("이용해주셔서 감사합니다.")
-				 /* window.location.href = contextPath + "/cart?memId=${authInfo.id }"; */ 
+				  /* window.location.href = contextPath + "/cart?memId=${authInfo.id }"; */  
 			},
 			error:function(request, status, error){
 				alert("제품 수량이 부족합니다.");
-/* 				alert("code:"+request.status+"\n"+"message:"
-		                  +request.responseText+"\n"+"error:"+error); */
-				 /* window.location.href = contextPath+"/cart?memId=${authInfo.id }";  */
+				alert("code:"+request.status+"\n"+"message:"
+		                  +request.responseText+"\n"+"error:"+error); 
+				 window.location.href = contextPath+"/cart?memId=${authInfo.id }";  
 			} 
-		}); 
+		});   
 	}
 })
 

@@ -14,7 +14,7 @@ public class OrderDTO {
 
 	private int proNum;// 제품번호
 
-	private int orderProNum;// 식별번호
+	private int orderProNum;// 주문번호: 한번에 살경우 중복된 번호로 나온다.
 
 	private ProductImageDTO productImageDTO;
 
@@ -38,6 +38,8 @@ public class OrderDTO {
 	private String whichBank;
 	private String acountNum;
 
+	
+	
 	public String getMemberId() {
 		return memberId;
 	}

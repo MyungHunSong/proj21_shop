@@ -51,7 +51,7 @@ public class OrderMapperTest {
 		
 	}
 
-	//@Test
+	@Test
 	public void test02InsertOrder() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		/*
@@ -60,7 +60,6 @@ public class OrderMapperTest {
 		 */
 		
 		OrderDTO orderDTO = new OrderDTO();
-		
 		orderDTO.setOrderMemberId("test01");
 		orderDTO.setProNum(6163);
 		orderDTO.setOrderMemberName("이종윤");
@@ -131,7 +130,7 @@ public class OrderMapperTest {
 		Assert.assertEquals(1,res);
 	}
 
-	@Test
+	//@Test
 	public void test06DelteCart() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		

@@ -12,6 +12,7 @@ public interface OrderMapper {
 	/* 제품 주문시 주소 검색 */
 	AddressDTO selectAddress(AddressDTO addressDTO);
 	
+	/* 제품 수량 체크 */
 	ProductDTO selectProdByProNum(int proNum);
 	
 	/* 제품 주문 */
