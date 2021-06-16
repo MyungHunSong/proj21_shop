@@ -26,5 +26,9 @@ public interface QnaService {
 	int countSearchedArticles(SearchCriteria searchCriteria);
 	
 	
+	// 한번 실험 해보자.
+	
+	
+	
 	
 }

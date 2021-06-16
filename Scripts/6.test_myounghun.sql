@@ -164,8 +164,13 @@ select *
 where q_option != '공지사항' and q_member = 'Johns';
 
 -- 2-4. 조회수 증가.
+ select  
+	q_index,q_title,q_option,q_member,q_content,q_file,q_date,q_hits,q_group,q_indent,q_step 
+	from qna 
+where q_index = 1;
+
 update qna 
-set q_hits = q_hits + 1
+	set q_hits = q_hits + 1
 where q_index = 1;
 
 
@@ -212,7 +217,14 @@ select
 	from qna
 where q_index = 1;
 
--- 관리자용 답글
+-- 관리자용 답글 q_step = 1이면 관리자용 답글
+select * from qna;
+
+insert into qna(q_member,q_content, q_group,q_date,q_step);
+values('admin', '넵 다시한번 확인 했습니다.',1, now(), 1)
+
+
+
 -- 인덱스 번호를 받아서 답글 작성.
 insert into qna(q_ ,q_content, q_date)
 	values('');

@@ -24,6 +24,8 @@ public interface QnaMapper {
 	List<QnaDTO> listSearch(SearchCriteria searchCriteria);
 	int countSearchedArticles(SearchCriteria searchCriteria);
 	
-	//번호 클릭시 내용 보이기
+	//번호 클릭시 내용 보이기 & 조회수 증가.
 	QnaDTO selectQnaContent(int qIndex);
+	int updateHitsCount(int qIndex);
+	
 }

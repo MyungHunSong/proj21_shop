@@ -51,24 +51,11 @@ public class QnaController {
 		System.out.println("QNAController searchType : "+ searchCriteria);
 		System.out.println(keyword);
 		
+		
+			
 		model.addAttribute("articles", service.listCriteria(searchCriteria));
 	    model.addAttribute("pageMaker", pageMaker);
  
 	    return "/qna/qna_main";
-	}
-	
-	@GetMapping("/qna_detail")
-	public String selectQnaDetail(Integer qIndex, Model model, QnaDTO dto) {
-		
-		dto.setqIndex(qIndex);
-		System.out.println(qIndex);
-		model.addAttribute("qIndex", dto.getqIndex());
-		System.out.println(qIndex);
-		
-		model.addAttribute("qDetail", qInsertService.selectQnaContent(qIndex));
-		return "/qna/qna_detail";
-		
-	}
-	
-	
+	}	
 }

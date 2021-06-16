@@ -14,7 +14,14 @@ public class QnaInsertServiceImpl implements QnaInsertService {
 
 	@Override
 	public QnaDTO selectQnaContent(int qIndex) {
+		
+				qMapper.updateHitsCount(qIndex);
 		return qMapper.selectQnaContent(qIndex);
+	}
+
+	@Override
+	public int updateHitCount(int qIndex) {
+		return qMapper.updateHitsCount(qIndex);
 	}
 
 }
