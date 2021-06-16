@@ -219,14 +219,12 @@
 				<td colspan="5"  class="pleft">
 					<select name="proCategory" id="select1"  name="proCategory">
 						<option  value= "" selected>--대분류 선택--</option>
-							<option value="코트">코트</option>
-							<option value="상의" >상의</option>
-			   	 			<option value="셔츠" >셔츠</option>
-			   	 			<option value="니트" >니트</option>
-			   	 			<option value="하의">하의</option>
-			   	 			<option value="아우터">아우터</option>
-			   	 			<option value="신발">신발</option>
-			   	 			<option value="악세사리">악세사리</option>
+							<option value="1">반팔</option>
+							<option value="2" >긴팔</option>
+			   	 			<option value="3" >슬립리스</option>
+			   	 			<option value="4" >후드</option>
+			   	 			<option value="5">셔츠</option>
+			   	 			<option value="6">스웨트 셔츠</option>
 					</select>
 					
 					<select id="select2" name="orderPrice">
@@ -289,7 +287,7 @@
 				<td><a href="${contextPath }/product/productdetail?proNum=${product.proNum}">${product.proStatus }</a></td>
 				<td style="border-right-color: #ffffff;">
 					<a href="${contextPath }/product/productdetail?proNum=${product.proNum}">
-						<img width="180px;" height="270px;" src="${contextPath}/resources/product/images/${product.proImgfileName}">
+						<img width="180px;" height="270px;" src="${contextPath}/thumbnails?proNum=${product.proNum}&fileName=${product.proImgfileName}">
 <%--<img width="180px;" height="270px;" src="${contextPath}/thumbnails?proNum=${product.proNum}&fileName=${product.proImgfileName}"> --%>
 						<br>
 						${product.proName }

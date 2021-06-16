@@ -103,9 +103,10 @@ margin-top:5%;
 	}
 	var cnt = 1;
 	function fn_addFile() {
+	var state = cnt+1;
 
 		$("#detail_list").append(
-				"디테일이미지 " + cnt + " : <input type='file' name='detail_image" + cnt + "' id='" + cnt + "' onchange='readURL(this,this.id);' />" + "<br>");
+				"디테일이미지 " + cnt + " : <input type='file' name= "+ state +" id='" + cnt + "' onchange='readURL(this,this.id);' />" + "<br>");
 		if (cnt % 2 != 0) {
 			$("#image_list").append("<img src='#' width=200 height=200 id='preview"+cnt+"'> <br>");
 		} else {
@@ -257,7 +258,7 @@ $(function(){
 								</tr>
 								<tr>
 									<td>상품 코드</td>
-									<td class="b"><input type="text" id="proNum" name="proNum" size="39" readonly="readonly" value="클릭하여 상품번호 생성"/></td>
+									<td class="b"><input type="text" id="proNum" name="proNum" size="39" readonly="readonly" /></td>
 								</tr>
 								<tr>
 									<td colspan="4">
