@@ -282,7 +282,9 @@ SELECT a.* FROM (SELECT FORMAT(@ROWNUM := @ROWNUM+1, 0) AS rn ,b.*,c.pro_imagefi
 
 -- 제품 추가
 SELECT pro_num.nextval FROM DUAL;
-SELECT * FROM product;
+SELECT * FROM product WHERE pro_num =1013;
+
+SELECT * FROM pro_img  WHERE pro_num =1013;
 SELECT * FROM `order`;
 
 INSERT INTO proj21_shop.product
@@ -316,4 +318,7 @@ values (?, ?, ?, ?, ?, ?, ? , ?, ?, ?);
 DELETE FROM pro_img 
 WHERE pro_num=1999;
 DELETE FROM pro_img 
-WHERE pro_num=2999;
+WHERE pro_num<3000;
+DELETE FROM pro_img 
+WHERE pro_num=1*;
+DELETE FROM product WHERE pro_num<3000;
