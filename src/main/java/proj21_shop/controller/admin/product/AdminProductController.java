@@ -39,11 +39,14 @@ public class AdminProductController {
 
 	@RequestMapping("listProducts")
 	public ModelAndView addNewProductMain(@RequestParam(value = "total", required = false) String total,
-			@RequestParam(value = "proName", required = false) String keyword, @RequestParam(value = "proStatus", required = false) String proStatus,
+			@RequestParam(value = "proName", required = false) String keyword,
+			@RequestParam(value = "proStatus", required = false) String proStatus,
 			@RequestParam(value = "proCategory", required = false) String proCategory,
 			@RequestParam(value = "proPrice", required = false) String proPrice,
 			@RequestParam(value = "proSalesRate", required = false) String proSalesRate,
-			@RequestParam(value = "proHits", required = false) String proHits, HttpServletRequest request, HttpServletResponse response) {
+			@RequestParam(value = "proHits", required = false) String proHits,
+			@RequestParam(value = "proSold", required = false) String proSold,
+			HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		if (session.getAttribute("side_menu") != null) {
 			session.removeAttribute("side_menu");
@@ -79,10 +82,11 @@ public class AdminProductController {
 
 		productsMap = adminProductService.listProducts(pagingMap);
 		System.out.println("key : " + productsMap.get("productsList"));
-
 		productsMap.put("section", section);
 		productsMap.put("pageNum", pageNum);
 		productsMap.put("keyword", keyword);
+		productsMap.put("proSold", proSold);
+		
 		productsMap.put("proCategory", proCategory);
 		productsMap.put("proPrice", proPrice);
 		productsMap.put("proSalesRate", proSalesRate);
@@ -92,6 +96,7 @@ public class AdminProductController {
 		System.out.println("productsMap :section=" + section);
 		System.out.println("productsMap :pageNum=" + pageNum);
 		System.out.println("productsMap :keyword=" + keyword);
+		System.out.println("productsMap :proSold=" + proSold);
 		System.out.println("productsMap :proCategory=" + proCategory);
 		System.out.println("productsMap :proPrice=" + proPrice);
 		System.out.println("productsMap :proSalesRate=" + proSalesRate);

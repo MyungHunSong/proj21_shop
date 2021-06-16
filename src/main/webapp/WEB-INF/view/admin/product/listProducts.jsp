@@ -287,16 +287,19 @@
 				<td><a href="${contextPath }/product/productdetail?proNum=${product.proNum}">${product.proStatus }</a></td>
 				<td style="border-right-color: #ffffff;">
 					<a href="${contextPath }/product/productdetail?proNum=${product.proNum}">
-						<img width="180px;" height="270px;" src="${contextPath}/thumbnails?proNum=${product.proNum}&fileName=${product.proImgfileName}">
-<%--<img width="180px;" height="270px;" src="${contextPath}/thumbnails?proNum=${product.proNum}&fileName=${product.proImgfileName}"> --%>
-						<br>
-						${product.proName }
+					<img width="180px;" height="270px;" src="${contextPath}/thumbnails?proNum=${product.proNum}&fileName=${product.proImgfileName}">
+					<br>
+					${product.proName }
 					</a>
 				</td>
-				<td><a href="${contextPath }/product/viewDetailProduct?proNum=${product.proNum}">
-				<fmt:formatNumber value="${product.proPrice }" type="number" var="proPrice"/>
-				${proPrice }원</a></td>
-				<td><a href="${contextPath }/product/productdetail?proNum=${product.proNum}">${product.proSalesrate }</a></td>
+				<td style="border-right-color: #ffffff;">
+					<a href="${contextPath }/product/viewDetailProduct?proNum=${product.proNum}">
+					<fmt:formatNumber value="${product.proPrice }" type="number" var="proPrice"/>
+					${proPrice }원
+					<br>
+					${product.proSalesrate } % 할인</a>
+				</td>
+				<td><a href="${contextPath }/product/productdetail?proNum=${product.proNum}">${product.proSold }</a></td>
 				<td><a href="${contextPath }/product/productdetail?proNum=${product.proNum}">${product.proHits }</a></td>
 				<td colspan="2" align="center">
 					<c:choose>

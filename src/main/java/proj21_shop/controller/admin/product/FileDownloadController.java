@@ -45,7 +45,7 @@ public class FileDownloadController {
 		int lastIndex=fileName.lastIndexOf(".");
 		String imageFileName=fileName.substring(0,lastIndex);
 		if(image.exists()) {
-			Thumbnails.of(image).size(666,999).outputFormat("png").toOutputStream(out);
+			Thumbnails.of(image).size(666,999).outputFormat("jpg").toOutputStream(out);
 		}
 		byte[] buffer =new byte[1024*8];
 		out.write(buffer);
