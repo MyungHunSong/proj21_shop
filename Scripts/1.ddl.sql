@@ -19,7 +19,7 @@ CREATE TABLE proj21_shop.MEMBER (
 	m_answer      varchar(500)  NOT NULL COMMENT '본인확인답변', -- 본인확인답변
 	m_email       VARCHAR(500)  NULL     COMMENT '이메일', -- 이메일
 	m_join        DATETIME      default current_timestamp NULL     COMMENT 'default current_timestamp', -- 가입일
-	m_point       INT           default 0 NULL     COMMENT 'default 0', -- 포인트
+	m_point       INT           default 2000 NULL     COMMENT 'default 2000', -- 포인트
 	m_total_buy   INT           default 0 NULL     COMMENT 'default 0', -- 누적사용액
 	m_total_order INT           default 0 NULL     COMMENT 'default 0', -- 누적주문수
 	m_total_login INT           default 0 NULL     COMMENT 'default 0', -- 로그인횟수
@@ -89,7 +89,7 @@ CREATE TABLE proj21_shop.RE_REPLY (
 	re_num        INT          NOT NULL COMMENT '후기번호', -- 후기번호
 	re_rep_member VARCHAR(100) NULL     COMMENT 'm_Id', -- 덧글작성자
 	re_rep_content VARCHAR(1000) null	comment '덧글내용',
-	re_rep_date   DATETIME     NULL     COMMENT 'default current_timestamp' -- 덧글일
+	re_rep_date   DATETIME  default current_timestamp   NULL     COMMENT 'default current_timestamp' -- 덧글일
 )
 COMMENT '후기덧글';
 
@@ -169,9 +169,10 @@ ALTER TABLE proj21_shop.PRO_IMG
 
 -- 주문
 CREATE TABLE proj21_shop.ORDER (
+	order_code          INT           NOT NULL COMMENT 'auto_increment(1)', -- 주문코드
 	order_member_id     VARCHAR(100)  NULL     COMMENT '주문자아이디', -- 주문자아이디
-	pro_num             INT           NOT NULL COMMENT '101010', -- 제품번호
-	order_pro_num       INT           NOT NULL COMMENT 'auto_increment(1)', -- 주문식별번호
+	pro_num             INT           NOT NULL COMMENT '1033', -- 제품번호
+	order_pro_num       INT           NOT NULL COMMENT '주문번호', -- 주문번호
 	order_member_name   VARCHAR(100)  NOT NULL COMMENT '주문자이름', -- 주문자이름
 	order_pro_quantity  INT           NULL     COMMENT '주문수량', -- 주문수량
 	order_price         INT           NULL     COMMENT '주문총금액', -- 주문총금액
@@ -182,9 +183,9 @@ CREATE TABLE proj21_shop.ORDER (
 	delivery_addr1      VARCHAR(500)  NOT NULL COMMENT '우편번호', -- 우편번호
 	delivery_addr2      VARCHAR(500)  NOT NULL COMMENT '배송주소', -- 배송주소
 	delivery_addr3      VARCHAR(500)  NOT NULL COMMENT '배송상세주소', -- 배송상세주소
-	delivery_status     VARCHAR(100)  default '배송준비중' NULL     COMMENT 'default 배송준비중', -- 배송상태
+	delivery_status     VARCHAR(100) default '배송준비중' NULL     COMMENT 'default 배송준비중', -- 배송상태
 	request_to_delivery VARCHAR(1000) NULL     COMMENT '배송참고사항', -- 배송참고사항
-	order_date          DATETIME      default current_timestamp NOT NULL COMMENT 'default current_timestamp', -- 주문일
+	order_date          DATETIME  default current_timestamp  NOT NULL COMMENT 'default current_timestamp', -- 주문일
 	who_pay             VARCHAR(100)  NULL     COMMENT '결제자', -- 결제자
 	which_bank          VARCHAR(100)  NULL     COMMENT '결제은행' -- 결제은행
 )
@@ -194,25 +195,11 @@ COMMENT '주문';
 ALTER TABLE proj21_shop.ORDER
 	ADD CONSTRAINT PK_ORDER -- 주문 기본키
 		PRIMARY KEY (
-			order_pro_num -- 주문식별번호
+			order_code -- 주문코드
 		);
 
 ALTER TABLE proj21_shop.ORDER
-	MODIFY COLUMN order_pro_num INT NOT NULL AUTO_INCREMENT COMMENT 'auto_increment(1)';
-
--- 관리자
-CREATE TABLE proj21_shop.Admin (
-	ad_id   VARCHAR(50) NOT NULL COMMENT '관리자아이디', -- 관리자아이디
-	ad_pass CHAR(41)    NULL     COMMENT '관리자비밀번호' -- 관리자비밀번호
-)
-COMMENT '관리자';
-
--- 관리자
-ALTER TABLE proj21_shop.Admin
-	ADD CONSTRAINT PK_Admin -- 관리자 기본키
-		PRIMARY KEY (
-			ad_id -- 관리자아이디
-		);
+	MODIFY COLUMN order_code INT NOT NULL AUTO_INCREMENT COMMENT 'auto_increment(1)';
 
 -- 주소
 CREATE TABLE proj21_shop.Address (
