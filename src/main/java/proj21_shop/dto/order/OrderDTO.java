@@ -1,10 +1,10 @@
 package proj21_shop.dto.order;
 
 import java.sql.Date;
+import java.util.List;
 
 import proj21_shop.dto.product.ProductDTO;
 import proj21_shop.dto.product.ProductImageDTO;
-import proj21_shop.dto.review.ReviewDTO;
 
 public class OrderDTO {
 
@@ -16,6 +16,7 @@ public class OrderDTO {
 
 	private int orderProNum;// 식별번호
 
+	private List<ProductDTO> proName;
 	private ProductImageDTO productImageDTO;
 
 	private String orderMemberName;
@@ -31,7 +32,6 @@ public class OrderDTO {
 	private String deliveryStatus;
 	private String requestToDelivery;
 
-	private ProductDTO proName;
 	private Date orderDate;
 
 	private String whoPay;
@@ -206,21 +206,24 @@ public class OrderDTO {
 		this.acountNum = acountNum;
 	}
 
-	public ProductDTO getProName() {
+
+
+	public List<ProductDTO> getProName() {
 		return proName;
 	}
 
-	public void setProName(ProductDTO proName) {
+	public void setProName(List<ProductDTO> proName) {
 		this.proName = proName;
 	}
 
 	@Override
 	public String toString() {
 		return String.format(
-				"OrderDTO [orderMemberId=%s, proNum=%s, orderProNum=%s, orderMemberName=%s, orderProQuantity=%s, orderPrice=%s, orderDiscount=%s, receiverName=%s, receiverTel1=%s, receiverTel2=%s, deliveryAddr1=%s, deliveryAddr2=%s, deliveryAddr3=%s, deliveryStatus=%s, requestToDelivery=%s, proName=%s, orderDate=%s, whoPay=%s, whichBank=%s, acountNum=%s]",
-				orderMemberId, proNum, orderProNum, orderMemberName, orderProQuantity, orderPrice, orderDiscount,
-				receiverName, receiverTel1, receiverTel2, deliveryAddr1, deliveryAddr2, deliveryAddr3, deliveryStatus,
-				requestToDelivery, proName, orderDate, whoPay, whichBank, acountNum);
+				"OrderDTO [memberId=%s, orderMemberId=%s, proNum=%s, orderProNum=%s, proName=%s, productImageDTO=%s, orderMemberName=%s, orderProQuantity=%s, orderPrice=%s, orderDiscount=%s, receiverName=%s, receiverTel1=%s, receiverTel2=%s, deliveryAddr1=%s, deliveryAddr2=%s, deliveryAddr3=%s, deliveryStatus=%s, requestToDelivery=%s, orderDate=%s, whoPay=%s, whichBank=%s, acountNum=%s]",
+				memberId, orderMemberId, proNum, orderProNum, proName, productImageDTO, orderMemberName,
+				orderProQuantity, orderPrice, orderDiscount, receiverName, receiverTel1, receiverTel2, deliveryAddr1,
+				deliveryAddr2, deliveryAddr3, deliveryStatus, requestToDelivery, orderDate, whoPay, whichBank,
+				acountNum);
 	}
 
 }

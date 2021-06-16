@@ -13,21 +13,23 @@
 		var contextPath = "${contextPath}";
 		var memberId = "${memberId}";
 
-
 		$.get(contextPath + "/api/myorder/" + memberId, function(json) {
 			console.log(json);
-			
-			var dataLength = json.length;
+
+			var dataLength = json[0].proName.length;
 			if (dataLength >= 1) {
 				var sCont = "";
 				for (i = 0; i < dataLength; i++) {
 					sCont += "<tr>";
-					sCont += "<td><a href='detailorder?memberId="+ json[i].memberId +"&orderProNum=" + json[i].orderProNum + "'>" + json[i].orderProNum + "</a>";
-					sCont += "<td>" + json[i].proName.proName;
-					sCont += "<td>" + json[i].orderDate;
-					sCont += "<td>" + json[i].orderProQuantity;
-					sCont += "<td>" + json[i].orderPrice;
-					sCont += "<td>" + json[i].deliveryStatus;
+					sCont += "<td><a href='detailorder?memberId="
+							+ json[0].memberId + "&orderProNum="
+							+ json[0].orderProNum + "'>" + json[0].orderProNum
+							+ "</a>";
+					sCont += "<td>" + json[0].proName[i].proName;
+					sCont += "<td>" + json[0].orderDate;
+					sCont += "<td>" + json[0].orderProQuantity;
+					sCont += "<td>" + json[0].orderPrice;
+					sCont += "<td>" + json[0].deliveryStatus;
 					sCont += "<tr>";
 				}
 			}
