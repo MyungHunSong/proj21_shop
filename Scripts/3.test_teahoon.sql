@@ -19,8 +19,7 @@ select *
 select *
   from admin;
 select * 
-  from `order`
-where order_member_id = 'test01' and order_date = ;
+  from `order`;
 
 -- 제품 전체 검색(제품, 제품 이미지 조인문)
 DROP VIEW productall;
@@ -140,6 +139,7 @@ values
 			('test01', 746858, '대구광역시 남구 봉덕동 이천로 51', '3층');
 
 /*주문 테이블에 제품 등록*/
+SELECT MAX(order_pro_num)+1 FROM `order`
 INSERT INTO proj21_shop.`order`
 (order_pro_num,order_member_id, pro_num, order_member_name, order_pro_quantity, order_price, order_discount, 
  receiver_name, receiver_tel1, receiver_tel2, delivery_addr1, delivery_addr2, delivery_addr3, request_to_delivery, who_pay, which_bank)
@@ -147,13 +147,9 @@ values
 (1,'test01', 6163, '이종윤', 1, 5000, 0, '이종윤', '010-1234-5678', '010-1234-5678', 54545,'대구광역시 남구 봉덕동 이천로 51', '2층', '배송참고사항', '이종윤', '국민'),
 (1,'test01', 1033, '이종윤', 1, 5000, 0, '이종윤', '010-1234-5678', '010-1234-5678', 54545,'대구광역시 남구 봉덕동 이천로 51', '2층', '배송참고사항', '이종윤', '국민');
 
-INSERT INTO proj21_shop.`order` 
-					(order_member_id, pro_num, order_member_name, order_pro_quantity, order_price, order_discount , receiver_name, receiver_tel1, receiver_tel2, delivery_addr1, delivery_addr2, delivery_addr3 , request_to_delivery, who_pay, which_bank) 
-values (?, ?, ?, ?, ?, ? , ?, ?, ?, ?, ?, ? , ?, ?, ?);
+SELECT MAX(order_pro_num)+1 FROM `order`;
 
-select * from product where pro_num = 6163;
-
-select * from `member` where m_id = 'test01';
+select * from address a;
 
 /*팔린 제품 수량 만큼 제품 재고 감소*/
 select * from product where pro_num = 6163;
@@ -171,14 +167,6 @@ delete
 
 
 delete 
-  from product
- where pro_num<2000;
-
- delete 
-  from pro_img 
- where pro_num<2000;
-
-delete 
    from cart 
 where cart_member_Id = ? and cart_pro_num = ?;
 
@@ -186,3 +174,9 @@ select pro_num
   from product
 where pro_num = ?;
   
+
+/*주문 검색*/
+
+select order_pro_num ,order_member_id,o2.pro_num,order_member_name,order_pro_quantity,order_price,order_discount,receiver_name,receiver_tel1,receiver_tel2,delivery_addr1,delivery_addr2,delivery_addr3,delivery_status,request_to_delivery,order_date,who_pay,which_bank,(p2.pro_price*order_pro_quantity)-order_discount
+  from `order` o2 join product p2 on o2.pro_num = p2.pro_num 
+where order_pro_num = 5;

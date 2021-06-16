@@ -42,6 +42,8 @@ $(function(){
 							json[i].cartProNum.proSize = "XL";
 							break;
 					}
+					var point = parseInt((100-json[i].cartProNum.proSalesrate)*json[i].cartProNum.proPrice*0.0001*json[i].cartProQuantity);
+					
 					sCont += "<div class='row data'>"
 					sCont +=		"<div class='subdiv'>"
 					sCont +=			"<div class='check'><input type='checkbox' name = 'remove'  class = 'checkbox' name='buy' value = "+json[i].cartNum+" onclick='javascript:basket.checkItem();''>&nbsp;</div>"
@@ -51,7 +53,7 @@ $(function(){
 					sCont +=  	  		"</div>"
 					sCont +=		"</div>"
 					sCont +=		"<div class='subdiv'>"
-					sCont +=			"<div class='basketprice'>"+(100-json[i].cartProNum.proSalesrate)*json[i].cartProNum.proPrice*0.0001*json[i].cartProQuantity+"P</div>"
+					sCont +=			"<div class='basketprice'>"+point+"P</div>"
 					sCont +=			"<div class='num'>"
 					sCont +=				"<div class='updown'> "
 					sCont +=       			"<input type='hidden' name='p_price' id='p_price1' class='p_price' value="+((100-json[i].cartProNum.proSalesrate)*json[i].cartProNum.proPrice)/100+"/>"
