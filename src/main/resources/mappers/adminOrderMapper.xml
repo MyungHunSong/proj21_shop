@@ -14,7 +14,7 @@
 	</select>
 	<!-- 총 주문 건 수 -->
 	<select id="getTotalOrderCount" resultType="int">
-		select count(distinct order_num)
+		select count(distinct order_pro_num)
 		  from `order`
 	</select>
 	<!-- 총 주문 수 -->

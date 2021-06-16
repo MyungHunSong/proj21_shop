@@ -32,7 +32,7 @@ import proj21_shop.service.admin.product.AdminProductService;
 @Controller("adminProductController")
 @RequestMapping("/admin/product/")
 public class AdminProductController {
-	private static final String CURR_IMAGE_REPO_PATH = "D:\\shop\\file_repo";
+	private static final String CURR_IMAGE_REPO_PATH = "D:\\codename\\file_repo";
 
 	@Autowired
 	AdminProductService adminProductService;
@@ -149,8 +149,8 @@ public class AdminProductController {
 		try {
 			newProductMap.put("proContent", multipartRequest.getParameter("proContent"));
 			newProductMap.put("proStatus", multipartRequest.getParameter("proStatus"));
+			newProductMap.put("proName", multipartRequest.getParameter("proName"));
 			newProductMap.put("proNum", Integer.parseInt(multipartRequest.getParameter("proNum")));
-			newProductMap.put("proName", Integer.parseInt(multipartRequest.getParameter("proName")));
 			newProductMap.put("proCategory", Integer.parseInt(multipartRequest.getParameter("proCategory")));
 			newProductMap.put("proQuantity", Integer.parseInt(multipartRequest.getParameter("proQuantity")));
 			newProductMap.put("proSize", Integer.parseInt(multipartRequest.getParameter("proSize")));

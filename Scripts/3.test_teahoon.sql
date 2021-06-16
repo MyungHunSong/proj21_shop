@@ -162,6 +162,18 @@ select * from `member`;
 /*주문 하고 난후 장바구니 삭제*/
 
 delete 
+ from `order` ;
+
+
+delete 
+  from product
+ where pro_num<2000;
+
+ delete 
+  from pro_img 
+ where pro_num<2000;
+
+delete 
    from cart 
 where cart_member_Id = ? and cart_pro_num = ?;
 
