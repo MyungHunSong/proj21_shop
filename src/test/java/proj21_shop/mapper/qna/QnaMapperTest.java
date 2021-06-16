@@ -76,27 +76,26 @@ public class QnaMapperTest {
 		Assert.assertNotNull(list);
 		list.stream().forEach(System.out::println);
 	}
-	
-	@Test
-	public void test04SelectIndex() {
-		log.debug(Thread.currentThread().getStackTrace()[1].getClassName()+"()");
-		
-			QnaDTO dto = mapper.selectQnaContent(1);
-			
-			Assert.assertNotNull(dto);
-			System.out.println(dto.toString());
-			
-	}
-	
+
 	@Test
 	public void test05updateHit() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getClassName()+"()");
 		QnaDTO dto = new QnaDTO();
 		
-		
 		int res = mapper.updateHitsCount(1);
+		Assert.assertEquals(1, res);		
+	}
+	
+	@Test
+	public void test06InsertReply() {
+		log.debug(Thread.currentThread().getStackTrace()[1].getClassName()+"()");
+		QnaDTO dto = new QnaDTO();
+		dto.setqTitle("앗 죄송");
+		dto.setqMember("admin");
+		dto.setqContent("빠른 시일내에 조취해 드리 겠습니다.");
+		dto.setqGroup(4);
+		
+		int res = mapper.insertQnaForAdmin(dto);
 		Assert.assertEquals(1, res);
-		
-		
 	}
 }

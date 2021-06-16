@@ -1,14 +1,17 @@
 package proj21_shop.controller.qna;
 
+import java.net.URI;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import proj21_shop.dto.qna.PageDTO;
@@ -86,11 +89,27 @@ public class QnaRestController {
 		dto.setCri(sCri);
 		return ResponseEntity.ok(service.listSearch(sCri));
 	}
+	
 	// 조회수 update문
-	@PutMapping("/qna/{qIndex}")
+	@PatchMapping("/qna/{qIndex}")
 	public ResponseEntity<Object> qn2a(@PathVariable int qIndex){
 		QnaDTO qDto = new QnaDTO();
 		qDto.setqHit(0);
 		return ResponseEntity.ok(qInsertService.updateHitCount(qIndex));
 	}
+	
+	// 답글 인서트문.
+	@PostMapping("/qna/")
+	public ResponseEntity<Object> InsertQnaReply(@RequestBody QnaDTO qDto){
+		try {
+			qInsertService.insertQnaForAdmin(qDto);
+			
+			URI uri = URI.create("/api/qna" + qDto.getqIndex());
+			return ResponseEntity.created(uri).body(qDto.getqIndex());
+		} catch (Exception e) {
+				return ResponseEntity.status(HttpStatus.CONFLICT).build();
+		}
+		
+	}
+	
 }
