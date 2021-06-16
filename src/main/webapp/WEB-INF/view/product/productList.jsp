@@ -35,8 +35,9 @@ $(function(){
 		if(dataLength >= 1){
 			var sCont = "";
 			for(i = 0; i < dataLength; i++){
+				var proNum =json[i].proNum+"" 
 				sCont += "<div class='item'>";
-				sCont += "<td><a href='productDetail?proNum=" + json[i].proNum + "'><img src="+contextPath+"/resources/product/images/"+json[i].proImgfileName+"></a></td>";
+				sCont += "<td><a href='productDetail?proNum=" + proNum.substring(0,3) + "'><img src="+contextPath+"/resources/product/images/"+json[i].proImgfileName+"></a></td>";
 				sCont += "<div class='detail'>"
 				sCont += "<div class='title'>"
 				sCont += "<h2><em>"+ json[i].proName +"</em></h2>"

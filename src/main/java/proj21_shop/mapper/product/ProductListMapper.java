@@ -9,7 +9,7 @@ public interface ProductListMapper {
 	// 옷목록화면 리스트 용
 	List<ProductDTO> selectProductByProImgState(int proImgState, int proCategory);
 	
-	ProductDTO selectProductDetailByProNum(int proNum);
+	List<ProductDTO> selectProductDetailByProNum(int proNum);
 	
 	int updateProhits(int proNum);
 }

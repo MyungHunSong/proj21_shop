@@ -37,13 +37,13 @@
 	<!-- 옷카테고리별 목록 검색 -->
 	<select id="selectProductByProImgState" parameterType="int" resultMap="ResProduct">
 		<include refid="selectProductJoinProductImageSQL"></include>
-		where pro_img_state = #{param1} and pro_category = #{param2} 
+		where pro_img_state = #{param1} and pro_category = #{param2} and pro_size = 1
 	</select>
 
 	<!-- 옷 상세정보 보기 -->
 	<select id="selectProductDetailByProNum" parameterType="int" resultMap="ResProduct">
 		<include refid="selectProductJoinProductImageSQL"></include>
-		where p.pro_num = #{param1} 
+		where p.pro_num like CONCAT(#{param1},'%')
 	</select>
 	
 	<!-- 옷 상세정보 들어갔을때 조회수+1  -->

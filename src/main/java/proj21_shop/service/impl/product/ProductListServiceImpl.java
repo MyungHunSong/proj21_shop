@@ -22,8 +22,8 @@ public class ProductListServiceImpl implements ProductListService{
 	}
 
 	@Override
-	public ProductDTO showProductDetailByProNum(int proNum) {
-		ProductDTO product = service.selectProductDetailByProNum(proNum);
+	public List<ProductDTO> showProductDetailByProNum(int proNum) {
+		List<ProductDTO> product = service.selectProductDetailByProNum(proNum);
 		return product;
 	}
 

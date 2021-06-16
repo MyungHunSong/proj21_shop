@@ -106,8 +106,6 @@ $(function(){
 	
 		/* 장바구니 수량 변경시 update(function) */
 		function count(cartNum, cN){
-			console.log(cartNum)
-			console.log(cN)
 			var cartItem = {
 					  "cartNum": cartNum,
 					  "cartProQuantity": cN

@@ -10,7 +10,7 @@ import proj21_shop.dto.product.ProductDTO;
 public interface ProductListService {
 	List<ProductDTO> showProducts(int proImgState,int proCategory);
 	
-	ProductDTO showProductDetailByProNum(int proNum);
+	List<ProductDTO> showProductDetailByProNum(int proNum);
 	
 	int updateProhits(int proNum);
 }
