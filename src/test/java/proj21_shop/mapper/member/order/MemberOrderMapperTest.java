@@ -38,7 +38,7 @@ private static final Log log = LogFactory.getLog(MemberOrderMapperTest.class);
 		System.out.println();
 	}
  
-	//@Test
+	@Test
 	public void test01SelectCartByMemberId() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		CartDTO newMem = new CartDTO();
@@ -84,11 +84,11 @@ private static final Log log = LogFactory.getLog(MemberOrderMapperTest.class);
 		log.debug("proNum >>" + res);
 	}
 	
-	//@Test
+	@Test
 	public void test04SelectCartByCartNum() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		CartDTO cart = new CartDTO();
-		cart.setCartNum(149);
+		cart.setCartNum(5);
 		List<CartDTO> sel = mapper.selectCartByMemberId(cart);
 		Assert.assertNotNull(sel);
 	}

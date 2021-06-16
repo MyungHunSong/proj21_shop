@@ -29,8 +29,11 @@ select *
   from product 
 where pro_num  like '103%';
 
+select * from productall where pro_img_state = 1 and pro_size = 1;
 
-select * from productall where pro_img_state = 1;
+select p.pro_num,pro_category,pro_name,pro_price,pro_content,pro_salesrate ,pro_cre_date,pro_status,pro_color,pro_size,pro_quantity,pro_sold,pro_hits,re_replyCount ,pro_img_code,pro_imagefilename,pro_img_state 
+  from product p join pro_img i on p.pro_num = i.pro_num 
+where p.pro_num like CONCAT(103,'%');
 
 update pro_img 
 	set pro_img_state = 0
@@ -81,6 +84,7 @@ INSERT INTO cart
 		(cart_member_Id, cart_pro_num, cart_pro_quantity)
 values
 		('test01', 1111, 1);
+
 
 -- 장바구니 삭제	
 /*장바구니 개별삭제*/
@@ -137,10 +141,11 @@ values
 
 /*주문 테이블에 제품 등록*/
 INSERT INTO proj21_shop.`order`
-(order_member_id, pro_num, order_member_name, order_pro_quantity, order_price, order_discount, receiver_name
-, receiver_tel1, receiver_tel2, delivery_addr1, delivery_addr2, delivery_addr3, request_to_delivery, who_pay, which_bank)
+(order_pro_num,order_member_id, pro_num, order_member_name, order_pro_quantity, order_price, order_discount, 
+ receiver_name, receiver_tel1, receiver_tel2, delivery_addr1, delivery_addr2, delivery_addr3, request_to_delivery, who_pay, which_bank)
 values
-('test01', 6163, '이종윤', 1, 5000, 0, '이종윤', '010-1234-5678', '010-1234-5678', 54545,'대구광역시 남구 봉덕동 이천로 51', '2층', '배송참고사항', '이종윤', '국민');
+(1,'test01', 6163, '이종윤', 1, 5000, 0, '이종윤', '010-1234-5678', '010-1234-5678', 54545,'대구광역시 남구 봉덕동 이천로 51', '2층', '배송참고사항', '이종윤', '국민'),
+(1,'test01', 1033, '이종윤', 1, 5000, 0, '이종윤', '010-1234-5678', '010-1234-5678', 54545,'대구광역시 남구 봉덕동 이천로 51', '2층', '배송참고사항', '이종윤', '국민');
 
 INSERT INTO proj21_shop.`order` 
 					(order_member_id, pro_num, order_member_name, order_pro_quantity, order_price, order_discount , receiver_name, receiver_tel1, receiver_tel2, delivery_addr1, delivery_addr2, delivery_addr3 , request_to_delivery, who_pay, which_bank) 

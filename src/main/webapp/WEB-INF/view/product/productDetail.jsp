@@ -33,30 +33,30 @@ function count(type)  {
 		
 		$.get(contextPath + "/api/productDetail/"+proNum, 
 		function(json) {
-			var proSalerate = json.proSalesrate;
-			var proPrice = parseInt(json.proPrice);
+			var proSalerate = json[0].proSalesrate;
+			var proPrice = parseInt(json[0].proPrice);
 			var salePrice = ((100-proSalerate)/100)*proPrice;
 			/* 콤마 찍기용 */
 			var temp = proPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 			var add = salePrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 			var  sCont = "";
-					sCont += "<div class = 'productImage'><img src="+contextPath+"/resources/product/images/"+json.proImgfileName+"></div>";
+					sCont += "<div class = 'productImage'><img src="+contextPath+"/resources/product/images/"+json[0].proImgfileName+"></div>";
 					sCont += "<div class = 'productInfo'>"
 					sCont += "<div class = 'productInfoName'>"
-					sCont += "<strong>"+json.proName+"</strong>";
-					sCont += "<span class = 'review'>"+json.reReplyCount+"개 리뷰 보기</span>";
+					sCont += "<strong>"+json[0].proName+"</strong>";
+					sCont += "<span class = 'review'>"+json[0].reReplyCount+"개 리뷰 보기</span>";
 					sCont += "</div>"
-					sCont += "<p> 조회수 : "+json.proHits+"</p>";
-					sCont += "<p>"+json.proContent+"</p>";
-					sCont += "<p>"+json.proStatus+"</p>";
-					sCont +="<p><select id='size'><option value='size01'>사이즈를 선택해주세요</option><option value='1'>XS</option><option value='2'>S</option><option value='3'>M</option><option value='4'>L</option><option value='5'>XL</option></select></p>"
+					sCont += "<p> 조회수 : "+json[0].proHits+"</p>";
+					sCont += "<p>"+json[0].proContent+"</p>";
+					sCont += "<p>"+json[0].proStatus+"</p>";
+					sCont +="<p><select id='size'><option value='size01'>사이즈를 선택해주세요</option><option value='1'>XS  남은 수량:"+json[0].proQuantity+"</option><option value='2'>S     남은 수량:"+json[1].proQuantity+"</option><option value='3'>M     남은 수량:"+json[2].proQuantity+"</option><option value='4'>L       남은 수량:"+json[3].proQuantity+"</option><option value='5'>XL   남은 수량:"+json[4].proQuantity+"</option></select></p>"
 					sCont += "<p class ='proPrice'>"+temp+" 원</p>";
 					sCont += "<span class ='proSalerate'>"+proSalerate+"%  </span>";
 					sCont += "<span class ='proPriceSale'>"+add+"원</span>";
 					sCont += "</div>"
 				    $("#ProductLoad").append(sCont);
-			
 			}); 
+		
 		
 			/* 장바구니 버튼 */
 			$('#cart').on("click",function(){
@@ -73,7 +73,6 @@ function count(type)  {
 				
 				selectCartByMemberIdAndProNum(memberId, proNum)
 				
-				  
 			}) 
 		
 			/* 장바구니 내에서 회원아이디,제품 번호로 검색 있으면 update 없으면 insert*/

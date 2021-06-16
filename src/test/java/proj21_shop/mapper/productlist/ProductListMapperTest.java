@@ -45,7 +45,7 @@ public class ProductListMapperTest {
 	@Test
 	public void test02ShowProductDetailByProNum() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName()+"()");
-		ProductDTO product = mapper.selectProductDetailByProNum(1113);
+		List<ProductDTO> product = mapper.selectProductDetailByProNum(103);
 		Assert.assertNotNull(product);
 		System.out.println(product);
 	}

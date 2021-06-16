@@ -47,7 +47,7 @@ public class ProductListServiceTest {
 	public void testShowProductDetailByProNum() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName()+"()");
 
-		ProductDTO product = service.showProductDetailByProNum(1113);
+		List<ProductDTO> product = service.showProductDetailByProNum(1113);
 		Assert.assertNotNull(product);
 		System.out.println(product);
 
