@@ -70,7 +70,7 @@ $(function(){
 						
 						$.ajax({
 							url : contextPath +"/api/qna/" + idx,
-							type:"PUT",
+							type:"PATCH",
 							contentType:"application/json; charset=utf-8",
 							datatype:"json",
 							data:JSON.stringify(idx),
@@ -85,29 +85,7 @@ $(function(){
 					}
 				
 			})
-			
 		});
-		
-		$('.go_other').on
-		("click",
-				function(){
-				/* var idx = ${page} */
-				consol.log(1111)
-
-			/*  $.ajax({
-			 	url:contextPath+"/api/qna/",
-			 	type:"GET",
-			 	contentType:"application/json; charset=utf-8",
-			 	datatype:"json",
-			 	cache:false,
-			 	data:JSON.stringify(idx),
-			 	success:function(res){
-			 	
-			 	}
-			}); */
-			
-		});
-		
 	});
 </script>
 </head>

@@ -23,9 +23,10 @@ public interface QnaMapper {
 	// 검색창 만들기.
 	List<QnaDTO> listSearch(SearchCriteria searchCriteria);
 	int countSearchedArticles(SearchCriteria searchCriteria);
-	
-	//번호 클릭시 내용 보이기 & 조회수 증가.
-	QnaDTO selectQnaContent(int qIndex);
+		
+	//번호 클릭시 내용 보이기 & 조회수 증가. (위에껀 쓸모도 없음)
 	int updateHitsCount(int qIndex);
 	
+	// 관리자용 답글 페이제.
+	int insertQnaForAdmin(QnaDTO qDto);
 }

@@ -118,23 +118,18 @@
 		]]> 
 		</select>
 		
-		<!-- 검색구문 (조회수 증가 & 관리자 답글 기능 쓸꺼) -->
-		<select id="selectQnaContent" resultMap = "ArticleResultMap">
-			 select  
-				q_index,q_title,q_option,q_member,q_content,q_file,q_date,q_hits,q_group,q_indent,q_step 
-				from qna 
-			where q_index = #{qIndex}
-		</select>
-		
+		<!-- 조회수 증가 & 관리자 답글 기능 쓸꺼
+		1. => 조회수 증가.
+		2. => 관리자용 답글 -->
 		<update id="updateHitsCount" parameterType="int">
 			update qna 
 				set q_hits = q_hits + 1 
 			where q_index = ${qIndex}
 		</update>
 		
-		
-		
-		
-		
+		<insert id="insertQnaForAdmin">
+			insert into qna(q_title, q_member, q_content, q_date, q_group, q_step)
+				values(#{qTitle}, #{qMember}, #{qContent}, now(), #{qGroup}, 1)
+		</insert>
 		
 </mapper>

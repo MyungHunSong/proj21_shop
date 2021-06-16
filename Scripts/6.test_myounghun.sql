@@ -82,7 +82,7 @@ select
 '기타'
 '주문결제'*/
 
-alter table qna auto_increment=1;
+alter table qna auto_increment=141;
 set @count = 0;
 update qna set auto_increment q_index  = @count:=@count+1;
 
@@ -96,36 +96,32 @@ select q_index,q_title,q_option,q_member,q_content,q_file,q_date,q_hits,q_group,
 		from qna 
 	where q_index > 0 and q_option = '제품문의' 
 		order by	q_op desc, q_index desc , q_date desc
-limit 1, 10;
+limit 0, 10;
 
 
-
-delete 
-	from qna
-where q_index < 200;
 
 INSERT INTO qna
 	(q_title, q_option, q_member, q_content, q_file, q_date, q_group)
 values
-('요기요', '주문결제', 'test03', '환불이 안돼여..', '첨부파일', now(), q_group = q_index),
-('요기요', '주문결제', 'test03', '환불이 안돼여..', '첨부파일', now(), q_group = q_index),
-('앗항', '주문결제', 'test03', '잘못된거 같은데요?..', '첨부파일',now(),q_group = q_index),
-('배고파', '주문결제?', 'test04', '돈이왜 500언더 빠져나가죠?..', '첨부파일',now(),q_group = q_index),
-('이게뭐조', '주문결제', 'test05', '먼데..', '첨부파일',now(),q_group = q_index),
-('할말이 없네요', '기타', 'test06', '먼데..', '첨부파일',now(),q_group = q_index),
-('제흐발', '기타', 'test07', '먼데..', '첨부파일',now(),q_group = q_index),
-('무엇이?', '기타', 'test08', '먼데..', '첨부파일',now(),q_group = q_index),
-('제발', '기타', 'test09', '먼데..', '첨부파일',now(),q_group = q_index),
-('이건', '기타', 'test20', 'ㅋㅋㅋㅋ어이가 없네..', '첨부파일',now(),q_group = q_index),
-('회원때문에 올려요', '회원관련', 'test10', 'ㄴㄴㄴㄴ먼데..', '첨부파일',now(),q_group = q_index),
-('발행', '회원관련', 'test11', '먼ㅎㅎㅎ데..', '첨부파일',now(),q_group = q_index),
-('포인트에 관해서', '포인트 º 적립금', 'test12', '먼ㄷㄱㄷㄱ데..', '첨부파일',now(),q_group = q_index),
-('돈얼마 싸인줄 어디서 아나요?', '포인트 º 적립금', 'test13', '먼ㄹㄹㄹ데..', '첨부파일',now(),q_group = q_index),
-('답없네', '포인트 º 적립금', 'test14', '먼데..', '첨부파일',now(),q_group = q_index),
-('앗항', '환불문의', 'test15', '먼데..', '첨부파일',now(),q_group = q_index),
-('앗항', '환불문의', 'test16', '먼데..', '첨부파일',now(),q_group = q_index),
-('앗항', '제품문의', 'test11', '오?', '첨부파일', now(),q_group = q_index),
-('앗항', '제품문의', 'test31', '하...시바 일안하냐?', '첨부파일', now(),q_group = q_index),
+('요기요', '주문결제', 'test03', '환불이 안돼여..', '첨부파일', now(),(SELECT IFNULL(MAX(q_group) + 1, 1) FROM qna b)),
+('요기요', '주문결제', 'test03', '환불이 안돼여..', '첨부파일', now(), (SELECT IFNULL(MAX(q_group) + 1, 1) FROM qna b)),
+('앗항', '주문결제', 'test03', '잘못된거 같은데요?..', '첨부파일',now(), (SELECT IFNULL(MAX(q_group) + 1, 1) FROM qna b)),
+('배고파', '주문결제?', 'test04', '돈이왜 500언더 빠져나가죠?..', '첨부파일',now(), (SELECT IFNULL(MAX(q_group) + 1, 1) FROM qna b)),
+('이게뭐조', '주문결제', 'test05', '먼데..', '첨부파일', now(),(SELECT IFNULL(MAX(q_group) + 1, 1) FROM qna b)),
+('할말이 없네요', '기타', 'test06', '먼데..', '첨부파일',now(),(SELECT IFNULL(MAX(q_group) + 1, 1) FROM qna b)),
+('제흐발', '기타', 'test07', '먼데..', '첨부파일',now(),(SELECT IFNULL(MAX(q_group) + 1, 1) FROM qna b)),
+('무엇이?', '기타', 'test08', '먼데..', '첨부파일',now(),(SELECT IFNULL(MAX(q_group) + 1, 1) FROM qna b)),
+('제발', '기타', 'test09', '먼데..', '첨부파일',now(),(SELECT IFNULL(MAX(q_group) + 1, 1) FROM qna b)),
+('이건', '기타', 'test20', 'ㅋㅋㅋㅋ어이가 없네..', '첨부파일',now(),(SELECT IFNULL(MAX(q_group) + 1, 1) FROM qna b)),
+('회원때문에 올려요', '회원관련', 'test10', 'ㄴㄴㄴㄴ먼데..', '첨부파일', now(),(SELECT IFNULL(MAX(q_group) + 1, 1) FROM qna b)),
+('발행', '회원관련', 'test11', '먼ㅎㅎㅎ데..', '첨부파일',now(),(SELECT IFNULL(MAX(q_group) + 1, 1) FROM qna b)),
+('포인트에 관해서', '포인트 º 적립금', 'test12', '먼ㄷㄱㄷㄱ데..', '첨부파일', now(), (SELECT IFNULL(MAX(q_group) + 1, 1) FROM qna b)),
+('돈얼마 싸인줄 어디서 아나요?', '포인트 º 적립금', 'test13', '먼ㄹㄹㄹ데..', '첨부파일', now(),(SELECT IFNULL(MAX(q_group) + 1, 1) FROM qna b)),
+('답없네', '포인트 º 적립금', 'test14', '먼데..', '첨부파일',now(),(SELECT IFNULL(MAX(q_group) + 1, 1) FROM qna b)),
+('앗항', '환불문의', 'test15', '먼데..', '첨부파일',now(),(SELECT IFNULL(MAX(q_group) + 1, 1) FROM qna b)),
+('앗항', '환불문의', 'test16', '먼데..', '첨부파일',now(),(SELECT IFNULL(MAX(q_group) + 1, 1) FROM qna b)),
+('앗항', '제품문의', 'test11', '오?', '첨부파일', now(),(SELECT IFNULL(MAX(q_group) + 1, 1) FROM qna b)),
+('앗항', '제품문의', 'test31', '하...시바 일안하냐?', '첨부파일', now(),(SELECT IFNULL(MAX(q_group) + 1, 1) FROM qna b)),
 ('환불관련공지', '공지', 'admin', '전화하세욧 환불 하시려믄.', '첨부파일',now(),0);
 
 -- ('반품관련공지', '공지', 'admin', '배송이 출발하면 반품이 안됩니다.', '첨부파일',now()),	
@@ -191,10 +187,6 @@ insert into qna(q_member, q_option, q_title, q_content, q_date, q_hits, q_file,q
 values
 ('송명훈', '환불문의', '시바 이게멉니까?','실밥이 무슨 지렁이마냥 기어나와 있는데... ', now(), 0, 'text.jpg',q_index = q_group);
 
--- 답글 
-insert into qna(q_member, q_option, q_title, q_content, q_date , q_group)
-values('김태환', '머래노 병신이', '한심한 종자야', q_group = )
-
 -- 수정.
 update qna 
 	set q_title='이건또 뭡니까?', q_content = '실밥만 터진게 아니네 ㅅㅂ..', q_file= 'text1.jpg', q_date = now() 
@@ -210,25 +202,38 @@ where q_index = 88 and q_member = '송명훈';
 -- 답글은 관리자가 달수있다.
 -- (관리자)세션 권한이 있으면 ok, (회원)없다면 답글 작성이 안보이도록
  
-
--- 1번째 인덱스로 셀렉트 번호찾고 내용보이기..
-select  
-	q_index,q_title,q_option,q_member,q_content,q_file,q_date,q_hits,q_group,q_indent,q_step
-	from qna
-where q_index = 1;
-
 -- 관리자용 답글 q_step = 1이면 관리자용 답글
 select * from qna;
+-- 답글 작성
+insert into qna(q_title, q_member, q_content, q_date, q_group, q_step)
+	values('앗 쏘리~', 'admin', '죄송합니다 고객님 빠르시일 내에 조취해 드리 겠습니다.', now(), 3, 1);
+
+-- 답글 보이는 방식. q_group = 작성자 & q_step=1 
+select *
+	from qna
+where q_group = 4 and q_step = 1;
+
+-- 근데 답글 삭제. 
+delete 
+	from qna
+where q_group = ?; -- 인데 같이 제거대야함? 다같이 제거댐.
+--  관리자가 자기 댓글을 지울때.
+delete 
+	from qna
+where q_group =? and q_step =1;
+-- 관리자가 자기 댓글을 수정할때.
+update qna 
+	set q_content =?, q_date = now()
+where q_group = ? and q_step=1;
+
+/*조회수 sql*/
+-- 조회수 증가 쿼리. (쓰는중)
+update qna 
+	set q_group = q_group +1 
+where q_index <= 140;
 
 insert into qna(q_member,q_content, q_group,q_date,q_step);
 values('admin', '넵 다시한번 확인 했습니다.',1, now(), 1)
-
-
-
--- 인덱스 번호를 받아서 답글 작성.
-insert into qna(q_ ,q_content, q_date)
-	values('');
-
 
 -- 3-2. 회원용 qna 삭제 (qna, 답글 같이 삭제 되야함)
 delete from qna where q_index = 3;
@@ -243,7 +248,7 @@ select q_index,q_title,q_option,q_member,q_content,q_file,q_date,q_hits,q_group,
 				from qna 
 					where q_index >0 and q_option like concat('%', '결제', '%') and q_title like concat('%', '','%')
 				order by	q_op desc, q_date desc;
-				
+
 
 
 
