@@ -109,15 +109,15 @@
 			}
 		});
 	});
-		function addNewModel(proNum,proCategory){
+		function addNewModel(proNum,proCategory,proColor,proSize){
 			var popupX = (window.screen.width/2)-300;
 			var popupY= (window.screen.height/2)-225;
-			window.open('${contextPath}/admin/product/addNewModelForm?proNum='+proNum+'&proCategory='+proCategory, '모델 추가하기',
+			window.open('${contextPath}/admin/product/addNewModelForm?proNum='+proNum+'&proCategory='+proCategory+'&proColor='+proColor+'&proSize='+proSize, '모델 추가하기',
 					'status=no, height=450, width=600, left='+ popupX + ', top='+ popupY);
 			
 		}
-	
 </script>
+
 <style>
 @media (min-width: 767.98px) {
   .card {
@@ -164,7 +164,7 @@
 	}
 	#listProductsByStatus{
 	 padding-left: 25%;
-	} 
+	}
 </style>
 </head>
 <body>
@@ -206,11 +206,11 @@
 				<td colspan="2">상품구분&nbsp;&nbsp;</td>
 				<td colspan="5"  class="pleft">
 					<input type="radio" value="" name="proStatus" checked >전체
-					<input type="radio" value="newseller" name="proStatus" >신제품
-					<input type="radio" value="bestseller" name="proStatus" >베스트셀러
-					<input type="radio" value="steadyseller" name="proStatus" >스테디셀러
-					<input type="radio" value="onSale" name="proStatus" >할인중
-					<input type="radio" value="buy_out" name="proStatus" >품절
+					<input type="radio" value="신상" name="proStatus" >신제품
+					<input type="radio" value="최고" name="proStatus" >베스트셀러
+					<input type="radio" value="추천" name="proStatus" >스테디셀러
+					<input type="radio" value="세일" name="proStatus" >할인중
+					<input type="radio" value="품절" name="proStatus" >품절
 				 </td>
 			</tr>
 			
@@ -242,7 +242,7 @@
 					<select  id="select4" name="orderHits">
 						<option value="">--조회수분류 선택--</option>					
 						<option value="hits_desc">조회수 많은순</option>					
-						<option value="hits_asc">조회수 적은순ㅇ</option>					
+						<option value="hits_asc">조회수 적은순</option>					
 					</select>
 					
 				 </td>
@@ -285,14 +285,24 @@
 				<td><a href="${contextPath }/product/productdetail?proNum=${product.proNum}">${product.proNum }</a></td>
 				<td><a href="${contextPath }/product/productdetail?proNum=${product.proNum}">${product.proCategory }</a></td>
 				<td><a href="${contextPath }/product/productdetail?proNum=${product.proNum}">${product.proStatus }</a></td>
-				<td style="border-right-color: #ffffff;">
-					<a href="${contextPath }/product/productdetail?proNum=${product.proNum}">
-					<img width="180px;" height="270px;" src="${contextPath}/thumbnails?proNum=${product.proNum}&fileName=${product.proImgfileName}">
-					<br>
-					${product.proName }
-					</a>
-				</td>
-				<td style="border-right-color: #ffffff;">
+					<c:choose>
+						<c:when test="${product.proNum % 10 == 3}" >
+							<td style="border-bottom-color: #ffffff;" >
+							<img width="180px;" height="270px;" src="${contextPath}/thumbnails?proNum=${product.proNum}&fileName=${product.proImgfileName}">
+							<br>
+							${product.proName }
+							</td>
+						</c:when>
+						<c:when test="${product.proNum % 10 == 5}" >
+							<td style="border-bottom-color: black;">
+							</td>
+						</c:when>
+						<c:otherwise>
+							<td style="border-bottom-color: #ffffff;">
+							</td>
+						</c:otherwise>
+					</c:choose>
+				<td>
 					<a href="${contextPath }/product/viewDetailProduct?proNum=${product.proNum}">
 					<fmt:formatNumber value="${product.proPrice }" type="number" var="proPrice"/>
 					${proPrice }원
@@ -310,8 +320,30 @@
 							<ul>
 								<li>
 									<ul class="smallul">
-										<li>${product.proColor}/</li>
-										<li>${product.proSize}/</li>
+										<li>
+										<c:if test="${product.proColor == 1}">white /</c:if>
+										<c:if test="${product.proColor == 2}">ivory /</c:if>
+										<c:if test="${product.proColor == 3}">gray /</c:if>
+										<c:if test="${product.proColor == 4}">pink /</c:if>
+										<c:if test="${product.proColor == 5}">yellow /</c:if>
+										<c:if test="${product.proColor == 6}">mint /</c:if>
+										<c:if test="${product.proColor == 7}">green /</c:if>
+										<c:if test="${product.proColor == 8}">purple /</c:if>
+										<c:if test="${product.proColor == 9}">navy /</c:if>
+										<c:if test="${product.proColor == 11}">black /</c:if>
+										<c:if test="${product.proColor == 12}">brown /</c:if>
+										<c:if test="${product.proColor == 13}">orange /</c:if>
+										<c:if test="${product.proColor == 14}">blue /</c:if>
+										<c:if test="${product.proColor == 15}">red /</c:if>
+										<c:if test="${product.proColor == 16}">basic /</c:if>
+										</li>
+										<li>
+										<c:if test="${product.proSize == 1}">XS /</c:if>
+										<c:if test="${product.proSize == 2}">S /</c:if>
+										<c:if test="${product.proSize == 3}">M /</c:if>
+										<c:if test="${product.proSize == 4}">L /</c:if>
+										<c:if test="${product.proSize == 5}">XL /</c:if>
+										</li>
 										<li>${product.proQuantity}개&nbsp;&nbsp;</li>
 									</ul>
 								</li>
@@ -319,7 +351,7 @@
 						</c:when>
 					</c:choose>
 				</td>
-				<td><input type="button" value="모델 추가하기" onClick="addNewModel('${product.proNum}','${product.proCategory }')" /></td>
+				<td><input type="button" value="모델 추가하기" onClick="addNewModel('${product.proNum}','${product.proCategory }','${product.proColor }','${product.proSize }')" /></td>
 		 		</tr>
 		 	</c:forEach>
 		 			

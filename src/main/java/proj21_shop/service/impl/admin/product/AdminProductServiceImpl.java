@@ -72,5 +72,41 @@ public class AdminProductServiceImpl implements AdminProductService {
 		
 		return proNum;
 	}
+	
+	@Override
+	public void addNewModel(Map productDetailMap) {
+			adminProductMapper.insertNewProductDetail(productDetailMap);
+	}
+	@Override
+	public void deleteProducts(Map deleteMap) {
+			adminProductMapper.deleteProducts(deleteMap);
+	}
+	@Override
+	public Map<String, Object> getProductStatics() {
+		Map<String,Object> returnMap=new HashMap();
+		int totalCoat=0;
+		
+		int newProducts=adminProductMapper.selectNewProducts();
+		int bestProducts=adminProductMapper.selectBestProducts();
+		int steadyProducts=adminProductMapper.selectSteadyProducts();
+		int offProducts=adminProductMapper.selectOffProducts();
+		int outProducts=adminProductMapper.selectOutProducts();
+		
+		totalCoat=adminProductMapper.selectAllCoat();
+		
+		returnMap.put("bestProducts", bestProducts);
+		returnMap.put("newProducts", newProducts);
+		returnMap.put("steadyProducts", steadyProducts);
+		returnMap.put("offProducts", offProducts);
+		returnMap.put("outProducts", outProducts);
+		returnMap.put("totalCoat", totalCoat);
+		
+		return returnMap;
+	}
+	@Override
+	public int selectAllCoat() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 }
