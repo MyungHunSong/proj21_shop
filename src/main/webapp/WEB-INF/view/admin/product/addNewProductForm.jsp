@@ -138,13 +138,7 @@ $(function(){
 		<div class="row">
 			<!-- column -->
 			<div class="col-12">
-
-
-
 				<div class="card">
-
-
-
 
 					<!--                             <div class="comment-widgets scrollable"> -->
 					<!--membersList  -->

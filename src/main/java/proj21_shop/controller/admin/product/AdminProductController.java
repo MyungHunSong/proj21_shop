@@ -251,5 +251,30 @@ public class AdminProductController {
 		}
 		return fileList;
 	}
-
+	@RequestMapping(value="addNewModel", method= RequestMethod.POST)
+	public ResponseEntity addNewModel(HttpServletRequest request, HttpServletResponse response) {
+		
+		Map<String,Object> productDetailMap=new HashMap();
+		Enumeration enu=request.getParameterNames();
+		while(enu.hasMoreElements()) {
+			String name=(String)enu.nextElement();
+			String value=request.getParameter(name);
+			productDetailMap.put(name, value);
+		}
+		adminProductService.addNewModel(productDetailMap);
+		
+		String message=null;
+		ResponseEntity resEnt=null;
+		HttpHeaders responseHeaders=new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+		
+		message="<script> ";
+		message+=" alert('모델 추가가 완료되었습니다.');";
+		message+=" self.close();";
+		message+=" </script>";
+		
+		resEnt=new ResponseEntity(message,responseHeaders,HttpStatus.OK);
+		
+		return resEnt;
+	}
 }

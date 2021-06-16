@@ -31,6 +31,13 @@ public interface AdminProductMapper {
 //	List<ProductDTO> selectAllProductsDetail();
 // ==================제품 추가========================
 	int insertNewProduct(Map newproduct);
-	
+// ==================제품 재입고========================
 	void insertProductImageFile(ArrayList<ProductImageDTO> imageFileList);
+	
+	void insertNewProductDetail(Map productDetailMap);
+	
+	void deleteProducts(Map deleteMap);
+	
+	int selectAllCoat();
+	
 }
