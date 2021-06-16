@@ -63,7 +63,7 @@ public class QnaMapperTest {
 	}
 	
 	@Test
-	public void test04ListSearch() {
+	public void test06ListSearch() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getClassName()+"()");
 		
 		SearchCriteria sCri = new SearchCriteria();
@@ -78,7 +78,7 @@ public class QnaMapperTest {
 	}
 	
 	@Test
-	public void test05SelectIndex() {
+	public void test04SelectIndex() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getClassName()+"()");
 		
 			QnaDTO dto = mapper.selectQnaContent(1);
@@ -86,5 +86,17 @@ public class QnaMapperTest {
 			Assert.assertNotNull(dto);
 			System.out.println(dto.toString());
 			
+	}
+	
+	@Test
+	public void test05updateHit() {
+		log.debug(Thread.currentThread().getStackTrace()[1].getClassName()+"()");
+		QnaDTO dto = new QnaDTO();
+		
+		
+		int res = mapper.updateHitsCount(1);
+		Assert.assertEquals(1, res);
+		
+		
 	}
 }

@@ -30,10 +30,8 @@ $(function(){
 				var sCont = "";
 				for(i = 0; i<dateLength; i++){
 					sCont += "<tr>";
-					/* sCont += "<td><a  id = 'detailClick' href='/proj21_shop/qna_detail?qIndex="+ json[i].qIndex +" '>" + json[i].qOp + "</a></td>"; */
 					sCont += "<td class = 'clickOption'>"+json[i].qOp + "</td>"; 
-					sCont += "<input type = 'hidden' value = "+ json[i].qIndex +">"; 
-					/* sCont += "<td>" + +json[i].qOp + "</td>"; */
+					sCont += "<input type = 'hidden' value = "+ json[i].qIndex +">"; 					
 					sCont += "<td>" + json[i].qMember + "</td>";
 					sCont += "<td>" + json[i].qOption + "</td>";
 					sCont += "<td>" + json[i].qTitle + "</td>";
@@ -42,36 +40,61 @@ $(function(){
 					sCont += "</tr>";
 					sCont += "<tr class = 'clickContent'>";
 					sCont += "<td>content</td>";	
-					sCont += "<td colspan = '5' ><img src='/proj21_shop/resources/banner/headerR.jpg' style = 'width : 30px;'/><span>	"+ json[i].qContent+"</span>"+json[i].qDate+"</td>";	
+					sCont += "<td colspan = '5' ><img src='/proj21_shop/resources/banner/headerR.jpg' style = 'width : 30px;'/><span>"
+					+ json[i].qContent+"</span>"+ json[i].qFile +"  <a href='#'> [답글]</a></td>";	
 					sCont += "</tr>";
 				}
 				$("#load").append(sCont);
 			}
 			$('.clickOption').on('click',function(){
 					var idx = $(this).next().val()
-					console.log(idx)
+					
 					if($(this).parent().next().hasClass('active')){
 						$('.clickOption').parent().next().removeClass('active')	
+						$.ajax({
+							url:contextPath +"/api/qna/" + page +"/" + perPageNum + "/" + searchType + "/" + keyword,
+							type:"GET",
+							contentType:"application/json; charset=utf-8",
+							datatype:"json",
+							data:JSON.stringify(page),
+							success:function(){
+								window.location.href = contextPath + "/listPaging?page="+page + "&pagePageNum="+ perPageNum + "&searchType=" + searchType + "&keyword=";
+							},
+							error:function(){
+								alert("조회할 페이지를 찾지 못했습니다.")
+							}
+							
+						});	
 					}else{
 						$(this).parent().next().addClass('active')	
+						
+						$.ajax({
+							url : contextPath +"/api/qna/" + idx,
+							type:"PUT",
+							contentType:"application/json; charset=utf-8",
+							datatype:"json",
+							data:JSON.stringify(idx),
+							success:function(){
+								contextPath + "/api/qna/"+ page +"/" + perPageNum + "/" + searchType
+							},
+							error:function(){
+								alert("조회수 초과.")
+								
+							}
+						});
 					}
+				
 			})
+			
 		});
 		
-		
-/* 		$('.clickOption').on("click",
-		
-		});
- */	
-		$('#go_other').on
+		$('.go_other').on
 		("click",
-				function(json){
-				var idx = {
-					"page":{
-						"page":parseInt(${page})
-					}			
-			}
-			 $.ajax({
+				function(){
+				/* var idx = ${page} */
+				consol.log(1111)
+
+			/*  $.ajax({
 			 	url:contextPath+"/api/qna/",
 			 	type:"GET",
 			 	contentType:"application/json; charset=utf-8",
@@ -79,10 +102,9 @@ $(function(){
 			 	cache:false,
 			 	data:JSON.stringify(idx),
 			 	success:function(res){
-			 		 window.location.href= contextPath +"/api/qna/"+ page +"/" + perPageNum + "/" + searchType + "/" + keyword
-			 		 // "/api/qna/"+ 
+			 	
 			 	}
-			});
+			}); */
 			
 		});
 		
@@ -122,7 +144,7 @@ $(function(){
 					<li <c:out value="${pageMaker.cri.page == idx}"/>>
 							<%-- <a href="/proj21_shop/listPaging?page=${idx}" id="go_other">${idx}</a></li> --%>
 							<!-- 검색조건 수정. -->
-						<a href="/proj21_shop/listPaging${pageMaker.makeSearch(idx)}" id="go_other">${idx}</a>
+						<a href="/proj21_shop/listPaging${pageMaker.makeSearch(idx)}" class ="go_other">${idx}</a>
 				</c:forEach>
 				
 				<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
