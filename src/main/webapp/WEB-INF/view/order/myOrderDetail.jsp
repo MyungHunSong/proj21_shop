@@ -25,7 +25,7 @@
 							sCont += "<tr>";
 							sCont += "<td>" + json[0].orderProNum;
 							sCont += "<td><img src='" + contextPath +"/resources/product/images/" + json[0].productImageDTO.proImagefilename + "' width = '80' height='60'></td>";
-							sCont += "<td>" + json[0].orderPrice * 0.01;
+							sCont += "<td>" + json[0].orderPrice * 0.01 +"p";
 							sCont += "<td>" + json[0].orderPrice;
 							sCont += "<td>" + json[0].orderProQuantity;
 							sCont += "<td>" + json[0].deliveryStatus;
@@ -58,6 +58,24 @@
 							sConts += "</tr>";
 							$("#delivery").prepend(sConts);
 
+							sCon = "";
+							sCon += "<tr>";
+							sCon += "<th scope='cols'>상품합계</th>";
+							sCon += "<td>" + json[0].orderPrice + "</td>";
+							sCon += "</tr>";
+							sCon += "<tr>";
+							sCon += "<th scope='cols'>할인합계</th>";
+							sCon += "<td>" +json[0].orderDiscount + "</td>";
+							sCon += "</tr>";
+							sCon += "<th scope='cols'>최종 결제 금액</th>";
+							sCon += "<td>" + (json[0].orderPrice - json[0].orderDiscount) + "<td>";
+							sCon += "<tr>";
+							sCon += "<th scope='cols'>예상적립금 </th>";
+							sCon += "<td>"+ json[0].orderPrice * 0.01 + "p</td>";
+							sCon += "</tr>";
+							
+							$("#pay").prepend(sCon);
+							
 						})
 	})
 </script>
@@ -92,7 +110,9 @@
 		<img alt="주문안내" src="/proj21_shop/images/orderInfo.jpg">
 		<h3>배송지 정보</h3>
 	</div>
-	<table class="type04" id="delivery"></table>
+		<table class="type04" id="delivery"></table>
+			<h3>최종 결제 정보</h3>
+			<table class="type04" id="pay"></table>
 	</div>
 	<div class="container">
 		<jsp:include page="/WEB-INF/view/include/footer.jsp"></jsp:include>
