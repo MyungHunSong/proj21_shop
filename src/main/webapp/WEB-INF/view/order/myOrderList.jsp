@@ -22,8 +22,8 @@
 				for (i = 0; i < dataLength; i++) {
 					sCont += "<tr>";
 					sCont += "<td><a href='detailorder?memberId="
-							+ json[0].memberId + "&orderProNum="
-							+ json[0].orderProNum + "'>" + json[0].orderProNum
+							+ json[0].memberId + "&proNum="
+							+ json[0].proName[i].proNum + "'>" + json[0].orderProNum
 							+ "</a>";
 					sCont += "<td>" + json[0].proName[i].proName;
 					sCont += "<td>" + json[0].orderDate;
