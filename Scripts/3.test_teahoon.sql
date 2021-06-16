@@ -5,7 +5,7 @@ select *
 select *
   from member;
 select *
-  from product;
+  from product; 
  select *
   from pro_img;
 select *
@@ -18,12 +18,17 @@ select *
   from Address;
 select *
   from admin;
-select *
-  from `order`;
-
+select * 
+  from `order`
+where order_member_id = 'test01' and order_date = ;
 
 -- 제품 전체 검색(제품, 제품 이미지 조인문)
 DROP VIEW productall;
+
+select *
+  from product 
+where pro_num  like '103%';
+
 
 select * from productall where pro_img_state = 1;
 
