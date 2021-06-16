@@ -21,8 +21,8 @@ public class MyOrderServiceImpl implements MyOrderService {
 	}
 
 	@Override
-	public List<OrderDTO> selectOrderDetailByMember(String memberId) {
-		return mapper.selectOrderDetailByMember(memberId);
+	public List<OrderDTO> selectOrderDetailByMember(OrderDTO orderDTO) {
+		return mapper.selectOrderDetailByMember(orderDTO);
 	}
 
 }

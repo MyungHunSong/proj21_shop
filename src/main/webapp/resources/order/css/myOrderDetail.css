@@ -1,7 +1,12 @@
 @charset "UTF-8";
 
-.test img{
+.test img {
 	display: block;
+}
+
+.test1 {
+	padding-left: 180px;
+	padding-right: 180px;
 }
 
 table.type11 {
@@ -27,4 +32,28 @@ table.type11 td {
 	vertical-align: top;
 	border-bottom: 1px solid #ccc;
 	background: #eee;
+}
+
+table.type04 {
+	border-collapse: separate;
+	border-spacing: 1px;
+	text-align: left;
+	line-height: 1.5;
+	border-top: 1px solid #ccc;
+	margin: 20px 10px;
+}
+
+table.type04 th {
+	width: 150px;
+	padding: 10px;
+	font-weight: bold;
+	vertical-align: top;
+	border-bottom: 1px solid #ccc;
+}
+
+table.type04 td {
+	width: 350px;
+	padding: 10px;
+	vertical-align: top;
+	border-bottom: 1px solid #ccc;
 }

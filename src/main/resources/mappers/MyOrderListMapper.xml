@@ -3,6 +3,7 @@
 <mapper namespace="proj21_shop.mapper.order.MyOrderListMapper">
 	<resultMap type="OrderDTO" id="resOrder">
 		<id property="orderProNum" column="order_pro_num" />
+		<result property="memberId" column="order_member_id" />
 		<result property="orderDate" column="order_date" />
 		<result property="orderProQuantity" column="order_pro_quantity" />
 		<result property="orderPrice" column="order_price" />
@@ -17,8 +18,16 @@
 		<id property="orderProNum" column="order_pro_num" />
 		<result property="orderPrice" column="order_price" />
 		<result property="orderProQuantity" column="order_pro_quantity" />
-		<result property="deliveryStatus" column="delivery_status"/>
-		<result property="orderDate" column="order_date"/>
+		<result property="deliveryStatus" column="delivery_status" />
+		<result property="orderDate" column="order_date" />
+		<result property="orderMemberName" column="order_member_name" />
+		<result property="receiverTel1" column="receiver_tel1" />
+		<result property="receiverTel2" column="receiver_tel2" />
+		<result property="deliveryAddr1" column="delivery_addr1" />
+		<result property="deliveryAddr2" column="delivery_addr2" />
+		<result property="deliveryAddr3" column="delivery_addr3" />
+		<result property="requestToDelivery"
+			column="request_to_delivery" />
 		<association property="productImageDTO"
 			javaType="ProductImageDTO" autoMapping="true">
 			<result property="proImagefilename" column="pro_imagefilename" />
@@ -27,21 +36,28 @@
 
 	<select id="selectOrderByMember" resultMap="resOrder">
 		select
-		o.order_pro_num, p.pro_name, o.order_date, o.order_pro_quantity,
+		o.order_member_id, o.order_pro_num, p.pro_name, o.order_date,
+		o.order_pro_quantity,
 		o.order_price, o.delivery_status
 		from `order` o
 		join product p
-		  on o.pro_num = p.pro_num
+		on o.pro_num = p.pro_num
 		where
 		order_member_id = #{memberId}
 	</select>
 
-	<select id="selectOrderDetailByMember" resultMap="resDetailOrder">
+	<select id="selectOrderDetailByMember"
+		resultMap="resDetailOrder">
 		select o.order_pro_num, pi2.pro_imagefilename,
-		o.order_price, o.order_pro_quantity, o.delivery_status, o.order_date
+		o.order_price, o.order_pro_quantity, o.delivery_status, o.order_date,
+		o.order_member_name, o.receiver_tel1, o.receiver_tel2,
+		o.delivery_addr1, o.delivery_addr2, o.delivery_addr3,
+		o.request_to_delivery
 		from `order` o
 		join pro_img pi2
-		on o.pro_num = pi2.pro_num
-		where order_member_id = #{memberId}
+		on o.pro_num =
+		pi2.pro_num
+		where o.order_member_id = #{memberId} and
+		o.order_pro_num=#{orderProNum}
 	</select>
 </mapper>

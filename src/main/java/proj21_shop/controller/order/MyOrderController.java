@@ -1,6 +1,5 @@
 package proj21_shop.controller.order;
 
-import org.hibernate.validator.cfg.defs.Mod10CheckDef;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,9 +13,10 @@ public class MyOrderController {
 		return mav;
 	}
 	
-	@GetMapping("mydetailorder")
-	public ModelAndView getMyOrderDetail(@RequestParam(value="memberId") String memberId) {
+	@GetMapping("/detailorder")
+	public ModelAndView getMyOrderDetail(@RequestParam(value="memberId") String memberId, @RequestParam(value="orderProNum") int orderProNum) {
 		ModelAndView mav = new ModelAndView("order/myOrderDetail", "memberId", memberId);
+		mav.addObject("orderProNum", orderProNum);
 		return mav;
 	}
 }

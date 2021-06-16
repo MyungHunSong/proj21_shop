@@ -8,6 +8,8 @@ import proj21_shop.dto.review.ReviewDTO;
 
 public class OrderDTO {
 
+	private String memberId;
+
 	private String orderMemberId;
 
 	private int proNum;// 제품번호
@@ -35,6 +37,14 @@ public class OrderDTO {
 	private String whoPay;
 	private String whichBank;
 	private String acountNum;
+
+	public String getMemberId() {
+		return memberId;
+	}
+
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
+	}
 
 	public ProductImageDTO getProductImageDTO() {
 		return productImageDTO;

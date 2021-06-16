@@ -43,7 +43,10 @@ public class MyOrderListMapperTest {
 	@Test
 	public void testSelectOrderDetailByMember() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
-		List<OrderDTO> list = mapper.selectOrderDetailByMember("test01");
+		OrderDTO orderDTO = new OrderDTO();
+		orderDTO.setMemberId("test01");
+		orderDTO.setOrderProNum(1);
+		List<OrderDTO> list = mapper.selectOrderDetailByMember(orderDTO);
 		Assert.assertNotNull(list.toString());
 	}
 }
