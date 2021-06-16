@@ -258,7 +258,7 @@ $(function(){
 								</tr>
 								<tr>
 									<td>상품 코드</td>
-									<td class="b"><input type="text" id="proNum" name="proNum" size="39" readonly="readonly" /></td>
+									<td class="b"><input type="text" id="proNum" name="proNum" size="39" readonly="readonly" placeholder="클릭하여 제품 번호 생성" /></td>
 								</tr>
 								<tr>
 									<td colspan="4">
