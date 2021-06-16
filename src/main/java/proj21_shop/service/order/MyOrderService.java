@@ -9,5 +9,5 @@ import proj21_shop.dto.order.OrderDTO;
 @Service
 public interface MyOrderService {
 	List<OrderDTO> selectOrderByMember(String memberId);
-	List<OrderDTO> selectOrderDetailByMember(String memberId);
+	List<OrderDTO> selectOrderDetailByMember(OrderDTO orderDTO);
 }

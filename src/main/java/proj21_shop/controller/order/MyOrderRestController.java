@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import proj21_shop.dto.order.OrderDTO;
 import proj21_shop.service.order.MyOrderService;
 
 @RestController
@@ -20,8 +21,11 @@ public class MyOrderRestController {
 		return ResponseEntity.ok(service.selectOrderByMember(memberId));
 	}
 	
-	@GetMapping("mydetailorder/{memberId}")
-	public ResponseEntity<Object> myorderdetail(@PathVariable String memberId){
-		return ResponseEntity.ok(service.selectOrderDetailByMember(memberId));
+	@GetMapping("detailorder/{memberId}/{orderProNum}")
+	public ResponseEntity<Object> myorderdetail(@PathVariable String memberId, @PathVariable int orderProNum){
+		OrderDTO orderDTO = new OrderDTO();
+		orderDTO.setMemberId(memberId);
+		orderDTO.setOrderProNum(orderProNum);
+		return ResponseEntity.ok(service.selectOrderDetailByMember(orderDTO));
 	}
 }
