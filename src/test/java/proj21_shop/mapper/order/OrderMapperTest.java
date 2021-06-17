@@ -51,7 +51,7 @@ public class OrderMapperTest {
 		
 	}
 
-	@Test
+	//@Test
 	public void test02InsertOrder() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		/*
@@ -140,6 +140,14 @@ public class OrderMapperTest {
 		
 		int res = mapper.deletCart(orderDTO);
 		Assert.assertEquals(1,res);
+	}
+
+	@Test
+	public void test07LastCartNum() {
+		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
+		
+		int res = mapper.selectLastCartNum();
+		System.out.println(res);
 	}
 
 }

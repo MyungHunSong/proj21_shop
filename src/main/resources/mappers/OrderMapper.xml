@@ -61,4 +61,9 @@
 		where pro_num = #{proNum} 
 	</select>
 	
+	<select id="selectLastCartNum" resultType="int">
+		select * 
+		  from cart order by cart_num 
+		desc limit 1
+	</select>
 </mapper>
