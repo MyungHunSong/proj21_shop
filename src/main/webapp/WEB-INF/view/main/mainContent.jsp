@@ -21,17 +21,33 @@
  <!-- 바로가기 섹션 부분  -->
  <section id="homeMainSection">
  	<div class="homeMainContentTop">
- 		<div class="home-main-content-top_recmmend">RECOMMEND</div>
- 		<div class="home-main-content-top_mostview">MOST VIEW</div>
+ 		<div class="homeMainContentTop_recmmend">RECOMMEND</div>
+ 		<div class="homeMainContentTop_mostview">MOST VIEW</div>
  	</div>
  	<div></div>
  	<div class="homeMainContentBottom">
- 		<div class="home-main-content-bottom_new">NEW</div>
- 		<div class="home-main-content-bottom_best">BEST</div>
- 		<div class="home-main-content-bottom_sale">SALE</div>
+ 		<div class="homeMainContentBottomNew">NEW</div>
+ 		<div class="homeMainContentBottomBest">BEST</div>
+ 		<div class="homeMainContentBottomSale">SALE</div>
  	</div>
  </section>
 
  <!-- 바로가기에 맞는 옷목록 부분  -->
+ 
+ <section id="recommend">
+ 	<div id="recommendLoad"></div>
+ </section>
+ <section id="mostview">
+ 	<div id="mostviewLoad"></div>
+ </section>
+ <section id="new">
+ 	<div id="newLoad"></div>
+ </section>
+ <section id="best">
+ 	<div id="bestLoad"></div>
+ </section>
+ <section id="sale">
+ 	<div id="saleLoad"></div>
+ </section>
 </body>
 </html>
