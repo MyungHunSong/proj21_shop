@@ -8,7 +8,7 @@
 <body>
 <!-- 슬라이더 섹션 부분  -->
 <section id="home-main-section-slider">
-	<div class="home-main-slider-container">
+	<div class="homeMainSliderContainer">
   		<div class="slider">
     		<div><a href=""><img src="resources/banner/slide1.jpg"></a></div>
     		<div><a href=""><img src="resources/banner/slide2.jpg"></a></div>
@@ -19,13 +19,13 @@
  </section>
  
  <!-- 바로가기 섹션 부분  -->
- <section id="home-main-section">
- 	<div class="home-main-content-top">
+ <section id="homeMainSection">
+ 	<div class="homeMainContentTop">
  		<div class="home-main-content-top_recmmend">RECOMMEND</div>
  		<div class="home-main-content-top_mostview">MOST VIEW</div>
  	</div>
  	<div></div>
- 	<div class="home-main-content-bottom">
+ 	<div class="homeMainContentBottom">
  		<div class="home-main-content-bottom_new">NEW</div>
  		<div class="home-main-content-bottom_best">BEST</div>
  		<div class="home-main-content-bottom_sale">SALE</div>

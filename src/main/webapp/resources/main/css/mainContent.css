@@ -1,23 +1,23 @@
 @charset "UTF-8";
 
-.home-main-slider-container{
+.homeMainSliderContainer{
 	display: inline-block;
 }
 	
 /*바로가기(recommend,mostview) 중앙 배치*/
-.home-main-content-top{
+.homeMainContentTop{
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
 /*바로가기(new, best, sale) 중앙 배치*/
-.home-main-content-bottom{
+.homeMainContentBottom{
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
 /*바로가기(recommend,mostview) 글자 중앙 배치*/
-.home-main-content-top div{
+.homeMainContentTop div{
 	font-size:30px;
 	display:flex;
 	align-items: center;
@@ -27,7 +27,7 @@
 	width: 600px;
 }
 /*바로가기(new, best, sale) 글자 중앙 배치*/
-.home-main-content-bottom div{
+.homeMainContentBottom div{
 	font-size:40px;
 	display:flex;
 	align-items: center;
@@ -47,4 +47,8 @@ body {
 .center h3{
 	text-align: center;
 	width: 80%;
+}
+
+#homeMainSection{
+	cursor: pointer;
 }
