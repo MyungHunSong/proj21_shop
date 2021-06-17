@@ -176,7 +176,6 @@ function count(type)  {
 						function(json){
 					console.log(json)
 					if(json == null){
-						console.log(없단)
 					}
 							var cartNums = [];
 							console.log(json)
