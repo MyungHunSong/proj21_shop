@@ -55,4 +55,9 @@ public class OrderServiceController {
 		session.setAttribute("cartNums", cartNum);
 		return ResponseEntity.ok(list);
 	}
+	
+	@GetMapping("/lastOrderNum")
+	public ResponseEntity<Object> getLastOrderNum(){
+		return ResponseEntity.ok(service.selectLastOrderNum());
+	}
 }

@@ -187,4 +187,44 @@ where order_member_id = 'test01';
 /*주문하기 마지막 카트번호 가져와서 바로 넣기*/
 select * from cart;
 select * from cart order by cart_num desc limit 1;  
-delete from cart where cart_num = 76;
+
+/*주문하기 마지막 주문번호 가져와서 바로 넣기*/
+select order_pro_num 
+  from `order` order by order_pro_num 
+  desc limit 1
+  
+/*메인화면 바로가기 메뉴들*/
+/*mostview : 최다조회수*/
+select * 
+  from productall
+order by  pro_hits desc limit 6;
+
+select * 
+  from productall
+where pro_size like '%3' 
+order by  pro_status = '신상' desc limit 6; 
+
+/*new 새로나온순*/
+select * 
+  from productall
+where pro_size like '%3' 
+order by  pro_status = '신상' desc limit 6; 
+
+/*best*/
+select * 
+  from productall
+where pro_size like '%3' 
+order by  pro_status = '최고' desc limit 6; 
+
+/*sale*/
+select * 
+  from productall
+where pro_size like '%3' 
+order by  pro_status = '세일' desc limit 6; 
+
+/*recommend*/
+select * 
+  from productall
+where pro_size like '%3' 
+order by  pro_status = '추천' desc limit 6; 
+

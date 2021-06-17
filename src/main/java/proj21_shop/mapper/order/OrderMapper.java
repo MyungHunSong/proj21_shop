@@ -12,6 +12,9 @@ public interface OrderMapper {
 	/* 제품 상세 보기 페이지에서 주문하기 버튼 클릭시 마지막 카트번호 검색 */
 	int selectLastCartNum();
 	
+	/*주문완료 후 주문 상세 페이지*/
+	int selectLastOrderNum();
+	
 	/* 제품 주문시 주소 검색 */
 	AddressDTO selectAddress(AddressDTO addressDTO);
 	
