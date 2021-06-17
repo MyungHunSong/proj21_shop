@@ -30,6 +30,9 @@ $(function(){
 	/* 결제 예정 금액 */
 	var sumOrderPrice = 0;
 	
+	/* 결제 예정 금액 - 할인된 금액*/
+	var newOrderPrice = 0;
+	
 	/* 결제 상품 개수 */
 	var sumNum = 0;
 
@@ -38,6 +41,9 @@ $(function(){
 	
 	/* 주문정보리스트 */
 	var orderItems = [];
+	
+	
+	
 	
 	var orderItem = {};
 	
@@ -176,9 +182,11 @@ $(function(){
 			$('#memberPoint').text(totalMemberPointFmt)
 		}
 	})
-		
+	
+	
 	/* 키보드입력으로 포인트 사용 */
 	$('.usePoint').keyup(function(e){
+		$("input:checkbox[name='checkPoint']").prop("checked",false)
 		/* 정규표현식 숫자만 */
 		var regexp = /^[0-9]*$/
 		consumePoint = $(this).val()
@@ -192,7 +200,7 @@ $(function(){
 		
 		/* 포인트 추가로 적용된 제품 가격 */
 		var oldOrderPrice = sumOrderPrice
-		var newOrderPrice = sumOrderPrice - consumePoint
+		newOrderPrice = sumOrderPrice - consumePoint
 		
 		
 		
@@ -211,9 +219,14 @@ $(function(){
 			$('.sumPOrderprice').text(oldOrderPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"원")
 		}
 		
-		if(newOrderPrice < 0){
-			$('#memberPoint').text("모두 사용 버튼을 눌러주세요")
+		 if(newOrderPrice < 0){
+				console.log(1111)
+				$('.sumPSale').text(sumPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"P")
+				$('.sumPOrderprice').text("0원")
+				$(this).val(5000)
 		}
+		
+		
 	})
 	
 	
