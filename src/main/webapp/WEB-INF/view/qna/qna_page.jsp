@@ -29,23 +29,91 @@ $(function(){
 			if(dateLength >= 1){
 				var sCont = "";
 				for(i = 0; i<dateLength; i++){
-					sCont += "<tr>";
-					sCont += "<td class = 'clickOption'>"+json[i].qOp + "</td>"; 
-					sCont += "<input type = 'hidden' value = "+ json[i].qIndex +">"; 					
-					sCont += "<td>" + json[i].qMember + "</td>";
-					sCont += "<td>" + json[i].qOption + "</td>";
-					sCont += "<td>" + json[i].qTitle + "</td>";
-					sCont += "<td>" + json[i].qDate + "</td>";
-					sCont += "<td>" + json[i].qHit + "</td>";		
+					
+						sCont += "<tr>";
+						sCont += "<td class = 'clickOption'>"+json[i].qOp + "</td>"; 
+						sCont += "<input type = 'hidden' value = "+ json[i].qIndex +">";
+						sCont += "<input type = 'hidden' value="+ json[i].qGroup +" >"
+						sCont += "<td>" + json[i].qMember + "</td>";
+						sCont += "<td>" + json[i].qOption + "</td>";
+						sCont += "<td>" + json[i].qTitle + "</td>";
+						sCont += "<td>" + json[i].qDate + "</td>";
+						sCont += "<td>" + json[i].qHit + "</td>";		
+						sCont += "</tr>";	
+					
+												
+					if(json[i].qStep == 1){
+						sCont += "<tr class = 'clickContent'>";
+						sCont += "<td colspan = '6' ><img src=''/><span>"
+						+ json[i].qContent+"</span></td>";
+						sCont += "</tr>" 
+					}else{
+						sCont += "<tr class = 'clickContent'>";
+						sCont += "<td>content</td>";	
+						sCont += "<td colspan = '5' ><img src='/proj21_shop/resources/banner/headerR.jpg' style = 'width : 30px;'/><span>"
+						+ json[i].qContent+"</span>"+ json[i].qFile +"  <a class= 'clickReply'> [답글 달기]</td>";
+						sCont += "</tr>" 	
+					}
+ 
+					
+					sCont += "<tr class ='clickReplyTd' >";			
+					sCont += "<td colspan = '5'>관리자<p><label value="+ json[i].qMember +">" + "</label></p><br>"
+									+ "<textarea id='contentArea' name='contentArea'></textarea><br>"
+									+"<button type = 'button' class = 'addContent'>등록</button></td>";
 					sCont += "</tr>";
-					sCont += "<tr class = 'clickContent'>";
-					sCont += "<td>content</td>";	
-					sCont += "<td colspan = '5' ><img src='/proj21_shop/resources/banner/headerR.jpg' style = 'width : 30px;'/><span>"
-					+ json[i].qContent+"</span>"+ json[i].qFile +"  <a href='#'> [답글]</a></td>";	
 					sCont += "</tr>";
+					
+					
 				}
 				$("#load").append(sCont);
 			}
+			// 답글 인서트.
+			$(".clickReply").on('click', function(){
+					var idx = $(this).parent().parent().prev().children().next().val();
+					var group = $(this).parent().parent().prev().children().next().next().val();
+					
+					console.log(idx);
+					console.log(group)
+					if($(this).parent().parent().next().hasClass('active')){
+						$(this).parent().parent(). next().removeClass('active');
+						
+					}else{
+						$(this).parent().parent().next().addClass('active');					
+						
+					}
+			});
+			
+			$(".addContent").on('click', function(){
+				console.log($("textarea[name='contentArea']:visible").val())
+				var group = $(this).parent().parent().prev().prev().children().next().next().val();
+					
+				
+				console.log(group)
+				
+				var insertItem = {
+					    "qTitle": "null",
+					    "qMember": "admin",
+					    "qContent": $("textarea[name='contentArea']:visible").val(),
+					    "qGroup": group,
+					    "qStep": 1
+					  }
+				
+					$.ajax({
+							url:contextPath +"/api/qna/",
+							type:"POST",
+							contentType:"application/json; charset=utf-8",
+							datatype:"json",
+							data:JSON.stringify(insertItem),
+							success:function(){
+								alert('완료')
+								 window.location.href = contextPath + "/listPaging?page="+page + "&pagePageNum="+ perPageNum + "&searchType=" + searchType + "&keyword=";
+							},
+							error:function(){
+								alert("실패")
+							}
+					});
+			});
+			// 조회수 ajax 구현 -시작-
 			$('.clickOption').on('click',function(){
 					var idx = $(this).next().val()
 					
@@ -83,10 +151,11 @@ $(function(){
 							}
 						});
 					}
-				
 			})
+			// 조회수 ajax 구현 -끝-
 		});
-	});
+	
+});
 </script>
 </head>
 <body>
@@ -103,9 +172,7 @@ $(function(){
 					<td>조회수</td>
 				</tr>
 				<tbody id='load'>
-					
-				</tbody>
-						
+				</tbody>						
 			</table>
 
 			<!-- 페이징 -->

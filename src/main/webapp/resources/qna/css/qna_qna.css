@@ -1,9 +1,21 @@
 @charset "UTF-8";
+<!--답글 커서 & 답글 페이지 보이기. -->
 
+.clickReply{
+	cusor:pointer;
+}
+.clickReplyTd{
+	display: none;
+}
+
+.clickReplyTd.active{
+	 display: contents;	
+}
+
+<!-- 상세내용 보이기. -->
 .clickOption{
 	cursor: pointer;
 }
-
 .clickContent{
 	 display: none;
 }
