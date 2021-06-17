@@ -280,10 +280,13 @@ $(function(){
 		for(i = 0; i <p.length; i++){
 			salePrice += p[i];
 		}
+		
+		console.log($('.sumPOrderprice').text())
+		if($('.sumPOrderprice').text() == '0원'){
+			salePrice = sumPrice;
+		}	
+		
 		console.log(salePrice)
-		
-			
-		
 		console.log(p[0])
 		/* 주문 할때 사용할 정보 */
 		for(i = 0; i < orderItem.length; i++){
@@ -310,7 +313,7 @@ $(function(){
 			data: JSON.stringify(orderItem),
 			success: function(res){
 				alert("이용해주셔서 감사합니다.")
-				  /* window.location.href = contextPath + "/cart?memId=${authInfo.id }"; */  
+				   /* window.location.href = contextPath + "/cart?memId=${authInfo.id }"; */   
 			},
 			error:function(request, status, error){
 				alert("제품 수량이 부족합니다.");
@@ -318,7 +321,7 @@ $(function(){
 		                  +request.responseText+"\n"+"error:"+error); 
 				 window.location.href = contextPath+"/cart?memId=${authInfo.id }";  
 			} 
-		});   
+		});    
 	}
 })
 
