@@ -37,16 +37,23 @@
 	
 	
 		
-	<!-- <delete id="deleteCourses" parameterType="map">
-		delete from courses
+	<delete id="deleteProducts" parameterType="map">
+		delete from product
 		<where>
-		    course_id IN
-		    <foreach item="courseId" collection="courseIds" open="(" close=")" separator=",">
-		            #{courseId}
+		    pro_num IN
+		    <foreach item="proNum" collection="deleteList" open="(" close=")" separator=",">
+		            #{proNum}
 		    </foreach>
 		</where>
-	</delete> -->
+	</delete>
 	
+	<update id="updateProduct">
+		update product
+		<set>
+			pro_quantity=pro_quantity+#{proQuantity}
+		</set>
+		 where pro_num = #{proNum}
+	</update>
 	
 	<!-- 제품 추가 -->
 	<insert id="insertNewProduct" parameterType="Map">

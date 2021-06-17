@@ -19,7 +19,6 @@ $(function(){
 	var cartNums = ${cartNums};
 	var consumePoint = 0;
 	
-	
 	/* 유저 포인트 */
 	var totalMemberPoint = ${authInfo.mPoint};
 	var totalMemberPointFmt = totalMemberPoint.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"P";
@@ -29,6 +28,9 @@ $(function(){
 	
 	/* 결제 예정 금액 */
 	var sumOrderPrice = 0;
+	
+	/* 결제 예정 금액 - 할인된 금액*/
+	var newOrderPrice = 0;
 	
 	/* 결제 상품 개수 */
 	var sumNum = 0;
@@ -176,9 +178,11 @@ $(function(){
 			$('#memberPoint').text(totalMemberPointFmt)
 		}
 	})
-		
+	
+	
 	/* 키보드입력으로 포인트 사용 */
 	$('.usePoint').keyup(function(e){
+		$("input:checkbox[name='checkPoint']").prop("checked",false)
 		/* 정규표현식 숫자만 */
 		var regexp = /^[0-9]*$/
 		consumePoint = $(this).val()
@@ -192,7 +196,7 @@ $(function(){
 		
 		/* 포인트 추가로 적용된 제품 가격 */
 		var oldOrderPrice = sumOrderPrice
-		var newOrderPrice = sumOrderPrice - consumePoint
+		newOrderPrice = sumOrderPrice - consumePoint
 		
 		
 		
@@ -211,9 +215,14 @@ $(function(){
 			$('.sumPOrderprice').text(oldOrderPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"원")
 		}
 		
-		if(newOrderPrice < 0){
-			$('#memberPoint').text("모두 사용 버튼을 눌러주세요")
+		 if(newOrderPrice < 0){
+				console.log(1111)
+				$('.sumPSale').text(sumPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"P")
+				$('.sumPOrderprice').text("0원")
+				$(this).val(5000)
 		}
+		
+		
 	})
 	
 	
@@ -268,7 +277,7 @@ $(function(){
 	
 	/* 주문하기 버튼 클릭 */
 	$('#prodOrderBtn').on("click",function(){
-		insertOrder(orderItems)			
+		orderBtn()
 	})
 	
 	/*구입하기 function()*/
@@ -280,10 +289,13 @@ $(function(){
 		for(i = 0; i <p.length; i++){
 			salePrice += p[i];
 		}
+		
+		console.log($('.sumPOrderprice').text())
+		if($('.sumPOrderprice').text() == '0원'){
+			salePrice = sumPrice;
+		}	
+		
 		console.log(salePrice)
-		
-			
-		
 		console.log(p[0])
 		/* 주문 할때 사용할 정보 */
 		for(i = 0; i < orderItem.length; i++){
@@ -309,8 +321,8 @@ $(function(){
 			datatype : "json",
 			data: JSON.stringify(orderItem),
 			success: function(res){
-				alert("이용해주셔서 감사합니다.")
-				  /* window.location.href = contextPath + "/cart?memId=${authInfo.id }"; */  
+				orderBtn();
+				   /* window.location.href = contextPath + "/cart?memId=${authInfo.id }"; */   
 			},
 			error:function(request, status, error){
 				alert("제품 수량이 부족합니다.");
@@ -318,8 +330,29 @@ $(function(){
 		                  +request.responseText+"\n"+"error:"+error); 
 				 window.location.href = contextPath+"/cart?memId=${authInfo.id }";  
 			} 
-		});   
+		});    
 	}
+	
+	/*돌아가기*/
+	$("#canselBtn").on("click",function(){
+		test()
+	})
+	
+	 function orderCancelBtn() {
+        if (!confirm("주문을 취소 하시겠습니까?")) {
+        } else {
+            history.go(-1)
+        }
+    }
+
+	function orderBtn() {
+        if (!confirm("주문을 하시겠습니까?")) {
+        	alert("감사합니다.")
+        } else {
+        	insertOrder(orderItems)
+        	alert("주문이 완료 되었습니다.")
+        }
+    }
 })
 
 </script>
@@ -438,7 +471,7 @@ $(function(){
             </div>
             <div class="orderBtnsGroup">
             <input id="prodOrderBtn" class = 'orderBtns' type="submit" value="주문하기">
-            <input class = 'orderBtns' type="submit" value="취소하기">
+            <input id="canselBtn" class = 'orderBtns' type="submit" value="취소하기">
             </div>
 </form> 
         

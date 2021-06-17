@@ -34,10 +34,10 @@ public interface AdminProductMapper {
 // ==================제품 재입고========================
 	void insertProductImageFile(ArrayList<ProductImageDTO> imageFileList);
 	
-	void insertNewProductDetail(Map productDetailMap);
-	
-	void deleteProducts(Map deleteMap);
+	int deleteProducts(Map deleteMap);
 	
 	int selectAllCoat();
+	
+	int updateProduct(ProductDTO product);
 	
 }

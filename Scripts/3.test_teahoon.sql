@@ -139,17 +139,14 @@ values
 			('test01', 746858, '대구광역시 남구 봉덕동 이천로 51', '3층');
 
 /*주문 테이블에 제품 등록*/
-SELECT MAX(order_pro_num)+1 FROM `order`
+SELECT MAX(order_pro_num)+1 FROM `order`;
+
 INSERT INTO proj21_shop.`order`
 (order_pro_num,order_member_id, pro_num, order_member_name, order_pro_quantity, order_price, order_discount, 
  receiver_name, receiver_tel1, receiver_tel2, delivery_addr1, delivery_addr2, delivery_addr3, request_to_delivery, who_pay, which_bank)
 values
 (1,'test01', 6163, '이종윤', 1, 5000, 0, '이종윤', '010-1234-5678', '010-1234-5678', 54545,'대구광역시 남구 봉덕동 이천로 51', '2층', '배송참고사항', '이종윤', '국민'),
 (1,'test01', 1033, '이종윤', 1, 5000, 0, '이종윤', '010-1234-5678', '010-1234-5678', 54545,'대구광역시 남구 봉덕동 이천로 51', '2층', '배송참고사항', '이종윤', '국민');
-
-SELECT MAX(order_pro_num)+1 FROM `order`;
-
-select * from address a;
 
 /*팔린 제품 수량 만큼 제품 재고 감소*/
 select * from product where pro_num = 6163;
@@ -177,6 +174,17 @@ where pro_num = ?;
 
 /*주문 검색*/
 
+select * from `order` o ;
+
 select order_pro_num ,order_member_id,o2.pro_num,order_member_name,order_pro_quantity,order_price,order_discount,receiver_name,receiver_tel1,receiver_tel2,delivery_addr1,delivery_addr2,delivery_addr3,delivery_status,request_to_delivery,order_date,who_pay,which_bank,(p2.pro_price*order_pro_quantity)-order_discount
   from `order` o2 join product p2 on o2.pro_num = p2.pro_num 
-where order_pro_num = 5;
+where order_member_id = 'test01';
+
+select order_pro_num ,p2.pro_name ,p2.pro_price 
+  from `order` o2 join product p2 on o2.pro_num = p2.pro_num 
+where order_member_id = 'test01';
+
+/*주문하기 마지막 카트번호 가져와서 바로 넣기*/
+select * from cart;
+select * from cart order by cart_num desc limit 1;  
+delete from cart where cart_num = 76;

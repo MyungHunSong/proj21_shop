@@ -322,3 +322,20 @@ WHERE pro_num<3000;
 DELETE FROM pro_img 
 WHERE pro_num=1*;
 DELETE FROM product WHERE pro_num<3000;
+
+SELECT * FROM product p ;
+
+UPDATE product
+   SET pro_quantity = pro_quantity+5
+ WHERE pro_num=1031;
+
+-- 제품 지우기 전에 제품 사진들 지우기
+delimiter $$
+create trigger delete_pro_img
+before delete on product
+for each row
+begin
+delete from pro_img
+where pro_num = old.pro_num;
+end $$
+delimiter ;

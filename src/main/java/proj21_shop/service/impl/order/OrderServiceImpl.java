@@ -1,6 +1,4 @@
 package proj21_shop.service.impl.order;
-
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +27,11 @@ public class OrderServiceImpl implements OrderService {
 	public MemberDTO selectById(String id) {
 		return memberMapper.selectById(id);
 	}
+	
+	@Override
+	public int selectLastCartNum() {
+		return orderMapper.selectLastCartNum();
+	}
 
 	@Override
 	@Transactional
@@ -37,11 +40,11 @@ public class OrderServiceImpl implements OrderService {
 		System.out.println(order);
 		int res = 0;
 		
-		/*할인된금액*/
-		int pSale = 0;
+		/* 총 할인 금액 */
+		int totalSale = 0;
 		
-		/*제품 구입시 사용한 포인트 */
-		int usePoint = 0;
+		/*제품 기본 할인된 금액*/
+		int pSale = 0;
 		
 		/*제품 구입시 추가되는 포인트*/
 		int plusPoint = 0;
@@ -50,23 +53,21 @@ public class OrderServiceImpl implements OrderService {
 		AddressDTO addressDTO = new AddressDTO();
 		MemberDTO memberDTO = new MemberDTO();	
 		ProductDTO productDTO = new ProductDTO();
-		
+				
 		for(OrderDTO orderDTO : order) {
 			ProductDTO checkProd = orderMapper.selectProdByProNum(orderDTO.getProNum());	
 			
-			/*제품 기본 할인된 금액*/
-			pSale += checkProd.getProPrice()*checkProd.getProSalesrate()*0.01;
 			
-			plusPoint += (int)((checkProd.getProPrice()-((checkProd.getProPrice()*checkProd.getProSalesrate())*0.01))*0.01); 
+			pSale += checkProd.getProPrice()*checkProd.getProSalesrate()*0.01*orderDTO.getOrderProQuantity();
+			
+			plusPoint += (int)((checkProd.getProPrice()-((int)(checkProd.getProPrice()*checkProd.getProSalesrate())*0.01))*0.01)*orderDTO.getOrderProQuantity();
+			
+			totalSale = orderDTO.getOrderDiscount();
 		}
 		
 		
 		for(OrderDTO orderDTO : order) {
 			ProductDTO checkProd = orderMapper.selectProdByProNum(orderDTO.getProNum());	
-			
-			System.out.println("usePoint >> " + usePoint);
-			
-			usePoint = orderDTO.getOrderDiscount() - pSale;
 			
 			addressDTO.setMemberId(orderDTO.getOrderMemberId());
 			addressDTO.setMemberAddr1(orderDTO.getDeliveryAddr1());
@@ -75,8 +76,6 @@ public class OrderServiceImpl implements OrderService {
 			
 			memberDTO.setMemberId(orderDTO.getOrderMemberId());
 			memberDTO.setMemberTotalBuy(orderDTO.getOrderPrice());
-			memberDTO.setMemberTotalOrder(1);
-			memberDTO.setMemberPoint(plusPoint - usePoint);
 			
 			if(orderMapper.selectAddress(addressDTO) == null) { 
 				   orderMapper.insertMemberAddress(addressDTO); 
@@ -84,7 +83,7 @@ public class OrderServiceImpl implements OrderService {
 			//제품 수량이 주문 수량 보다 많거나 같을때 구입가능
 			if(checkProd.getProQuantity() >= orderDTO.getOrderProQuantity()) {
 				productDTO.setProQuantity(orderDTO.getOrderProQuantity());
-				productDTO.setProSold(checkProd.getProPrice());
+				productDTO.setProSold(checkProd.getProPrice()*orderDTO.getOrderProQuantity());
 				productDTO.setProNum(orderDTO.getProNum());
 				res += orderMapper.updateProduct(productDTO);
 				
@@ -93,18 +92,22 @@ public class OrderServiceImpl implements OrderService {
 			}
 			
 			res += orderMapper.deletCart(orderDTO);
-			res += orderMapper.updateMember(memberDTO);
-			orderDTO.setOrderPrice(orderDTO.getOrderPrice());
-			orderDTO.setOrderDiscount(orderDTO.getOrderDiscount());
 		}
 		
-
-		System.out.println(pSale);
-		System.out.println(usePoint);
-		System.out.println(plusPoint);
+		System.out.println("총 할인 금액 >> " + totalSale);
+		System.out.println("제품 기본 할인된 금액 >> " +pSale);
+		System.out.println("제품 구입시 사용한 포인트 >> " +(totalSale-pSale));
+		System.out.println("제품 구입시 추가되는 포인트 >> "+ plusPoint);
+		System.out.println("수정될 포인트 >> "+ (plusPoint-(totalSale-pSale)) );
 		
+		memberDTO.setMemberTotalOrder(order.size());
+		memberDTO.setMemberPoint(plusPoint-(totalSale-pSale));
+		
+		orderMapper.updateMember(memberDTO);
 		res += orderMapper.insertOrder(order);
 		
 		return res;
 	}
+
+	
 }

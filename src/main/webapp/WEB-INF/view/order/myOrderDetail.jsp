@@ -15,6 +15,7 @@
 		var orderProNum = "${orderProNum}";
 		var sCont = "";
 
+
 		$
 				.get(
 						contextPath + "/api/detailorder/" + memberId + "/"+orderProNum,
