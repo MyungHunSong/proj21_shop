@@ -211,7 +211,7 @@ insert into qna(q_title, q_member, q_content, q_date, q_group, q_step)
 -- 답글 보이는 방식. q_group = 작성자 & q_step=1 
 select *
 	from qna
-where q_group = 4 and q_step = 1;
+where q_group = 95; --  and q_step = ;
 
 -- 근데 답글 삭제. 
 delete 
