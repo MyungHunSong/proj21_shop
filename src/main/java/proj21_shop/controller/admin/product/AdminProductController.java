@@ -22,10 +22,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import proj21_shop.dto.product.ProductDTO;
 import proj21_shop.dto.product.ProductImageDTO;
 import proj21_shop.service.admin.product.AdminProductService;
 
@@ -251,17 +253,25 @@ public class AdminProductController {
 		}
 		return fileList;
 	}
-	@RequestMapping(value="addNewModel", method= RequestMethod.POST)
-	public ResponseEntity addNewModel(HttpServletRequest request, HttpServletResponse response) {
+	
+	@RequestMapping(value="upModel", method= RequestMethod.POST)
+	public ResponseEntity upModel(HttpServletRequest request, HttpServletResponse response) {
 		
-		Map<String,Object> productDetailMap=new HashMap();
+		Map<String,Object> productMap=new HashMap();
 		Enumeration enu=request.getParameterNames();
 		while(enu.hasMoreElements()) {
 			String name=(String)enu.nextElement();
 			String value=request.getParameter(name);
-			productDetailMap.put(name, value);
+			productMap.put(name, value);
 		}
-		adminProductService.addNewModel(productDetailMap);
+		ProductDTO product = new ProductDTO();
+		
+		product.setProNum(Integer.parseInt(request.getParameter("proNum")));
+		System.out.println("proNum================="+request.getParameter("proNum"));
+		product.setProQuantity(Integer.parseInt(request.getParameter("proQuantity")));
+		System.out.println("proQuantity================="+request.getParameter("proQuantity"));
+		
+		adminProductService.modifyModel(product);
 		
 		String message=null;
 		ResponseEntity resEnt=null;
@@ -271,9 +281,68 @@ public class AdminProductController {
 		message="<script> ";
 		message+=" alert('모델 추가가 완료되었습니다.');";
 		message+=" self.close();";
+		message+=" opener.parent.location.reload();";
 		message+=" </script>";
 		
 		resEnt=new ResponseEntity(message,responseHeaders,HttpStatus.OK);
+		
+		return resEnt;
+	}
+	@RequestMapping("upModelForm")
+	public ModelAndView addNewModelForm(@RequestParam(value="proNum") String proNum,
+			  @RequestParam(value="proCategory") String proCategory,
+			  @RequestParam(value="proColor") String proColor,
+			  @RequestParam(value="proSize") String proSize,
+			  HttpServletRequest request, HttpServletResponse response) {
+		
+		
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("proNum",proNum);
+		mav.addObject("proCategory",proCategory);
+		mav.addObject("proColor",proColor);
+		mav.addObject("proSize",proSize);
+		mav.setViewName("admin/product/upModelForm");
+		
+		return mav;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="deleteProducts", method= RequestMethod.POST)
+	public ResponseEntity deleteProducts(String[] _delete_val,
+									HttpServletRequest request, HttpServletResponse response) {
+		
+		ArrayList<String> deleteList=new ArrayList<String>();
+		for(String value : _delete_val) { //삭제할 제품 번호 리스트에 추가
+			System.out.println(value);
+			deleteList.add(value);
+		}
+		String message=null;
+		ResponseEntity resEnt=null;
+		HttpHeaders responseHeaders=new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+		Map<String,Object> deleteMap=new HashMap();
+		deleteMap.put("deleteList", deleteList);
+		try {
+			adminProductService.deleteProducts(deleteMap);
+			//이미지 파일 삭제
+			for(int i=0; i<deleteList.size(); i++) {
+				File destDir=new File(CURR_IMAGE_REPO_PATH+"\\"+deleteList.get(i).toString());
+				FileUtils.deleteDirectory(destDir);
+			}
+			message="<script> ";
+			message+=" alert('선택한 제품 삭제를 완료하였습니다.');";
+			message+=" location.href='"+request.getContextPath()+"/admin/product/listProducts'; ";
+			message+=" </script>";
+			resEnt=new ResponseEntity(message,responseHeaders,HttpStatus.CREATED);
+		}catch(Exception e) {
+			
+			message="<script> ";
+			message+=" alert('제품 삭제를 실패하셨습니다..');";
+			message+=" location.href='"+request.getContextPath()+"/admin/product/listProducts'; ";
+			message+=" </script>";
+			resEnt=new ResponseEntity(message,responseHeaders,HttpStatus.CREATED);
+			e.printStackTrace();
+		}
 		
 		return resEnt;
 	}

@@ -2,14 +2,16 @@ package proj21_shop.service.admin.product;
 
 import java.util.Map;
 
+import proj21_shop.dto.product.ProductDTO;
+
 public interface AdminProductService {
 	Map<String, Object> listProducts(Map<String, Object> pagingMap);
 	
 	int addNewProduct(Map<String, Object> newProductMap);
 
-	void addNewModel(Map<String, Object> productDetailMap);
+	int modifyModel(ProductDTO product);
 	
-	void deleteProducts(Map<String, Object> deleteMap);
+	int deleteProducts(Map<String, Object> deleteMap);
 
 	Map<String, Object> getProductStatics();
 	

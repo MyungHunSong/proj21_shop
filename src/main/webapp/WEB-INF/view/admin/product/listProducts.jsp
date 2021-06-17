@@ -109,10 +109,10 @@
 			}
 		});
 	});
-		function addNewModel(proNum,proCategory,proColor,proSize){
+		function upModel(proNum,proCategory,proColor,proSize){
 			var popupX = (window.screen.width/2)-300;
 			var popupY= (window.screen.height/2)-225;
-			window.open('${contextPath}/admin/product/addNewModelForm?proNum='+proNum+'&proCategory='+proCategory+'&proColor='+proColor+'&proSize='+proSize, '모델 추가하기',
+			window.open('${contextPath}/admin/product/upModelForm?proNum='+proNum+'&proCategory='+proCategory+'&proColor='+proColor+'&proSize='+proSize, '모델 추가하기',
 					'status=no, height=450, width=600, left='+ popupX + ', top='+ popupY);
 			
 		}
@@ -351,7 +351,7 @@
 						</c:when>
 					</c:choose>
 				</td>
-				<td><input type="button" value="모델 추가하기" onClick="addNewModel('${product.proNum}','${product.proCategory }','${product.proColor }','${product.proSize }')" /></td>
+				<td><input type="button" value="모델 추가하기" onClick="upModel('${product.proNum}','${product.proCategory }','${product.proColor }','${product.proSize }')" /></td>
 		 		</tr>
 		 	</c:forEach>
 		 			

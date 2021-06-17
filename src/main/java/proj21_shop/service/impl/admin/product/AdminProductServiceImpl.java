@@ -74,12 +74,12 @@ public class AdminProductServiceImpl implements AdminProductService {
 	}
 	
 	@Override
-	public void addNewModel(Map productDetailMap) {
-			adminProductMapper.insertNewProductDetail(productDetailMap);
+	public int modifyModel(ProductDTO product) {
+			return adminProductMapper.updateProduct(product);
 	}
 	@Override
-	public void deleteProducts(Map deleteMap) {
-			adminProductMapper.deleteProducts(deleteMap);
+	public int deleteProducts(Map deleteMap) {
+			return adminProductMapper.deleteProducts(deleteMap);
 	}
 	@Override
 	public Map<String, Object> getProductStatics() {
