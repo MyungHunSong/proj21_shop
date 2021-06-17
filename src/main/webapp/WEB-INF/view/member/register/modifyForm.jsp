@@ -85,6 +85,7 @@
 				<tr>
 					<th scope="row"><label for="confirmQuestion">본인확인질문</label></th>
 					<td><select id="hint" name="memberPwdQ">
+							<option>질문을 선택해 주세요</option>
 							<option value="기억에 남는 추억의 장소는?">기억에 남는 추억의 장소는?</option>
 							<option value="자신의 인생 좌우명은?">자신의 인생 좌우명은?</option>
 							<option value="자신의 보물 제1호는?">자신의 보물 제1호는?</option>
@@ -97,7 +98,7 @@
 				</tr>
 				<tr>
 					<th scope="row"><label for="tel">전화 번호</label></th>
-					<td><form:input path="memberPh" /></td>
+					<td><form:input path="memberPh"/></td>
 				</tr>
 				<tr>
 					<th scope="row"><label for="email">이메일</label></th>

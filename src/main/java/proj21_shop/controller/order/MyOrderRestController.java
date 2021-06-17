@@ -21,11 +21,11 @@ public class MyOrderRestController {
 		return ResponseEntity.ok(service.selectOrderByMember(memberId));
 	}
 	
-	@GetMapping("detailorder/{memberId}/{proNum}")
-	public ResponseEntity<Object> myorderdetail(@PathVariable String memberId, @PathVariable int proNum){
+	@GetMapping("detailorder/{memberId}/{orderProNum}")
+	public ResponseEntity<Object> myorderdetail(@PathVariable String memberId, @PathVariable int orderProNum){
 		OrderDTO orderDTO = new OrderDTO();
 		orderDTO.setMemberId(memberId);
-		orderDTO.setProNum(proNum);
+		orderDTO.setOrderProNum(orderProNum);
 		return ResponseEntity.ok(service.selectOrderDetailByMember(orderDTO));
 	}
 }

@@ -13,23 +13,27 @@
 		var contextPath = "${contextPath}";
 		var memberId = "${memberId}";
 		var orderProNum = "${orderProNum}";
-		var proNum = "${proNum}";
+		var sCont = "";
 
-		$.get(contextPath + "/api/detailorder/" + memberId + "/" + proNum,
+
+		$
+				.get(
+						contextPath + "/api/detailorder/" + memberId + "/"+orderProNum,
 						function(json) {
 							console.log(json);
-
-							var sCont = "";
+							var dataLength = json[0].proName.length;
+							for(i = 0; i < dataLength; i++){
 							sCont += "<tr>";
 							sCont += "<td>" + json[0].orderProNum;
-							sCont += "<td><img src='" + contextPath +"/resources/product/images/" + json[0].productImageDTO.proImagefilename + "' width = '80' height='60'></td>";
+							sCont += "<td><img src='" + contextPath +"/resources/product/images/" + json[0].proName[i].proImgfileName + "' width = '80' height='60'></td>";
 							sCont += "<td>" + json[0].orderPrice * 0.01 +"p";
 							sCont += "<td>" + json[0].orderPrice;
 							sCont += "<td>" + json[0].orderProQuantity;
 							sCont += "<td>" + json[0].deliveryStatus;
 							sCont += "<td>" + json[0].orderDate;
 							sCont += "<td>" + "후기작성 하러가기";
-
+							}
+							
 							$("#load").append(sCont);
 
 							var sConts = "";
@@ -37,39 +41,51 @@
 							sConts = "";
 							sConts += "<tr>";
 							sConts += "<th scope='cols'>이름</th>";
-							sConts += "<td>" + json[0].orderMemberName;
+							sConts += "<td>" + json[0].orderMemberName + "</td>";
 							sConts += "</tr>";
 							sConts += "<tr>";
 							sConts += "<th scope='cols'>연락처</th>";
 							sConts += "<td>" + json[0].receiverTel1 + "/"
-									+ json[0].receiverTel2;
+									+ json[0].receiverTel2 + "</td>";
 							sConts += "</tr>";
 							sConts += "<tr>";
 							sConts += "<th scope=cols'>배송지 주소</th>";
 							sConts += "<td>" + "(" + json[0].deliveryAddr1
 									+ ") " + json[0].deliveryAddr2 + " "
-									+ json[0].deliveryAddr3;
+									+ json[0].deliveryAddr3 + "</td>";
 							sConts += "</tr>";
 							sConts += "<tr>";
 							sConts += "<th scope='cols'>배송 메시지</th>";
-							sConts += "<td>" + json[0].requestToDelivery;
+							sConts += "<td>" + json[0].requestToDelivery + "</td>";
 							sConts += "</tr>";
 							$("#delivery").prepend(sConts);
 
 							sCon = "";
+							var sum= 0;
+							var discount = 0;
 							sCon += "<tr>";
 							sCon += "<th scope='cols'>상품합계</th>";
-							sCon += "<td>" + json[0].orderPrice + "</td>";
+						 	for(i = 0; i < dataLength; i++){
+						 		/*console.log(parseInt(json[0].proName[i].proPrice)
+						 				+parseInt(json[0].proName[i].proPrice)) */
+							sum += parseInt(json[0].proName[i].proPrice);
+							}
+							sCon += "<td>" + sum + "</td>";
 							sCon += "</tr>";
 							sCon += "<tr>";
 							sCon += "<th scope='cols'>할인합계</th>";
+							for(i = 0; i < dataLength; i++){
+								
+							}
 							sCon += "<td>" +json[0].orderDiscount + "</td>";
 							sCon += "</tr>";
+							sCon += "<tr>";
 							sCon += "<th scope='cols'>최종 결제 금액</th>";
-							sCon += "<td>" + (json[0].orderPrice - json[0].orderDiscount) + "<td>";
+							sCon += "<td>" + (sum - json[0].orderDiscount) + "</td>";
+							sCon += "</tr>";
 							sCon += "<tr>";
 							sCon += "<th scope='cols'>예상적립금 </th>";
-							sCon += "<td>"+ json[0].orderPrice * 0.01 + "p</td>";
+							sCon += "<td>"+ sum * 0.01 + "p</td>";
 							sCon += "</tr>";
 							
 							$("#pay").prepend(sCon);

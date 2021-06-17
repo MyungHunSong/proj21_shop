@@ -6,6 +6,7 @@ public class ProductImageDTO {
 	private int proImgCode;
 	private String proImagefilename;
 	private String proImageFileType;
+	
 	public String getProImageFileType() {
 		return proImageFileType;
 	}
