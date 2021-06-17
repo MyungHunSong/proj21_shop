@@ -27,6 +27,11 @@ public class OrderServiceImpl implements OrderService {
 	public MemberDTO selectById(String id) {
 		return memberMapper.selectById(id);
 	}
+	
+	@Override
+	public int selectLastCartNum() {
+		return orderMapper.selectLastCartNum();
+	}
 
 	@Override
 	@Transactional
@@ -55,7 +60,7 @@ public class OrderServiceImpl implements OrderService {
 			
 			pSale += checkProd.getProPrice()*checkProd.getProSalesrate()*0.01*orderDTO.getOrderProQuantity();
 			
-			plusPoint += (int)((checkProd.getProPrice()-((checkProd.getProPrice()*checkProd.getProSalesrate())*0.01))*0.01)*orderDTO.getOrderProQuantity();
+			plusPoint += (int)((checkProd.getProPrice()-((int)(checkProd.getProPrice()*checkProd.getProSalesrate())*0.01))*0.01)*orderDTO.getOrderProQuantity();
 			
 			totalSale = orderDTO.getOrderDiscount();
 		}
@@ -78,7 +83,7 @@ public class OrderServiceImpl implements OrderService {
 			//제품 수량이 주문 수량 보다 많거나 같을때 구입가능
 			if(checkProd.getProQuantity() >= orderDTO.getOrderProQuantity()) {
 				productDTO.setProQuantity(orderDTO.getOrderProQuantity());
-				productDTO.setProSold(checkProd.getProPrice());
+				productDTO.setProSold(checkProd.getProPrice()*orderDTO.getOrderProQuantity());
 				productDTO.setProNum(orderDTO.getProNum());
 				res += orderMapper.updateProduct(productDTO);
 				
@@ -103,4 +108,6 @@ public class OrderServiceImpl implements OrderService {
 		
 		return res;
 	}
+
+	
 }

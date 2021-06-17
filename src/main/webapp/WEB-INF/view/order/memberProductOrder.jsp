@@ -19,7 +19,6 @@ $(function(){
 	var cartNums = ${cartNums};
 	var consumePoint = 0;
 	
-	
 	/* 유저 포인트 */
 	var totalMemberPoint = ${authInfo.mPoint};
 	var totalMemberPointFmt = totalMemberPoint.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"P";
@@ -41,9 +40,6 @@ $(function(){
 	
 	/* 주문정보리스트 */
 	var orderItems = [];
-	
-	
-	
 	
 	var orderItem = {};
 	
@@ -281,7 +277,7 @@ $(function(){
 	
 	/* 주문하기 버튼 클릭 */
 	$('#prodOrderBtn').on("click",function(){
-		insertOrder(orderItems)			
+		orderBtn()
 	})
 	
 	/*구입하기 function()*/
@@ -325,7 +321,7 @@ $(function(){
 			datatype : "json",
 			data: JSON.stringify(orderItem),
 			success: function(res){
-				alert("이용해주셔서 감사합니다.")
+				orderBtn();
 				   /* window.location.href = contextPath + "/cart?memId=${authInfo.id }"; */   
 			},
 			error:function(request, status, error){
@@ -336,6 +332,27 @@ $(function(){
 			} 
 		});    
 	}
+	
+	/*돌아가기*/
+	$("#canselBtn").on("click",function(){
+		test()
+	})
+	
+	 function orderCancelBtn() {
+        if (!confirm("주문을 취소 하시겠습니까?")) {
+        } else {
+            history.go(-1)
+        }
+    }
+
+	function orderBtn() {
+        if (!confirm("주문을 하시겠습니까?")) {
+        	alert("감사합니다.")
+        } else {
+        	insertOrder(orderItems)
+        	alert("주문이 완료 되었습니다.")
+        }
+    }
 })
 
 </script>
@@ -454,7 +471,7 @@ $(function(){
             </div>
             <div class="orderBtnsGroup">
             <input id="prodOrderBtn" class = 'orderBtns' type="submit" value="주문하기">
-            <input class = 'orderBtns' type="submit" value="취소하기">
+            <input id="canselBtn" class = 'orderBtns' type="submit" value="취소하기">
             </div>
 </form> 
         

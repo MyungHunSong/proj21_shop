@@ -178,4 +178,13 @@ select * from `order` o ;
 
 select order_pro_num ,order_member_id,o2.pro_num,order_member_name,order_pro_quantity,order_price,order_discount,receiver_name,receiver_tel1,receiver_tel2,delivery_addr1,delivery_addr2,delivery_addr3,delivery_status,request_to_delivery,order_date,who_pay,which_bank,(p2.pro_price*order_pro_quantity)-order_discount
   from `order` o2 join product p2 on o2.pro_num = p2.pro_num 
-where order_pro_num = 41;
+where order_member_id = 'test01';
+
+select order_pro_num ,p2.pro_name ,p2.pro_price 
+  from `order` o2 join product p2 on o2.pro_num = p2.pro_num 
+where order_member_id = 'test01';
+
+/*주문하기 마지막 카트번호 가져와서 바로 넣기*/
+select * from cart;
+select * from cart order by cart_num desc limit 1;  
+delete from cart where cart_num = 76;

@@ -72,7 +72,7 @@ function count(type)  {
 				}
 				
 				selectCartByMemberIdAndProNum(memberId, proNum)
-				
+				window.location.href = contextPath+"/cart?memId=${authInfo.id }";
 			}) 
 		
 			/* 장바구니 내에서 회원아이디,제품 번호로 검색 있으면 update 없으면 insert*/
@@ -119,8 +119,7 @@ function count(type)  {
 						cache : false,
 						data: JSON.stringify(newCart),
 						success : function(res){
-							console.log(res)
-							window.location.href = contextPath+"/cart?memId=${authInfo.id }";
+							console.log(newCart)
 						},
 						error : function(request, status, error){
 							alert("로그인 창으로 이동하겠습니다.")
@@ -158,8 +157,51 @@ function count(type)  {
 			
 			/* 구입하기 버튼 */					
 			$('#purchase').on("click", function() {
-				window.location.href = contextPath+"/purchase?proNum=${authInfo.id }";
+				orderBtn();
+				
+				lastCartNum();
 			});
+			
+			function lastCartNum(){
+				$.get(contextPath + "/api/lastCartNum", 
+						function(json){
+					console.log(json)
+					if(json == null){
+						console.log(없단)
+					}
+							var cartNums = [];
+							console.log(json)
+							cartNums.push(json[0].cartNum+1)
+							selectOrderProduct(cartNums);
+					})
+			}
+			
+			function selectOrderProduct(cartNums){
+				console.log(cartNums)
+				$.ajax({
+					url: contextPath + "/api/chooseProductCarts",
+					type: 'post' ,
+					contentType : "application/json; charset=utf-8",
+					datatype : "json",
+					data: JSON.stringify(cartNums),
+					success: function(res){
+						window.location.href = contextPath+"/order?memId=${authInfo.id }";
+					},
+					error:function(request, status, error){
+						alert("code:"+request.status+"\n"+"message:"
+				                  +request.responseText+"\n"+"error:"+error);
+						/* window.location.href = contextPath+"/cart?memId=${authInfo.id }"; */
+					}  
+				});
+			}
+			
+			 function orderBtn() {
+			        if (!confirm("바로 구매하시겠습니까")) {
+			        } else {
+			        	insertCart(); 
+			        	console.log(1111)
+			        }
+			    }
 	})
 
 </script>

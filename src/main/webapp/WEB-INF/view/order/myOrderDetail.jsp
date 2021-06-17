@@ -15,10 +15,7 @@
 		var orderProNum = "${orderProNum}";
 		var proNum = "${proNum}";
 
-		$
-				.get(
-						contextPath + "/api/detailorder/" + memberId + "/"
-								+ proNum,
+		$.get(contextPath + "/api/detailorder/" + memberId + "/" + proNum,
 						function(json) {
 							console.log(json);
 
