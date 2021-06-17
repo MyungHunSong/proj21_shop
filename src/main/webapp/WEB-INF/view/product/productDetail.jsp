@@ -157,6 +157,15 @@ function count(type)  {
 			
 			/* 구입하기 버튼 */					
 			$('#purchase').on("click", function() {
+				
+				if($('#size').val() == "size01"){
+					return alert("사이즈를 선택해주세요")
+				}	
+			
+				if(parseInt($('#result').text()) == 0){
+					return alert("수량을 선택해주세요");
+				}				
+				
 				orderBtn();
 				
 				lastCartNum();
