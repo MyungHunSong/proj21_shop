@@ -4,6 +4,7 @@
 	<resultMap type="ProductDTO" id="resProduct">
 		<id property="proNum" column="pro_num" />
 		<result property="proName" column="pro_name" />
+		<result property="proPrice" column="pro_price"/>
 		<result property="proImgfileName" column="pro_imagefilename" />
 	</resultMap>
 
@@ -34,10 +35,9 @@
 		<result property="deliveryAddr3" column="delivery_addr3" />
 		<result property="requestToDelivery"
 			column="request_to_delivery" />
-		<association property="productImageDTO"
-			javaType="ProductImageDTO" autoMapping="true">
-			<result property="proImagefilename" column="pro_imagefilename" />
-		</association>
+		<collection property="proName" resultMap="resProduct">
+			<result property="proName" column="pro_name" />
+		</collection>
 	</resultMap>
 
 	<select id="selectOrderByMember" resultMap="resOrder">
@@ -55,14 +55,16 @@
 
 	<select id="selectOrderDetailByMember"
 		resultMap="resDetailOrder">
-		select o.order_pro_num, pi2.pro_imagefilename,
-		o.order_price, o.order_pro_quantity, o.delivery_status, o.order_date,
-		o.order_member_name, o.receiver_tel1, o.receiver_tel2,
-		o.delivery_addr1, o.delivery_addr2, o.delivery_addr3,
+		SELECT DISTINCT o.order_pro_num, pi2.pro_imagefilename, p.pro_price,
+		o.order_pro_quantity, o.delivery_status, o.order_date,
+		o.order_member_name , o.receiver_tel1, o.receiver_tel2,
+		o.delivery_addr1 , o.delivery_addr2, o.delivery_addr3,
 		o.request_to_delivery
 		from `order` o
 		join pro_img pi2
 		on o.pro_num = pi2.pro_num
-		where o.order_member_id = #{memberId} and o.pro_num= #{proNum}
+		join product p
+		on o.pro_num = p.pro_num
+		where o.order_member_id = #{memberId} and order_pro_num = #{orderProNum}
 	</select>
 </mapper>

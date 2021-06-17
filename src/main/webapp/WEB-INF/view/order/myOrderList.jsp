@@ -12,28 +12,39 @@
 	$(function() {
 		var contextPath = "${contextPath}";
 		var memberId = "${memberId}";
-
+		var sCont = "";
 		$.get(contextPath + "/api/myorder/" + memberId, function(json) {
-			console.log(json);
-
-			var dataLength = json[0].proName.length;
-			if (dataLength >= 1) {
-				var sCont = "";
-				for (i = 0; i < dataLength; i++) {
-					sCont += "<tr>";
-					sCont += "<td><a href='detailorder?memberId="
-							+ json[0].memberId + "&proNum="
-							+ json[0].proName[i].proNum + "'>" + json[0].orderProNum
-							+ "</a>";
-					sCont += "<td>" + json[0].proName[i].proName;
-					sCont += "<td>" + json[0].orderDate;
-					sCont += "<td>" + json[0].orderProQuantity;
-					sCont += "<td>" + json[0].orderPrice;
-					sCont += "<td>" + json[0].deliveryStatus;
-					sCont += "<tr>";
+			var dataLengths = json.length;
+			if (dataLengths >= 1) {
+				for (j = 0; j < dataLengths; j++) {
+					var dataLength = json[j].proName.length;
+					console.log(json[j].proName.length)
+					
+					if (dataLength >= 1) {
+						
+						for (i = 0; i < dataLength; i++) {
+							sCont += "<tr>";
+							sCont += "<td><a href='detailorder?memberId="
+									+ json[j].memberId + "&orderProNum=" + json[j].orderProNum + "&proNum="
+									+ json[j].proName[i].proNum + "'>"
+									+ json[j].orderProNum + "</a>"
+									
+							sCont += "<td>" + json[j].proName[i].proName +"</td>";
+							sCont += "<td>" + json[j].orderDate+"</td>";
+							sCont += "<td>" + json[j].orderProQuantity+"</td>";
+							sCont += "<td>" + json[j].orderPrice+"</td>";
+							sCont += "<td>" + json[j].deliveryStatus+"</td>";
+							sCont += "<tr>";
+							
+						}
+						
+					}
+					
 				}
+				console.log(sCont)
+				$("#load").append(sCont);
 			}
-			$("#load").append(sCont);
+			
 		})
 	})
 </script>

@@ -3,6 +3,8 @@ package proj21_shop.dto.order;
 import java.sql.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import proj21_shop.dto.product.ProductDTO;
 import proj21_shop.dto.product.ProductImageDTO;
 
@@ -16,8 +18,10 @@ public class OrderDTO {
 
 	private int orderProNum;// 주문번호: 한번에 살경우 중복된 번호로 나온다.
 
-	private List<ProductDTO> proName;
+	private List<ProductDTO> proName; // 1:다 관계이므로 List 사용
+
 	private ProductImageDTO productImageDTO;
+	private ProductDTO productDTO;
 
 	private String orderMemberName;
 	private int orderProQuantity;
@@ -38,8 +42,14 @@ public class OrderDTO {
 	private String whichBank;
 	private String acountNum;
 
-	
-	
+	public ProductDTO getProductDTO() {
+		return productDTO;
+	}
+
+	public void setProductDTO(ProductDTO productDTO) {
+		this.productDTO = productDTO;
+	}
+
 	public String getMemberId() {
 		return memberId;
 	}
@@ -207,8 +217,6 @@ public class OrderDTO {
 	public void setAcountNum(String acountNum) {
 		this.acountNum = acountNum;
 	}
-
-
 
 	public List<ProductDTO> getProName() {
 		return proName;

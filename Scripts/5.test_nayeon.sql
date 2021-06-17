@@ -117,16 +117,21 @@ update member
 select * from `order` o ;
 select * from product;
 select * from review;
+select * from pro_img pi2 ;
 desc `order` ;
 
 insert into `order`(order_member_id, order_num, pro_num, order_member_name, order_pro_quantity, order_price, order_discount, receiver_name, receiver_tel1, receiver_tel2, delivery_addr1, delivery_addr2, delivery_addr3, delivery_status, request_to_delivery, who_pay, which_bank)
 values ('test01', 210530, 5083, '이종윤', 1, 5000, 0, '이종윤', '010-1234-5678', '010-1234-5678', 54545, '대구광역시 남구 봉덕동 이천로 51', '2층', '배송준비중', '배송참고사항', '이종윤', '국민');
 
-select o.order_pro_num, pi2.pro_imagefilename, o.order_price, o.order_pro_quantity, o.delivery_status, o.order_date, o.order_member_name , o.receiver_tel1, o.receiver_tel2, o.delivery_addr1 , o.delivery_addr2, o.delivery_addr3, o.request_to_delivery
+SELECT DISTINCT o.order_pro_num, pi2.pro_imagefilename, p.pro_price, o.order_pro_quantity, o.delivery_status, o.order_date, o.order_member_name , o.receiver_tel1, o.receiver_tel2, o.delivery_addr1 , o.delivery_addr2, o.delivery_addr3, o.request_to_delivery
   from `order` o
-  join pro_img pi2
-    on o.pro_num = pi2.pro_num
- where o.order_member_id = 'test01' and o.pro_num = 1033;
+  join pro_img pi2 
+    on o.pro_num = pi2.pro_num 
+  join product p
+    on o.pro_num = p.pro_num 
+ where o.order_member_id = 'test01' and order_pro_num = 1;
+
+select * from pro_img pi2 ;
 
 -- 배송지 정보
 select * from `order` o ;

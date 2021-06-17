@@ -14,9 +14,9 @@ public class MyOrderController {
 	}
 	
 	@GetMapping("/detailorder")
-	public ModelAndView getMyOrderDetail(@RequestParam(value="memberId") String memberId, @RequestParam(value="proNum") int proNum) {
+	public ModelAndView getMyOrderDetail(@RequestParam(value="memberId") String memberId, @RequestParam(value="orderProNum")int orderProNum) {
 		ModelAndView mav = new ModelAndView("order/myOrderDetail", "memberId", memberId);
-		mav.addObject("proNum", proNum);
+		mav.addObject("orderProNum", orderProNum);
 		return mav;
 	}
 }
