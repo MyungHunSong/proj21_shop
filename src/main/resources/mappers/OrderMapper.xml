@@ -64,6 +64,14 @@
 	<select id="selectLastCartNum" resultType="int">
 		select * 
 		  from cart order by cart_num 
-		desc limit 1
+				  desc limit 1
 	</select>
+
+	<select id="selectLastOrderNum" resultType="int">
+		select order_pro_num 
+  		 from `order` order by order_pro_num 
+ 			 	 desc limit 1
+	</select>
+	
+	
 </mapper>

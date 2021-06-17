@@ -34,6 +34,12 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
+	public int selectLastOrderNum() {
+		return orderMapper.selectLastOrderNum();
+	}
+	
+	
+	@Override
 	@Transactional
 	public int trInsertOrder(List<OrderDTO> order) {
 		
@@ -108,6 +114,8 @@ public class OrderServiceImpl implements OrderService {
 		
 		return res;
 	}
+
+	
 
 	
 }

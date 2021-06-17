@@ -14,6 +14,9 @@
 <script type="text/javascript" src="${contextPath }/resources/order/js/memberAddress.js"></script>  
 <script type="text/javascript">
 $(function(){
+	
+	
+	
 	var contextPath = "${contextPath}";
 	var memId =  "${memId}";
 	var cartNums = ${cartNums};
@@ -277,7 +280,7 @@ $(function(){
 	
 	/* 주문하기 버튼 클릭 */
 	$('#prodOrderBtn').on("click",function(){
-		orderBtn()
+		return orderBtn()
 	})
 	
 	/*구입하기 function()*/
@@ -295,8 +298,6 @@ $(function(){
 			salePrice = sumPrice;
 		}	
 		
-		console.log(salePrice)
-		console.log(p[0])
 		/* 주문 할때 사용할 정보 */
 		for(i = 0; i < orderItem.length; i++){
 			orderItem[i].orderMemberName = $('#memberName').val()		
@@ -321,7 +322,6 @@ $(function(){
 			datatype : "json",
 			data: JSON.stringify(orderItem),
 			success: function(res){
-				orderBtn();
 				   /* window.location.href = contextPath + "/cart?memId=${authInfo.id }"; */   
 			},
 			error:function(request, status, error){
@@ -335,22 +335,31 @@ $(function(){
 	
 	/*돌아가기*/
 	$("#canselBtn").on("click",function(){
-		test()
+		orderCancelBtn()
 	})
 	
 	 function orderCancelBtn() {
         if (!confirm("주문을 취소 하시겠습니까?")) {
         } else {
-            history.go(-1)
+            history.go(-1) 
         }
     }
 
 	function orderBtn() {
         if (!confirm("주문을 하시겠습니까?")) {
-        	alert("감사합니다.")
+        	return alert("감사합니다.")
         } else {
-        	insertOrder(orderItems)
         	alert("주문이 완료 되었습니다.")
+        	insertOrder(orderItems)
+        	$.get(contextPath+"/api/lastOrderNum",
+    		function(json){
+    			console.log(json)
+    			var orderNum = parseInt(json)+1
+    			window.location.href = contextPath+"/detailorder?memberId=${authInfo.id }&orderProNum="+orderNum;
+    		})
+        	
+        	
+        	
         }
     }
 })
