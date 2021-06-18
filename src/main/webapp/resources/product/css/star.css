@@ -1,0 +1,60 @@
+@charset "UTF-8";
+
+@charset "UTF-8";
+
+@import
+	url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap')
+	;
+
+/* Fontawesome 4.7 */
+@import
+	url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
+	;
+
+li {
+	list-style: none;
+}
+
+.star-rating {
+	width: 250px;
+	text-align: center;
+	border-radius: 5px;
+	padding: 5px;
+}
+
+.star-rating div {
+	float: left;
+	width: 50%;
+}
+
+.stars .fa {
+	font-size: 18px;
+	cursor: pointer;
+}
+
+.stars .fa.active {
+	color: yellow;
+	text-shadow: 0 0 5px gray;
+}
+
+.print {
+	color: black;
+}
+
+.review {
+	text-align: center;
+}
+
+#reviewButton {
+	text-align: right;
+	color: white;
+	margin-top: 10px;
+	background: #FF7696;
+	border: 1px double #e7708d;
+	border-radius: 2px;
+	color: #fff;
+}
+
+.file{
+	text-align: flex;
+}

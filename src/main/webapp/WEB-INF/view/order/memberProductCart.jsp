@@ -25,23 +25,7 @@ $(function(){
 				var sCont = "";
 				for(i = 0; i < dataLength; i++){
 					
-					switch(json[i].cartProNum.proSize){
-						case 1:
-							json[i].cartProNum.proSize = "XS";
-							break;
-						case 2:
-							json[i].cartProNum.proSize = "S";
-							break;
-						case 3:
-							json[i].cartProNum.proSize = "M";
-							break;
-						case 4:
-							json[i].cartProNum.proSize = "L";
-							break;
-						case 5:
-							json[i].cartProNum.proSize = "XL";
-							break;
-					}
+					var proSize = ["none","XS","S","M","L","XL"];
 					var point = parseInt((100-json[i].cartProNum.proSalesrate)*json[i].cartProNum.proPrice*0.0001*json[i].cartProQuantity);
 					
 					sCont += "<div class='row data'>"
@@ -49,7 +33,7 @@ $(function(){
 					sCont +=			"<div class='check'><input type='checkbox' name = 'remove'  class = 'checkbox' name='buy' value = "+json[i].cartNum+" onclick='javascript:basket.checkItem();''>&nbsp;</div>"
 					sCont +=			"<div class='img'><img src="+contextPath+"/resources/product/images/"+json[i].cartProNum.proImgfileName+" width='40' height='60'></div>"
 					sCont +=			"<div class='pname'>"
-					sCont +=       			"<span>"+json[i].cartProNum.proName+"("+json[i].cartProNum.proSize+")"+"</span>"
+					sCont +=       			"<span>"+json[i].cartProNum.proName+"("+proSize[json[i].cartProNum.proSize]+")"+"</span>"
 					sCont +=  	  		"</div>"
 					sCont +=		"</div>"
 					sCont +=		"<div class='subdiv'>"
