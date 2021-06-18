@@ -6,8 +6,8 @@ public class QuestionNotEqualException extends RuntimeException {
 		super();
 	}
 
-	public QuestionNotEqualException(String arg0) {
-		super(arg0);
+	public QuestionNotEqualException(String message) {
+		super(message);
 	}
 
 	

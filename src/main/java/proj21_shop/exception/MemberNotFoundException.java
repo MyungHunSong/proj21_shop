@@ -6,8 +6,8 @@ public class MemberNotFoundException extends RuntimeException {
 		super();
 	}
 
-	public MemberNotFoundException(String arg0) {
-		super(arg0);
+	public MemberNotFoundException(String message) {
+		super(message);
 	}
 
 }

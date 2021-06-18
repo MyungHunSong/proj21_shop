@@ -18,7 +18,6 @@
 	<h1>회원 로그인</h1>
 	<section id="loginFormArea">
 		<form:form modelAttribute="loginCommand">
-		<form:errors/>
 			<div>
 				<table>
 					<tr>
