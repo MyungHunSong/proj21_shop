@@ -9,6 +9,7 @@
 <title>상품상세정보</title>
 <link rel="stylesheet" href="/proj21_shop/resources/main/css/main.css">
 <link rel="stylesheet" href="/proj21_shop/resources/product/css/productDetail.css">
+<link rel="stylesheet" href="/proj21_shop/resources/product/css/star.css" />
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 function count(type)  {
@@ -27,7 +28,9 @@ function count(type)  {
      // 결과 출력
      	resultElement.innerText = number;
 }
-	$(function() {
+
+// 제이쿼리 시작
+$(function() {
 		var contextPath = "${contextPath}";
 		var proNum = ${proNum};
 		
@@ -39,7 +42,6 @@ function count(type)  {
 			/* 콤마 찍기용 */
 			var temp = proPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 			var add = salePrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
-			console.log(json)
 			var  sCont = "";
 					sCont += "<div class = 'productImage'><img src="+contextPath+"/resources/product/images/"+json[0].proImgfileName+"></div>";
 					sCont += "<div class = 'productInfo'>"
@@ -50,32 +52,22 @@ function count(type)  {
 					sCont += "<p> 조회수 : "+json[0].proHits+"</p>";
 					sCont += "<p>"+json[0].proContent+"</p>";
 					sCont += "<p>"+json[0].proStatus+"</p>";
-					sCont +="<p><select id='size'><option value='size01'>사이즈를 선택해주세요</option>"
-					for(i = 0; i < json.length; i++){
-						switch(json[i].proSize){
-						case 1:
-							json[i].proSize = "XS";
-							break;
-						case 2:
-							json[i].proSize = "S";
-							break;
-						case 3:
-							json[i].proSize = "M";
-							break;
-						case 4:
-							json[i].proSize = "L";
-							break;
-						case 5:
-							json[i].proSize = "XL";
-							break;
-					}
-						sCont +="<option value="+i+">"+json[i].proSize+"  남은 수량: "+json[i].proQuantity+"</option>"
-					}
 					sCont += "<p class ='proPrice'>"+temp+" 원</p>";
 					sCont += "<span class ='proSalerate'>"+proSalerate+"%  </span>";
 					sCont += "<span class ='proPriceSale'>"+add+"원</span>";
+					sCont +="<p><select id='size'><option value='size01'>사이즈를 선택해주세요</option>"
+					for(i = 0; i < json.length; i++){
+						var proSize = ["0","XS","S","M","L","XL"];
+							sCont +="<option value="+i+">"+proSize[json[i].proSize]+"  남은 수량: "+json[i].proQuantity+"</option>"
+						}
 					sCont += "</div>"
 				    $("#ProductLoad").append(sCont);
+					var proNum = json[2].proNum+"";
+					var imgCont = "";
+					imgCont += "<img class = 'detailImg' src="+contextPath+"/resources/product/images/"+proNum+"-1.jpg><br>"
+					imgCont += "<img class = 'detailImg' src="+contextPath+"/resources/product/images/"+proNum+"-2.jpg><br>"
+					imgCont += "<img class = 'detailImg' src="+contextPath+"/resources/product/sizeImages/"+json[0].proCategory+".jpg>"
+					$("#productDetailImg").append(imgCont);
 			}); 
 		
 		
@@ -151,13 +143,10 @@ function count(type)  {
 			
 			/* 장바구니 이미 있는 옷일때는  update(function) */
 			function updateCart(cartNum, cN){
-				console.log(cartNum)
-				console.log(cN)
 				var cartItem = {
 						  "cartNum": cartNum,
 						  "cartProQuantity": cN
 						}
-				console.log(cartItem)
 				$.ajax({
 					url: contextPath + "/api/memberProductCart/" + cartNum,
 					type: 'Patch' ,
@@ -195,18 +184,15 @@ function count(type)  {
 			function lastCartNum(){
 				$.get(contextPath + "/api/lastCartNum", 
 						function(json){
-					console.log(json)
 					if(json == null){
 					}
 							var cartNums = [];
-							console.log(json)
 							cartNums.push(json[0].cartNum+1)
 							selectOrderProduct(cartNums);
 					})
 			}
 			
 			function selectOrderProduct(cartNums){
-				console.log(cartNums)
 				$.ajax({
 					url: contextPath + "/api/chooseProductCarts",
 					type: 'post' ,
@@ -228,10 +214,50 @@ function count(type)  {
 			        if (!confirm("바로 구매하시겠습니까")) {
 			        } else {
 			        	insertCart(); 
-			        	console.log(1111)
 			        }
 			    }
-	})
+			 
+			 
+			 /*스타일 후기 보기*/
+			 var notice = [ '별로에요', '보통이에요', '그냥 그래요', '맘에 들어요','아주 좋아요' ];
+			 var proSize = ["none","XS","S","M","L","XL"];
+			 var  sCont = "";	
+			 
+			$.get(contextPath + "/api/selectReviewByProNum/"+ proNum, 
+				function(json){
+					if(json.length != 0){
+						console.log(json[0])
+						for(i = 0; i < json.length; i++){
+								sCont += "<div class='starRate'>"
+								sCont += "		<div class='star-rating'>"
+								sCont += "					<div class='stars'>"
+								for(j = 1; j < json[0].reviewStar+1; j++){
+									$('.s'+j).addClass('active');
+									$('.print').html('<img src="images/star-lv' +j + '.png">' + notice[j-1]);
+								sCont += "						<i class='s"+j+" fa fa-star active'></i>"
+								}
+								sCont += "					<div class='print'></div>"
+								sCont += "					</div>"
+								sCont += "				<div class='print'></div>"
+								sCont += "			</div>"
+								sCont += "		</div>"
+								sCont += "<img src='/proj21_shop/resources/product/images/" + json[i].proNum+".jpg" + "' width = '70' height= '70'>"
+								sCont += "		<ul>"
+								sCont += "			<li>" + json[i].proName.proName + "</li>"
+								sCont += "			<li>" + json[i].proName.proColor +"</li>" 
+								sCont += "			<li>" + proSize[json[i].proName.proSize] +"</li>" 
+								sCont += "</ul>"
+								sCont += "<textarea id='content' cols='45' rows='10'>"+json[i].reviewContent+"</textarea><br>";	
+						 }
+					}else{
+							$('.star-rating').text("")
+							sCont += "<p class = 'noReview'>후기가 없습니다.</p>" 
+					}
+					$("#productReview").append(sCont);
+				})
+				
+				
+})// 제이쿼리 끝
 
 </script>
 </head>
@@ -251,6 +277,10 @@ function count(type)  {
 				<input type='submit' id='purchase' value='구매하기' />
 			</div>
 		</div>
+		<section id="productDetailImg"></section>
+		<section id="productReview">
+			<p class="menuTitle">REVIEW</p>
+		</section>
 <jsp:include page="/WEB-INF/view/include/footer.jsp"></jsp:include>
 </div>
 </body>

@@ -25,7 +25,7 @@ public class OrderDTO {
 
 	private String orderMemberName;
 	private int orderProQuantity;
-	private int orderPrice;
+	private int orderPrice;// 총 가격
 	private int orderDiscount;
 	private String receiverName;
 	private String receiverTel1;

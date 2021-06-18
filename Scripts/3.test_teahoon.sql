@@ -228,3 +228,42 @@ select *
 where pro_size like '%3' 
 order by  pro_status = '추천' desc limit 6; 
 
+
+-- 후기 작성
+INSERT INTO review
+(pro_num, re_member, re_content, re_image, re_image2, re_stars)
+values
+(6163, 'test02', '폭신폭신한게 따뜻하네요.', 'review_test2.jpg', 'review_test2.jpg', 5);
+
+-- 후기 목록(제품별)
+select r.re_num, r.pro_num, r.re_member, r.re_content, r.re_image,re_image2,re_date,re_stars, p.pro_name, p.pro_imagefilename, p.pro_size 
+  from review r join productall p on r.pro_num = p.pro_num 
+where r.pro_num like CONCAT(616,'%');
+
+select r.pro_num 
+  from review r join productall p on r.pro_num = p.pro_num 
+where pro_num = 6163;  
+
+-- 후기 댓글
+/*후기 댓글 리스트*/
+select re_rep_num,re_num,re_rep_member,re_rep_content,re_rep_date
+  from re_reply
+where re_num = 1
+order by re_rep_num;
+
+/*댓글 작성*/
+insert 
+   into re_reply
+   	 	  (re_num, re_rep_member, re_rep_content)
+values (1,'test01','후기내용쓰는곳');
+
+/*댓글 수정*/
+update re_reply 
+      set re_rep_content = '후기수정', re_rep_date = now() 
+ where re_rep_num = 2;       
+ 
+/*댓글 삭제*/
+delete 
+  from re_reply 
+where re_rep_num = 2;
+

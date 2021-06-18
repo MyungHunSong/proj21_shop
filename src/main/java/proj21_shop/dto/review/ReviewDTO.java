@@ -12,7 +12,7 @@ public class ReviewDTO {
 	private ProductDTO proName;
 
 	private int reviewNum;
-	
+
 	private ProductImageDTO proImagefilename;
 
 	private String reviewContent;
@@ -24,10 +24,10 @@ public class ReviewDTO {
 	private int reviewReplyCount;
 	private int reviewStar;
 
+	
 	public ProductDTO getProName() {
 		return proName;
 	}
-
 
 	public ProductImageDTO getProImagefilename() {
 		return proImagefilename;

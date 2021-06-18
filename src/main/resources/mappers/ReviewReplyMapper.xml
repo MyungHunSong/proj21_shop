@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="proj21_shop.mapper.review.ReviewReplyMapper">
+
+	<resultMap type="ReviewReplyDTO" id="ResReviewReply">
+		<id column="re_rep_num" property="reRepNum"/>
+		<result column="re_num" property="reNum"/>
+		<result column="re_rep_member" property="reRepMember"/>
+		<result column="re_rep_Content" property="reRepContent"/>
+	</resultMap>
+
+	<select id="selectReviewReply" resultMap="ResReviewReply">
+		select re_rep_num,re_num,re_rep_member,re_rep_content,re_rep_date
+  		  from re_reply
+		where re_num = #{reNum}
+		 order by re_rep_num
+	</select>
+	
+	<insert id="insertReviewReply">
+		insert 
+   		   into re_reply
+   	 	  	    (re_num, re_rep_member, re_rep_content)
+	    values (#{reNum}, #{reRepMember}, #{reRepContent})
+	</insert>
+	
+	<update id="updateReviewReply">
+		update re_reply 
+	         set re_rep_content = #{reRepContent}, re_rep_date = now() 
+	 	 where re_rep_num = #{reRepNum}
+	</update>
+		
+	<delete id="deleteReviewReply">
+		delete 
+  		  from re_reply 
+        where re_rep_num = #{reRepNum}
+	</delete>
+
+	<resultMap type="ReviewDTO" id="ResReview">
+		<id column="re_num" property="reviewNum"/>
+		<result column="pro_num" property="proNum"/>
+		<result column="re_member" property="memberId"/>
+		<result column="re_content" property="reviewContent"/>
+		<result column="re_image" property="reviewImagefilename1"/>
+		<result column="re_image2" property="reviewImagefilename2"/>
+		<result column="re_date" property="reviewDate"/>
+		<result column="re_stars" property="reviewStar"/>
+		<association property="proName" javaType="ProductDTO" autoMapping="true"></association>
+		<association property="proImagefilename" javaType="ProductImageDTO" autoMapping="true"></association>
+	</resultMap>	
+	
+	<select id="selectReviewByProNum" resultMap="ResReview">
+	    select r.re_num, r.pro_num, r.re_member, r.re_content, r.re_image,re_image2,re_date,re_stars, p.pro_name, p.pro_imagefilename, p.pro_size  
+  		  from review r join productall p on r.pro_num = p.pro_num 
+        where r.pro_num like CONCAT(#{proNum},'%')
+	</select>
+</mapper>
