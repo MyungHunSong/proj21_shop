@@ -39,6 +39,7 @@ function count(type)  {
 			/* 콤마 찍기용 */
 			var temp = proPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 			var add = salePrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+			console.log(json)
 			var  sCont = "";
 					sCont += "<div class = 'productImage'><img src="+contextPath+"/resources/product/images/"+json[0].proImgfileName+"></div>";
 					sCont += "<div class = 'productInfo'>"
@@ -49,7 +50,27 @@ function count(type)  {
 					sCont += "<p> 조회수 : "+json[0].proHits+"</p>";
 					sCont += "<p>"+json[0].proContent+"</p>";
 					sCont += "<p>"+json[0].proStatus+"</p>";
-					sCont +="<p><select id='size'><option value='size01'>사이즈를 선택해주세요</option><option value='1'>XS  남은 수량:"+json[0].proQuantity+"</option><option value='2'>S     남은 수량:"+json[1].proQuantity+"</option><option value='3'>M     남은 수량:"+json[2].proQuantity+"</option><option value='4'>L       남은 수량:"+json[3].proQuantity+"</option><option value='5'>XL   남은 수량:"+json[4].proQuantity+"</option></select></p>"
+					sCont +="<p><select id='size'><option value='size01'>사이즈를 선택해주세요</option>"
+					for(i = 0; i < json.length; i++){
+						switch(json[i].proSize){
+						case 1:
+							json[i].proSize = "XS";
+							break;
+						case 2:
+							json[i].proSize = "S";
+							break;
+						case 3:
+							json[i].proSize = "M";
+							break;
+						case 4:
+							json[i].proSize = "L";
+							break;
+						case 5:
+							json[i].proSize = "XL";
+							break;
+					}
+						sCont +="<option value="+i+">"+json[i].proSize+"  남은 수량: "+json[i].proQuantity+"</option>"
+					}
 					sCont += "<p class ='proPrice'>"+temp+" 원</p>";
 					sCont += "<span class ='proSalerate'>"+proSalerate+"%  </span>";
 					sCont += "<span class ='proPriceSale'>"+add+"원</span>";
