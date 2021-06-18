@@ -26,8 +26,8 @@
 							sCont += "<tr>";
 							sCont += "<td>" + json[0].orderProNum;
 							sCont += "<td><img src='" + contextPath +"/resources/product/images/" + json[0].proName[i].proImgfileName + "' width = '80' height='60'></td>";
-							sCont += "<td>" + json[0].orderPrice * 0.01 +"p";
-							sCont += "<td>" + json[0].orderPrice;
+							sCont += "<td>" + json[0].proName[i].proPrice * 0.01 +"p";
+							sCont += "<td>" + json[0].proName[i].proPrice;
 							sCont += "<td>" + json[0].orderProQuantity;
 							sCont += "<td>" + json[0].deliveryStatus;
 							sCont += "<td>" + json[0].orderDate;
