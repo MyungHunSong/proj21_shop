@@ -29,15 +29,9 @@ public class OrderServiceImpl implements OrderService {
 	}
 	
 	@Override
-	public int selectLastCartNum() {
-		return orderMapper.selectLastCartNum();
-	}
-
-	@Override
 	public int selectLastOrderNum() {
 		return orderMapper.selectLastOrderNum();
 	}
-	
 	
 	@Override
 	@Transactional

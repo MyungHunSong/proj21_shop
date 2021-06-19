@@ -33,6 +33,8 @@ function count(type)  {
 $(function() {
 		var contextPath = "${contextPath}";
 		var proNum = ${proNum};
+		var memberId = "${authInfo.id }";
+		var proSize = ["0","XS","S","M","L","XL"];
 		
 		$.get(contextPath + "/api/productDetail/"+proNum, 
 		function(json) {
@@ -56,9 +58,8 @@ $(function() {
 					sCont += "<span class ='proSalerate'>"+proSalerate+"%  </span>";
 					sCont += "<span class ='proPriceSale'>"+add+"원</span>";
 					sCont +="<p><select id='size'><option value='size01'>사이즈를 선택해주세요</option>"
-					for(i = 0; i < json.length; i++){
-						var proSize = ["0","XS","S","M","L","XL"];
-							sCont +="<option value="+i+">"+proSize[json[i].proSize]+"  남은 수량: "+json[i].proQuantity+"</option>"
+					for(i = 1; i < json.length+1; i++){
+							sCont +="<option value="+i+">"+proSize[json[i-1].proSize]+"  남은 수량: "+json[i-1].proQuantity+"</option>"
 						}
 					sCont += "</div>"
 				    $("#ProductLoad").append(sCont);
@@ -73,8 +74,8 @@ $(function() {
 		
 			/* 장바구니 버튼 */
 			$('#cart').on("click",function(){
-				var memberId = "${authInfo.id }";
-				var proNum = parseInt(${proNum}+$('#size').val())
+				/* var memberId = "${authInfo.id }";
+				var proNum = parseInt(${proNum}+$('#size').val()) */
 				
 				if($('#size').val() == "size01"){
 					return alert("사이즈를 선택해주세요")
@@ -85,22 +86,22 @@ $(function() {
 				}
 				
 				selectCartByMemberIdAndProNum(memberId, proNum)
-				window.location.href = contextPath+"/cart?memId=${authInfo.id }";
+				window.location.href = contextPath+"/cart?memId=${authInfo.id }"; 
 			}) 
 		
 			/* 장바구니 내에서 회원아이디,제품 번호로 검색 있으면 update 없으면 insert*/
 			function selectCartByMemberIdAndProNum(memberId, proNum){
-				var test = $.ajax({
-					url : contextPath+"/api/selectCartByIdAndProNum/"+memberId+"/"+proNum,
+				var selectProNum = $.ajax({
+					url : contextPath+"/api/selectCartByIdAndProNum/"+memberId+"/"+parseInt(proNum+$('#size').val()),
 					type : 'get',
 					datatype : 'json',
 					cache : false,
 					success : function(res){
-						if(test.responseJSON.length == 0){
+						if(selectProNum.responseJSON.length == 0){
 							insertCart();
-						}else if(test.responseJSON.length == 1){
-							var cartNum = test.responseJSON[0].cartNum
-							var cN = test.responseJSON[0].cartProQuantity+parseInt($('#result').text())
+						}else if(selectProNum.responseJSON.length == 1){
+							var cartNum = selectProNum.responseJSON[0].cartNum
+							var cN = parseInt($('#result').text())
 							updateCart(cartNum, cN) 
 						}
 					},
@@ -117,7 +118,7 @@ $(function() {
 				
 				var newCart = {
 					 "memberId": {
-					      "memberId": "${authInfo.id }"
+					      "memberId": memberId
 					    },
 					    "cartProNum": {
 					      "proNum": parseInt(${proNum}+$('#size').val())
@@ -126,7 +127,7 @@ $(function() {
 					}
 					$.ajax({
 						url : contextPath + "/api/memberProductCart/",
-						type:"POST",
+						type:"Post",
 						contentType : "application/json; charset=utf-8",
 						datatype : "json",
 						cache : false,
@@ -153,17 +154,13 @@ $(function() {
 					contentType : "application/json; charset=utf-8",
 					datatype : "json",
 					data: JSON.stringify(cartItem),
-					success: function(cartItem){
-						window.location.href = contextPath + "/cart?memId=${authInfo.id }";
-					},
+					success: function(cartItem){},
 					error:function(request, status, error){
 						 alert("code:"+request.status+"\n"+"message:"
 				                  +request.responseText+"\n"+"error:"+error);
-						/* window.location.href = contextPath+"/cart?memId=${authInfo.id }"; */
 					} 
 				})
 			}
-		
 			
 			/* 구입하기 버튼 */					
 			$('#purchase').on("click", function() {
@@ -176,26 +173,45 @@ $(function() {
 					return alert("수량을 선택해주세요");
 				}				
 				
-				orderBtn();
-				
-				lastCartNum();
+				if (!confirm("바로 구매하시겠습니까")) {
+		        } else {
+					useOrderBtn()
+		        }
 			});
 			
-			function lastCartNum(){
-				$.get(contextPath + "/api/lastCartNum", 
-						function(json){
-					if(json == null){
+			function useOrderBtn(){
+				var orderProd = {
+						  "cartProQuantity": parseInt($('#result').text()),
+						  "memberId": {
+						      "memberId": memberId
+						    },    
+						  "cartProNum": {
+						      "proNum": parseInt(${proNum}+$('#size').val())
+						    }
+						}
+				console.log(orderProd)
+				$.ajax({
+					url: contextPath + '/api/useOrderProductBtn',
+					type: 'Post',
+					contentType:"application/json; chartset=utf-8",
+					datatype: "json",
+					data: JSON.stringify(orderProd),
+					success: function(res){
+						console.log(res)
+						selectOrderProduct(res);
+					},
+					error: function(request, status, error){
+						alert("code:"+request.status+"\n"+"message:"
+				                  +request.responseText+"\n"+"error:"+error);
 					}
-							var cartNums = [];
-							cartNums.push(json[0].cartNum+1)
-							selectOrderProduct(cartNums);
-					})
+				})
 			}
 			
+			/*장바구니번호를 검색후 주문페이지로 이동 */
 			function selectOrderProduct(cartNums){
 				$.ajax({
 					url: contextPath + "/api/chooseProductCarts",
-					type: 'post' ,
+					type: 'Post' ,
 					contentType : "application/json; charset=utf-8",
 					datatype : "json",
 					data: JSON.stringify(cartNums),
@@ -205,22 +221,12 @@ $(function() {
 					error:function(request, status, error){
 						alert("code:"+request.status+"\n"+"message:"
 				                  +request.responseText+"\n"+"error:"+error);
-						/* window.location.href = contextPath+"/cart?memId=${authInfo.id }"; */
 					}  
 				});
 			}
 			
-			 function orderBtn() {
-			        if (!confirm("바로 구매하시겠습니까")) {
-			        } else {
-			        	insertCart(); 
-			        }
-			    }
-			 
-			 
 			 /*스타일 후기 보기*/
 			 var notice = [ '별로에요', '보통이에요', '그냥 그래요', '맘에 들어요','아주 좋아요' ];
-			 var proSize = ["none","XS","S","M","L","XL"];
 			 var  sCont = "";	
 			 
 			$.get(contextPath + "/api/selectReviewByProNum/"+ proNum, 

@@ -1,5 +1,6 @@
 package proj21_shop.service.impl.order;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +51,26 @@ public class CartServiceImpl implements CartService {
 	@Override
 	public List<CartDTO> chooseCartByMemberId(List<Integer> cartNum) {
 		return mapper.chooseCartByMemberId(cartNum);
+	}
+
+	@Override
+	public List<Integer> useProductOrderBtn(CartDTO cart) {
+		if(!mapper.selectCartByMemberId(cart).isEmpty()) {
+			System.out.println("업데이트!");
+			
+			List<CartDTO> upCartNum = mapper.selectCartByMemberId(cart);
+			cart.setCartNum(upCartNum.get(0).getCartNum());
+			mapper.updateCart(cart);
+		}else {
+			System.out.println("인서트!");
+			mapper.insertCart(cart);
+		}
+		
+		List<CartDTO> searchCartNum = mapper.selectCartByMemberId(cart);
+		List<Integer> cartNum = new ArrayList<Integer>();
+		cartNum.add(searchCartNum.get(0).getCartNum());
+		
+		return cartNum;
 	}
 
 }

@@ -18,4 +18,6 @@ public interface CartService {
 	int deleteCart(int cartNum);
 	int deleteCarts(List<Integer> list);
 	int updateCart(CartDTO cart);
+	
+	List<Integer> useProductOrderBtn(CartDTO cart);
 }

@@ -1,12 +1,8 @@
 package proj21_shop.controller.order;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,10 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import proj21_shop.dto.cart.CartDTO;
 import proj21_shop.dto.member.MemberDTO;
 import proj21_shop.dto.order.OrderDTO;
-import proj21_shop.service.order.CartService;
 import proj21_shop.service.order.OrderService;
 
 
@@ -28,9 +22,6 @@ public class OrderServiceController {
 
 	@Autowired
 	private OrderService service;
-	
-	@Autowired
-	private CartService cartService;
 	
 	/* 기존 회원 정보 set */ 
 	@GetMapping("/existOrderMember/{memberId}")
@@ -46,18 +37,11 @@ public class OrderServiceController {
 		return ResponseEntity.ok(service.trInsertOrder(orderDTO));
 	}
 	
-	@GetMapping("/lastCartNum")
-	public ResponseEntity<Object> getLastCartNum(HttpSession session){
-		List<Integer> cart = new ArrayList<Integer>();
-		int cartNum = service.selectLastCartNum();
-		cart.add(cartNum);
-		List<CartDTO> list = cartService.chooseCartByMemberId(cart);
-		session.setAttribute("cartNums", cartNum);
-		return ResponseEntity.ok(list);
-	}
-	
+	/*제품 구입 완료 후 이동하는 페이지에서 마지막 주문 번호를 검색해서 들어간다.*/
 	@GetMapping("/lastOrderNum")
 	public ResponseEntity<Object> getLastOrderNum(){
 		return ResponseEntity.ok(service.selectLastOrderNum());
 	}
+	
+	
 }

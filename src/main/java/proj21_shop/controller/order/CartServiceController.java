@@ -109,4 +109,9 @@ public class CartServiceController {
 		
 		return ResponseEntity.ok(list);
 	}
+	
+	@PostMapping("/useOrderProductBtn")
+	public ResponseEntity<Object> useOrderProductBtm(@RequestBody CartDTO cartDTO){
+		return ResponseEntity.ok(service.useProductOrderBtn(cartDTO));
+	}
 }
