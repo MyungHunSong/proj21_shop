@@ -1,11 +1,15 @@
 -- LEE TaeHoon TEST scripts
 show tables;
+
 select *
   from cart;
+ 
 select *
   from member;
+ 
 select *
-  from product; 
+  from product where pro_num like concat(502,'%') ; 
+ 
  select *
   from pro_img;
 select *
@@ -234,6 +238,10 @@ INSERT INTO review
 (pro_num, re_member, re_content, re_image, re_image2, re_stars)
 values
 (6163, 'test03', '두근두근', 'review_test2.jpg', 'review_test2.jpg', 3);
+
+update review
+	  set re_image = 'review_test.jpg', re_image2 = 'review_test.jpg', pro_num = 6165, re_stars = 3
+ where re_member = 'test02';	  
 
 -- 후기 목록(제품별)
 select r.re_num, r.pro_num, r.re_member, r.re_content, r.re_image,re_image2,re_date,re_stars, p.pro_name, p.pro_imagefilename, p.pro_size 

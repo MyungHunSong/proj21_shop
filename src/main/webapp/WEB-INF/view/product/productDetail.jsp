@@ -65,8 +65,9 @@ $(function() {
 				    $("#ProductLoad").append(sCont);
 					var proNum = json[2].proNum+"";
 					var imgCont = "";
-					imgCont += "<img class = 'detailImg' src="+contextPath+"/resources/product/images/"+proNum+"-1.jpg><br>"
-					imgCont += "<img class = 'detailImg' src="+contextPath+"/resources/product/images/"+proNum+"-2.jpg><br>"
+					for(j = 1; j < 3; j++){
+						 imgCont += "<img class = 'detailImg' src="+contextPath+"/resources/product/images/"+proNum+"-"+j+".jpg><br>"
+					}
 					imgCont += "<img class = 'detailImg' src="+contextPath+"/resources/product/sizeImages/"+json[0].proCategory+".jpg>"
 					$("#productDetailImg").append(imgCont);
 			}); 
@@ -231,29 +232,37 @@ $(function() {
 			 
 			$.get(contextPath + "/api/selectReviewByProNum/"+ proNum, 
 				function(json){
+				console.log(json)
 					if(json.length != 0){
-						console.log(json[0])
 						for(i = 0; i < json.length; i++){
+								sCont += "				<h1 class = 'memberId'>" + json[i].memberId +"</h1>" 
 								sCont += "<div class='starRate'>"
 								sCont += "		<div class='star-rating'>"
 								sCont += "					<div class='stars'>"
-								for(j = 1; j < json[0].reviewStar+1; j++){
-									$('.s'+j).addClass('active');
-									$('.print').html('<img src="images/star-lv' +j + '.png">' + notice[j-1]);
-								sCont += "						<i class='s"+j+" fa fa-star active'></i>"
+								if(json[i].reviewStar != 0){
+									for(j = 1; j < json[i].reviewStar+1; j++){
+										$('.print').html('<img src="images/star-lv' +j + '.png">' + notice[j-1]);
+										sCont += "<i class='s"+j+" fa fa-star active'></i>"	
+									}
+									for(j = 1; j < 5-json[i].reviewStar+1; j++){
+										sCont += "<i class='s"+j+" fa fa-star'></i>"
+									}
 								}
 								sCont += "					<div class='print'></div>"
 								sCont += "					</div>"
-								sCont += "				<div class='print'></div>"
 								sCont += "			</div>"
 								sCont += "		</div>"
-								sCont += "<img src='/proj21_shop/resources/product/images/" + json[i].proNum+".jpg" + "' width = '70' height= '70'>"
-								sCont += "		<ul>"
-								sCont += "			<li>" + json[i].proName.proName + "</li>"
-								sCont += "			<li>" + json[i].proName.proColor +"</li>" 
-								sCont += "			<li>" + proSize[json[i].proName.proSize] +"</li>" 
-								sCont += "</ul>"
-								sCont += "<textarea id='content' cols='45' rows='10'>"+json[i].reviewContent+"</textarea><br>";	
+								sCont += "	<div class = 'reviewList'>"
+								sCont += "		<img class = 'prodImg' src='/proj21_shop/resources/product/images/" + json[i].proImagefilename.proImagefilename + "' width = '70' height= '70'>"
+								sCont += "			<div class = 'proAndMemInfo'>"
+								sCont += "				<span>" + json[i].proName.proName +"/"+proSize[json[i].proName.proSize]+ "</span><br>"
+								sCont += "			</div>"
+								sCont += "		<div class = 'reviewImg'>"
+								sCont += "			<img src='/proj21_shop/resources/review/images/" + json[i].reviewImagefilename1 + "'>"
+								/* sCont += "		<img src='/proj21_shop/resources/review/images/" + json[i].reviewImagefilename2 + "' width = '70' height= '70'>" */
+								sCont += "		</div>"
+								sCont += "		<div class = 'reivewContent'>"+json[i].reviewContent+"</div><br>";	
+								sCont += "	</div>"
 						 }
 					}else{
 							$('.star-rating').text("")
