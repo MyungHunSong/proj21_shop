@@ -84,7 +84,12 @@ public class AdminProductServiceImpl implements AdminProductService {
 	@Override
 	public Map<String, Object> getProductStatics() {
 		Map<String,Object> returnMap=new HashMap();
-		int totalCoat=0;
+		int totalTShirts=0;
+		int totalLongT=0;
+		int totalslvless=0;
+		int totalhood=0;
+		int totalShirts=0;
+		int totalSweater=0;
 		
 		int newProducts=adminProductMapper.selectNewProducts();
 		int bestProducts=adminProductMapper.selectBestProducts();
@@ -92,21 +97,26 @@ public class AdminProductServiceImpl implements AdminProductService {
 		int offProducts=adminProductMapper.selectOffProducts();
 		int outProducts=adminProductMapper.selectOutProducts();
 		
-		totalCoat=adminProductMapper.selectAllCoat();
+		totalTShirts=adminProductMapper.selectAllTShirts();
+		totalLongT=adminProductMapper.selectAllLongT();
+		totalslvless=adminProductMapper.selectAllslvless();
+		totalhood=adminProductMapper.selectAllhood();
+		totalShirts=adminProductMapper.selectAllShirts();
+		totalSweater=adminProductMapper.selectAllSweater();
 		
 		returnMap.put("bestProducts", bestProducts);
 		returnMap.put("newProducts", newProducts);
 		returnMap.put("steadyProducts", steadyProducts);
 		returnMap.put("offProducts", offProducts);
 		returnMap.put("outProducts", outProducts);
-		returnMap.put("totalCoat", totalCoat);
+		returnMap.put("totalTShirts", totalTShirts);
+		returnMap.put("totalLongT", totalLongT);
+		returnMap.put("totalslvless", totalslvless);
+		returnMap.put("totalhood", totalhood);
+		returnMap.put("totalShirts", totalShirts);
+		returnMap.put("totalSweater", totalSweater);
 		
 		return returnMap;
-	}
-	@Override
-	public int selectAllCoat() {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 }

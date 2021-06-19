@@ -140,7 +140,6 @@ $(function(){
 			<div class="col-12">
 				<div class="card">
 
-					<!--                             <div class="comment-widgets scrollable"> -->
 					<!--membersList  -->
 					<form action="${contextPath }/admin/product/addNewProduct" method="post" enctype="multipart/form-data" id="frm_register">
 						<center>

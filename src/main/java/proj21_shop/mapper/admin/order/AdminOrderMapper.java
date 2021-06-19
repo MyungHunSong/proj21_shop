@@ -1,5 +1,10 @@
 package proj21_shop.mapper.admin.order;
 
+import java.util.List;
+import java.util.Map;
+
+import proj21_shop.dto.order.OrderDTO;
+
 public interface AdminOrderMapper {
 	// 주문이 있는지 없는지 확인
 	String atLeastOneOrder();
@@ -27,5 +32,16 @@ public interface AdminOrderMapper {
 
 	// 환불 대기 수
 	int selectAllWaitingRefund();
+	
+	List<OrderDTO> selectOrderList(Map<String, Object> pagingMap);
+	
+	void updateDelivery(String change_deliveryStatus, String change_orderProNum);
+	
+	void deleteOrder(Map<String, Object> requestMap);
+
+	void setUpRefund(Map<String, Object> requestMap);
+	
+	int selectedTotal(Map<String, Object> pagingMap);
+
 	
 }

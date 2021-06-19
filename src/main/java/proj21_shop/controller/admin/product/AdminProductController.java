@@ -346,4 +346,16 @@ public class AdminProductController {
 		
 		return resEnt;
 	}
+	
+	@RequestMapping("productStatics")
+	public ModelAndView productStatics (HttpServletRequest request, HttpServletResponse response) {
+		
+		ModelAndView mav=new ModelAndView();
+		
+		Map<String,Object> viewMap=adminProductService.getProductStatics();
+		
+		mav.addObject("viewMap",viewMap);
+		mav.setViewName("admin/product/productStatics");
+		return mav;
+	}
 }

@@ -70,29 +70,24 @@
 		<div class="scroll-sidebar">
 			<!-- Sidebar navigation-->
 			<nav class="sidebar-nav">
-			<ul id="sidebarnav" class="p-t-30">
-				<li class="sidebar-item"><a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-face"></i><span class="hide-menu">회원
-					</span></a>
-					<ul aria-expanded="false" class="collapse  first-level">
-						<li class="sidebar-item"><a href="${contextPath}/admin/member/listMembers" class="sidebar-link"><i class="mdi mdi-emoticon-cool"></i><span class="hide-menu"> 회원 목록 </span></a></li>
-						<li class="sidebar-item"><a href="${contextPath}/admin/member/viewMember" class="sidebar-link"><i class="mdi mdi-emoticon-cool"></i><span class="hide-menu"> 회원 활동 정보 </span></a></li>
-						<li class="sidebar-item"><a href="${contextPath}/admin/member/memberStatics" class="sidebar-link"><i class="mdi mdi-emoticon-cool"></i><span class="hide-menu"> 회원 활동 통계 </span></a></li>
-					</ul>
-				</li>
-				<li class="sidebar-item"><a class="sidebar-link has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-face"></i><span class="hide-menu">상품 </span></a>
-					<ul aria-expanded="false" class="collapse  first-level">
-						<li class="sidebar-item"><a href="${contextPath }/admin/product/listProducts" class="sidebar-link"><i class="mdi mdi-emoticon-cool"></i><span class="hide-menu"> 상품 관리 </span></a></li>
-						<li class="sidebar-item"><a href="${contextPath }/admin/product/addNewProductForm" class="sidebar-link"><i class="mdi mdi-emoticon-cool"></i><span class="hide-menu"> 상품 등록 </span></a></li>
-						<li class="sidebar-item"><a href="${contextPath }/admin/order/listOrders" class="sidebar-link"><i class="mdi mdi-emoticon-cool"></i><span class="hide-menu"> 주문/배송 관리 </span></a></li>
-					</ul>
-				</li>
-				<li class="sidebar-item"><a class="sidebar-link has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-face"></i><span class="hide-menu">고객관리 </span></a>
-					<ul aria-expanded="false" class="collapse  first-level">
-						<li class="sidebar-item"><a href="${contextPath }/admin/product/listProducts" class="sidebar-link"><i class="mdi mdi-emoticon-cool"></i><span class="hide-menu"> 후기 관리 </span></a></li>
-						<li class="sidebar-item"><a href="${contextPath }/admin/order/listOrders" class="sidebar-link"><i class="mdi mdi-emoticon-cool"></i><span class="hide-menu"> 공지 사항 관리 </span></a></li>
-					</ul>
-				</li>
-			</ul>
+				<ul id="sidebarnav" class="p-t-30">
+					<li class="sidebar-item"><a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"  aria-expanded="false"><i class="mdi mdi-face"></i><span class="hide-menu">회원 </span></a>
+						<ul aria-expanded="false" class="collapse  first-level">
+							<li class="sidebar-item"><a href="${contextPath}/admin/member/listMembers" class="sidebar-link"><i class="mdi mdi-emoticon-cool"></i><span class="hide-menu"> 회원 목록 </span></a></li>
+							<li class="sidebar-item"><a href="${contextPath}/admin/member/viewMember" class="sidebar-link"><i class="mdi mdi-emoticon-cool"></i><span class="hide-menu"> 회원 활동 정보 </span></a></li>
+							<li class="sidebar-item"><a href="${contextPath}/admin/member/memberStatics" class="sidebar-link"><i class="mdi mdi-emoticon-cool"></i><span class="hide-menu"> 회원 활동 통계 </span></a></li>
+							<li class="sidebar-item"><a href="${contextPath }/admin/product/listProducts" class="sidebar-link"><i class="mdi mdi-emoticon-cool"></i><span class="hide-menu"> 후기 관리 </span></a></li>
+							<li class="sidebar-item"><a href="${contextPath }/admin/order/listOrders" class="sidebar-link"><i class="mdi mdi-emoticon-cool"></i><span class="hide-menu"> 공지 사항 관리 </span></a></li>
+						</ul>
+					</li>
+					<li class="sidebar-item"><a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-face"></i><span class="hide-menu">상품 </span></a>
+						<ul aria-expanded="false" class="collapse  first-level">
+							<li class="sidebar-item"><a href="${contextPath }/admin/product/listProducts" class="sidebar-link"><i class="mdi mdi-emoticon-cool"></i><span class="hide-menu"> 상품 관리 </span></a></li>
+							<li class="sidebar-item"><a href="${contextPath }/admin/product/addNewProductForm" class="sidebar-link"><i class="mdi mdi-emoticon-cool"></i><span class="hide-menu"> 상품 등록 </span></a></li>
+							<li class="sidebar-item"><a href="${contextPath }/admin/order/listOrders" class="sidebar-link"><i class="mdi mdi-emoticon-cool"></i><span class="hide-menu"> 주문/배송 관리 </span></a></li>
+						</ul>
+					</li>
+				</ul>
 			</nav>
 			<!-- End Sidebar navigation -->
 		</div>

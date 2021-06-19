@@ -198,4 +198,35 @@
 		</choose>
 	</select>
 	
+	<select id="selectAllTShirts" resultType="int" parameterType="String">
+		select count(pro_num)
+  		  from product
+ 		 where pro_category = 1
+	</select>
+	<select id="selectAllLongT" resultType="int" parameterType="String">
+		select count(pro_num)
+  		  from product
+ 		 where pro_category = 2
+	</select>
+	<select id="selectAllslvless" resultType="int" parameterType="String">
+		select count(pro_num)
+  		  from product
+ 		 where pro_category = 3
+	</select>
+	<select id="selectAllhood" resultType="int" parameterType="String">
+		select count(pro_num)
+  		  from product
+ 		 where pro_category = 4
+	</select>
+	<select id="selectAllShirts" resultType="int" parameterType="String">
+		select count(pro_num)
+  		  from product
+ 		 where pro_category = 5
+	</select>
+	<select id="selectAllSweater" resultType="int" parameterType="String">
+		select count(pro_num)
+  		  from product
+ 		 where pro_category = 6
+	</select>
+	
 </mapper>

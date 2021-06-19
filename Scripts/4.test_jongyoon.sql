@@ -339,3 +339,63 @@ delete from pro_img
 where pro_num = old.pro_num;
 end $$
 delimiter ;
+
+select count(pro_num)
+  from product
+ where pro_category = 1;
+ 
+SELECT *
+ FROM `order` o ;
+SELECT *
+ FROM product p2 ;
+
+-- 주문 SQL===============================
+
+SELECT	a.*, c.pro_imagefilename ,	p.pro_name
+  FROM (SELECT FORMAT(@ROWNUM := @ROWNUM + 1, 0) AS rn,	order_code,	order_date,	order_pro_quantity,	p.pro_price-(p.pro_salesrate*0.01*p.pro_price) AS order_price,
+  			   delivery_status, order_member_name,	request_to_delivery, which_bank, order_pro_num,	p.pro_num,
+        	   p.pro_color, p.pro_size
+		  FROM ( SELECT @ROWNUM := 0 ) R, `ORDER` o JOIN product p ON o.pro_num = p.pro_num
+		 WHERE  o.order_pro_num = 1
+				AND o.delivery_status = '배송준비중'
+				AND o.order_member_name LIKE CONCAT('%', '이종', '%')
+		) a , product p JOIN pro_img c ON p.pro_num = c.pro_num
+ WHERE c.pro_img_state = 1
+ 		AND p.pro_num = a.pro_num
+		AND rn
+		BETWEEN 1
+ 		AND 10
+ ORDER BY a.order_price DESC;
+ 
+INSERT INTO proj21_shop.`order`
+(order_member_id, pro_num, order_pro_num, order_member_name, order_pro_quantity, order_price, order_discount,
+ receiver_name, receiver_tel1, receiver_tel2, delivery_addr1, delivery_addr2, delivery_addr3, request_to_delivery, who_pay, which_bank)
+values
+('test01', 6163, 1,'이종윤', 1, 5000, 0, '이종윤', '010-1234-5678', '010-1234-5678', 54545,'대구광역시 남구 봉덕동 이천로 51', '2층', '배송참고사항', '이종윤', '국민'),
+('test01', 1033, 1,'이종윤', 1, 5000, 0, '이종윤', '010-1234-5678', '010-1234-5678', 54545,'대구광역시 남구 봉덕동 이천로 51', '2층', '배송참고사항', '이종윤', '국민');
+SELECT
+	a.*,
+	c.pro_imagefilename ,
+	p.pro_name
+FROM
+	(
+	SELECT
+		FORMAT(@ROWNUM := @ROWNUM + 1, 0) AS rn,
+		order_code,
+		order_date,
+		order_pro_quantity,
+		p.pro_price-(p.pro_salesrate*0.01*p.pro_price) AS order_price,
+		delivery_status,
+		order_member_name,
+		request_to_delivery,
+		which_bank,
+		order_pro_num,
+		p.pro_num,
+		p.pro_color,
+		p.pro_size
+	WHERE
+		order_code > 0 )a, product p JOIN pro_img c ON	p.pro_num = c.pro_num
+	WHERE
+	c.pro_img_state = 1
+	AND p.pro_num = a.pro_num
+	AND rn BETWEEN (1-1)* 100 +(1-1)* 10 + 1 AND (1-1)* 100 +1* 10;
