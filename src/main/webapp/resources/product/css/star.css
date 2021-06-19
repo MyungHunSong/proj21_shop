@@ -19,22 +19,22 @@ li {
 	width: 250px;
 	text-align: center;
 	border-radius: 5px;
-	padding: 5px;
 }
 
 .star-rating div {
-	float: left;
-	width: 50%;
+	text-align: left;
 }
 
 .stars .fa {
 	font-size: 18px;
 	cursor: pointer;
+	color: #eee;
+	text-shadow: 0 0 1px gray;
 }
 
 .stars .fa.active {
 	color: yellow;
-	text-shadow: 0 0 5px gray;
+	text-shadow: 0 0 3px gray;
 }
 
 .print {

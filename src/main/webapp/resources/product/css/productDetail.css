@@ -106,11 +106,12 @@
 	background-color: white;
 	border: 1px solid #ccc;
 }
-
+/*모델 사진 및 사이즈 사진*/
 .detailImg{
 	margin-top: 150px; 
 }
 
+/*리뷰*/
 .menuTitle{
 	margin-top: 150px;
 	text-align: left;
@@ -122,5 +123,37 @@
 	font-size: 60px;
 	color: #ccc;
 	margin-bottom: 300px;
-	
+}
+
+.reviewList{
+	text-align: left;
+}
+
+.proAndMemInfo{
+	float: left;
+}
+
+.proAndMemInfo span{
+	font-size: 15px;
+	color: #bbb;
+}
+
+.memberId{
+	text-align: left;
+	color: #aaa;
+}
+
+.prodImg{
+	display: block;
+	float: left;
+	margin-right: 10px;
+}
+
+.reivewContent{
+	clear:left;
+}
+
+.reviewImg{
+	margin-top:150px;
+	clear:left;
 }
