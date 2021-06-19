@@ -25,8 +25,8 @@ import proj21_shop.service.order.CartService;
 @ContextConfiguration(classes = { ContextRoot.class })
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @WebAppConfiguration
-public class MemberOrderServiceTest {
-	private static final Log log = LogFactory.getLog(MemberOrderServiceTest.class);
+public class CartServiceTest {
+	private static final Log log = LogFactory.getLog(CartServiceTest.class);
 	
 	@Autowired
 	private CartService service;
@@ -36,7 +36,7 @@ public class MemberOrderServiceTest {
 		System.out.println();
 	}
 
-	@Test
+	//@Test
 	public void test01ShowCartsByMemberId() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		MemberDTO newMem = new MemberDTO();
@@ -75,6 +75,27 @@ public class MemberOrderServiceTest {
 		int res = service.deleteCart(70);
 		Assert.assertEquals(1, res);
 		log.debug("proNum >>" + res);
+	}
+
+	@Test
+	public void test04useProductOrderBtn() {
+		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
+		
+		MemberDTO member = new MemberDTO();
+		member.setMemberId("test01");
+		
+		ProductDTO prod = new ProductDTO();
+		prod.setProNum(6165);
+		
+		CartDTO cart = new CartDTO();
+		cart.setCartNum(239);
+		cart.setMemberId(member);
+		cart.setCartProNum(prod);
+		cart.setCartProQuantity(3);
+		
+		List<Integer> cartNum = service.useProductOrderBtn(cart);
+		System.out.println(cartNum);
+		Assert.assertNotNull(cartNum);
 	}
 
 }

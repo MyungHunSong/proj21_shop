@@ -142,14 +142,6 @@ public class OrderMapperTest {
 		Assert.assertEquals(1,res);
 	}
 
-	//@Test
-	public void test07LastCartNum() {
-		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
-		
-		int res = mapper.selectLastCartNum();
-		System.out.println(res);
-	}
-
 	@Test
 	public void test08LastOrderNum() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");

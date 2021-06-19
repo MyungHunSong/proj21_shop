@@ -233,7 +233,7 @@ order by  pro_status = '추천' desc limit 6;
 INSERT INTO review
 (pro_num, re_member, re_content, re_image, re_image2, re_stars)
 values
-(6163, 'test02', '폭신폭신한게 따뜻하네요.', 'review_test2.jpg', 'review_test2.jpg', 5);
+(6163, 'test03', '두근두근', 'review_test2.jpg', 'review_test2.jpg', 3);
 
 -- 후기 목록(제품별)
 select r.re_num, r.pro_num, r.re_member, r.re_content, r.re_image,re_image2,re_date,re_stars, p.pro_name, p.pro_imagefilename, p.pro_size 
@@ -267,3 +267,4 @@ delete
   from re_reply 
 where re_rep_num = 2;
 
+select * from cart;

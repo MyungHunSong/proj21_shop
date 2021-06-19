@@ -157,7 +157,6 @@ $(function(){
 		
 		// 단일 삭제 하기
 		function delCart(cartNum){
-			
 			 $.ajax({
 				url: contextPath + "/api/memberProductCart/" + cartNum,
 				type: 'delete' ,
