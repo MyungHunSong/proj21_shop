@@ -15,5 +15,4 @@ public interface AdminProductService {
 
 	Map<String, Object> getProductStatics();
 	
-	int selectAllCoat();
 }

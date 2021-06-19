@@ -178,6 +178,14 @@ public class AdminProductMapperTest {
 		log.debug("판매중인 수?" + res);
 		System.out.println();
 	}
+	
+	@Test
+	public void test3SelectAllTShirts() {
+		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
+		int res = mapper.selectAllTShirts();
+		log.debug("총 반팔 수?" + res);
+
+	}
 
 
 }
