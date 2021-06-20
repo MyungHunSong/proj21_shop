@@ -7,7 +7,7 @@ public interface AdminOrderService {
 	
 	Map<String, Object> getOrderList(Map<String, Object> pagingMap);
 	
-	void changeDelivery(String change_delivery_status, String change_detail_code);
+	int changeDelivery(Map<String, Object> changeMap);
 
 	void addRefund(Map<String, Object> requestMap);
 }

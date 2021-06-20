@@ -3,8 +3,6 @@ package proj21_shop.dto.order;
 import java.sql.Date;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import proj21_shop.dto.product.ProductDTO;
 import proj21_shop.dto.product.ProductImageDTO;
 
@@ -17,6 +15,7 @@ public class OrderDTO {
 	private int proNum;// 제품번호
 
 	private int orderProNum;// 주문번호: 한번에 살경우 중복된 번호로 나온다.
+	private int orderCode;// 주문번호(추가): 각각 제품의 주문번호.
 
 	private List<ProductDTO> proName; // 1:다 관계이므로 List 사용
 
@@ -25,6 +24,7 @@ public class OrderDTO {
 
 	private String orderMemberName;
 	private int orderProQuantity;
+	private int orderValue;// 각각 제품가격 (각각의 제품 할인율 적용)
 	private int orderPrice;// 총 가격
 	private int orderDiscount;
 	private String receiverName;
@@ -41,6 +41,22 @@ public class OrderDTO {
 	private String whoPay;
 	private String whichBank;
 	private String acountNum;
+
+	public int getOrderCode() {
+		return orderCode;
+	}
+
+	public void setOrderCode(int orderCode) {
+		this.orderCode = orderCode;
+	}
+	
+	public int getOrderValue() {
+		return orderValue;
+	}
+
+	public void setOrderValue(int orderValue) {
+		this.orderValue = orderValue;
+	}
 
 	public ProductDTO getProductDTO() {
 		return productDTO;
@@ -229,11 +245,10 @@ public class OrderDTO {
 	@Override
 	public String toString() {
 		return String.format(
-				"OrderDTO [memberId=%s, orderMemberId=%s, proNum=%s, orderProNum=%s, proName=%s, productImageDTO=%s, orderMemberName=%s, orderProQuantity=%s, orderPrice=%s, orderDiscount=%s, receiverName=%s, receiverTel1=%s, receiverTel2=%s, deliveryAddr1=%s, deliveryAddr2=%s, deliveryAddr3=%s, deliveryStatus=%s, requestToDelivery=%s, orderDate=%s, whoPay=%s, whichBank=%s, acountNum=%s]",
-				memberId, orderMemberId, proNum, orderProNum, proName, productImageDTO, orderMemberName,
-				orderProQuantity, orderPrice, orderDiscount, receiverName, receiverTel1, receiverTel2, deliveryAddr1,
-				deliveryAddr2, deliveryAddr3, deliveryStatus, requestToDelivery, orderDate, whoPay, whichBank,
-				acountNum);
+				"OrderDTO [memberId=%s, orderMemberId=%s, proNum=%s, orderProNum=%s, orderCode=%s, proName=%s, productImageDTO=%s, productDTO=%s, orderMemberName=%s, orderProQuantity=%s, orderValue=%s, orderPrice=%s, orderDiscount=%s, receiverName=%s, receiverTel1=%s, receiverTel2=%s, deliveryAddr1=%s, deliveryAddr2=%s, deliveryAddr3=%s, deliveryStatus=%s, requestToDelivery=%s, orderDate=%s, whoPay=%s, whichBank=%s, acountNum=%s]",
+				memberId, orderMemberId, proNum, orderProNum, orderCode, proName, productImageDTO, productDTO, orderMemberName, orderProQuantity,
+				orderValue, orderPrice, orderDiscount, receiverName, receiverTel1, receiverTel2, deliveryAddr1, deliveryAddr2, deliveryAddr3,
+				deliveryStatus, requestToDelivery, orderDate, whoPay, whichBank, acountNum);
 	}
 
 }
