@@ -45,14 +45,16 @@
 	function select_deliveryStatus(orderProNum){
 		var deliveryStatus=document.getElementById(orderProNum+"select_deliveryStatus").value;
 		$.ajax({
-			type:"post",
 			url:"${contextPath}/admin/order/listOrders",
+			type:"post",
 			data:{"change_deliveryStatus" : deliveryStatus, "change_orderProNum" : orderProNum },
 			success:function(data){
 				alert("배송상태 수정을 완료했습니다.");
 				location.href='${contextPath}/admin/order/listOrders';
 			},
 			error:function(data){
+				console.log(data)
+				alert(data)
 				alert("error");
 			}
 		});
@@ -233,7 +235,7 @@ a {
 											</li>						
 											<td width="100px">${order.orderMemberName }</td>
 											<td width="100px"><fmt:formatNumber value="${order.orderPrice* order.orderProQuantity }" pattern="#,###" />원</td>
-											<td width="100px">${order.whoPay }<br> <br>${order.whichBank}</td>
+											<td width="100px">${order.whichBank} 은행</td>
 											<td width="100px">${order.orderDate }</td>
 											<td width="100px">
 												<select id="${order.orderProNum }select_deliveryStatus">

@@ -356,7 +356,7 @@ SELECT	a.*, c.pro_imagefilename ,	p.pro_name
   			   delivery_status, order_member_name,	request_to_delivery, which_bank, order_pro_num,	p.pro_num,
         	   p.pro_color, p.pro_size
 		  FROM ( SELECT @ROWNUM := 0 ) R, `ORDER` o JOIN product p ON o.pro_num = p.pro_num
-		 WHERE  o.order_pro_num = 1
+		 WHERE  o.order_pro_num >= 1
 				AND o.delivery_status = '배송준비중'
 				AND o.order_member_name LIKE CONCAT('%', '이종', '%')
 		) a , product p JOIN pro_img c ON p.pro_num = c.pro_num
@@ -373,29 +373,49 @@ INSERT INTO proj21_shop.`order`
 values
 ('test01', 6163, 1,'이종윤', 1, 5000, 0, '이종윤', '010-1234-5678', '010-1234-5678', 54545,'대구광역시 남구 봉덕동 이천로 51', '2층', '배송참고사항', '이종윤', '국민'),
 ('test01', 1033, 1,'이종윤', 1, 5000, 0, '이종윤', '010-1234-5678', '010-1234-5678', 54545,'대구광역시 남구 봉덕동 이천로 51', '2층', '배송참고사항', '이종윤', '국민');
-SELECT
+
+SELECT *
+FROM `ORDER`;
+
+SELECT DISTINCT 
 	a.*,
 	c.pro_imagefilename ,
 	p.pro_name
 FROM
 	(
-	SELECT
+	SELECT 
 		FORMAT(@ROWNUM := @ROWNUM + 1, 0) AS rn,
 		order_code,
+		order_pro_num,
 		order_date,
 		order_pro_quantity,
-		p.pro_price-(p.pro_salesrate*0.01*p.pro_price) AS order_price,
 		delivery_status,
 		order_member_name,
 		request_to_delivery,
 		which_bank,
-		order_pro_num,
+		order_price,
+		p.pro_price-(p.pro_salesrate*0.01*p.pro_price) AS order_value,
 		p.pro_num,
 		p.pro_color,
 		p.pro_size
+	FROM
+		(SELECT@ROWNUM := 0 ) R, `ORDER` o JOIN product p ON o.pro_num = p.pro_num
 	WHERE
-		order_code > 0 )a, product p JOIN pro_img c ON	p.pro_num = c.pro_num
-	WHERE
+		order_date > 0 )a,	product p JOIN pro_img c ON p.pro_num = c.pro_num
+WHERE
 	c.pro_img_state = 1
 	AND p.pro_num = a.pro_num
 	AND rn BETWEEN (1-1)* 100 +(1-1)* 10 + 1 AND (1-1)* 100 +1* 10;
+
+select count(distinct order_pro_num)
+  from `order` 
+ where order_member_id > 0;
+
+SELECT *
+  FROM `order`;
+  
+ UPDATE `order`
+    SET delivery_status = '배송준비중'
+  WHERE order_pro_num = '1';
+  
+ 
