@@ -2,6 +2,43 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="proj21_shop.mapper.admin.order.AdminOrderMapper">
 
+	<resultMap id="orderResult" type="OrderDTO">
+			<result property="orderProNum" column="order_pro_num" />
+			<result property="orderCode" column="order_code" />
+			<result property="orderMemberId" column="order_member_id" />
+			<result property="orderMemberName" column="order_member_name" />
+			<result property="orderProQuantity" column="order_pro_quantity" />
+			<result property="orderValue" column="order_value" />
+			<result property="orderPrice" column="order_price" />
+			<result property="orderDiscount" column="order_discount" />
+			
+			<result property="receiverName" column="receiver_name" />
+			<result property="receiverTel1" column="receiver_tel1" />
+			<result property="receiverTel2" column="receiver_tel2" />
+			
+			<result property="deliveryAddr1" column="delivery_addr1" />
+			<result property="deliveryAddr2" column="delivery_addr2" />
+			<result property="deliveryAddr3" column="delivery_addr3" />
+			<result property="deliveryStatus" column="delivery_status" />
+			
+			<result property="requestToDelivery" column="request_to_delivery" />
+			
+			<result property="whoPay" column="who_pay" />
+			<result property="whichBank" column="which_bank" />
+			<result property="orderDate" column="order_date" />
+			
+			<result property="proNum" column="pro_num"/>
+			
+			<association property="productDTO" javaType="ProductDTO">
+				<result property="proNum" column="pro_num"/>
+				<result property="proName" column="pro_name"/>
+				<result property="proImgfileName" column="pro_imagefilename"/>
+				<result property="proColor" column="pro_color"/>
+				<result property="proSize" column="pro_size"/>
+			</association>
+	</resultMap>
+	
+	
 	<!-- 주문이 있는지 없는지 확인 -->
 	<select id="atLeastOneOrder" resultType="String">
 		select if(count(*)=0,'false','true')
@@ -53,23 +90,23 @@
 		where delivery_status='반품 대기중'
 	</select>
 
-	<select id="selectOrderList" resultType="OrderDTO" parameterType="map">
-		SELECT	a.*, c.pro_imagefilename ,	p.pro_name
-  		  FROM (SELECT FORMAT(@ROWNUM := @ROWNUM + 1, 0) AS rn,	order_code,	order_date,	order_pro_quantity,
-  		  	   p.pro_price-(p.pro_salesrate*0.01*p.pro_price) AS order_price,
-  			   delivery_status, order_member_name,	request_to_delivery, which_bank, order_pro_num,	p.pro_num,
-        	   p.pro_color, p.pro_size
-		 WHERE c.pro_imagefilename > 0
+	<select id="selectOrderList" resultMap="orderResult" parameterType="map">
+		SELECT	DISTINCT a.*, c.pro_imagefilename ,	p.pro_name
+  		  FROM (SELECT FORMAT(@ROWNUM := @ROWNUM + 1, 0) AS rn, order_code,	order_pro_num, order_date, order_pro_quantity,
+				delivery_status, order_member_name, request_to_delivery, which_bank, order_price,
+				p.pro_price-(p.pro_salesrate*0.01*p.pro_price) AS order_value, p.pro_num, p.pro_color, p.pro_size
+        	      FROM ( SELECT @ROWNUM := 0 ) R, `ORDER` o JOIN product p ON o.pro_num = p.pro_num
+				 WHERE order_date > 0
 		<choose>
-			<when test="orderProNum != null">
+			<when test="orderProNum != null and !orderProNum.equals('')">
 			   and o.order_pro_num = #{orderProNum}
 			</when>
 			<otherwise></otherwise>
 		</choose>
-		<if test="delivery_status !=null and total ==null and !delivery_status.equals('all') and !delivery_status.equals('')">
+		<if test="deliveryStatus !=null and total ==null and !deliveryStatus.equals('all') and !deliveryStatus.equals('')">
 			   and o.delivery_status=#{deliveryStatus}
 		</if>
-		<if test="order_member_name !=null">
+		<if test="orderMemberName !=null">
 			   and o.order_member_name like CONCAT('%',#{keyword},'%')
 		</if>
 			  )a,product p JOIN pro_img c ON p.pro_num = c.pro_num
@@ -78,7 +115,7 @@
 			   AND rn
 			   BETWEEN (#{section,jdbcType=NUMERIC}-1)*100+(#{pageNum,jdbcType=NUMERIC}-1)*10+1
 			       AND (#{section,jdbcType=NUMERIC}-1)*100+#{pageNum,jdbcType=NUMERIC}*10
-		<if test="order_price !=null and !order_price.equals('')">
+		<if test="orderPrice !=null and !orderPrice.equals('')">
 			<choose>
 				<when test="orderPrice.equals('price_desc')">
 					ORDER BY a.order_price DESC
@@ -98,8 +135,8 @@
 
 	<select id="selectedTotal" parameterType="map" resultType="int">
 		select count(distinct order_pro_num)
-		  from order
-		 where
+		  from `order`
+		 where order_member_id > 0
 		<choose>
 			<when test="order_code != null">
 				and order_pro_num = #{orderProNum}
