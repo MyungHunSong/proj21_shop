@@ -20,5 +20,5 @@ public interface ReviewReplyService {
 	int updateReviewReply(ReviewReplyDTO reviewReply);
 	
 	/* 댓글 삭제 */
-	int deleteReviewReply(int reviewReplyNo);
+	int deleteReviewReply(ReviewReplyDTO reviewReply);
 }

@@ -7,6 +7,9 @@ import proj21_shop.dto.review.ReviewReplyDTO;
 
 public interface ReviewReplyMapper {
 	
+	/*삭제나 수정하기전 아이디 비교*/
+	ReviewReplyDTO selectMemberIdAndReRepNum(ReviewReplyDTO reviewReply);
+	
 	/* 후기 목록 */
 	List<ReviewDTO> selectReviewByProNum(int proNum);
 	
@@ -20,5 +23,5 @@ public interface ReviewReplyMapper {
 	int updateReviewReply(ReviewReplyDTO reviewReply);
 	
 	/* 댓글 삭제 */
-	int deleteReviewReply(int reviewReplyNo);
+	int deleteReviewReply(ReviewReplyDTO reviewReply);
 }

@@ -244,8 +244,10 @@ update review
  where re_member = 'test02';	  
 
 -- 후기 목록(제품별)
-select r.re_num, r.pro_num, r.re_member, r.re_content, r.re_image,re_image2,re_date,re_stars, p.pro_name, p.pro_imagefilename, p.pro_size 
-  from review r join productall p on r.pro_num = p.pro_num 
+select r.re_num, r.pro_num, r.re_member, r.re_content, r.re_image,re_image2,re_date,re_stars, p.pro_name, p.pro_imagefilename, p.pro_size,re_rep_num,re_rep_member,re_rep_content,re_rep_date 
+  from review r 
+    join productall p on r.pro_num = p.pro_num 
+    left join re_reply rr on rr.re_num = r.re_num 
 where r.pro_num like CONCAT(616,'%');
 
 select r.pro_num 
@@ -263,7 +265,7 @@ order by re_rep_num;
 insert 
    into re_reply
    	 	  (re_num, re_rep_member, re_rep_content)
-values (1,'test01','후기내용쓰는곳');
+values (3,'test02','후후후훟');
 
 /*댓글 수정*/
 update re_reply 
@@ -273,6 +275,32 @@ update re_reply
 /*댓글 삭제*/
 delete 
   from re_reply 
-where re_rep_num = 2;
+where re_rep_num in (8);
 
 select * from cart;
+
+
+-- 후기 목록(제품별)
+ select r.re_num, r.pro_num, r.re_member, r.re_content, r.re_image,re_image2,re_date,re_stars, p.pro_name, p.pro_imagefilename, p.pro_size  
+   from review r join productall p on r.pro_num = p.pro_num 
+where r.pro_num like CONCAT(616,'%');
+
+        
+select *
+  from re_reply
+where re_rep_member = 'test01' and re_rep_num = 15;
+        
+select *
+  from re_reply
+where re_rep_member = 'test02'and re_rep_num = 13;
+  
+        
+       
+        
+        
+        
+        
+        
+        
+        
+        

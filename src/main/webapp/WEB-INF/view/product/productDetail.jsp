@@ -232,13 +232,13 @@ $(function() {
 			 
 			$.get(contextPath + "/api/selectReviewByProNum/"+ proNum, 
 				function(json){
-				console.log(json)
 					if(json.length != 0){
 						for(i = 0; i < json.length; i++){
-								sCont += "				<h1 class = 'memberId'>" + json[i].memberId +"</h1>" 
-								sCont += "<div class='starRate'>"
-								sCont += "		<div class='star-rating'>"
-								sCont += "					<div class='stars'>"
+								sCont += "<div class = 'reviewMembers'>"
+								sCont += "			<h1 class = 'memberId'>" + json[i].memberId +"</h1>" 
+								sCont += "		<div class='starRate'>"
+								sCont += "			<div class='star-rating'>"
+								sCont += "				<div class='stars'>"
 								if(json[i].reviewStar != 0){
 									for(j = 1; j < json[i].reviewStar+1; j++){
 										$('.print').html('<img src="images/star-lv' +j + '.png">' + notice[j-1]);
@@ -250,27 +250,160 @@ $(function() {
 								}
 								sCont += "					<div class='print'></div>"
 								sCont += "					</div>"
+								sCont += "				</div>"
+								sCont += "			</div>"
+								sCont += "		<div class = 'reviewList'>"
+								sCont += "			<img class = 'prodImg' src='/proj21_shop/resources/product/images/" + json[i].proImagefilename.proImagefilename + "' width = '70' height= '70'>"
+								sCont += "				<div class = 'proAndMemInfo'>"
+								sCont += "					<span>" + json[i].proName.proName +"/"+proSize[json[i].proName.proSize]+ "</span><br>"
+								sCont += "				</div>"
+								sCont += "			<div class = 'reivewContent'>"+json[i].reviewContent+"</div><br>";	
+								sCont += "			<div class = 'reviewImg'>"
+								sCont += "				<img src='/proj21_shop/resources/review/images/" + json[i].reviewImagefilename1 + "'>"
+								/* sCont += "			<img src='/proj21_shop/resources/review/images/" + json[i].reviewImagefilename2 + "' width = '70' height= '70'>" */
 								sCont += "			</div>"
 								sCont += "		</div>"
-								sCont += "	<div class = 'reviewList'>"
-								sCont += "		<img class = 'prodImg' src='/proj21_shop/resources/product/images/" + json[i].proImagefilename.proImagefilename + "' width = '70' height= '70'>"
-								sCont += "			<div class = 'proAndMemInfo'>"
-								sCont += "				<span>" + json[i].proName.proName +"/"+proSize[json[i].proName.proSize]+ "</span><br>"
-								sCont += "			</div>"
-								sCont += "		<div class = 'reviewImg'>"
-								sCont += "			<img src='/proj21_shop/resources/review/images/" + json[i].reviewImagefilename1 + "'>"
-								/* sCont += "		<img src='/proj21_shop/resources/review/images/" + json[i].reviewImagefilename2 + "' width = '70' height= '70'>" */
+								if(json[i].reviewReplys[0].reRepNum != 0){
+									for(j = 0; j < json[i].reviewReplys.length; j++){
+										sCont += "<div class='commentArea'>"
+										sCont += "		<div class='commentUser'>"+json[i].reviewReplys[j].reRepMember+"</div>"
+										sCont += "		<div class='commentContentAndBtns'>"
+										sCont += "			<div class='commentContent'>"+json[i].reviewReplys[j].reRepContent +"</div>"
+										sCont += "			<div class='commentBtns'>"
+										sCont += "				<input type= 'hidden' class = 'rrno' name= 'rrno' value="+json[i].reviewReplys[j].reRepNum+"/>"
+										sCont += "				<button class='commentBtn updateBtn'>수정</button>"
+										sCont += "				<button class='commentBtn deleteBtn'>삭제</button>"
+										sCont += "			</div>"
+										sCont += "		</div>"
+										sCont += "</div>"
+									}
+								}
+								sCont += "		<div class='replyGroup'>"
+								sCont += "			<input type= 'hidden' class = 'rno' name= 'rno' value="+json[i].reviewNum+"/>"
+								sCont += "			<input type= 'text' class= 'replyContent' name='replyContent' placeholder='내용을 입력하세요.'>"
+								sCont += "	    	<button class = 'commentInsertBtn' name='commentInsertBtn'>댓글</button>"
 								sCont += "		</div>"
-								sCont += "		<div class = 'reivewContent'>"+json[i].reviewContent+"</div><br>";	
-								sCont += "	</div>"
-						 }
-					}else{
+								sCont += "<div>"
+						 }                                                                                                                          
+					}else{                                                                                                                                      
 							$('.star-rating').text("")
 							sCont += "<p class = 'noReview'>후기가 없습니다.</p>" 
 					}
 					$("#productReview").append(sCont);
+					
+					/* 댓글 등록 버튼 클릭 */
+					$('.commentInsertBtn').on("click",function(){
+						
+						var pReviewNum = $(this).prev().prev().val();
+						
+						/*댓글을 달 후기 번호*/
+						var useNum = pReviewNum.substring(0,pReviewNum.length-1)
+						var replyContent = $(this).prev().val()
+						var reRepNum = $(this).parent().prev().children().children().children()
+						
+						var reply = {
+							  "reNum" : useNum,
+							  "reRepMember" : memberId,
+							  "reRepContent" : replyContent
+						}
+						
+						var reviewReply = {
+							  "reRepNum"  : reRepNum,
+							  "reRepMember" : memberId,
+							  "reRepContent" : replyContent
+						}
+						
+						
+						if($(this).text() == '댓글'){
+							insertReviewReply(reply);
+						}else if($(this).text() == '수정'){
+							updateReviewReply(reviewReply)
+							replyContent.text('댓글')
+						}
+							
+					})
+					
+					$('.updateBtn').on('click',function(){
+						var useNum = $(this).prev().val()
+						var reRepNum = useNum.substring(0, useNum.length-1)
+						var replyContent = $(this).parent().parent().parent().next().children().next().val()
+						var commentInsertBtn = $(this).parent().parent().parent().next().children().next().next().text()
+						$('.commentInsertBtn').text('수정')
+					})
+					
+					$('.deleteBtn').on('click',function(){
+						var useNum = $(this).prev().prev().val()
+						var reRepNum = useNum.substring(0, useNum.length-1)
+						var delItem = {
+								"reRepMember" :	memberId,
+								"reRepNum" : reRepNum
+						}
+						deleteReviewReply(delItem)
+					})
+					
 				})
 				
+				
+				function insertReviewReply(reply){
+					
+					$.ajax({
+						url : contextPath + '/api/insertReviewReply',
+						type: 'Post' ,
+						contentType : "application/json; charset=utf-8",
+						datatype : "json",
+						data: JSON.stringify(reply),
+						success: function(res){
+							window.location.reload()
+						},
+						error:function(request, status, error){
+							console.log(request)
+							alert(status);
+							/* alert("code:"+request.status+"\n"+"message:"
+					                  +request.responseText+"\n"+"error:"+error); */
+						}
+					})
+				}//insertReviewReply
+				
+				/* function updateReviewReply(reviewReply){
+					$.ajax({
+						url : contextPath + '/api/updateReviewReply/'+reviewReply.,
+						type: 'Patch' ,
+						contentType : "application/json; charset=utf-8",
+						datatype : "json",
+						data: JSON.stringify(reply),
+						success: function(res){
+							window.location.reload()
+						},
+						error:function(request, status, error){
+							console.log(request)
+							alert(status);
+							 alert("code:"+request.status+"\n"+"message:"
+					                  +request.responseText+"\n"+"error:"+error); 
+						}
+					})
+				} */
+				
+				function deleteReviewReply(delItem){
+					console.log(delItem)
+					$.ajax({
+						url : contextPath + '/api/deleteReviewReply',
+						type: 'Post' ,
+						contentType : "application/json; charset=utf-8",
+						datatype : "json",
+						data: JSON.stringify(delItem),
+						success: function(res){
+							alert(res)
+							/* window.location.reload() */
+						},
+						error:function(request, status, error){
+							console.log(request)
+							alert(status);
+							/* alert("code:"+request.status+"\n"+"message:"
+					                  +request.responseText+"\n"+"error:"+error); */
+						}
+					})
+				}
+		  
 				
 })// 제이쿼리 끝
 

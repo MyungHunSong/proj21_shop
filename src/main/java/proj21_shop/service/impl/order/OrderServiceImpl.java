@@ -9,7 +9,7 @@ import proj21_shop.dto.member.AddressDTO;
 import proj21_shop.dto.member.MemberDTO;
 import proj21_shop.dto.order.OrderDTO;
 import proj21_shop.dto.product.ProductDTO;
-import proj21_shop.exception.toMuchOrderExeption;
+import proj21_shop.exception.ToMuchOrderExeption;
 import proj21_shop.mapper.member.MemberMapper;
 import proj21_shop.mapper.order.OrderMapper;
 import proj21_shop.service.order.OrderService;
@@ -88,7 +88,7 @@ public class OrderServiceImpl implements OrderService {
 				res += orderMapper.updateProduct(productDTO);
 				
 			}else {
-				throw new toMuchOrderExeption("죄송합니다 제품 수량이 부족합니다.");
+				throw new ToMuchOrderExeption("죄송합니다 수량이 부족합니다.");
 			}
 			
 			res += orderMapper.deletCart(orderDTO);

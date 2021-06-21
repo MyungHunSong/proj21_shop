@@ -18,6 +18,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import proj21_shop.config.ContextRoot;
 import proj21_shop.dto.review.ReviewDTO;
 import proj21_shop.dto.review.ReviewReplyDTO;
+import proj21_shop.service.review.ReviewReplyService;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -30,6 +31,9 @@ public class ReviewReplyMapperTest {
 
 	@Autowired
 	private ReviewReplyMapper mapper;
+	
+	@Autowired
+	private ReviewReplyService service;
 	
 	@After
 	public void tearDown() throws Exception {
@@ -48,37 +52,52 @@ public class ReviewReplyMapperTest {
 		log.debug(Thread.currentThread().getStackTrace()[1].getClassName()+"()");
 		ReviewReplyDTO reviewReply = new ReviewReplyDTO();
 		reviewReply.setReNum(1);
-		reviewReply.setReRepMember("test01");
-		reviewReply.setReRepContent("후기 작성 중중중");
-		int res = mapper.insertReviewReply(reviewReply);
-		Assert.assertEquals(1,res);
-	}
-
-	//@Test
-	public void test03UpdateReviewReply() {
-		log.debug(Thread.currentThread().getStackTrace()[1].getClassName()+"()");
-		ReviewReplyDTO reviewReply = new ReviewReplyDTO();
-		reviewReply.setReRepNum(3);
-		reviewReply.setReRepMember("test01");
-		reviewReply.setReRepContent("후후기 수정 중중중");
-		
-		int res = mapper.updateReviewReply(reviewReply);
-		Assert.assertEquals(1,res);
-	}
-
-	//@Test
-	public void test04DeleteReviewReply() {
-		log.debug(Thread.currentThread().getStackTrace()[1].getClassName()+"()");
-		
-		int res = mapper.deleteReviewReply(3);
+		/*reviewReply.setReRepMember("test01");*/
+		reviewReply.setReRepContent("후기 작성 중중중"); 
+		int res = service.insertReviewReply(reviewReply);
 		Assert.assertEquals(1,res);
 	}
 
 	@Test
+	public void test03UpdateReviewReply() {
+		log.debug(Thread.currentThread().getStackTrace()[1].getClassName()+"()");
+		ReviewReplyDTO reviewReply = new ReviewReplyDTO();
+		reviewReply.setReRepNum(15);
+		reviewReply.setReRepMember("test01");
+		reviewReply.setReRepContent("후기 중");
+		
+		int res = service.updateReviewReply(reviewReply);
+		Assert.assertEquals(1,res);
+	}
+
+	@Test
+	public void test05DeleteReviewReply() {
+		log.debug(Thread.currentThread().getStackTrace()[1].getClassName()+"()");
+		
+		ReviewReplyDTO reviewReply = new ReviewReplyDTO();
+		reviewReply.setReRepMember("test01");
+		reviewReply.setReRepNum(15);
+		
+		int res = service.deleteReviewReply(reviewReply);
+		Assert.assertEquals(1,res);
+	}
+
+	//@Test
 	public void test05selectReviewByProNum() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getClassName()+"()");
 		
 		List<ReviewDTO> list = mapper.selectReviewByProNum(616);
 		Assert.assertNotNull(list);
+	}
+	
+	@Test
+	public void test04selectMemberId() {
+		log.debug(Thread.currentThread().getStackTrace()[1].getClassName()+"()");
+		
+		ReviewReplyDTO reviewReply = new ReviewReplyDTO();
+		reviewReply.setReRepMember("test01");
+		reviewReply.setReRepNum(15);
+		ReviewReplyDTO b = mapper.selectMemberIdAndReRepNum(reviewReply);
+		Assert.assertNotNull(b);
 	}
 }

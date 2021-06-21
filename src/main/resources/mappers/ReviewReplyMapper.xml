@@ -23,13 +23,13 @@
 	    values (#{reNum}, #{reRepMember}, #{reRepContent})
 	</insert>
 	
-	<update id="updateReviewReply">
+	<update id="updateReviewReply" parameterType="ReviewReplyDTO">
 		update re_reply 
 	         set re_rep_content = #{reRepContent}, re_rep_date = now() 
 	 	 where re_rep_num = #{reRepNum}
 	</update>
 		
-	<delete id="deleteReviewReply">
+	<delete id="deleteReviewReply" parameterType="ReviewReplyDTO">
 		delete 
   		  from re_reply 
         where re_rep_num = #{reRepNum}
@@ -46,11 +46,20 @@
 		<result column="re_stars" property="reviewStar"/>
 		<association property="proName" javaType="ProductDTO" autoMapping="true"></association>
 		<association property="proImagefilename" javaType="ProductImageDTO" autoMapping="true"></association>
+		<collection property="reviewReplys" resultMap="ResReviewReply"></collection>
 	</resultMap>	
 	
 	<select id="selectReviewByProNum" resultMap="ResReview">
-	    select r.re_num, r.pro_num, r.re_member, r.re_content, r.re_image,re_image2,re_date,re_stars, p.pro_name, p.pro_imagefilename, p.pro_size  
-  		  from review r join productall p on r.pro_num = p.pro_num 
+	     select r.re_num, r.pro_num, r.re_member, r.re_content, r.re_image,re_image2,re_date,re_stars, p.pro_name, p.pro_imagefilename, p.pro_size,re_rep_num,re_rep_member,re_rep_content,re_rep_date 
+  		  from review r 
+                  join productall p on r.pro_num = p.pro_num 
+                  left join re_reply rr on rr.re_num = r.re_num
         where r.pro_num like CONCAT(#{proNum},'%')
+	</select>
+	
+	<select id="selectMemberIdAndReRepNum" resultMap="ResReviewReply">
+		 select re_rep_num,re_num,re_rep_member,re_rep_content,re_rep_date
+  		  from re_reply
+		where re_rep_member = #{reRepMember} and re_rep_num = #{reRepNum}
 	</select>
 </mapper>
