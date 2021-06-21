@@ -17,6 +17,15 @@
 .showReply{
 	display: none;
 }
+#contentArea{
+	
+	width: 800px;
+	height: 30px;
+}
+
+#contentArea button{
+	margin-left:10px;
+}
 </style>
 <script type="text/javascript">
 $(function(){
@@ -58,19 +67,48 @@ $(function(){
 						sCont += "<tr class='showReply'>";
 						sCont += "<td>→답변:</td> " 
 						sCont += "<td colspan='4'> " +json[i].qContent+ "<td>";
-						sCont += "<td id ='modifyNdelete' ><button>수정</button><button>삭제</button></td>";
 						sCont += "</tr>";						
 					}
 					
 					sCont += "<tr class ='clickReplyTd' type='hidden' >";			
 					sCont += "<td colspan='6' float='left'>관리자<p><label value="+ json[i].qMember +">" + "</label></p><br>"
 									+ "<textarea id='contentArea' name='contentArea'></textarea><br>"
-									+"<button type = 'button' class = 'addContent'>등록</button></td>";
-					sCont += "</tr>";	
+									+"<button type = 'button' class = 'addContent'>등록</button>"
+									+"<button type = 'button' class = 'modifyContent'>수정</button>"
+									+"<button type = 'button' class = 'deleteContent'>삭제</button></td>";
+					sCont += "</tr>";			
 				}
 			
 				$("#load").append(sCont);
 			}
+			
+			// 수정 삭제.
+			$('.modifyContent').on('click', function(){
+				var idx = $(this).parent().parent().prev().prev().children().next().next().val();
+				console.log(idx);
+				console.log($("textarea[name='contentArea']:visible").val())
+				
+				var modifyItem = {
+						"qIndex": idx,
+						"qContent": $("textarea[name='contentArea']:visible").val()
+				};
+				
+				$.ajax({
+					url:contextPath + "/api/qna/" + idx,
+					type:"POST",
+					contentType:"application/json; charset=utf-8",
+					datatype:"json",
+					data:JSON.stringify(modifyItem),
+					success:function(){
+						alert("수정  했습니다.");
+						window.location.href = contextPath + "/listPaging?page="+page + "&pagePageNum="+ perPageNum + "&searchType=" + searchType + "&keyword=";
+					},
+					error:function(){
+						alert("수정 실패.");
+					}
+	
+				});
+			});
 			
 			// 조회수 ajax 구현 & 상세내용 보기. -시작-
 			$('.clickOption').on('click',function(){
@@ -156,7 +194,7 @@ $(function(){
 							data:JSON.stringify(insertItem),
 							success:function(){
 								alert('완료')
-								 window.location.href = contextPath + "/listPaging?page="+page + "&pagePageNum="+ perPageNum + "&searchType=" + searchType + "&keyword=";
+								window.location.href = contextPath + "/listPaging?page="+page + "&pagePageNum="+ perPageNum + "&searchType=" + searchType + "&keyword=";
 							},
 							error:function(){
 								alert("실패")

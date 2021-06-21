@@ -2,6 +2,7 @@
 <!--답글 커서 & 답글 페이지 보이기. -->
 
 #contentArea{
+	margin-left:10px;
 	width: 800px;
 	height: 30px;
 }
