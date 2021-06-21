@@ -23,4 +23,16 @@ public class QnaInsertServiceImpl implements QnaInsertService {
 		return qMapper.insertQnaForAdmin(qDto);
 	}
 
+	@Override
+	public int modifyForAdmin(QnaDTO qDto) {
+		
+		return qMapper.modifyForAdmin(qDto);
+	}
+
+	@Override
+	public int deleteForAdmin(QnaDTO qDto) {
+		
+		return qMapper.deleteForAdmin(qDto);
+	}
+
 }

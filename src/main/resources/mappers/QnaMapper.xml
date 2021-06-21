@@ -121,7 +121,7 @@
 		
 		<!-- 조회수 증가 & 관리자 답글 기능 쓸꺼
 		1. => 조회수 증가.
-		2. => 관리자용 답글 -->
+		2. => 관리자용 답글 추가, 수정, 삭제 -->
 		<update id="updateHitsCount" parameterType="int">
 			update qna 
 				set q_hits = q_hits + 1 
@@ -132,5 +132,17 @@
 			insert into qna(q_title, q_member, q_content, q_date, q_group, q_step)
 				values(#{qTitle}, #{qMember}, #{qContent}, now(), #{qGroup}, 1)
 		</insert>
+		
+		<update id="modifyForAdmin">
+			update qna 
+				set q_content = #{qContent} 
+			where q_index = #{qIndex} 
+		</update>
+		
+		<delete id="deleteForAdmin">
+			delete
+				from qna 
+			where q_index = #{qIndex} 
+		</delete>
 		
 </mapper>
