@@ -28,7 +28,10 @@
 		<result property="memberTotalLogin" column="m_total_login" />
 	</resultMap>
 
-
+	<delete id="deleteMember" parameterType="String">
+		delete member where m_id=#{memberId}
+	</delete>
+	
 	<!-- 회원 검색 조건문 -->
 	<select id="selectAllMembersList" resultMap="adminMemResult" >
 		
@@ -119,4 +122,19 @@
 		</choose>
 	</select>
 
+	<select id="selectMemberByCertain" resultMap="adminMemResult" parameterType="Map">
+		select m_id,m_code, m_name,m_point,m_total_login,m_total_buy,m_total_order
+		  from (select SELECT @ROWNUM := @ROWNUM+1 AS rn, m_id, m_name, m_point, m_total_login,m_total_buy,m_total_order 
+				  from (SELECT @ROWNUM :=0) R, member
+		<choose>
+		<when test="memberId !=null and !memberId.equals('')">
+				 where m_id=#{memberId})
+		 where rn=1
+		</when>		
+		<otherwise>
+		 		 where m_name LIKE CONCAT('%',#{memberKeyword},'%') or m_id LIKE CONCAT('%',#{memberKeyword},'%'))
+		 where rn=1
+		</otherwise>
+		</choose>		
+	</select>
 </mapper>

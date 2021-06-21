@@ -36,6 +36,13 @@
 				<result property="proColor" column="pro_color"/>
 				<result property="proSize" column="pro_size"/>
 			</association>
+			
+			<association property="productImageDTO" javaType="ProductImageDTO">
+				<result property="proNum" column="pro_num"/>
+				<result property="proImgCode" column="pro_img_code"/>
+				<result property="proImagefilename" column="pro_imagefilename"/>
+				<result property="proImageFileType" column="pro_img_state"/>
+			</association>
 	</resultMap>
 	
 	
@@ -162,9 +169,63 @@
 	<update id="setUpRefund" parameterType="map">
 		update order
 		  <set>
-		  delivery_status = #{waitingRefund}
+		  	   delivery_status = #{waitingRefund}
 		  </set>
 		 where order_pro_num = #{orderProNum}
 	</update>
+	
+	<!-- orderlist -->
+	<select id="selectAverageOrder" resultType="int" parameterType="String">
+		SELECT SUM(order_price)/COUNT(order_code)
+		  FROM `order`
+		 WHERE order_member_id = #{orderMemberId};
+	</select>
+	
+	<select id="haveOrdered" parameterType="String" resultType="String">
+		select if(count(order_member_id)=0,'false','true')
+		  from `order`
+		 where order_member_id = #{orderMemberId}
+	</select>
+	
+	<select id="onDelivery" parameterType="map" resultType="String">
+		select count(delivery_status)
+		  from `order`
+		 where order_member_id= #{orderMemberId} and delivery_status = #{deliveryStatus}
+	</select>
+	
+	<select id="haveRefunded" parameterType="map" resultType="String">
+		select if(count(order_pro_num),0,'false','true')
+		  from `order` 
+		 where order_member_id = #{orderMemberId} and delivery_status=#{deliveryStatus}
+	</select>
+	
+	<select id="onRefund" parameterType="map" resultType="String">
+		select count(order_pro_num)
+		  from `order` 
+		 where order_member_id =#{orderMemberId} and delivery_status=#{deliveryStatus}
+	</select>
+	
+	<select id="get_OrderList" resultType="OrderDTO" parameterType="map">
+		SELECT a.*
+		  FROM (SELECT order_pro_num, order_code , order_date , order_pro_quantity , order_price ,
+		  			   delivery_status ,order_member_name, request_to_delivery, which_bank,
+					   p.pro_num, p.pro_color, p.pro_size, p.pro_name, img.pro_imagefilename
+				  FROM `order` o , product p , pro_img img
+				 WHERE o.pro_num = p.pro_num AND img.pro_img_state = 1 AND img.pro_num = p.pro_num AND o.order_member_id = #{orderMemberId}
+					   <choose>
+					   <when test="orderProNum != null">
+					   AND
+					   o.order_pro_num = #{orderProNum}
+					   </when>
+					   <otherwise></otherwise>
+					   </choose>
+					   <if test="deliveryStatus !=null">
+					   AND
+					   o.delivery_status= #{deliveryStatus}
+					   </if>
+				) a, product p
+		  WHERE p.pro_num = a.pro_num
+		  ORDER BY a.order_code DESC;
+	</select>
 
 </mapper> 

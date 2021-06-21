@@ -43,5 +43,18 @@ public interface AdminOrderMapper {
 	
 	int selectedTotal(Map<String, Object> pagingMap);
 
+	int selectAverageOrder(String memberId);
+	
+	String haveOrdered(String orderMemberId);
+
+	String onDelivery(Map<String, Object> map);
+	
+	List<OrderDTO> get_OrderList(Map<String, Object> map);
+	
+    String haveRefunded(Map<String, Object> map);
+    
+    String onRefund(Map<String, Object> map);
+
+	
 	
 }

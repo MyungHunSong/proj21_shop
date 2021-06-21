@@ -417,5 +417,54 @@ SELECT *
  UPDATE `order`
     SET delivery_status = '배송준비중'
   WHERE order_pro_num = '1';
+ 
+ select count(delivery_status)
+ from `order`
+ where order_member_id= 'test01' and delivery_status = '배송준비중';
+  
+ select if(count(order_code)=0,'false','true') 
+   from `order`
+  where order_member_id ='test01' and delivery_status='배송준비중';
   
  
+SELECT a.*
+  FROM (SELECT order_pro_num, order_code , order_date , order_pro_quantity , order_price ,
+  			   delivery_status ,order_member_name, request_to_delivery, which_bank,
+			   p.pro_num, p.pro_color, p.pro_size, p.pro_name, img.pro_imagefilename
+		  FROM `order` o , product p , pro_img img
+		 WHERE o.pro_num = p.pro_num AND img.pro_img_state = 1 AND img.pro_num = p.pro_num AND o.order_member_id = #{memberId}
+			   <choose>
+			   <when test="orderProNum != null">
+			   AND
+			   o.order_pro_num = #{orderProNum}
+			   </when>
+			   <otherwise></otherwise>
+			   </choose>
+			   <if test="deliveryStatus !=null">
+			   AND
+			   o.delivery_status= #{deliveryStatus}
+			   </if>
+		) a, product p
+  WHERE p.pro_num = a.pro_num
+  ORDER BY a.order_code DESC;
+  
+SELECT a.* 
+  FROM (SELECT order_pro_num, order_code , order_date , order_pro_quantity , order_price ,
+  			   delivery_status ,order_member_name, request_to_delivery, which_bank,
+			   p.pro_num, p.pro_color, p.pro_size, p.pro_name, img.pro_imagefilename
+		  FROM `order` o , product p , pro_img img
+		 WHERE o.pro_num = p.pro_num AND img.pro_img_state = 1 AND img.pro_num = p.pro_num AND o.order_member_id = 'test01'
+		)a, product p
+  WHERE p.pro_num = a.pro_num
+  ORDER BY a.order_code DESC;
+  
+SELECT *
+FROM pro_img pi2 ;
+
+SELECT SUM(order_price)/COUNT(order_code)
+  FROM `order`
+ WHERE order_member_id = 'test01';
+ 
+select if(count(cart_pro_num)=0,'false','true')
+			  from cart
+			 where cart_member_Id='test01';

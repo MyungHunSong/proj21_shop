@@ -33,6 +33,13 @@
 		</where>
 	</sql>
 	
+	<select id="flagInCart" parameterType="String" resultType="String">
+			select if(count(cart_pro_num)=0,'false','true')
+			  from cart
+			 where cart_member_Id=#{memberId}
+	</select>
+		
+		
 	<select id="selectCartByMemberId" resultMap="ResCart">
 		<include refid="selectSQL"></include>
         <include refid="whereSQL"></include>

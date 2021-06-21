@@ -22,5 +22,9 @@ public interface AdminMemberMapper {
 	int selectAllMemberWomen();//
 
 	int selectedMembers(Map<String, Object> pagingMap);//
+	
+	int deleteMember(String memberId);
+
+	MemberDTO selectMemberByCertain(Map<String, Object> searchMap);
 
 }
