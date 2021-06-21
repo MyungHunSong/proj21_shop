@@ -1,6 +1,20 @@
 @charset "UTF-8";
 <!--답글 커서 & 답글 페이지 보이기. -->
 
+#contentArea{
+	margin-left:10px;
+	width: 800px;
+	height: 30px;
+}
+
+.showReply{
+	display: none;
+}
+
+.showReply.active{
+	display:revert;
+}
+
 .clickReply{
 	cusor:pointer;
 }
@@ -9,7 +23,7 @@
 }
 
 .clickReplyTd.active{
-	 display: contents;	
+	display:revert;
 }
 
 <!-- 상세내용 보이기. -->
@@ -21,7 +35,7 @@
 }
 
 .clickContent.active{
-	 display: contents;	
+	 display:revert;
 }
 
 #qna_board{
@@ -29,15 +43,17 @@
 }
 
 .qna_table{
-	border: 1px solid red;
+	/* border: 1px solid red; */
 	margin:auto;
-	width: 40%;
-	height: 40%;
+	width: 1000px;
+	height:500px;
+	margin-bottom: 100px;
+	box-sizing: box;
 }
 
 .qna_table tr td{
-	border: 1px solid red;
 	text-align: center;
+	border-bottom: 1px solid gray;
 }
 
 

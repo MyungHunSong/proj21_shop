@@ -1,6 +1,7 @@
 package proj21_shop.dto.review;
 
 import java.sql.Date;
+import java.util.List;
 
 import proj21_shop.dto.product.ProductDTO;
 import proj21_shop.dto.product.ProductImageDTO;
@@ -24,7 +25,16 @@ public class ReviewDTO {
 	private int reviewReplyCount;
 	private int reviewStar;
 
+	private List<ReviewReplyDTO> reviewReplys;
 	
+	public List<ReviewReplyDTO> getReviewReplys() {
+		return reviewReplys;
+	}
+
+	public void setReviewReplys(List<ReviewReplyDTO> reviewReplys) {
+		this.reviewReplys = reviewReplys;
+	}
+
 	public ProductDTO getProName() {
 		return proName;
 	}

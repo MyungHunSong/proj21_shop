@@ -7,5 +7,9 @@ public interface QnaInsertService {
 	int updateHitCount(int qIndex);	
 	
 	// 관리자용 답글 페이제.
-		int insertQnaForAdmin(QnaDTO qDto);
+	int insertQnaForAdmin(QnaDTO qDto);
+	// 관리자용 수정 삭제.
+		int modifyForAdmin(QnaDTO qDto);
+		int deleteForAdmin(QnaDTO qDto);
+	
 }
