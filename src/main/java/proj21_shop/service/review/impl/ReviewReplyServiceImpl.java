@@ -66,4 +66,9 @@ public class ReviewReplyServiceImpl implements ReviewReplyService {
 		return mapper.deleteReviewReply(reviewReply);
 	}
 
+	@Override
+	public int selectMaxReRepNum() {
+		return mapper.selectMaxReRepNum();
+	}
+
 }

@@ -62,4 +62,9 @@
   		  from re_reply
 		where re_rep_member = #{reRepMember} and re_rep_num = #{reRepNum}
 	</select>
+	
+	<select id="selectMaxReRepNum"  resultType="int">
+		SELECT MAX(re_rep_num)+1 FROM re_reply
+	</select>
+	
 </mapper>

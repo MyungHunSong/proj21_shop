@@ -7,6 +7,9 @@ import proj21_shop.dto.review.ReviewReplyDTO;
 
 public interface ReviewReplyMapper {
 	
+	/*Ajax시 넣어줄 rerepNum*/
+	int selectMaxReRepNum();
+	
 	/*삭제나 수정하기전 아이디 비교*/
 	ReviewReplyDTO selectMemberIdAndReRepNum(ReviewReplyDTO reviewReply);
 	
@@ -24,4 +27,6 @@ public interface ReviewReplyMapper {
 	
 	/* 댓글 삭제 */
 	int deleteReviewReply(ReviewReplyDTO reviewReply);
+	
+	
 }

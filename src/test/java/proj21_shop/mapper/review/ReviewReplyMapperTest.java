@@ -58,7 +58,7 @@ public class ReviewReplyMapperTest {
 		Assert.assertEquals(1,res);
 	}
 
-	@Test
+	//@Test
 	public void test03UpdateReviewReply() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getClassName()+"()");
 		ReviewReplyDTO reviewReply = new ReviewReplyDTO();
@@ -70,7 +70,7 @@ public class ReviewReplyMapperTest {
 		Assert.assertEquals(1,res);
 	}
 
-	@Test
+	//@Test
 	public void test05DeleteReviewReply() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getClassName()+"()");
 		
@@ -90,7 +90,7 @@ public class ReviewReplyMapperTest {
 		Assert.assertNotNull(list);
 	}
 	
-	@Test
+	//@Test
 	public void test04selectMemberId() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getClassName()+"()");
 		
@@ -99,5 +99,13 @@ public class ReviewReplyMapperTest {
 		reviewReply.setReRepNum(15);
 		ReviewReplyDTO b = mapper.selectMemberIdAndReRepNum(reviewReply);
 		Assert.assertNotNull(b);
+	}
+
+	@Test
+	public void test05selectMemberId() {
+		log.debug(Thread.currentThread().getStackTrace()[1].getClassName()+"()");
+		
+		int res = service.selectMaxReRepNum();
+		System.out.println(res);
 	}
 }
