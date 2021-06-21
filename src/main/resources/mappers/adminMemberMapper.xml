@@ -28,9 +28,6 @@
 		<result property="memberTotalLogin" column="m_total_login" />
 	</resultMap>
 
-	<delete id="deleteMember" parameterType="String">
-		delete member where m_id=#{memberId}
-	</delete>
 	
 	<!-- 회원 검색 조건문 -->
 	<select id="selectAllMembersList" resultMap="adminMemResult" >
@@ -79,7 +76,8 @@
 
 	<!-- 회원삭제 -->
 	<delete id="deleteMember" parameterType="String">
-		DELETE member
+		DELETE 
+		  FROM member
 		 WHERE m_id=#{memberId}
 	</delete>
 	
@@ -122,19 +120,23 @@
 		</choose>
 	</select>
 
-	<select id="selectMemberByCertain" resultMap="adminMemResult" parameterType="Map">
-		select m_id,m_code, m_name,m_point,m_total_login,m_total_buy,m_total_order
-		  from (select SELECT @ROWNUM := @ROWNUM+1 AS rn, m_id, m_name, m_point, m_total_login,m_total_buy,m_total_order 
-				  from (SELECT @ROWNUM :=0) R, member
+
+	
+	<select id="selectMemberByCertain" resultMap="adminMemResult" parameterType="java.util.Map">
+		SELECT m_id, m_name, m_point, m_total_login, m_total_buy, m_total_order
+		  FROM (SELECT (@rownum := @rownum + 1) AS rn, m_id, m_name, m_point,
+		  		m_total_login, m_total_buy, m_total_order
+		  		  FROM `MEMBER`
 		<choose>
-		<when test="memberId !=null and !memberId.equals('')">
-				 where m_id=#{memberId})
-		 where rn=1
-		</when>		
-		<otherwise>
-		 		 where m_name LIKE CONCAT('%',#{memberKeyword},'%') or m_id LIKE CONCAT('%',#{memberKeyword},'%'))
-		 where rn=1
-		</otherwise>
+			<when test="memberId !=null and !memberId.equals('')">
+			  WHERE m_id=#{memberId} AND (@rownum:=0)=0) AS A
+		 WHERE rn=1
+			</when>		
+			<otherwise>
+			  WHERE m_name LIKE CONCAT('%', #{memberKeyword}, '%') OR m_id LIKE CONCAT('%', #{memberKeyword}, '%') AND (@rownum:=0)=0) AS A
+ 		 WHERE rn=1
+			</otherwise>
+			<!--Nonmember는 아예따른쪽으로  -->
 		</choose>		
 	</select>
 </mapper>

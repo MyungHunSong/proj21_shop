@@ -1,5 +1,6 @@
 package proj21_shop.controller.admin.member;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,8 +11,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import proj21_shop.service.admin.member.AdminMemberService;
 
@@ -74,5 +77,61 @@ public class AdminMemberController {
 		System.out.println("mav" + mav);
 
 		return mav;
+	}
+
+	@RequestMapping("viewMember")
+	public ModelAndView viewMember(@RequestParam(value = "memberId", required = false) String memberId,
+			@RequestParam(value = "memberKeyword", required = false) String memberKeyword, HttpServletRequest request,
+			HttpServletResponse response) {
+		HttpSession session = request.getSession();
+		if (session.getAttribute("side_menu") != null) {
+			session.removeAttribute("side_menu");
+		}
+		session.setAttribute("side_menu", "side_member");
+		ModelAndView mav = new ModelAndView();
+		String viewName = (String) request.getAttribute("viewName");
+		Map searchMap = new HashMap();
+		Map<String, Object> viewMap = new HashMap();
+
+		if (memberId != null && !memberId.equals("")) {
+			searchMap.put("memberId", memberId);
+			System.out.println("memberId : " + memberId);
+		}
+		if(memberKeyword == null) {
+			memberKeyword="test01";
+		}
+		if (memberKeyword != null && !memberKeyword.equals("")) {
+			searchMap.put("memberKeyword", memberKeyword);
+			System.out.println("memberKeyword " + memberKeyword);
+		}
+
+		viewMap = adminMemberService.viewMember(searchMap);
+		mav.setViewName("admin/member/viewMember");
+
+		mav.addObject("viewMap", viewMap);
+		return mav;
+	}
+
+	@RequestMapping("deleteMember")
+	public ModelAndView deleteMember(@RequestParam(value = "memberId", required = false) String memberId, HttpServletRequest request,
+			HttpServletResponse response) throws IOException {
+
+		ModelAndView mav = new ModelAndView();
+
+		adminMemberService.deleteMember(memberId);
+
+		mav.setViewName("redirect:admin/member/listMembers");
+		return mav;
+	}
+
+	@RequestMapping(value = "searchMember", method = { RequestMethod.POST })
+	public ModelAndView searchMember(@RequestParam(value = "memberSearch", required = false) String memberSearch, RedirectAttributes redir,
+			HttpServletRequest request, HttpServletResponse response) {
+
+		ModelAndView mav = new ModelAndView();
+		redir.addAttribute("memberKeyword", memberSearch);
+		mav.setViewName("redirect:/admin/member/viewMember");
+		return mav;
+
 	}
 }

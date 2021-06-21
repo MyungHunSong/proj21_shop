@@ -398,3 +398,14 @@ as
 select p.pro_num,pro_category,pro_name,pro_price,pro_content,pro_salesrate,pro_cre_date,pro_status,pro_color,pro_size,pro_quantity,pro_sold,pro_hits,re_replyCount
 		   ,pro_img_code,pro_imagefilename,pro_img_state
   from product p join pro_img i on p.pro_num = i.pro_num;
+
+ -- 제품 지우기 전에 제품 사진들 지우기 -jongyoon
+delimiter $$
+create trigger delete_pro_img
+before delete on product
+for each row
+begin
+delete from pro_img
+where pro_num = old.pro_num;
+end $$
+delimiter ;
