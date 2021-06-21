@@ -1,5 +1,8 @@
 package proj21_shop.mapper.admin.order;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.ibatis.logging.Log;
 import org.apache.ibatis.logging.LogFactory;
 import org.junit.After;
@@ -95,6 +98,18 @@ public class AdminOrderMapperTest {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		int res=mapper.selectAllWaitingRefund();
 		log.debug("환불 대기중? >>" + res);
+	}
+	
+	@Test
+	public void test10UpdateDelivery() {
+		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
+		Map<String,Object> changeMap=new HashMap();
+		String change_deliveryStatus="배송준비중";
+		String change_orderProNum="1";
+		changeMap.put("change_deliveryStatus", change_deliveryStatus);
+		changeMap.put("change_orderProNum", change_orderProNum);
+		int res=mapper.updateDelivery(changeMap);
+		log.debug("배송중으로 update? ===============================>>" + res);
 	}
 
 }

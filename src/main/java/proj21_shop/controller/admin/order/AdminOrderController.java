@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,12 +20,13 @@ import proj21_shop.service.admin.order.AdminOrderService;
 @Controller("adminOrderController")
 @RequestMapping("admin/order/")
 public class AdminOrderController {
-
+	protected static final Log log = LogFactory.getLog(AdminOrderController.class);
 	@Autowired
 	AdminOrderService adminOrderService;
 
 	@RequestMapping("orderStatics")
 	public ModelAndView searchMember(HttpServletRequest request, HttpServletResponse response) {
+		log.info("orderStatics() 진입");
 		ModelAndView mav = new ModelAndView();
 		Map<String, Object> viewMap = adminOrderService.getOrderStatics();
 		mav.setViewName("admin/order/orderStatics");
@@ -37,7 +40,6 @@ public class AdminOrderController {
 							@RequestParam(value="orderProNum" , required=false) String orderProNum,
 							@RequestParam(value="section", required=false) String _section,
 							@RequestParam(value="pageNum", required=false) String _pageNum,
-							@RequestParam(value="direct_deliveryStatus", required=false) String direct_deliveryStatus,
 							@RequestParam(value="total", required=false) String total,
 							@RequestParam(value="orderMemberName", required=false) String orderMemberName,
 							@RequestParam(value="deliveryStatus", required=false) String deliveryStatus,
@@ -45,13 +47,12 @@ public class AdminOrderController {
 							@RequestParam(value="change_deliveryStatus", required=false) String change_deliveryStatus,
 							@RequestParam(value="change_orderProNum", required=false) String change_orderProNum
 			) {
-		
+		log.info("listOrders() 진입");
 		HttpSession session=request.getSession();
 		if(session.getAttribute("side_menu") !=null){
 			session.removeAttribute("side_menu");
 		}
 		session.setAttribute("side_menu", "side_order");
-		String viewName=(String)request.getAttribute("viewName");
 		
 		ModelAndView mav=new ModelAndView();
 		Map<String,Object> pagingMap=new HashMap();
@@ -61,9 +62,12 @@ public class AdminOrderController {
 		
 		//배송상태 수정하기
 		if(change_deliveryStatus !=null) {
-			System.out.println("change_delivery_status :"+change_deliveryStatus);
-			System.out.println("change_detail_code :"+change_orderProNum);
-			adminOrderService.changeDelivery(change_deliveryStatus, change_orderProNum);
+			System.out.println("change_deliveryStatus===== :"+change_deliveryStatus);
+			System.out.println("change_orderProNum===== :"+change_orderProNum);
+			Map<String,Object> changeMap=new HashMap();
+			changeMap.put("change_deliveryStatus", change_deliveryStatus);
+			changeMap.put("change_orderProNum", change_orderProNum);
+			adminOrderService.changeDelivery(changeMap);
 		}
 		
 		pagingMap.put("orderProNum", orderProNum);
@@ -83,7 +87,6 @@ public class AdminOrderController {
 		System.out.println("orderPrice :"+orderPrice);
 		
 		Map<String,Object> viewMap=adminOrderService.getOrderList(pagingMap);
-		
 		
 		viewMap.put("orderProNum", orderProNum);
 		viewMap.put("section", section);

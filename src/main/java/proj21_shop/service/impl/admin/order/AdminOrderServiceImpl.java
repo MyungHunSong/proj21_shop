@@ -75,8 +75,8 @@ public class AdminOrderServiceImpl implements AdminOrderService {
 	
 	
 	@Override
-	public void changeDelivery(String change_deliveryStatus, String change_orderProNum) {
-		adminOrderMapper.updateDelivery(change_deliveryStatus,change_orderProNum);		
+	public int changeDelivery(Map<String, Object> changeMap) {
+		return adminOrderMapper.updateDelivery(changeMap);		
 	}
 
 

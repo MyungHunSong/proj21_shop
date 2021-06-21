@@ -40,7 +40,8 @@ public class AdminProductController {
 	AdminProductService adminProductService;
 
 	@RequestMapping("listProducts")
-	public ModelAndView addNewProductMain(@RequestParam(value = "total", required = false) String total,
+	public ModelAndView addNewProductMain(
+			@RequestParam(value = "total", required = false) String total,
 			@RequestParam(value = "proName", required = false) String keyword,
 			@RequestParam(value = "proStatus", required = false) String proStatus,
 			@RequestParam(value = "proCategory", required = false) String proCategory,
@@ -65,7 +66,9 @@ public class AdminProductController {
 		ModelAndView mav = new ModelAndView();
 
 		Map<String, Object> pagingMap = new HashMap();
+		
 		Map<String, Object> productsMap = new HashMap();
+		
 		String _section = (String) request.getParameter("section");
 		String _pageNum = (String) request.getParameter("pageNum");
 

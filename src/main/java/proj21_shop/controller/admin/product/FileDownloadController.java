@@ -43,7 +43,7 @@ public class FileDownloadController {
 		
 		File image=new File(filePath);
 		int lastIndex=fileName.lastIndexOf(".");
-		String imageFileName=fileName.substring(0,lastIndex);
+		fileName.substring(0,lastIndex);
 		if(image.exists()) {
 			Thumbnails.of(image).size(666,999).outputFormat("jpg").toOutputStream(out);
 		}

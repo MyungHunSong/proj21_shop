@@ -35,13 +35,26 @@ public interface AdminOrderMapper {
 	
 	List<OrderDTO> selectOrderList(Map<String, Object> pagingMap);
 	
-	void updateDelivery(String change_deliveryStatus, String change_orderProNum);
+	int updateDelivery(Map<String, Object> changeMap);
 	
-	void deleteOrder(Map<String, Object> requestMap);
+	int deleteOrder(Map<String, Object> requestMap);
 
-	void setUpRefund(Map<String, Object> requestMap);
+	int setUpRefund(Map<String, Object> requestMap);
 	
 	int selectedTotal(Map<String, Object> pagingMap);
 
+	int selectAverageOrder(String memberId);
+	
+	String haveOrdered(String orderMemberId);
+
+	String onDelivery(Map<String, Object> map);
+	
+	List<OrderDTO> get_OrderList(Map<String, Object> map);
+	
+    String haveRefunded(Map<String, Object> map);
+    
+    String onRefund(Map<String, Object> map);
+
+	
 	
 }

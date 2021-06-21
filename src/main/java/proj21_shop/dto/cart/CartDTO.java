@@ -9,6 +9,13 @@ public class CartDTO {
 	private ProductDTO cartProNum;
 	private int cartProQuantity;
 
+	public CartDTO() {
+	}
+
+	public CartDTO(MemberDTO memberId) {
+		this.memberId = memberId;
+	}
+
 	public int getCartNum() {
 		return cartNum;
 	}

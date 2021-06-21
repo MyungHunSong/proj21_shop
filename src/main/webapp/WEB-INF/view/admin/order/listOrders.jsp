@@ -45,14 +45,16 @@
 	function select_deliveryStatus(orderProNum){
 		var deliveryStatus=document.getElementById(orderProNum+"select_deliveryStatus").value;
 		$.ajax({
-			type:"post",
 			url:"${contextPath}/admin/order/listOrders",
+			type:"post",
 			data:{"change_deliveryStatus" : deliveryStatus, "change_orderProNum" : orderProNum },
 			success:function(data){
 				alert("배송상태 수정을 완료했습니다.");
 				location.href='${contextPath}/admin/order/listOrders';
 			},
 			error:function(data){
+				console.log(data)
+				alert(data)
 				alert("error");
 			}
 		});
@@ -150,14 +152,19 @@ a {
 						<table>
 							<tr>
 								<td colspan="2">주문검색 &nbsp;&nbsp;</td>
-								<td colspan="5" class="pleft">주문자 : <input type="text" name="orderMemberName" placeholder="주문자 이름을 입력하세요" id="orderMemberName" />
+								<td colspan="5" class="pleft">주문자 :
+								<input type="text" name="orderMemberName" placeholder="주문자 이름을 입력하세요" id="orderMemberName" />
 								</td>
 							</tr>
 
 							<tr>
 								<td colspan="2">배송상태 구분 &nbsp;&nbsp;</td>
-								<td colspan="5" class="pleft"><input type="radio" value="all" name="deliveryStatus" checked>전체 <input type="radio" value="배송중" name="deliveryStatus">배송중 <input
-									type="radio" value="배송완료" name="deliveryStatus">배송완료 <input type="radio" value="반품대기중" name="deliveryStatus">반품대기중 <input type="radio" value="반품완료" name="deliveryStatus">반품완료
+								<td colspan="5" class="pleft">
+								<input type="radio" value="" name="deliveryStatus" checked>전체
+								<input type="radio" value="배송중" name="deliveryStatus">배송중 
+								<input type="radio" value="배송완료" name="deliveryStatus">배송완료
+								<input type="radio" value="반품대기중" name="deliveryStatus">반품대기중 
+								<input type="radio" value="반품완료" name="deliveryStatus">반품완료
 								</td>
 							</tr>
 
@@ -182,6 +189,8 @@ a {
 					<form>
 						<table border="1" style="border-color: #ddd #ddd #848484 #ddd;" width="100%">
 							<tr style="color: white;">
+								<th>주문번호(묶음)</th>
+								<th>주문번호(제품)</th>
 								<th>이미지</th>
 								<th>상품명</th>
 								<th>상품 정보</th>
@@ -195,13 +204,38 @@ a {
 								<c:when test="${ orderList !=null}">
 									<c:forEach var="order" items="${orderList }">
 										<tr style="text-align: center;">
+											<td width="100px">${order.orderProNum }</td>
+											<td width="100px">${order.orderCode }</td>
 											<td width="100px"><a href="${contextPath}/product/productdetail?proNum=${order.proNum}"> <img width="70px" height="105px"
-													src="${contextPath}/thumbnails?proNum=${order.proNum}&fileName=${order.proImagefilename}"></a></td>
-											<td width="100px">${order.proName }</td>
-											<td width="100px">${order.proColor}/${order.proSize }</td>
+													src="${contextPath}/thumbnails?proNum=${order.proNum}&fileName=${order.productDTO.proImgfileName}"></a></td>
+											<td width="100px">${order.productDTO.proName }</td>
+											<td width="100px">
+											<li>
+											<c:if test="${order.productDTO.proColor == 1}">white /</c:if> 
+											<c:if test="${order.productDTO.proColor == 2}">ivory /</c:if>
+											<c:if test="${order.productDTO.proColor == 3}">gray /</c:if> 
+											<c:if test="${order.productDTO.proColor == 4}">pink /</c:if>
+											<c:if test="${order.productDTO.proColor == 5}">yellow /</c:if>
+											<c:if test="${order.productDTO.proColor == 6}">mint /</c:if>
+											<c:if test="${order.productDTO.proColor == 7}">green /</c:if>
+											<c:if test="${order.productDTO.proColor == 8}">purple /</c:if>
+											<c:if test="${order.productDTO.proColor == 9}">navy /</c:if>
+											<c:if test="${order.productDTO.proColor == 11}">black /</c:if>
+											<c:if test="${order.productDTO.proColor == 12}">brown /</c:if>
+											<c:if test="${order.productDTO.proColor == 13}">orange /</c:if>
+										 	<c:if test="${order.productDTO.proColor == 14}">blue /</c:if>
+											<c:if test="${order.productDTO.proColor == 15}">red /</c:if> 
+											<c:if test="${order.productDTO.proColor == 16}">basic /</c:if>
+											</li><li>    
+											<c:if test="${order.productDTO.proSize == 1}">XS /</c:if>
+											<c:if test="${order.productDTO.proSize == 2}">S /</c:if>
+											<c:if test="${order.productDTO.proSize == 3}">M /</c:if>
+											<c:if test="${order.productDTO.proSize == 4}">L /</c:if>
+											<c:if test="${order.productDTO.proSize == 5}">XL /</c:if>
+											</li>						
 											<td width="100px">${order.orderMemberName }</td>
 											<td width="100px"><fmt:formatNumber value="${order.orderPrice* order.orderProQuantity }" pattern="#,###" />원</td>
-											<td width="100px">${order.whoPay }<br> <br>${order.whichBank}</td>
+											<td width="100px">${order.whichBank} 은행</td>
 											<td width="100px">${order.orderDate }</td>
 											<td width="100px">
 												<select id="${order.orderProNum }select_deliveryStatus">
