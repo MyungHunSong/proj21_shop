@@ -27,10 +27,6 @@
 		<result property="memberTotalOrder" column="m_total_order" />
 		<result property="memberTotalLogin" column="m_total_login" />
 	</resultMap>
-
-	<delete id="deleteMember" parameterType="String">
-		delete member where m_id=#{memberId}
-	</delete>
 	
 	<!-- 회원 검색 조건문 -->
 	<select id="selectAllMembersList" resultMap="adminMemResult" >
