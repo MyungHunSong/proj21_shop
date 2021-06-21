@@ -295,7 +295,8 @@ select *
 where re_rep_member = 'test02'and re_rep_num = 13;
   
         
-       
+/*Ajax시 넣어줄 rerepNum*/
+SELECT MAX(re_rep_num)+1 FROM re_reply
         
         
         

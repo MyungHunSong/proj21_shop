@@ -2,7 +2,6 @@ package proj21_shop.controller.review;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +19,11 @@ public class ReviewReplyServiceController {
 
 	@Autowired
 	private ReviewReplyService service;
+	
+	@GetMapping("/selectMaxReRepNum")
+	public ResponseEntity<Object> selectMaxReRepNum(){
+		return ResponseEntity.ok(service.selectMaxReRepNum());
+	}
 	
 	/* 후기 목록 */
 	@GetMapping("/selectReviewByProNum/{proNum}")
