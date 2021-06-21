@@ -218,15 +218,7 @@ select q_index,q_title,q_option, q_member,q_content,q_file,q_date,q_hits,q_group
 					from qna
 			where q_index > 0 
 			order by	 field(q_op, '공지') desc, q_group desc;
-limit 40, 10;
-
-delete from qna where q_index = 160;
-
-
-
-		
-
-
+limit 10, 10;
 
 delete 
 	from qna 
@@ -267,6 +259,32 @@ select q_index,q_title,q_option,q_member,q_content,q_file,q_date,q_hits,q_group,
 				from qna 
 					where q_index >0 and q_option like concat('%', '결제', '%') and q_title like concat('%', '','%')
 				order by	q_op desc, q_date desc;
+			
+-- 3-4. qna 댓글 삭제 수정.
+-- select 용 보기.
+select q_index,q_title,q_option, q_member,q_content,q_file,q_date,q_hits,q_group,q_indent,q_step,
+				case q_option
+					when q_option != '공지' then '공지'
+					when q_option = '공지' then q_index
+					else q_group
+				end as 'q_op'
+					from qna
+			where q_index > 0 
+order by	 field(q_op, '공지') desc, q_group desc;
+-- 추가
+insert into qna(q_title, q_member, q_content, q_date, q_group, q_step)
+	values('앗 쏘리~', 'admin', '죄송합니다 고객님 빠르시일 내에 조취해 드리 겠습니다.', now(), 57, 1);
+
+-- 수정.
+update qna 
+	set q_content = '잘못 배달 갔습니다.'
+where q_index = 71;
+
+-- 삭제
+delete
+	from qna 
+where q_index = 7;
+	
 
 
 

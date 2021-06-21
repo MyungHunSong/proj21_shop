@@ -13,6 +13,11 @@
 <meta charset="UTF-8">
 <title>QNA페이지</title>
 <link rel="stylesheet" href="/proj21_shop/resources/qna/css/qna_qna.css">
+<style type="text/css">
+.showReply{
+	display: none;
+}
+</style>
 <script type="text/javascript">
 $(function(){
 	var contextPath = "${contextPath}";
@@ -42,33 +47,26 @@ $(function(){
 							sCont += "<td>" + json[i].qDate + "</td>";
 							sCont += "<td>" + json[i].qHit + "</td>";
 							sCont += "</tr>";
+							
+							sCont += "<tr class = 'clickContent'>";
+							sCont += "<td>내용:</td>";	
+							sCont += "<td colspan ='5'><img src='/proj21_shop/resources/banner/headerR.jpg' style = 'width : 30px;'/><span>"
+							+json[i].qFile  +"</span>"+ json[i].qContent +"  <a class= 'clickReply'> [답글 달기]</td>";
+							sCont += "</tr>"
 						
-					}		
-					if(json[i].qStep == 0){
-						sCont += "<tr class = 'clickContent'>";
-						sCont += "<td>content</td>";	
-						sCont += "<td colspan = '5' ><img src='/proj21_shop/resources/banner/headerR.jpg' style = 'width : 30px;'/><span>"
-						+json[i].qFile  +"</span>"+ json[i].qContent +"  <a class= 'clickReply'> [답글 달기]</td>";
-						sCont += "</tr>" 
 					}else if(json[i].qStep == 1){
-						sCont += "<tr class = 'clickContent'>";
-						sCont += "<td> →답변: </td>";	
-						sCont += "<td colspan ='5'>" + json[i].qContent + "</td>"						
-						sCont += "</tr>"						
+						sCont += "<tr class='showReply'>";
+						sCont += "<td>→답변:</td> " 
+						sCont += "<td colspan='4'> " +json[i].qContent+ "<td>";
+						sCont += "<td id ='modifyNdelete' ><button>수정</button><button>삭제</button></td>";
+						sCont += "</tr>";						
 					}
 					
-					sCont += "<tr class ='clickReplyTd' >";			
-					sCont += "<td colspan = '5'>관리자<p><label value="+ json[i].qMember +">" + "</label></p><br>"
+					sCont += "<tr class ='clickReplyTd' type='hidden' >";			
+					sCont += "<td colspan='6' float='left'>관리자<p><label value="+ json[i].qMember +">" + "</label></p><br>"
 									+ "<textarea id='contentArea' name='contentArea'></textarea><br>"
 									+"<button type = 'button' class = 'addContent'>등록</button></td>";
 					sCont += "</tr>";	
-					
-					/* if(json[i].qStep == 1){
-					sCont += "<tr class='showReply' type='hidden'>";
-					sCont += "<td>→답변:</td> " 
-					sCont += "<td colspan = '5'> " +json[i].qContent+ "<td>";
-					sCont += "</tr>";
-					} */
 				}
 			
 				$("#load").append(sCont);
@@ -83,7 +81,7 @@ $(function(){
 								
 					if($(this).parent().next().hasClass('active')){
 						$('.clickOption').parent().next().removeClass('active')
-						$('.clickOption').parent().next().next().next().removeClass('active')
+						$('.showReply').parent().next().next().next().removeClass('active')
 						
 					
 						$.ajax({
@@ -101,7 +99,7 @@ $(function(){
 						});	
 					}else{
 						$(this).parent().next().addClass('active')	
-						$('.clickOption').parent().next().next().next().addClass('active')							
+						$(this).parent().next().next().next().addClass('active')							
 						$.ajax({
 							url : contextPath +"/api/qna/" + idx,
 							type:"PATCH",
@@ -119,13 +117,11 @@ $(function(){
 			})
 			// 조회수 ajax 구현 -끝-
 			
-			
-			
-			
 			// 답글 인서트.
 			$(".clickReply").on('click', function(){
 					var idx = $(this).parent().parent().prev().children().next().val();
 					var group = $(this).parent().parent().prev().children().next().next().val();
+					
 					
 					console.log(idx);
 					console.log(group)

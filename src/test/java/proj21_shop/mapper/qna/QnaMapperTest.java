@@ -63,7 +63,7 @@ public class QnaMapperTest {
 	}
 	
 	@Test
-	public void test06ListSearch() {
+	public void test09ListSearch() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getClassName()+"()");
 		
 		SearchCriteria sCri = new SearchCriteria();
@@ -93,9 +93,29 @@ public class QnaMapperTest {
 		dto.setqTitle("앗 죄송");
 		dto.setqMember("admin");
 		dto.setqContent("빠른 시일내에 조취해 드리 겠습니다.");
-		dto.setqGroup(4);
+		dto.setqGroup(57);
 		
 		int res = mapper.insertQnaForAdmin(dto);
+		Assert.assertEquals(1, res);
+	}
+	
+	//@Test
+	public void test07updateReply() {
+		log.debug(Thread.currentThread().getStackTrace()[1].getClassName()+"()");
+		QnaDTO dto = new QnaDTO();
+		dto.setqContent("잘못 배달 갔습니다.");
+		dto.setqIndex(57);
+		
+		int res = mapper.modifyForAdmin(dto);
+		Assert.assertEquals(1, res);
+	}
+	
+	//@Test
+	public void test08DeleteReply() {
+		QnaDTO dto = new QnaDTO();
+		dto.setqIndex(57);
+		
+		int res = mapper.deleteForAdmin(dto);
 		Assert.assertEquals(1, res);
 	}
 }
