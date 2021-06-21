@@ -162,7 +162,8 @@
 	</select>
 
 	<delete id="deleteOrder" parameterType="map">
-		delete order
+		delete
+		  from order
 		 where order_pro_num=#{orderProNum}
 	</delete>
 
@@ -194,7 +195,7 @@
 	</select>
 	
 	<select id="haveRefunded" parameterType="map" resultType="String">
-		select if(count(order_pro_num),0,'false','true')
+		select if(count(order_pro_num)=0,'false','true')
 		  from `order` 
 		 where order_member_id = #{orderMemberId} and delivery_status=#{deliveryStatus}
 	</select>

@@ -76,6 +76,7 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 		Map<String, Object> orderReturn = new HashMap();
 		Map<String, Object> refundReturn = new HashMap();
 		MemberDTO member = adminMemberMapper.selectMemberByCertain(searchMap);// member관련정보 따오기
+		System.out.println(member.toString());
 		String MemberId = member.getMemberId(); // 가져온 멤버에서 멤버코드가져오기
 		System.out.println("MemberId>>>>>>>>>>>> :" + MemberId);
 		// 주문한 이력 있으면

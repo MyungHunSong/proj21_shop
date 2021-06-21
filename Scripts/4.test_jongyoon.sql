@@ -468,3 +468,96 @@ SELECT SUM(order_price)/COUNT(order_code)
 select if(count(cart_pro_num)=0,'false','true')
 			  from cart
 			 where cart_member_Id='test01';
+			 
+DELETE
+FROM `order`
+ where order_code=1;
+ 
+ SELECT *
+ from `order`;
+ SELECT *
+ from member;
+ 
+DELETE
+FROM member 
+ where m_id='test051';
+
+SELECT
+	m_id,
+	m_name,
+	m_point,
+	m_total_login,
+	m_total_buy,
+	m_total_order
+FROM
+	(SELECT	@rownum := @rownum + 1 AS rn,m_id,m_name,m_point,m_total_login,m_total_buy,m_total_order
+	   FROM (SELECT @ROWNUM := 0 ) R, `MEMBER`
+	  WHERE	m_name LIKE CONCAT('%','','%'))
+WHERE
+	rn = 1;
+
+SELECT
+	m_id,
+	m_code,
+	m_name,
+	m_point,
+	m_total_login,
+	m_total_buy,
+	m_total_order
+FROM
+	(
+	SELECT
+		@rownum := @rownum + 1 AS rn,
+		m_id,
+		m_name,
+		m_point,
+		m_total_login,
+		m_total_buy,
+		m_total_order
+	FROM
+		MEMBER
+	WHERE
+		m_name LIKE CONCAT('%',?, '%')
+		OR m_id LIKE CONCAT('%',?, '%')
+		AND (@rownum := 0)= 0)
+WHERE
+	rn = 1;
+
+SELECT
+	m_id,
+	m_name,
+	m_point,
+	m_total_login,
+	m_total_buy,
+	m_total_order
+FROM
+	
+WHERE
+	rn = 1;
+
+SELECT m_id, m_name, m_point, m_total_login, m_total_buy, m_total_order
+  FROM (SELECT (@rownum := @rownum + 1) AS rn, m_id, m_name, m_point,
+  		m_total_login, m_total_buy, m_total_order
+  		  FROM `MEMBER`
+  		 WHERE m_name LIKE CONCAT('%', 'test', '%') OR m_id LIKE CONCAT('%', 'test', '%') AND (@rownum:=0)=0) AS A
+ WHERE rn=1;
+ 
+SELECT
+	cart_num,
+	c.cart_member_id,
+	c.cart_pro_num,
+	cart_pro_quantity,
+	p.pro_imagefilename,
+	p.pro_name,
+	p.pro_price,
+	p.pro_size,
+	p.pro_salesrate
+FROM
+	cart c
+JOIN productall p ON
+	c.cart_pro_num = p.pro_num
+WHERE
+	cart_member_Id ='test01';
+	
+SELECT *
+FROM cart;
