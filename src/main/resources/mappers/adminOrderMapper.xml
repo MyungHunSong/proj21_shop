@@ -27,7 +27,6 @@
 			<result property="whichBank" column="which_bank" />
 			<result property="orderDate" column="order_date" />
 			
-			<result property="proNum" column="pro_num"/>
 			
 			<association property="productDTO" javaType="ProductDTO">
 				<result property="proNum" column="pro_num"/>
@@ -182,6 +181,7 @@
 		 WHERE order_member_id = #{orderMemberId};
 	</select>
 	
+	
 	<select id="haveOrdered" parameterType="String" resultType="String">
 		select if(count(order_member_id)=0,'false','true')
 		  from `order`
@@ -206,8 +206,8 @@
 		 where order_member_id =#{orderMemberId} and delivery_status=#{deliveryStatus}
 	</select>
 	
-	<select id="get_OrderList" resultType="OrderDTO" parameterType="map">
-		SELECT a.*
+	<select id="get_OrderList" resultMap="orderResult" parameterType="map">
+		SELECT DISTINCT a.*
 		  FROM (SELECT order_pro_num, order_code , order_date , order_pro_quantity , order_price ,
 		  			   delivery_status ,order_member_name, request_to_delivery, which_bank,
 					   p.pro_num, p.pro_color, p.pro_size, p.pro_name, img.pro_imagefilename

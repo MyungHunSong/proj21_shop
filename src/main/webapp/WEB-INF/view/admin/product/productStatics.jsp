@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>상품 통계</title>
+<title>���� �듦�</title>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
@@ -22,26 +22,26 @@ window.onload = function() {
 		animationEnabled: true,
 		theme: "light2", // "light1", "light2", "dark1", "dark2"
 		title: {
-			text: "상품별 각 품목 별 개수 - 2019"
+			text: "����蹂� 媛� ��紐� 蹂� 媛��� - 2019"
 		},
 		axisY: {
-			title: "상품 개수 (개)",
-			suffix: "개",
+			title: "���� 媛��� (媛�)",
+			suffix: "媛�",
 			includeZero: false
 		},
 		axisX: {
-			title: "상품 목록"
+			title: "���� 紐⑸�"
 		},
 		data: [{
 			type: "column",
 			yValueFormatString: "#,###\"\"",
 			dataPoints: [
-				{ label: "반팔", y: ${totalTShirts} },	
-				{ label: "긴팔", y: ${totalLongT} },	
-				{ label: "슬립리스", y: ${totalslvless} },
-				{ label: "후드", y: ${totalhood} },	
-				{ label: "셔츠", y: ${totalShirts} },
-				{ label: "스웻셔츠", y: ${totalSweater} }
+				{ label: "諛���", y: ${totalTShirts} },	
+				{ label: "湲댄��", y: ${totalLongT} },	
+				{ label: "�щ┰由ъ��", y: ${totalslvless} },
+				{ label: "����", y: ${totalhood} },	
+				{ label: "��痢�", y: ${totalShirts} },
+				{ label: "�ㅼ�살��痢�", y: ${totalSweater} }
 				
 			]
 		}]
@@ -50,7 +50,7 @@ window.onload = function() {
 		
 var options = {
 	title: {
-		text: "상품 현황"
+		text: "���� ����"
 	},
 	data: [{
 			type: "pie",
@@ -60,11 +60,11 @@ var options = {
 			indexLabel: "{label} ({y})",
 			yValueFormatString:"#,##0.#"%"",
 			dataPoints: [
-				{ label: "신제품", y: ${newProducts } },
-				{ label: "베스트셀러", y: ${bestProducts } },
-				{ label: "스테디셀러", y: ${steadyProducts } },
-				{ label: "할인중", y: ${offProducts } },
-				{ label: "품절", y: ${outProducts } },
+				{ label: "������", y: ${newProducts } },
+				{ label: "踰��ㅽ�몄����", y: ${bestProducts } },
+				{ label: "�ㅽ��������", y: ${steadyProducts } },
+				{ label: "���몄�", y: ${offProducts } },
+				{ label: "����", y: ${outProducts } },
 			]
 	}]
 };

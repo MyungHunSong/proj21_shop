@@ -9,7 +9,7 @@ public interface AdminMemberService {
 	void deleteMember(String memberId);
 
 	Map<String, Object> viewMember(Map searchMap);
-//
-//	Map<String, Object> getMemberStatics();
+
+	Map<String, Object> getMemberStatics();
 
 }

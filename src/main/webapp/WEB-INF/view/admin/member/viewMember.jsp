@@ -1,8 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-   pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <c:set var="member" value="${viewMap.member }" />
 <c:set var="averageOrder" value="${viewMap.averageOrder }" />
@@ -17,65 +16,71 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>회원 정보 수정</title>
 <style>
-	@media (min-width: 767.98px) {
-	  .card {
-	  	margin-left: 300px;
-	  	margin-right: 50px;
-	  }
+@media ( min-width : 767.98px) {
+	.card {
+		margin-left: 300px;
+		margin-right: 50px;
+	}
+}
 </style>
 <style>
-	.infotable { 
-	    border-top: 1px solid #ccc; 
-	    border-collapse: collapse; 
-	    border-spacing : 1px; 
-	    line-height : 1.5; 
-	    padding : 0 0 0 50px; 
-	} 
-	.infotable td { 
-	    width: 150px; 
-	    padding : 5px; 
-	    font-weight: bold; 
-	    vertical-align: top; 
-	    border-bottom: 1px solid #ccc; 
-	    border-top : 1px solid #ccc; 
-	    border-left : 1px solid #ccc;
-	    border-right : 1px solid #ccc;
-	    text-align: center; 
-	} 
-	#chartContainer { 
+.infotable {
+	border-top: 1px solid #ccc;
+	border-collapse: collapse;
+	border-spacing: 1px;
+	line-height: 1.5;
+	padding: 0 0 0 50px;
+}
+
+.infotable td {
+	width: 150px;
+	padding: 5px;
+	font-weight: bold;
+	vertical-align: top;
+	border-bottom: 1px solid #ccc;
+	border-top: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	text-align: center;
+}
+
+#chartContainer {
 	/*     padding : 0 0 0 30px;  */
-	}
-	a#linkline { 
-	    text-decoration: none; 
-	    color: #FE2E2E; 
-	}
-	a:hover {
-	   color : #FE2E2E;
-	}
+	
+}
+
+a#linkline {
+	text-decoration: none;
+	color: #FE2E2E;
+}
+
+a:hover {
+	color: #FE2E2E;
+}
 </style>
 <script src="${contextPath}/resources/admin/assets/libs/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap tether Core JavaScript -->
-    <script src="${contextPath}/resources/admin/assets/libs/popper.js/dist/umd/popper.min.js"></script>
-    <script src="${contextPath}/resources/admin/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="${contextPath}/resources/admin/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
-    <script src="${contextPath}/resources/admin/assets/extra-libs/sparkline/sparkline.js"></script>
-    <!--Wave Effects -->
-    <script src="${contextPath}/resources/admin/dist/js/waves.js"></script>
-    <!--Menu sidebar -->
-    <script src="${contextPath}/resources/admin/dist/js/sidebarmenu.js"></script>
-    <!--Custom JavaScript -->
-    <script src="${contextPath}/resources/admin/dist/js/custom.min.js"></script>
-    <!--This page JavaScript -->
-    <!-- <script src="dist/js/pages/dashboards/dashboard1.js"></script> -->
-    <!-- Charts js Files -->
-    <script src="${contextPath}/resources/admin/assets/libs/flot/excanvas.js"></script>
-    <script src="${contextPath}/resources/admin/assets/libs/flot/jquery.flot.js"></script>
-    <script src="${contextPath}/resources/admin/assets/libs/flot/jquery.flot.pie.js"></script>
-    <script src="${contextPath}/resources/admin/assets/libs/flot/jquery.flot.time.js"></script>
-    <script src="${contextPath}/resources/admin/assets/libs/flot/jquery.flot.stack.js"></script>
-    <script src="${contextPath}/resources/admin/assets/libs/flot/jquery.flot.crosshair.js"></script>
-    <script src="${contextPath}/resources/admin/assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
-    <script src="${contextPath}/resources/admin/dist/js/pages/chart/chart-page-init.js"></script>
+<!-- Bootstrap tether Core JavaScript -->
+<script src="${contextPath}/resources/admin/assets/libs/popper.js/dist/umd/popper.min.js"></script>
+<script src="${contextPath}/resources/admin/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="${contextPath}/resources/admin/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+<script src="${contextPath}/resources/admin/assets/extra-libs/sparkline/sparkline.js"></script>
+<!--Wave Effects -->
+<script src="${contextPath}/resources/admin/dist/js/waves.js"></script>
+<!--Menu sidebar -->
+<script src="${contextPath}/resources/admin/dist/js/sidebarmenu.js"></script>
+<!--Custom JavaScript -->
+<script src="${contextPath}/resources/admin/dist/js/custom.min.js"></script>
+<!--This page JavaScript -->
+<!-- <script src="dist/js/pages/dashboards/dashboard1.js"></script> -->
+<!-- Charts js Files -->
+<script src="${contextPath}/resources/admin/assets/libs/flot/excanvas.js"></script>
+<script src="${contextPath}/resources/admin/assets/libs/flot/jquery.flot.js"></script>
+<script src="${contextPath}/resources/admin/assets/libs/flot/jquery.flot.pie.js"></script>
+<script src="${contextPath}/resources/admin/assets/libs/flot/jquery.flot.time.js"></script>
+<script src="${contextPath}/resources/admin/assets/libs/flot/jquery.flot.stack.js"></script>
+<script src="${contextPath}/resources/admin/assets/libs/flot/jquery.flot.crosshair.js"></script>
+<script src="${contextPath}/resources/admin/assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
+<script src="${contextPath}/resources/admin/dist/js/pages/chart/chart-page-init.js"></script>
 <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
 <script>
 window.onload = function () {
@@ -179,8 +184,7 @@ function toggleDataSeries(e) {
 			<div class="col-12">
 				<div class="card">
 					<div class="comment-widgets scrollable">
-						<br>
-						<br>
+						<br> <br>
 						<center>
 							<h2>회원 목록</h2>
 							<hr>
@@ -195,8 +199,7 @@ function toggleDataSeries(e) {
 
 							</form>
 						</center>
-						<br>
-						<br>
+						<br> <br>
 
 						<center>
 							<table border="1" class="infotable">
@@ -224,8 +227,7 @@ function toggleDataSeries(e) {
 								</tr>
 							</table>
 						</center>
-						<br>
-						<br>
+						<br> <br>
 
 						<center>
 							<div id="chartContainer" style="height: 370px; width: 50%;"></div>
@@ -244,67 +246,72 @@ function toggleDataSeries(e) {
 									<td><a href="${contextPath }/admin/order/listOrders">${onDelivery} <c:if test="${onDelivery ==null }">0</c:if>
 									</a>건</td>
 								</tr>
+								<tr><td>=============== </td></tr>
 								<tr>
 									<td colspan="2">반품대기중인 상품</td>
 									<td><a href="${contextPath }/admin/member/viewMember?memberId=${member.memberId}">${onRefund} <c:if test="${onRefund ==null }">0</c:if>
 									</a>건</td>
 								</tr>
+								<tr><td>=============== </td></tr>
 								<tr>
 									<td colspan="2">장바구니에 담은 상품</td>
 									<td><a href="${contextPath }/admin/member/viewMember?memberId=${member.memberId}">${onCart} <c:if test="${onCart ==null }">0</c:if>
 									</a>건</td>
 								</tr>
 							</table>
-							<br>
-							<br>
-							<br>
+							<br> <br>
 							<!--배송 중인 상품  -->
 							<c:choose>
 								<c:when test="${orderList !=null }">
+										
+											<br><h3>배송중 or 배송 준비중인 상품</h3><br>
+										
 									<table>
-										<tr>
-											<td colspan="8"><strong>배송중인 상품</strong></td>
-										</tr>
 										<tr style="text-align: center;">
 											<td width="100px">이미지</td>
 											<td width="100px">상품명</td>
 											<td width="100px">상품 정보</td>
 											<td width="100px">주문자</td>
 											<td width="100px">주문 가격</td>
-											<td width="100px">결제 수단</td>
 											<td width="100px">결제 일자</td>
 											<td width="100px">배송 상태</td>
 										</tr>
 
 										<c:forEach var="order" items="${orderList }">
 											<tr style="text-align: center;">
-												<td width="100px;"><a href="${contextPath}/product/productdetail?proNum=${order.proNum}"> <img width="70px" height="105px"
-														src="${contextPath}/thumbnails?proNum=${order.proNum}&fileName=${order.proImgfilename}"></a></td>
-												<td>${order.proName }</td>
-												<td>${order.proColor}/ ${order.proSize }</td>
+												<td width="100px;"><a href="${contextPath}/product/productdetail?proNum=${order.productDTO.proNum}"> <img width="70px" height="105px"
+														src="${contextPath}/thumbnails?proNum=${order.productDTO.proNum}&fileName=${order.productDTO.proImgfileName}"></a></td>
+												<td>${order.productDTO.proName }</td>
+												<td><c:if test="${order.productDTO.proColor == 1}">white /</c:if> <c:if test="${order.productDTO.proColor == 2}">ivory /</c:if> <c:if test="${order.productDTO.proColor == 3}">gray /</c:if>
+													<c:if test="${order.productDTO.proColor == 4}">pink /</c:if> <c:if test="${order.productDTO.proColor == 5}">yellow /</c:if> <c:if test="${order.productDTO.proColor == 6}">mint /</c:if> <c:if
+														test="${order.productDTO.proColor == 7}">green /</c:if> <c:if test="${order.productDTO.proColor == 8}">purple /</c:if> <c:if test="${order.productDTO.proColor == 9}">navy /</c:if> <c:if
+														test="${order.productDTO.proColor == 11}">black /</c:if> <c:if test="${order.productDTO.proColor == 12}">brown /</c:if> <c:if test="${order.productDTO.proColor == 13}">orange /</c:if> <c:if
+														test="${order.productDTO.proColor == 14}">blue /</c:if> <c:if test="${order.productDTO.proColor == 15}">red /</c:if> <c:if test="${order.productDTO.proColor == 16}">basic /</c:if> <c:if
+														test="${order.productDTO.proSize == 1}">XS </c:if> <c:if test="${order.productDTO.proSize == 2}">S </c:if> <c:if test="${order.productDTO.proSize == 3}">M </c:if> <c:if
+														test="${order.productDTO.proSize == 4}">L </c:if> <c:if test="${order.productDTO.proSize == 5}">XL </c:if></td>
 												<td>${order.orderMemberName }</td>
-												<td><fmt:formatNumber value="${orderOrderPrice}" pattern="#,###" />원</td>
+												<td><fmt:formatNumber value="${order.orderPrice }" pattern="#,###" />원</td>
 												<td>${order.orderDate }</td>
 												<td>${order.deliveryStatus}</td>
 											</tr>
 											<c:set var="final_total_price" value="${order.orderPrice }" />
 										</c:forEach>
 										<tr>
-											<td colspan="8" align="right"><strong>배송중인 상품 총 주문 가격 : <fmt:formatNumber value="${order.orderPrice}" pattern="#,###" /></strong></td>
+											<td colspan="8" align="right"><strong>배송중인 상품 총 주문 가격 : <fmt:formatNumber value="${final_total_price }" pattern="#,###" />원</strong></td>
 										</tr>
 									</table>
 								</c:when>
 								<c:otherwise>
+								<br>
 									<h3>배송중인 상품이 없습니다.</h3>
+								<br>
 								</c:otherwise>
 							</c:choose>
 							<!-- 반품대기중인 상품  -->
 							<c:choose>
 								<c:when test="${refundList !=null }">
+											<br><h3>반품대기중인 상품</h3><br>
 									<table>
-										<tr>
-											<td colspan="8"><strong>반품대기중인 상품</strong></td>
-										</tr>
 										<tr style="text-align: center;">
 											<td width="100px">이미지</td>
 											<td width="100px">상품명</td>
@@ -321,7 +328,7 @@ function toggleDataSeries(e) {
 												<td width="100px;"><a href="${contextPath}/product/productdetail.do?pro_code=${refund.pro_code}"> <img width="70px" height="105px"
 														src="${contextPath}/thumbnails.do?pro_code=${refund.pro_code}&fileName=${refund.pro_imagefilename}"></a></td>
 												<td>${refund.proName }</td>
-												<td>${refund.proColor}/ ${refund.proSize }</td>
+												<td>${refund.proColor}/${refund.proSize }</td>
 												<td>${refund.order_memberName }</td>
 												<td><fmt:formatNumber value="${refund.orderPrice}" pattern="#,###" />원</td>
 												<td>${refund.orderDate }</td>
@@ -335,17 +342,17 @@ function toggleDataSeries(e) {
 									</table>
 								</c:when>
 								<c:otherwise>
+								<br>
 									<h3>반품 대기 중인 상품이 없습니다.</h3>
+								<br>	
 								</c:otherwise>
 							</c:choose>
 
 							<!--장바구니에 담은 상품 -->
 							<c:choose>
 								<c:when test="${cartList !=null }">
+											<br><h3>장바구니에 담은 상품</h3><br>
 									<table>
-										<tr>
-											<td colspan="6"><strong>장바구니에 담은 상품</strong></td>
-										</tr>
 										<tr style="text-align: center;">
 											<th width="100px;">이미지</th>
 											<th width="100px;">상품명</th>
@@ -359,7 +366,7 @@ function toggleDataSeries(e) {
 												<td width="100px;"><a href="${contextPath}/product/productdetail?proNum=${cart.cartProNum}"> <img width="70px" height="105px"
 														src="${contextPath}/thumbnails?proNum=${cart.cartProNum}&fileName=${cart.cartProNum.proNum}"></a></td>
 												<td width="100px;">${cart.cartProNum.proName }</td>
-												<td width="100px">${cart.cartProNum.proSize }/ ${cart.cartProNum.proColor }</td>
+												<td width="100px">${cart.cartProNum.proSize }/${cart.cartProNum.proColor }</td>
 												<td width="100px"><fmt:formatNumber value="${cart.cartProNum.proPrice}" pattern="#,###" />원</td>
 												<td width="100px;">${cart.cartProQuantity}</td>
 												<td width="100px;"><fmt:formatNumber value="${cart.cartProNum.proPrice * cart.cartProQuantity}" pattern="#,###" />원</td>
@@ -369,7 +376,9 @@ function toggleDataSeries(e) {
 									</table>
 								</c:when>
 								<c:otherwise>
+								<br>
 									<h3>장바구니에 담긴 상품이없습니다.</h3>
+								<br>
 								</c:otherwise>
 
 

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import proj21_shop.dto.cart.CartDTO;
 import proj21_shop.dto.member.MemberDTO;
 import proj21_shop.dto.order.OrderDTO;
+import proj21_shop.dto.product.ProductDTO;
 import proj21_shop.mapper.admin.member.AdminMemberMapper;
 import proj21_shop.mapper.admin.order.AdminOrderMapper;
 import proj21_shop.mapper.order.CartMapper;
@@ -81,6 +82,8 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 		System.out.println("MemberId>>>>>>>>>>>> :" + MemberId);
 		// 주문한 이력 있으면
 		String orderFlag = adminOrderMapper.haveOrdered(MemberId);
+		
+		
 		System.out.println("orderFlag 배송중인거 있냐? :" + orderFlag);
 		if (orderFlag.equals("true")) {
 			averageOrder = adminOrderMapper.selectAverageOrder(MemberId);
@@ -89,9 +92,18 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 			// 배송중인 상품 검색
 			onDelivery = adminOrderMapper.onDelivery(orderReturn);
 			System.out.println("onDelivery 배송중인것===== :" + onDelivery);
+			if(onDelivery.equals("0")) {
+				System.out.println("onDelivery 배송준비중인것");
+				orderReturn.remove("deliveryStatus");
+				orderReturn.put("deliveryStatus", "배송준비중");
+				onDelivery = adminOrderMapper.onDelivery(orderReturn);
+				System.out.println("onDelivery 배송준비중인것===== :" + onDelivery);
+			}
 			//배송중인 제품들 출력
 			orderList = adminOrderMapper.get_OrderList(orderReturn);
+			System.out.println("get_OrderList 주문 리스트===== :" + orderList);
 		}
+		
 		refundReturn.put("orderMemberId", MemberId);
 		refundReturn.put("deliveryStatus", "반품대기중");
 		String refundFlag = adminOrderMapper.haveRefunded(refundReturn);
@@ -123,5 +135,25 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 		returnMap.put("refundList", refundList);
 
 		return returnMap;
+	}
+	
+	@Override
+	public Map<String, Object> getMemberStatics() {
+		//초기화
+		Map<String,Object> viewMap=new HashMap();
+		int memberMen,memberWomen,totalMember,totalNonMember=0;
+		
+		//남자회원수 가져오기
+		memberMen=adminMemberMapper.selectAllMemberMen();
+		//여자회원수 가져오기
+		memberWomen=adminMemberMapper.selectAllMemberWomen();
+		totalMember=adminMemberMapper.selectTotalMembers();
+		
+		
+		viewMap.put("memberMen", memberMen);
+		viewMap.put("memberWomen", memberWomen);
+		viewMap.put("totalMember", totalMember);
+		viewMap.put("totalNonMember", totalNonMember);
+		return viewMap;
 	}
 }
