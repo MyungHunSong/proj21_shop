@@ -119,7 +119,7 @@ public class ProductListMapperTest {
 		Assert.assertNotNull(list);
 	}
 
-	@Test
+	//@Test
 	public void test05ShowProductsByConditionsBetween() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		
@@ -130,6 +130,14 @@ public class ProductListMapperTest {
 		condition.put("orderKind", orderKind);
 		System.out.println(condition);
 		List<ProductDTO> list = mapper.selectProductByCondition(condition);
+		Assert.assertNotNull(list);
+	}
+
+	@Test
+	public void test06ShowProductsByProName() {
+		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
+		
+		List<ProductDTO> list = mapper.selectProductByproName("t");
 		Assert.assertNotNull(list);
 	}
 }

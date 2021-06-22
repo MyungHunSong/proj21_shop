@@ -1,4 +1,13 @@
 @charset "UTF-8";
+
+
+.reviewMembers{
+	border: 1px solid #ccc;
+	border-bottom: none;
+	background-color: #FBFBFB;
+	
+	padding: 30px;
+}
 /* 옷,옷설명 정렬 */
 #ProductLoad{
 	display: flex;
@@ -174,12 +183,12 @@
 }
 .replyContent{
 	width: 91%;
-	padding: 5px;
+	padding: 15px;
 	border:none;
 }
 
 .commentInsertBtn{
-	padding: 3.5px;
+	padding: 13.3px;
 	border:none;
 	width: 8.4%;
 	cursor: pointer;
@@ -197,7 +206,7 @@
 
 .commentContent{
 	font-weight: 200;
-	color: #7e7b82;
+	color: #444;
 	margin: 0;
 }
 
@@ -205,6 +214,7 @@
 .commentContentAndBtns{
 	display: flex;
 	justify-content: space-between;
+	padding: 10px;
 }
 
 .commentBtn:active{
@@ -220,4 +230,8 @@
 	border:none;
 	color:white;
 	background-color: black;
+}
+
+.reviewImg img{
+	width: 180px;
 }

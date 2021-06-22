@@ -50,4 +50,10 @@ public class ProductServiceController {
 		List<ProductDTO> products = service.selectProductByCondition(condition);
 		return ResponseEntity.ok(products);
 	}
+	
+	/*옷 이름으로 검색*/
+	@GetMapping("/selectProductByProName/{proName}")
+	public ResponseEntity<Object> selectProductByProName(@PathVariable String proName){
+		return ResponseEntity.ok(service.selectProductByproName(proName));
+	}
 }

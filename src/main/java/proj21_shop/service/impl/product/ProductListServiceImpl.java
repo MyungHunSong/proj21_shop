@@ -38,5 +38,10 @@ public class ProductListServiceImpl implements ProductListService{
 	public List<ProductDTO> selectProductByCondition(Map<String, Object> condition) {
 		return service.selectProductByCondition(condition);
 	}
+
+	@Override
+	public List<ProductDTO> selectProductByproName(String proName) {
+		return service.selectProductByproName(proName);
+	}
 	
 }

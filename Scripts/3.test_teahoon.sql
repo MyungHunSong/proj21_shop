@@ -22,8 +22,9 @@ select *
   from Address;
 select *
   from admin;
-select * 
-  from `order`;
+select order_code,order_member_id,o.pro_num,order_pro_num,order_member_name,order_pro_quantity,order_price,order_discount,receiver_name,receiver_tel1,receiver_tel2,delivery_addr1,delivery_addr2,delivery_addr3,delivery_status,request_to_delivery,order_date,who_pay,which_bank,pro_name,pro_price,pro_salesrate,pro_cre_date,pro_status,pro_color,pro_size,re_replyCount,pro_imagefilename,pro_img_state
+  from `order` o join productall p on o.pro_num = p.pro_num 
+where order_member_id = 'test01';
 
 -- 제품 전체 검색(제품, 제품 이미지 조인문)
 DROP VIEW productall;
@@ -101,9 +102,12 @@ select *
 where pro_size = 1 
     and pro_price > 100000;
 
-select * from productall where pro_size = 1 and pro_price > 100000;
-select * from productall where pro_size = 1 and pro_price between 30000 and 50000;
+-- 검색하기
+ select * 
+   from productall 
+where pro_size = 1 and pro_name like concat('%','t','%');
 
+select pro_name from productall;
 -- 제품 클릭시 조회수 +1
 update product 
       set pro_hits = pro_hits - 1  
