@@ -74,4 +74,12 @@
 		 		<if test="orderKind == 'proHits'">pro_hits desc</if>   
     	 </trim>
 	</select>
+	
+	<!-- 제품이름으로 검색 -->
+	<select id="selectProductByproName" resultMap="ResProduct">
+		 select * 
+   		  from productall 
+        where pro_size = 1 and pro_name like concat('%',#{param},'%')
+        order by pro_price asc
+	</select>
 </mapper>

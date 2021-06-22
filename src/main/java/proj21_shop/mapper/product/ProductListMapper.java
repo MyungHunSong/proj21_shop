@@ -16,4 +16,7 @@ public interface ProductListMapper {
 	
 	//옷목록 리스트 여러가지 조건으로 검색
 	List<ProductDTO> selectProductByCondition(Map<String, Object> condition);
+	
+	//옷 이름으로 검색
+	List<ProductDTO> selectProductByproName(String proName);
 }

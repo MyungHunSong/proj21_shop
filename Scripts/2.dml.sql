@@ -388,7 +388,7 @@ values
 
 insert   
    into review (pro_num, re_member, re_content, re_image, re_stars)
-values (4041, 'test02', '색이 예쁘네요','404Review2.jpg',4),
+values (4041, 'test01', '따뜻하네요','404Review1.jpg',4),
 		   (4042, 'test02', '색이 예쁘네요','404Review2.jpg',4);
 
 

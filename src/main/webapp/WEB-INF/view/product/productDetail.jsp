@@ -35,6 +35,7 @@ $(function() {
 		var proNum = ${proNum};
 		var memberId = "${authInfo.id }";
 		var proSize = ["0","XS","S","M","L","XL"];
+		var proColor =["0","white", "ivory", "gray", "pink", "yellow", "mint", "green", "purple", "navy", "10", "black", "brown", "orange", "blue", "red", "basic"];
 		var num = 0;
 		
 		/*마지막 댓글번호*/
@@ -247,9 +248,11 @@ $(function() {
 			$.get(contextPath + "/api/selectReviewByProNum/"+ proNum, 
 				function(json){
 					if(json.length != 0){
+						console.log(json)
 						for(i = 0; i < json.length; i++){
 								sCont += "<div class = 'reviewMembers'>"
-								sCont += "			<h1 class = 'memberId'>" + json[i].memberId +"</h1>" 
+								sCont += "<hr style='border-radius: 10%; border-style: dashed; color: #ccc'>"
+								sCont += "			<h1 class = 'memberId'>ID : " + json[i].memberId +"</h1>" 
 								sCont += "		<div class='starRate'>"
 								sCont += "			<div class='star-rating'>"
 								sCont += "				<div class='stars'>"
@@ -269,13 +272,19 @@ $(function() {
 								sCont += "		<div class = 'reviewList'>"
 								sCont += "			<img class = 'prodImg' src='/proj21_shop/resources/product/images/" + json[i].proImagefilename.proImagefilename + "' width = '70' height= '70'>"
 								sCont += "				<div class = 'proAndMemInfo'>"
-								sCont += "					<span>" + json[i].proName.proName +"/"+proSize[json[i].proName.proSize]+ "</span><br>"
+								sCont += "					<span>" + json[i].proName.proName+"</span><br>"
+								sCont += "					<span>"+proColor[json[i].proName.proColor] +"/"+proSize[json[i].proName.proSize]+ "</span><br>"
 								sCont += "				</div>"
 								sCont += "			<div class = 'reivewContent'>"+json[i].reviewContent+"</div><br>";	
 								sCont += "			<div class = 'reviewImg'>"
 								sCont += "				<img src='/proj21_shop/resources/review/images/" + json[i].reviewImagefilename1 + "'>"
 								/* sCont += "			<img src='/proj21_shop/resources/review/images/" + json[i].reviewImagefilename2 + "' width = '70' height= '70'>" */
 								sCont += "			</div>"
+								sCont += "		</div>"
+								sCont += "		<div class='replyGroup'>"
+								sCont += "			<input type= 'hidden' class = 'rno' name= 'rno' value="+json[i].reviewNum+"/>"
+								sCont += "			<input type= 'text' class= 'replyContent' name='replyContent' placeholder='내용을 입력하세요.'>"
+								sCont += "	    	<button class = 'commentInsertBtn' name='commentInsertBtn'>댓글</button>"
 								sCont += "		</div>"
 								if(json[i].reviewReplys[0].reRepNum != 0){
 									for(j = 0; j < json[i].reviewReplys.length; j++){
@@ -292,11 +301,6 @@ $(function() {
 										sCont += "</div>"
 									}
 								}
-								sCont += "		<div class='replyGroup'>"
-								sCont += "			<input type= 'hidden' class = 'rno' name= 'rno' value="+json[i].reviewNum+"/>"
-								sCont += "			<input type= 'text' class= 'replyContent' name='replyContent' placeholder='내용을 입력하세요.'>"
-								sCont += "	    	<button class = 'commentInsertBtn' name='commentInsertBtn'>댓글</button>"
-								sCont += "		</div>"
 								sCont += "</div>"
 						 }                                                                                                                          
 					}else{                                                                                                                                      
@@ -413,7 +417,7 @@ $(function() {
 						datatype : "json",
 						data: JSON.stringify(reply),
 						success: function(res){
-							window.location.reload() 
+							window.location.reload()
 						},
 						error:function(request, status, error){
 							console.log(request)
@@ -469,6 +473,7 @@ $(function() {
 </script>
 </head>
 <body>
+
 <div class="container">
 <jsp:include page="/WEB-INF/view/include/header.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/view/include/topbody.jsp"></jsp:include>
