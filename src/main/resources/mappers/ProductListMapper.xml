@@ -52,4 +52,26 @@
              set pro_hits = pro_hits + 1 
          where pro_num = #{param1};
 	</update>
+	
+	<!-- 옷목록 에서 여러 조건(가격순, 조회순, 신상, 가격범위)으로 검색 -->
+	<select id="selectProductByCondition" parameterType="Map" resultMap="ResProduct">
+		 select * 
+   		   from productall 
+		 where pro_size = 1
+    	 <trim prefix="and pro_price between">
+    	 		<if test="priceRange == 1">10000 and 30000</if>
+    	 		<if test="priceRange == 2">30000 and 50000</if>
+    	 		<if test="priceRange == 3">50000 and 80000</if>
+    	 		<if test="priceRange == 4">80000 and 100000</if>
+    	 </trim>
+    	 <trim prefix="">
+    	 		<if test="priceRange == 5">and pro_price > 100000</if>
+    	 </trim>
+		 <trim prefix="order by">
+		 		<if test="orderKind == 'asc'">pro_price asc</if>   
+		 		<if test="orderKind == 'desc'">pro_price desc</if>   
+		 		<if test="orderKind == '신상'">'신상'</if>   
+		 		<if test="orderKind == 'proHits'">pro_hits desc</if>   
+    	 </trim>
+	</select>
 </mapper>

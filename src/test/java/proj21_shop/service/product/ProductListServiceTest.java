@@ -34,7 +34,7 @@ public class ProductListServiceTest {
 		System.out.println();
 	}
 
-	@Test
+	//@Test
 	public void testShowProducts() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 
@@ -43,7 +43,7 @@ public class ProductListServiceTest {
 
 	}
 	
-	@Test
+	//@Test
 	public void testShowProductDetailByProNum() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName()+"()");
 
@@ -52,5 +52,5 @@ public class ProductListServiceTest {
 		System.out.println(product);
 
 	}
-
+	
 }

@@ -1,6 +1,7 @@
 package proj21_shop.mapper.product;
 
 import java.util.List;
+import java.util.Map;
 
 import proj21_shop.dto.product.ProductDTO;
 
@@ -12,4 +13,7 @@ public interface ProductListMapper {
 	List<ProductDTO> selectProductDetailByProNum(int proNum);
 	
 	int updateProhits(int proNum);
+	
+	//옷목록 리스트 여러가지 조건으로 검색
+	List<ProductDTO> selectProductByCondition(Map<String, Object> condition);
 }
