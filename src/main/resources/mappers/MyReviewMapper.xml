@@ -4,9 +4,9 @@
 
 	<resultMap type="ReviewDTO" id="resReview">
 		<id property="reviewNum" column="re_num" />
-		<result property="proNum" column="pro_num"/>
+		<result property="proNum" column="pro_num" />
 		<result property="reviewImagefilename1" column="re_image" />
-		<result property="reviewImagefilename2" column="re_image2"/>
+		<result property="reviewImagefilename2" column="re_image2" />
 		<result property="reviewContent" column="re_content" />
 		<result property="reviewStar" column="re_stars" />
 		<result property="reviewDate" column="re_date" />
@@ -20,17 +20,24 @@
 		<id property="proNum" column="pro_num" />
 		<result property="reviewStar" column="re_stars" />
 		<result property="reviewContent" column="re_content" />
-		<result property="reviewImagefilename1" column="re_image"/>
-		<result property="reviewImagefilename2" column="re_image2"/>
-		<association property="proImagefilename"
-			javaType="ProductImageDTO" autoMapping="true">
-			<result property="proImagefilename" column="pro_imagefilename" />
-		</association>
+		<result property="reviewImagefilename1" column="re_image" />
+		<result property="reviewImagefilename2" column="re_image2" />
 		<association property="proName" javaType="ProductDTO"
 			autoMapping="true">
+			<result property="proImgfileName" column="pro_imagefilename"/>
 			<result property="proName" column="pro_name" />
 			<result property="proColor" column="pro_color" />
 			<result property="proSize" column="pro_size" />
+		</association>
+	</resultMap>
+
+	<resultMap type="OrderDTO" id="resProductDetail">
+		<result property="memberId" column="order_member_id"/>
+		<association property="proName" javaType="ProductDTO" autoMapping="true">
+			<result property="proName" column="pro_name"/>
+			<result property = "proColor" column="pro_color"/>
+			<result property="proSize" column="pro_size"/>
+			<result property="proImgfileName" column="pro_imagefilename"/>
 		</association>
 	</resultMap>
 
@@ -45,7 +52,8 @@
 	<select id="selectReviewByMember" resultMap="resReview">
 		select r.re_num,
 		p.pro_num, p.pro_name, r.re_image, r.re_image2,
-		r.re_content, r.re_stars, r.re_date
+		r.re_content,
+		r.re_stars, r.re_date
 		from review
 		r
 		join product p
@@ -63,13 +71,29 @@
 
 	<select id="selectDetailReviewByMember"
 		resultMap="resDetailReview">
-		select p.pro_num,pi2.pro_imagefilename, p.pro_name, p.pro_color, p.pro_size,
-		r.re_stars, r.re_content, r.re_image, r.re_image2
+		select p.pro_num,pi2.pro_imagefilename, p.pro_name,
+		p.pro_color, p.pro_size,
+		r.re_stars, r.re_content, r.re_image,
+		r.re_image2
 		from review r
 		join product p
 		on r.pro_num = p.pro_num
-		join pro_img pi2
+		join
+		pro_img pi2
 		on p.pro_num = pi2.pro_num
-		where r.re_member = #{memberId} and p.pro_num = #{proNum}
+		where r.re_member = #{memberId}
+		and p.pro_num = #{proNum}
+	</select>
+
+	<select id="selectProductDetailByMember"
+		resultMap="resProductDetail">
+		select o.order_member_id, pi2.pro_imagefilename, p.pro_name,
+		p.pro_color, p.pro_size
+		from product p
+		join `order` o
+		on p.pro_num = o.pro_num
+		join pro_img pi2
+		on o.pro_num = pi2.pro_num
+		where o.order_member_id = #{memberId} and p.pro_num = #{proNum}
 	</select>
 </mapper>

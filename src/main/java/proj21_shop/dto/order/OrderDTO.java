@@ -17,10 +17,10 @@ public class OrderDTO {
 	private int orderProNum;// 주문번호: 한번에 살경우 중복된 번호로 나온다.
 	private int orderCode;// 주문번호(추가): 각각 제품의 주문번호.
 
-	private List<ProductDTO> proName; // 1:다 관계이므로 List 사용
+	private List<ProductDTO> productDTO; // 1:다 관계이므로 List 사용
 
-	private ProductImageDTO productImageDTO;
-	private ProductDTO productDTO;
+	private ProductDTO proName;
+	
 
 	private String orderMemberName;
 	private int orderProQuantity;
@@ -58,11 +58,11 @@ public class OrderDTO {
 		this.orderValue = orderValue;
 	}
 
-	public ProductDTO getProductDTO() {
+	public List<ProductDTO> getProductDTO() {
 		return productDTO;
 	}
 
-	public void setProductDTO(ProductDTO productDTO) {
+	public void setProductDTO(List<ProductDTO> productDTO) {
 		this.productDTO = productDTO;
 	}
 
@@ -74,13 +74,6 @@ public class OrderDTO {
 		this.memberId = memberId;
 	}
 
-	public ProductImageDTO getProductImageDTO() {
-		return productImageDTO;
-	}
-
-	public void setProductImageDTO(ProductImageDTO productImageDTO) {
-		this.productImageDTO = productImageDTO;
-	}
 
 	public String getOrderMemberId() {
 		return orderMemberId;
@@ -234,11 +227,11 @@ public class OrderDTO {
 		this.acountNum = acountNum;
 	}
 
-	public List<ProductDTO> getProName() {
+	public ProductDTO getProName() {
 		return proName;
 	}
 
-	public void setProName(List<ProductDTO> proName) {
+	public void setProName(ProductDTO proName) {
 		this.proName = proName;
 	}
 
@@ -246,7 +239,7 @@ public class OrderDTO {
 	public String toString() {
 		return String.format(
 				"OrderDTO [memberId=%s, orderMemberId=%s, proNum=%s, orderProNum=%s, orderCode=%s, proName=%s, productImageDTO=%s, productDTO=%s, orderMemberName=%s, orderProQuantity=%s, orderValue=%s, orderPrice=%s, orderDiscount=%s, receiverName=%s, receiverTel1=%s, receiverTel2=%s, deliveryAddr1=%s, deliveryAddr2=%s, deliveryAddr3=%s, deliveryStatus=%s, requestToDelivery=%s, orderDate=%s, whoPay=%s, whichBank=%s, acountNum=%s]",
-				memberId, orderMemberId, proNum, orderProNum, orderCode, proName, productImageDTO, productDTO, orderMemberName, orderProQuantity,
+				memberId, orderMemberId, proNum, orderProNum, orderCode, proName, productDTO, orderMemberName, orderProQuantity,
 				orderValue, orderPrice, orderDiscount, receiverName, receiverTel1, receiverTel2, deliveryAddr1, deliveryAddr2, deliveryAddr3,
 				deliveryStatus, requestToDelivery, orderDate, whoPay, whichBank, acountNum);
 	}

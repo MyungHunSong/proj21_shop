@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>후기 작성</title>
+<title>후기 수정</title>
 <link rel="stylesheet"
 	href="/proj21_shop/resources/review/css/reviewForm.css" />
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -21,7 +21,6 @@
 					$(this).nextAll().removeClass("active");
 
 					var starRate = $(this).index() + 1;
-					/* $('.print').text(starRate); */
 					
 					$('.print').html(
 							'<img src="images/star-lv' +starRate + '.png">'
@@ -33,7 +32,7 @@
 		
 		$.get(contextPath + "/api/detailreview/" + memberId + "/"+ proNum, 
 		function(json){
-			
+			console.log(json);
 			for(i = 0; i < json.length; i++){
 				var proSize = ["none","XS","S","M","L","XL"];
 			}
@@ -44,7 +43,7 @@
 			}
 			
 			var sCont = "";
-				sCont += "<img src='/proj21_shop/resources/product/images/" + json[0].proImagefilename.proImagefilename + "' width = '70' height= '70'>"
+				 sCont += "<img src='/proj21_shop/resources/product/images/" + json[0].proName.proImgfileName + "' width = '70' height= '70'>" 
 				sCont += "<ul>"
 				sCont += "<li>" + json[0].proName.proName + "</li>"
 				sCont += "<li>" + json[0].proName.proColor +"</li>" 
@@ -54,7 +53,12 @@
 				$("#load").append(sCont);
 			
 			var sConts ="";
-				sConts += "<textarea id='content' cols='45' rows='10' placeholder='상품에 대한 평가를 20자 이상 작성해 주세요'>"+json[0].reviewContent+"</textarea><br>";
+				if(json[0].reviewContent == undefined){
+					sConts += "<textarea id='content' cols='45' rows='10' placeholder='상품에 대한 평가를 20자 이상 작성해 주세요'></textarea><br>";	
+				}else{
+					sConts += "<textarea id='content' cols='45' rows='10' placeholder='상품에 대한 평가를 20자 이상 작성해 주세요'>"+json[0].reviewContent+"</textarea><br>";
+				}
+				
 				sConts += "<div class='file'>";
 				sConts += "<input type='file' id='imgButton' value=" + json[0].reviewImagefilename1 + "/> <br> <input type='file' id='imgButton' value = " + json[0].reviewImagefilename2 + "/>";
 				sConts += "</div><br>";
@@ -80,18 +84,11 @@
 				<i class="s4 fa fa-star"></i>
 				<i class="s5 fa fa-star"></i>
 			</div>
-			<div class="print"></div>
+			<div class="print">별점을 매겨주세요</div>
 		</div>
 	</div>
 		<br>
 			<div class="review" id="review">
-				<%-- <textarea id="content" cols="45" rows="10"placeholder="상품에 대한 평가를 20자 이상 작성해 주세요"></textarea>
-		<br>
-			<div class="file">
-				<input type="file" id="imgButton" /> <br> <input type="file" id="imgButton" />
-			</div>
-		<br>
-				<input type="submit" value="등록" id="reviewButton" /> --%>
 		<jsp:include page="/WEB-INF/view/include/footer.jsp"></jsp:include>
 			</div>
 </body>
