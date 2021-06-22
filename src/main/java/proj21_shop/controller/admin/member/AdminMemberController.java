@@ -98,7 +98,7 @@ public class AdminMemberController {
 			System.out.println("memberId : " + memberId);
 		}
 		if(memberKeyword == null) {
-			memberKeyword="test01";
+			memberKeyword="test011";
 		}
 		if (memberKeyword != null && !memberKeyword.equals("")) {
 			searchMap.put("memberKeyword", memberKeyword);
@@ -130,8 +130,23 @@ public class AdminMemberController {
 
 		ModelAndView mav = new ModelAndView();
 		redir.addAttribute("memberKeyword", memberSearch);
-		mav.setViewName("redirect:/admin/member/viewMember");
+		mav.setViewName("redirect:admin/member/viewMember");
 		return mav;
 
 	}
+	
+	@RequestMapping("memberStatics")
+	public ModelAndView searchMember (HttpServletRequest request, HttpServletResponse response) {
+		
+		
+	ModelAndView mav=new ModelAndView();
+
+	
+	Map<String,Object> viewMap=adminMemberService.getMemberStatics();
+	
+	mav.addObject("viewMap",viewMap);
+	mav.setViewName("admin/member/memberStatics");
+	return mav;		
+	
+}
 }

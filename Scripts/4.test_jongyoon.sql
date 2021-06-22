@@ -561,3 +561,22 @@ WHERE
 	
 SELECT *
 FROM cart;
+
+SELECT DISTINCT a.*
+		  FROM (SELECT order_pro_num, order_code , order_date , order_pro_quantity , order_price ,
+		  			   delivery_status ,order_member_name, request_to_delivery, which_bank,
+					   p.pro_num, p.pro_color, p.pro_size, p.pro_name, img.pro_imagefilename
+				  FROM `order` o , product p , pro_img img
+				 WHERE o.pro_num = p.pro_num AND img.pro_img_state = 1 AND img.pro_num = p.pro_num AND o.order_member_id = 'test011'
+					   AND
+					   o.delivery_status= '배송준비중'
+				) a, product p
+		  WHERE p.pro_num = a.pro_num
+		  ORDER BY a.order_code DESC;
+		  
+SELECT DISTINCT order_pro_num, order_code , order_date , order_pro_quantity , order_price ,
+		  			   delivery_status ,order_member_name, request_to_delivery, which_bank,
+					   p.pro_num, p.pro_color, p.pro_size, p.pro_name, img.pro_imagefilename
+  FROM `order` o , product p , pro_img img
+ WHERE o.pro_num = p.pro_num AND img.pro_img_state = 1 AND img.pro_num = p.pro_num AND o.order_member_id = 'test011'AND o.delivery_status= '배송준비중'
+ ORDER BY order_code;
