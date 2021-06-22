@@ -136,7 +136,7 @@
 		<update id="modifyForAdmin">
 			update qna 
 				set q_content = #{qContent} 
-			where q_index = #{qIndex} 
+			where q_index = #{qIndex}
 		</update>
 		
 		<delete id="deleteForAdmin">
