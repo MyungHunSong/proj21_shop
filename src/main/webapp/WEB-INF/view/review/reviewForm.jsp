@@ -38,7 +38,7 @@
 						 $('#insert').on("click", function(e){
 						 	  var newReview = {	proNum : json[0].proName.proNum , memberId : memberId, reviewContent : $('#reviewContent').val(),
 						 						reviewImagefilename1 : $('#imgButton1').val(), reviewImagefilename2 : $('#imgButton2').val(), reviewStar : starRate};
-						 	  alert("data > " + newReview.proNum);
+						 	  /* alert("data > " + newReview.proNum); */
 						 	  $.ajax({
 						 		  url : contextPath + "/api/myreview/",
 						 		  type : "POST",
@@ -47,8 +47,8 @@
 						 		  cache : false,
 						 		  data : JSON.stringify(newReview),
 						 		  success : function(res){
-						 			  alert(res);
-						 			   window.location.href = contextPath + "/detailreview?memberId=" + memberId  + "&proNum="+ proNum;
+						 			  alert("리뷰작성이 완료되었습니다.");
+						 			   window.location.href = contextPath + "/myorder?memberId=" + memberId;
 						 		  }
 						 		  
 						 	  });
