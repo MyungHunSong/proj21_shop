@@ -27,6 +27,23 @@ public class ReviewDTO {
 
 	private List<ReviewReplyDTO> reviewReplys;
 	
+	
+	public ReviewDTO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public ReviewDTO(String memberId, int proNum, String reviewContent, String reviewImagefilename1,
+			String reviewImagefilename2, int reviewStar) {
+		super();
+		this.memberId = memberId;
+		this.proNum = proNum;
+		this.reviewContent = reviewContent;
+		this.reviewImagefilename1 = reviewImagefilename1;
+		this.reviewImagefilename2 = reviewImagefilename2;
+		this.reviewStar = reviewStar;
+	}
+
 	public List<ReviewReplyDTO> getReviewReplys() {
 		return reviewReplys;
 	}

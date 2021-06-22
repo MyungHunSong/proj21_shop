@@ -37,4 +37,9 @@ public class MyReviewServiceImpl implements MyReviewService {
 		return mapper.selectProductDetailByMember(orderDTO);
 	}
 
+	@Override
+	public int insertReview(ReviewDTO reviewDTO) {
+		return mapper.insertReview(reviewDTO);
+	}
+
 }

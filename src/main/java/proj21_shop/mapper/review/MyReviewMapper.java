@@ -12,4 +12,5 @@ public interface MyReviewMapper {
 	List<QnaDTO> selectQnaByMember(String memberId);
 	List<ReviewDTO> selectDetailReviewByMember(ReviewDTO reviewDTO);
 	List<OrderDTO> selectProductDetailByMember(OrderDTO orderDTO);
+	int insertReview(ReviewDTO reviewDTO);
 }

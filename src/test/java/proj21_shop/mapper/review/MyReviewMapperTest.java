@@ -69,4 +69,13 @@ public class MyReviewMapperTest {
 		Assert.assertNotNull(list);
 	}
 	
+//	@Test
+	public void test05InsertReview() {
+		log.debug(Thread.currentThread().getStackTrace()[1].getClassName()+"()");
+		ReviewDTO reviewDTO = new ReviewDTO("test01", 1033, "맘에들어요 감사합니다.", "review_test.jpg", "review_test.jpg", 5);
+		int res = mapper.insertReview(reviewDTO);
+		Assert.assertEquals(1, res);
+
+	}
+	
 }

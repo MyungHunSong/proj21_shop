@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import proj21_shop.dto.order.OrderDTO;
-import proj21_shop.dto.product.ProductDTO;
 import proj21_shop.dto.qna.QnaDTO;
 import proj21_shop.dto.review.ReviewDTO;
 
@@ -15,4 +14,5 @@ public interface MyReviewService {
 	List<QnaDTO> selectQnaByMember(String memberId);
 	List<ReviewDTO> selectDetailReviewByMember(ReviewDTO reviewDTO);
 	List<OrderDTO> selectProductDetailByMember(OrderDTO orderDTO);
+	int insertReview(ReviewDTO reviewDTO);
 }
