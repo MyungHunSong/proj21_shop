@@ -4,6 +4,7 @@
 select * from member;
 desc review;
 select * from review;
+select * from `order` o2 ;
 desc member;
 
 insert 
@@ -65,7 +66,12 @@ select o.order_member_id, pi2.pro_imagefilename, p.pro_name, p.pro_color, p.pro_
   join pro_img pi2 
     on o.pro_num = pi2.pro_num 
  where o.order_member_id = 'test01' and p.pro_num = 3112;
-  
+
+select * from review;
+insert into review(pro_num, re_member, re_content, re_image, re_image2, re_stars)
+values (1033, 'test01', '맘에 들어요 감사합니다.', 'review_test.jpg', 'review_test.jpg', 3);
+ 
+delete from review where re_num = 6;
 -- 후기 수정
 select * from review;
 select * from product;
@@ -169,3 +175,4 @@ select * from member;
 delete from member where m_id = 'test06';
 
 select * from review;
+

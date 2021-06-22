@@ -6,33 +6,57 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>후기 수정</title>
+<title>후기 작성</title>
 <link rel="stylesheet"
 	href="/proj21_shop/resources/review/css/reviewForm.css" />
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 	$(function() {
-		var notice = [ '별로에요', '보통이에요', '그냥 그래요', '맘에 들어요',
-			'아주 좋아요' ];
-		$(".stars .fa").click(
-				function() {
-					$(this).addClass("active");
-					$(this).prevAll().addClass("active");
-					$(this).nextAll().removeClass("active");
-
-					var starRate = $(this).index() + 1;
-					
-					$('.print').html(
-							'<img src="images/star-lv' +starRate + '.png">'
-									+ notice[starRate - 1]);
-		})
+		
+		
 		var contextPath = "${contextPath}";
 		var memberId = "${memberId}";
 		var proNum = "${proNum}";
+		var orderProNum ="${orderProNum}";
 		
 		$.get(contextPath + "/api/detailreview/" + memberId + "/"+ proNum, 
 		function(json){
+			var notice = [ '별로에요', '보통이에요', '그냥 그래요', '맘에 들어요',
+				'아주 좋아요' ];
+			$(".stars .fa").click(
+					function() {
+						$(this).addClass("active");
+						$(this).prevAll().addClass("active");
+						$(this).nextAll().removeClass("active");
+						var starRate = $(this).index() + 1;
+					
+						
+						$('.print').html(
+								'<img src="images/star-lv' +starRate + '.png">'
+										+ notice[starRate - 1]);
+						
+						 $('#insert').on("click", function(e){
+						 	  var newReview = {	proNum : json[0].proName.proNum , memberId : memberId, reviewContent : $('#reviewContent').val(),
+						 						reviewImagefilename1 : $('#imgButton1').val(), reviewImagefilename2 : $('#imgButton2').val(), reviewStar : starRate};
+						 	  alert("data > " + newReview.proNum);
+						 	  $.ajax({
+						 		  url : contextPath + "/api/myreview/",
+						 		  type : "POST",
+						 		  contentType: "application/json; charset=utf-8",
+						 		  datatype : "json",
+						 		  cache : false,
+						 		  data : JSON.stringify(newReview),
+						 		  success : function(res){
+						 			  alert(res);
+						 			   window.location.href = contextPath + "/detailreview?memberId=" + memberId  + "&proNum="+ proNum;
+						 		  }
+						 		  
+						 	  });
+						}) 
+						
+			})
 			console.log(json);
+			console.log(memberId);
 			for(i = 0; i < json.length; i++){
 				var proSize = ["none","XS","S","M","L","XL"];
 			}
@@ -40,7 +64,9 @@
 			for(i = 1; i < json[0].reviewStar+1; i++){
 				$('.s'+i).addClass('active');
 				$('.print').html('<img src="images/star-lv' +i + '.png">' + notice[i-1]);
+				
 			}
+		
 			
 			var sCont = "";
 				 sCont += "<img src='/proj21_shop/resources/product/images/" + json[0].proName.proImgfileName + "' width = '70' height= '70'>" 
@@ -54,17 +80,24 @@
 			
 			var sConts ="";
 				if(json[0].reviewContent == undefined){
-					sConts += "<textarea id='content' cols='45' rows='10' placeholder='상품에 대한 평가를 20자 이상 작성해 주세요'></textarea><br>";	
+					sConts += "<textarea id='reviewContent' cols='45' rows='10' placeholder='상품에 대한 평가를 20자 이상 작성해 주세요'></textarea><br>";	
 				}else{
 					sConts += "<textarea id='content' cols='45' rows='10' placeholder='상품에 대한 평가를 20자 이상 작성해 주세요'>"+json[0].reviewContent+"</textarea><br>";
 				}
 				
 				sConts += "<div class='file'>";
-				sConts += "<input type='file' id='imgButton' value=" + json[0].reviewImagefilename1 + "/> <br> <input type='file' id='imgButton' value = " + json[0].reviewImagefilename2 + "/>";
+				sConts += "<input type='file' id='imgButton1' value=" + json[0].reviewImagefilename1 + "/> <br> <input type='file' id='imgButton2' value = " + json[0].reviewImagefilename2 + "/>";
 				sConts += "</div><br>";
-				sConts += "<input type='submit' value='등록' id='reviewButton' />";
+				if(json[0].reviewContent == undefined){
+				sConts += "<button id='insert'>등록</button>";
+				}else{
+				sConts += "<button id='modify'>수정</button>";	
+				}
 		
 				$("#review").prepend(sConts);
+				
+				
+				
 		})
 			
 	});

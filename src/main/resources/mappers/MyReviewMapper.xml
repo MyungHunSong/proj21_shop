@@ -25,6 +25,7 @@
 		<association property="proName" javaType="ProductDTO"
 			autoMapping="true">
 			<result property="proImgfileName" column="pro_imagefilename"/>
+			<result property="proNum" column = "pro_num"/>
 			<result property="proName" column="pro_name" />
 			<result property="proColor" column="pro_color" />
 			<result property="proSize" column="pro_size" />
@@ -34,6 +35,7 @@
 	<resultMap type="OrderDTO" id="resProductDetail">
 		<result property="memberId" column="order_member_id"/>
 		<association property="proName" javaType="ProductDTO" autoMapping="true">
+			<result property="proNum" column = "pro_num"/>
 			<result property="proName" column="pro_name"/>
 			<result property = "proColor" column="pro_color"/>
 			<result property="proSize" column="pro_size"/>
@@ -71,7 +73,7 @@
 
 	<select id="selectDetailReviewByMember"
 		resultMap="resDetailReview">
-		select p.pro_num,pi2.pro_imagefilename, p.pro_name,
+		select p.pro_num,pi2.pro_imagefilename, p.pro_num, p.pro_name,
 		p.pro_color, p.pro_size,
 		r.re_stars, r.re_content, r.re_image,
 		r.re_image2
@@ -87,7 +89,7 @@
 
 	<select id="selectProductDetailByMember"
 		resultMap="resProductDetail">
-		select o.order_member_id, pi2.pro_imagefilename, p.pro_name,
+		select o.order_member_id, pi2.pro_imagefilename, p.pro_num, p.pro_name,
 		p.pro_color, p.pro_size
 		from product p
 		join `order` o
@@ -96,4 +98,9 @@
 		on o.pro_num = pi2.pro_num
 		where o.order_member_id = #{memberId} and p.pro_num = #{proNum}
 	</select>
+	
+	<insert id="insertReview" parameterType="ReviewDTO">
+	insert into review(pro_num, re_member, re_content, re_image, re_image2, re_stars)
+	values (#{proNum}, #{memberId}, #{reviewContent}, #{reviewImagefilename1}, #{reviewImagefilename2}, #{reviewStar});
+	</insert>
 </mapper>
