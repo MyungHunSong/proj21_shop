@@ -38,6 +38,7 @@
 						 $('#insert').on("click", function(e){
 						 	  var newReview = {	proNum : json[0].proName.proNum , memberId : memberId, reviewContent : $('#reviewContent').val(),
 						 						reviewImagefilename1 : $('#imgButton1').val(), reviewImagefilename2 : $('#imgButton2').val(), reviewStar : starRate};
+						 	  
 						 	  /* alert("data > " + newReview.proNum); */
 						 	  $.ajax({
 						 		  url : contextPath + "/api/myreview/",
@@ -48,7 +49,7 @@
 						 		  data : JSON.stringify(newReview),
 						 		  success : function(res){
 						 			  alert("리뷰작성이 완료되었습니다.");
-						 			   window.location.href = contextPath + "/myorder?memberId=" + memberId;
+						 			   window.location.href = contextPath + "/board?memberId=" + memberId;
 						 		  }
 						 		  
 						 	  });
@@ -86,7 +87,7 @@
 				}
 				
 				sConts += "<div class='file'>";
-				sConts += "<input type='file' id='imgButton1' value=" + json[0].reviewImagefilename1 + "/> <br> <input type='file' id='imgButton2' value = " + json[0].reviewImagefilename2 + "/>";
+				sConts += "<input type='file' id='imgButton1'/> <br> <input type='file' id='imgButton2'/>";
 				sConts += "</div><br>";
 				if(json[0].reviewContent == undefined){
 				sConts += "<button id='insert'>등록</button>";
