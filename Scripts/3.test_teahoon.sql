@@ -57,6 +57,53 @@ select *
   from productall
 where pro_img_state =1 and pro_num = 111;
 
+-- 옷 목록 화면 검색
+-- 가격 낮은순
+ select * 
+   from productall 
+where pro_size = 1   
+ order by pro_price asc;
+
+-- 가격 높은순
+ select * 
+   from productall
+where pro_size = 1   
+ order by pro_price desc;
+
+-- 최신 상품순
+ select * 
+   from productall
+where pro_size = 1
+  order by pro_status = '신상';
+ 
+-- 조회수순
+ select * 
+   from productall 
+where pro_size = 1 
+  order by pro_hits desc;
+ 
+select * from productall where pro_size = 1 order by pro_hits desc; 
+-- 가격순 all
+ select * 
+   from productall
+where pro_size = 1
+order by pro_price desc;
+
+-- 가격 20,000 ~ 30,000
+ select * 
+   from productall
+where pro_size = 1 
+    and pro_price between  10000 and 30000;
+
+-- 가격 10만 이상
+select * 
+   from productall
+where pro_size = 1 
+    and pro_price > 100000;
+
+select * from productall where pro_size = 1 and pro_price > 100000;
+select * from productall where pro_size = 1 and pro_price between 30000 and 50000;
+
 -- 제품 클릭시 조회수 +1
 update product 
       set pro_hits = pro_hits - 1  
@@ -297,7 +344,6 @@ where re_rep_member = 'test02'and re_rep_num = 13;
         
 /*Ajax시 넣어줄 rerepNum*/
 SELECT MAX(re_rep_num)+1 FROM re_reply
-        
         
         
         

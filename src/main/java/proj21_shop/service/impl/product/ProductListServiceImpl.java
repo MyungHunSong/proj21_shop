@@ -1,6 +1,7 @@
 package proj21_shop.service.impl.product;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,12 @@ public class ProductListServiceImpl implements ProductListService{
 	@Override
 	public int updateProhits(int proNum) {
 		return service.updateProhits(proNum);
+	}
+
+	//옷목록 리스트 여러가지 조건으로 검색
+	@Override
+	public List<ProductDTO> selectProductByCondition(Map<String, Object> condition) {
+		return service.selectProductByCondition(condition);
 	}
 	
 }
