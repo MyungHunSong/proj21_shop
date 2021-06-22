@@ -86,7 +86,7 @@ public class QnaMapperTest {
 		Assert.assertEquals(1, res);		
 	}
 	
-	@Test
+	//@Test
 	public void test06InsertReply() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getClassName()+"()");
 		QnaDTO dto = new QnaDTO();
@@ -99,12 +99,12 @@ public class QnaMapperTest {
 		Assert.assertEquals(1, res);
 	}
 	
-	//@Test
+	@Test
 	public void test07updateReply() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getClassName()+"()");
 		QnaDTO dto = new QnaDTO();
-		dto.setqContent("잘못 배달 갔습니다.");
-		dto.setqIndex(57);
+		dto.setqGroup(57);
+		dto.setqContent("배달안대");
 		
 		int res = mapper.modifyForAdmin(dto);
 		Assert.assertEquals(1, res);
@@ -114,6 +114,7 @@ public class QnaMapperTest {
 	public void test08DeleteReply() {
 		QnaDTO dto = new QnaDTO();
 		dto.setqIndex(57);
+		
 		
 		int res = mapper.deleteForAdmin(dto);
 		Assert.assertEquals(1, res);

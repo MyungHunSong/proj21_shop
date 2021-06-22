@@ -172,7 +172,7 @@ where q_index = 1;
 
 -- => 요5가지가. 회원관련 문의다.
 -- 즉 저6가지 이외에는 콤보 박스에 들어가면 안된다. ㅇㅋ?*/
-/*3. 회원이 할수 있는 추가, 수정, 삭제*/
+/*. 회원이 할수 있는 추가, 수정, 삭제*/
 select * from qna
 where q_option='제품문의' and q_option != '공지사항';
 
@@ -198,7 +198,7 @@ from qna
 where q_index = 88 and q_member = '송명훈';
 
 
-/*4. 답글 작성시 보이는*/
+/*3. 답글 작성시 보이는*/
 -- 답글은 관리자가 달수있다.
 -- (관리자)세션 권한이 있으면 ok, (회원)없다면 답글 작성이 안보이도록
  
@@ -278,15 +278,28 @@ insert into qna(q_title, q_member, q_content, q_date, q_group, q_step)
 -- 수정.
 update qna 
 	set q_content = '잘못 배달 갔습니다.'
-where q_index = 71;
+where q_index = 75 and q_step=1;
 
 -- 삭제
 delete
 	from qna 
-where q_index = 7;
+where q_index = 74;
 	
 
+-- 3-5 관리자용 공지사항 추가 삭제 수정. 일단 나중에 할것.
+-- 추가.
+insert into qna( q_member, q_option, q_title, q_date, q_hits, q_group)
+values('admin', '공지','제품관령공지',now(),0,0);
+-- 수정. if admin
+update qna 
+	set  q_content = ?, q_title = ?, q_date = now(), q_hits =0
+where q_index = ?;
+-- 삭제. if admin
+delete 
+	from qna
+where q_index = ?;
 
+/*4.회원 글추가 페이지. */
 
 
 
