@@ -17,4 +17,6 @@ public class ImageDTO {
 
 	/* 메인이미지 여부 */
 	private int proImgState;
+	
+	
 }

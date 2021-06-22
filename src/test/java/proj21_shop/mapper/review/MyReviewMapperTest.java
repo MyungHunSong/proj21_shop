@@ -54,8 +54,18 @@ public class MyReviewMapperTest {
 		log.debug(Thread.currentThread().getStackTrace()[1].getClassName()+"()");
 		ReviewDTO reviewDTO = new ReviewDTO();
 		reviewDTO.setMemberId("test01");
-		reviewDTO.setProNum(1033);
+		reviewDTO.setProNum(6163);
 		List<ReviewDTO> list = mapper.selectDetailReviewByMember(reviewDTO);
+		Assert.assertNotNull(list);
+	}
+	
+	@Test
+	public void test04SelectProductDetailByMember() {
+		log.debug(Thread.currentThread().getStackTrace()[1].getClassName()+"()");
+		OrderDTO orderDTO = new OrderDTO();
+		orderDTO.setMemberId("test01");
+		orderDTO.setProNum(3112);
+		List<OrderDTO> list = mapper.selectProductDetailByMember(orderDTO);
 		Assert.assertNotNull(list);
 	}
 	

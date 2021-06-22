@@ -34,7 +34,15 @@ public class MyReviewController {
 		ReviewDTO reviewDTO = new ReviewDTO();
 		reviewDTO.setMemberId(memberId);
 		reviewDTO.setProNum(proNum);
-		return ResponseEntity.ok(service.selectDetailReviewByMember(reviewDTO));
+		if(service.selectDetailReviewByMember(reviewDTO).isEmpty()) {
+			OrderDTO orderDTO = new OrderDTO();
+			orderDTO.setMemberId(memberId);
+			orderDTO.setProNum(proNum);
+			return ResponseEntity.ok(service.selectProductDetailByMember(orderDTO));
+		}else {
+			return ResponseEntity.ok(service.selectDetailReviewByMember(reviewDTO));
+		}
+		
 	}
 	
 } 

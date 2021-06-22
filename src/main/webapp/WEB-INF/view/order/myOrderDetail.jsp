@@ -21,17 +21,17 @@
 						contextPath + "/api/detailorder/" + memberId + "/"+orderProNum,
 						function(json) {
 							console.log(json);
-							var dataLength = json[0].proName.length;
+							var dataLength = json[0].productDTO.length;
 							for(i = 0; i < dataLength; i++){
 							sCont += "<tr>";
 							sCont += "<td>" + json[0].orderProNum;
-							sCont += "<td><img src='" + contextPath +"/resources/product/images/" + json[0].proName[i].proImgfileName + "' width = '80' height='60'></td>";
-							sCont += "<td>" + json[0].proName[i].proPrice * 0.01 +"p";
-							sCont += "<td>" + json[0].proName[i].proPrice;
+							sCont += "<td><img src='" + contextPath +"/resources/product/images/" + json[0].productDTO[i].proImgfileName + "' width = '80' height='60'></td>";
+							sCont += "<td>" + json[0].productDTO[i].proPrice * 0.01 +"p";
+							sCont += "<td>" + json[0].productDTO[i].proPrice;
 							sCont += "<td>" + json[0].orderProQuantity;
 							sCont += "<td>" + json[0].deliveryStatus;
 							sCont += "<td>" + json[0].orderDate;
-							sCont += "<td>" + "후기작성 하러가기";
+							sCont += "<td><a href='detailreview?memberId=" + memberId +"&proNum=" + json[0].productDTO[i].proNum + "'>후기작성 하러가기</a></td>";
 							}
 							
 							$("#load").append(sCont);
@@ -68,7 +68,7 @@
 						 	for(i = 0; i < dataLength; i++){
 						 		/*console.log(parseInt(json[0].proName[i].proPrice)
 						 				+parseInt(json[0].proName[i].proPrice)) */
-							sum += parseInt(json[0].proName[i].proPrice);
+							sum += parseInt(json[0].productDTO[i].proPrice);
 							}
 							sCon += "<td>" + sum + "</td>";
 							sCon += "</tr>";

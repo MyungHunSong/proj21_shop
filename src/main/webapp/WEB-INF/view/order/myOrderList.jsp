@@ -17,8 +17,9 @@
          var dataLengths = json.length;
          if (dataLengths >= 1) {
             for (j = 0; j < dataLengths; j++) {
-               var dataLength = json[j].proName.length;
-               console.log(json[j].proName.length)
+            	console.log(json);
+               var dataLength = json[j].productDTO.length;
+               console.log(json[j].productDTO.length)
                
                if (dataLength >= 1) {
                   
@@ -26,10 +27,10 @@
                      sCont += "<tr>";
                      sCont += "<td><a href='detailorder?memberId="
                            + json[j].memberId + "&orderProNum=" + json[j].orderProNum + "&proNum="
-                           + json[j].proName[i].proNum + "'>"
+                           + json[j].productDTO[i].proNum + "'>"
                            + json[j].orderProNum + "</a>"
                            
-                     sCont += "<td>" + json[j].proName[i].proName +"</td>";
+                     sCont += "<td>" + json[j].productDTO[i].proName +"</td>";
                      sCont += "<td>" + json[j].orderDate+"</td>";
                      sCont += "<td>" + json[j].orderProQuantity+"</td>";
                      sCont += "<td>" + json[j].orderPrice+"</td>";
