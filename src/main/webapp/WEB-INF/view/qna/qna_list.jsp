@@ -23,9 +23,6 @@ $(function(){
 		+"&searchType=" +$("select option:selected").val();
 	})
 	
-	$("#insertBtn").on('click', function(event){
-		self.location ="/proj21_shop/qna_insertpage";
-	});
 }); 
 </script>
 <meta charset="UTF-8">
@@ -35,7 +32,7 @@ $(function(){
 
 	<div class="search_qna">
 	<!-- '전체검색' = a
-					'공지' = b
+			'공지' = b
 					'제품문의' = c 
 						'환불문의' = d 
 						'포인트 º 적립금' = e 
@@ -56,7 +53,14 @@ $(function(){
 				 name="keyword" id="keywordInput"  value = "${searchCriteria.keyword}" placeholder="검색어를 입력해 주세요">
 				<button type="button" id="searchBtn">검색</button>
 				<button type="button" id="goList">목록</button>
-				<button type="button" id="insertBtn" >글쓰기</button>
+				<c:if test="${empty authInfo}">
+					<a href="login">글쓰기[로그인이 필요한 서비스 입니다.]</a>
+					
+				</c:if>
+				<c:if test="${!empty authInfo}">
+					<a href="<c:url value="/qnaInsert" />">글쓰기</a>
+				</c:if>
+				<!-- value 이름과 getMapping 이름을 일치 시켜 줘야한다. -->
 		</div>
 			
 			

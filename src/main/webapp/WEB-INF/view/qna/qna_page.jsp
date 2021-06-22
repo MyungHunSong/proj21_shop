@@ -3,13 +3,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="contextPath" value="<%=request.getContextPath()%>" />
-
 <!DOCTYPE html>
 <html>
 <head>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <meta charset="UTF-8">
 <title>QNA페이지</title>
 <link rel="stylesheet" href="/proj21_shop/resources/qna/css/qna_qna.css">
@@ -113,7 +111,6 @@ $(function(){
 			
 			// 답글 수정.
 			$('.modifyContent').on('click', function(){
-				/* var idx = $(this).parent().parent().prev().prev().children().next().next().val(); */
 				var idx = $(this).parent().parent().next().children().val();
 				console.log(idx);
 				console.log($("textarea[name='contentArea']:visible").val())
@@ -256,8 +253,7 @@ $(function(){
 			<!-- 페이징 -->
 			<div class="div_pagenation">
 			<ul class="pagination">
-				<c:if test="${pageMaker.prev}">
-				<!--  	<li><a href="/proj21_shop/listPaging?page=${pageMaker.startPage - 1}">이전</a></li> -->
+				<c:if test="${pageMaker.prev}">	
 						<!-- (uri을 이용한)검색조건 수정. -->
 				<li><a href="/proj21_shop/listPaging${pageMaker.makeSearch(pageMaker.startPage - 1)}">[이전]</a></li> 
 				</c:if>
@@ -265,20 +261,17 @@ $(function(){
 				<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}"
 					var="idx">
 					<li <c:out value="${pageMaker.cri.page == idx}"/>>
-							<%-- <a href="/proj21_shop/listPaging?page=${idx}" id="go_other">${idx}</a></li> --%>
 							<!-- 검색조건 수정. -->
 						<a href="/proj21_shop/listPaging${pageMaker.makeSearch(idx)}" class ="go_other">${idx}</a>
 				</c:forEach>
 				
 				<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 					<li>
-							<!-- <a href="/proj21_shop/listPaging?page=${pageMaker.endPage + 1}">[다음]</a> -->
 							<!-- 검색조건 수정. -->
 						<a href="/proj21_shop/listPaging${pageMaker.makeSearch(pageMaker.endPage+1)}">[다음]</a> 
 					</li>
 				</c:if>
 			</ul>
-			<!-- 로그인 시만 가능하다 로그인 안했다? 그럼 로그인 페이지로. -->
 			</div>
 			<!-- 페이징 끝 -->
 		</div>

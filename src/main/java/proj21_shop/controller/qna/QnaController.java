@@ -26,8 +26,6 @@ public class QnaController {
 		return"/qna/qna_main";
 	}	
 	
-	
-	
 	// @RequestParam HttpReqeust 파라메터를 받을 수 있는 어노테이션
 	// 파라메터와 변수명일 일치 시킨다면 자동으로 값이 1:1 매핑된다.	
 	@GetMapping("/listPaging")
