@@ -397,9 +397,18 @@ update product
       set pro_status = '최고'
 where pro_num like concat(616,'%');
 
+update product 
+      set pro_status = '최고'
+where pro_num like concat(511,'%');
+
+update product 
+      set pro_status = '최고'
+where pro_num like concat(508,'%');
+
+
 select * 
   from productall
-  where pro_size =1 and pro_status ='최고' 
+  where pro_size =1 and pro_status ='세일' 
 
 /*pro_status = '추천'로 바꿈*/
   
@@ -425,13 +434,18 @@ where pro_num like concat(211,'%');
   
 update product 
       set pro_status = '추천'
-where pro_num like concat(109,'%');
+where pro_num like concat(311,'%');
+  
+update product 
+      set pro_status = '추천'
+where pro_num like concat(302,'%');
 
 select * 
   from productall
-  where pro_size =1;
+  where pro_size =1 and pro_status = '최고'
+ order by pro_price desc;
 
-/*신상이 3개 모자람*/ 
+/*신상이 4개 모자람*/ 
 update product 
       set pro_status = '신상'
 where pro_num like concat(114,'%');
@@ -443,3 +457,7 @@ where pro_num like concat(209,'%');
 update product 
       set pro_status = '신상'
 where pro_num like concat(206,'%');
+update product 
+      set pro_status = '신상'
+where pro_num like concat(505,'%');
+
