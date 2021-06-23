@@ -279,7 +279,7 @@ function toggleDataSeries(e) {
 
 										<c:forEach var="order" items="${orderList }">
 											<tr style="text-align: center;">
-												<td width="100px;"><a href="${contextPath}/product/productdetail?proNum=${order.pro.proNum}"> <img width="70px" height="105px"
+												<td width="100px;"><a href="${contextPath}/productDetail?proNum=${order.pro.proNum}"> <img width="70px" height="105px"
 														src="${contextPath}/thumbnails?proNum=${order.pro.proNum}&fileName=${order.pro.proImgfileName}"></a></td>
 												<td>${order.pro.proName }</td>
 												<td><c:if test="${order.pro.proColor == 1}">white /</c:if> <c:if test="${order.pro.proColor == 2}">ivory /</c:if> <c:if test="${order.pro.proColor == 3}">gray /</c:if>
@@ -325,11 +325,11 @@ function toggleDataSeries(e) {
 
 										<c:forEach var="refund" items="${refundList }">
 											<tr style="text-align: center;">
-												<td width="100px;"><a href="${contextPath}/product/productdetail.do?pro_code=${refund.pro_code}"> <img width="70px" height="105px"
-														src="${contextPath}/thumbnails.do?pro_code=${refund.pro_code}&fileName=${refund.pro_imagefilename}"></a></td>
+												<td width="100px;"><a href="${contextPath}/productDetail?proNum=${refund.proNum}"> <img width="70px" height="105px"
+														src="${contextPath}/thumbnails?proNum=${refund.proNum}&fileName=${refund.proImagefilename}"></a></td>
 												<td>${refund.proName }</td>
 												<td>${refund.proColor}/${refund.proSize }</td>
-												<td>${refund.order_memberName }</td>
+												<td>${refund.orderMemberName }</td>
 												<td><fmt:formatNumber value="${refund.orderPrice}" pattern="#,###" />¿ø</td>
 												<td>${refund.orderDate }</td>
 												<td>${refund.deliveryStatus}</td>
@@ -363,7 +363,7 @@ function toggleDataSeries(e) {
 										</tr>
 										<c:forEach var="cart" items="${cartList }">
 											<tr style="text-align: center;">
-												<td width="100px;"><a href="${contextPath}/product/productdetail?proNum=${cart.cartProNum.proNum}"> <img width="70px" height="105px"
+												<td width="100px;"><a href="${contextPath}/productDetail?proNum=${cart.cartProNum.proNum}"> <img width="70px" height="105px"
 														src="${contextPath}/thumbnails?proNum=${cart.cartProNum.proNum}&fileName=${cart.cartProNum.proImgfileName}"></a></td>
 												<td width="100px;">${cart.cartProNum.proName }</td>
 												<td width="100px">${cart.cartProNum.proSize }/${cart.cartProNum.proColor }</td>

@@ -206,7 +206,7 @@ a {
 										<tr style="text-align: center;">
 											<td width="100px">${order.orderProNum }</td>
 											<td width="100px">${order.orderCode }</td>
-											<td width="100px"><a href="${contextPath}/product/productdetail?proNum=${order.pro.proNum}"> <img width="70px" height="105px"
+											<td width="100px"><a href="${contextPath}/productDetail?proNum=${order.pro.proNum}"> <img width="70px" height="105px"
 													src="${contextPath}/thumbnails?proNum=${order.pro.proNum}&fileName=${order.pro.proImgfileName}"></a></td>
 											<td width="100px">${order.pro.proName }</td>
 											<td width="100px">
