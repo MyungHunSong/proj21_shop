@@ -13,6 +13,7 @@ import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesView;
 import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 
+import proj21_shop.interceptor.AdminCheckInterceptor;
 import proj21_shop.interceptor.AuthCheckInterceptor;
 
 //view용
@@ -43,7 +44,12 @@ public class MvcConfig implements WebMvcConfigurer {
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(authCheckInterceptor()).addPathPatterns("/cart/**");
+		registry.addInterceptor(adminCheckInterceptor()).addPathPatterns("/admin/**");
 	}
+
+	private HandlerInterceptor adminCheckInterceptor() {
+		return new AdminCheckInterceptor();
+}
 
 	@Bean
 	public HandlerInterceptor authCheckInterceptor() {
