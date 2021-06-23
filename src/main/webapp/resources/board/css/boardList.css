@@ -8,8 +8,22 @@ body {
 }
 
 
-div {
+.container {
 	text-align: center;
+}
+
+.asd{
+	padding-left: 100px;
+	padding-right: 100px;
+}
+
+a{	color: black;
+	font-weight:bold;
+	text-decoration:none;
+}
+
+a:hover{
+	color: red;
 }
 
 table.type11 {
@@ -26,7 +40,7 @@ table.type11 th {
 	font-weight: bold;
 	vertical-align: top;
 	color: #fff;
-	background: #e7708d;
+	background: #000000;
 }
 
 table.type11 td {
@@ -34,5 +48,5 @@ table.type11 td {
 	padding: 10px;
 	vertical-align: top;
 	border-bottom: 1px solid #ccc;
-	background: #eee;
+	background: #f4f4f4;
 }

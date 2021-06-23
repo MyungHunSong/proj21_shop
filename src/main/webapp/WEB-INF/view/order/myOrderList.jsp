@@ -58,6 +58,7 @@
       <jsp:include page="/WEB-INF/view/include/topbody.jsp"></jsp:include>
       <section id="orderArea">
          <h3>나의 주문내역</h3>
+         <div class="asd">
          <table class="type11">
             <thead>
                <tr>
@@ -71,6 +72,7 @@
             </thead>
             <tbody id="load"></tbody>
          </table>
+         </div>
       </section>
       <jsp:include page="/WEB-INF/view/include/footer.jsp"></jsp:include>
    </div>

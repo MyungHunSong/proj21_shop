@@ -61,6 +61,7 @@
 		<jsp:include page="/WEB-INF/view/include/header.jsp"></jsp:include>
 		<jsp:include page="/WEB-INF/view/include/topbody.jsp"></jsp:include>
 		<section id="boardArea">
+			<div class="asd">
 			<h3>내가 쓴 후기</h3>
 			<table class="type11">
 				<thead>
@@ -89,6 +90,7 @@
 				</thead>
 				<tbody id="loadtable"></tbody>
 			</table>
+			</div>
 		</section>
 		<jsp:include page="/WEB-INF/view/include/footer.jsp"></jsp:include>
 	</div>
