@@ -26,7 +26,7 @@ public class MvcConfig implements WebMvcConfigurer {
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
 		configurer.enable();
 	}
-	
+	//dd
 	/* JSP를 통해서 컨트롤러의 실행 결과를 보여주기 위한 설정 */
 	@Override
 	public void configureViewResolvers(ViewResolverRegistry registry) {
