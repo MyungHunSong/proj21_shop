@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import proj21_shop.dto.product.ProductDTO;
 import proj21_shop.mapper.product.ProductListMapper;
 import proj21_shop.service.product.ProductListService;
+import sun.print.resources.serviceui_es;
 
 @Service
 public class ProductListServiceImpl implements ProductListService{
@@ -42,6 +43,12 @@ public class ProductListServiceImpl implements ProductListService{
 	@Override
 	public List<ProductDTO> selectProductByproName(String proName) {
 		return service.selectProductByproName(proName);
+	}
+	
+	//메인화면 옷 목록
+	@Override
+	public List<ProductDTO> selectProductMain(Map<String, Object> condition) {
+		return service.selectProductMain(condition);
 	}
 	
 }

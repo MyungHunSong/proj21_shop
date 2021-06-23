@@ -54,4 +54,12 @@ public class ProductServiceController {
 	public ResponseEntity<Object> selectProductByProName(@PathVariable String proName){
 		return ResponseEntity.ok(service.selectProductByproName(proName));
 	}
+	
+	/*메인화면에서 여러조건(new,sale,recommend,best)으로 옷목록*/
+	@GetMapping("/selectProductsMain/{proStatus}")
+	public ResponseEntity<Object> selectProductsMain(@PathVariable String proStatus){
+		HashMap<String, Object> condition = new HashMap<String, Object>();
+		condition.put("proStatus", proStatus);
+		return ResponseEntity.ok(service.selectProductMain(condition));
+	} 
 }

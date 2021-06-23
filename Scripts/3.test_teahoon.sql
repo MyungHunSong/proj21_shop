@@ -348,10 +348,98 @@ where re_rep_member = 'test02'and re_rep_num = 13;
         
 /*Ajax시 넣어줄 rerepNum*/
 SELECT MAX(re_rep_num)+1 FROM re_reply
-        
-        
-        
-        
-        
-        
-        
+   
+/*메인화면*/
+/*New(신상) 검색*/
+ select * 
+   from productall 
+where pro_size =1 and pro_status = '세일';
+
+/*세일*/ 
+select * 
+  from productall 
+where pro_size = 1 and pro_salesrate != 0
+  limit 6;
+ 
+/*추천*/ 
+select pro_num,pro_category,pro_name,pro_price,pro_content,pro_salesrate,pro_cre_date,pro_status,pro_color,pro_size,pro_quantity,pro_sold,pro_hits,re_replyCount 
+  from product
+where pro_size = 1;
+
+/*일단 세일 상태가 0이아닌것을 제외하고 다 세일로 바꿈*/
+update product 
+      set pro_status = '세일'
+ where pro_salesrate != 0;
+
+
+/*pro_status = '최고'로 바꿈*/
+update product 
+      set pro_status = '최고'
+where pro_num like concat(212,'%');
+
+update product 
+      set pro_status = '최고'
+where pro_num like concat(103,'%');
+
+update product 
+      set pro_status = '최고'
+where pro_num like concat(202,'%');
+
+update product 
+      set pro_status = '최고'
+where pro_num like concat(315,'%');
+
+update product 
+      set pro_status = '최고'
+where pro_num like concat(609,'%');
+
+update product 
+      set pro_status = '최고'
+where pro_num like concat(616,'%');
+
+select * 
+  from productall
+  where pro_size =1 and pro_status ='최고' 
+
+/*pro_status = '추천'로 바꿈*/
+  
+update product 
+      set pro_status = '추천'
+where pro_num like concat(104,'%');
+  
+update product 
+      set pro_status = '추천'
+where pro_num like concat(407,'%');
+  
+update product 
+      set pro_status = '추천'
+where pro_num like concat(411,'%');
+  
+update product 
+      set pro_status = '추천'
+where pro_num like concat(314,'%');
+  
+update product 
+      set pro_status = '추천'
+where pro_num like concat(211,'%');
+  
+update product 
+      set pro_status = '추천'
+where pro_num like concat(109,'%');
+
+select * 
+  from productall
+  where pro_size =1;
+
+/*신상이 3개 모자람*/ 
+update product 
+      set pro_status = '신상'
+where pro_num like concat(114,'%');
+
+update product 
+      set pro_status = '신상'
+where pro_num like concat(209,'%');
+
+update product 
+      set pro_status = '신상'
+where pro_num like concat(206,'%');
