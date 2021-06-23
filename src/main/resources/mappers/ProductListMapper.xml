@@ -94,6 +94,7 @@
     	 		<if test="proStatus == 'NEW'">and pro_status = '신상'</if>
     	 		<if test="proStatus == 'BEST'">and pro_status = '최고'</if>
     	 </trim>
-		 limit 6
+    	 order by pro_price desc
+		 limit 8
 	</select>
 </mapper>

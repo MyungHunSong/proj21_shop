@@ -27,14 +27,12 @@
       });
    });
 $(function(){
-	console.log(111)
 	var contextPath = "${contextPath}";
 	var proSize = ["XS","S","M","L","XL"]
-	var proStatus = ["RECOMMEND","SALE","NEW","BEST"]
+	var proStatus = ["RECOMMEND","BEST","SALE","NEW" ]
 	
 	$.get(contextPath + "/api/selectProductsMain/"+proStatus[0],
 			function(json){
-				console.log(json)
 				var dataLength = json.length;
 				if(dataLength >= 1){
 					var sCont = "";
@@ -45,7 +43,7 @@ $(function(){
 						sCont += "			<div class='detail'>"
 						sCont += "				<div class='proTitle'>"
 						sCont += "					<span class='proName'>"+ json[i].proName +"</span><br>"
-						sCont +="					<span class='price'>"+ (json[i].proPrice*(100-json[i].proSalesrate)/100).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") +"</span>"       
+						sCont +="					<span class='price'>"+ (json[i].proPrice*(100-json[i].proSalesrate)/100).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") +"원</span>"       
 						sCont +="				</div>"
 						sCont +="				<div class='info'>"
 						sCont +="					<div class='size'>"
@@ -64,7 +62,6 @@ $(function(){
 			});
 	$.get(contextPath + "/api/selectProductsMain/"+proStatus[1],
 			function(json){
-				console.log(json)
 				var dataLength = json.length;
 				if(dataLength >= 1){
 					var sCont = "";
@@ -75,7 +72,7 @@ $(function(){
 						sCont += "			<div class='detail'>"
 						sCont += "				<div class='proTitle'>"
 						sCont += "					<span class='proName'>"+ json[i].proName +"</span><br>"
-						sCont +="					<span class='price'>"+ (json[i].proPrice*(100-json[i].proSalesrate)/100).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")  +"</span>"       
+						sCont +="					<span class='price'>"+ (json[i].proPrice*(100-json[i].proSalesrate)/100).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")  +"원</span>"       
 						sCont +="				</div>"
 						sCont +="				<div class='info'>"
 						sCont +="					<div class='size'>"
@@ -94,7 +91,6 @@ $(function(){
 			});
 	$.get(contextPath + "/api/selectProductsMain/"+proStatus[2],
 			function(json){
-				console.log(json)
 				var dataLength = json.length;
 				if(dataLength >= 1){
 					var sCont = "";
@@ -105,7 +101,7 @@ $(function(){
 						sCont += "			<div class='detail'>"
 						sCont += "				<div class='proTitle'>"
 						sCont += "					<span class='proName'>"+ json[i].proName +"</span><br>"
-						sCont +="					<span class='price'>"+ (json[i].proPrice*(100-json[i].proSalesrate)/100).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")  +"</span>"       
+						sCont +="					<span class='price'>"+ (json[i].proPrice*(100-json[i].proSalesrate)/100).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")  +"원</span>"       
 						sCont +="				</div>"
 						sCont +="				<div class='info'>"
 						sCont +="					<div class='size'>"
@@ -124,7 +120,6 @@ $(function(){
 			});
 	$.get(contextPath + "/api/selectProductsMain/"+proStatus[3],
 			function(json){
-				console.log(json)
 				var dataLength = json.length;
 				if(dataLength >= 1){
 					var sCont = "";
@@ -135,7 +130,7 @@ $(function(){
 						sCont += "			<div class='detail'>"
 						sCont += "				<div class='proTitle'>"
 						sCont += "					<span class='proName'>"+ json[i].proName +"</span><br>"
-						sCont +="					<span class='price'>"+ (json[i].proPrice*(100-json[i].proSalesrate)/100).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")  +"</span>"       
+						sCont +="					<span class='price'>"+ (json[i].proPrice*(100-json[i].proSalesrate)/100).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")  +"원</span>"       
 						sCont +="				</div>"
 						sCont +="				<div class='info'>"
 						sCont +="					<div class='size'>"
@@ -150,8 +145,27 @@ $(function(){
 				        sCont +="</div>"
 					}
 					$("#"+proStatus[3]).append(sCont);
+					
 				} 
 			});
+	$('.listRemocon').on('click',function(){
+		var listRemocon = $(this).text();
+		if(listRemocon == "RECOMMEND"){
+			$('html, body').animate({scrollTop:$('#recommend').position().top}, 'slow');
+		}
+		else if(listRemocon == "SALE"){
+			$('html, body').animate({scrollTop:$('#sale').position().top}, 'slow');
+		}
+		else if(listRemocon == "NEW"){
+			$('html, body').animate({scrollTop:$('#new').position().top}, 'slow');
+		}
+		else if(listRemocon == "BEST"){
+			$('html, body').animate({scrollTop:$('#best').position().top}, 'slow');
+		}
+		
+		console.log(listRemocon)	
+	})
+	
 })   
 </script>
 </head>
