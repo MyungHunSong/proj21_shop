@@ -281,9 +281,9 @@ a {
 									<c:forEach var="product" items="${productsList}">
 										<tr style="text-align: center;">
 											<td><input type="checkbox" name="checkRow" value="${product.proNum }" /></td>
-											<td><a href="${contextPath }/product/productdetail?proNum=${product.proNum}">${product.proNum }</a></td>
-											<td><a href="${contextPath }/product/productdetail?proNum=${product.proNum}">${product.proCategory }</a></td>
-											<td><a href="${contextPath }/product/productdetail?proNum=${product.proNum}">${product.proStatus }</a></td>
+											<td><a href="${contextPath }/productDetail?proNum=${product.proNum}">${product.proNum }</a></td>
+											<td><a href="${contextPath }/productDetail?proNum=${product.proNum}">${product.proCategory }</a></td>
+											<td><a href="${contextPath }/productDetail?proNum=${product.proNum}">${product.proStatus }</a></td>
 											<c:choose>
 												<c:when test="${product.proNum % 10 == 3}">
 													<td style="border-bottom-color: #ffffff;"><img width="180px;" height="270px;" src="${contextPath}/thumbnails?proNum=${product.proNum}&fileName=${product.proImgfileName}"> <br>
@@ -299,8 +299,8 @@ a {
 											<td><a href="${contextPath }/product/viewDetailProduct?proNum=${product.proNum}"> <fmt:formatNumber value="${product.proPrice }" type="number" var="proPrice" /> ${proPrice }원 <br>
 													${product.proSalesrate } % 할인
 											</a></td>
-											<td><a href="${contextPath }/product/productdetail?proNum=${product.proNum}">${product.proSold }</a></td>
-											<td><a href="${contextPath }/product/productdetail?proNum=${product.proNum}">${product.proHits }</a></td>
+											<td><a href="${contextPath }/productDetail?proNum=${product.proNum}">${product.proSold }</a></td>
+											<td><a href="${contextPath }/productDetail?proNum=${product.proNum}">${product.proHits }</a></td>
 											<td colspan="2" align="center"><c:choose>
 													<c:when test="${empty productsList  }">
 														<p>더 이상 등록된 모델이 없습니다</p>
