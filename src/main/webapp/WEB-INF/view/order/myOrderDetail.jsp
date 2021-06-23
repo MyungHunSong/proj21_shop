@@ -115,7 +115,7 @@
 				<th scope="cols">주문수량</th>
 				<th scope="cols">주문상태</th>
 				<th scope="cols">주문일</th>
-				<th scope="cols">후기</th>
+				<th scope="cols">비고</th>
 			</tr>
 		</thead>
 		<tbody id="load"></tbody>

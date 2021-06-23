@@ -5,8 +5,17 @@
 }
 
 .test1 {
-	padding-left: 180px;
-	padding-right: 180px;
+	padding-left: 280px;
+	padding-right: 280px;
+}
+
+a{	color: black;
+	font-weight:bold;
+	text-decoration:none;
+}
+
+a:hover{
+	color: red;
 }
 
 table.type11 {
@@ -23,14 +32,14 @@ table.type11 th {
 	font-weight: bold;
 	vertical-align: top;
 	color: #fff;
-	background: #e7708d;
+	background: #000000;
 }
 
 table.type11 td {
 	width: 155px;
 	padding: 10px;
 	vertical-align: top;
-	border-bottom: 1px solid #ccc;
+	border-bottom: 1px solid #f4f4f4;
 	background: #eee;
 }
 
