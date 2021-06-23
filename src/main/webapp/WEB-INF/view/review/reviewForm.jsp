@@ -37,7 +37,7 @@
 						
 						 $('#insert').on("click", function(e){
 						 	  var newReview = {	proNum : json[0].proName.proNum , memberId : memberId, reviewContent : $('#reviewContent').val(),
-						 						reviewImagefilename1 : $('#imgButton1').val(), reviewImagefilename2 : $('#imgButton2').val(), reviewStar : starRate};
+						 						reviewImagefilename1 : $('#imgButton1').val().replace(/C:\\fakepath\\/i, ''), reviewImagefilename2 : $('#imgButton2').val().replace(/C:\\fakepath\\/i, ''), reviewStar : starRate};
 						 	  
 						 	  /* alert("data > " + newReview.proNum); */
 						 	  $.ajax({
@@ -94,6 +94,11 @@
 				}else{
 				sConts += "<button id='modify'>수정</button>";	
 				}
+				
+				sConts += "<div class='bigPictureWrapper'>";
+				sConts += "<div class='bigPicture'";
+				sConts += "</div>"
+				sConts += "</div>"
 		
 				$("#review").prepend(sConts);
 				
