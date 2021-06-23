@@ -6,7 +6,6 @@ public class AuthInfo {
 	private String name;
 	private int mPoint;
 	
-
 	public AuthInfo() {
 	}
 

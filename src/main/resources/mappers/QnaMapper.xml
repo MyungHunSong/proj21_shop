@@ -145,4 +145,23 @@
 			where q_index = #{qIndex} 
 		</delete>
 		
+		<!-- 회원 글쓰기 추가,수정,삭제. -->
+		<insert id="insertQnaForMember">
+			INSERT INTO qna 
+				(q_title, q_option, q_member, q_content, q_file, q_date, q_group)
+			values 
+			(#{qTitle}, #{qOption}, #{qMember}, #{qContent}, #{qFile}, now(),(SELECT IFNULL(MAX(q_group) + 1, 1) FROM qna b))
+		</insert>
+		
+		<update id="modifyQnaForMember">
+			update qna 
+				set q_title=#{qTitle} ,q_option = #{qOption}, q_content =#{qContent}, q_file = #{qFile}, q_date = now()  
+			where q_index =#{qIndex} 
+		</update>
+		
+		<delete id="deleteQnaForMember">
+			delete 
+				from qna 
+			where q_index = #{qIndex} and q_option != '공지' and q_group = #{qGroup}
+		</delete>
 </mapper>

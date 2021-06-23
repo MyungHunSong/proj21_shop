@@ -20,10 +20,18 @@
 			  
 			  $("input[name='imgFile']").click();
 		  });
+		  
+		  $(".insertQna").on('click', function(){
+				var title = $(this).prev().prev().prev().prev();
+				console.log($(this).prev().prev().prev().prev())
+				/* var option
+				var member
+				var content
+				var file */
+				
+			});	
 		
 	});
-
-
 	function readURL(input, id){
 		
 		if(input.files && input.files[0]){
@@ -39,6 +47,8 @@
 			reader.readAsDataURL(input.files[0]);
 		}
 	}
+	
+
 </script>
 </head>
 <body>
@@ -58,52 +68,71 @@
 				<h3>문의 작성</h3>
 				<section id="QnaSec">
 					<div>
-						<label>문의 유형</label> <select name="searchType" id="searchType">
-							<option>제품문의</option>
-							<option>환불문의</option>
-							<option>포인트 º 적립금</option>
-							<option>회원관련</option>
-							<option>주문결제</option>
-							<option>기타</option>
+						<label>문의 유형 </label> <select name="searchType" id="searchType">
+							<option>문의유형 선택</option>
+						<c:if test="${authInfo.id eq 'admin'}">
+							<option>공지</option>
+						</c:if>
+						<c:if test="${authInfo.id ne 'admin'}">
+							<option value="1">제품문의</option>
+							<option value="2">환불문의</option>
+							<option value="3">포인트 º 적립금</option>
+							<option value="4">회원관련</option>
+							<option value="5">주문결제</option>
+							<option value="6">기타</option>
+						</c:if>
 						</select>
 					</div>
+				<c:if test="${authInfo.id ne 'admin'}">
 					<div>
 						<label>주문 번호</label> <input type="text">
 						<button>조회</button>
 						<br>
 					</div>
-					<div>	
-							<label>작성자</label><input type="text"><br>
-					</div>
-					<div>
-						<c:if test ="${!empty authInfo}">
-							<label>휴대전화</label><input type="text" ><br>
-						</c:if>
-					</div>
-					<div>
-						<c:if test ="${!empty authInfo}">
-							<label>이메일</label><input type="text" ><br>
-						</c:if>
-					</div>
+				</c:if>
+				<c:if test ="${!empty authInfo && authInfo.id ne admin}">
+						<div>	
+							<label>작성자</label><input type="text" value="${authInfo.name}"  readonly="readonly"  style="background-color: #e2e2e2"><br>
+						</div>
+				</c:if>
+					
+				<c:if test ="${!empty authInfo}">
+						<div>
+							<label>이메일</label><input type="text" value="${authInfo.email}" readonly="readonly" style="background-color: #e2e2e2"><br>						
+						</div>
+				</c:if>
+					
 					<div>
 						<label>제목</label><input type="text"><br>
 					</div>
+				<c:if test="${authInfo.id ne 'admin'}">
 					<div>
 						<label>문의내용</label>
 						<textarea rows="10" cols="40"></textarea>
 						<br>
 					</div>
+				</c:if>
+				
+				<c:if test="${authInfo.id eq 'admin'}">
 					<div>
-						
+						<label>공지내용</label>
+						<textarea rows="10" cols="40"></textarea>
+						<br>
+					</div>
+				</c:if>
+					
+				<c:if test="${authInfo.id ne 'admin'}">	
+					<div>
 						<div>
-						>사진 추가
+						사진 추가
 							<input type="file" id="main" name="imgFile" onchange="readURL(this, this.id);">
 						</div>
 						<div id="image_list">
 							<img id="preview" src="/proj21_shop/resources/qna/images/fileimg.jpg" width="100" height="100">
 						</div>
 					</div>
-					<button>작성하기</button>
+				</c:if>	
+					<button class = "insertQna">작성하기</button>
 				</section>
 			</div>
 		</div>

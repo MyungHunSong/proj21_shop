@@ -6,13 +6,28 @@
   q_indent => 그 질문에대한 답글수.
   q_step 말그대로 질문순서.
  */
+select *
+  from address;
+select *
+  from admin;
+select *
+  from cart;
+select *
+  from `member`;
+select *
+  from `order`;
+select *
+  from pro_img;
+select *
+  from product;
+select *
+  from qna;
+select *
+  from re_reply;
+select *
+  from review;
 
 
-SELECT * from qna;
-select * from product;
-select * from `order`;
-select * from `member`;
-select  q_member,q_title,q_date,q_hits,q_option from qna;
  
 -- 1-1.qna작성시 인서트문이다.
 insert into qna(q_title, q_option, q_member, q_content,q_group,q_file,q_date)
@@ -123,7 +138,7 @@ values
 ('앗항', '제품문의', 'test11', '오?', '첨부파일', now(),(SELECT IFNULL(MAX(q_group) + 1, 1) FROM qna b)),
 ('앗항', '제품문의', 'test31', '하...시바 일안하냐?', '첨부파일', now(),(SELECT IFNULL(MAX(q_group) + 1, 1) FROM qna b)),
 ('환불관련공지', '공지', 'admin', '전화하세욧 환불 하시려믄.', '첨부파일',now(),0);
-
+('환불관련공지', '공지', 'admin', '전화하세욧 환불 하시려믄.', '첨부파일',now(),0);
 -- ('반품관련공지', '공지', 'admin', '배송이 출발하면 반품이 안됩니다.', '첨부파일',now()),	
 	
 
@@ -300,6 +315,19 @@ delete
 where q_index = ?;
 
 /*4.회원 글추가 페이지. */
+select * from qna;
+-- 회원글 추가.
+INSERT INTO qna
+	(q_title, q_option, q_member, q_content, q_file, q_date, q_group)
+values
+('주문에 관해서 말할께 잇어요', '제품문의', 'test01', '추천 드릴수 있는 상품이 있습니다.', 'text1234.jpg', now(),(SELECT IFNULL(MAX(q_group) + 1, 1) FROM qna b));
+-- 회원글 삭제. (관리자가?)
+delete 
+	from qna
+where q_index = 80 and q_option != '공지' and q_group = 59;
 
-
+-- 회원글 수정.
+update qna
+	set q_option = ?, q_content =?, q_file = ?, q_date = ?
+where q_index =?;
 
