@@ -13,6 +13,7 @@ import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesView;
 import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 
+import proj21_shop.interceptor.AdminCheckInterceptor;
 import proj21_shop.interceptor.AuthCheckInterceptor;
 
 //view용
@@ -25,7 +26,7 @@ public class MvcConfig implements WebMvcConfigurer {
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
 		configurer.enable();
 	}
-	
+	//dd
 	/* JSP를 통해서 컨트롤러의 실행 결과를 보여주기 위한 설정 */
 	@Override
 	public void configureViewResolvers(ViewResolverRegistry registry) {
@@ -43,7 +44,12 @@ public class MvcConfig implements WebMvcConfigurer {
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(authCheckInterceptor()).addPathPatterns("/cart/**");
+		registry.addInterceptor(adminCheckInterceptor()).addPathPatterns("/admin/**");
 	}
+
+	private HandlerInterceptor adminCheckInterceptor() {
+		return new AdminCheckInterceptor();
+}
 
 	@Bean
 	public HandlerInterceptor authCheckInterceptor() {

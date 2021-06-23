@@ -123,7 +123,7 @@ public class AdminMemberController {
 
 		adminMemberService.deleteMember(memberId);
 
-		mav.setViewName("redirect:admin/member/listMembers");
+		mav.setViewName("redirect:/admin/member/listMembers");
 		return mav;
 	}
 
@@ -133,7 +133,7 @@ public class AdminMemberController {
 
 		ModelAndView mav = new ModelAndView();
 		redir.addAttribute("memberKeyword", memberSearch);
-		mav.setViewName("redirect:admin/member/viewMember");
+		mav.setViewName("redirect:/admin/member/viewMember");
 		return mav;
 
 	}
