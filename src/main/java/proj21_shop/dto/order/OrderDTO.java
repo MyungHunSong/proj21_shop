@@ -22,9 +22,6 @@ public class OrderDTO {
 	private ProductImageDTO productImageDTO;
 	private ProductDTO proName;
 
-	
-	private ProductImageDTO productImageDTO;
-
 	private ProductDTO pro;
 
 
