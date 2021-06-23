@@ -53,9 +53,9 @@ $(function(){
 				 name="keyword" id="keywordInput"  value = "${searchCriteria.keyword}" placeholder="검색어를 입력해 주세요">
 				<button type="button" id="searchBtn">검색</button>
 				<button type="button" id="goList">목록</button>
+				
 				<c:if test="${empty authInfo}">
-					<a href="login">글쓰기[로그인이 필요한 서비스 입니다.]</a>
-					
+					<a href="login">글쓰기[로그인이 필요한 서비스 입니다.]</a>					
 				</c:if>
 				<c:if test="${!empty authInfo}">
 					<a href="<c:url value="/qnaInsert" />">글쓰기</a>

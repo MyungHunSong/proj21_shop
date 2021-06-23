@@ -62,7 +62,7 @@ public class QnaMapperTest {
 		//articles.stream().forEach(System.out::println);
 	}
 	
-	@Test
+	//@Test
 	public void test09ListSearch() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getClassName()+"()");
 		
@@ -77,7 +77,7 @@ public class QnaMapperTest {
 		list.stream().forEach(System.out::println);
 	}
 
-	@Test
+	//@Test
 	public void test05updateHit() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getClassName()+"()");
 		QnaDTO dto = new QnaDTO();
@@ -99,7 +99,7 @@ public class QnaMapperTest {
 		Assert.assertEquals(1, res);
 	}
 	
-	@Test
+	//@Test
 	public void test07updateReply() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getClassName()+"()");
 		QnaDTO dto = new QnaDTO();
@@ -117,6 +117,38 @@ public class QnaMapperTest {
 		
 		
 		int res = mapper.deleteForAdmin(dto);
+		Assert.assertEquals(1, res);
+	}
+	// 회원 글 추가 수정 삭제 테스트.
+	@Test
+	public void test09InsertMemberQna() {
+		QnaDTO dto = new QnaDTO();
+		dto.setqTitle("추천 드릴 만한게 있습니다.");
+		dto.setqOption("제품문의");
+		dto.setqMember("이상훈");
+		dto.setqFile("text12345.jpg");
+		int res = mapper.insertQnaForMember(dto);
+		Assert.assertEquals(1, res);
+	}
+	
+	@Test 
+	public void test10ModifyMemberQna() {
+		QnaDTO dto = new QnaDTO();
+		dto.setqOption("환불문의");
+		dto.setqContent("아 무슨.. 하 ......ㅎㅎㅎㅎㅎㅎㅎㅎㅎ 죽임마렵네요");
+		dto.setqFile("toList.jpg");
+		dto.setqIndex(78);
+		
+		int res = mapper.modifyQnaForMember(dto);
+		Assert.assertEquals(1, res);
+	}
+	
+	@Test
+	public void test11DeleteMemberQna() {
+		QnaDTO dto = new QnaDTO();
+		dto.setqIndex(78);
+		dto.setqGroup(59);
+		int res = mapper.deleteQnaForMember(dto);
 		Assert.assertEquals(1, res);
 	}
 }

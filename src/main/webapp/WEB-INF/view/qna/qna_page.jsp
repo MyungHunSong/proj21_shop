@@ -60,7 +60,7 @@ $(function(){
 							sCont += ""
 							sCont += "<td colspan ='5'><img src='/proj21_shop/resources/banner/headerR.jpg' style = 'width : 30px;'/><span>"
 							+json[i].qFile  +"</span>"+ json[i].qContent +
-							 "<c:if test = '${!empty admin}' ><a class= 'clickReply'> [답글 달기]</td></c:if>";
+							 "<c:if test = "${authInfo.id eq admin}"><a class= 'clickReply'> [답글 달기]</td></c:if>";
 							sCont += "</tr>"
 						
 					}else if(json[i].qStep == 1){

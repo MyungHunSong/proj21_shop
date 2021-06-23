@@ -35,4 +35,23 @@ public class QnaInsertServiceImpl implements QnaInsertService {
 		return qMapper.deleteForAdmin(qDto);
 	}
 
+	// 회원용 추가 수정 삭제.
+	@Override
+	public int insertQnaForMember(QnaDTO qDto) {
+		
+		return qMapper.insertQnaForMember(qDto);
+	}
+
+	@Override
+	public int modifyQnaForMember(QnaDTO qDto) {
+		
+		return qMapper.modifyQnaForMember(qDto);
+	}
+
+	@Override
+	public int deleteQnaForMember(QnaDTO qDto) {
+		
+		return qMapper.deleteQnaForMember(qDto);
+	}
+
 }
