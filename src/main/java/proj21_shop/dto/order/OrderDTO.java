@@ -19,8 +19,9 @@ public class OrderDTO {
 
 	private List<ProductDTO> productDTO; // 1:다 관계이므로 List 사용
 
+	private ProductImageDTO productImageDTO;
 	private ProductDTO proName;
-	
+	private ProductDTO pro;
 
 	private String orderMemberName;
 	private int orderProQuantity;
@@ -42,6 +43,22 @@ public class OrderDTO {
 	private String whichBank;
 	private String acountNum;
 
+	public ProductImageDTO getProductImageDTO() {
+		return productImageDTO;
+	}
+
+	public void setProductImageDTO(ProductImageDTO productImageDTO) {
+		this.productImageDTO = productImageDTO;
+	}
+
+	public ProductDTO getPro() {
+		return pro;
+	}
+
+	public void setPro(ProductDTO pro) {
+		this.pro = pro;
+	}
+
 	public int getOrderCode() {
 		return orderCode;
 	}
@@ -49,7 +66,7 @@ public class OrderDTO {
 	public void setOrderCode(int orderCode) {
 		this.orderCode = orderCode;
 	}
-	
+
 	public int getOrderValue() {
 		return orderValue;
 	}
@@ -73,7 +90,6 @@ public class OrderDTO {
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
 	}
-
 
 	public String getOrderMemberId() {
 		return orderMemberId;
@@ -237,11 +253,15 @@ public class OrderDTO {
 
 	@Override
 	public String toString() {
-		return String.format(
-				"OrderDTO [memberId=%s, orderMemberId=%s, proNum=%s, orderProNum=%s, orderCode=%s, proName=%s, productImageDTO=%s, productDTO=%s, orderMemberName=%s, orderProQuantity=%s, orderValue=%s, orderPrice=%s, orderDiscount=%s, receiverName=%s, receiverTel1=%s, receiverTel2=%s, deliveryAddr1=%s, deliveryAddr2=%s, deliveryAddr3=%s, deliveryStatus=%s, requestToDelivery=%s, orderDate=%s, whoPay=%s, whichBank=%s, acountNum=%s]",
-				memberId, orderMemberId, proNum, orderProNum, orderCode, proName, productDTO, orderMemberName, orderProQuantity,
-				orderValue, orderPrice, orderDiscount, receiverName, receiverTel1, receiverTel2, deliveryAddr1, deliveryAddr2, deliveryAddr3,
-				deliveryStatus, requestToDelivery, orderDate, whoPay, whichBank, acountNum);
+		return "OrderDTO [memberId=" + memberId + ", orderMemberId=" + orderMemberId + ", proNum=" + proNum + ", orderProNum=" + orderProNum
+				+ ", orderCode=" + orderCode + ", productDTO=" + productDTO + ", productImageDTO=" + productImageDTO + ", proName=" + proName
+				+ ", pro=" + pro + ", orderMemberName=" + orderMemberName + ", orderProQuantity=" + orderProQuantity + ", orderValue=" + orderValue
+				+ ", orderPrice=" + orderPrice + ", orderDiscount=" + orderDiscount + ", receiverName=" + receiverName + ", receiverTel1="
+				+ receiverTel1 + ", receiverTel2=" + receiverTel2 + ", deliveryAddr1=" + deliveryAddr1 + ", deliveryAddr2=" + deliveryAddr2
+				+ ", deliveryAddr3=" + deliveryAddr3 + ", deliveryStatus=" + deliveryStatus + ", requestToDelivery=" + requestToDelivery
+				+ ", orderDate=" + orderDate + ", whoPay=" + whoPay + ", whichBank=" + whichBank + ", acountNum=" + acountNum + "]";
 	}
+
+	
 
 }

@@ -89,20 +89,23 @@ public class AdminMemberController {
 		}
 		session.setAttribute("side_menu", "side_member");
 		ModelAndView mav = new ModelAndView();
-		String viewName = (String) request.getAttribute("viewName");
 		Map searchMap = new HashMap();
 		Map<String, Object> viewMap = new HashMap();
 
+		if(memberId == null) {
+			memberId="test01";
+		}
 		if (memberId != null && !memberId.equals("")) {
 			searchMap.put("memberId", memberId);
 			System.out.println("memberId : " + memberId);
 		}
 		if(memberKeyword == null) {
-			memberKeyword="test011";
+			memberKeyword="test01";
 		}
 		if (memberKeyword != null && !memberKeyword.equals("")) {
 			searchMap.put("memberKeyword", memberKeyword);
-			System.out.println("memberKeyword " + memberKeyword);
+			System.out.println("컨트롤러 에서 memberId : " + memberId);
+			System.out.println("컨트롤러 에서  memberKeyword " + memberKeyword);
 		}
 
 		viewMap = adminMemberService.viewMember(searchMap);

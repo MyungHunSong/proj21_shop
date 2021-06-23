@@ -16,8 +16,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import com.sun.javafx.collections.MappingChange.Map;
-
 import proj21_shop.config.ContextRoot;
 import proj21_shop.dto.product.ProductDTO;
 import proj21_shop.mapper.product.ProductListMapper;

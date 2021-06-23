@@ -567,7 +567,7 @@ SELECT DISTINCT a.*
 		  			   delivery_status ,order_member_name, request_to_delivery, which_bank,
 					   p.pro_num, p.pro_color, p.pro_size, p.pro_name, img.pro_imagefilename
 				  FROM `order` o , product p , pro_img img
-				 WHERE o.pro_num = p.pro_num AND img.pro_img_state = 1 AND img.pro_num = p.pro_num AND o.order_member_id = 'test011'
+				 WHERE o.pro_num = p.pro_num AND img.pro_img_state = 1 AND img.pro_num = p.pro_num AND o.order_member_id = 'test01'
 					   AND
 					   o.delivery_status= '배송준비중'
 				) a, product p
@@ -578,5 +578,5 @@ SELECT DISTINCT order_pro_num, order_code , order_date , order_pro_quantity , or
 		  			   delivery_status ,order_member_name, request_to_delivery, which_bank,
 					   p.pro_num, p.pro_color, p.pro_size, p.pro_name, img.pro_imagefilename
   FROM `order` o , product p , pro_img img
- WHERE o.pro_num = p.pro_num AND img.pro_img_state = 1 AND img.pro_num = p.pro_num AND o.order_member_id = 'test011'AND o.delivery_status= '배송준비중'
+ WHERE o.pro_num = p.pro_num AND img.pro_img_state = 1 AND img.pro_num = p.pro_num AND o.order_member_id = 'test01'AND o.delivery_status= '배송준비중'
  ORDER BY order_code;

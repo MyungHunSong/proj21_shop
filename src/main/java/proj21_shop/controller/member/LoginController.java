@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javafx.scene.control.Alert;
 import proj21_shop.dto.member.AuthInfo;
 import proj21_shop.dto.member.LoginCommand;
 import proj21_shop.exception.WrongIdPasswordException;
