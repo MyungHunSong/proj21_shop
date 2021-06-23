@@ -2,9 +2,9 @@
 
 .productList{
 	display: flex;
-	flex-wrap:wrap;
-	justify-content: space-between;
-	aling-content:center;
+	flex-wrap: wrap;
+	justify-content: center;
+    align-items: center;
 }
 
 .productList a{
@@ -14,14 +14,19 @@
 
 .item{
 	border-radius: 10px;
-	box-shadow: 0 0 20px rgba(0,0,0,0.164);
 	margin-top: 100px;
+	background-color: #F2F2F2;
+}
+
+.item:hover{
+	background-color: white;	
 }
 
 .item img{
 	transition: 0.1s;
-	width: 350px;
-	height: 400px;
+	width: 300px;
+	height: 350px;
+	padding: 20px;
 }
 
 /* title */
@@ -31,12 +36,7 @@
 	margin-bottom: 10px;
 }
 
-
 /* info */
-.info{
-	position: relative;	
-}
-
 /* size */
 
 .info .size{
@@ -61,7 +61,6 @@
 	border-radius: 3px;
 	padding: 2px;
 	cursor: pointer;
-	transition: 0.5s;
 }
 
 .info .size span.active,
@@ -74,15 +73,24 @@
 	border: 1px solid #fff;
 	width: 100%;
 	padding: 7px;
-	background-color: #fff;
+
 	cursor: pointer;
 	margin-top:10px;
-}
-
-.add-cart:hover{
 	background-color: #000;
 	color: #fff;
 }
+
+.add-cart:hover{
+	background-color: #fff;
+	color: #000
+}
+
+
+.proName{
+	font-weight: 900;
+	font-size:22px;
+}
+
 
 /* 조건검색하는 항목들 */
 .prodSearchBtn{

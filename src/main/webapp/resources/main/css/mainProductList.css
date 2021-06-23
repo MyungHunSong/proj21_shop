@@ -15,10 +15,11 @@
 .item{
 	border-radius: 10px;
 	margin-top: 100px;
+	background-color: #F2F2F2;
 }
 
 .item:hover{
-	background-color: #F2F2F2;
+	background-color: white;	
 }
 
 .item img{
@@ -72,15 +73,18 @@
 	border: 1px solid #fff;
 	width: 100%;
 	padding: 7px;
-	background-color: #fff;
+
 	cursor: pointer;
 	margin-top:10px;
-}
-
-.add-cart:hover{
 	background-color: #000;
 	color: #fff;
 }
+
+.add-cart:hover{
+	background-color: #fff;
+	color: #000
+}
+
 
 .proName{
 	font-weight: 900;
