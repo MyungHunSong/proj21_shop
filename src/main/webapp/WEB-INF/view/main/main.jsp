@@ -162,8 +162,6 @@ $(function(){
 		else if(listRemocon == "BEST"){
 			$('html, body').animate({scrollTop:$('#best').position().top}, 'slow');
 		}
-		
-		console.log(listRemocon)	
 	})
 	
 })   

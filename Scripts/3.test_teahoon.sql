@@ -77,11 +77,12 @@ where pro_size = 1
 where pro_size = 1
   order by pro_status = '신상';
  
--- 조회수순
+-- 조회수순 페이징
  select * 
    from productall 
 where pro_size = 1 
-  order by pro_hits desc;
+  order by pro_hits desc
+limit 8,8;
  
 select * from productall where pro_size = 1 order by pro_hits desc; 
 -- 가격순 all
@@ -94,7 +95,8 @@ order by pro_price desc;
  select * 
    from productall
 where pro_size = 1 
-    and pro_price between  10000 and 30000;
+    and pro_price between  10000 and 30000
+
 
 -- 가격 10만 이상
 select * 
