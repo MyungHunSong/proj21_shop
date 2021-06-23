@@ -206,32 +206,32 @@ a {
 										<tr style="text-align: center;">
 											<td width="100px">${order.orderProNum }</td>
 											<td width="100px">${order.orderCode }</td>
-											<td width="100px"><a href="${contextPath}/product/productdetail?proNum=${order.proNum}"> <img width="70px" height="105px"
-													src="${contextPath}/thumbnails?proNum=${order.proNum}&fileName=${order.productDTO.proImgfileName}"></a></td>
-											<td width="100px">${order.productDTO.proName }</td>
+											<td width="100px"><a href="${contextPath}/product/productdetail?proNum=${order.pro.proNum}"> <img width="70px" height="105px"
+													src="${contextPath}/thumbnails?proNum=${order.pro.proNum}&fileName=${order.pro.proImgfileName}"></a></td>
+											<td width="100px">${order.pro.proName }</td>
 											<td width="100px">
 											<li>
-											<c:if test="${order.productDTO.proColor == 1}">white /</c:if> 
-											<c:if test="${order.productDTO.proColor == 2}">ivory /</c:if>
-											<c:if test="${order.productDTO.proColor == 3}">gray /</c:if> 
-											<c:if test="${order.productDTO.proColor == 4}">pink /</c:if>
-											<c:if test="${order.productDTO.proColor == 5}">yellow /</c:if>
-											<c:if test="${order.productDTO.proColor == 6}">mint /</c:if>
-											<c:if test="${order.productDTO.proColor == 7}">green /</c:if>
-											<c:if test="${order.productDTO.proColor == 8}">purple /</c:if>
-											<c:if test="${order.productDTO.proColor == 9}">navy /</c:if>
-											<c:if test="${order.productDTO.proColor == 11}">black /</c:if>
-											<c:if test="${order.productDTO.proColor == 12}">brown /</c:if>
-											<c:if test="${order.productDTO.proColor == 13}">orange /</c:if>
-										 	<c:if test="${order.productDTO.proColor == 14}">blue /</c:if>
-											<c:if test="${order.productDTO.proColor == 15}">red /</c:if> 
-											<c:if test="${order.productDTO.proColor == 16}">basic /</c:if>
+											<c:if test="${order.pro.proColor == 1}">white /</c:if> 
+											<c:if test="${order.pro.proColor == 2}">ivory /</c:if>
+											<c:if test="${order.pro.proColor == 3}">gray /</c:if> 
+											<c:if test="${order.pro.proColor == 4}">pink /</c:if>
+											<c:if test="${order.pro.proColor == 5}">yellow /</c:if>
+											<c:if test="${order.pro.proColor == 6}">mint /</c:if>
+											<c:if test="${order.pro.proColor == 7}">green /</c:if>
+											<c:if test="${order.pro.proColor == 8}">purple /</c:if>
+											<c:if test="${order.pro.proColor == 9}">navy /</c:if>
+											<c:if test="${order.pro.proColor == 11}">black /</c:if>
+											<c:if test="${order.pro.proColor == 12}">brown /</c:if>
+											<c:if test="${order.pro.proColor == 13}">orange /</c:if>
+										 	<c:if test="${order.pro.proColor == 14}">blue /</c:if>
+											<c:if test="${order.pro.proColor == 15}">red /</c:if> 
+											<c:if test="${order.pro.proColor == 16}">basic /</c:if>
 											</li><li>    
-											<c:if test="${order.productDTO.proSize == 1}">XS /</c:if>
-											<c:if test="${order.productDTO.proSize == 2}">S /</c:if>
-											<c:if test="${order.productDTO.proSize == 3}">M /</c:if>
-											<c:if test="${order.productDTO.proSize == 4}">L /</c:if>
-											<c:if test="${order.productDTO.proSize == 5}">XL /</c:if>
+											<c:if test="${order.pro.proSize == 1}">XS /</c:if>
+											<c:if test="${order.pro.proSize == 2}">S /</c:if>
+											<c:if test="${order.pro.proSize == 3}">M /</c:if>
+											<c:if test="${order.pro.proSize == 4}">L /</c:if>
+											<c:if test="${order.pro.proSize == 5}">XL /</c:if>
 											</li>						
 											<td width="100px">${order.orderMemberName }</td>
 											<td width="100px"><fmt:formatNumber value="${order.orderPrice* order.orderProQuantity }" pattern="#,###" />원</td>

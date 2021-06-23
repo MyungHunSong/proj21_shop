@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sun.javafx.collections.MappingChange.Map;
-
 import proj21_shop.dto.product.ProductDTO;
 import proj21_shop.service.product.ProductListService;
 

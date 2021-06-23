@@ -28,7 +28,7 @@
 			<result property="orderDate" column="order_date" />
 			
 			
-			<association property="productDTO" javaType="ProductDTO">
+			<association property="pro" javaType="ProductDTO">
 				<result property="proNum" column="pro_num"/>
 				<result property="proName" column="pro_name"/>
 				<result property="proImgfileName" column="pro_imagefilename"/>
