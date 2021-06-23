@@ -44,7 +44,7 @@ $(function(){
 				sCont += "			<div class='detail'>"
 				sCont += "				<div class='title'>"
 				sCont += "					<h2><em>"+ json[i].proName +"</em></h2>"
-				sCont +="					<span class='price'>"+ json[i].proPrice +"</span>"       
+				sCont +="					<span class='price'>"+ json[i].proPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") +"</span>"       
 				sCont +="				</div>"
 				sCont +="				<div class='info'>"
 				sCont +="					<div class='size'>"

@@ -82,4 +82,18 @@
         where pro_size = 1 and pro_name like concat('%',#{param},'%')
         order by pro_price asc
 	</select>
+	
+	<!-- 메인화면 제품 목록(new,recommend,mostview,new,best,sale -->
+	<select id="selectProductMain" parameterType="Map" resultMap="ResProduct">
+		  select * 
+   		   from productall 
+		 where pro_size =1
+		 <trim prefix="">
+    	 		<if test="proStatus == 'RECOMMEND'">and pro_status = '추천'</if>
+    	 		<if test="proStatus == 'SALE'">and pro_status = '세일'</if>
+    	 		<if test="proStatus == 'NEW'">and pro_status = '신상'</if>
+    	 		<if test="proStatus == 'BEST'">and pro_status = '최고'</if>
+    	 </trim>
+		 limit 6
+	</select>
 </mapper>

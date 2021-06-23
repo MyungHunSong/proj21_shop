@@ -4,6 +4,7 @@
 <html>
 <head>
 <link rel="stylesheet" href="/proj21_shop/resources/main/css/mainContent.css">
+
 </head>
 <body>
 <!-- 슬라이더 섹션 부분  -->
@@ -21,33 +22,38 @@
  <!-- 바로가기 섹션 부분  -->
  <section id="homeMainSection">
  	<div class="homeMainContentTop">
- 		<div class="homeMainContentTop_recmmend">RECOMMEND</div>
- 		<div class="homeMainContentTop_mostview">MOST VIEW</div>
+ 		<div class="homeMainContentTopRecmmend">RECOMMEND</div>
+ 		<div class="homeMainContentTopMostview">SALE</div>
  	</div>
- 	<div></div>
- 	<div class="homeMainContentBottom">
- 		<div class="homeMainContentBottomNew">NEW</div>
- 		<div class="homeMainContentBottomBest">BEST</div>
- 		<div class="homeMainContentBottomSale">SALE</div>
+ 	 <div></div>
+ 	<div class="homeMainContentTop">
+ 		<div class="homeMainContentTopRecmmend">NEW</div>
+ 		<div class="homeMainContentTopMostview">BEST</div>
  	</div>
  </section>
 
  <!-- 바로가기에 맞는 옷목록 부분  -->
  
  <section id="recommend">
- 	<div id="recommendLoad"></div>
- </section>
- <section id="mostview">
- 	<div id="mostviewLoad"></div>
+	<h1 class="title">RECOMMEND</h1>
+ 	<div id="RECOMMEND" class="productList">
+ 		
+ 	</div>
  </section>
  <section id="new">
- 	<div id="newLoad"></div>
+ 	<h1 class="title">NEW</h1>
+ 	<div id="SALE" class="productList">
+ 	</div>
  </section>
  <section id="best">
- 	<div id="bestLoad"></div>
+ 	<h1 class="title">BEST</h1>
+ 	<div id="NEW" class="productList">
+ 	</div>
  </section>
  <section id="sale">
- 	<div id="saleLoad"></div>
+ 	<h1 class="title">SALE</h1>
+ 	<div id="BEST" class="productList">
+ 	</div>
  </section>
 </body>
 </html>

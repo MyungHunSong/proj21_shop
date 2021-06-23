@@ -21,6 +21,7 @@ public class OrderDTO {
 
 	private ProductDTO proName;
 	
+	private ProductImageDTO productImageDTO;
 
 	private String orderMemberName;
 	private int orderProQuantity;
@@ -41,6 +42,16 @@ public class OrderDTO {
 	private String whoPay;
 	private String whichBank;
 	private String acountNum;
+
+	
+	
+	public ProductImageDTO getProductImageDTO() {
+		return productImageDTO;
+	}
+
+	public void setProductImageDTO(ProductImageDTO productImageDTO) {
+		this.productImageDTO = productImageDTO;
+	}
 
 	public int getOrderCode() {
 		return orderCode;

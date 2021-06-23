@@ -15,6 +15,9 @@ public interface ProductListService {
 	
 	int updateProhits(int proNum);
 	
+	//메인화면 옷 목록
+	List<ProductDTO> selectProductMain(Map<String, Object> condition);
+	
 	//옷목록 리스트 여러가지 조건으로 검색
 	List<ProductDTO> selectProductByCondition(Map<String, Object> condition);
 	

@@ -133,11 +133,21 @@ public class ProductListMapperTest {
 		Assert.assertNotNull(list);
 	}
 
-	@Test
+	//@Test
 	public void test06ShowProductsByProName() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		
 		List<ProductDTO> list = mapper.selectProductByproName("t");
+		Assert.assertNotNull(list);
+	}
+	
+	@Test
+	public void test07ShowProductsMain() {
+		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
+		HashMap<String,Object> condition = new HashMap();
+		String proStatus = "NEW";
+		condition.put("proStatus",proStatus);
+		List<ProductDTO> list = mapper.selectProductMain(condition);
 		Assert.assertNotNull(list);
 	}
 }
