@@ -25,54 +25,54 @@
 		  });		  
 		  // 이미지 저장을 위한 jquery
 		  // -- 파일 체크를 하기 위해서 만들어 놓은것.
-		   $("input[type='file']").on("change", function(e){
-			 let formData = new FormData();
-			 let fileInput = $('input[name="uploadFile"]');
-			 let fileList = fileInput[0].files;
-			 let fileObj = fileList[0];
-			 
-			if(!fileCheck(fileObj.name, fileObj.size)){
-				return false;
-			}
-			formData.append("uploadFile", fileObj);
-			
-			 $.ajax({
-				  url:	contextPath + '/api/uploadAjaxAction',
-				  processData : false,
-				  contentType : false,
-				  data : formData,
-				  type : 'POST',
-				  dataType : 'json'
-			  });
-		 });
-		  
-		  // -- 서버로 전송할 첨부파일을 서버에 전송하는 코드.
 		 
-		  
-		  let regex = new RegExp("(.*.?)\.(jpg|png)$");
-		  let maxSize = 1048576;
-		  
-		  function fileCheck(fileName, fileSize){
-			  if(fileSize >= maxSize){
-				  alret("파일 사이즈 초과");
-				  return false;
-			  }
-			  if(!regex.test(fileName)){
-				  alert("해당 종류의 파일은 업로드할 수 없습니다.")
-				  return false;
-			  }
-			  return true;
-		  }
 		  
 		
 		  
 		  $(".insertQna").on('click', function(){
 				var title = $(this).prev().prev().prev().prev();
-				//console.log($(this).prev().prev().prev().prev())
+				console.log()
 				/* var option
 				var member
 				var content
-				var file */				
+				var file */
+				
+				  $("input[type='file']").on("change", function(e){
+						 let formData = new FormData();
+						 let fileInput = $('input[name="uploadFile"]');
+						 let fileList = fileInput[0].files;
+						 let fileObj = fileList[0];
+						 
+						if(!fileCheck(fileObj.name, fileObj.size)){
+							return false;
+						}
+						formData.append("uploadFile", fileObj);
+						
+						 $.ajax({
+							  url:	contextPath + '/api/uploadAjaxAction',
+							  processData : false,
+							  contentType : false,
+							  data : formData,
+							  type : 'POST',
+							  dataType : 'json'
+						  });
+					 });
+					  
+					  // -- 서버로 전송할 첨부파일을 서버에 전송하는 코드.
+					  let regex = new RegExp("(.*.?)\.(jpg|png)$");
+					  let maxSize = 1048576;
+					  
+					  function fileCheck(fileName, fileSize){
+						  if(fileSize >= maxSize){
+							  alret("파일 사이즈 초과");
+							  return false;
+						  }
+						  if(!regex.test(fileName)){
+							  alert("해당 종류의 파일은 업로드할 수 없습니다.")
+							  return false;
+						  }
+						  return true;
+					  }
 			});	
 		
 	});
@@ -118,12 +118,12 @@
 							<option>공지</option>
 						</c:if>
 						<c:if test="${authInfo.id ne 'admin'}">
-							<option value="1">제품문의</option>
-							<option value="2">환불문의</option>
-							<option value="3">포인트 º 적립금</option>
-							<option value="4">회원관련</option>
-							<option value="5">주문결제</option>
-							<option value="6">기타</option>
+							<option value="제품문의">제품문의</option>
+							<option value="환불문의">환불문의</option>
+							<option value="포인트 º 적립금">포인트 º 적립금</option>
+							<option value="회원관련">회원관련</option>
+							<option value="주문결제">주문결제</option>
+							<option value="기타">기타</option>
 						</c:if>
 						</select>
 					</div>

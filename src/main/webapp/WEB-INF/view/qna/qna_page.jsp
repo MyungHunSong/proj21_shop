@@ -52,7 +52,7 @@ $(function(){
 							sCont += "<td>" + json[i].qOption + "</td>";
 							sCont += "<td>" + json[i].qTitle + "</td>";
 							sCont += "<td>" + json[i].qDate + "</td>";
-							sCont += "<td>" + json[i].qHit + "</td>";
+							sCont += "<td class = 'qHit'>" + json[i].qHit + "</td>";
 							sCont += "</tr>";
 							
 							sCont += "<tr class = 'clickContent'>";
@@ -140,14 +140,13 @@ $(function(){
 			$('.clickOption').on('click',function(){
 					var idx = $(this).next().val()
 					var group = $(this).next().next().val()
+					var cnt = parseInt($(this).next().next().next().next().next().next().next().text())
+					$(this).next().next().next().next().next().next().next().text(cnt + 1)
 					
-					console.log($('.clickOption').parent().next().next().next().removeClass('active'))
-								
 					if($(this).parent().next().hasClass('active')){
+					$(this).next().next().next().next().next().next().next().text(cnt)
 						$('.clickOption').parent().next().removeClass('active')
 						$('.showReply').parent().next().next().next().removeClass('active')
-						
-					
 						$.ajax({
 							url:contextPath +"/api/qna/" + page +"/" + perPageNum + "/" + searchType + "/" + keyword,
 							type:"GET",
@@ -155,7 +154,7 @@ $(function(){
 							datatype:"json",
 							data:JSON.stringify(page),
 							success:function(){
-								window.location.href = contextPath + "/listPaging?page="+page + "&pagePageNum="+ perPageNum + "&searchType=" + searchType + "&keyword=";
+								/* window.location.href = contextPath + "/listPaging?page="+page + "&pagePageNum="+ perPageNum + "&searchType=" + searchType + "&keyword="; */
 							},
 							error:function(){
 								alert("조회할 페이지를 찾지 못했습니다.")
@@ -171,7 +170,7 @@ $(function(){
 							datatype:"json",
 							data:JSON.stringify(idx),
 							success:function(){
-								contextPath + "/api/qna/"+ page +"/" + perPageNum + "/" + searchType
+								/* window.location.href = contextPath + "/listPaging?page="+page + "&pagePageNum="+ perPageNum + "&searchType=" + searchType + "&keyword="; */
 							},
 							error:function(){
 								alert("조회수 초과.")

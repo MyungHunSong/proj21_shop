@@ -83,5 +83,6 @@ public class QnaRestInsertPageController {
 	@DeleteMapping("/qnainsert/{qIndex}")
 	public ResponseEntity<Object> DeleteQnaForMember(@RequestBody QnaDTO qDto){
 		return ResponseEntity.ok(qInsertService.deleteQnaForMember(qDto));
+		
 	}
 }
