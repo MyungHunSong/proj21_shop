@@ -1,5 +1,7 @@
 package proj21_shop.service.qna.impl;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,6 +40,8 @@ public class QnaInsertServiceImpl implements QnaInsertService {
 	// 회원용 추가 수정 삭제.
 	@Override
 	public int insertQnaForMember(QnaDTO qDto) {
+		
+		
 		
 		return qMapper.insertQnaForMember(qDto);
 	}

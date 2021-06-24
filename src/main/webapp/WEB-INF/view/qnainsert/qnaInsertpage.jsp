@@ -21,14 +21,47 @@
 			  $("input[name='imgFile']").click();
 		  });
 		  
+		 $("input[type='file']").on("change", function(e){
+			
+			 
+			 console.log("fileList : " + fileList );
+			 
+		 });
+		  
 		  $(".insertQna").on('click', function(){
-				var title = $(this).prev().prev().prev().prev();
-				console.log($(this).prev().prev().prev().prev())
-				/* var option
-				var member
-				var content
-				var file */
+				var title = $("input[name='titleQna']:visible").val();
 				
+			 	var option = $("select[name=searchType]").val();
+			 	var member = "${authInfo.name}"
+			 	var content = $("textarea[name='qnaArea']:visible").val();
+				var file = $("#preview").attr('src'); 
+			
+				var formData = new FormData();
+				
+				
+				
+				var insertQna = {
+			 		"qTitle": title,
+			 		"qOption":option,
+			 		"qMember":member,
+			 		"qContent":content,
+			 		"qFile":file
+			 	};
+			 	
+			 	/*  $.ajax({
+			 		url: "/proj21_shop/api/qnainsert/",
+			 		contentType:"application/json; charset=utf-8",
+					datatype:"json",
+					data:JSON.stringify(insertQna),
+					success:function(){
+						alert('추가 돼었습니다.')
+						window.location.href = contextPath + "/listPaging?page="+page + "&pagePageNum="+ perPageNum + "&searchType=" + searchType + "&keyword=";
+					},
+					error:function(){
+						alert("실패 하였습니다.")
+					}
+			 		
+			 	});  */
 			});	
 		
 	});
@@ -71,15 +104,15 @@
 						<label>문의 유형 </label> <select name="searchType" id="searchType">
 							<option>문의유형 선택</option>
 						<c:if test="${authInfo.id eq 'admin'}">
-							<option>공지</option>
+							<option value ="공지">공지</option>
 						</c:if>
 						<c:if test="${authInfo.id ne 'admin'}">
-							<option value="1">제품문의</option>
-							<option value="2">환불문의</option>
-							<option value="3">포인트 º 적립금</option>
-							<option value="4">회원관련</option>
-							<option value="5">주문결제</option>
-							<option value="6">기타</option>
+							<option value="제품문의">제품문의</option>
+							<option value="환불문의">환불문의</option>
+							<option value="포인트 º 적립금">포인트 º 적립금</option>
+							<option value="회원관련">회원관련</option>
+							<option value="주문결제">주문결제</option>
+							<option value="기타">기타</option>
 						</c:if>
 						</select>
 					</div>
@@ -103,12 +136,12 @@
 				</c:if>
 					
 					<div>
-						<label>제목</label><input type="text"><br>
+						<label>제목</label><input type="text" name="titleQna"><br>
 					</div>
 				<c:if test="${authInfo.id ne 'admin'}">
 					<div>
 						<label>문의내용</label>
-						<textarea rows="10" cols="40"></textarea>
+						<textarea rows="10" cols="40" name="qnaArea"></textarea>
 						<br>
 					</div>
 				</c:if>
@@ -116,7 +149,7 @@
 				<c:if test="${authInfo.id eq 'admin'}">
 					<div>
 						<label>공지내용</label>
-						<textarea rows="10" cols="40"></textarea>
+						<textarea rows="10" cols="40" name="qnaArea"></textarea>
 						<br>
 					</div>
 				</c:if>
