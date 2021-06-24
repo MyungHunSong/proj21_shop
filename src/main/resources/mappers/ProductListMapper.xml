@@ -73,6 +73,7 @@
 		 		<if test="orderKind == '신상'">'신상'</if>   
 		 		<if test="orderKind == 'proHits'">pro_hits desc</if>   
     	 </trim>
+    	 <!-- limit #{pageStart}, #{perPageNum}; -->
 	</select>
 	
 	<!-- 제품이름으로 검색 -->
