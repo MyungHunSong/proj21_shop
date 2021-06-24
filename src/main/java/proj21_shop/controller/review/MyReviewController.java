@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import proj21_shop.dto.order.OrderDTO;
 import proj21_shop.dto.review.ReviewDTO;
@@ -62,4 +63,19 @@ public class MyReviewController {
 			return ResponseEntity.status(HttpStatus.CONFLICT).build();
 		}
 	}
+	/*첨부 파일 업로드*/
+	@PostMapping("/myreview/uploadImage")
+	public void uploadAjaxActionPost(MultipartFile uploadFile) {
+		/*
+		 * System.out.println("uploadAjaxActionPost........");
+		 * System.out.println(uploadFile);
+		 * System.out.println("파일 이름  : "+uploadFile.getOriginalFilename());
+		 * System.out.println("파일 타입 : "+uploadFile.getContentType());
+		 * System.out.println("파일 크기 : "+uploadFile.getSize());
+		 */
+		String uploadFolder = "proj21_shop/resources/review/images";
+		 
+	}
+	
+	
 }
