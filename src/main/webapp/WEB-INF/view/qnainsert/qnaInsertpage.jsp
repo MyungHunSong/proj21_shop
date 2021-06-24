@@ -14,30 +14,65 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript">
+	function readURL(input, id){
+		
+		if(input.files && input.files[0]){
+			var reader = new FileReader();
+			reader.onload = function(e){
+				if(id=='addPoto'){
+					$('#preview').attr('src', e.target.result);
+					console.log($('#preview').attr('src', e.target.result))
+				}else{
+					$('#preview' + id).attr('src', e.target.result)
+				}
+			}
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+
+
 	$(function(){
+			$("input[name='uploadFile']").hide();
 			var contextPath = "${contextPath}";
-		
-		
-		  $("input[name='uploadFile']").hide();
-		  $('#preview').click(function(){
-			  
-			  $("input[name='uploadFile']").click();
-		  });		  
-		  // 이미지 저장을 위한 jquery
-		  // -- 파일 체크를 하기 위해서 만들어 놓은것.
-		 
+		 	
+		 	 $('#preview').click(function(){
 		  
-		
+		 	$("input[name='uploadFile']").click();
+		  });
 		  
-		  $(".insertQna").on('click', function(){
-				var title = $(this).prev().prev().prev().prev();
-				console.log()
-				/* var option
-				var member
-				var content
-				var file */
-				
-				  $("input[type='file']").on("change", function(e){
+		  
+		   $(".insertQna").on('click', function(){
+			  	var title = $("input[name=Title]:visible").val();
+			 	var option = $("select[name=searchType]:visible").val();
+			 	var member = "${authInfo.name}"
+			 	var content = $("textarea[name='Content']:visible").val();
+			 	var file = document.getElementById("addPoto").files[0].name;
+			 	
+			 	var insertItem = {
+			 			"qTitle": title,
+			 			"qOption":option,
+			 			"qMember":member,
+			 			"qContent":content,
+			 			"qFile":file
+			 	};
+			 	
+			 	$.ajax({
+			 		url: contextPath+'/api/qnainsert/',
+			 		type:'POST',
+			 		contentType:"application/json; charset=utf-8",
+			 		datatype:"json",
+			 		data:JSON.stringify(insertItem),
+			 		success:function(){
+			 			alert('글을 올렸습니다.')
+			 			window.location.href = contextPath + "/listPaging?page="+1 + "&pagePageNum="+ 10 + "&searchType=a&keyword=";
+			 		},
+			 		error:function(){
+			 			alert("실패");
+			 		}	
+			 	});
+							  	 
+			
+				   $("input[type='file']").on("change", function(e){
 						 let formData = new FormData();
 						 let fileInput = $('input[name="uploadFile"]');
 						 let fileList = fileInput[0].files;
@@ -72,25 +107,12 @@
 							  return false;
 						  }
 						  return true;
-					  }
+					  } 
 			});	
-		
 	});
-	function readURL(input, id){
-		
-		if(input.files && input.files[0]){
-			var reader = new FileReader();
-			reader.onload = function(e){
-				if(id=='main'){
-					$('#preview').attr('src', e.target.result);
-					console.log($('#preview').attr('src', e.target.result))
-				}else{
-					$('#preview' + id).attr('src', e.target.result)
-				}
-			}
-			reader.readAsDataURL(input.files[0]);
-		}
-	}
+	
+	  
+	 
 	
 
 </script>
@@ -147,12 +169,12 @@
 				</c:if>
 					
 					<div>
-						<label>제목</label><input type="text"><br>
+						<label>제목</label><input type="text" name="Title"><br>
 					</div>
 				<c:if test="${authInfo.id ne 'admin'}">
 					<div>
 						<label>문의내용</label>
-						<textarea rows="10" cols="40"></textarea>
+						<textarea rows="10" cols="40"  name="Content"></textarea>
 						<br>
 					</div>
 				</c:if>
@@ -160,7 +182,7 @@
 				<c:if test="${authInfo.id eq 'admin'}">
 					<div>
 						<label>공지내용</label>
-						<textarea rows="10" cols="40"></textarea>
+						<textarea rows="10" cols="40" name="Content"></textarea>
 						<br>
 					</div>
 				</c:if>
@@ -169,7 +191,7 @@
 					<div>
 						<div>
 						사진 추가
-							<input type="file" id="main" name="uploadFile" onchange="readURL(this, this.id);">
+							<input type="file" name="uploadFile"  id="addPoto" onchange="readURL(this, this.id)" multiple="multiple">
 						</div>
 						<div id="image_list">
 							<img id="preview" src="/proj21_shop/resources/qna/images/fileimg.jpg" width="100" height="100">

@@ -44,6 +44,7 @@ $(function(){
 				
 				for(i = 0; i<dateLength; i++){
 					if(json[i].qStep == 0){
+						
 							sCont += "<tr>";
 							sCont += "<td class = 'clickOption'>"+json[i].qOp + "</td>"; 
 							sCont += "<input type = 'hidden' value = "+ json[i].qIndex +">";
@@ -58,9 +59,8 @@ $(function(){
 							sCont += "<tr class = 'clickContent'>";
 							sCont += "<td>내용:</td>";	
 							sCont += ""
-							sCont += "<td colspan ='5'><img src='/proj21_shop/resources/banner/headerR.jpg' style = 'width : 30px;'/><span>"
-							+json[i].qFile  +"</span>"+ json[i].qContent +
-							 "<c:if test = "${authInfo.id eq admin}"><a class= 'clickReply'> [답글 달기]</td></c:if>";
+							sCont += "<td colspan ='5'><img src='/proj21_shop/resources/qna/upload/" + json[i].qFile +"' width = 50px;/><span>"
+							+"</span>"+ json[i].qContent + "<c:if test = "'${authInfo.id eq admin}'"><a class= 'clickReply'> [답글 달기]</td></c:if>";
 							sCont += "</tr>"
 						
 					}else if(json[i].qStep == 1){

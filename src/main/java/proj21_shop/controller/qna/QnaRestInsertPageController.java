@@ -1,11 +1,9 @@
 package proj21_shop.controller.qna;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
 import java.net.URI;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,6 +22,7 @@ import proj21_shop.service.qna.QnaInsertService;
 @RestController
 @RequestMapping("/api")
 public class QnaRestInsertPageController {
+	private static final String CURR_IMAGE_UPLOAD_PATH = "C:\\workspace_web\\proj21_shop\\src\\main\\webapp\\resources\\qna\\upload";
 	
 	@Autowired
 	QnaInsertService qInsertService;
@@ -41,29 +40,18 @@ public class QnaRestInsertPageController {
 	
 	/* 첨부 파일 업로드 */
 	@PostMapping("/uploadAjaxAction")
-	public void uploadAjaxActionPost(MultipartFile[] uploadFile) {
-		String uploadFolder = "C:\\workspace_web\\proj21_shop\\src\\main\\webapp\\resources\\qna\\upload";
+	public void uploadAjaxActionPost(MultipartFile[] uploadFile, HttpServletRequest request) {
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		
-		Date date = new Date();
-		
-		String str = sdf.format(date);
-		
-		String datePath = str.replace("-", File.separator);
-		
-		/* 폴더 생성 */
-		File uploadPath = new File(uploadFolder, datePath);
-		
-		if(uploadPath.exists() == false) {
-			uploadPath.mkdirs();
-		}
+		String upload = request.getSession().getServletContext().getRealPath("/");
+		String imgUploadPath = upload +"resources"+ File.separator + "qna" + File.separator +"upload";
 		
 		for(MultipartFile multipartFile : uploadFile) {
 			// 파일 이름
 			String uploadFileName = multipartFile.getOriginalFilename();
 			
-			File saveFile = new File(uploadPath, uploadFileName);
+			uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("//") + 1); 
+			
+			File saveFile = new File(imgUploadPath, uploadFileName);
 			
 			try {
 				multipartFile.transferTo(saveFile);

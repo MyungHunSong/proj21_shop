@@ -70,6 +70,7 @@ public class QnaRestController {
 		return ResponseEntity.ok(service.listSearch(sCri));
 	}
 	
+	
 	@GetMapping("/qna/{page}/{perPageNum}/{searchType}")
 	public ResponseEntity<Object> qna(
 			@PathVariable int page
