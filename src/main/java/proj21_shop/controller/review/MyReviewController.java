@@ -1,6 +1,9 @@
 package proj21_shop.controller.review;
 
+import java.io.File;
 import java.net.URI;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -65,15 +68,32 @@ public class MyReviewController {
 	}
 	/*첨부 파일 업로드*/
 	@PostMapping("/myreview/uploadImage")
-	public void uploadAjaxActionPost(MultipartFile uploadFile) {
-		/*
-		 * System.out.println("uploadAjaxActionPost........");
-		 * System.out.println(uploadFile);
-		 * System.out.println("파일 이름  : "+uploadFile.getOriginalFilename());
-		 * System.out.println("파일 타입 : "+uploadFile.getContentType());
-		 * System.out.println("파일 크기 : "+uploadFile.getSize());
-		 */
-		String uploadFolder = "proj21_shop/resources/review/images";
+	public void uploadAjaxActionPost(MultipartFile[] uploadFile, HttpServletRequest request) {
+		  
+		String upload = request.getSession().getServletContext().getRealPath("/");
+		String imgUploadPath = upload +"resources"+ File.separator + "review" + File.separator +"images";
+		System.out.println(imgUploadPath);
+		
+		File uploadPath = new File(imgUploadPath);
+		
+		//향상된 for 
+		for(MultipartFile multipartFile : uploadFile) {
+			/* 파일 이름 */
+			String uploadFileName = multipartFile.getOriginalFilename();
+			
+			/* 파일 위치, 파일 이름을 합친 File 객체 */
+			File saveFile = new File(uploadPath, uploadFileName);
+			
+			/* 파일 저장 */
+			try {
+				multipartFile.transferTo(saveFile);
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+
+		
 		 
 	}
 	

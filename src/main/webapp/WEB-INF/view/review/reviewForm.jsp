@@ -40,7 +40,7 @@
 						 $('#insert').on("click", function(e){
 						 	  var newReview = {	proNum : json[0].proName.proNum , memberId : memberId, reviewContent : $('#reviewContent').val(),
 						 						reviewImagefilename1 : $('#imgButton1').val().replace(/C:\\fakepath\\/i, ''), reviewImagefilename2 : $('#imgButton2').val().replace(/C:\\fakepath\\/i, ''), reviewStar : starRate};
-						 	  
+						 	  console.log($('#imgButton1').val());
 						 	  /* alert("data > " + newReview.proNum); */
 						 	  $.ajax({
 						 		  url : contextPath + "/api/myreview/",
@@ -95,7 +95,8 @@
 				}
 				
 				sConts += "<div class='file'>";
-				sConts += "<input type='file' id='imgButton1' name='imgButton1'/> <br> <input type='file' id='imgButton2' name='imgButton2'/>";
+				sConts += "<input type='file' id='imgButton1' name='imgButton1'/>";
+				sConts += "<input type='file' id='imgButton2' name='imgButton2'/>";
 				sConts += "</div><br>";
 				if(json[0].reviewContent == undefined){
 				sConts += "<button id='insert'>등록</button>";
