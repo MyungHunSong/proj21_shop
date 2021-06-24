@@ -15,20 +15,64 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(function(){
-		  $("input[name='imgFile']").hide();
+			var contextPath = "${contextPath}";
+		
+		
+		  $("input[name='uploadFile']").hide();
 		  $('#preview').click(function(){
 			  
-			  $("input[name='imgFile']").click();
-		  });
+			  $("input[name='uploadFile']").click();
+		  });		  
+		  // 이미지 저장을 위한 jquery
+		  // -- 파일 체크를 하기 위해서 만들어 놓은것.
+		   $("input[type='file']").on("change", function(e){
+			 let formData = new FormData();
+			 let fileInput = $('input[name="uploadFile"]');
+			 let fileList = fileInput[0].files;
+			 let fileObj = fileList[0];
+			 
+			if(!fileCheck(fileObj.name, fileObj.size)){
+				return false;
+			}
+			formData.append("uploadFile", fileObj);
+			
+			 $.ajax({
+				  url:	contextPath + '/api/uploadAjaxAction',
+				  processData : false,
+				  contentType : false,
+				  data : formData,
+				  type : 'POST',
+				  dataType : 'json'
+			  });
+		 });
+		  
+		  // -- 서버로 전송할 첨부파일을 서버에 전송하는 코드.
+		 
+		  
+		  let regex = new RegExp("(.*.?)\.(jpg|png)$");
+		  let maxSize = 1048576;
+		  
+		  function fileCheck(fileName, fileSize){
+			  if(fileSize >= maxSize){
+				  alret("파일 사이즈 초과");
+				  return false;
+			  }
+			  if(!regex.test(fileName)){
+				  alert("해당 종류의 파일은 업로드할 수 없습니다.")
+				  return false;
+			  }
+			  return true;
+		  }
+		  
+		
 		  
 		  $(".insertQna").on('click', function(){
 				var title = $(this).prev().prev().prev().prev();
-				console.log($(this).prev().prev().prev().prev())
+				//console.log($(this).prev().prev().prev().prev())
 				/* var option
 				var member
 				var content
-				var file */
-				
+				var file */				
 			});	
 		
 	});
@@ -125,7 +169,7 @@
 					<div>
 						<div>
 						사진 추가
-							<input type="file" id="main" name="imgFile" onchange="readURL(this, this.id);">
+							<input type="file" id="main" name="uploadFile" onchange="readURL(this, this.id);">
 						</div>
 						<div id="image_list">
 							<img id="preview" src="/proj21_shop/resources/qna/images/fileimg.jpg" width="100" height="100">
