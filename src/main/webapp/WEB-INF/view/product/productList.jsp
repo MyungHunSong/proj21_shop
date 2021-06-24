@@ -43,7 +43,7 @@ $(function(){
 				sCont += "			<div><a href='productDetail?proNum=" + proNum.substring(0,3) + "'><img src="+contextPath+"/resources/product/images/"+json[i].proImgfileName+"></a></div>";
 				sCont += "			<div class='detail'>"
 				sCont += "				<div class='title'>"
-				sCont += "					<h2><em>"+ json[i].proName +"</em></h2>"
+				sCont += "					<span class='proName'>"+ json[i].proName +"</span><br>"
 				sCont +="					<span class='price'>"+ json[i].proPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") +"원</span>"       
 				sCont +="				</div>"
 				sCont +="				<div class='info'>"
@@ -79,7 +79,7 @@ $(function(){
 								sCont += "			<div><a href='productDetail?proNum=" + proNum.substring(0,3) + "'><img src="+contextPath+"/resources/product/images/"+json[i].proImgfileName+"></a></div>";
 								sCont += "			<div class='detail'>"
 								sCont += "				<div class='title'>"
-								sCont += "					<h2><em>"+ json[i].proName +"</em></h2>"
+								sCont += "					<span class='proName'>"+ json[i].proName +"</span><br>"
 								sCont +="					<span class='price'>"+ json[i].proPrice +"</span>"       
 								sCont +="				</div>"
 								sCont +="				<div class='info'>"
@@ -160,7 +160,7 @@ $(function(){
 								sCont += "			<div><a href='productDetail?proNum=" + proNum.substring(0,3) + "'><img src="+contextPath+"/resources/product/images/"+json[i].proImgfileName+"></a></div>";
 								sCont += "			<div class='detail'>"
 								sCont += "				<div class='title'>"
-								sCont += "					<h2><em>"+ json[i].proName +"</em></h2>"
+								sCont += "					<span class='proName'>"+ json[i].proName +"</span><br>"
 								sCont +="					<span class='price'>"+ json[i].proPrice +"</span>"       
 								sCont +="				</div>"
 								sCont +="				<div class='info'>"

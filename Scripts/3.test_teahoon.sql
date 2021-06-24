@@ -456,6 +456,7 @@ update product
       set pro_status = '신상'
 where pro_num like concat(505,'%');
 
+/**/
 /*리스트 페이징*/
  select * 
    from productall

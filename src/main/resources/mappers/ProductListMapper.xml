@@ -38,7 +38,7 @@
 	<select id="selectProductByProImgState" parameterType="int" resultMap="ResProduct">
 		<include refid="selectProductJoinProductImageSQL"></include>
 		where pro_img_state = #{param1} and pro_category = #{param2} and pro_size = 1
-	</select>
+	</select> 
 
 	<!-- 옷 상세정보 보기 -->
 	<select id="selectProductDetailByProNum" parameterType="int" resultMap="ResProduct">
@@ -57,7 +57,10 @@
 	<select id="selectProductByCondition" parameterType="Map" resultMap="ResProduct">
 		 select * 
    		   from productall 
-		 where pro_size = 1
+		 where pro_size = 1 
+		 <trim prefix="">
+		 	<if test="proCategory >= 0">and pro_category = #{proCategory}</if>
+		 </trim>
     	 <trim prefix="and pro_price between">
     	 		<if test="priceRange == 1">10000 and 30000</if>
     	 		<if test="priceRange == 2">30000 and 50000</if>
@@ -73,7 +76,6 @@
 		 		<if test="orderKind == '신상'">'신상'</if>   
 		 		<if test="orderKind == 'proHits'">pro_hits desc</if>   
     	 </trim>
-    	 <!-- limit #{pageStart}, #{perPageNum}; -->
 	</select>
 	
 	<!-- 제품이름으로 검색 -->
@@ -97,5 +99,11 @@
     	 </trim>
     	 order by pro_price desc
 		 limit 8
+	</select>
+	
+	<select id="selectCountProd" resultType="int">
+		 select count(pro_num)  
+   		  from product
+        where pro_size = 1  
 	</select>
 </mapper>

@@ -3,7 +3,6 @@
 .productList{
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: center;
     align-items: center;
 }
 
@@ -88,7 +87,7 @@
 
 .proName{
 	font-weight: 900;
-	font-size:22px;
+	font-size:20px;
 }
 
 
