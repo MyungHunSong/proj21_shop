@@ -71,7 +71,7 @@ select * from review;
 insert into review(pro_num, re_member, re_content, re_image, re_image2, re_stars)
 values (1033, 'test01', '맘에 들어요 감사합니다.', 'review_test.jpg', 'review_test.jpg', 3);
  
-delete from review where re_num >= 19;
+delete from review where re_num >= 2;
 -- 후기 수정
 select * from review;
 select * from product;
