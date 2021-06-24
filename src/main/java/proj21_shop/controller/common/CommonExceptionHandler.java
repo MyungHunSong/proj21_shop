@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice("proj21_shop")
 public class CommonExceptionHandler {
-	@ExceptionHandler(RuntimeException.class)
-	public String handleRuntimeException() {
-		return "error/commonException";
-	}
+//	@ExceptionHandler(RuntimeException.class)
+//	public String handleRuntimeException() {
+//		return "error/commonException";
+//	}
 }

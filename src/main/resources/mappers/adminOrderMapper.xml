@@ -167,11 +167,11 @@
 	</delete>
 
 	<update id="setUpRefund" parameterType="map">
-		update order
+		UPDATE `order`
 		  <set>
 		  	   delivery_status = #{waitingRefund}
 		  </set>
-		 where order_pro_num = #{orderProNum}
+		 WHERE order_pro_num = #{orderProNum} AND order_code =#{orderCode}
 	</update>
 	
 	<!-- orderlist -->
