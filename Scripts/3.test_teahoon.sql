@@ -77,13 +77,6 @@ where pro_size = 1
 where pro_size = 1
   order by pro_status = '신상';
  
--- 조회수순 페이징
- select * 
-   from productall 
-where pro_size = 1 
-  order by pro_hits desc
-limit 8,8;
- 
 select * from productall where pro_size = 1 order by pro_hits desc; 
 -- 가격순 all
  select * 
@@ -463,3 +456,9 @@ update product
       set pro_status = '신상'
 where pro_num like concat(505,'%');
 
+/*리스트 페이징*/
+ select * 
+   from productall
+where pro_size = 1
+  order by pro_hits desc
+   limit 8,8;    
