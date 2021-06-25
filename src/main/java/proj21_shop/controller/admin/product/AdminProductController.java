@@ -34,7 +34,7 @@ import proj21_shop.service.admin.product.AdminProductService;
 @Controller("adminProductController")
 @RequestMapping("/admin/product/")
 public class AdminProductController {
-	private static final String CURR_IMAGE_REPO_PATH = "D:\\codename\\file_repo";
+	private static final String CURR_IMAGE_REPO_PATH = "D:\\shop\\file_repo";
 
 	@Autowired
 	AdminProductService adminProductService;
