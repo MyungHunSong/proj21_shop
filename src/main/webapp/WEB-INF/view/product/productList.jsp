@@ -234,7 +234,7 @@ $(function(){
 		</div>
 	</div>
 	<div class="searchPlace">
-		<input type="text" placeholder="검색하세요"><i class="fas fa-search"></i>
+		<input type="text" placeholder="검색" style="padding: 5px;"><i class="fas fa-search"></i>
 	</div>
 	<div class="productList"></div>
 
