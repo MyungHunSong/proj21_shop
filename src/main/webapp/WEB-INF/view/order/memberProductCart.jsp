@@ -100,12 +100,10 @@ $(function(){
 				datatype : "json",
 				data: JSON.stringify(cartItem),
 				success: function(res){
-					/* window.location.href = contextPath + "/cart?memId=${authInfo.id }"; */ 
 				},
 				error:function(request, status, error){
 					 alert("code:"+request.status+"\n"+"message:"
 			                  +request.responseText+"\n"+"error:"+error);
-					/* window.location.href = contextPath+"/cart?memId=${authInfo.id }"; */
 				} 
 			})
 		}
@@ -198,9 +196,9 @@ $(function(){
 					window.location.href = contextPath+"/order?memId=${authInfo.id }";
 				},
 				error:function(request, status, error){
-					alert("code:"+request.status+"\n"+"message:"
-			                  +request.responseText+"\n"+"error:"+error);
-					/* window.location.href = contextPath+"/cart?memId=${authInfo.id }"; */
+					/* alert("code:"+request.status+"\n"+"message:"
+			                  +request.responseText+"\n"+"error:"+error); */
+					alert("제품을 선택해주세요")			                  
 				}  
 			});
 		}
