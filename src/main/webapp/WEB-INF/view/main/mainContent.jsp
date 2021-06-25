@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
+<c:set var="contextPath" value="<%=request.getContextPath()%>" />     
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,13 +24,13 @@
  <!-- 바로가기 섹션 부분  -->
  <section id="homeMainSection">
  	<div class="homeMainContentTop">
- 		<div class="homeMainContentTopRecmmend listRemocon">RECOMMEND</div>
- 		<div class="homeMainContentTopMostview listRemocon">SALE</div>
+ 		<div class="homeMainContentTopRecmmend listRemocon"><img class="imgBtn" src="${contextPath}/thumbnails?proNum=2113&fileName=2113-1.jpg"/><h2 class="imgBtnText">RECOMMEND</h2></div>
+ 		<div class="homeMainContentTopMostview listRemocon"><img class="imgBtn" src="${contextPath}/thumbnails?proNum=5033&fileName=5033-1.jpg"/><h2 class="imgBtnText">SALE</h2></div>
  	</div>
  	 <div></div>
  	<div class="homeMainContentTop">
- 		<div class="homeMainContentTopMostview listRemocon">BEST</div>
- 		<div class="homeMainContentTopRecmmend listRemocon">NEW</div>
+ 		<div class="homeMainContentTopMostview listRemocon"><img class="imgBtn" src="${contextPath}/thumbnails?proNum=5113&fileName=5113-1.jpg"/><h2 class="imgBtnText">BEST</h2></div>
+ 		<div class="homeMainContentTopRecmmend listRemocon"><img class="imgBtn" src="${contextPath}/thumbnails?proNum=6023&fileName=6023-1.jpg"/><h2 class="imgBtnText">NEW</h2></div>
  	</div>
  </section>
 

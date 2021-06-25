@@ -1,6 +1,9 @@
 package proj21_shop.controller.review;
 
+import java.io.File;
 import java.net.URI;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import proj21_shop.dto.order.OrderDTO;
 import proj21_shop.dto.review.ReviewDTO;
@@ -62,4 +66,36 @@ public class MyReviewController {
 			return ResponseEntity.status(HttpStatus.CONFLICT).build();
 		}
 	}
+	/*첨부 파일 업로드*/
+	@PostMapping("/myreview/uploadImage")
+	public void uploadAjaxActionPost(MultipartFile[] uploadFile, HttpServletRequest request) {
+		  
+		String upload = request.getSession().getServletContext().getRealPath("/");
+		String imgUploadPath = upload +"resources"+ File.separator + "review" + File.separator +"images";
+		System.out.println(imgUploadPath);
+		
+		File uploadPath = new File(imgUploadPath);
+		
+		//향상된 for 
+		for(MultipartFile multipartFile : uploadFile) {
+			/* 파일 이름 */
+			String uploadFileName = multipartFile.getOriginalFilename();
+			
+			/* 파일 위치, 파일 이름을 합친 File 객체 */
+			File saveFile = new File(uploadPath, uploadFileName);
+			
+			/* 파일 저장 */
+			try {
+				multipartFile.transferTo(saveFile);
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		 
+	}
+	
+	
+	
+	
 }

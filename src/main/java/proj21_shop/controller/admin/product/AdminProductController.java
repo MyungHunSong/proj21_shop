@@ -34,7 +34,7 @@ import proj21_shop.service.admin.product.AdminProductService;
 @Controller("adminProductController")
 @RequestMapping("/admin/product/")
 public class AdminProductController {
-	private static final String CURR_IMAGE_REPO_PATH = "D:\\codename\\file_repo";
+	private static final String CURR_IMAGE_REPO_PATH = "D:\\shop\\file_repo";
 
 	@Autowired
 	AdminProductService adminProductService;
@@ -135,12 +135,9 @@ public class AdminProductController {
 
 		Enumeration enu = multipartRequest.getParameterNames();
 		while (enu.hasMoreElements()) {
-			String name = (String) enu.nextElement();
-			String value = multipartRequest.getParameter(name);
+			String name = (String) enu.nextElement();			String value = multipartRequest.getParameter(name);
 			newProductMap2.put(name, value);
 		}
-
-		
 
 		List<ProductImageDTO> imageFileList = upload(multipartRequest);
 		

@@ -58,6 +58,7 @@
       <jsp:include page="/WEB-INF/view/include/topbody.jsp"></jsp:include>
       <section id="orderArea">
          <h3>나의 주문내역</h3>
+         <h5>주문번호를 클릭하시면 상세주문내역으로 이동하실 수 있습니다.</h5>
          <div class="asd">
          <table class="type11">
             <thead>

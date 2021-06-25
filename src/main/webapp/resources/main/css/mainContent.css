@@ -22,7 +22,6 @@
 	display:flex;
 	align-items: center;
 	justify-content: center;
-	background: #804040;
 	height: 250px;
 	width: 600px;
 }
@@ -35,6 +34,25 @@
 	background: gray;
 	height: 250px;
 	width: 400px
+}
+/**/
+.listRemocon{
+	position: relative;
+	overflow: hidden;
+	margin: 10px;
+}
+
+.imgBtn{
+	width: 100%;
+ 	vertical-align: middle;	
+}
+
+.imgBtnText{
+	color: #d35252;
+	position: absolute;
+	top: 50%;
+	left:50%;
+	text-align: center;
 }
 
 body {

@@ -14,6 +14,8 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript">
+
+
 	function readURL(input, id){
 		
 		if(input.files && input.files[0]){
@@ -163,7 +165,7 @@
 						<label>문의 유형 </label> <select name="searchType" id="searchType">
 							<option>문의유형 선택</option>
 						<c:if test="${authInfo.id eq 'admin'}">
-							<option>공지</option>
+							<option value ="공지">공지</option>
 						</c:if>
 						<c:if test="${authInfo.id ne 'admin'}">
 							<option value="제품문의">제품문의</option>
@@ -195,12 +197,16 @@
 				</c:if>
 					
 					<div>
+
 						<label>제목</label><input type="text" name="Title"><br>
+
 					</div>
 				<c:if test="${authInfo.id ne 'admin'}">
 					<div>
 						<label>문의내용</label>
+            
 						<textarea rows="10" cols="40"  name="Content"></textarea>
+
 						<br>
 					</div>
 				</c:if>
@@ -208,8 +214,9 @@
 				<c:if test="${authInfo.id eq 'admin'}">
 					<div>
 						<label>공지내용</label>
-						
+
 						<textarea rows="10" cols="40" name="Content"></textarea>
+
 						<br>
 					</div>
 				</c:if>

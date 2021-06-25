@@ -44,6 +44,8 @@ $(function(){
 	
 	var orderItem = {};
 	
+	var proSize = ["0","XS","S","M","L","XL"]
+	
 	for(j = 0; j < cartNums.length; j++){
 		$.get(contextPath + "/api/chooseProductCart/"+cartNums[j],
 			function(json){
@@ -60,25 +62,7 @@ $(function(){
 											  "orderProQuantity":json[i].cartProQuantity
 									}
 								
-									 orderItems.push(orderItem)
-									
-									switch(json[i].cartProNum.proSize){
-									case 1:
-										json[i].cartProNum.proSize = "XS";
-										break;
-									case 2:
-										json[i].cartProNum.proSize = "S";
-										break;
-									case 3:
-										json[i].cartProNum.proSize = "M";
-										break;
-									case 4:
-										json[i].cartProNum.proSize = "L";
-										break;
-									case 5:
-										json[i].cartProNum.proSize = "XL";
-										break;
-									}
+									orderItems.push(orderItem)
 									
 									sCont += "<div class='row data'>"
 									sCont +=		"<div class='subdiv'>"
@@ -86,7 +70,7 @@ $(function(){
 									sCont +=			"<div class='img'><img src="+contextPath+"/resources/product/images/"+json[i].cartProNum.proImgfileName+" width='40' height='60'></div>"
 									sCont +=			"<div class='pname'>"
 									sCont +=					"<input id = 'productItem' type = 'hidden' value = "+json[i].cartNum+">"
-									sCont +=       			"<span>"+json[i].cartProNum.proName+"("+json[i].cartProNum.proSize+")"+"</span>"
+									sCont +=       			"<span>"+json[i].cartProNum.proName+"("+proSize[json[i].cartProNum.proSize]+")"+"</span>"
 									sCont +=  	  		"</div>"
 									sCont +=		"</div>"
 									sCont +=		"<div class='subdiv'>"
@@ -214,13 +198,9 @@ $(function(){
 			$('#memberPoint').text("사용 가능한 포인트를 초과하였습니다.")
 			$('.sumPSale').text(oldPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"P")
 			$('.sumPOrderprice').text(oldOrderPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"원")
-		}
-		
-		 if(newOrderPrice < 0){
-				console.log(1111)
+		}else if(newOrderPrice < 0){
 				$('.sumPSale').text(sumPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"P")
 				$('.sumPOrderprice').text("0원")
-				$(this).val(5000)
 		}
 		
 		
@@ -278,7 +258,7 @@ $(function(){
 	
 	/* 주문하기 버튼 클릭 */
 	$('#prodOrderBtn').on("click",function(){
-		return orderBtn()
+		return orderBtn() 
 	})
 	
 	/*구입하기 function()*/
@@ -305,14 +285,16 @@ $(function(){
 			orderItem[i].deliveryAddr1 = $('#sample4_postcode').val();
 			orderItem[i].deliveryAddr2 = $('#sample4_roadAddress').val();
 			orderItem[i].deliveryAddr3 = $('#sample4_detailAddress').val();
-			orderItem[i].requestToDelivery = $('#divSelectbox').val();
-			orderItem[i].whoPay = "이종윤";
-			orderItem[i].whichBank = "국민";
+			if($('#divSelectbox').val() == 'etc'){
+				orderItem[i].requestToDelivery = $('#etcTextarea').val();				
+			}else{
+				orderItem[i].requestToDelivery = $('#divSelectbox').val();	
+			}
+			orderItem[i].whoPay = $('#depositor').val();
+			orderItem[i].whichBank = $('#memberBank').val();
 			orderItem[i].orderPrice=sumOrderPrice;
 			orderItem[i].orderDiscount= parseInt(salePrice);
 		}
-		
-		console.log(orderItem) 
 		$.ajax({
 			url: contextPath + "/api/orderInfo",
 			type: 'post' ,
@@ -320,7 +302,7 @@ $(function(){
 			datatype : "json",
 			data: JSON.stringify(orderItem),
 			success: function(res){
-				   /* window.location.href = contextPath + "/cart?memId=${authInfo.id }"; */   
+				alert("주문이 완료 되었습니다.")
 			},
 			error:function(request, status, error){
 				alert("제품 수량이 부족합니다.");
@@ -328,7 +310,10 @@ $(function(){
 		                  +request.responseText+"\n"+"error:"+error); 
 				 window.location.href = contextPath+"/cart?memId=${authInfo.id }";  
 			} 
-		});    
+		}); 
+		
+		console.log(orderItem) 
+		   
 	}
 	
 	/*돌아가기*/
@@ -345,21 +330,32 @@ $(function(){
 
 	function orderBtn() {
         if (!confirm("주문을 하시겠습니까?")) {
-        	return alert("감사합니다.")
-        } else {
-        	alert("주문이 완료 되었습니다.")
-        	insertOrder(orderItems)
-        	$.get(contextPath+"/api/lastOrderNum",
-    		function(json){
-    			console.log(json)
-    			var orderNum = parseInt(json)+1
-    			window.location.href = contextPath+"/detailorder?memberId=${authInfo.id }&orderProNum="+orderNum;
-    		})
         	
-        	
-        	
+        }else {
+        	if($('#memberPoint').text() == "사용 가능한 포인트를 초과하였습니다."){
+        		alert("포인트를 확인해주세요.")
+        	}else{
+        		/*구입하기시 valid check()*/
+        		if($('#memberName').val() == "" || $('#memberEmail').val() == "" || $('#memberTel1').val() == "" || $('#memberTel2').val() == "" ||
+        				$('#memberTel3').val() == "" || $('#sample4_postcode').val() == "" || $('#sample4_roadAddress').val()  == "" || $('#sample4_detailAddress').val() == "" ||
+        				$('.receiver').val() == "" || $('.receiverTel1').val() == "" || $('.receiverTel2').val() == "" || $('.receiverTel3').val() == "" ||
+        				$('#memberBank').val() == "" || $('#depositor').val() == "" ){
+        			return alert("빈곳을 확인해주세요.")
+        		}else {
+        			insertOrder(orderItems)
+        			$.get(contextPath+"/api/lastOrderNum",
+			    	function(json){
+			    		console.log(json)
+			    		var orderNum = parseInt(json)+1
+			    		window.location.href = contextPath+"/detailorder?memberId=${authInfo.id }&orderProNum="+orderNum;
+			    	})
+			    }
+    		}
         }
     }
+	
+	
+	
 })
 
 </script>
@@ -404,6 +400,12 @@ $(function(){
 					<p>
 						<input id = "memberEmail" type="email" placeholder="이메일">
 					</p>
+					<p>
+						<input id = "memberBank" type="text" placeholder="은행">
+					</p>
+					<p>
+						<input id = "depositor" type="text" placeholder="입금자명">
+					</p>
 					
 		
     	
@@ -429,7 +431,7 @@ $(function(){
 					<option value="etc">직접 입력</option>
 				</select>
 					<br>
-					<textarea id="etcTextarea" name="etcTextarea" placeholder="최대 30자까지 입력 가능합니다."></textarea>
+					<input type="text" id="etcTextarea" name="etcTextarea" placeholder="작성 해주세요">
 			</p>
     		<input type="text" id="sample4_postcode" placeholder="우편번호"/> 
 			<input type="button" onclick="sample4_execDaumPostcode()"value="우편번호 찾기"> <br> 

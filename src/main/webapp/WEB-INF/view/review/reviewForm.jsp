@@ -35,10 +35,12 @@
 								'<img src="images/star-lv' +starRate + '.png">'
 										+ notice[starRate - 1]);
 						
-						 $('#insert').on("click", function(e){
+					
+						
+						 $('.review').on("click", '[id=insert]', function(e){
 						 	  var newReview = {	proNum : json[0].proName.proNum , memberId : memberId, reviewContent : $('#reviewContent').val(),
 						 						reviewImagefilename1 : $('#imgButton1').val().replace(/C:\\fakepath\\/i, ''), reviewImagefilename2 : $('#imgButton2').val().replace(/C:\\fakepath\\/i, ''), reviewStar : starRate};
-						 	  
+						 	  console.log($('#imgButton1').val());
 						 	  /* alert("data > " + newReview.proNum); */
 						 	  $.ajax({
 						 		  url : contextPath + "/api/myreview/",
@@ -53,9 +55,15 @@
 						 		  }
 						 		  
 						 	  });
-						}) 
+						})
+						
+						
+						
+					
 						
 			})
+			
+			
 			console.log(json);
 			console.log(memberId);
 			for(i = 0; i < json.length; i++){
@@ -70,7 +78,7 @@
 		
 			
 			var sCont = "";
-				 sCont += "<img src='/proj21_shop/resources/product/images/" + json[0].proName.proImgfileName + "' width = '70' height= '70'>" 
+				sCont += "<img src='/proj21_shop/resources/product/images/" + json[0].proName.proImgfileName + "' width = '70' height= '70'>" 
 				sCont += "<ul>"
 				sCont += "<li>" + json[0].proName.proName + "</li>"
 				sCont += "<li>" + json[0].proName.proColor +"</li>" 
@@ -87,7 +95,8 @@
 				}
 				
 				sConts += "<div class='file'>";
-				sConts += "<input type='file' id='imgButton1'/> <br> <input type='file' id='imgButton2'/>";
+				sConts += "<input type='file' id='imgButton1' name='imgButton1'/>";
+				sConts += "<input type='file' id='imgButton2' name='imgButton2'/>";
 				sConts += "</div><br>";
 				if(json[0].reviewContent == undefined){
 				sConts += "<button id='insert'>등록</button>";
@@ -102,9 +111,120 @@
 		
 				$("#review").prepend(sConts);
 				
+				/* 이미지 업로드 */
+				$("input[name='imgButton1']").on("change", function(e){
+					
+					let formData = new FormData();
+					let fileInput = $('input[name="imgButton1"]');
+					let fileList = fileInput[0].files;
+					let fileObj = fileList[0];
+					
+					if(!fileCheck(fileObj.name, fileObj.size)){
+						return false;
+					}
+						
+					formData.append("uploadFile", fileObj);
+					
+					$.ajax({
+						url: contextPath + '/api/myreview/uploadImage',
+						processData : false,
+						contentType : false,
+						data : formData,
+						type : 'POST',
+						dataType : 'json'
+					});
+					
+					
+					 alert("통과"); 
+					
+					console.log("fileList : "+fileList);
+					console.log("fileObj : " + fileObj);
+					console.log("fileType(MimeType) : " + fileObj.type); 
+					
 				
+					function fileCheck(fileName, fileSize){
+						
+						/* var, method related with attachFile */
+						let regex = new RegExp("(.*?)\.(jpg|png)$");
+						let maxSize = 1048576; //1MB	
+						
+
+						if(fileSize >= maxSize){
+							alert("파일 사이즈 초과");
+							return false;
+						}
+							  
+						if(!regex.test(fileName)){
+							alert("해당 종류의 파일은 업로드할 수 없습니다.");
+							return false;
+						}
+						
+						return true;		
+						
+					}
+					
+					
+				})
+				
+				/* 이미지 업로드 */
+				$("input[name='imgButton2']").on("change", function(e){
+					
+					let formData = new FormData();
+					let fileInput = $('input[name="imgButton2"]');
+					let fileList = fileInput[0].files;
+					let fileObj = fileList[0];
+					
+					if(!fileCheck(fileObj.name, fileObj.size)){
+						return false;
+					}
+						
+					formData.append("uploadFile", fileObj);
+					
+					$.ajax({
+						url: contextPath + '/api/myreview/uploadImage',
+						processData : false,
+						contentType : false,
+						data : formData,
+						type : 'POST',
+						dataType : 'json'
+					});
+					
+					
+					 alert("통과"); 
+					
+					console.log("fileList : "+fileList);
+					console.log("fileObj : " + fileObj);
+					console.log("fileType(MimeType) : " + fileObj.type); 
+					
+				
+					function fileCheck(fileName, fileSize){
+						
+						/* var, method related with attachFile */
+						let regex = new RegExp("(.*?)\.(jpg|png)$");
+						let maxSize = 1048576; //1MB	
+						
+
+						if(fileSize >= maxSize){
+							alert("파일 사이즈 초과");
+							return false;
+						}
+							  
+						if(!regex.test(fileName)){
+							alert("해당 종류의 파일은 업로드할 수 없습니다.");
+							return false;
+						}
+						
+						return true;		
+						
+					}
+					
+					
+				})
 				
 		})
+		
+	
+		
 			
 	});
 </script>

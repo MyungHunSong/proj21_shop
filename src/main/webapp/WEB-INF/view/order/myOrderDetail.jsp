@@ -13,6 +13,7 @@
 		var contextPath = "${contextPath}";
 		var memberId = "${memberId}";
 		var orderProNum = "${orderProNum}";
+		var orderCode = "${orderCode}";
 		var sCont = "";
 
 
@@ -31,7 +32,10 @@
 							sCont += "<td>" + json[0].orderProQuantity;
 							sCont += "<td>" + json[0].deliveryStatus;
 							sCont += "<td>" + json[0].orderDate;
-							sCont += "<td><a href='detailreview?memberId=" + memberId +"&proNum=" + json[0].productDTO[i].proNum + "'>후기작성 하러가기</a><br><a href='detailreview?memberId=" + memberId +"&proNum=" + json[0].productDTO[i].proNum + "'>반품 요청</a></td>";
+
+							sCont += "<td><a href='detailreview?memberId=" + memberId +"&proNum=" + json[0].productDTO[i].proNum + "'>후기작성 하러가기</a><br><a href='requestRefund?orderProNum="+json[0].orderProNum+"&orderCode="+json[0].orderCode+"&memberId="+memberId+"'>반품 요청</a></td>";
+
+							
 							}
 							
 							$("#load").append(sCont);

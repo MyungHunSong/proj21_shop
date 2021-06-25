@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR" isELIgnored="false"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -8,9 +8,9 @@
 <c:set var="memberWomen" value="${viewMap.memberWomen }" />
 <c:set var="totalMember" value="${viewMap.totalMember }" />
 <c:set var="totalNonMember" value="${viewMap.totalNonMember }" />
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="utf-8">
 <title>Line_Controls_Chart</title>
 <script src="https://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -32,7 +32,7 @@
 	display: none;
 }
 </style>
-<script src="${contextPath}/resources/admin/assets/libs/jquery/dist/jquery.min.js"></script>
+<script src="${contextPath}/resources/admin/assets/libs/jquery/dist/jquery.js"></script>
 <!-- Bootstrap tether Core JavaScript -->
 <script src="${contextPath}/resources/admin/assets/libs/popper.js/dist/umd/popper.min.js"></script>
 <script src="${contextPath}/resources/admin/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -54,11 +54,8 @@
 <script src="${contextPath}/resources/admin/assets/libs/flot/jquery.flot.stack.js"></script>
 <script src="${contextPath}/resources/admin/assets/libs/flot/jquery.flot.crosshair.js"></script>
 <script src="${contextPath}/resources/admin/assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
-<script src="${contextPath}/resources/admin/dist/js/pages/chart/chart-page-init.js"></script>
 </head>
 <body>
-
-
 	<div class="container-fluid">
 		<div class="row">
 			<!-- column -->
@@ -69,6 +66,7 @@
 						<center>
 							<br>
 							<h1>사이트 방문자 성별 현황 그래프</h1>
+
 							<div id="Line_Controls_Chart" style="right: 0px !important;">
 								<!-- 라인 차트 생성할 영역 -->
 								<div id="lineChartArea" style="padding: 0px 0px 0px 50px; right: 0px !important; width: 80%;"></div>
@@ -78,6 +76,8 @@
 							<div id="chartContainer" style="height: 370px; width: 60%;"></div>
 							<button class="btn invisible" id="backButton">Back</button>
 						</center>
+
+
 					</div>
 				</div>
 			</div>
@@ -135,12 +135,14 @@
                               width              : '100%',
                               legend          : { position: "top", textStyle: {fontSize: 13}},
                               pointSize        : 5,
-                              tooltip          : {textStyle : {fontSize:12}, showColorCode : true,trigger: 'both'},
+                              tooltip          : {textStyle : {fontSize:12},
+                              					  showColorCode : true,
+                              					  trigger: 'both'},
                               hAxis              : {format: chartDateformat, gridlines:{count:chartLineCount,units: {
-                                                                  years : {format: ['yyyy년']},
-                                                                  months: {format: ['MM월']},
-                                                                  days  : {format: ['dd일']},
-                                                                  hours : {format: ['HH시']}}
+                                                                  years : {format: ['yyyy']},
+                                                                  months: {format: ['MM']},
+                                                                  days  : {format: ['dd']},
+                                                                  hours : {format: ['HH']}}
                                                                 },textStyle: {fontSize:12}},
                 vAxis              : {minValue: 100,viewWindow:{min:0},gridlines:{count:-1},textStyle:{fontSize:12}},
                 animation        : {startup: true,duration: 1000,easing: 'in' },
@@ -168,10 +170,10 @@
                         chartArea: {'width': '60%','height' : 80},
                           hAxis: {'baselineColor': 'none', format: chartDateformat, textStyle: {fontSize:12},
                             gridlines:{count:controlLineCount,units: {
-                                  years : {format: ['yyyy년']},
-                                  months: {format: ['MM월']},
-                                  days  : {format: ['dd일']},
-                                  hours : {format: ['HH시']}}
+                                  years : {format: ['yyyy']},
+                                  months: {format: ['MM']},
+                                  days  : {format: ['dd']},
+                                  hours : {format: ['HH']}}
                             }}
                         }
                   },

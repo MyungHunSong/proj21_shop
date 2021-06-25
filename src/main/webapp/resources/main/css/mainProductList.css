@@ -3,7 +3,6 @@
 .productList{
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: center;
     align-items: center;
 }
 
@@ -24,8 +23,8 @@
 
 .item img{
 	transition: 0.1s;
-	width: 280px;
-	height: 315px;
+	width: 270px;
+	height: 300px;
 	padding: 20px;
 }
 
@@ -88,5 +87,5 @@
 
 .proName{
 	font-weight: 900;
-	font-size:22px;
+	font-size:20px;
 }

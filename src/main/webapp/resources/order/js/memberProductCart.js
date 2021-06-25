@@ -60,7 +60,6 @@ let basket = {
        	var price2 = parseInt(price.split('/'));
         item.parentElement.parentElement.nextElementSibling.textContent = (newval * price2).formatNumber()+"원";
         item.parentElement.parentElement.previousElementSibling.textContent = (newval * price2 * 0.01).formatNumber()+"P";
-        //AJAX 업데이트 전송
 
         //전송 처리 결과가 성공이면    
         this.reCalc();

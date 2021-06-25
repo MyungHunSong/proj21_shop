@@ -580,3 +580,7 @@ SELECT DISTINCT order_pro_num, order_code , order_date , order_pro_quantity , or
   FROM `order` o , product p , pro_img img
  WHERE o.pro_num = p.pro_num AND img.pro_img_state = 1 AND img.pro_num = p.pro_num AND o.order_member_id = 'test01'AND o.delivery_status= '배송준비중'
  ORDER BY order_code;
+ 
+
+SELECT * FROM `ORDER`;
+UPDATE `order`      SET delivery_status = '배송준비중'     WHERE order_pro_num = 1 AND order_code =1;
