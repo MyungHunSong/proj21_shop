@@ -124,18 +124,17 @@ var options = {
       xValueFormatString: "MMM YYYY",
       yValueFormatString: "#,##0 회",
       dataPoints: [
-         { x: new Date(2019, 0, 1),  y: 5 },
-         { x: new Date(2019, 1, 1), y: 8 },
-         { x: new Date(2019, 2, 1), y: 3 },
-         { x: new Date(2019, 3, 1),  y: 1 },
-         { x: new Date(2019, 4, 1),  y: 5 },
-         { x: new Date(2019, 5, 1),  y: 7 },
-         { x: new Date(2019, 6, 1), y: 2 },
-         { x: new Date(2019, 7, 1), y: 8 },
-         { x: new Date(2019, 8, 1),  y: 14 },
-         { x: new Date(2019, 9, 1),  y: 2 },
-         { x: new Date(2019, 10, 1),  y: ${member.memberTotalLogin} },
-         { x: new Date(2019, 11, 1), y:  0 }
+         { x: new Date(2020, 8,  1),  y: 5 },
+         { x: new Date(2020, 9,  1),  y: 8 },
+         { x: new Date(2020, 10, 1),  y: 3 },
+         { x: new Date(2020, 11, 1),  y: 1 },
+         { x: new Date(2020, 12, 1),  y: 5 },
+         { x: new Date(2021, 1, 1),   y: 7 },
+         { x: new Date(2021, 2, 1),   y: 2 },
+         { x: new Date(2021, 3, 1),   y: 8 },
+         { x: new Date(2021, 4, 1),   y: 14 },
+         { x: new Date(2021, 5, 1),   y: 2 },
+         { x: new Date(2021, 6, 1),   y: ${member.memberTotalLogin} }
       ]
    },
    {
@@ -146,18 +145,17 @@ var options = {
       xValueFormatString: "MMM YYYY",
       yValueFormatString: "#,##0.#원",
       dataPoints: [
-         { x: new Date(2019, 0, 1),  y: 390340.5 },
-         { x: new Date(2019, 1, 1), y: 200150 },
-         { x: new Date(2019, 2, 1), y: 473420 },
-         { x: new Date(2019, 3, 1),  y: 50000 },
-         { x: new Date(2019, 4, 1),  y: 302340 },
-         { x: new Date(2019, 5, 1),  y: 290340 },
-         { x: new Date(2019, 6, 1), y: 604870 },
-         { x: new Date(2019, 7, 1), y: 825230 },
-         { x: new Date(2019, 8, 1),  y: 1000000 },
-         { x: new Date(2019, 9, 1),  y: 2000000 },
-         { x: new Date(2019, 10, 1),  y: ${averageOrder} },
-         { x: new Date(2019, 11, 1), y: 0 }
+         { x: new Date(2020, 8,  1),  y: 390340 },
+         { x: new Date(2020, 9,  1),  y: 200150 },
+         { x: new Date(2020, 10, 1),  y: 473420 },
+         { x: new Date(2020, 11, 1),  y: 50000 },
+         { x: new Date(2020, 12, 1),  y: 302340 },
+         { x: new Date(2021, 1, 1),  y: 290340 },
+         { x: new Date(2021, 2, 1),  y: 604870 },
+         { x: new Date(2021, 3, 1),  y: 825230 },
+         { x: new Date(2021, 4, 1),  y: 1000000 },
+         { x: new Date(2021, 5, 1),  y: 2000000 },
+         { x: new Date(2021, 6, 1), y: ${averageOrder} },
       ]
    }]
 };
@@ -213,7 +211,7 @@ function toggleDataSeries(e) {
 									<td>아이디</td>
 									<td>${member.memberId }</td>
 									<td>적립금</td>
-									<td><a href="#"><fmt:formatNumber value="${member.memberPoint}" pattern="#,###" /></a>원</td>
+									<td><a href="#"><fmt:formatNumber value="${member.memberPoint}" pattern="#,###" /></a><b>  P</b></td>
 								</tr>
 
 
@@ -223,7 +221,8 @@ function toggleDataSeries(e) {
 									<td>누적 구매액</td>
 									<td><fmt:formatNumber value="${member.memberTotalBuy}" pattern="#,###" />원</td>
 									<td>누적 주문수</td>
-									<td><a href="#"><fmt:formatNumber value="${member.memberTotalOrder}" pattern="#,###" /></a>회 (평균:<fmt:formatNumber value="${averageOrder}" pattern="#,###" />원)</td>
+									<td><a href="#"><fmt:formatNumber value="${member.memberTotalOrder}" pattern="#,###" /></a>회
+									(평균:<fmt:formatNumber value="${averageOrder}" pattern="#,###" />원)</td>
 								</tr>
 							</table>
 						</center>
@@ -272,7 +271,8 @@ function toggleDataSeries(e) {
 											<td width="100px">상품명</td>
 											<td width="100px">상품 정보</td>
 											<td width="100px">주문자</td>
-											<td width="100px">주문 가격</td>
+											<td width="100px">구매 가격</td>
+											<td width="100px">주문 총 가격</td>
 											<td width="100px">결제 일자</td>
 											<td width="100px">배송 상태</td>
 										</tr>
@@ -290,7 +290,12 @@ function toggleDataSeries(e) {
 														test="${order.pro.proSize == 1}">XS </c:if> <c:if test="${order.pro.proSize == 2}">S </c:if> <c:if test="${order.pro.proSize == 3}">M </c:if> <c:if
 														test="${order.pro.proSize == 4}">L </c:if> <c:if test="${order.pro.proSize == 5}">XL </c:if></td>
 												<td>${order.orderMemberName }</td>
-												<td><fmt:formatNumber value="${order.orderPrice }" pattern="#,###" />원</td>
+												<td>
+												<fmt:formatNumber value="${order.orderValue*order.orderProQuantity }" pattern="#,###" />원
+												</td>
+												<td>
+												<fmt:formatNumber value="${order.orderPrice }" pattern="#,###" /> 원
+												</td>
 												<td>${order.orderDate }</td>
 												<td>${order.deliveryStatus}</td>
 											</tr>
@@ -317,8 +322,8 @@ function toggleDataSeries(e) {
 											<td width="100px">상품명</td>
 											<td width="100px">상품 정보</td>
 											<td width="100px">주문자</td>
-											<td width="100px">주문 가격</td>
-											<td width="100px">결제 수단</td>
+											<td width="100px">구매 가격</td>
+											<td width="100px">주문 총 가격</td>
 											<td width="100px">결제 일자</td>
 											<td width="100px">배송 상태</td>
 										</tr>
@@ -330,7 +335,12 @@ function toggleDataSeries(e) {
 												<td>${refund.proName }</td>
 												<td>${refund.proColor}/${refund.proSize }</td>
 												<td>${refund.orderMemberName }</td>
-												<td><fmt:formatNumber value="${refund.orderPrice}" pattern="#,###" />원</td>
+												<td>
+												<fmt:formatNumber value="${refund.orderValue*refund.orderProQuantity }" pattern="#,###" />원
+												</td>
+												<td>
+												<fmt:formatNumber value="${refund.orderPrice }" pattern="#,###" /> 원
+												</td>
 												<td>${refund.orderDate }</td>
 												<td>${refund.deliveryStatus}</td>
 											</tr>
@@ -352,12 +362,13 @@ function toggleDataSeries(e) {
 							<c:choose>
 								<c:when test="${cartList !=null }">
 											<br><h3>장바구니에 담은 상품</h3><br>
-									<table>
+									<table> 
 										<tr style="text-align: center;">
 											<th width="100px;">이미지</th>
 											<th width="100px;">상품명</th>
 											<th width="100px;">상품 정보</th>
-											<th width="100px;">판매가</th>
+											<th width="100px;">구매 가격</th>
+											<th width="100px;">주문 총 가격</th>
 											<th width="100px;">수량</th>
 											<th width="100px;">합계</th>
 										</tr>

@@ -234,7 +234,17 @@ a {
 											<c:if test="${order.pro.proSize == 5}">XL /</c:if>
 											</li>						
 											<td width="100px">${order.orderMemberName }</td>
-											<td width="100px"><fmt:formatNumber value="${order.orderPrice* order.orderProQuantity }" pattern="#,###" />원</td>
+											
+											<td width="150px">
+											<%-- <fmt:formatNumber value="${order.orderValue*order.orderProQuantity }" pattern="#,###" />원 --%>
+											가격 : ${order.orderValue } | 개수 : ${order.orderProQuantity }
+											<br>
+											------------------------------
+											<br>
+											상품 가격  / 총 주문 가격
+											<br>
+											<fmt:formatNumber value="${order.orderValue*order.orderProQuantity }" pattern="#,###" />원 / <fmt:formatNumber value="${order.orderPrice }" pattern="#,###" /> 원
+											</td>
 											<td width="100px">${order.whichBank} 은행</td>
 											<td width="100px">${order.orderDate }</td>
 											<td width="100px">

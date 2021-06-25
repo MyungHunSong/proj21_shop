@@ -475,9 +475,12 @@ FROM `order`
  
  SELECT *
  from `order`;
+
  SELECT *
- from member;
- 
+ from MEMBER ;
+
+SELECT count(order_pro_num) FROM (SELECT * FROM MEMBER m JOIN `order` o ON m.m_id =o.order_member_id WHERE m_id = 'admin' GROUP BY order_pro_num)AS a;
+
 DELETE
 FROM member 
  where m_id='test051';
