@@ -294,7 +294,7 @@ select r.re_num, r.pro_num, r.re_member, r.re_content, r.re_image,re_image2,re_d
   from review r 
     join productall p on r.pro_num = p.pro_num 
     left join re_reply rr on rr.re_num = r.re_num 
-where r.pro_num like CONCAT(616,'%');
+where r.pro_num like CONCAT(404,'%');
 
 select r.pro_num 
   from review r join productall p on r.pro_num = p.pro_num 
@@ -306,6 +306,7 @@ select re_rep_num,re_num,re_rep_member,re_rep_content,re_rep_date
   from re_reply
 where re_num = 1
 order by re_rep_num;
+
 
 /*댓글 작성*/
 insert 
@@ -452,6 +453,7 @@ where pro_num like concat(209,'%');
 update product 
       set pro_status = '신상'
 where pro_num like concat(206,'%');
+
 update product 
       set pro_status = '신상'
 where pro_num like concat(505,'%');
@@ -463,3 +465,8 @@ where pro_num like concat(505,'%');
 where pro_size = 1
   order by pro_hits desc
    limit 8,8;    
+   
+select * from `order` o ;
+
+delete from `order` where order_code = 11;
+

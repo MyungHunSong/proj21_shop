@@ -36,16 +36,14 @@ public class ProductServiceController {
 	}
 	
 	/* 옷목록 에서 여러 조건(가격순, 조회순, 신상, 가격범위)으로 검색 */
-	@GetMapping("/selectProductsCondition/{orderKind}/{priceRange}")
-	public ResponseEntity<Object> selectProductsCondition(@PathVariable String orderKind,@PathVariable int priceRange){
+	@GetMapping("/selectProductsCondition/{proCategory}/{orderKind}/{priceRange}")
+	public ResponseEntity<Object> selectProductsCondition(@PathVariable int proCategory,@PathVariable String orderKind,@PathVariable int priceRange){
 		HashMap<String, Object> condition = new HashMap<String,Object>();
+		condition.put("proCategory", proCategory);
 		condition.put("orderKind", orderKind);
 		condition.put("priceRange", priceRange); 
-		if(condition.isEmpty()) {
-			condition.put("orderKind", "asc");
-			condition.put("priceRange", 0); 
-		}
 		List<ProductDTO> products = service.selectProductByCondition(condition);
+		System.out.println(products);
 		return ResponseEntity.ok(products);
 	}
 	
