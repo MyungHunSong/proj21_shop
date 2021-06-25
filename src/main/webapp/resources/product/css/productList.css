@@ -94,9 +94,10 @@
 /* 조건검색하는 항목들 */
 .prodSearchBtn{
 	cursor: pointer;
-	text-align: left;
+	display: flex;
+	justify-content: space-between;
 	font-weight : 500;
-	font-size: 25px;
+	font-size: 100px;
 }
 .prodSearchCondition{
 	display: none;
@@ -123,7 +124,7 @@
 .fa-search{
 	cursor: pointer;
 	position: absolute;
-    left: 162px;
+    right: 5px;
     top: 7px;
 }
 
@@ -141,5 +142,5 @@
 	position: relative;
 	display: block;
 	margin-top: 10px;
-	text-align: left;
+	text-align: right;
 }
