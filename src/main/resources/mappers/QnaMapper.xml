@@ -125,7 +125,8 @@
 		<update id="updateHitsCount" parameterType="int">
 			update qna 
 				set q_hits = q_hits + 1 
-			where q_index = ${qIndex}
+			where q_index = #{qIndex}
+			 <!-- 나중에 수정할것. and q_member = #{qMember} and q_option = #{qOption} and q_title = #{qTitle} and q_date = #{qDate} -->
 		</update>
 		
 		<insert id="insertQnaForAdmin">
@@ -164,4 +165,10 @@
 				from qna 
 			where q_index = #{qIndex} and q_option != '공지' and q_group = #{qGroup}
 		</delete>
+		<!-- 회원 수정시 식별자 번호를 통해서 들어가기. -->
+		<select id="selectWhereIndexForModify" resultMap="ArticleResultMap">
+			select q_index, q_title, q_option, q_member, q_content, q_file, q_date, q_hits, q_group, q_indent, q_step 
+				from qna 
+			where q_index = #{qIndex}
+		</select>
 </mapper>

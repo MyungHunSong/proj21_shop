@@ -4,12 +4,15 @@ import java.io.File;
 import java.net.URI;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,10 +25,18 @@ import proj21_shop.service.qna.QnaInsertService;
 @RestController
 @RequestMapping("/api")
 public class QnaRestInsertPageController {
-	private static final String CURR_IMAGE_UPLOAD_PATH = "C:\\workspace_web\\proj21_shop\\src\\main\\webapp\\resources\\qna\\upload";
+	
 	
 	@Autowired
 	QnaInsertService qInsertService;
+	
+	// 식별자를 통한 수정 버튼 -> 수정페이지
+	@GetMapping("/qnainsert/{qIndex}")
+	public ResponseEntity<Object> selectWhereIdxForModify(@PathVariable int idx, HttpSession session){
+		session.setAttribute("idx", idx);
+		return ResponseEntity.ok(qInsertService.selectWhereIndexForModify(idx));
+	}
+	
 	@PostMapping("/qnainsert/")
 	public ResponseEntity<Object> InsertQnaForMember(@RequestBody QnaDTO qDto){
 		try {
@@ -41,10 +52,11 @@ public class QnaRestInsertPageController {
 	/* 첨부 파일 업로드 */
 	@PostMapping("/uploadAjaxAction")
 	public void uploadAjaxActionPost(MultipartFile[] uploadFile, HttpServletRequest request) {
-		
+
 		String upload = request.getSession().getServletContext().getRealPath("/");
-		String imgUploadPath = upload +"resources"+ File.separator + "qna" + File.separator +"upload";
 		
+		String imgUploadPath = upload +"resources"+ File.separator + "qna" + File.separator +"upload";
+		System.out.println(imgUploadPath);
 		for(MultipartFile multipartFile : uploadFile) {
 			// 파일 이름
 			String uploadFileName = multipartFile.getOriginalFilename();
@@ -64,11 +76,11 @@ public class QnaRestInsertPageController {
 	}
 	
 	@PatchMapping("/qnainsert/{qIndex}")
-	public ResponseEntity<Object> ModfiyQnaForMember(@RequestBody QnaDTO qDto){
+	public ResponseEntity<Object> ModfiyQnaForMember(@RequestBody QnaDTO qDto, HttpSession session){
 		return ResponseEntity.ok(qInsertService.modifyQnaForMember(qDto));
 	}
 	
-	@DeleteMapping("/qnainsert/{qIndex}")
+	@DeleteMapping("/qnaDelete")
 	public ResponseEntity<Object> DeleteQnaForMember(@RequestBody QnaDTO qDto){
 		return ResponseEntity.ok(qInsertService.deleteQnaForMember(qDto));
 		

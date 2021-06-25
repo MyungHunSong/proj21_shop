@@ -24,6 +24,9 @@
 #contentArea button{
 	margin-left:10px;
 }
+tr.clickOption{
+	cursor: pointer;
+}
 </style>
 <script type="text/javascript">
 $(function(){
@@ -32,6 +35,10 @@ $(function(){
 	var perPageNum=${perPageNum};
 	var searchType ="${searchType}";
 	var keyword = "${keyword}";
+	
+	// 회원 이름.
+	var memberName = "${authInfo.name}";
+	console.log(memberName)
 	
 	$.get(
 			contextPath + "/api/qna/"+ page +"/" + perPageNum + "/" + searchType + "/" + keyword,
@@ -49,18 +56,26 @@ $(function(){
 							sCont += "<td class = 'clickOption'>"+json[i].qOp + "</td>"; 
 							sCont += "<input type = 'hidden' value = "+ json[i].qIndex +">";
 							sCont += "<input type = 'hidden' value="+ json[i].qGroup +" >"
-							sCont += "<td>" + json[i].qMember + "</td>";
-							sCont += "<td>" + json[i].qOption + "</td>";
-							sCont += "<td>" + json[i].qTitle + "</td>";
-							sCont += "<td>" + json[i].qDate + "</td>";
+							sCont += "<td class = 'clickOption'>" + json[i].qMember + "</td>";
+							sCont += "<td class = 'clickOption'>" + json[i].qOption + "</td>";
+							sCont += "<td class = 'clickOption'>" + json[i].qTitle + "</td>";
+							sCont += "<td class = 'clickOption'>" + json[i].qDate + "</td>";
 							sCont += "<td class = 'qHit'>" + json[i].qHit + "</td>";
 							sCont += "</tr>";
 							
 							sCont += "<tr class = 'clickContent'>";
 							sCont += "<td>내용:</td>";	
-							sCont += ""
-							sCont += "<td colspan ='5'><img src='/proj21_shop/resources/qna/upload/" + json[i].qFile +"' width = 50px;/><span>"
-							+"</span>"+ json[i].qContent + "<c:if test = "'${authInfo.id eq admin}'"><a class= 'clickReply'> [답글 달기]</td></c:if>";
+							if("${authInfo.id}" == "admin"){
+								sCont += "<td colspan ='5'>" + json[i].qContent + "<a class= 'clickReply'> [답글 달기]</a></td>";
+							}else if(json[i].qGroup == 0){
+								sCont += "<td colspan ='5'>" + json[i].qContent + "</td>"
+							}else if("${authInfo.id}" != "admin"){
+								sCont += "<td colspan ='5'><img src='/proj21_shop/resources/qna/upload/" + json[i].qFile +"' width = 50px;/><span>"
+								+"</span>"+ json[i].qContent + "</td>";
+							}
+							if(memberName == json[i].qMember){
+								sCont += "<td><button class='modifyMyQna'>수정</button><button class='deleteMyQna'>삭제</button></td>"
+							}
 							sCont += "</tr>"
 						
 					}else if(json[i].qStep == 1){
@@ -69,6 +84,7 @@ $(function(){
 						sCont += "<td>→답변:</td> " 
 						sCont += "<td colspan='4'> " +json[i].qContent+ "<td>";
 						sCont += " <td colspan ='1'><button type = 'button' class = 'deleteContent' style='display:none'>삭제</button></td>";
+						
 						sCont += "</tr>";						
 					}
 					
@@ -82,6 +98,52 @@ $(function(){
 			
 				$("#load").append(sCont);
 			}
+			$('.deleteMyQna').on('click', function(){
+				var idx = $(this).parent().parent().prev().children().next().val();
+				var group = $(this).parent().parent().prev().children().next().next().val();
+				
+				deleteItem ={
+						"qIndex" : idx,
+						"qGroup":group
+				}
+				console.log(deleteItem)
+				$.ajax({
+					url : contextPath + "/api/qnaDelete",
+					type:"DELETE",
+					contentType:"application/json; charset=utf-8",
+					datatype:"json",
+					data:JSON.stringify(deleteItem),
+					success:function(){
+						alert("삭제 했습니다.");
+						window.location.href = contextPath + "/listPaging?page="+page + "&pagePageNum="+ perPageNum + "&searchType=" + searchType + "&keyword=";
+					},
+					error:function(){
+						alert("삭제 실패.")
+					}
+				});
+			});
+			
+			// 내가쓴글 수정하기 누르면 수정 페이지로.
+			$('.modifyMyQna').on('click', function(){								 
+				var idx = $(this).parent().parent().prev().children().next().val();
+				
+				window.location.href=contextPath + "/qnaInsert?index=" + idx;		 
+				$.ajax({
+					url: contextPath + "/qnaInsert/"+ idx,
+					type:"GET",
+					contentType:"application/json; charset=utf-8",
+					datatype:"json",
+					data:JSON.stringify(),
+					success:function(){
+						window.location.href=contextPath + "/qnaInsert/" + idx;
+					}	
+					
+				});		 
+						 
+						 
+				
+			});
+			
 			// 답글 삭제.
 			$('.deleteContent').on('click', function(){
 				var idx = $(this).parent().prev().prev().prev().prev().val();
@@ -128,7 +190,6 @@ $(function(){
 					data:JSON.stringify(modifyItem),
 					success:function(modifyItem){
 						alert("수정  했습니다.");
-						window.location.href = contextPath + "/listPaging?page="+page + "&pagePageNum="+ perPageNum + "&searchType=" + searchType + "&keyword=";
 					},
 					error:function(){
 						alert("수정 불가.");
@@ -138,15 +199,30 @@ $(function(){
 			
 			// 조회수 ajax 구현 & 상세내용 보기. -시작-
 			$('.clickOption').on('click',function(){
-					var idx = $(this).next().val()
-					var group = $(this).next().next().val()
+					var idx = $(this).next().val();
+					
+					/* var member = "${qDto.qMember}";
+					console.log(member);
+					var option = "${qDto.qOption}";
+					console.log(option);
+					var title = "${qDto.qTitle}";
+					console.log(title);
+					var date = "${qDto.qDate}";
+					console.log(date); */
+					
+					var group = $(this).next().next().val();
+					
 					var cnt = parseInt($(this).next().next().next().next().next().next().next().text())
 					$(this).next().next().next().next().next().next().next().text(cnt + 1)
 					
 					if($(this).parent().next().hasClass('active')){
+						
 					$(this).next().next().next().next().next().next().next().text(cnt)
-						$('.clickOption').parent().next().removeClass('active')
-						$('.showReply').parent().next().next().next().removeClass('active')
+						$('.clickOption').parent().next().removeClass('active');
+						$('.showReply').parent().next().next().next().removeClass('active');
+						$(this).parent().next().next().removeClass('active');
+						$(this).parent().next().next().next().removeClass('active');
+						
 						$.ajax({
 							url:contextPath +"/api/qna/" + page +"/" + perPageNum + "/" + searchType + "/" + keyword,
 							type:"GET",
@@ -161,8 +237,11 @@ $(function(){
 							}
 						});	
 					}else{
-						$(this).parent().next().addClass('active')	
-						$(this).parent().next().next().next().addClass('active')							
+						
+						$(this).parent().next().addClass('active');
+						$(this).parent().next().next().next().addClass('active');
+						$(this).parent().next().next().removeClass('active');
+						
 						$.ajax({
 							url : contextPath +"/api/qna/" + idx,
 							type:"PATCH",
@@ -173,7 +252,6 @@ $(function(){
 								/* window.location.href = contextPath + "/listPaging?page="+page + "&pagePageNum="+ perPageNum + "&searchType=" + searchType + "&keyword="; */
 							},
 							error:function(){
-								alert("조회수 초과.")
 							}
 						});
 					}
@@ -219,7 +297,6 @@ $(function(){
 							data:JSON.stringify(insertItem),
 							success:function(){
 								alert('완료')
-								window.location.href = contextPath + "/listPaging?page="+page + "&pagePageNum="+ perPageNum + "&searchType=" + searchType + "&keyword=";
 							},
 							error:function(){
 								alert("실패")
