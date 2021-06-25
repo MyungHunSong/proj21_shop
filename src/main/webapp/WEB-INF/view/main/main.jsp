@@ -39,7 +39,7 @@ $(function(){
 					for(i = 0; i < dataLength; i++){
 						var proNum =json[i].proNum+"" 
 						sCont += "<div class='item'>";
-						sCont += "			<div><a href='productDetail?proNum=" + proNum.substring(0,3) + "'><img src="+contextPath+"/resources/product/images/"+json[i].proImgfileName+"></a></div>";
+						sCont += "			<div><a href='productDetail?proNum=" + proNum.substring(0,3) + "'><img src="+  contextPath+"/thumbnails?proNum="+proNum.substring(0,3)+"3&fileName="+json[i].proImgfileName+"></a></div>";
 						sCont += "			<div class='detail'>"
 						sCont += "				<div class='proTitle'>"
 						sCont += "					<span class='proName'>"+ json[i].proName +"</span><br>"
@@ -68,7 +68,7 @@ $(function(){
 					for(i = 0; i < dataLength; i++){
 						var proNum =json[i].proNum+"" 
 						sCont += "<div class='item'>";
-						sCont += "			<div><a href='productDetail?proNum=" + proNum.substring(0,3) + "'><img src="+contextPath+"/resources/product/images/"+json[i].proImgfileName+"></a></div>";
+						sCont += "			<div><a href='productDetail?proNum=" + proNum.substring(0,3) + "'><img src="+  contextPath+"/thumbnails?proNum="+proNum.substring(0,3)+"3&fileName="+json[i].proImgfileName+"></a></div>";
 						sCont += "			<div class='detail'>"
 						sCont += "				<div class='proTitle'>"
 						sCont += "					<span class='proName'>"+ json[i].proName +"</span><br>"
@@ -97,7 +97,7 @@ $(function(){
 					for(i = 0; i < dataLength; i++){
 						var proNum =json[i].proNum+"" 
 						sCont += "<div class='item'>";
-						sCont += "			<div><a href='productDetail?proNum=" + proNum.substring(0,3) + "'><img src="+contextPath+"/resources/product/images/"+json[i].proImgfileName+"></a></div>";
+						sCont += "			<div><a href='productDetail?proNum=" + proNum.substring(0,3) + "'><img src="+  contextPath+"/thumbnails?proNum="+proNum.substring(0,3)+"3&fileName="+json[i].proImgfileName+"></a></div>";
 						sCont += "			<div class='detail'>"
 						sCont += "				<div class='proTitle'>"
 						sCont += "					<span class='proName'>"+ json[i].proName +"</span><br>"
@@ -126,7 +126,7 @@ $(function(){
 					for(i = 0; i < dataLength; i++){
 						var proNum =json[i].proNum+"" 
 						sCont += "<div class='item'>";
-						sCont += "			<div><a href='productDetail?proNum=" + proNum.substring(0,3) + "'><img src="+contextPath+"/resources/product/images/"+json[i].proImgfileName+"></a></div>";
+						sCont += "			<div><a href='productDetail?proNum=" + proNum.substring(0,3) + "'><img src="+  contextPath+"/thumbnails?proNum="+proNum.substring(0,3)+"3&fileName="+json[i].proImgfileName+"></a></div>";
 						sCont += "			<div class='detail'>"
 						sCont += "				<div class='proTitle'>"
 						sCont += "					<span class='proName'>"+ json[i].proName +"</span><br>"

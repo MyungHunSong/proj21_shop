@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+c<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="<%=request.getContextPath()%>" />  
@@ -40,7 +40,7 @@ $(function(){
 			for(i = 0; i < dataLength; i++){
 				var proNum =json[i].proNum+"" 
 				sCont += "<div class='item'>";
-				sCont += "			<div><a href='productDetail?proNum=" + proNum.substring(0,3) + "'><img src="+contextPath+"/resources/product/images/"+json[i].proImgfileName+"></a></div>";
+				sCont += "			<div><a href='productDetail?proNum=" + proNum.substring(0,3) + "'><img src="+  contextPath+"/thumbnails?proNum="+proNum.substring(0,3)+"3&fileName="+json[i].proImgfileName+"></a></div>";
 				sCont += "			<div class='detail'>"
 				sCont += "				<div class='title'>"
 				sCont += "					<span class='proName'>"+ json[i].proName +"</span><br>"
@@ -63,20 +63,22 @@ $(function(){
 	});
 	
 	$('.orderKind').on('click', 'li',function(){
+		var contextPath = "${contextPath}";
 		var sortOrder = $(this).data("order")
 		var sortPrice = $(this).data("price")
+		var proCategory = ${proCategory};
 		$(".productList *").remove(); 
 		if(sortPrice == undefined){
 			sortPrice = 0;
-			$.get(contextPath + "/api/selectProductsCondition/"+sortOrder+"/"+sortPrice,
+			$.get(contextPath + "/api/selectProductsCondition/"+proCategory+"/"+sortOrder+"/"+sortPrice,
 					function(json){
+						var sCont = "";
 						var dataLength = json.length;
 						if(dataLength >= 1){
-							var sCont = "";
 							for(i = 0; i < dataLength; i++){
 								var proNum =json[i].proNum+"" 
 								sCont += "<div class='item'>";
-								sCont += "			<div><a href='productDetail?proNum=" + proNum.substring(0,3) + "'><img src="+contextPath+"/resources/product/images/"+json[i].proImgfileName+"></a></div>";
+								sCont += "			<div><a href='productDetail?proNum=" + proNum.substring(0,3) + "'><img src="+  contextPath+"/thumbnails?proNum="+proNum.substring(0,3)+"3&fileName="+json[i].proImgfileName+"></a></div>";
 								sCont += "			<div class='detail'>"
 								sCont += "				<div class='title'>"
 								sCont += "					<span class='proName'>"+ json[i].proName +"</span><br>"
@@ -98,19 +100,19 @@ $(function(){
 						}
 					})
 		}else{
-			$.get(contextPath + "/api/selectProductsCondition/"+sortOrder+"/"+sortPrice,
+			$.get(contextPath + "/api/selectProductsCondition/"+proCategory+"/"+sortOrder+"/"+sortPrice,
 					function(json){
 						console.log(json)
 						var dataLength = json.length;
+						var sCont = "";
 						if(dataLength >= 1){
-							var sCont = "";
 							for(i = 0; i < dataLength; i++){
 								var proNum =json[i].proNum+"" 
 								sCont += "<div class='item'>";
-								sCont += "			<div><a href='productDetail?proNum=" + proNum.substring(0,3) + "'><img src="+contextPath+"/resources/product/images/"+json[i].proImgfileName+"></a></div>";
+								sCont += "			<div><a href='productDetail?proNum=" + proNum.substring(0,3) + "'><img src="+  contextPath+"/thumbnails?proNum="+proNum.substring(0,3)+"3&fileName="+json[i].proImgfileName+"></a></div>";
 								sCont += "			<div class='detail'>"
 								sCont += "				<div class='title'>"
-								sCont += "					<h2><em>"+ json[i].proName +"</em></h2>"
+								sCont += "					<span class='proName'>"+ json[i].proName +"</span><br>"
 								sCont +="					<span class='price'>"+ json[i].proPrice +"</span>"       
 								sCont +="				</div>"
 								sCont +="				<div class='info'>"
@@ -126,7 +128,11 @@ $(function(){
 						        sCont +="</div>"
 							}
 							$(".productList").append(sCont);
+						}else{
+							sCont +="<div class = 'searchBlank'>검색 결과<br> 없습니다.</div>"
+							$(".productList").append(sCont);
 						}
+						
 					})	
 		}
 		
@@ -157,7 +163,7 @@ $(function(){
 							for(i = 0; i < dataLength; i++){
 								var proNum =json[i].proNum+"" 
 								sCont += "<div class='item'>";
-								sCont += "			<div><a href='productDetail?proNum=" + proNum.substring(0,3) + "'><img src="+contextPath+"/resources/product/images/"+json[i].proImgfileName+"></a></div>";
+								sCont += "			<div><a href='productDetail?proNum=" + proNum.substring(0,3) + "'><img src="+  contextPath+"/thumbnails?proNum="+proNum.substring(0,3)+"3&fileName="+json[i].proImgfileName+"></a></div>";
 								sCont += "			<div class='detail'>"
 								sCont += "				<div class='title'>"
 								sCont += "					<span class='proName'>"+ json[i].proName +"</span><br>"
