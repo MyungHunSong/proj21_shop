@@ -2,7 +2,9 @@ package proj21_shop.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
+import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -82,5 +84,12 @@ public class MvcConfig implements WebMvcConfigurer {
 		tilesViewResolver.setViewClass(TilesView.class);
 		tilesViewResolver.setOrder(1);
 		return tilesViewResolver;
+	}
+	
+	// fileupload 어노테이션.
+	@Bean
+	public MultipartResolver multipartResolver1() {
+		StandardServletMultipartResolver resolver = new StandardServletMultipartResolver();
+		return resolver;
 	}
 }

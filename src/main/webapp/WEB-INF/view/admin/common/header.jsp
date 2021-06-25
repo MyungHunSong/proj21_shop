@@ -74,8 +74,6 @@
 						<ul aria-expanded="false" class="collapse  first-level">
 							<li class="sidebar-item"><a href="${contextPath}/admin/member/listMembers" class="sidebar-link"><i class="mdi mdi-emoticon-cool"></i><span class="hide-menu"> 회원 목록 </span></a></li>
 							<li class="sidebar-item"><a href="${contextPath}/admin/member/viewMember" class="sidebar-link"><i class="mdi mdi-emoticon-cool"></i><span class="hide-menu"> 회원 활동 정보 </span></a></li>
-							<li class="sidebar-item"><a href="${contextPath}/admin/member/memberStatics" class="sidebar-link"><i class="mdi mdi-emoticon-cool"></i><span class="hide-menu"> 회원 활동 통계 </span></a></li>
-							<li class="sidebar-item"><a href="${contextPath }/admin/product/listProducts" class="sidebar-link"><i class="mdi mdi-emoticon-cool"></i><span class="hide-menu"> 후기 관리 </span></a></li>
 							<li class="sidebar-item"><a href="${contextPath }/admin/order/listOrders" class="sidebar-link"><i class="mdi mdi-emoticon-cool"></i><span class="hide-menu"> 공지 사항 관리 </span></a></li>
 						</ul>
 					</li>

@@ -470,3 +470,7 @@ select * from `order` o ;
 
 delete from `order` where order_code = 11;
 
+/*세일 쿼리*/
+ select * 
+   from productall
+where pro_size =1 and pro_salesrate != 0;  

@@ -135,12 +135,9 @@ public class AdminProductController {
 
 		Enumeration enu = multipartRequest.getParameterNames();
 		while (enu.hasMoreElements()) {
-			String name = (String) enu.nextElement();
-			String value = multipartRequest.getParameter(name);
+			String name = (String) enu.nextElement();			String value = multipartRequest.getParameter(name);
 			newProductMap2.put(name, value);
 		}
-
-		
 
 		List<ProductImageDTO> imageFileList = upload(multipartRequest);
 		

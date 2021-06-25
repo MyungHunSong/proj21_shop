@@ -14,63 +14,14 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript">
-	$(function(){
-		  $("input[name='imgFile']").hide();
-		  $('#preview').click(function(){
-			  
-			  $("input[name='imgFile']").click();
-		  });
-		  
-		 $("input[type='file']").on("change", function(e){
-			
-			 
-			 console.log("fileList : " + fileList );
-			 
-		 });
-		  
-		  $(".insertQna").on('click', function(){
-				var title = $("input[name='titleQna']:visible").val();
-				
-			 	var option = $("select[name=searchType]").val();
-			 	var member = "${authInfo.name}"
-			 	var content = $("textarea[name='qnaArea']:visible").val();
-				var file = $("#preview").attr('src'); 
-			
-				var formData = new FormData();
-				
-				
-				
-				var insertQna = {
-			 		"qTitle": title,
-			 		"qOption":option,
-			 		"qMember":member,
-			 		"qContent":content,
-			 		"qFile":file
-			 	};
-			 	
-			 	/*  $.ajax({
-			 		url: "/proj21_shop/api/qnainsert/",
-			 		contentType:"application/json; charset=utf-8",
-					datatype:"json",
-					data:JSON.stringify(insertQna),
-					success:function(){
-						alert('추가 돼었습니다.')
-						window.location.href = contextPath + "/listPaging?page="+page + "&pagePageNum="+ perPageNum + "&searchType=" + searchType + "&keyword=";
-					},
-					error:function(){
-						alert("실패 하였습니다.")
-					}
-			 		
-			 	});  */
-			});	
-		
-	});
+
+
 	function readURL(input, id){
 		
 		if(input.files && input.files[0]){
 			var reader = new FileReader();
 			reader.onload = function(e){
-				if(id=='main'){
+				if(id=='addPoto'){
 					$('#preview').attr('src', e.target.result);
 					console.log($('#preview').attr('src', e.target.result))
 				}else{
@@ -80,8 +31,118 @@
 			reader.readAsDataURL(input.files[0]);
 		}
 	}
-	
 
+
+	$(function(){
+		var idx = ${param.index};
+			$("input[name='uploadFile']").hide();
+			var contextPath = "${contextPath}";
+			
+	 	
+		 	 $('#preview').click(function(){
+		  
+		 	$("input[name='uploadFile']").click();
+		  });
+		 	 
+		 	 // 수정하기.
+		 	 $(".modifyQna").on("click", function(){
+		 		
+		 		var title = $("input[name=Title]:visible").val();
+		 		var option = $("select[name=searchType]:visible").val();		 	
+		 		var content = $("textarea[name='Content']:visible").val();		 	
+		 		var file = document.getElementById("addPoto").files[0].name;
+		 		
+		 		modifyItem = {
+		 				"qIndex" : ${param.index},
+		 				"qTitle" : title,
+		 				"qOption" : option,
+		 				"qContent" : content,
+		 				"qFile" : file
+		 		}
+		 		
+		 		
+		 		$.ajax({
+		 			url: contextPath+'/api/qnainsert/' + idx,
+		 			type:'PATCH',
+		 			contentType:"application/json; charset=utf-8",
+			 		datatype:"json",
+			 		data:JSON.stringify(modifyItem),
+			 		success:function(){
+			 			alert("수정 완료")
+			 			window.location.href = contextPath + "/listPaging?page="+1 + "&pagePageNum="+ 10 + "&searchType=a&keyword=";
+			 		}
+		 		});
+		 	 });
+		  
+		 	// 작성하기.
+		   $(".insertQna").on('click', function(){
+			  	var title = $("input[name=Title]:visible").val();
+			 	var option = $("select[name=searchType]:visible").val();
+			 	var member = "${authInfo.name}"
+			 	var content = $("textarea[name='Content']:visible").val();
+			 	var file = document.getElementById("addPoto").files[0].name;
+			 	
+			 	var insertItem = {
+			 			"qTitle": title,
+			 			"qOption":option,
+			 			"qMember":member,
+			 			"qContent":content,
+			 			"qFile":file
+			 	};
+			 	$.ajax({
+			 		url: contextPath+'/api/qnainsert/',
+			 		type:'POST',
+			 		contentType:"application/json; charset=utf-8",
+			 		datatype:"json",
+			 		data:JSON.stringify(insertItem),
+			 		success:function(){
+			 			alert('글을 올렸습니다.')
+			 			 window.location.href = contextPath + "/listPaging?page="+1 + "&pagePageNum="+ 10 + "&searchType=a&keyword=";
+			 		},
+			 		error:function(){
+			 			alert("실패");
+			 		}	
+			 	});							  
+			});	
+		   
+		   $("input[type='file']").on("change", function(e){
+				 let formData = new FormData();
+				 let fileInput = $('input[name="uploadFile"]');
+				 let fileList = fileInput[0].files;
+				 let fileObj = fileList[0];
+				 
+				if(!fileCheck(fileObj.name, fileObj.size)){
+					return false;
+				}
+				formData.append("uploadFile", fileObj);
+				
+				 $.ajax({
+					  url:	contextPath + '/api/uploadAjaxAction',
+					  processData : false,
+					  contentType : false,
+					  data : formData,
+					  type : 'POST',
+					  dataType : 'json'
+				  });
+			 });
+			  
+			  // -- 서버로 전송할 첨부파일을 서버에 전송하는 코드.
+			  let regex = new RegExp("(.*.?)\.(jpg|png)$");
+			  let maxSize = 1048576;
+			  
+			  function fileCheck(fileName, fileSize){
+				  if(fileSize >= maxSize){
+					  alret("파일 사이즈 초과");
+					  return false;
+				  }
+				  if(!regex.test(fileName)){
+					  alert("해당 종류의 파일은 업로드할 수 없습니다.")
+					  return false;
+				  }
+				  return true;
+			  } 
+	});
+	
 </script>
 </head>
 <body>
@@ -136,12 +197,16 @@
 				</c:if>
 					
 					<div>
-						<label>제목</label><input type="text" name="titleQna"><br>
+
+						<label>제목</label><input type="text" name="Title"><br>
+
 					</div>
 				<c:if test="${authInfo.id ne 'admin'}">
 					<div>
 						<label>문의내용</label>
-						<textarea rows="10" cols="40" name="qnaArea"></textarea>
+            
+						<textarea rows="10" cols="40"  name="Content"></textarea>
+
 						<br>
 					</div>
 				</c:if>
@@ -149,7 +214,9 @@
 				<c:if test="${authInfo.id eq 'admin'}">
 					<div>
 						<label>공지내용</label>
-						<textarea rows="10" cols="40" name="qnaArea"></textarea>
+
+						<textarea rows="10" cols="40" name="Content"></textarea>
+
 						<br>
 					</div>
 				</c:if>
@@ -158,14 +225,14 @@
 					<div>
 						<div>
 						사진 추가
-							<input type="file" id="main" name="imgFile" onchange="readURL(this, this.id);">
+							<input type="file" name="uploadFile"  id="addPoto" onchange="readURL(this, this.id)" multiple="multiple">
 						</div>
 						<div id="image_list">
 							<img id="preview" src="/proj21_shop/resources/qna/images/fileimg.jpg" width="100" height="100">
 						</div>
 					</div>
 				</c:if>	
-					<button class = "insertQna">작성하기</button>
+					<button class = "insertQna">작성하기</button><button class ="modifyQna">수정</button>
 				</section>
 			</div>
 		</div>

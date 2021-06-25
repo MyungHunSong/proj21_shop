@@ -24,4 +24,17 @@ public class ProductController {
 		return mav;
 	}
 	
+	@GetMapping("/productDetailItem")
+	public ModelAndView getProductDetailItem(
+			@RequestParam(value = "proNum") Integer proNum) {
+		ModelAndView mav = new ModelAndView("product/productDetailItem" ,"proNum",proNum);
+		return mav;
+	}
+	
+	@GetMapping("/productDetailItem2")
+	public ModelAndView getProductDetailItem2(
+			@RequestParam(value = "proNum") Integer proNum) {
+		ModelAndView mav = new ModelAndView("product/productDetailItem2" ,"proNum",proNum);
+		return mav;
+	}
 }

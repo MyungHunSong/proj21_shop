@@ -327,7 +327,15 @@ delete
 where q_index = 80 and q_option != '공지' and q_group = 59;
 
 -- 회원글 수정.
+-- 수정시 q_index 번호를 타고 들어가야함.
+select q_index, q_title, q_option, q_member, q_content, q_file, q_date, q_hits, q_group, q_indent, q_step 
+	from qna
+where q_index = 100;
+
+
 update qna
 	set q_option = ?, q_content =?, q_file = ?, q_date = ?
 where q_index =?;
+
+
 

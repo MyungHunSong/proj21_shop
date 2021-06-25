@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import proj21_shop.service.admin.member.AdminMemberService;
 import proj21_shop.service.admin.order.AdminOrderService;
 
 @Controller("adminOrderController")
@@ -27,6 +28,8 @@ public class AdminOrderController {
 	protected static final Log log = LogFactory.getLog(AdminOrderController.class);
 	@Autowired
 	AdminOrderService adminOrderService;
+	@Autowired
+	AdminMemberService adminMemberService;
 
 	@RequestMapping("orderStatics")
 	public ModelAndView searchMember(HttpServletRequest request, HttpServletResponse response) {
@@ -35,6 +38,7 @@ public class AdminOrderController {
 		Map<String, Object> viewMap = adminOrderService.getOrderStatics();
 		mav.setViewName("admin/order/orderStatics");
 		mav.addObject("viewMap", viewMap);
+		mav.addObject("viewMap2", adminMemberService.getMemberStatics());
 		System.out.println(mav);
 		return mav;
 	}

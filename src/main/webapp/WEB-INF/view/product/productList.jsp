@@ -1,4 +1,4 @@
-c<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="<%=request.getContextPath()%>" />  
@@ -33,12 +33,12 @@ $(function(){
 	
 	$.get(contextPath + "/api/productlist/"+proImgState+"/"+proCategory,
 	function(json){
-
+		console.log(json)
 		var dataLength = json.length;
 		if(dataLength >= 1){
 			var sCont = "";
 			for(i = 0; i < dataLength; i++){
-				var proNum =json[i].proNum+"" 
+				var proNum =json[i].proNum+""
 				sCont += "<div class='item'>";
 				sCont += "			<div><a href='productDetail?proNum=" + proNum.substring(0,3) + "'><img src="+  contextPath+"/thumbnails?proNum="+proNum.substring(0,3)+"3&fileName="+json[i].proImgfileName+"></a></div>";
 				sCont += "			<div class='detail'>"
@@ -50,7 +50,7 @@ $(function(){
 				sCont +="					<div class='size'>"
 		        sCont +="						<label>Sizes</label>"
 		        for(j = 0;j < proSize.length;j++){
-		        	sCont +="						<span>"+proSize[j]+"</span>"	
+		        	sCont +="						<span class ='prodSize prodSize"+j+"'>"+proSize[j]+"</span>"	
 		        }
 		        sCont +="					</div>"
 		        sCont +="				</div>"
@@ -59,6 +59,17 @@ $(function(){
 		        sCont +="</div>"
 			}
 			$(".productList").append(sCont);
+			
+		}
+		$('.add-cart').on('click',function(){
+			var uri = $(this).prev().prev().children().attr("href")
+			var proNum = uri.substring(uri.length,uri.length-3)
+			console.log(proNum)
+			openPop(proNum)
+		})
+		
+		function openPop(proNum){
+			var popup = window.open("productDetailItem2?proNum="+proNum,'상품상세정보','width=800px, height=700px');
 		}
 	});
 	
@@ -88,7 +99,7 @@ $(function(){
 								sCont +="					<div class='size'>"
 						        sCont +="						<label>Sizes</label>"
 						        for(j = 0;j < proSize.length;j++){
-						        	sCont +="						<span>"+proSize[j]+"</span>"	
+						        	sCont +="						<span class ='prodSize'>"+proSize[j]+"</span>"	
 						        }
 						        sCont +="					</div>"
 						        sCont +="				</div>"
@@ -119,7 +130,7 @@ $(function(){
 								sCont +="					<div class='size'>"
 						        sCont +="						<label>Sizes</label>"
 						        for(j = 0;j < proSize.length;j++){
-						        	sCont +="						<span>"+proSize[j]+"</span>"	
+						        	sCont +="						<span class ='prodSize'>"+proSize[j]+"</span>"	
 						        }
 						        sCont +="					</div>"
 						        sCont +="				</div>"
@@ -173,7 +184,7 @@ $(function(){
 								sCont +="					<div class='size'>"
 						        sCont +="						<label>Sizes</label>"
 						        for(j = 0;j < proSize.length;j++){
-						        	sCont +="						<span>"+proSize[j]+"</span>"	
+						        	sCont +="						<span class ='prodSize'>"+proSize[j]+"</span>"	
 						        }
 						        sCont +="					</div>"
 						        sCont +="				</div>"
@@ -192,10 +203,10 @@ $(function(){
 				sCont +="<div class = 'searchBlank'>검색 결과<br> 없습니다.</div>"
 				$(".productList").append(sCont);
 			}
-				
-			
-			
 		}) 
+		
+		
+		
 		
 })
 	
@@ -234,7 +245,7 @@ $(function(){
 		</div>
 	</div>
 	<div class="searchPlace">
-		<input type="text" placeholder="검색하세요"><i class="fas fa-search"></i>
+		<input type="text" placeholder="검색" style="padding: 5px;"><i class="fas fa-search"></i>
 	</div>
 	<div class="productList"></div>
 

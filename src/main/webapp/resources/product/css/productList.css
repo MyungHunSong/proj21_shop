@@ -94,22 +94,22 @@
 /* 조건검색하는 항목들 */
 .prodSearchBtn{
 	cursor: pointer;
-	text-align: left;
+	display: flex;
+	justify-content: space-between;
+	font-weight : 500;
 	font-size: 100px;
 }
 .prodSearchCondition{
 	display: none;
-	justify-content: space-around;
 }
 
 .prodSearchCondition.active{
 	display: flex;
-	justify-content: space-around;
 }
 
 .conditions{
-	
-	text-align: left;	
+	text-align: left;
+	margin-right: 200px;	
 }
 
 .conditions ul{
@@ -123,6 +123,9 @@
 /*돋보기 모양*/
 .fa-search{
 	cursor: pointer;
+	position: absolute;
+    right: 5px;
+    top: 7px;
 }
 
 .searchBlank{
@@ -136,5 +139,8 @@
 }
 
 .searchPlace.active{
+	position: relative;
 	display: block;
+	margin-top: 10px;
+	text-align: right;
 }
