@@ -124,7 +124,9 @@
 	<select id="selectMemberByCertain" resultMap="adminMemResult" parameterType="java.util.Map">
 		SELECT m_id, m_name, m_point, m_total_login, m_total_buy, m_total_order
 		  FROM (SELECT (@rownum := @rownum + 1) AS rn, m_id, m_name, m_point,
-		  		m_total_login, m_total_buy, m_total_order
+		  		m_total_login,
+		  		(SELECT count(order_pro_num) FROM (SELECT * FROM MEMBER m JOIN `order` o ON m.m_id =o.order_member_id WHERE m_id = #{memberId} GROUP BY order_pro_num)AS a) as m_total_order,
+		  		m_total_buy
 		  		  FROM `MEMBER`
 		<choose>
 			<when test="memberId !=null and !memberId.equals('')">

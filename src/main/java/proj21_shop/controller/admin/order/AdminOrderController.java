@@ -52,6 +52,7 @@ public class AdminOrderController {
 							@RequestParam(value="orderMemberName", required=false) String orderMemberName,
 							@RequestParam(value="deliveryStatus", required=false) String deliveryStatus,
 							@RequestParam(value="orderPrice", required=false) String orderPrice,
+							@RequestParam(value="orderValue", required=false) String orderValue,
 							@RequestParam(value="change_deliveryStatus", required=false) String change_deliveryStatus,
 							@RequestParam(value="change_orderProNum", required=false) String change_orderProNum
 			) {
@@ -85,6 +86,7 @@ public class AdminOrderController {
 		pagingMap.put("orderMemberName", orderMemberName);
 		pagingMap.put("deliveryStatus", deliveryStatus);
 		pagingMap.put("orderPrice", orderPrice);
+		pagingMap.put("orderValue", orderValue);
 		
 		System.out.println("orderProNum :"+orderProNum);
 		System.out.println("section :"+section);
@@ -93,6 +95,7 @@ public class AdminOrderController {
 		System.out.println("orderMemberName :"+orderMemberName);
 		System.out.println("deliveryStatus :"+deliveryStatus);
 		System.out.println("orderPrice :"+orderPrice);
+		System.out.println("orderValue :"+orderValue);
 		
 		Map<String,Object> viewMap=adminOrderService.getOrderList(pagingMap);
 		
@@ -103,6 +106,7 @@ public class AdminOrderController {
 		viewMap.put("orderMemberName", orderMemberName);
 		viewMap.put("deliveryStatus", deliveryStatus);
 		viewMap.put("orderPrice", orderPrice);
+		viewMap.put("orderValue", orderValue);
 	
 		mav.setViewName("admin/order/listOrders");
 		mav.addObject("viewMap",viewMap);
