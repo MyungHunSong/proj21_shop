@@ -58,4 +58,10 @@ public class QnaInsertServiceImpl implements QnaInsertService {
 		return qMapper.deleteQnaForMember(qDto);
 	}
 
+	@Override
+	public QnaDTO selectWhereIndexForModify(int idx) {
+		
+		return qMapper.selectWhereIndexForModify(idx);
+	}
+
 }

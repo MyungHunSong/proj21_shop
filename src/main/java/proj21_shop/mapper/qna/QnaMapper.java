@@ -34,6 +34,7 @@ public interface QnaMapper {
 	int insertQnaForMember(QnaDTO qDto);
 	int modifyQnaForMember(QnaDTO qDto);
 	int deleteQnaForMember(QnaDTO qDto);
-	
+	// 수정시 식별자 번호를 타고 들어갈수 있도록.
+	QnaDTO selectWhereIndexForModify(int idx);
 	
 }

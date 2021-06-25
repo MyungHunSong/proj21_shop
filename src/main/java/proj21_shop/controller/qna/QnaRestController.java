@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import proj21_shop.dto.qna.PageDTO;
 import proj21_shop.dto.qna.QnaDTO;
@@ -34,17 +35,6 @@ public class QnaRestController {
 
 	// @PathVariable => 경로를 변수화 해주는 어노테이션.
 	// @PathVariable 을 사용하지 않았을 경우 도메인 /no = 1, @pathVariable을 사용할 경우 도메인 /1
-	@GetMapping("/qna/{page}")
-	public ResponseEntity<Object> qna(@PathVariable int page){	
-		SearchCriteria sCriteria = new SearchCriteria();
-		
-		System.out.println(sCriteria);
-		sCriteria.setPage(page);	
-		
-		
-		return ResponseEntity.ok(service.listSearch(sCriteria));
-	}
-	
 	@GetMapping("/qna/{page}/{perPageNum}/{searchType}/{keyword}")
 	public ResponseEntity<Object> qna(
 			@PathVariable int page
@@ -66,9 +56,16 @@ public class QnaRestController {
 		}
 				
 		System.out.println(keyword);
+		
+		QnaDTO qDto = new QnaDTO();
+		ModelAndView mav = new ModelAndView();
+		
+		mav.addObject("qDto", qDto);
+		
 		pDto .setCri(sCri);
 		return ResponseEntity.ok(service.listSearch(sCri));
 	}
+	
 	
 	@GetMapping("/qna/{page}/{perPageNum}/{searchType}")
 	public ResponseEntity<Object> qna(

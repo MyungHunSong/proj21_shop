@@ -15,8 +15,6 @@
 <script type="text/javascript">
 $(function(){
 	
-	
-	
 	var contextPath = "${contextPath}";
 	var memId =  "${memId}";
 	var cartNums = ${cartNums};

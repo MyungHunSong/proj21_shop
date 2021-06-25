@@ -40,7 +40,7 @@ $(function(){
 						'주문결제' = g
 						'기타' = h -->
 				<select name="searchType" id = "searchType">	
-					<option value="a"><c:out value="${searchCriteria.searchType == null ? 'selected' : ' '}"/>==전채검색==</option>
+					<option value="a"><c:out value="${searchCriteria.searchType == null ? 'selected' : ' '}"/>==전체검색==</option>
 					<option value="b"><c:out value="${searchCriteria.searchType eq 'b' ? 'selected' : ' '}"/>공지</option>
 					<option value="c"><c:out value="${searchCriteria.searchType eq 'c' ? 'selected' : ' '}"/>제품문의</option>
 					<option value="d"><c:out value="${searchCriteria.searchType eq 'd' ? 'selected' : ' '}"/>환불문의</option>
@@ -58,7 +58,7 @@ $(function(){
 					<a href="login">글쓰기[로그인이 필요한 서비스 입니다.]</a>					
 				</c:if>
 				<c:if test="${!empty authInfo}">
-					<a href="<c:url value="/qnaInsert" />">글쓰기</a>
+					<a href="<c:url value="/qnaInsert/" />">글쓰기</a>
 				</c:if>
 				<!-- value 이름과 getMapping 이름을 일치 시켜 줘야한다. -->
 		</div>

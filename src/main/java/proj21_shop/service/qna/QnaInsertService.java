@@ -15,4 +15,6 @@ public interface QnaInsertService {
 	int insertQnaForMember(QnaDTO qDto);
 	int modifyQnaForMember(QnaDTO qDto);
 	int deleteQnaForMember(QnaDTO qDto);
+	// 식별자를 통한 수정
+	QnaDTO selectWhereIndexForModify(int idx);
 }
