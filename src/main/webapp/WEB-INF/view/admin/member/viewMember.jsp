@@ -58,7 +58,7 @@ a:hover {
 	color: #FE2E2E;
 }
 </style>
-<script src="${contextPath}/resources/admin/assets/libs/jquery/dist/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- Bootstrap tether Core JavaScript -->
 <script src="${contextPath}/resources/admin/assets/libs/popper.js/dist/umd/popper.min.js"></script>
 <script src="${contextPath}/resources/admin/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -246,13 +246,17 @@ function toggleDataSeries(e) {
 									<td><a href="${contextPath }/admin/order/listOrders">${onDelivery} <c:if test="${onDelivery ==null }">0</c:if>
 									</a>건</td>
 								</tr>
-								<tr><td>=============== </td></tr>
+								<tr>
+									<td>===============</td>
+								</tr>
 								<tr>
 									<td colspan="2">반품대기중인 상품</td>
 									<td><a href="${contextPath }/admin/member/viewMember?memberId=${member.memberId}">${onRefund} <c:if test="${onRefund ==null }">0</c:if>
 									</a>건</td>
 								</tr>
-								<tr><td>=============== </td></tr>
+								<tr>
+									<td>===============</td>
+								</tr>
 								<tr>
 									<td colspan="2">장바구니에 담은 상품</td>
 									<td><a href="${contextPath }/admin/member/viewMember?memberId=${member.memberId}">${onCart} <c:if test="${onCart ==null }">0</c:if>
@@ -263,9 +267,11 @@ function toggleDataSeries(e) {
 							<!--배송 중인 상품  -->
 							<c:choose>
 								<c:when test="${orderList !=null }">
-										
-											<br><h3>배송중 or 배송 준비중인 상품</h3><br>
-										
+
+									<br>
+									<h3>배송중 or 배송 준비중인 상품</h3>
+									<br>
+
 									<table>
 										<tr style="text-align: center;">
 											<td width="100px">이미지</td>
@@ -282,13 +288,13 @@ function toggleDataSeries(e) {
 												<td width="100px;"><a href="${contextPath}/productDetail?proNum=${order.pro.proNum}"> <img width="70px" height="105px"
 														src="${contextPath}/thumbnails?proNum=${order.pro.proNum}&fileName=${order.pro.proImgfileName}"></a></td>
 												<td>${order.pro.proName }</td>
-												<td><c:if test="${order.pro.proColor == 1}">white /</c:if> <c:if test="${order.pro.proColor == 2}">ivory /</c:if> <c:if test="${order.pro.proColor == 3}">gray /</c:if>
-													<c:if test="${order.pro.proColor == 4}">pink /</c:if> <c:if test="${order.pro.proColor == 5}">yellow /</c:if> <c:if test="${order.pro.proColor == 6}">mint /</c:if> <c:if
+												<td><c:if test="${order.pro.proColor == 1}">white /</c:if> <c:if test="${order.pro.proColor == 2}">ivory /</c:if> <c:if test="${order.pro.proColor == 3}">gray /</c:if> <c:if
+														test="${order.pro.proColor == 4}">pink /</c:if> <c:if test="${order.pro.proColor == 5}">yellow /</c:if> <c:if test="${order.pro.proColor == 6}">mint /</c:if> <c:if
 														test="${order.pro.proColor == 7}">green /</c:if> <c:if test="${order.pro.proColor == 8}">purple /</c:if> <c:if test="${order.pro.proColor == 9}">navy /</c:if> <c:if
 														test="${order.pro.proColor == 11}">black /</c:if> <c:if test="${order.pro.proColor == 12}">brown /</c:if> <c:if test="${order.pro.proColor == 13}">orange /</c:if> <c:if
 														test="${order.pro.proColor == 14}">blue /</c:if> <c:if test="${order.pro.proColor == 15}">red /</c:if> <c:if test="${order.pro.proColor == 16}">basic /</c:if> <c:if
-														test="${order.pro.proSize == 1}">XS </c:if> <c:if test="${order.pro.proSize == 2}">S </c:if> <c:if test="${order.pro.proSize == 3}">M </c:if> <c:if
-														test="${order.pro.proSize == 4}">L </c:if> <c:if test="${order.pro.proSize == 5}">XL </c:if></td>
+														test="${order.pro.proSize == 1}">XS </c:if> <c:if test="${order.pro.proSize == 2}">S </c:if> <c:if test="${order.pro.proSize == 3}">M </c:if> <c:if test="${order.pro.proSize == 4}">L </c:if>
+													<c:if test="${order.pro.proSize == 5}">XL </c:if></td>
 												<td>${order.orderMemberName }</td>
 												<td><fmt:formatNumber value="${order.orderPrice }" pattern="#,###" />원</td>
 												<td>${order.orderDate }</td>
@@ -297,20 +303,23 @@ function toggleDataSeries(e) {
 											<c:set var="final_total_price" value="${order.orderPrice }" />
 										</c:forEach>
 										<tr>
-											<td colspan="8" align="right"><strong>배송중인 상품 총 주문 가격 : <fmt:formatNumber value="${final_total_price }" pattern="#,###" />원</strong></td>
+											<td colspan="8" align="right"><strong>배송중인 상품 총 주문 가격 : <fmt:formatNumber value="${final_total_price }" pattern="#,###" />원
+											</strong></td>
 										</tr>
 									</table>
 								</c:when>
 								<c:otherwise>
-								<br>
+									<br>
 									<h3>배송중인 상품이 없습니다.</h3>
-								<br>
+									<br>
 								</c:otherwise>
 							</c:choose>
 							<!-- 반품대기중인 상품  -->
 							<c:choose>
 								<c:when test="${refundList !=null }">
-											<br><h3>반품대기중인 상품</h3><br>
+									<br>
+									<h3>반품대기중인 상품</h3>
+									<br>
 									<table>
 										<tr style="text-align: center;">
 											<td width="100px">이미지</td>
@@ -318,17 +327,22 @@ function toggleDataSeries(e) {
 											<td width="100px">상품 정보</td>
 											<td width="100px">주문자</td>
 											<td width="100px">주문 가격</td>
-											<td width="100px">결제 수단</td>
 											<td width="100px">결제 일자</td>
 											<td width="100px">배송 상태</td>
 										</tr>
 
 										<c:forEach var="refund" items="${refundList }">
 											<tr style="text-align: center;">
-												<td width="100px;"><a href="${contextPath}/productDetail?proNum=${refund.proNum}"> <img width="70px" height="105px"
-														src="${contextPath}/thumbnails?proNum=${refund.proNum}&fileName=${refund.proImagefilename}"></a></td>
-												<td>${refund.proName }</td>
-												<td>${refund.proColor}/${refund.proSize }</td>
+												<td width="100px;"><a href="${contextPath}/productDetail?proNum=${refund.pro.proNum}"> <img width="70px" height="105px"
+														src="${contextPath}/thumbnails?proNum=${refund.pro.proNum}&fileName=${refund.pro.proImgfileName}"></a></td>
+												<td>${refund.pro.proName }</td>
+												<td><c:if test="${refund.pro.proColor == 1}">white /</c:if> <c:if test="${refund.pro.proColor == 2}">ivory /</c:if> <c:if test="${refund.pro.proColor == 3}">gray /</c:if> <c:if
+														test="${refund.pro.proColor == 4}">pink /</c:if> <c:if test="${refund.pro.proColor == 5}">yellow /</c:if> <c:if test="${refund.pro.proColor == 6}">mint /</c:if> <c:if
+														test="${refund.pro.proColor == 7}">green /</c:if> <c:if test="${refund.pro.proColor == 8}">purple /</c:if> <c:if test="${refund.pro.proColor == 9}">navy /</c:if> <c:if
+														test="${refund.pro.proColor == 11}">black /</c:if> <c:if test="${refund.pro.proColor == 12}">brown /</c:if> <c:if test="${refund.pro.proColor == 13}">orange /</c:if> <c:if
+														test="${refund.pro.proColor == 14}">blue /</c:if> <c:if test="${refund.pro.proColor == 15}">red /</c:if> <c:if test="${refund.pro.proColor == 16}">basic /</c:if> <c:if
+														test="${refund.pro.proSize == 1}">XS </c:if> <c:if test="${refund.pro.proSize == 2}">S </c:if> <c:if test="${refund.pro.proSize == 3}">M </c:if> <c:if test="${refund.pro.proSize == 4}">L </c:if>
+													<c:if test="${refund.pro.proSize == 5}">XL </c:if></td>
 												<td>${refund.orderMemberName }</td>
 												<td><fmt:formatNumber value="${refund.orderPrice}" pattern="#,###" />원</td>
 												<td>${refund.orderDate }</td>
@@ -342,16 +356,18 @@ function toggleDataSeries(e) {
 									</table>
 								</c:when>
 								<c:otherwise>
-								<br>
+									<br>
 									<h3>반품 대기 중인 상품이 없습니다.</h3>
-								<br>	
+									<br>
 								</c:otherwise>
 							</c:choose>
 
 							<!--장바구니에 담은 상품 -->
 							<c:choose>
 								<c:when test="${cartList !=null }">
-											<br><h3>장바구니에 담은 상품</h3><br>
+									<br>
+									<h3>장바구니에 담은 상품</h3>
+									<br>
 									<table>
 										<tr style="text-align: center;">
 											<th width="100px;">이미지</th>
@@ -376,9 +392,9 @@ function toggleDataSeries(e) {
 									</table>
 								</c:when>
 								<c:otherwise>
-								<br>
+									<br>
 									<h3>장바구니에 담긴 상품이없습니다.</h3>
-								<br>
+									<br>
 								</c:otherwise>
 
 

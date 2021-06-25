@@ -4,6 +4,9 @@
 <c:set var="contextPath" value="<%=request.getContextPath()%>" />
 <c:set var="totalRevenue" value="${viewMap.totalRevenue }" />
 <c:set var="totalOrderCount" value="${viewMap.totalOrderCount }" />
+<c:set var="memberMen" value="${viewMap2.memberMen }" />
+<c:set var="memberWomen" value="${viewMap2.memberWomen }" />
+<c:set var="totalMember" value="${viewMap2.totalMember }" />
 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -15,9 +18,9 @@
 <title>Annual Sales - 2021</title>
 <!-- chart -->
 
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
 <script src="${contextPath}/resources/admin/order/css/tether/tether.min.js"></script>
 <script src="${contextPath}/resources/admin/order/css/bootstrap/bootstrap4-alpha3.min.js"></script>
 <script src="${contextPath}/resources/admin/dist/js/custom.min.js"></script>
@@ -89,14 +92,12 @@
 							startAngle:  90,
 							type: "pie",
 							dataPoints: [
-								{  y: 6289855, name:"코트", indexLabel: "코트 - 34%", legendText: "코트", exploded: true },
-								{  y: 2761400, name:"상의", indexLabel: "상의 - 8%", legendText: "상의" },
-								{  y: 3681866, name:"셔츠", indexLabel: "셔츠 - 10%", legendText: "셔츠", color: "#8064a1" },
-								{  y: 2607989, name:"니트", indexLabel: "니트 - 6%", legendText: "니트" },
-								{  y: 2607989, name:"하의", indexLabel: "하의 - 10%", legendText: "하의" },
-								{  y: 2607989, name:"아우터", indexLabel: "아우터 - 5%", legendText: "아우터" },
-								{  y: 2607989, name:"신발", indexLabel: "신발 - 16%", legendText: "신발" },
-								{  y: 2607989, name:"악세사리", indexLabel: "악세사리 - 11%", legendText: "악세사리" }
+								{  y: 6289855, name:"반팔", indexLabel: "반팔 - 34%", legendText: "반팔", exploded: true },
+								{  y: 2761400, name:"긴팔", indexLabel: "긴팔 - 8%", legendText: "긴팔" },
+								{  y: 3681866, name:"슬립리스", indexLabel: "슬립리스 - 10%", legendText: "슬립리스", color: "#8064a1" },
+								{  y: 2607989, name:"후드", indexLabel: "후드 - 6%", legendText: "후드" },
+								{  y: 2607989, name:"셔츠", indexLabel: "셔츠 - 10%", legendText: "셔츠" },
+								{  y: 2607989, name:"스웨트셔츠", indexLabel: "스웨트셔츠 - 5%", legendText: "스웨트셔츠" },
 							]
 						}
 					]
@@ -147,7 +148,129 @@
 				ordersSplineChart.render();
 				
 			});
-		</script>
+			
+			window.onload = function () {
+				var totalVisitors = 50;
+				var visitorsData = {
+				   "남성 vs 여성": [{
+				      click: visitorsChartDrilldownHandler,
+				      cursor: "pointer",
+				      explodeOnClick: false,
+				      innerRadius: "75%",
+				      legendMarkerType: "square",
+				      name: "남성 vs 여성",
+				      radius: "100%",
+				      showInLegend: true,
+				      startAngle: 90,
+				      type: "doughnut",
+				      dataPoints: [
+				         { y: 38, name: "남성", color: "#E7823A" },
+				         { y: 12, name: "여성", color: "#546BC1" }
+				      ]
+				   }],
+				   "남성": [{
+				      color: "#E7823A",
+				      name: "남성",
+				      type: "column",
+				      dataPoints: [
+				         { x: new Date("1 Jan 2019"), y: 2 },
+				         { x: new Date("1 Feb 2019"), y: 5 },
+				         { x: new Date("1 Mar 2019"), y: 8 },
+				         { x: new Date("1 Apr 2019"), y: 12 },
+				         { x: new Date("1 May 2019"), y: 16 },
+				         { x: new Date("1 Jun 2019"), y: 18 },
+				         { x: new Date("1 Jul 2019"), y: 20 },
+				         { x: new Date("1 Aug 2019"), y: 25 },
+				         { x: new Date("1 Sep 2019"), y: 26 },
+				         { x: new Date("1 Oct 2019"), y: 26 },
+				         { x: new Date("1 Nov 2019"), y: ${totalMember} },
+				         { x: new Date("1 Dec 2019"), y: 0 }
+				      ]
+				   }],
+				   "여성": [{
+				      color: "#546BC1",
+				      name: "여성",
+				      type: "column",
+				      dataPoints: [
+				         { x: new Date("1 Jan 2019"), y: 1 },
+				         { x: new Date("1 Feb 2019"), y: 2 },
+				         { x: new Date("1 Mar 2019"), y: 4 },
+				         { x: new Date("1 Apr 2019"), y: 5 },
+				         { x: new Date("1 May 2019"), y: 6 },
+				         { x: new Date("1 Jun 2019"), y: 8 },
+				         { x: new Date("1 Jul 2019"), y: 10 },
+				         { x: new Date("1 Aug 2019"), y: 15 },
+				         { x: new Date("1 Sep 2019"), y: 17 },
+				         { x: new Date("1 Oct 2019"), y: 19 },
+				         { x: new Date("1 Nov 2019"), y: ${totalMember} },
+				         { x: new Date("1 Dec 2019"), y: 0 }
+				      ]
+				   }]
+				};
+				
+				var newVSReturningVisitorsOptions = {
+				   animationEnabled: true,
+				   theme: "light2",
+				   title: {
+				      text: "남성 vs 여성"
+				   },
+				   subtitles: [{
+				      text: "Click on Any Segment to Drilldown",
+				      backgroundColor: "#2eacd1",
+				      fontSize: 16,
+				      fontColor: "white",
+				      padding: 5
+				   }],
+				   legend: {
+				      fontFamily: "calibri",
+				      fontSize: 14,
+				      itemTextFormatter: function (e) {
+				         return e.dataPoint.name + ": " + Math.round(e.dataPoint.y / totalVisitors * 100) + "%";  
+				      }
+				   },
+				   data: []
+				};
+				
+				var visitorsDrilldownedChartOptions = {
+				   animationEnabled: true,
+				   theme: "light2",
+				   axisX: {
+				      labelFontColor: "#717171",
+				      lineColor: "#a2a2a2",
+				      tickColor: "#a2a2a2"
+				   },
+				   axisY: {
+				      gridThickness: 0,
+				      includeZero: false,
+				      labelFontColor: "#717171",
+				      lineColor: "#a2a2a2",
+				      tickColor: "#a2a2a2",
+				      lineThickness: 1
+				   },
+				   data: []
+				};
+				
+				var chart = new CanvasJS.Chart("chartContainer", newVSReturningVisitorsOptions);
+				chart.options.data = visitorsData["남성 vs 여성"];
+				chart.render();
+				
+				function visitorsChartDrilldownHandler(e) {
+				   chart = new CanvasJS.Chart("chartContainer", visitorsDrilldownedChartOptions);
+				   chart.options.data = visitorsData[e.dataPoint.name];
+				   chart.options.title = { text: e.dataPoint.name }
+				   chart.render();
+				   $("#backButton").toggleClass("invisible");
+				}
+				
+				$("#backButton").click(function() { 
+				   $(this).toggleClass("invisible");
+				   chart = new CanvasJS.Chart("chartContainer", newVSReturningVisitorsOptions);
+				   chart.options.data = visitorsData["남성 vs 여성"];
+				   chart.render();
+				});
+				}
+
+</script>
 
 </head>
 <body>
@@ -181,6 +304,22 @@
 				</div>
 				<div class="col-md-6">
 					<div class="card">
+						<div class="comment-widgets scrollable">
+							<!--membersList  -->
+							<center>
+								<br>
+								<h3 class="card-title">사이트 방문자 성별 비율 차트</h3>
+								<br>
+								<div id="chartContainer" style="height: 370px; width: 60%;"></div>
+								<button class="btn invisible" id="backButton">Back</button>
+							</center>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card">
 						<div class="card-body">
 							<h3 class="card-title">주문수</h3>
 							<br>
@@ -190,12 +329,9 @@
 				</div>
 			</div>
 
-
 			<div class="row">
 				<div class="col-12">
 					<div class="card">
-
-
 						<div class="chat-box scrollable" style="height: 600px;">
 							<!--chat Row -->
 							<ul class="chat-list">
@@ -236,13 +372,9 @@
 							</ul>
 						</div>
 					</div>
-
 				</div>
 			</div>
-
-
 		</div>
-
 	</div>
 
 
@@ -253,7 +385,7 @@
 <script src="${contextPath}/resources/admin/dist/js/jquery.ui.touch-punch-improved.js"></script>
 <script src="${contextPath}/resources/admin/dist/js/jquery-ui.min.js"></script>
 <!-- CDN 사용 -->
-<script src="${contextPath}/resources/admin/assets/libs/popper.js/dist/umd/popper.js"></script>
+<script src="${contextPath}/resources/admin/assets/libs/popper.js/dist/umd/popper.min.js"></script>
 <script src="${contextPath}/resources/admin/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
 <!-- Bootstrap tether Core JavaScript -->
 <script src="${contextPath}/resources/admin/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
