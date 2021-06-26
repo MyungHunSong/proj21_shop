@@ -1,6 +1,9 @@
 package proj21_shop.dto.product;
 
 import java.sql.Date;
+import java.util.List;
+
+import proj21_shop.dto.order.OrderDTO;
 
 public class ProductDTO {
 
@@ -9,6 +12,7 @@ public class ProductDTO {
 	private String proName;
 	private int proPrice;
 	private String proContent; // 제품 설명
+	private List<OrderDTO> orderCode;//제품 각각의 주문번호
 
 	private int proSalesrate;
 	private Date proCreDate;
@@ -168,6 +172,15 @@ public class ProductDTO {
 
 	public void setProInputDate(Date proInputDate) {
 		this.proInputDate = proInputDate;
+	}
+	
+
+	public List<OrderDTO> getOrderCode() {
+		return orderCode;
+	}
+
+	public void setOrderCode(List<OrderDTO> orderCode) {
+		this.orderCode = orderCode;
 	}
 
 	@Override

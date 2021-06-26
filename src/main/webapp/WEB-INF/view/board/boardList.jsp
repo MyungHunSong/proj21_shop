@@ -22,7 +22,7 @@
 					console.log(json)
 					sCont += "<tr>";
 					sCont += "<td>" + json[i].proName.proName + "</td>";
-					sCont += "<td><img src=" + contextPath + "/resources/review/images/" + json[i].reviewImagefilename1 + " width='80' height='60'></td>";
+					sCont += "<td><img src=" + contextPath + "/resources/review/images/" + json[i].reviewImagefilename1 + " width='70' height='60'><img src=" + contextPath + "/resources/review/images/" + json[i].reviewImagefilename2 + " width='70' height='60'></td>";
 					sCont += "<td>" + json[i].reviewContent + "</td>";
 					sCont += "<td>" + json[i].reviewStar + "</td>";
 					sCont += "<td>" + json[i].reviewDate + "</td>";

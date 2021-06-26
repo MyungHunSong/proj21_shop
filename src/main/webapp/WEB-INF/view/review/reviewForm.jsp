@@ -12,12 +12,9 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 	$(function() {
-		
-		
 		var contextPath = "${contextPath}";
 		var memberId = "${memberId}";
 		var proNum = "${proNum}";
-		var orderProNum ="${orderProNum}";
 		
 		$.get(contextPath + "/api/detailreview/" + memberId + "/"+ proNum, 
 		function(json){
@@ -56,6 +53,35 @@
 						 		  
 						 	  });
 						})
+						
+						$('.review').on("click", '[id=modify]', function(e){
+							e.preventDefault();
+							var data = {reviewNum : json[0].reviewNum, reviewContent : $('#reviewContent').val(),
+									reviewImagefilename1 : $('#imgButton1').val().replace(/C:\\fakepath\\/i, ''), reviewImagefilename2 : $('#imgButton2').val().replace(/C:\\fakepath\\/i, ''), reviewStar : starRate
+									};
+							
+							alert("data > " + data.reviewNum);
+							$.ajax({
+								url : contextPath + "/api/myreview/"+ data.reviewNum,
+								type : 'PUT',
+								contentType : "application.json; charset=utf-8",
+								datatype : "json",
+								cache : false,
+								data : JSON.stringify(data),
+								success : function(data){
+									alert(data);
+									window.location.href = contextPath + "/board?memberId=" + memberId;
+									
+								},error:function(request, data, status, error) {
+								 	alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error); 
+									window.location.href = contextPath + "/board?memberId=" + memberId;
+									}
+
+								
+							})
+							
+							
+						});
 						
 						
 						
@@ -135,7 +161,7 @@
 					});
 					
 					
-					 alert("통과"); 
+					/*  alert("통과"); */ 
 					
 					console.log("fileList : "+fileList);
 					console.log("fileObj : " + fileObj);
@@ -190,7 +216,7 @@
 					});
 					
 					
-					 alert("통과"); 
+					 /* alert("통과"); */ 
 					
 					console.log("fileList : "+fileList);
 					console.log("fileObj : " + fileObj);

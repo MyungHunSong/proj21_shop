@@ -78,4 +78,17 @@ public class MyReviewMapperTest {
 
 	}
 	
+	@Test
+	public void test06UpdateReview() {
+		log.debug(Thread.currentThread().getStackTrace()[1].getClassName()+"()");
+		ReviewDTO reviewDTO = new ReviewDTO();
+		reviewDTO.setReviewNum(1);
+		reviewDTO.setReviewContent("맘에 들어요");
+		reviewDTO.setReviewImagefilename1("update1.jpg");
+		reviewDTO.setReviewImagefilename2("update2.jpg");
+		reviewDTO.setReviewStar(5);
+		int res = mapper.updateReview(reviewDTO);
+		Assert.assertEquals(1, res);
+	}
+	
 }

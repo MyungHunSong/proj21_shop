@@ -15,4 +15,5 @@ public interface MyReviewService {
 	List<ReviewDTO> selectDetailReviewByMember(ReviewDTO reviewDTO);
 	List<OrderDTO> selectProductDetailByMember(OrderDTO orderDTO);
 	int insertReview(ReviewDTO reviewDTO);
+	int updateReview(ReviewDTO reviewDTO);
 }
