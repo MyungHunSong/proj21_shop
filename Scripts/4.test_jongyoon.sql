@@ -314,7 +314,7 @@ values
 insert 
   into product (pro_num, pro_category, pro_name, pro_price, pro_content
 					, pro_salesrate, pro_status , pro_color, pro_size, pro_quantity)
-values (?, ?, ?, ?, ?, ?, ? , ?, ?, ?);
+values (1, 1, 1, 1, 1, 1, 1 , 1, 1, 1);
 DELETE FROM pro_img 
 WHERE pro_num=1999;
 DELETE FROM pro_img 
@@ -520,8 +520,8 @@ FROM
 	FROM
 		MEMBER
 	WHERE
-		m_name LIKE CONCAT('%',?, '%')
-		OR m_id LIKE CONCAT('%',?, '%')
+		m_name LIKE CONCAT('%',1, '%')
+		OR m_id LIKE CONCAT('%',1, '%')
 		AND (@rownum := 0)= 0)
 WHERE
 	rn = 1;
@@ -587,3 +587,114 @@ SELECT DISTINCT order_pro_num, order_code , order_date , order_pro_quantity , or
 
 SELECT * FROM `ORDER`;
 UPDATE `order`      SET delivery_status = '배송준비중'     WHERE order_pro_num = 1 AND order_code =1;
+
+
+SELECT
+	a.*
+FROM
+	(
+SELECT
+		FORMAT(@ROWNUM := @ROWNUM + 1, 0) AS rn,
+		re_member,
+		r.pro_num,
+		re_image,
+		re_image2,
+		re_content,
+		re_stars,
+		re_date,
+		p.pro_name,
+		p.pro_imagefilename,
+		p.pro_color,
+		p.pro_size
+	FROM
+		review r JOIN productall p ON r.pro_num = p.pro_num
+	WHERE 
+		(@rownum:=0)=0
+		AND re_member LIKE CONCAT('%', 'test01', '%')
+	) AS a
+WHERE
+	rn BETWEEN (1-1)* 100 +(1-1)* 10 + 1 AND (1-1)* 100 + 1 * 10
+ORDER BY
+	re_date DESC;
+
+		
+		
+SELECT *
+  FROM review;
+SELECT *
+  FROM productall;
+		
+		
+
+	SELECT
+		FORMAT(@ROWNUM := @ROWNUM + 1, 0) AS rn,
+		re_member,
+		r.pro_num,
+		re_image,
+		re_image2,
+		re_content,
+		re_stars,
+		re_date,
+		p.pro_name,
+		p.pro_imagefilename,
+		p.pro_color,
+		p.pro_size
+	FROM
+		review r JOIN productall p ON r.pro_num = p.pro_num
+	WHERE 
+		(@rownum:=0)=0
+		AND re_member LIKE CONCAT('%', 'test01', '%');
+			
+		
+		
+		
+		
+		
+SELECT
+	a.*
+FROM
+	(
+	SELECT
+		FORMAT(@ROWNUM := @ROWNUM + 1, 0) AS rn,
+		re_member,
+		re_num,
+		r.pro_num,
+		re_image,
+		re_image2,
+		re_content,
+		re_stars,
+		re_date,
+		p.pro_name,
+		p.pro_imagefilename,
+		p.pro_color,
+		p.pro_category,
+		p.pro_size
+	FROM
+		(
+		SELECT
+			@ROWNUM := 0 ) R,
+		review r
+	JOIN productall p ON
+		r.pro_num = p.pro_num
+	WHERE
+		re_date > 0
+		AND re_member LIKE CONCAT('%', 'test01', '%') ) AS a
+WHERE
+	rn BETWEEN (1-1)* 100 +(1-1)* 10 + 1 AND (1-1)* 100 +1* 10
+ORDER BY
+	re_date DESC;
+
+SELECT count(re_num)
+		  FROM review
+		 WHERE re_num > 0
+			AND re_member LIKE CONCAT('%', 'test01', '%');
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		

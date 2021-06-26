@@ -9,32 +9,23 @@ import proj21_shop.dto.product.ProductImageDTO;
 public class ReviewDTO {
 	private String memberId;
 	private int proNum;
-
 	private ProductDTO proName;
-
 	private int reviewNum;
-
 	private ProductImageDTO proImagefilename;
-
 	private String reviewContent;
 	private String reviewImagefilename1;
 	private String reviewImagefilename2;
-
 	private Date reviewDate;
-
 	private int reviewReplyCount;
 	private int reviewStar;
-
 	private List<ReviewReplyDTO> reviewReplys;
-	
-	
+
 	public ReviewDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public ReviewDTO(String memberId, int proNum, String reviewContent, String reviewImagefilename1,
-			String reviewImagefilename2, int reviewStar) {
+	public ReviewDTO(String memberId, int proNum, String reviewContent, String reviewImagefilename1, String reviewImagefilename2, int reviewStar) {
 		super();
 		this.memberId = memberId;
 		this.proNum = proNum;
@@ -138,6 +129,14 @@ public class ReviewDTO {
 
 	public void setReviewStar(int reviewStar) {
 		this.reviewStar = reviewStar;
+	}
+	//종윤 사용
+	@Override
+	public String toString() {
+		return "ReviewDTO [memberId=" + memberId + ", proNum=" + proNum + ", proName=" + proName + ", reviewNum=" + reviewNum + ", proImagefilename="
+				+ proImagefilename + ", reviewContent=" + reviewContent + ", reviewImagefilename1=" + reviewImagefilename1 + ", reviewImagefilename2="
+				+ reviewImagefilename2 + ", reviewDate=" + reviewDate + ", reviewReplyCount=" + reviewReplyCount + ", reviewStar=" + reviewStar
+				+ ", reviewReplys=" + reviewReplys + "]";
 	}
 
 }

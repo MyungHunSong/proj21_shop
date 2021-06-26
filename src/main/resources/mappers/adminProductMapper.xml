@@ -178,7 +178,6 @@
 				where pro_name like CONCAT('%',#{keyword},'%')
 			</when>
 		</choose>
-		
 		<choose>
 			<when test="proStatus !=null and !proStatus.equals('') and keyword !=null and !keyword.equals('')">
 				and pro_status=#{proStatus}  

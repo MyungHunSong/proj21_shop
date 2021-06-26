@@ -40,7 +40,7 @@ public class AdminProductController {
 	AdminProductService adminProductService;
 
 	@RequestMapping("listProducts")
-	public ModelAndView addNewProductMain(
+	public ModelAndView listProducts(
 			@RequestParam(value = "total", required = false) String total,
 			@RequestParam(value = "proName", required = false) String keyword,
 			@RequestParam(value = "proStatus", required = false) String proStatus,
