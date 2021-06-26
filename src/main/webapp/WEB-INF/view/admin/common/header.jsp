@@ -73,8 +73,8 @@
 					<li class="sidebar-item"><a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"  aria-expanded="false"><i class="mdi mdi-face"></i><span class="hide-menu">회원 </span></a>
 						<ul aria-expanded="false" class="collapse  first-level">
 							<li class="sidebar-item"><a href="${contextPath}/admin/member/listMembers" class="sidebar-link"><i class="mdi mdi-emoticon-cool"></i><span class="hide-menu"> 회원 목록 </span></a></li>
-							<li class="sidebar-item"><a href="${contextPath}/admin/member/viewMember" class="sidebar-link"><i class="mdi mdi-emoticon-cool"></i><span class="hide-menu"> 회원 활동 정보 </span></a></li>
-							<li class="sidebar-item"><a href="${contextPath }/admin/order/listOrders" class="sidebar-link"><i class="mdi mdi-emoticon-cool"></i><span class="hide-menu"> 공지 사항 관리 </span></a></li>
+							<li class="sidebar-item"><a href="${contextPath}/admin/member/viewMember?memberId=admin" class="sidebar-link"><i class="mdi mdi-emoticon-cool"></i><span class="hide-menu"> 회원 활동 정보 </span></a></li>
+							<li class="sidebar-item"><a href="${contextPath }/admin/review/listReviews" class="sidebar-link"><i class="mdi mdi-emoticon-cool"></i><span class="hide-menu"> 리뷰 관리 </span></a></li>
 						</ul>
 					</li>
 					<li class="sidebar-item"><a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-face"></i><span class="hide-menu">상품 </span></a>

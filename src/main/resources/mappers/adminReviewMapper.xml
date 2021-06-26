@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="proj21_shop.mapper.admin.review.AdminReviewMapper">
+	<resultMap type="ReviewDTO" id="reviewResult">
+		<id property="reviewNum" column="re_num" />
+
+		<result property="memberId" column="re_member" />
+		<result property="proNum" column="pro_num" />
+		<result property="reviewImagefilename1" column="re_image" />
+		<result property="reviewImagefilename2" column="re_image2" />
+		<result property="reviewContent" column="re_content" />
+		<result property="reviewStar" column="re_stars" />
+		<result property="reviewDate" column="re_date" />
+
+		<association property="proName" javaType="ProductDTO">
+			<result property="proName" column="pro_name" />
+			<result property="proImgfileName" column="pro_imagefilename" />
+			<result property="proNum" column="pro_num" />
+			<result property="proColor" column="pro_color" />
+			<result property="proSize" column="pro_size" />
+		</association>
+	</resultMap>
+
+	<select id="selectAllReviews" resultMap="reviewResult" parameterType="map">
+	SELECT a.*
+	  FROM (SELECT FORMAT(@ROWNUM := @ROWNUM + 1, 0) AS rn, re_num, re_member, r.pro_num, re_image,	re_image2,
+			re_content,	re_stars, re_date, p.pro_name, p.pro_imagefilename, p.pro_color, p.pro_size
+			  FROM (SELECT @ROWNUM := 0 ) R, review r JOIN productall p ON r.pro_num = p.pro_num
+			 WHERE re_date > 0
+	<if test="memberId !=null and !memberId.equals('')">
+				   AND re_member LIKE CONCAT('%', #{memberId}, '%')
+	</if>
+	<if test="proNum !=null and !proNum.equals('')">
+				   AND pro_num like CONCAT('%',#{proNum},'%')
+	</if>
+			) AS a
+	 WHERE rn BETWEEN (#{section,jdbcType=NUMERIC}-1)*200 + (#{pageNum,jdbcType=NUMERIC}-1)*20+1
+		  AND (#{section,jdbcType=NUMERIC}-1)*200 + #{pageNum,jdbcType=NUMERIC}*20
+	 ORDER BY re_date DESC
+	</select>
+	
+	<select id="selectedTotalReviews" resultType="int" parameterType="map">
+		SELECT count(re_num)
+		  FROM review
+		 WHERE re_num > 0
+	    <if test="memberId !=null and !memberId.equals('')">
+			AND re_member LIKE CONCAT('%', #{memberId}, '%')
+	    </if>
+	    <if test="proNum !=null and !proNum.equals('') ">
+			AND pro_num like CONCAT('%',#{proNum},'%')
+	    </if>
+	</select>
+
+</mapper>
