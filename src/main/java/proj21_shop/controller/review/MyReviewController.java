@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -57,7 +58,7 @@ public class MyReviewController {
 
 	@PostMapping("/myreview/")
 	public ResponseEntity<Object> newReview(@RequestBody ReviewDTO review){
-		System.out.println("newReview>"+review);
+		/* System.out.println("newReview>"+review); */
 		try {
 			service.insertReview(review);
 			URI uri = URI.create("/api/myreview/"+review.getMemberId());
@@ -65,6 +66,12 @@ public class MyReviewController {
 		}catch (DuplicateReviewException e) {
 			return ResponseEntity.status(HttpStatus.CONFLICT).build();
 		}
+	}
+	
+	@PutMapping("/myreview/{reviewNum}")
+	public ResponseEntity<Object> updateReview(@PathVariable int reviewNum, @RequestBody ReviewDTO review){
+		System.out.println("updateMember>" + review);
+		return ResponseEntity.ok(service.updateReview(review));
 	}
 	/*첨부 파일 업로드*/
 	@PostMapping("/myreview/uploadImage")

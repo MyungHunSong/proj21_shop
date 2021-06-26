@@ -38,6 +38,12 @@ values (1, 1, 1, '블라우스', 10000, 10, '2020-05-26', '판매중', 1, 1, 1, 
 insert into review
 values (1, 1, '이나연', '옷이 너무 맘에 드네요', 'insert1.jpg', 'insert2.jpg', '2021-5-26', 5);
 
+update review
+   set re_content = '맘에 들어요', re_image = 'update.jpg', re_image2 = 'update.jpg', re_stars = 4
+ where re_num = 1;
+
+select * from review;
+
 -- 후기 내역
 select * from product;
 select * from review;
@@ -46,7 +52,7 @@ desc review;
 insert into review(re_num, pro_num, re_member, re_content, re_image, re_image2, re_stars)
 values (2, 1033, 'test01', '맘에 들어요. 감사합니다.', 'review_test.jpg', 'review_test.jpg', 3);
 
-select r.re_num,p.pro_name, r.re_image, r.re_image2, r.re_content, r.re_stars, r.re_date
+select r.re_num,p.pro_name, r.re_image, r.re_image2, r.re_content, r.re_stars, r.re_date, re_member 
   from review r
   join product p
 	on r.pro_num = p.pro_num
@@ -76,6 +82,7 @@ delete from review where re_num >= 2;
 select * from review;
 select * from product;
 select * from pro_img;
+select * from `order` o ;
 
 select pi2.pro_imagefilename, p.pro_name, p.pro_color, p.pro_size, r.re_stars, r.re_content, r.re_image, r.re_image2 
   from review r 
@@ -119,7 +126,7 @@ select * from `order`;
 select * from `member`;
 select * from product;
 
-select o.order_member_id, o.order_pro_num, p.pro_name, o.order_date, o.order_pro_quantity, o.order_price, o.delivery_status
+select o.order_member_id, o.order_pro_num, o.order_code, p.pro_name, o.order_date, o.order_pro_quantity, o.order_price, o.delivery_status
   from `order` o
   join product p 
     on o.pro_num = p.pro_num
@@ -144,7 +151,7 @@ desc `order` ;
 insert into `order`(order_member_id, order_num, pro_num, order_member_name, order_pro_quantity, order_price, order_discount, receiver_name, receiver_tel1, receiver_tel2, delivery_addr1, delivery_addr2, delivery_addr3, delivery_status, request_to_delivery, who_pay, which_bank)
 values ('test01', 210530, 5083, '이종윤', 1, 5000, 0, '이종윤', '010-1234-5678', '010-1234-5678', 54545, '대구광역시 남구 봉덕동 이천로 51', '2층', '배송준비중', '배송참고사항', '이종윤', '국민');
 
-SELECT DISTINCT o.order_pro_num, pi2.pro_imagefilename, p.pro_num, p.pro_name, p.pro_color, p.pro_size, p.pro_price, o.order_pro_quantity, o.delivery_status, o.order_date, o.order_member_name , o.receiver_tel1, o.receiver_tel2, o.delivery_addr1 , o.delivery_addr2, o.delivery_addr3, o.request_to_delivery
+SELECT DISTINCT o.order_pro_num, o.order_code, pi2.pro_imagefilename, p.pro_num, p.pro_name, p.pro_color, p.pro_size, p.pro_price, o.order_pro_quantity, o.delivery_status, o.order_date, o.order_member_name , o.receiver_tel1, o.receiver_tel2, o.delivery_addr1 , o.delivery_addr2, o.delivery_addr3, o.request_to_delivery
   from `order` o
   join pro_img pi2 
     on o.pro_num = pi2.pro_num 

@@ -8,6 +8,12 @@
 		<result property="proSize" column="pro_size"/>
 		<result property="proPrice" column="pro_price"/>
 		<result property="proImgfileName" column="pro_imagefilename" />
+		<collection property="orderCode" resultMap="resOrderCode"></collection>
+	</resultMap>
+	
+	<resultMap type="OrderDTO" id="resOrderCode">
+		<id property="orderProNum" column="order_pro_num"/>
+		<result property="orderCode" column="order_code"/>
 	</resultMap>
 
 	<resultMap type="OrderDTO" id="resOrder">
@@ -25,7 +31,6 @@
 
 	<resultMap type="OrderDTO" id="resDetailOrder">
 		<id property="orderProNum" column="order_pro_num" />
-		<result property="orderCode" column="order_code" />
 		<result property="orderPrice" column="order_price" />
 		<result property="orderProQuantity" column="order_pro_quantity" />
 		<result property="deliveryStatus" column="delivery_status" />
@@ -41,13 +46,14 @@
 		<collection property="productDTO" resultMap="resProduct">
 			<result property="proNum" column="pro_num"/>
 			<result property="proName" column="pro_name" />
+			<result property="orderCode" column="order_code"/>
 		</collection>
 	</resultMap>
 
 	<select id="selectOrderByMember" resultMap="resOrder">
 		select
-		o.order_member_id, o.order_pro_num, p.pro_num, p.pro_name,
-		o.order_date,
+		o.order_member_id, o.order_pro_num, o.order_code, p.pro_num, p.pro_name,
+		o.order_date, 
 		o.order_pro_quantity,
 		o.order_price, o.delivery_status
 		from `order` o
@@ -59,8 +65,8 @@
 
 	<select id="selectOrderDetailByMember"
 		resultMap="resDetailOrder">
-		SELECT DISTINCT o.order_pro_num, pi2.pro_imagefilename, p.pro_num, p.pro_name, p.pro_color, p.pro_size, p.pro_price,
-		o.order_pro_quantity, o.delivery_status, o.order_date, o.order_code,
+		SELECT DISTINCT o.order_pro_num, o.order_code, pi2.pro_imagefilename, p.pro_num, p.pro_name, p.pro_color, p.pro_size, p.pro_price,
+		o.order_pro_quantity, o.delivery_status, o.order_date,
 		o.order_member_name , o.receiver_tel1, o.receiver_tel2,
 		o.delivery_addr1 , o.delivery_addr2, o.delivery_addr3,
 		o.request_to_delivery

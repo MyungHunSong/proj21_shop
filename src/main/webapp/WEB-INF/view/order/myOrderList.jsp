@@ -28,13 +28,28 @@
                      sCont += "<td><a href='detailorder?memberId="
                            + json[j].memberId + "&orderProNum=" + json[j].orderProNum + "&proNum="
                            + json[j].productDTO[i].proNum + "'>"
-                           + json[j].orderProNum + "</a>"
+                           + json[j].orderProNum + "-" + json[j].productDTO[i].orderCode[0].orderCode + "</a></td>"
                            
-                     sCont += "<td>" + json[j].productDTO[i].proName +"</td>";
-                     sCont += "<td>" + json[j].orderDate+"</td>";
-                     sCont += "<td>" + json[j].orderProQuantity+"</td>";
-                     sCont += "<td>" + json[j].orderPrice+"</td>";
-                     sCont += "<td>" + json[j].deliveryStatus+"</td>";
+                     sCont += "<td><a href='detailorder?memberId="
+                         + json[j].memberId + "&orderProNum=" + json[j].orderProNum + "&proNum="
+                         + json[j].productDTO[i].proNum + "'>"
+                         +json[j].productDTO[i].proName +"</a></td>";
+                     sCont += "<td><a href='detailorder?memberId="
+                         + json[j].memberId + "&orderProNum=" + json[j].orderProNum + "&proNum="
+                         + json[j].productDTO[i].proNum + "'>"
+                         + json[j].orderDate+"</a></td>";
+                     sCont += "<td><a href='detailorder?memberId="
+                         + json[j].memberId + "&orderProNum=" + json[j].orderProNum + "&proNum="
+                         + json[j].productDTO[i].proNum + "'>"
+                         + json[j].orderProQuantity+"</a></td>";
+                     sCont += "<td><a href='detailorder?memberId="
+                         + json[j].memberId + "&orderProNum=" + json[j].orderProNum + "&proNum="
+                         + json[j].productDTO[i].proNum + "'>"
+                         + json[j].orderPrice+"</a></td>";
+                     sCont += "<td><a href='detailorder?memberId="
+                         + json[j].memberId + "&orderProNum=" + json[j].orderProNum + "&proNum="
+                         + json[j].productDTO[i].proNum + "'>"
+                         + json[j].deliveryStatus+"</a></td>";
                      sCont += "<tr>";
                      
                   }
@@ -58,7 +73,7 @@
       <jsp:include page="/WEB-INF/view/include/topbody.jsp"></jsp:include>
       <section id="orderArea">
          <h3>나의 주문내역</h3>
-         <h5>주문번호를 클릭하시면 상세주문내역으로 이동하실 수 있습니다.</h5>
+
          <div class="asd">
          <table class="type11">
             <thead>

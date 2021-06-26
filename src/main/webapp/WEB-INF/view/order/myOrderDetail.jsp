@@ -25,15 +25,15 @@
 							var dataLength = json[0].productDTO.length;
 							for(i = 0; i < dataLength; i++){
 							sCont += "<tr>";
-							sCont += "<td>" + json[0].orderProNum;
+							sCont += "<td>" + json[0].orderProNum + "-" + json[0].productDTO[i].orderCode[0].orderCode + "</td>";
 							sCont += "<td><img src='" + contextPath +"/resources/product/images/" + json[0].productDTO[i].proImgfileName + "' width = '80' height='60'></td>";
-							sCont += "<td>" + json[0].productDTO[i].proPrice * 0.01 +"p";
-							sCont += "<td>" + json[0].productDTO[i].proPrice;
-							sCont += "<td>" + json[0].orderProQuantity;
-							sCont += "<td>" + json[0].deliveryStatus;
-							sCont += "<td>" + json[0].orderDate;
+							sCont += "<td>" + json[0].productDTO[i].proPrice * 0.01 +"p"+ "</td>";
+							sCont += "<td>" + json[0].productDTO[i].proPrice+ "</td>";
+							sCont += "<td>" + json[0].orderProQuantity+ "</td>";
+							sCont += "<td>" + json[0].deliveryStatus+ "</td>";
+							sCont += "<td>" + json[0].orderDate+ "</td>";
 
-							sCont += "<td><a href='detailreview?memberId=" + memberId +"&proNum=" + json[0].productDTO[i].proNum + "'>후기작성 하러가기</a><br><a href='requestRefund?orderProNum="+json[0].orderProNum+"&orderCode="+json[0].orderCode+"&memberId="+memberId+"'>반품 요청</a></td>";
+							sCont += "<td><a href='detailreview?memberId=" + memberId +"&proNum=" + json[0].productDTO[i].proNum + "'>후기작성 하러가기</a><br><a href='requestRefund?orderProNum="+json[0].orderProNum+"&orderCode="+json[0].productDTO[i].orderCode[0].orderCode+"&memberId="+memberId+"'>반품 요청</a></td>";
 
 							
 							}

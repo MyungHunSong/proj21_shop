@@ -15,13 +15,9 @@ body {
 }
 
 a{	color: black;
-	font-weight:bold;
 	text-decoration:none;
 }
 
-a:hover{
-	color: red;
-}
 
 table.type11 {
 	border-collapse: separate;

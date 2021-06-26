@@ -42,4 +42,9 @@ public class MyReviewServiceImpl implements MyReviewService {
 		return mapper.insertReview(reviewDTO);
 	}
 
+	@Override
+	public int updateReview(ReviewDTO reviewDTO) {
+		return mapper.updateReview(reviewDTO);
+	}
+
 }
