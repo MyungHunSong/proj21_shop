@@ -45,8 +45,9 @@
 					sCont += "<td>" + json[i].qTitle + "</td>";
 					sCont += "<td>" + json[i].qMember + "</td>";
 					sCont += "<td>" + json[i].qDate + "</td>";
-					sCont += "<td> Q&A 수정하러 가기 </td>";
+					sCont += "<td> <a href = 'qnaModify?index=${idx}' class = 'qnaChange'>Q&A 수정하러 가기 </a></td>";
 					sCont += "<tr>";
+					// qnaModify?index=${idx}
 				}
 				$("#loadtable").append(sCont);
 			}

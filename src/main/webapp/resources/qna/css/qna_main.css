@@ -1,5 +1,7 @@
 @charset "UTF-8";
 
+
+
 .btn{
 	list-style: none;
 	padding:0;
@@ -29,3 +31,7 @@
  .tabs div.active{
 	display: block;
 } 
+
+.fPage{
+	margin-top: 50px;
+}

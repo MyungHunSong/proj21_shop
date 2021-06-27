@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import proj21_shop.dto.qna.QnaDTO;
+import proj21_shop.service.order.MyOrderService;
 import proj21_shop.service.qna.QnaInsertService;
 
 @RestController
@@ -84,5 +85,15 @@ public class QnaRestInsertPageController {
 	public ResponseEntity<Object> DeleteQnaForMember(@RequestBody QnaDTO qDto){
 		return ResponseEntity.ok(qInsertService.deleteQnaForMember(qDto));
 		
+	}
+	// Myorder Page 에서 끌어와서 쓰는것.
+	@Autowired
+	private MyOrderService myOrderService;
+	
+	@GetMapping("/qnaMyOrder/{qMem}")
+	public ResponseEntity<Object> selectMyQnaOrder(@PathVariable String qMem, HttpSession session){
+		session.setAttribute("qMem", qMem);
+		
+		return ResponseEntity.ok(myOrderService.selectOrderByMember(qMem));
 	}
 }

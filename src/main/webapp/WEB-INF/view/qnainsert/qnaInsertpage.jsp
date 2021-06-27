@@ -15,7 +15,6 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript">
 
-
 	function readURL(input, id){
 		
 		if(input.files && input.files[0]){
@@ -110,6 +109,35 @@
 				  }
 				  return true;
 			  } 
+			  
+			  // 조회 페이지.
+			  $('.goMyOrder').on('click', function(){				
+				  var memberId = "${authInfo.id}"; 
+				  console.log(memberId)
+				  
+				      var popup = window.open('http://localhost:8080/proj21_shop/qnaMyOrder?=${authInfo.id}', '조회',
+					'width=720px, height = 350px')
+					
+				/* selectThem = {
+					"orderMemberId": memberId	 
+				  };  */
+				  /* window.location.href = contextPath + "/qnaMyOrder?=" + memberId; */
+				 
+				  /* $. ajax({
+					  url: contextPath +  "/api/qnaMyOrder/" + memberId,
+				 		type:'GET',
+				 		contentType:"application/json; charset=utf-8",
+				 		datatype:"json",
+				 		data:JSON.stringify(selectThem),
+				 		success:function(){
+				 			window.location.href = contextPath + "/qnaMyOrder?=" + memberId;
+				 			
+				 		},
+				 		error:function(){
+				 			alert("조회할 상품 내역이 없습니다.")
+				 		}
+				  });	 */			
+			  });
 	});
 	
 </script>
@@ -149,7 +177,7 @@
 				<c:if test="${authInfo.id ne 'admin'}">
 					<div>
 						<label>주문 번호</label> <input type="text">
-						<button>조회</button>
+						<button class="goMyOrder">조회</button>
 						<br>
 					</div>
 				</c:if>

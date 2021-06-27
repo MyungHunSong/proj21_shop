@@ -11,6 +11,7 @@
 <title>수정 페이지</title>
 <link rel="stylesheet" href="/proj21_shop/resources/qna/css/qna_qna.css">
 <link rel="stylesheet" href="/proj21_shop/resources/main/css/main.css">
+<link rel="stylesheet" href="/proj21_shop/resources/qna/css/qnaModifyPage.css">
 <script type="text/javascript">
 $(function(){
 	$("input[name='uploadFile']").hide();	

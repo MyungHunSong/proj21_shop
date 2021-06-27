@@ -16,7 +16,6 @@
 	display: none;
 }
 #contentArea{
-	
 	width: 800px;
 	height: 30px;
 }
@@ -24,8 +23,57 @@
 #contentArea button{
 	margin-left:10px;
 }
-tr.clickOption{
+
+
+
+.tableTitle{
+	padding: 10px;
+	margin-top: 15px;
+	background-color: black;
+}
+.tableTitle td{
+	color: white;
+}
+<!-- 메인 테이블-->
+.mainTable{
+	box-sizing: box;
+}
+
+.mainTable td{
+	background-color: #f4f4f4;
+	border-bottom: 1px solid #ccc;
 	cursor: pointer;
+}
+<!-- 상세정보 테이블-->
+.clickContent{
+	width: 40px;
+	height: 30px;
+	
+}
+.clickContent #detailContent{
+	text-align: center;
+}
+.clickContent td{
+	background-color: #E1F6FA;
+	text-align: left;
+	border-bottom: 1px solid #ccc;
+}
+
+.showReply{
+	box-sizing: box;
+}
+.showReply #classReply{
+}
+.showReply td{
+	background-color: #E1F6FA;
+	text-align: left;
+	cursor: pointer;
+}
+
+div.topQna{
+	width: 1000px;
+	height: 800px;
+	margin: auto;
 }
 </style>
 <script type="text/javascript">
@@ -51,8 +99,7 @@ $(function(){
 				
 				for(i = 0; i<dateLength; i++){
 					if(json[i].qStep == 0){
-						
-							sCont += "<tr>";
+							sCont += "<tr class='mainTable'>";
 							sCont += "<td class = 'clickOption'>"+json[i].qOp + "</td>"; 
 							sCont += "<input type = 'hidden' value = "+ json[i].qIndex +">";
 							sCont += "<input type = 'hidden' value="+ json[i].qGroup +" >"
@@ -62,30 +109,32 @@ $(function(){
 							sCont += "<td class = 'clickOption'>" + json[i].qDate + "</td>";
 							sCont += "<td class = 'qHit'>" + json[i].qHit + "</td>";
 							sCont += "</tr>";
-							
-							sCont += "<tr class = 'clickContent'>";
-							sCont += "<td>내용:</td>";	
-							if("${authInfo.id}" == "admin"){
+								
+								sCont += "<tr class = 'clickContent'>";
+								sCont += "<td id='detailContent'>내용:</td>";	
+							if("${authInfo.id}" == "admin"){	
 								sCont += "<td colspan ='5'>" + json[i].qContent + "<a class= 'clickReply'> [답글 달기]</a></td>";
 							}else if(json[i].qGroup == 0){
-								sCont += "<td colspan ='5'>" + json[i].qContent + "</td>"
+								sCont += "<td colspan ='5'>" + json[i].qContent + "<a class= 'clickReply' style='visibility: hidden'> [답글 달기]</a></td>"
 							}else if("${authInfo.id}" != "admin"){
-								sCont += "<td colspan ='5'><img src='/proj21_shop/resources/qna/upload/" + json[i].qFile +"' width = 50px;/><span>"
+								sCont += "<td colspan ='4'><img src='contextPath+resources/qna/upload/" + json[i].qFile +"' width = 50px;/><span>"
 								+"</span>"+ json[i].qContent + "</td>";
 							}
 							if(memberName == json[i].qMember){
-								sCont += "<td><button class='modifyMyQna'>수정</button><button class='deleteMyQna'>삭제</button></td>"
+								sCont += "<td colspan='1'><button class='modifyMyQna'>수정</button><button class='deleteMyQna'>삭제</button></td>"
 							}
 							sCont += "</tr>"
 						
 					}else if(json[i].qStep == 1){
-						sCont += "<tr class='showReply'>";
-						sCont += "<input type = 'hidden' value = "+ json[i].qIndex +">";
-						sCont += "<td>→답변:</td> " 
-						sCont += "<td colspan='4'> " +json[i].qContent+ "<td>";
-						sCont += " <td colspan ='1'><button type = 'button' class = 'deleteContent' style='display:none'>삭제</button></td>";
+							sCont += "<tr class='showReply'>";
+							sCont += "<input type = 'hidden' value = "+ json[i].qIndex +">";
+							sCont += "<td id = 'classReply' coslpan='1'>→답변</td> " 
+							sCont += "<td colspan='5'> " +json[i].qContent+ "<td>";
+						if("${authInfo.id}" == "admin"){
+							sCont += " <td colspan><button type = 'button' class = 'deleteContent' >삭제</button></td>";
+						}
+							sCont += "</tr>";						
 						
-						sCont += "</tr>";						
 					}
 					
 					sCont += "<tr class ='clickReplyTd' type='hidden' >";	
@@ -296,10 +345,11 @@ $(function(){
 </head>
 <body>
 	<!-- Q&A 시작 -->
+	<div class = "topQna">
 		<div id="qna_board">
 			<jsp:include page="/WEB-INF/view/qna/qna_list.jsp"></jsp:include>
 			<table class="qna_table">
-				<tr>
+				<tr class = "tableTitle">
 					<td>번호</td>
 					<td>작성자</td>
 					<td>문의사항</td>
@@ -336,6 +386,7 @@ $(function(){
 			</div>
 			<!-- 페이징 끝 -->
 		</div>
+	</div>
 		<!-- Q&A 끝 -->
 </body>
 </html>

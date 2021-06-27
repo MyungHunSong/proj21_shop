@@ -1,5 +1,7 @@
 package proj21_shop.service.qna;
 
+import java.util.List;
+
 import proj21_shop.dto.qna.QnaDTO;
 
 public interface QnaInsertService {
@@ -17,4 +19,6 @@ public interface QnaInsertService {
 	int deleteQnaForMember(QnaDTO qDto);
 	// 식별자를 통한 수정
 	QnaDTO selectWhereIndexForModify(int idx);
+	// 내주문내역 뽑아 오기.
+	List<QnaDTO> selectWhereIndexForMyQna(String qMem);
 }

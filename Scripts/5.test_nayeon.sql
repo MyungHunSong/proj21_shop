@@ -100,7 +100,7 @@ update review
 insert into `order` 
 values ('skdus2421', 1, 1, '이나연', 1, 10000, 100, '이나연', '010-5505-6559', '053-523-6559', '대구광역시 북구 침산남로 19길 8', '202동 1301호', '배송중', '문앞에 나둬주세요', '2021-05-28', '이나연', '농협', 3021058);
 
-select q_index, q_file, q_title, q_member, q_date 
+select q_index, q_file, q_title ,q_member , q_date 
   from qna 
  where q_member = 'test01';
 
