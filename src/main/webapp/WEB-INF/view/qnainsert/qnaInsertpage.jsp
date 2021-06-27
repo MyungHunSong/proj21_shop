@@ -34,7 +34,6 @@
 
 
 	$(function(){
-		var idx = ${param.index};
 			$("input[name='uploadFile']").hide();
 			var contextPath = "${contextPath}";
 			
@@ -44,36 +43,6 @@
 		 	$("input[name='uploadFile']").click();
 		  });
 		 	 
-		 	 // 수정하기.
-		 	 $(".modifyQna").on("click", function(){
-		 		
-		 		var title = $("input[name=Title]:visible").val();
-		 		var option = $("select[name=searchType]:visible").val();		 	
-		 		var content = $("textarea[name='Content']:visible").val();		 	
-		 		var file = document.getElementById("addPoto").files[0].name;
-		 		
-		 		modifyItem = {
-		 				"qIndex" : ${param.index},
-		 				"qTitle" : title,
-		 				"qOption" : option,
-		 				"qContent" : content,
-		 				"qFile" : file
-		 		}
-		 		
-		 		
-		 		$.ajax({
-		 			url: contextPath+'/api/qnainsert/' + idx,
-		 			type:'PATCH',
-		 			contentType:"application/json; charset=utf-8",
-			 		datatype:"json",
-			 		data:JSON.stringify(modifyItem),
-			 		success:function(){
-			 			alert("수정 완료")
-			 			window.location.href = contextPath + "/listPaging?page="+1 + "&pagePageNum="+ 10 + "&searchType=a&keyword=";
-			 		}
-		 		});
-		 	 });
-		  
 		 	// 작성하기.
 		   $(".insertQna").on('click', function(){
 			  	var title = $("input[name=Title]:visible").val();
@@ -232,7 +201,7 @@
 						</div>
 					</div>
 				</c:if>	
-					<button class = "insertQna">작성하기</button><button class ="modifyQna">수정</button>
+					<button class = "insertQna">작성하기</button>
 				</section>
 			</div>
 		</div>

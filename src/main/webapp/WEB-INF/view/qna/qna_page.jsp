@@ -122,26 +122,21 @@ $(function(){
 					}
 				});
 			});
-			
+				
 			// 내가쓴글 수정하기 누르면 수정 페이지로.
 			$('.modifyMyQna').on('click', function(){								 
-				var idx = $(this).parent().parent().prev().children().next().val();
-				
-				window.location.href=contextPath + "/qnaInsert?index=" + idx;		 
+				var idx = $(this).parent().parent().prev().children().next().val();			 
 				$.ajax({
-					url: contextPath + "/qnaInsert/"+ idx,
+					url: contextPath + "/api/qnainsert/"+ idx,
 					type:"GET",
 					contentType:"application/json; charset=utf-8",
 					datatype:"json",
 					data:JSON.stringify(),
 					success:function(){
-						window.location.href=contextPath + "/qnaInsert/" + idx;
+						var popup = window.open('http://localhost:8080/proj21_shop/qnaModify?index=idx', '수정팝업',
+								'width=520px, height = 520px')				
 					}	
-					
-				});		 
-						 
-						 
-				
+				});		 		
 			});
 			
 			// 답글 삭제.
@@ -199,17 +194,7 @@ $(function(){
 			
 			// 조회수 ajax 구현 & 상세내용 보기. -시작-
 			$('.clickOption').on('click',function(){
-					var idx = $(this).next().val();
-					
-					/* var member = "${qDto.qMember}";
-					console.log(member);
-					var option = "${qDto.qOption}";
-					console.log(option);
-					var title = "${qDto.qTitle}";
-					console.log(title);
-					var date = "${qDto.qDate}";
-					console.log(date); */
-					
+					var idx = $(this).next().val();		
 					var group = $(this).next().next().val();
 					
 					var cnt = parseInt($(this).next().next().next().next().next().next().next().text())

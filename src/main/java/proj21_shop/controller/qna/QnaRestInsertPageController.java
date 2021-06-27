@@ -31,7 +31,7 @@ public class QnaRestInsertPageController {
 	QnaInsertService qInsertService;
 	
 	// 식별자를 통한 수정 버튼 -> 수정페이지
-	@GetMapping("/qnainsert/{qIndex}")
+	@GetMapping("/qnainsert/{idx}")
 	public ResponseEntity<Object> selectWhereIdxForModify(@PathVariable int idx, HttpSession session){
 		session.setAttribute("idx", idx);
 		return ResponseEntity.ok(qInsertService.selectWhereIndexForModify(idx));

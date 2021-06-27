@@ -10,4 +10,9 @@ public class QnaInsertPageConroller {
 	public String insertPage() {
 		return "/qnainsert/qnaInsertpage";
 	}
+	
+	@GetMapping("/qnaModify")
+	public String modifyPage() {
+		return "/qnainsert/qnaModifyPage";
+	}
 }
