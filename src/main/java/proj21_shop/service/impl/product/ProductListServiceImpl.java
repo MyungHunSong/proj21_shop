@@ -33,17 +33,6 @@ public class ProductListServiceImpl implements ProductListService{
 		return service.updateProhits(proNum);
 	}
 
-	//옷목록 리스트 여러가지 조건으로 검색
-	@Override
-	public List<ProductDTO> selectProductByCondition(Map<String, Object> condition) {
-		return service.selectProductByCondition(condition);
-	}
-
-	@Override
-	public List<ProductDTO> selectProductByproName(String proName) {
-		return service.selectProductByproName(proName);
-	}
-	
 	//메인화면 옷 목록
 	@Override
 	public List<ProductDTO> selectProductMain(Map<String, Object> condition) {

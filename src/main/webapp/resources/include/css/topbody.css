@@ -34,16 +34,3 @@
 	color:red;
 }
 
-#sale{
-	text-decoration:none;
-	color: #000;
-	cursor: pointer;
-	font-size:20px;
-	font-weight:bold;
-	outline: none;
-	cursor: pointer;
-}
-
-#sale:hover {
-	color:red;
-}

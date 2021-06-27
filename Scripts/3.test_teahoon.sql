@@ -501,10 +501,6 @@ FROM
 	AND rn BETWEEN (1-1)* 100 +(1-1)* 8 + 1 AND (1-1)* 100 +1* 8;
 
 select
-	distinct a.*
-from
-	(
-	select
 		FORMAT(@ROWNUM := @ROWNUM + 1, 0) as rn,
 		pro_num,
 		pro_category,
@@ -525,11 +521,5 @@ from
 		productall
 	where
 		pro_size = 1
-		and pro_salesrate != 0
-	/*order by
-		pro_price*(100-pro_salesrate) asc*/ ) a
-where
-	pro_size = 1
-	and rn between 1 and 8;
-
-
+		and pro_name like concat('%','a', '%')
+		and pro_salesrate != 0 

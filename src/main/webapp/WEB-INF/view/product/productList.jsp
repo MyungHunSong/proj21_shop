@@ -25,12 +25,22 @@ $(function(){
 		$(this).addClass("active");
 		$(this).siblings().removeClass("active");
 	}
+	
 	var contextPath = "${contextPath}";
 	var proCategory = ${proCategory};
-
+	var orderKind = "${orderKind}";
+	var priceRange = ${priceRange};
+	var pageNum = ${pageNum};
+	var section = ${section};
 	var proSize = ["XS","S","M","L","XL"]
 	
-	$.get(contextPath + "/api/productlist/"+proCategory,
+	console.log(proCategory)
+	console.log(orderKind)
+	console.log(priceRange)
+	console.log(pageNum)
+	console.log(section)
+	
+	$.get(contextPath + "/api/selectProductsSale/"+proCategory+"/"+section+"/"+pageNum+"/"+priceRange+"/"+orderKind+"/null",
 	function(json){
 		console.log(json)
 		var dataLength = json.length;
@@ -80,7 +90,7 @@ $(function(){
 		$(".productList *").remove(); 
 		if(sortPrice == undefined){
 			sortPrice = 0;
-			$.get(contextPath + "/api/selectProductsCondition/"+proCategory+"/"+sortOrder+"/"+sortPrice,
+			$.get(contextPath + "/api/selectProductsSale/"+proCategory+"/"+section+"/"+pageNum+"/"+priceRange+"/"+orderKind+"/null",
 					function(json){
 						var sCont = "";
 						var dataLength = json.length;
@@ -120,7 +130,7 @@ $(function(){
 						}
 					})
 		}else{
-			$.get(contextPath + "/api/selectProductsCondition/"+proCategory+"/"+sortOrder+"/"+sortPrice,
+			$.get(contextPath + "/api/selectProductsSale/"+proCategory+"/"+section+"/"+pageNum+"/"+priceRange+"/"+orderKind+"/null",
 					function(json){
 						console.log(json)
 						var dataLength = json.length;
@@ -184,7 +194,7 @@ $(function(){
 			var sCont = "";
 			var test = $(this).prev().val()
 			if(test != ''){
-				$.get(contextPath + "/api/selectProductByProName/"+test,
+				$.get(contextPath + "/api/selectProductsSale/"+proCategory+"/"+section+"/"+pageNum+"/"+priceRange+"/"+orderKind+"/"+test,
 					function(json){
 						console.log(test)
 						var dataLength = json.length;

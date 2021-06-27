@@ -33,21 +33,6 @@
 		          ,pro_img_code,pro_imagefilename,pro_img_state
           from  product p join pro_img i on p.pro_num = i.pro_num
 	</sql>
-	
-	<sql id="whereSQL">
-		<where>
-			<if test="pro"></if>
-		</where>
-	</sql>
-	
-	<!-- 옷카테고리별 목록 검색 -->
-	<select id="selectProductByProImgState" parameterType="int" resultMap="ResProduct">
-		<include refid="selectProductJoinProductImageSQL"></include>
-		where pro_size = 1 
-			<if test="proCategory > 0">
-				and pro_category = #{proCategory}
-			</if>
-	</select> 
 
 	<!-- 옷 상세정보 보기 -->
 	<select id="selectProductDetailByProNum" parameterType="int" resultMap="ResProduct">
@@ -62,54 +47,6 @@
          where pro_num = #{param1};
 	</update>
 	
-	<!-- 옷목록 에서 여러 조건(가격순, 조회순, 신상, 가격범위)으로 검색 -->
-	<select id="selectProductByCondition" parameterType="Map" resultMap="ResProduct">
-		 select * 
-   		   from productall 
-		 where pro_size = 1 
-		 <trim prefix="">
-		 	<if test="proCategory > 0">and pro_category = #{proCategory}</if>
-		 </trim>
-    	 <trim prefix="and pro_price between">
-    	 		<if test="priceRange == 1">10000 and 30000</if>
-    	 		<if test="priceRange == 2">30000 and 50000</if>
-    	 		<if test="priceRange == 3">50000 and 80000</if>
-    	 		<if test="priceRange == 4">80000 and 100000</if>
-    	 </trim>
-    	 <trim prefix="">
-    	 		<if test="priceRange == 5">and pro_price > 100000</if>
-    	 </trim>
-		 <trim prefix="order by">
-		 		<if test="orderKind == 'asc'">pro_price asc</if>   
-		 		<if test="orderKind == 'desc'">pro_price desc</if>   
-		 		<if test="orderKind == '신상'">'신상'</if>   
-		 		<if test="orderKind == 'proHits'">pro_hits desc</if>   
-    	 </trim>
-	</select>
-	
-	<!-- 제품이름으로 검색 -->
-	<select id="selectProductByproName" resultMap="ResProduct">
-		 select * 
-   		  from productall 
-        where pro_size = 1 and pro_name like concat('%',#{param},'%')
-        order by pro_price asc
-	</select>
-	
-	<!-- 메인화면 제품 목록(new,recommend,mostview,new,best,sale -->
-	<select id="selectProductMain" parameterType="Map" resultMap="ResProduct">
-		  select * 
-   		   from productall 
-		 where pro_size =1
-		 <trim prefix="">
-    	 		<if test="proStatus == 'RECOMMEND'">and pro_status = '추천'</if>
-    	 		<if test="proStatus == 'SALE'">and pro_status = '세일'</if>
-    	 		<if test="proStatus == 'NEW'">and pro_status = '신상'</if>
-    	 		<if test="proStatus == 'BEST'">and pro_status = '최고'</if>
-    	 </trim>
-    	 order by pro_price desc
-		 limit 8
-	</select>
-	
 	<!--  제품 목록 세일 페이징 -->
 	<select id="selectProductSale" parameterType="Map" resultMap="ResProduct">
 		SELECT DISTINCT  a.*
@@ -117,7 +54,13 @@
 							  pro_num, pro_category, pro_name, pro_price, pro_salesrate, pro_cre_date,
 							  pro_status, pro_color, pro_size, pro_quantity, pro_hits, pro_imagefilename
 				      from ( select  @ROWNUM := 0 ) R, productall
-				  			   where  pro_size = 1 and pro_salesrate != 0
+				  			   where  pro_size = 1
+				  			   <trim prefix="">
+				  			   		<if test="search.isEmpty"></if>
+				  			   		<if test="search != 'null'">and pro_name like concat('%',#{search},'%')</if>
+				  			   		<if test="proCategory == 0"> and pro_salesrate != 0</if>
+		 							<if test="proCategory > 0">and pro_category = #{proCategory}</if>
+		 					   </trim>
 				  			   <trim prefix="and pro_price between">
 						    	 	<if test="priceRange == 1">10000 and 30000</if>
 						    	 	<if test="priceRange == 2">30000 and 50000</if>
@@ -143,6 +86,21 @@
 		  select count(*)
   		   from productall
 		 where pro_size = 1 and pro_salesrate != 0
+	</select>
+
+	<!-- 메인화면 제품 목록(new,recommend,mostview,new,best,sale -->
+	<select id="selectProductMain" parameterType="Map" resultMap="ResProduct">
+		  select * 
+   		   from productall 
+		 where pro_size =1
+		 <trim prefix="">
+    	 		<if test="proStatus == 'RECOMMEND'">and pro_status = '추천'</if>
+    	 		<if test="proStatus == 'SALE'">and pro_status = '세일'</if>
+    	 		<if test="proStatus == 'NEW'">and pro_status = '신상'</if>
+    	 		<if test="proStatus == 'BEST'">and pro_status = '최고'</if>
+    	 </trim>
+    	 order by pro_price desc
+		 limit 8
 	</select>
 	
 </mapper>

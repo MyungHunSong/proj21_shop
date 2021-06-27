@@ -10,9 +10,17 @@ public class ProductController {
  
 	@GetMapping("/productlist")
 	public ModelAndView getProductListByProCategory(
-				@RequestParam(value = "proCategory") Integer proCategory
+				@RequestParam(value = "proCategory") Integer proCategory,
+				@RequestParam(value = "section") Integer section,
+				@RequestParam(value = "pageNum") Integer pageNum,
+				@RequestParam(value = "priceRange") Integer priceRange,
+				@RequestParam(value = "orderKind") String orderKind
 			) {
 		ModelAndView mav = new ModelAndView("product/productList", "proCategory",proCategory);
+		mav.addObject("section",section);
+		mav.addObject("pageNum",pageNum);
+		mav.addObject("priceRange",priceRange);
+		mav.addObject("orderKind",orderKind);
 		return mav;
 	}
 	 

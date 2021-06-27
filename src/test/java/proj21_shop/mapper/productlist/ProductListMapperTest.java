@@ -35,7 +35,7 @@ public class ProductListMapperTest {
 		System.out.println();
 	}
 
-	@Test
+	//@Test
 	public void test01ShowProducts() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		List<ProductDTO> list =mapper.selectProductByProImgState(2);
@@ -59,87 +59,6 @@ public class ProductListMapperTest {
 	}
 	
 	//@Test
-	public void test01ShowProductsByConditions() {
-		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
-
-		String orderKind = "desc";
-		HashMap<String,Object> condition = new HashMap();
-		condition.put("orderKind", orderKind);
-		System.out.println(condition);
-		List<ProductDTO> list = mapper.selectProductByCondition(condition);
-		Assert.assertNotNull(list);
-	}
-	//@Test
-	public void test01ShowProductsByConditionsDESC() {
-		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
-		
-		String orderKind = "desc";
-		HashMap<String,Object> condition = new HashMap();
-		condition.put("orderKind", orderKind);
-		System.out.println(condition);
-		List<ProductDTO> list = mapper.selectProductByCondition(condition);
-		Assert.assertNotNull(list);
-	}
-
-	//@Test
-	public void test02ShowProductsByConditionsASC() {
-		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
-		
-		String orderKind = "asc";
-		HashMap<String,Object> condition = new HashMap();
-		condition.put("orderKind", orderKind);
-		System.out.println(condition);
-		List<ProductDTO> list = mapper.selectProductByCondition(condition);
-		Assert.assertNotNull(list);
-	}
-
-	//@Test
-	public void test03ShowProductsByConditionsNEW() {
-		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
-		
-		String orderKind = "신상";
-		HashMap<String,Object> condition = new HashMap();
-		condition.put("orderKind", orderKind);
-		System.out.println(condition);
-		List<ProductDTO> list = mapper.selectProductByCondition(condition);
-		Assert.assertNotNull(list);
-	}
-
-	//@Test
-	public void test04ShowProductsByConditionsHITS() {
-		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
-		
-		String orderKind = "proHits";
-		HashMap<String,Object> condition = new HashMap();
-		condition.put("orderKind", orderKind);
-		System.out.println(condition);
-		List<ProductDTO> list = mapper.selectProductByCondition(condition);
-		Assert.assertNotNull(list);
-	}
-
-	//@Test
-	public void test05ShowProductsByConditionsBetween() {
-		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
-		
-		/* int priceRange = 5; */
-		String orderKind = "proHits";
-		HashMap<String,Object> condition = new HashMap();
-		/* condition.put("priceRange", priceRange); */
-		condition.put("orderKind", orderKind);
-		System.out.println(condition);
-		List<ProductDTO> list = mapper.selectProductByCondition(condition);
-		Assert.assertNotNull(list);
-	}
-
-	//@Test
-	public void test06ShowProductsByProName() {
-		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
-		
-		List<ProductDTO> list = mapper.selectProductByproName("t");
-		Assert.assertNotNull(list);
-	}
-	
-	//@Test
 	public void test07ShowProductsMain() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		HashMap<String,Object> condition = new HashMap();
@@ -149,16 +68,17 @@ public class ProductListMapperTest {
 		Assert.assertNotNull(list);
 	}
 	
-	//@Test
+	@Test
 	public void test08ShowProductsSale() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		HashMap<String,Object> saleProduct = new HashMap();
-		
-		/*
-		 * int priceRange = 2; String orderKind = "asc";
-		 * saleProduct.put("priceRange",priceRange);
-		 * saleProduct.put("orderKind",orderKind);
-		 */
+
+		int priceRange = 2; 
+		String orderKind = "asc";
+		saleProduct.put("search","");
+		saleProduct.put("proCategory", 0);
+//		saleProduct.put("priceRange",priceRange);
+//		saleProduct.put("orderKind",orderKind);
 		saleProduct.put("section",1);
 		saleProduct.put("pageNum",1);
 		List<ProductDTO> list = mapper.selectProductSale(saleProduct);
