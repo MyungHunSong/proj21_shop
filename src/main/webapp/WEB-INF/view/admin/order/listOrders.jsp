@@ -59,6 +59,7 @@
 			}
 		});
 	}
+	
 </script>
 <style>
 @media ( min-width : 767.98px) {

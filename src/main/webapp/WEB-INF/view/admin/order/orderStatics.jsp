@@ -27,7 +27,7 @@
 <script src="${contextPath}/resources/admin/dist/js/sidebarmenu.js"></script>
 <script>
 			$(function () {
-				var totalRevenue = 15341110;
+				
 				
 				// CanvasJS column chart to show revenue from Jan 2020 - Dec 2020
 				var revenueColumnChart = new CanvasJS.Chart("revenue-column-chart", {
@@ -51,18 +51,20 @@
 							type: "column",
 							yValueFormatString: "###,###.##원",
 							dataPoints: [
-								{ x: new Date("1 Jan 2019"), y: 868800 },
-								{ x: new Date("1 Feb 2019"), y: 1071550 },
-								{ x: new Date("1 Mar 2019"), y: 1286200 },
-								{ x: new Date("1 Apr 2019"), y: 1106900 },
-								{ x: new Date("1 May 2019"), y: 1033800 },
-								{ x: new Date("1 Jun 2019"), y: 1017160 },
-								{ x: new Date("1 Jul 2019"), y: 1458000 },
-								{ x: new Date("1 Aug 2019"), y: 1165850 },
-								{ x: new Date("1 Sep 2019"), y: 1594150 },
-								{ x: new Date("1 Oct 2019"), y: 1501700 },
-								{ x: new Date("1 Nov 2019"), y: ${totalRevenue} },
-								{ x: new Date("1 Dec 2019"), y: 0 }
+								{ x: new Date("1 Jul 2020"), y: 1458000 },
+								{ x: new Date("1 Aug 2020"), y: 1165000 },
+								{ x: new Date("1 Sep 2020"), y: 1594150 },
+								{ x: new Date("1 Oct 2020"), y: 1511100 },
+								{ x: new Date("1 Nov 2020"), y: 1508800 },
+								{ x: new Date("1 Dec 2020"), y: 1501700 },
+								{ x: new Date("1 Jan 2021"), y: 868800 },
+								{ x: new Date("1 Feb 2021"), y: 1071550 },
+								{ x: new Date("1 Mar 2021"), y: 1280200 },
+								{ x: new Date("1 Apr 2021"), y: 1106900 },
+								{ x: new Date("1 May 2021"), y: 1033800 },
+								{ x: new Date("1 Jun 2021"), y: ${totalRevenue} },
+								
+								
 							]
 						}
 					]
@@ -116,7 +118,7 @@
 					},
 					axisX: {
 						labelFontSize: 14,
-						maximum: new Date("31 Dec 2019"),
+						maximum: new Date("31 Dec 2021"),
 						valueFormatString: "MMM YYYY"
 					},
 					axisY: {
@@ -128,18 +130,18 @@
 						{
 							type: "spline",
 							dataPoints: [
-								{ x: new Date("1 Jan 2019"), y: 17376 },
-								{ x: new Date("1 Feb 2019"), y: 21431 },
-								{ x: new Date("1 Mar 2019"), y: 25724 },
-								{ x: new Date("1 Apr 2019"), y: 22138 },
-								{ x: new Date("1 May 2019"), y: 20676 },
-								{ x: new Date("1 Jun 2019"), y: 25429 },
-								{ x: new Date("1 Jul 2019"), y: 29160 },
-								{ x: new Date("1 Aug 2019"), y: 23317 },
-								{ x: new Date("1 Sep 2019"), y: 31883 },
-								{ x: new Date("1 Oct 2019"), y: 30034 },
-								{ x: new Date("1 Nov 2019"), y: ${totalOrderCount} },
-								{ x: new Date("1 Dec 2019"), y: 0 }
+								{ x: new Date("1 Jul 2020"), y: 173 },
+								{ x: new Date("1 Aug 2020"), y: 211 },
+								{ x: new Date("1 Sep 2020"), y: 224 },
+								{ x: new Date("1 Oct 2020"), y: 138 },
+								{ x: new Date("1 Nov 2020"), y: 276 },
+								{ x: new Date("1 Dec 2020"), y: 429 },
+								{ x: new Date("1 Jan 2021"), y: 160 },
+								{ x: new Date("1 Feb 2021"), y: 217 },
+								{ x: new Date("1 Mar 2021"), y: 383 },
+								{ x: new Date("1 Apr 2021"), y: 334 },
+								{ x: new Date("1 May 2021"), y: 312 },
+								{ x: new Date("1 Jun 2021"), y: ${totalOrderCount} }
 							]
 						}
 					]
@@ -152,6 +154,45 @@
 			window.onload = function () {
 				var totalVisitors = 50;
 				var visitorsData = {
+				   
+				   "남성": [{
+				      color: "#E7823A",
+				      name: "남성",
+				      type: "column",
+				      dataPoints: [
+				         { x: new Date("1 Jul 2020"), y: 2 },
+				         { x: new Date("1 Aug 2020"), y: 5 },
+				         { x: new Date("1 Sep 2020"), y: 8 },
+				         { x: new Date("1 Oct 2020"), y: 8 },
+				         { x: new Date("1 Nov 2020"), y: 9 },
+				         { x: new Date("1 Dec 2020"), y: 10 },
+				         { x: new Date("1 Jan 2021"), y: 11 },
+				         { x: new Date("1 Feb 2021"), y: 15 },
+				         { x: new Date("1 Mar 2021"), y: 17 },
+				         { x: new Date("1 Apr 2021"), y: 17 },
+				         { x: new Date("1 May 2021"), y: 17 },
+				         { x: new Date("1 Jun 2021"), y: ${totalMember} }
+				      ]
+				   }],
+				   "여성": [{
+				      color: "#546BC1",
+				      name: "여성",
+				      type: "column",
+				      dataPoints: [
+				         { x: new Date("1 Jul 2020"), y: 1 },
+				         { x: new Date("1 Aug 2020"), y: 2 },
+				         { x: new Date("1 Sep 2020"), y: 4 },
+				         { x: new Date("1 Oct 2020"), y: 5 },
+				         { x: new Date("1 Nov 2020"), y: 6 },
+				         { x: new Date("1 Dec 2020"), y: 8 },
+				         { x: new Date("1 Jan 2021"), y: 10 },
+				         { x: new Date("1 Feb 2021"), y: 15 },
+				         { x: new Date("1 Mar 2021"), y: 17 },
+				         { x: new Date("1 Apr 2021"), y: 19 },
+				         { x: new Date("1 May 2021"), y: 19 },
+				         { x: new Date("1 Jun 2021"), y: ${totalMember} }
+				      ]
+				   }],
 				   "남성 vs 여성": [{
 				      click: visitorsChartDrilldownHandler,
 				      cursor: "pointer",
@@ -164,46 +205,8 @@
 				      startAngle: 90,
 				      type: "doughnut",
 				      dataPoints: [
-				         { y: 38, name: "남성", color: "#E7823A" },
-				         { y: 12, name: "여성", color: "#546BC1" }
-				      ]
-				   }],
-				   "남성": [{
-				      color: "#E7823A",
-				      name: "남성",
-				      type: "column",
-				      dataPoints: [
-				         { x: new Date("1 Jan 2019"), y: 2 },
-				         { x: new Date("1 Feb 2019"), y: 5 },
-				         { x: new Date("1 Mar 2019"), y: 8 },
-				         { x: new Date("1 Apr 2019"), y: 12 },
-				         { x: new Date("1 May 2019"), y: 16 },
-				         { x: new Date("1 Jun 2019"), y: 18 },
-				         { x: new Date("1 Jul 2019"), y: 20 },
-				         { x: new Date("1 Aug 2019"), y: 25 },
-				         { x: new Date("1 Sep 2019"), y: 26 },
-				         { x: new Date("1 Oct 2019"), y: 26 },
-				         { x: new Date("1 Nov 2019"), y: ${totalMember} },
-				         { x: new Date("1 Dec 2019"), y: 0 }
-				      ]
-				   }],
-				   "여성": [{
-				      color: "#546BC1",
-				      name: "여성",
-				      type: "column",
-				      dataPoints: [
-				         { x: new Date("1 Jan 2019"), y: 1 },
-				         { x: new Date("1 Feb 2019"), y: 2 },
-				         { x: new Date("1 Mar 2019"), y: 4 },
-				         { x: new Date("1 Apr 2019"), y: 5 },
-				         { x: new Date("1 May 2019"), y: 6 },
-				         { x: new Date("1 Jun 2019"), y: 8 },
-				         { x: new Date("1 Jul 2019"), y: 10 },
-				         { x: new Date("1 Aug 2019"), y: 15 },
-				         { x: new Date("1 Sep 2019"), y: 17 },
-				         { x: new Date("1 Oct 2019"), y: 19 },
-				         { x: new Date("1 Nov 2019"), y: ${totalMember} },
-				         { x: new Date("1 Dec 2019"), y: 0 }
+				         { y: ${totalMember}, name: "남성", color: "#E7823A" },
+				         { y: ${totalMember}, name: "여성", color: "#546BC1" }
 				      ]
 				   }]
 				};
@@ -281,7 +284,8 @@
 					<div class="card">
 						<div class="card-body">
 							<h3 class="card-title">
-								총 수익 현황 &nbsp; <span class="tag tag-success" id="revenue-tag"> <fmt:formatNumber value="${totalRevenue}" type="number" /> 원
+								총 수익 현황 &nbsp; <span class="tag tag-success" id="revenue-tag">
+								<fmt:formatNumber value="${totalRevenue+14100000}" type="number" /> 원
 								</span>
 							</h3>
 							<br>

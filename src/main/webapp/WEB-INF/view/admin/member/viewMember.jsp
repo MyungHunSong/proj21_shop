@@ -278,7 +278,7 @@ function toggleDataSeries(e) {
 											<td width="100px">결제 일자</td>
 											<td width="100px">배송 상태</td>
 										</tr>
-
+										<c:set var="final_total_price" value="0" />
 										<c:forEach var="order" items="${orderList }">
 											<tr style="text-align: center;">
 												<td width="100px;"><a href="${contextPath}/productDetail?proNum=${order.pro.proNum}"> <img width="70px" height="105px"
@@ -298,10 +298,11 @@ function toggleDataSeries(e) {
 												<td>
 												<fmt:formatNumber value="${order.orderPrice }" pattern="#,###" /> 원
 												</td>
+												<c:set var="price" value="${order.orderPrice }"/>
+												<c:set var="final_total_price" value="${final_total_price+price }" />
 												<td>${order.orderDate }</td>
 												<td>${order.deliveryStatus}</td>
 											</tr>
-											<c:set var="final_total_price" value="${order.orderPrice }" />
 										</c:forEach>
 										<tr>
 											<td colspan="8" align="right"><strong>배송중인 상품 총 주문 가격 : <fmt:formatNumber value="${final_total_price }" pattern="#,###" />원
@@ -328,12 +329,14 @@ function toggleDataSeries(e) {
 											<td width="100px">상품 정보</td>
 											<td width="100px">주문자</td>
 
+											<td width="100px">개수</td>
 											<td width="100px">구매 가격</td>
 
 											<td width="100px">결제 일자</td>
 											<td width="100px">배송 상태</td>
 										</tr>
 
+										<c:set var="final_total_refund_price" value="0" />
 										<c:forEach var="refund" items="${refundList }">
 											<tr style="text-align: center;">
 												<td width="100px;"><a href="${contextPath}/productDetail?proNum=${refund.pro.proNum}"> <img width="70px" height="105px"
@@ -347,16 +350,18 @@ function toggleDataSeries(e) {
 														test="${refund.pro.proSize == 1}">XS </c:if> <c:if test="${refund.pro.proSize == 2}">S </c:if> <c:if test="${refund.pro.proSize == 3}">M </c:if> <c:if test="${refund.pro.proSize == 4}">L </c:if>
 													<c:if test="${refund.pro.proSize == 5}">XL </c:if></td>
 												<td>${refund.orderMemberName }</td>
+												<td>${refund.orderProQuantity }</td>
 												<td>
 												<fmt:formatNumber value="${refund.orderPrice }" pattern="#,###" /> 원
+											<c:set var="price" value="${refund.orderPrice }"/>
+											<c:set var="final_total_refund_price" value="${final_total_refund_price+price }" />
 												</td>
 												<td>${refund.orderDate }</td>
 												<td>${refund.deliveryStatus}</td>
 											</tr>
-											<c:set var="final_total_refund_price" value="${refund.orderPrice}" />
 										</c:forEach>
 										<tr>
-											<td colspan="8" align="right"><strong>반품대기중인 상품 총 주문 가격 : <fmt:formatNumber value="${final_total_refund_price}" pattern="#,###" /></strong></td>
+											<td colspan="8" align="right"><strong>반품대기중인 상품 총 주문 가격 : <fmt:formatNumber value="${final_total_refund_price}" pattern="#,###" /> 원</strong></td>
 										</tr>
 									</table>
 								</c:when>
