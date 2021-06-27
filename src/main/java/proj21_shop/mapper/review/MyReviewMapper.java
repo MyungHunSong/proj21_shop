@@ -14,4 +14,5 @@ public interface MyReviewMapper {
 	List<OrderDTO> selectProductDetailByMember(OrderDTO orderDTO);
 	int insertReview(ReviewDTO reviewDTO);
 	int updateReview(ReviewDTO reviewDTO);
+	ReviewDTO selectReviewByReviewNum(int reviewNum);
 }

@@ -18,12 +18,12 @@ public class MemberModifyService {
 	public void modify(String id, ModifyRequest req) {
 		MemberDTO member = mapper.selectById(id);
 		if (!member.getMemberPwdQ().equals(req.getMemberPwdQ())) {
-			throw new QuestionNotEqualException();}
-		if (member.getMemberPwdQ().equals(req.getMemberPwdQ()) && member.getMemberPwdA().equals(req.getMemberPwdA())) {
+			throw new QuestionNotEqualException();
+			}else if (member.getMemberPwdQ().equals(req.getMemberPwdQ()) && member.getMemberPwdA().equals(req.getMemberPwdA())) {
 			member = new MemberDTO(id, req.getMemberPh(), req.getMemberAddr1(), req.getMemberAddr2(),
 					req.getMemberAddr3(), req.getMemberEmail());
 			mapper.updateMember(member);
-		} else {
+		}else {
 			throw new QuestionAnswerNotEqualException();
 		}
 	}

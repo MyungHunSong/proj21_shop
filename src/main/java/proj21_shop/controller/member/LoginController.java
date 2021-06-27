@@ -1,5 +1,8 @@
 package proj21_shop.controller.member;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -34,7 +37,7 @@ public class LoginController {
     }
 
     @PostMapping
-    public String submit(LoginCommand loginCommand, Errors errors, HttpSession session, HttpServletResponse response) {
+    public String submit(LoginCommand loginCommand, Errors errors, HttpSession session, HttpServletResponse response) throws IOException {
 
         if (errors.hasErrors())
             return "/member/login/loginForm";
@@ -58,7 +61,10 @@ public class LoginController {
             return "redirect:/main";
 
         }catch (WrongIdPasswordException ex) {
-            errors.reject("idPasswordNotMatching");
+        	response.setContentType("text/html; charset=UTF-8");
+        	PrintWriter out = response.getWriter();
+        	out.println("<script>alert('로그인 정보를 확인해주세요.'); history.go(-1);</script>");
+        	out.flush();
             return "/member/login/loginForm";
         }
     }

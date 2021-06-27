@@ -47,4 +47,5 @@ public class MyReviewServiceImpl implements MyReviewService {
 		return mapper.updateReview(reviewDTO);
 	}
 
+
 }
