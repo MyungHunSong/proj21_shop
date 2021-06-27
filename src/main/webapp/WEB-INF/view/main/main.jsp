@@ -59,6 +59,16 @@ $(function(){
 					}
 					$("#"+proStatus[0]).append(sCont);
 				} 
+				$('.add-cart').on('click',function(){
+					var uri = $(this).prev().prev().children().attr("href")
+					var proNum = uri.substring(uri.length,uri.length-3)
+					console.log(proNum)
+					openPop(proNum)
+				})
+				
+				function openPop(proNum){
+					var popup = window.open("productDetailItem2?proNum="+proNum,'상품상세정보','width=800px, height=700px');
+				}
 			});
 	$.get(contextPath + "/api/selectProductsMain/"+proStatus[1],
 			function(json){
@@ -87,7 +97,17 @@ $(function(){
 				        sCont +="</div>"
 					}
 					$("#"+proStatus[1]).append(sCont);
-				} 
+				}
+				$('.add-cart').on('click',function(){
+					var uri = $(this).prev().prev().children().attr("href")
+					var proNum = uri.substring(uri.length,uri.length-3)
+					console.log(proNum)
+					openPop(proNum)
+				})
+				
+				function openPop(proNum){
+					var popup = window.open("productDetailItem2?proNum="+proNum,'상품상세정보','width=800px, height=700px');
+				}
 			});
 	$.get(contextPath + "/api/selectProductsMain/"+proStatus[2],
 			function(json){
@@ -117,6 +137,16 @@ $(function(){
 					}
 					$("#"+proStatus[2]).append(sCont);
 				} 
+				$('.add-cart').on('click',function(){
+					var uri = $(this).prev().prev().children().attr("href")
+					var proNum = uri.substring(uri.length,uri.length-3)
+					console.log(proNum)
+					openPop(proNum)
+				})
+				
+				function openPop(proNum){
+					var popup = window.open("productDetailItem2?proNum="+proNum,'상품상세정보','width=800px, height=700px');
+				}
 			});
 	$.get(contextPath + "/api/selectProductsMain/"+proStatus[3],
 			function(json){
@@ -147,6 +177,16 @@ $(function(){
 					$("#"+proStatus[3]).append(sCont);
 					
 				} 
+				$('.add-cart').on('click',function(){
+					var uri = $(this).prev().prev().children().attr("href")
+					var proNum = uri.substring(uri.length,uri.length-3)
+					console.log(proNum)
+					openPop(proNum)
+				})
+				
+				function openPop(proNum){
+					var popup = window.open("productDetailItem2?proNum="+proNum,'상품상세정보','width=800px, height=700px');
+				}
 			});
 	$('.listRemocon').on('click',function(){
 		var listRemocon = $(this).text();
@@ -163,6 +203,8 @@ $(function(){
 			$('html, body').animate({scrollTop:$('#best').position().top}, 'slow');
 		}
 	})
+	
+
 	
 })   
 </script>

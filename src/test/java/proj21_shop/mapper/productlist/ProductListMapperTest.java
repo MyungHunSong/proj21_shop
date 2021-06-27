@@ -35,10 +35,10 @@ public class ProductListMapperTest {
 		System.out.println();
 	}
 
-	//@Test
+	@Test
 	public void test01ShowProducts() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
-		List<ProductDTO> list =mapper.selectProductByProImgState(1, 1);
+		List<ProductDTO> list =mapper.selectProductByProImgState(2);
 		Assert.assertNotNull(list);
 		System.out.println(list);
 	}
@@ -139,7 +139,7 @@ public class ProductListMapperTest {
 		Assert.assertNotNull(list);
 	}
 	
-	@Test
+	//@Test
 	public void test07ShowProductsMain() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		HashMap<String,Object> condition = new HashMap();
@@ -147,5 +147,28 @@ public class ProductListMapperTest {
 		condition.put("proStatus",proStatus);
 		List<ProductDTO> list = mapper.selectProductMain(condition);
 		Assert.assertNotNull(list);
+	}
+	
+	//@Test
+	public void test08ShowProductsSale() {
+		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
+		HashMap<String,Object> saleProduct = new HashMap();
+		
+		/*
+		 * int priceRange = 2; String orderKind = "asc";
+		 * saleProduct.put("priceRange",priceRange);
+		 * saleProduct.put("orderKind",orderKind);
+		 */
+		saleProduct.put("section",1);
+		saleProduct.put("pageNum",1);
+		List<ProductDTO> list = mapper.selectProductSale(saleProduct);
+		
+		Assert.assertNotNull(list);
+	}
+	
+	//@Test
+	public void test09CountProducts() {
+		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
+		int res = mapper.selectCountByProductSale();
 	}
 }

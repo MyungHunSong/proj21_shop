@@ -34,10 +34,19 @@
           from  product p join pro_img i on p.pro_num = i.pro_num
 	</sql>
 	
+	<sql id="whereSQL">
+		<where>
+			<if test="pro"></if>
+		</where>
+	</sql>
+	
 	<!-- 옷카테고리별 목록 검색 -->
 	<select id="selectProductByProImgState" parameterType="int" resultMap="ResProduct">
 		<include refid="selectProductJoinProductImageSQL"></include>
-		where pro_img_state = #{param1} and pro_category = #{param2} and pro_size = 1
+		where pro_size = 1 
+			<if test="proCategory > 0">
+				and pro_category = #{proCategory}
+			</if>
 	</select> 
 
 	<!-- 옷 상세정보 보기 -->
@@ -101,9 +110,39 @@
 		 limit 8
 	</select>
 	
-	<select id="selectCountProd" resultType="int">
-		 select count(pro_num)  
-   		  from product
-        where pro_size = 1  
+	<!--  제품 목록 세일 페이징 -->
+	<select id="selectProductSale" parameterType="Map" resultMap="ResProduct">
+		SELECT DISTINCT  a.*
+		  FROM  (select FORMAT(@ROWNUM := @ROWNUM + 1, 0) as rn,
+							  pro_num, pro_category, pro_name, pro_price, pro_salesrate, pro_cre_date,
+							  pro_status, pro_color, pro_size, pro_quantity, pro_hits, pro_imagefilename
+				      from ( select  @ROWNUM := 0 ) R, productall
+				  			   where  pro_size = 1 and pro_salesrate != 0
+				  			   <trim prefix="and pro_price between">
+						    	 	<if test="priceRange == 1">10000 and 30000</if>
+						    	 	<if test="priceRange == 2">30000 and 50000</if>
+						    	 	<if test="priceRange == 3">50000 and 80000</if>
+						    	 	<if test="priceRange == 4">80000 and 100000</if>
+						       </trim>
+						       <trim prefix="">
+						     		<if test="priceRange == 5">and pro_price > 100000</if>
+						       </trim>
+							   <trim prefix="order by">
+									<if test="orderKind == 'asc'">pro_price*(100-pro_salesrate) asc</if>   
+									<if test="orderKind == 'desc'">pro_price*(100-pro_salesrate) desc</if>   
+									<if test="orderKind == '신상'">'신상'</if>   
+									<if test="orderKind == 'proHits'">pro_hits desc</if>   
+						       </trim>) a
+				    where pro_size = 1
+	          				 AND rn BETWEEN (#{section,jdbcType=NUMERIC}-1) * 100 +(#{pageNum,jdbcType=NUMERIC}-1) * 8 + 1 
+	          				 AND (#{section,jdbcType=NUMERIC}-1) * 100 +#{pageNum,jdbcType=NUMERIC} * 8
 	</select>
+	
+	<!--  제품 목록 세일 카운트 -->
+	<select id="selectCountByProductSale" parameterType="Integer" resultType="int">
+		  select count(*)
+  		   from productall
+		 where pro_size = 1 and pro_salesrate != 0
+	</select>
+	
 </mapper>

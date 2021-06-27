@@ -10,11 +10,9 @@ public class ProductController {
  
 	@GetMapping("/productlist")
 	public ModelAndView getProductListByProCategory(
-				@RequestParam(value = "proImgState") Integer proImgState,
 				@RequestParam(value = "proCategory") Integer proCategory
 			) {
-		ModelAndView mav = new ModelAndView("product/productList", "proImgState",proImgState);
-		mav.addObject("proCategory",proCategory);
+		ModelAndView mav = new ModelAndView("product/productList", "proCategory",proCategory);
 		return mav;
 	}
 	 
@@ -31,10 +29,17 @@ public class ProductController {
 		return mav;
 	}
 	
+	/*팝업용*/
 	@GetMapping("/productDetailItem2")
 	public ModelAndView getProductDetailItem2(
 			@RequestParam(value = "proNum") Integer proNum) {
 		ModelAndView mav = new ModelAndView("product/productDetailItem2" ,"proNum",proNum);
 		return mav;
 	}
+	
+	@GetMapping("/productsSaleList")
+	public ModelAndView productsSaleList() {
+		ModelAndView mav = new ModelAndView();
+		return mav;
+	} 
 }

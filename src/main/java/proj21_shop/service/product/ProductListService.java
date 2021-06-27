@@ -9,7 +9,7 @@ import proj21_shop.dto.product.ProductDTO;
 
 @Service
 public interface ProductListService {
-	List<ProductDTO> showProducts(int proImgState,int proCategory);
+	List<ProductDTO> showProducts(int proCategory);
 	
 	List<ProductDTO> showProductDetailByProNum(int proNum);
 	
@@ -23,4 +23,8 @@ public interface ProductListService {
 	
 	//옷 이름으로 검색
 	List<ProductDTO> selectProductByproName(String proName);
+	
+	//세일하는 제품 목록 페이징
+	List<ProductDTO> selectProductSale(Map<String, Object> saleProduct);
+	Integer selectCountByProductSale();
 }

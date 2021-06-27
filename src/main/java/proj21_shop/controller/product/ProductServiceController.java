@@ -21,9 +21,9 @@ public class ProductServiceController {
 	private ProductListService service;
 	
 	/* 옷목록화면 */
-	@GetMapping("/productlist/{proImgState}/{proCategory}")
-	public ResponseEntity<Object> products(@PathVariable int proImgState,@PathVariable int proCategory){
-		List<ProductDTO> list = service.showProducts(proImgState,proCategory);
+	@GetMapping("/productlist/{proCategory}")
+	public ResponseEntity<Object> products(@PathVariable int proCategory){
+		List<ProductDTO> list = service.showProducts(proCategory);
 		return ResponseEntity.ok(list);
 	}
 	
@@ -60,4 +60,22 @@ public class ProductServiceController {
 		condition.put("proStatus", proStatus);
 		return ResponseEntity.ok(service.selectProductMain(condition));
 	} 
+	
+	@GetMapping("/selectProductsSale/{section}/{pageNum}/{priceRange}/{orderKind}")
+	public ResponseEntity<Object> selectProductsSale(@PathVariable Integer section, @PathVariable Integer pageNum, 
+		@PathVariable Integer priceRange, @PathVariable String orderKind){
+		HashMap<String,Object> saleProduct = new HashMap<>();
+		saleProduct.put("section",section);
+		saleProduct.put("pageNum",pageNum);
+		saleProduct.put("priceRange",priceRange);
+		saleProduct.put("orderKind",orderKind);
+		
+		System.out.println("section"+section);
+		System.out.println("pageNum"+pageNum);
+		System.out.println("priceRange"+priceRange);
+		System.out.println("orderKind"+orderKind);
+		System.out.println("saleProduct"+saleProduct);
+		
+		return ResponseEntity.ok(service.selectProductSale(saleProduct));
+	}
 }

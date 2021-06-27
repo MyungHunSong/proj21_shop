@@ -26,12 +26,11 @@ $(function(){
 		$(this).siblings().removeClass("active");
 	}
 	var contextPath = "${contextPath}";
-	var proImgState = ${proImgState};
 	var proCategory = ${proCategory};
 
 	var proSize = ["XS","S","M","L","XL"]
 	
-	$.get(contextPath + "/api/productlist/"+proImgState+"/"+proCategory,
+	$.get(contextPath + "/api/productlist/"+proCategory,
 	function(json){
 		console.log(json)
 		var dataLength = json.length;
@@ -109,6 +108,16 @@ $(function(){
 							}
 							$(".productList").append(sCont);
 						}
+						$('.add-cart').on('click',function(){
+							var uri = $(this).prev().prev().children().attr("href")
+							var proNum = uri.substring(uri.length,uri.length-3)
+							console.log(proNum)
+							openPop(proNum)
+						})
+						
+						function openPop(proNum){
+							var popup = window.open("productDetailItem2?proNum="+proNum,'상품상세정보','width=800px, height=700px');
+						}
 					})
 		}else{
 			$.get(contextPath + "/api/selectProductsCondition/"+proCategory+"/"+sortOrder+"/"+sortPrice,
@@ -139,6 +148,16 @@ $(function(){
 						        sCont +="</div>"
 							}
 							$(".productList").append(sCont);
+							$('.add-cart').on('click',function(){
+								var uri = $(this).prev().prev().children().attr("href")
+								var proNum = uri.substring(uri.length,uri.length-3)
+								console.log(proNum)
+								openPop(proNum)
+							})
+							
+							function openPop(proNum){
+								var popup = window.open("productDetailItem2?proNum="+proNum,'상품상세정보','width=800px, height=700px');
+							}
 						}else{
 							sCont +="<div class = 'searchBlank'>검색 결과<br> 없습니다.</div>"
 							$(".productList").append(sCont);
@@ -192,20 +211,29 @@ $(function(){
 						        sCont +="		<button class='add-cart'>Add to Cart</button>"
 						        sCont +="</div>"
 							}
-							
 						}else if(dataLength == 0 | test == ''){
 							sCont +="<div class = 'searchBlank'>검색 결과<br> 없습니다.</div>"
 						}
 						$(".productList").append(sCont);
-					
+						$('.add-cart').on('click',function(){
+							var uri = $(this).prev().prev().children().attr("href")
+							var proNum = uri.substring(uri.length,uri.length-3)
+							console.log(proNum)
+							openPop(proNum)
+						})
+						
+						function openPop(proNum){
+							var popup = window.open("productDetailItem2?proNum="+proNum,'상품상세정보','width=800px, height=700px');
+						}
 				})	
+				
 			}else {
 				sCont +="<div class = 'searchBlank'>검색 결과<br> 없습니다.</div>"
 				$(".productList").append(sCont);
 			}
-		}) 
+	}) 
 		
-		
+	
 		
 		
 })

@@ -458,19 +458,78 @@ update product
       set pro_status = '신상'
 where pro_num like concat(505,'%');
 
-/**/
-/*리스트 페이징*/
- select * 
-   from productall
-where pro_size = 1
-  order by pro_hits desc
-   limit 8,8;    
-   
-select * from `order` o ;
-
-delete from `order` where order_code = 11;
-
 /*세일 쿼리*/
  select * 
    from productall
-where pro_size =1 and pro_salesrate != 0;  
+where pro_size =1 and pro_salesrate != 0;
+
+
+/*리스트 페이징*/
+ select * 
+   from productall
+where pro_size = 1 and pro_salesrate != 0
+  order by pro_price asc; 
+   
+ select count(*)
+   from productall
+where pro_size = 1 and pro_salesrate != 0;
+
+
+/*sql문에서 페이징 하기*/
+SELECT DISTINCT 
+	a.*
+FROM
+	(select
+				FORMAT(@ROWNUM := @ROWNUM + 1, 0) as rn,
+								pro_num,
+								pro_category,
+								pro_name,
+								pro_price,
+								pro_salesrate,
+								pro_cre_date,
+								pro_status,
+								pro_color,
+								pro_size,
+								pro_quantity,
+								pro_hits,
+								pro_imagefilename
+      from
+			  (select  @ROWNUM := 0 ) R, productall
+  			   where  pro_size = 1 and pro_salesrate != 0
+  			     order by pro_hits desc) a
+  where pro_size = 1
+	AND rn BETWEEN (1-1)* 100 +(1-1)* 8 + 1 AND (1-1)* 100 +1* 8;
+
+select
+	distinct a.*
+from
+	(
+	select
+		FORMAT(@ROWNUM := @ROWNUM + 1, 0) as rn,
+		pro_num,
+		pro_category,
+		pro_name,
+		pro_price,
+		pro_salesrate,
+		pro_cre_date,
+		pro_status,
+		pro_color,
+		pro_size,
+		pro_quantity,
+		pro_hits,
+		pro_imagefilename
+	from
+		(
+		select
+			@ROWNUM := 0 ) R,
+		productall
+	where
+		pro_size = 1
+		and pro_salesrate != 0
+	/*order by
+		pro_price*(100-pro_salesrate) asc*/ ) a
+where
+	pro_size = 1
+	and rn between 1 and 8;
+
+
