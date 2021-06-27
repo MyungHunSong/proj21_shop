@@ -3,7 +3,11 @@ package proj21_shop.dto.order;
 import java.sql.Date;
 import java.util.List;
 
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import proj21_shop.dto.member.MemberDTO;
+
 import proj21_shop.dto.product.ProductDTO;
 import proj21_shop.dto.product.ProductImageDTO;
 
@@ -40,6 +44,7 @@ public class OrderDTO {
 	private String deliveryStatus;
 	private String requestToDelivery;
 
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date orderDate;
 
 	private String whoPay;

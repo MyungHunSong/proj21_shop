@@ -77,7 +77,7 @@
 	<update id="deleteMember" parameterType="MemberDTO">
 		update member
 		set m_exit
-		= 0
+		= 1
 		where m_id = #{memberId};
 	</update>
 

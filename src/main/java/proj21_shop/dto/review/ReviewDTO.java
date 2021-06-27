@@ -3,6 +3,8 @@ package proj21_shop.dto.review;
 import java.sql.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import proj21_shop.dto.product.ProductDTO;
 import proj21_shop.dto.product.ProductImageDTO;
 
@@ -15,6 +17,7 @@ public class ReviewDTO {
 	private String reviewContent;
 	private String reviewImagefilename1;
 	private String reviewImagefilename2;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date reviewDate;
 	private int reviewReplyCount;
 	private int reviewStar;

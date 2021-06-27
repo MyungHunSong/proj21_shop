@@ -1,6 +1,11 @@
 package proj21_shop.controller.member;
 
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,13 +33,17 @@ public class RegisterController {
 	}
 	
 	@PostMapping
-	public String Register(@ModelAttribute("RegisterRequest") RegisterRequest regReq, Errors errors, Model model) {
+	public String Register(@ModelAttribute("RegisterRequest") RegisterRequest regReq, Errors errors, Model model, HttpServletResponse response) throws IOException {
 		if(errors.hasErrors())
 			return "member/register/registerForm";
 		try {
 			memberRegisterService.regist(regReq);
 			return "member/register/registerSuccess";
 		}catch(DuplicateMemberException ex) {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('이미 존재하는 회원입니다.'); history.go(-1);</script>");
+			out.flush();
 			return "member/register/registerForm";
 		}
 	}

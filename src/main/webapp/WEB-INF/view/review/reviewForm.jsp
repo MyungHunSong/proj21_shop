@@ -63,8 +63,8 @@
 							alert("data > " + data.reviewNum);
 							$.ajax({
 								url : contextPath + "/api/myreview/"+ data.reviewNum,
-								type : 'PUT',
-								contentType : "application.json; charset=utf-8",
+								type : 'Patch',
+								contentType : "application/json;charset=utf-8",
 								datatype : "json",
 								cache : false,
 								data : JSON.stringify(data),
@@ -117,17 +117,19 @@
 				if(json[0].reviewContent == undefined){
 					sConts += "<textarea id='reviewContent' cols='45' rows='10' placeholder='상품에 대한 평가를 20자 이상 작성해 주세요'></textarea><br>";	
 				}else{
-					sConts += "<textarea id='content' cols='45' rows='10' placeholder='상품에 대한 평가를 20자 이상 작성해 주세요'>"+json[0].reviewContent+"</textarea><br>";
+					sConts += "<textarea id='reviewContent' cols='45' rows='10' placeholder='상품에 대한 평가를 20자 이상 작성해 주세요'>"+json[0].reviewContent+"</textarea><br>";
 				}
 				
 				sConts += "<div class='file'>";
 				sConts += "<input type='file' id='imgButton1' name='imgButton1'/>";
 				sConts += "<input type='file' id='imgButton2' name='imgButton2'/>";
 				sConts += "</div><br>";
-				if(json[0].reviewContent == undefined){
+				if(json[0].reviewContent = undefined){
 				sConts += "<button id='insert'>등록</button>";
+				}else if (json[0].reviewContent == null){
+				sConts += "<button id='modify'>수정</button>";
 				}else{
-				sConts += "<button id='modify'>수정</button>";	
+				sConts += "<button id='modify'>수정</button>";
 				}
 				
 				sConts += "<div class='bigPictureWrapper'>";
@@ -273,8 +275,7 @@
 		</div>
 	</div>
 		<br>
-			<div class="review" id="review">
+			<div class="review" id="review"></div>
 		<jsp:include page="/WEB-INF/view/include/footer.jsp"></jsp:include>
-			</div>
 </body>
 </html>

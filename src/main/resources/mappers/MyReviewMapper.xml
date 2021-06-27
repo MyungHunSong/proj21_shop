@@ -109,7 +109,21 @@
 	
 	<update id="updateReview" parameterType="ReviewDTO">
 	update review
- 	  set re_content = #{reviewContent}, re_image = #{reviewImagefilename1}, re_image2 = #{reviewImagefilename2}, re_stars = #{reviewStar}
+		<set>
+			<if test="reviewContent neq null">
+		 	   re_content = #{reviewContent},
+		 	</if>
+		 	<if test="reviewImagefilename1 neq null">
+		 	   re_image = #{reviewImagefilename1},
+		 	</if>
+		 	<if test="reviewImagefilename2 neq null">
+		 	   re_image2 = #{reviewImagefilename2},
+		 	</if>
+		 	<if test="reviewStar neq null">
+		 	   re_stars = #{reviewStar},
+		 	</if>
+	 	</set>
 	where re_num = #{reviewNum}
 	</update>
+	
 </mapper>

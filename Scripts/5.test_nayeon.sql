@@ -38,11 +38,12 @@ values (1, 1, 1, '블라우스', 10000, 10, '2020-05-26', '판매중', 1, 1, 1, 
 insert into review
 values (1, 1, '이나연', '옷이 너무 맘에 드네요', 'insert1.jpg', 'insert2.jpg', '2021-5-26', 5);
 
+-- 리뷰 수정(검색 후 리뷰 수정)
+select re_content, re_image, re_image2, re_stars from review where re_num = 1;
+
 update review
    set re_content = '맘에 들어요', re_image = 'update.jpg', re_image2 = 'update.jpg', re_stars = 4
  where re_num = 1;
-
-select * from review;
 
 -- 후기 내역
 select * from product;
@@ -137,9 +138,12 @@ select m_passwd
   from member
  where m_id = 'skdus2421';
 
-update member
-   set m_exit = 0
- where m_id = 'test06';
+select * from member;
+
+
+delete 
+  from member
+ where m_id = 'test05';
 
 -- 주문 상세 내역 페이지 
 select * from `order` o ;

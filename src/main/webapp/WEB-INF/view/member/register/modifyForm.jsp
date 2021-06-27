@@ -80,7 +80,6 @@
 	<h2>회원 정보 수정</h2>
 	<section id="modifyFormArea">
 		<form:form modelAttribute="ModifyRequest">
-		<form:errors/>
 			<table class="type02">
 				<tr>
 					<th scope="row"><label for="confirmQuestion">본인확인질문</label></th>
@@ -94,7 +93,7 @@
 				</tr>
 				<tr>
 					<th scope="row"><label for="answer">답변</label></th>
-					<td><form:input path="memberPwdA" id="answer" /></td>
+					<td><form:input path="memberPwdA" id="answer" /><form:errors /></td>
 				</tr>
 				<tr>
 					<th scope="row"><label for="tel">전화 번호</label></th>

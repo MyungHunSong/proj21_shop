@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import proj21_shop.dto.member.AuthInfo;
 import proj21_shop.dto.member.ModifyRequest;
 import proj21_shop.exception.MemberNotFoundException;
+import proj21_shop.exception.QuestionAnswerNotEqualException;
+import proj21_shop.exception.QuestionNotEqualException;
 import proj21_shop.service.MemberModifyService;
 
 @Controller
@@ -35,7 +37,10 @@ public class ModifyController {
 		}
 		try{AuthInfo authInfo = (AuthInfo) session.getAttribute("authInfo");
 		memberModifyService.modify(authInfo.getId(), modifyRequest);
-		}catch (MemberNotFoundException e) {
+		}catch (QuestionNotEqualException e) {
+			return "/member/register/modifyForm";
+		}catch (QuestionAnswerNotEqualException e) {
+		  errors.rejectValue("QuestionAnswerNotMatching", "답변 불일치");
 			return "/member/register/modifyForm";
 		}
 		
