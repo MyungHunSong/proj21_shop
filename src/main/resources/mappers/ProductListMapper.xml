@@ -68,7 +68,7 @@
    		   from productall 
 		 where pro_size = 1 
 		 <trim prefix="">
-		 	<if test="proCategory >= 0">and pro_category = #{proCategory}</if>
+		 	<if test="proCategory > 0">and pro_category = #{proCategory}</if>
 		 </trim>
     	 <trim prefix="and pro_price between">
     	 		<if test="priceRange == 1">10000 and 30000</if>
