@@ -58,4 +58,9 @@ public class ProductServiceController {
 		
 		return ResponseEntity.ok(service.selectProductSale(saleProduct));
 	}
+	
+	@GetMapping("/selectCountByProductSale")
+	public ResponseEntity<Object> countProdList(){
+		return ResponseEntity.ok(service.selectCountByProductSale());
+	}
 }

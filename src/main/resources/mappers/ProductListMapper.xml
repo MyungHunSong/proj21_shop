@@ -47,7 +47,7 @@
          where pro_num = #{param1};
 	</update>
 	
-	<!--  제품 목록 세일 페이징 -->
+	<!--  제품 목록 페이징 -->
 	<select id="selectProductSale" parameterType="Map" resultMap="ResProduct">
 		SELECT DISTINCT  a.*
 		  FROM  (select FORMAT(@ROWNUM := @ROWNUM + 1, 0) as rn,
@@ -77,8 +77,8 @@
 									<if test="orderKind == 'proHits'">pro_hits desc</if>   
 						       </trim>) a
 				    where pro_size = 1
-	          				 AND rn BETWEEN (#{section,jdbcType=NUMERIC}-1) * 100 +(#{pageNum,jdbcType=NUMERIC}-1) * 8 + 1 
-	          				 AND (#{section,jdbcType=NUMERIC}-1) * 100 +#{pageNum,jdbcType=NUMERIC} * 8
+	          				 AND rn BETWEEN (#{section,jdbcType=NUMERIC}-1) * 80 +(#{pageNum,jdbcType=NUMERIC}-1) * 8 + 1 
+	          				 AND (#{section,jdbcType=NUMERIC}-1) * 80 +#{pageNum,jdbcType=NUMERIC} * 8
 	</select>
 	
 	<!--  제품 목록 세일 카운트 -->

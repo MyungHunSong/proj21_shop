@@ -80,7 +80,7 @@ public class ProductListMapperTest {
 //		saleProduct.put("priceRange",priceRange);
 //		saleProduct.put("orderKind",orderKind);
 		saleProduct.put("section",1);
-		saleProduct.put("pageNum",1);
+		saleProduct.put("pageNum",4);
 		List<ProductDTO> list = mapper.selectProductSale(saleProduct);
 		
 		Assert.assertNotNull(list);

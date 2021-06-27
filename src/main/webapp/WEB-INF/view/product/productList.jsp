@@ -34,12 +34,6 @@ $(function(){
 	var section = ${section};
 	var proSize = ["XS","S","M","L","XL"]
 	
-	console.log(proCategory)
-	console.log(orderKind)
-	console.log(priceRange)
-	console.log(pageNum)
-	console.log(section)
-	
 	$.get(contextPath + "/api/selectProductsSale/"+proCategory+"/"+section+"/"+pageNum+"/"+priceRange+"/"+orderKind+"/null",
 	function(json){
 		console.log(json)
@@ -192,11 +186,10 @@ $(function(){
 	$('.fa-search').on('click',function(){
 			$(".productList *").remove(); 
 			var sCont = "";
-			var test = $(this).prev().val()
-			if(test != ''){
-				$.get(contextPath + "/api/selectProductsSale/"+proCategory+"/"+section+"/"+pageNum+"/"+priceRange+"/"+orderKind+"/"+test,
+			var search = $(this).prev().val()
+			if(search != ''){
+				$.get(contextPath + "/api/selectProductsSale/"+proCategory+"/"+section+"/"+pageNum+"/"+priceRange+"/"+orderKind+"/"+search,
 					function(json){
-						console.log(test)
 						var dataLength = json.length;
 						
 						if(dataLength >= 1){
@@ -221,7 +214,7 @@ $(function(){
 						        sCont +="		<button class='add-cart'>Add to Cart</button>"
 						        sCont +="</div>"
 							}
-						}else if(dataLength == 0 | test == ''){
+						}else if(dataLength == 0 | search == ''){
 							sCont +="<div class = 'searchBlank'>검색 결과<br> 없습니다.</div>"
 						}
 						$(".productList").append(sCont);
@@ -241,9 +234,17 @@ $(function(){
 				sCont +="<div class = 'searchBlank'>검색 결과<br> 없습니다.</div>"
 				$(".productList").append(sCont);
 			}
+			
 	}) 
 		
+	function totalCount(){
+		$.get(contextPath + "/api/selectCountByProductSale",function(json){
+		})	
+	}
 	
+	var test = totalCount()
+	var tt = test
+	console.log(tt);
 		
 		
 })
@@ -286,7 +287,7 @@ $(function(){
 		<input type="text" placeholder="검색" style="padding: 5px;"><i class="fas fa-search"></i>
 	</div>
 	<div class="productList"></div>
-
+	<div class="pageBtn"></div>
 <jsp:include page="/WEB-INF/view/include/footer.jsp"></jsp:include>
 </div>
 </body>
