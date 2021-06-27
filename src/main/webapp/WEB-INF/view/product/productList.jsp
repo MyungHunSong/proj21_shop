@@ -25,13 +25,16 @@ $(function(){
 		$(this).addClass("active");
 		$(this).siblings().removeClass("active");
 	}
+	
 	var contextPath = "${contextPath}";
-	var proImgState = ${proImgState};
 	var proCategory = ${proCategory};
-
+	var orderKind = "${orderKind}";
+	var priceRange = ${priceRange};
+	var pageNum = ${pageNum};
+	var section = ${section};
 	var proSize = ["XS","S","M","L","XL"]
 	
-	$.get(contextPath + "/api/productlist/"+proImgState+"/"+proCategory,
+	$.get(contextPath + "/api/selectProductsSale/"+proCategory+"/"+section+"/"+pageNum+"/"+priceRange+"/"+orderKind+"/null",
 	function(json){
 		console.log(json)
 		var dataLength = json.length;
@@ -81,7 +84,7 @@ $(function(){
 		$(".productList *").remove(); 
 		if(sortPrice == undefined){
 			sortPrice = 0;
-			$.get(contextPath + "/api/selectProductsCondition/"+proCategory+"/"+sortOrder+"/"+sortPrice,
+			$.get(contextPath + "/api/selectProductsSale/"+proCategory+"/"+section+"/"+pageNum+"/"+priceRange+"/"+orderKind+"/null",
 					function(json){
 						var sCont = "";
 						var dataLength = json.length;
@@ -109,9 +112,19 @@ $(function(){
 							}
 							$(".productList").append(sCont);
 						}
+						$('.add-cart').on('click',function(){
+							var uri = $(this).prev().prev().children().attr("href")
+							var proNum = uri.substring(uri.length,uri.length-3)
+							console.log(proNum)
+							openPop(proNum)
+						})
+						
+						function openPop(proNum){
+							var popup = window.open("productDetailItem2?proNum="+proNum,'상품상세정보','width=800px, height=700px');
+						}
 					})
 		}else{
-			$.get(contextPath + "/api/selectProductsCondition/"+proCategory+"/"+sortOrder+"/"+sortPrice,
+			$.get(contextPath + "/api/selectProductsSale/"+proCategory+"/"+section+"/"+pageNum+"/"+priceRange+"/"+orderKind+"/null",
 					function(json){
 						console.log(json)
 						var dataLength = json.length;
@@ -139,6 +152,16 @@ $(function(){
 						        sCont +="</div>"
 							}
 							$(".productList").append(sCont);
+							$('.add-cart').on('click',function(){
+								var uri = $(this).prev().prev().children().attr("href")
+								var proNum = uri.substring(uri.length,uri.length-3)
+								console.log(proNum)
+								openPop(proNum)
+							})
+							
+							function openPop(proNum){
+								var popup = window.open("productDetailItem2?proNum="+proNum,'상품상세정보','width=800px, height=700px');
+							}
 						}else{
 							sCont +="<div class = 'searchBlank'>검색 결과<br> 없습니다.</div>"
 							$(".productList").append(sCont);
@@ -163,11 +186,10 @@ $(function(){
 	$('.fa-search').on('click',function(){
 			$(".productList *").remove(); 
 			var sCont = "";
-			var test = $(this).prev().val()
-			if(test != ''){
-				$.get(contextPath + "/api/selectProductByProName/"+test,
+			var search = $(this).prev().val()
+			if(search != ''){
+				$.get(contextPath + "/api/selectProductsSale/"+proCategory+"/"+section+"/"+pageNum+"/"+priceRange+"/"+orderKind+"/"+search,
 					function(json){
-						console.log(test)
 						var dataLength = json.length;
 						
 						if(dataLength >= 1){
@@ -192,20 +214,37 @@ $(function(){
 						        sCont +="		<button class='add-cart'>Add to Cart</button>"
 						        sCont +="</div>"
 							}
-							
-						}else if(dataLength == 0 | test == ''){
+						}else if(dataLength == 0 | search == ''){
 							sCont +="<div class = 'searchBlank'>검색 결과<br> 없습니다.</div>"
 						}
 						$(".productList").append(sCont);
-					
+						$('.add-cart').on('click',function(){
+							var uri = $(this).prev().prev().children().attr("href")
+							var proNum = uri.substring(uri.length,uri.length-3)
+							console.log(proNum)
+							openPop(proNum)
+						})
+						
+						function openPop(proNum){
+							var popup = window.open("productDetailItem2?proNum="+proNum,'상품상세정보','width=800px, height=700px');
+						}
 				})	
+				
 			}else {
 				sCont +="<div class = 'searchBlank'>검색 결과<br> 없습니다.</div>"
 				$(".productList").append(sCont);
 			}
-		}) 
+			
+	}) 
 		
-		
+	function totalCount(){
+		$.get(contextPath + "/api/selectCountByProductSale",function(json){
+		})	
+	}
+	
+	var test = totalCount()
+	var tt = test
+	console.log(tt);
 		
 		
 })
@@ -248,7 +287,7 @@ $(function(){
 		<input type="text" placeholder="검색" style="padding: 5px;"><i class="fas fa-search"></i>
 	</div>
 	<div class="productList"></div>
-
+	<div class="pageBtn"></div>
 <jsp:include page="/WEB-INF/view/include/footer.jsp"></jsp:include>
 </div>
 </body>

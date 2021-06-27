@@ -20,37 +20,12 @@ public class ProductServiceController {
 	@Autowired
 	private ProductListService service;
 	
-	/* 옷목록화면 */
-	@GetMapping("/productlist/{proImgState}/{proCategory}")
-	public ResponseEntity<Object> products(@PathVariable int proImgState,@PathVariable int proCategory){
-		List<ProductDTO> list = service.showProducts(proImgState,proCategory);
-		return ResponseEntity.ok(list);
-	}
-	
 	/* 옷 상세보기 */
 	@GetMapping("/productDetail/{proNum}")
 	public ResponseEntity<Object> productDetail(@PathVariable int proNum){
 		service.updateProhits(Integer.parseInt(proNum+"1"));
 		List<ProductDTO> product= service.showProductDetailByProNum(proNum);
 		return ResponseEntity.ok(product);
-	}
-	
-	/* 옷목록 에서 여러 조건(가격순, 조회순, 신상, 가격범위)으로 검색 */
-	@GetMapping("/selectProductsCondition/{proCategory}/{orderKind}/{priceRange}")
-	public ResponseEntity<Object> selectProductsCondition(@PathVariable int proCategory,@PathVariable String orderKind,@PathVariable int priceRange){
-		HashMap<String, Object> condition = new HashMap<String,Object>();
-		condition.put("proCategory", proCategory);
-		condition.put("orderKind", orderKind);
-		condition.put("priceRange", priceRange); 
-		List<ProductDTO> products = service.selectProductByCondition(condition);
-		System.out.println(products);
-		return ResponseEntity.ok(products);
-	}
-	
-	/*옷 이름으로 검색*/
-	@GetMapping("/selectProductByProName/{proName}")
-	public ResponseEntity<Object> selectProductByProName(@PathVariable String proName){
-		return ResponseEntity.ok(service.selectProductByproName(proName));
 	}
 	
 	/*메인화면에서 여러조건(new,sale,recommend,best)으로 옷목록*/
@@ -60,4 +35,32 @@ public class ProductServiceController {
 		condition.put("proStatus", proStatus);
 		return ResponseEntity.ok(service.selectProductMain(condition));
 	} 
+	
+	/*제품목록화면에서 여러조건(orderKind,priceRange,proCategory)으로 옷목록 검색 및 페이징*/
+	@GetMapping("/selectProductsSale/{proCategory}/{section}/{pageNum}/{priceRange}/{orderKind}/{search}")
+	public ResponseEntity<Object> selectProductsSale(@PathVariable Integer proCategory, @PathVariable Integer section, @PathVariable Integer pageNum, 
+		@PathVariable Integer priceRange, @PathVariable String orderKind, @PathVariable String search){
+		HashMap<String,Object> saleProduct = new HashMap<>();
+		saleProduct.put("search",search);
+		saleProduct.put("proCategory",proCategory);
+		saleProduct.put("section",section);
+		saleProduct.put("pageNum",pageNum);
+		saleProduct.put("priceRange",priceRange);
+		saleProduct.put("orderKind",orderKind);
+		
+		System.out.println("proCategory"+proCategory);
+		System.out.println("section"+section);
+		System.out.println("pageNum"+pageNum);
+		System.out.println("priceRange"+priceRange);
+		System.out.println("orderKind"+orderKind);
+		System.out.println("saleProduct"+saleProduct);
+		System.out.println("search"+search);
+		
+		return ResponseEntity.ok(service.selectProductSale(saleProduct));
+	}
+	
+	@GetMapping("/selectCountByProductSale")
+	public ResponseEntity<Object> countProdList(){
+		return ResponseEntity.ok(service.selectCountByProductSale());
+	}
 }

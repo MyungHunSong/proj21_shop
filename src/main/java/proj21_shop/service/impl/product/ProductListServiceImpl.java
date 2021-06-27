@@ -17,8 +17,8 @@ public class ProductListServiceImpl implements ProductListService{
 	private ProductListMapper service;
 	
 	@Override
-	public List<ProductDTO> showProducts(int proImgState,int proCategory) {
-		List<ProductDTO> list = service.selectProductByProImgState(proImgState, proCategory);
+	public List<ProductDTO> showProducts(int proCategory) {
+		List<ProductDTO> list = service.selectProductByProImgState(proCategory);
 		return list;
 	}
 
@@ -33,21 +33,21 @@ public class ProductListServiceImpl implements ProductListService{
 		return service.updateProhits(proNum);
 	}
 
-	//옷목록 리스트 여러가지 조건으로 검색
-	@Override
-	public List<ProductDTO> selectProductByCondition(Map<String, Object> condition) {
-		return service.selectProductByCondition(condition);
-	}
-
-	@Override
-	public List<ProductDTO> selectProductByproName(String proName) {
-		return service.selectProductByproName(proName);
-	}
-	
 	//메인화면 옷 목록
 	@Override
 	public List<ProductDTO> selectProductMain(Map<String, Object> condition) {
 		return service.selectProductMain(condition);
+	}
+
+	/*세일 제품 목록 페이징*/
+	@Override
+	public List<ProductDTO> selectProductSale(Map<String, Object> saleProduct) {
+		return service.selectProductSale(saleProduct);
+	}
+
+	@Override
+	public Integer selectCountByProductSale() {
+		return service.selectCountByProductSale();
 	}
 	
 }

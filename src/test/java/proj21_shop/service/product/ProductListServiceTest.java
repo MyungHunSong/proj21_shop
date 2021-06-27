@@ -38,7 +38,7 @@ public class ProductListServiceTest {
 	public void testShowProducts() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 
-		List<ProductDTO> list = service.showProducts(1,1);
+		List<ProductDTO> list = service.showProducts(1);
 		Assert.assertNotNull(list);
 
 	}
