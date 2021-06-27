@@ -34,7 +34,16 @@
 		
 	</resultMap>
 	
-	
+	<update id="updateProduct2">
+		UPDATE
+			product
+		<set>
+			pro_quantity =pro_quantity+#{change_orderProQuantity},
+			pro_sold =pro_sold-1,
+		</set>	
+		WHERE
+			pro_num = #{change_proNum}	
+	</update>	
 	
 		
 	<delete id="deleteProducts" parameterType="map">

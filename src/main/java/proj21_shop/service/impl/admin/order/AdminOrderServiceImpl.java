@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import proj21_shop.dto.order.OrderDTO;
+import proj21_shop.mapper.admin.member.AdminMemberMapper;
 import proj21_shop.mapper.admin.order.AdminOrderMapper;
+import proj21_shop.mapper.admin.product.AdminProductMapper;
 import proj21_shop.service.admin.order.AdminOrderService;
 
 @Service("adminOrderService")
@@ -16,6 +18,10 @@ public class AdminOrderServiceImpl implements AdminOrderService {
 
 	@Autowired
 	AdminOrderMapper adminOrderMapper;
+	@Autowired
+	AdminMemberMapper adminMemberMapper;
+	@Autowired
+	AdminProductMapper adminProductMapper;
 
 	@Override
 	public Map<String, Object> getOrderStatics() {

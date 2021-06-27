@@ -11,5 +11,7 @@ public interface AdminMemberService {
 	Map<String, Object> viewMember(Map searchMap);
 
 	Map<String, Object> getMemberStatics();
+	
+	int changeMember(Map<String, Object> changeMap);
 
 }

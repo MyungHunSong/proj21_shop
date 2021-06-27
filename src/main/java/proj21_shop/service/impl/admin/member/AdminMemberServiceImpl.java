@@ -155,4 +155,9 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 		viewMap.put("totalNonMember", totalNonMember);
 		return viewMap;
 	}
+
+	@Override
+	public int changeMember(Map<String, Object> changeMap) {
+		return adminMemberMapper.updateMember(changeMap);
+	}
 }

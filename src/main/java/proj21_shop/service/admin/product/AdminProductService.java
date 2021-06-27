@@ -11,6 +11,8 @@ public interface AdminProductService {
 
 	int modifyModel(ProductDTO product);
 	
+	int changeProduct(Map<String, Object> changeMap);
+	
 	int deleteProducts(Map<String, Object> deleteMap);
 
 	Map<String, Object> getProductStatics();
