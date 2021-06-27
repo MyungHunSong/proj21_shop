@@ -42,12 +42,13 @@
 <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
 <script>
 	
-	function select_deliveryStatus(orderProNum){
-		var deliveryStatus=document.getElementById(orderProNum+"select_deliveryStatus").value;
+	function select_deliveryStatus(orderProNum,orderCode,orderMemberId,orderProQuantity,proNum,orderValue){
+		var deliveryStatus=document.getElementById(orderCode+"select_deliveryStatus").value;
 		$.ajax({
 			url:"${contextPath}/admin/order/listOrders",
 			type:"post",
-			data:{"change_deliveryStatus" : deliveryStatus, "change_orderProNum" : orderProNum },
+			data:{"change_deliveryStatus" : deliveryStatus, "change_orderProNum" : orderProNum, "change_orderMemberId" : orderMemberId,
+				"change_orderCode" : orderCode, "change_orderProQuantity" : orderProQuantity, "change_proNum" : proNum, "change_orderValue" : orderValue},
 			success:function(data){
 				alert("배송상태 수정을 완료했습니다.");
 				location.href='${contextPath}/admin/order/listOrders';
@@ -59,7 +60,6 @@
 			}
 		});
 	}
-	
 </script>
 <style>
 @media ( min-width : 767.98px) {
@@ -190,8 +190,7 @@ a {
 					<form>
 						<table border="1" style="border-color: #ddd #ddd #848484 #ddd;" width="100%">
 							<tr style="color: white;">
-								<th>주문번호(묶음)</th>
-								<th>주문번호(제품)</th>
+								<th>주문번호</th>
 								<th>이미지</th>
 								<th>상품명</th>
 								<th>상품 정보</th>
@@ -205,8 +204,7 @@ a {
 								<c:when test="${ orderList !=null}">
 									<c:forEach var="order" items="${orderList }">
 										<tr style="text-align: center;">
-											<td width="100px">${order.orderProNum }</td>
-											<td width="100px">${order.orderCode }</td>
+											<td width="100px">${order.orderProNum }-${order.orderCode }</td>
 											<td width="100px"><a href="${contextPath}/productDetail?proNum=${order.pro.proNum}"> <img width="70px" height="105px"
 													src="${contextPath}/thumbnails?proNum=${order.pro.proNum}&fileName=${order.pro.proImgfileName}"></a></td>
 											<td width="100px">${order.pro.proName }</td>
@@ -234,22 +232,23 @@ a {
 											<c:if test="${order.pro.proSize == 4}">L /</c:if>
 											<c:if test="${order.pro.proSize == 5}">XL /</c:if>
 											</li>						
-											<td width="100px">${order.orderMemberName }</td>
+											<td width="100px">${order.orderMemberName }/${order.orderMemberId }</td>
 											
 											<td width="150px">
 											<%-- <fmt:formatNumber value="${order.orderValue*order.orderProQuantity }" pattern="#,###" />원 --%>
 											가격 : ${order.orderValue } | 개수 : ${order.orderProQuantity }
 											<br>
-											------------------------------
+											--------------------
 											<br>
 											상품 가격  / 총 주문 가격
 											<br>
 											<fmt:formatNumber value="${order.orderValue*order.orderProQuantity }" pattern="#,###" />원 / <fmt:formatNumber value="${order.orderPrice }" pattern="#,###" /> 원
+											<c:set var="orderValue" value="${order.orderValue*order.orderProQuantity }"/>
 											</td>
 											<td width="100px">${order.whichBank} 은행</td>
 											<td width="100px">${order.orderDate }</td>
 											<td width="100px">
-												<select id="${order.orderProNum }select_deliveryStatus">
+												<select id="${order.orderCode }select_deliveryStatus">
 													<option value="${order.deliveryStatus}">${order.deliveryStatus}</option>
 													<c:choose>
 														<c:when test="${order.deliveryStatus =='배송중'}">
@@ -263,7 +262,9 @@ a {
 														</c:otherwise>
 													</c:choose>
 												</select>
-												<input type="button" value="수정" onclick="select_deliveryStatus(${order.orderProNum})" />
+												<input type="button" value="수정" 
+												onclick="select_deliveryStatus(${order.orderProNum},${order.orderCode},'${order.orderMemberId}',${order.orderProQuantity },
+												${order.pro.proNum },${orderValue })" />
 											</td>
 										</tr>
 										<c:set var="final_total_price" value="${final_total_price+order.orderPrice* order.orderProQuantity }" />

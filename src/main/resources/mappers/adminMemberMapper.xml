@@ -28,6 +28,18 @@
 		<result property="memberTotalLogin" column="m_total_login" />
 	</resultMap>
 	
+	<update id="updateMember">
+		UPDATE
+			`member` 
+	<set>
+			m_total_buy =m_total_buy-#{change_orderValue},
+			m_total_order =m_total_order-1,
+			m_point=m_point-(#{change_orderValue}*0.01)
+	</set>
+		WHERE
+			m_id = #{change_orderMemberId};
+	</update>	
+	
 	<!-- 회원 검색 조건문 -->
 	<select id="selectAllMembersList" resultMap="adminMemResult" >
 		

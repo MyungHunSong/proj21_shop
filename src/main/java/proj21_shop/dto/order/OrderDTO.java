@@ -3,7 +3,10 @@ package proj21_shop.dto.order;
 import java.sql.Date;
 import java.util.List;
 
+
 import com.fasterxml.jackson.annotation.JsonFormat;
+
+import proj21_shop.dto.member.MemberDTO;
 
 import proj21_shop.dto.product.ProductDTO;
 import proj21_shop.dto.product.ProductImageDTO;
@@ -48,6 +51,7 @@ public class OrderDTO {
 	private String whichBank;
 	private String acountNum;
 
+	private MemberDTO member; //종윤사용
 
 	public ProductImageDTO getProductImageDTO() {
 		return productImageDTO;

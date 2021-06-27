@@ -118,5 +118,10 @@ public class AdminProductServiceImpl implements AdminProductService {
 		
 		return returnMap;
 	}
+	@Override
+	public int changeProduct(Map<String, Object> changeMap) {
+		
+		return adminProductMapper.updateProduct2(changeMap);
+	}
 
 }

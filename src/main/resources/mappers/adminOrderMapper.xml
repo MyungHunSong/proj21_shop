@@ -99,7 +99,7 @@
 	<select id="selectOrderList" resultMap="orderResult" parameterType="map">
 		SELECT	DISTINCT a.*, c.pro_imagefilename ,	p.pro_name
   		  FROM (SELECT FORMAT(@ROWNUM := @ROWNUM + 1, 0) AS rn, order_code,	order_pro_num, order_date, order_pro_quantity,
-				delivery_status, order_member_name, request_to_delivery, which_bank, order_price,
+				delivery_status, order_member_name, request_to_delivery, which_bank, order_price,order_member_id,
 				p.pro_price-(p.pro_salesrate*0.01*p.pro_price) AS order_value, p.pro_num, p.pro_color, p.pro_size
         	      FROM ( SELECT @ROWNUM := 0 ) R, `ORDER` o JOIN product p ON o.pro_num = p.pro_num
 				 WHERE order_date > 0
@@ -138,7 +138,12 @@
 		   <set>
 		   delivery_status = #{change_deliveryStatus}
 		  </set>
-		 where order_pro_num = #{change_orderProNum}
+		  <where>
+		  		order_pro_num = #{change_orderProNum}
+		  	<if test="change_deliveryStatus.equals('반품완료')">
+		  		and order_code = #{change_orderCode}
+		  	</if>
+		  </where>
 	</update>
 
 	<select id="selectedTotal" parameterType="map" resultType="int">

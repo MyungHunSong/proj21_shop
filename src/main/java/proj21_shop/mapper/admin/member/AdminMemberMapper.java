@@ -26,5 +26,6 @@ public interface AdminMemberMapper {
 	int deleteMember(String memberId);
 
 	MemberDTO selectMemberByCertain(Map<String, Object> searchMap);
-
+	
+	int updateMember(Map<String, Object> changeMap);
 }
