@@ -688,13 +688,51 @@ SELECT count(re_num)
 		  FROM review
 		 WHERE re_num > 0
 			AND re_member LIKE CONCAT('%', 'test01', '%');
+UPDATE
+	`order`
+SET
+	delivery_status = ?
+WHERE
+	order_pro_num = ? order_code = ?	
+
+	
+UPDATE
+	`member` 
+SET
+	m_total_buy =m_total_buy-#{},
+	m_total_order =m_total_order-1,
+	m_point=m_point-802
+WHERE
+	m_id = 'admin';
+/*총 사용금액*/		
+/*총 사용금액 *0.01*/		
+/*아이디*/		
+UPDATE
+	product
+SET
+	pro_quantity =m_total_buy+?,
+	pro_sold =m_total_order-1,
+WHERE
+	pro_num = '1111';		
+
+SELECT *
+FROM `member` m ;
+SELECT *
+FROM product 
+WHERE pro_num=2113;
+/*제품 개수*/
+/*제품 넘버*/
+UPDATE
+	`member`
+		SET
+			m_point =(171000*0.01) +5000
+		WHERE
+			m_id = 'admin';
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+UPDATE
+	product
+SET
+	pro_quantity = pro_quantity +?,
+	pro_sold = pro_sold-1
+WHERE
+	pro_num = ?

@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import proj21_shop.service.admin.member.AdminMemberService;
 import proj21_shop.service.admin.order.AdminOrderService;
+import proj21_shop.service.admin.product.AdminProductService;
 
 @Controller("adminOrderController")
 @RequestMapping("admin/order/")
@@ -30,6 +31,8 @@ public class AdminOrderController {
 	AdminOrderService adminOrderService;
 	@Autowired
 	AdminMemberService adminMemberService;
+	@Autowired
+	AdminProductService adminProductService;
 
 	@RequestMapping("orderStatics")
 	public ModelAndView searchMember(HttpServletRequest request, HttpServletResponse response) {
@@ -54,7 +57,12 @@ public class AdminOrderController {
 							@RequestParam(value="orderPrice", required=false) String orderPrice,
 							@RequestParam(value="orderValue", required=false) String orderValue,
 							@RequestParam(value="change_deliveryStatus", required=false) String change_deliveryStatus,
-							@RequestParam(value="change_orderProNum", required=false) String change_orderProNum
+							@RequestParam(value="change_orderProNum", required=false) String change_orderProNum,
+							@RequestParam(value="change_orderCode", required=false) String change_orderCode,
+							@RequestParam(value="change_orderProQuantity", required=false) String change_orderProQuantity,
+							@RequestParam(value="change_proNum", required=false) String change_proNum,
+							@RequestParam(value="change_orderValue", required=false) String change_orderValue,
+							@RequestParam(value="change_orderMemberId", required=false) String change_orderMemberId
 			) {
 		log.info("listOrders() 진입");
 		HttpSession session=request.getSession();
@@ -62,7 +70,7 @@ public class AdminOrderController {
 			session.removeAttribute("side_menu");
 		}
 		session.setAttribute("side_menu", "side_order");
-		
+		System.out.println("누구냐 ? "+session.getAttribute("authInfo"));
 		ModelAndView mav=new ModelAndView();
 		Map<String,Object> pagingMap=new HashMap();
 		
@@ -73,10 +81,27 @@ public class AdminOrderController {
 		if(change_deliveryStatus !=null) {
 			System.out.println("change_deliveryStatus===== :"+change_deliveryStatus);
 			System.out.println("change_orderProNum===== :"+change_orderProNum);
+			System.out.println("change_orderCode===== :"+change_orderCode);
+			System.out.println("change_orderProQuantity===== :"+change_orderProQuantity);
+			System.out.println("change_proNum===== :"+change_proNum);
+			System.out.println("change_orderValue===== :"+change_orderValue);
+			System.out.println("change_orderMemberId===== :"+change_orderMemberId);
 			Map<String,Object> changeMap=new HashMap();
+			//배송상태 수정
 			changeMap.put("change_deliveryStatus", change_deliveryStatus);
+			//변경할 제품
+			changeMap.put("change_orderCode", change_orderCode);
 			changeMap.put("change_orderProNum", change_orderProNum);
+			changeMap.put("change_orderProQuantity", change_orderProQuantity);
+			changeMap.put("change_proNum", change_proNum);
+			changeMap.put("change_orderValue", change_orderValue);
+			changeMap.put("change_orderMemberId", change_orderMemberId);
 			adminOrderService.changeDelivery(changeMap);
+			if(change_deliveryStatus.equals("반품완료")) {
+				System.out.println("change_deliveryStatus================"+change_deliveryStatus);
+			adminMemberService.changeMember(changeMap);
+			adminProductService.changeProduct(changeMap);
+			}
 		}
 		
 		pagingMap.put("orderProNum", orderProNum);

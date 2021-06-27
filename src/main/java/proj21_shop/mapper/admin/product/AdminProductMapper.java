@@ -45,7 +45,9 @@ public interface AdminProductMapper {
 	int selectAllShirts();
 	int selectAllSweater();
 	
+	
 	//제품 추가(개수 업데이트)
 	int updateProduct(ProductDTO product);
+	int updateProduct2(Map<String, Object> changeMap);
 	
 }
