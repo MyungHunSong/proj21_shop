@@ -27,7 +27,7 @@
 </script>
 </head>
 <body>
-	<div class="FAQ">
+	<div class="FAQ"></div>
 			<article>
 				<h3 class="faqh3">배송</h3>
 				<!-- slide가 faq 질문 누르면 밑으로 슬라이드 되는것 -->
@@ -63,6 +63,6 @@
 				<p class="desc">실시간계좌이체 1회 이체한도는 200만 원입니다. 실시간계좌이체는 해당 은행의 정책과
 					고객님 등급에 따라 1회 및 1일 이체한도가 제한될 수 있으니 이용에 참고해 주세요.</p>
 			</article>
-	</div>
+	
 </body>
 </html>

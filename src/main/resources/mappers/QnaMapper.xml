@@ -171,4 +171,11 @@
 				from qna 
 			where q_index = #{qIndex}
 		</select>
+		
+		<!-- 내 주문내역 받아오기. -->
+		<select id="selectWhereIndexForMyQna" resultMap="ArticleResultMap">
+		select q_index, q_file, q_member, q_title, q_date  
+	  		from qna 
+	 	where q_member = #{qMember}
+	 </select>
 </mapper>

@@ -337,5 +337,9 @@ update qna
 	set q_option = ?, q_content =?, q_file = ?, q_date = ?
 where q_index =?;
 
+-- 내 주문 내역
+SELECT	* 
+	FROM qna 
+WHERE q_member = 'test01';
 
 

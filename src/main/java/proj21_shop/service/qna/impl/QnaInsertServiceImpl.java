@@ -1,6 +1,6 @@
 package proj21_shop.service.qna.impl;
 
-import javax.servlet.http.HttpSession;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -62,6 +62,12 @@ public class QnaInsertServiceImpl implements QnaInsertService {
 	public QnaDTO selectWhereIndexForModify(int idx) {
 		
 		return qMapper.selectWhereIndexForModify(idx);
+	}
+
+	@Override
+	public List<QnaDTO> selectWhereIndexForMyQna(String qMem) {
+		
+		return qMapper.selectWhereIndexForMyQna(qMem);
 	}
 
 }

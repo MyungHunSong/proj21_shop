@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import proj21_shop.dto.qna.QnaDTO;
+import proj21_shop.service.order.MyOrderService;
 import proj21_shop.service.qna.QnaInsertService;
 
 @RestController
@@ -31,7 +32,7 @@ public class QnaRestInsertPageController {
 	QnaInsertService qInsertService;
 	
 	// 식별자를 통한 수정 버튼 -> 수정페이지
-	@GetMapping("/qnainsert/{qIndex}")
+	@GetMapping("/qnainsert/{idx}")
 	public ResponseEntity<Object> selectWhereIdxForModify(@PathVariable int idx, HttpSession session){
 		session.setAttribute("idx", idx);
 		return ResponseEntity.ok(qInsertService.selectWhereIndexForModify(idx));
@@ -84,5 +85,15 @@ public class QnaRestInsertPageController {
 	public ResponseEntity<Object> DeleteQnaForMember(@RequestBody QnaDTO qDto){
 		return ResponseEntity.ok(qInsertService.deleteQnaForMember(qDto));
 		
+	}
+	// Myorder Page 에서 끌어와서 쓰는것.
+	@Autowired
+	private MyOrderService myOrderService;
+	
+	@GetMapping("/qnaMyOrder/{qMem}")
+	public ResponseEntity<Object> selectMyQnaOrder(@PathVariable String qMem, HttpSession session){
+		session.setAttribute("qMem", qMem);
+		
+		return ResponseEntity.ok(myOrderService.selectOrderByMember(qMem));
 	}
 }

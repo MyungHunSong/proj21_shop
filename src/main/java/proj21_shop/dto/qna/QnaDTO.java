@@ -2,6 +2,8 @@ package proj21_shop.dto.qna;
 
 import java.sql.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class QnaDTO {
 	private int qIndex;
 	private String qTitle;
@@ -9,6 +11,7 @@ public class QnaDTO {
 	private String qMember;
 	private String qContent;
 	private String qFile;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date qDate;
 	private int qHit;
 	private int qGroup;

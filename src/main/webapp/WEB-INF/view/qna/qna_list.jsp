@@ -25,6 +25,17 @@ $(function(){
 	
 }); 
 </script>
+
+<style type="text/css">
+.search_qna{
+	margin-bottom: 20px;
+}
+#insertQnaPage{
+	text-decoration:none !important;
+}
+
+
+</style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -55,10 +66,10 @@ $(function(){
 				<button type="button" id="goList">목록</button>
 				
 				<c:if test="${empty authInfo}">
-					<a href="login">글쓰기[로그인이 필요한 서비스 입니다.]</a>					
+					<a id='insertQnaPage' href="login">글쓰기[로그인이 필요한 서비스 입니다.]</a>					
 				</c:if>
 				<c:if test="${!empty authInfo}">
-					<a href="<c:url value="/qnaInsert/" />">글쓰기</a>
+					<a id = 'insertQnaPage'  href="<c:url value="/qnaInsert" />">글쓰기</a>
 				</c:if>
 				<!-- value 이름과 getMapping 이름을 일치 시켜 줘야한다. -->
 		</div>

@@ -37,4 +37,7 @@ public interface QnaMapper {
 	// 수정시 식별자 번호를 타고 들어갈수 있도록.
 	QnaDTO selectWhereIndexForModify(int idx);
 	
+	// 내 주문내역 보러가기.
+	List<QnaDTO> selectWhereIndexForMyQna(String qMem);
+	
 }
