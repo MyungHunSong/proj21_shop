@@ -12,6 +12,10 @@
 <script src="${contextPath}/resources/admin/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="${contextPath}/resources/admin/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
 <script src="${contextPath}/resources/admin/dist/js/custom.min.js"></script>
+<script src="${contextPath}/resources/admin/assets/libs/popper.js/dist/umd/popper.min.js"></script>
+<script src="${contextPath}/resources/admin/assets/extra-libs/sparkline/sparkline.js"></script>
+<script src="${contextPath}/resources/admin/dist/js/waves.js"></script>
+<script src="${contextPath}/resources/admin/dist/js/sidebarmenu.js"></script>
 <title>회원정보 리스트</title>
 <script>
 	$(document).ready(function() {
