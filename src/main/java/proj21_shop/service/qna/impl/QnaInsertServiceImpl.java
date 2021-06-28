@@ -40,8 +40,12 @@ public class QnaInsertServiceImpl implements QnaInsertService {
 	// 회원용 추가 수정 삭제.
 	@Override
 	public int insertQnaForMember(QnaDTO qDto) {
+		String member = qDto.getqMember();
 		
-		
+		if(member.equals("admin") && member.equals("관리자")) {
+			qDto.setqGroup(0);
+			qDto.setqOption("공지");
+		}
 		
 		return qMapper.insertQnaForMember(qDto);
 	}

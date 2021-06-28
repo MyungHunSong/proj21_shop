@@ -358,15 +358,23 @@ SELECT	*
 	FROM qna 
 WHERE q_member = 'test01';
 
-SELECT DISTINCT o.order_pro_num, o.order_code, pi2.pro_imagefilename, p.pro_num, p.pro_name, p.pro_color, p.pro_size, p.pro_price,
-		o.order_pro_quantity, o.delivery_status, o.order_date,
-		o.order_member_name , o.receiver_tel1, o.receiver_tel2,
-		o.delivery_addr1 , o.delivery_addr2, o.delivery_addr3,
-		o.request_to_delivery
-		from `order` o
-		join pro_img pi2
-		on o.pro_num = pi2.pro_num
-		join product p
-		on o.pro_num = p.pro_num
-where o.order_member_id = 'test01' and order_pro_num = 1;
+select * from qna where q_option = '공지';
 
+INSERT INTO qna 
+	(q_title, q_option, q_member, q_content, q_file, q_date, q_group)
+		values 
+('저입니다', '공지', '관리자', '이게너무 안대여', 0, now(), 
+	select q_title, q_member, q_content, q_file, q_date,q_group
+		case q_option
+ 	when q_option = '공지' then q_group = 0
+ 	else (SELECT IFNULL(MAX(q_group) + 1, 1) FROM qna b)
+ 	end 
+ from qna);
+
+
+SELECT CASE
+    SELECT CASE WHEN @AmountPaid > (SELECT q_title, q_option, q_member, q_content, q_file, q_date, q_group from qna where q_member = '관리자' and q_member = 'admin') then
+    INSERT INTO qna (q_title, q_option, q_member, q_content, q_file, q_date, q_group) values('이게 문가요?', '안대노', 'test01', '이게너무 안대여', 'text123.jpg', now(), (SELECT IFNULL(MAX(q_group) + 1, 1) FROM qna b))
+    WHEN @AmountPaid = (SELECT q_title, q_option, q_member, q_content, q_file, q_date, q_group from qna where q_member = '관리자' and 'admin') THEN
+    INSERT INTO qna(q_title, q_option, q_member, q_content, q_file, q_date, q_group) values('저입니다', '공지', '관리자', '이게너무 안대여', 0, now(), (SELECT IFNULL(MAX(q_group) + 1, 1) FROM qna b))
+end;

@@ -114,8 +114,6 @@ $(function(){
 								sCont += "<td id='detailContent'>내용:</td>";	
 							if("${authInfo.id}" == "admin"){	
 								sCont += "<td colspan ='5'>" + json[i].qContent + "<a class= 'clickReply'> [답글 달기]</a></td>";
-							}else if(json[i].qGroup == 0){
-								sCont += "<td colspan ='5'>" + json[i].qContent + "<a class= 'clickReply' style='visibility: hidden'> [답글 달기]</a></td>"
 							}else if("${authInfo.id}" != "admin"){
 								sCont += "<td colspan ='4'><img src=' "+contextPath+"/resources/qna/upload/" + json[i].qFile +"' width = 50px;/><span>"
 								+"</span>"+ json[i].qContent + "</td>";
@@ -147,6 +145,8 @@ $(function(){
 			
 				$("#load").append(sCont);
 			}
+			
+			// 삭제하기
 			$('.deleteMyQna').on('click', function(){
 				var idx = $(this).parent().parent().prev().children().next().val();
 				var group = $(this).parent().parent().prev().children().next().next().val();
@@ -184,6 +184,7 @@ $(function(){
 					success:function(){
 						var popup = window.open('http://localhost:8080/proj21_shop/qnaModify?index=', '수정팝업',
 								'width=520px, height = 520px')	
+						location.reload();		
 					}	
 				});		 		
 			});
@@ -194,7 +195,7 @@ $(function(){
 				console.log(idx);
 				
 				var deleteItem = {
-				"qIndex":idx		
+					"qIndex":idx		
 				};
 				
 				$.ajax({
@@ -264,7 +265,7 @@ $(function(){
 							datatype:"json",
 							data:JSON.stringify(page),
 							success:function(){
-								/* window.location.href = contextPath + "/listPaging?page="+page + "&pagePageNum="+ perPageNum + "&searchType=" + searchType + "&keyword="; */
+								
 							},
 							error:function(){
 								alert("조회할 페이지를 찾지 못했습니다.")
@@ -283,7 +284,7 @@ $(function(){
 							datatype:"json",
 							data:JSON.stringify(idx),
 							success:function(){
-								/* window.location.href = contextPath + "/listPaging?page="+page + "&pagePageNum="+ perPageNum + "&searchType=" + searchType + "&keyword="; */
+								
 							},
 							error:function(){
 							}
@@ -292,7 +293,7 @@ $(function(){
 			})
 			// 조회수 ajax 구현 -끝-
 			
-			// 답글 인서트.
+			// 답글 달기.
 			$(".clickReply").on('click', function(){
 					var idx = $(this).parent().parent().prev().children().next().val();
 					var group = $(this).parent().parent().prev().children().next().next().val();
@@ -301,19 +302,20 @@ $(function(){
 					console.log(idx);
 					console.log(group)
 					if($(this).parent().parent().next().hasClass('active')){
-						$(this).parent().parent(). next().removeClass('active');
-						
+						$(this).parent().parent(). next().removeClass('active');						
 					}else{
 						$(this).parent().parent().next().addClass('active');					
 					}
 			});
 			
-			// -- 답글달기 인서트 기능 -- 
+			// -- 답글달기 인서트 기능 --
 			$(".addContent").on('click', function(){
 				console.log($("textarea[name='contentArea']:visible").val())
 				var group = $(this).parent().parent().prev().prev().children().next().next().val();
 				
 				console.log(group)
+				
+				
 				
 				var insertItem = {
 					    "qTitle": "null",
@@ -330,7 +332,10 @@ $(function(){
 							datatype:"json",
 							data:JSON.stringify(insertItem),
 							success:function(){
-								alert('완료')
+									alert('완료')
+									location.reload();	
+								
+								
 							},
 							error:function(){
 								alert("실패")

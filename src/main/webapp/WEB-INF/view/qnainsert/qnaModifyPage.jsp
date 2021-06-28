@@ -14,7 +14,8 @@
 <link rel="stylesheet" href="/proj21_shop/resources/qna/css/qnaModifyPage.css">
 <script type="text/javascript">
 $(function(){
-
+	var contextPath = "${contextPath}";`
+	
 	$("input[name='uploadFile']").hide();	
 	
 	$('#preview').click(function(){
@@ -26,9 +27,10 @@ $(function(){
 	var idx = ${idx};
 	var title = $("input[name=Title]:visible").val();
 	var option = $("select[name=searchType]:visible").val();		 	
-	var content = $("textarea[name='Content']:visible").val();		 	
-	var file = document.getElementById("addPoto").files[0].name;
-	
+	var content = $("textarea[name='Content']:visible").val();
+	if("${authInfo.id}" != "admin" && "${authInfo.name}" != "관리자"){
+		var file = document.getElementById("addPoto").files[0].name;
+	}
 	modifyItem = {
 			"qIndex" : idx,
 			"qTitle" : title,
@@ -45,9 +47,10 @@ $(function(){
 		datatype:"json",
 		data:JSON.stringify(modifyItem),
 		success:function(){
-			alert("수정 완료")
-			 
+			alert("수정 완료") 
+			opener.parent.location= contextPath + "/listPaging?page="+1 + "&pagePageNum="+ 10 + "&searchType=a&keyword="; 
 			window.open("about:blank", "_self").close();
+			
 			
 			/* window.location.href =  "/proj21_shop/listPaging?page="+1 + "&pagePageNum="+ 10 + "&searchType=a&keyword="; */
 		}
