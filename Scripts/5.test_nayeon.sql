@@ -13,7 +13,7 @@ values ('test06', password(123), '이종바', '010-1234-5678', '1994-08-17', 0, 
 
 delete
   from member 
- where m_id = 'test06';
+ where m_id = 'test07';
 
 -- 로그인
 select m_passwd 

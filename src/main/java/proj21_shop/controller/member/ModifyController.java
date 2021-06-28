@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import proj21_shop.dto.member.AuthInfo;
 import proj21_shop.dto.member.ModifyRequest;
+import proj21_shop.exception.PasswordNotEqualException;
 import proj21_shop.exception.QuestionAnswerNotEqualException;
 import proj21_shop.exception.QuestionNotEqualException;
 import proj21_shop.service.MemberModifyService;
@@ -51,7 +52,7 @@ public class ModifyController {
 			response.setContentType("text/html; charset=UTF-8");
         	PrintWriter out = response.getWriter();
         	out.println("<script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>");
-        	out.println("<script>$(function() {$('.unMatch').text('답변불일치');})</script>");
+        	out.println("<script>$(function() {$('.unMatch').text('답변 불일치');})</script>");
         	out.flush();
 			return "/member/register/modifyForm";
 		}
