@@ -456,8 +456,8 @@ update product
 where pro_num like concat(206,'%');
 
 update product 
-      set pro_status = '신상'
-where pro_num like concat(505,'%');
+      set pro_status = '세일'
+where pro_num like concat(103,'%');
 
 /*세일 쿼리*/
  select * 
@@ -523,8 +523,16 @@ select
 	where
 		pro_size = 1
 		and pro_name like concat('%','a', '%')
+
+		and pro_salesrate != 0; 
+
+	
+SELECT * FROM product;		
+select *  from productall where pro_status = '추천' order by pro_price desc limit 8;
+
 		and pro_salesrate != 0 
 
 select * from review;		
 
 update product set re_replyCount = 12 where pro_num =  1042;
+
