@@ -102,7 +102,7 @@ $(function(){
 							sCont += "<tr class='mainTable'>";
 							sCont += "<td class = 'clickOption'>"+json[i].qOp + "</td>"; 
 							sCont += "<input type = 'hidden' value = "+ json[i].qIndex +">";
-							sCont += "<input type = 'hidden' value="+ json[i].qGroup +" >"
+							sCont += "<input type = 'hidden' value="+ json[i].qGroup +">";						
 							sCont += "<td class = 'clickOption'>" + json[i].qMember + "</td>";
 							sCont += "<td class = 'clickOption'>" + json[i].qOption + "</td>";
 							sCont += "<td class = 'clickOption'>" + json[i].qTitle + "</td>";
@@ -117,7 +117,7 @@ $(function(){
 							}else if(json[i].qGroup == 0){
 								sCont += "<td colspan ='5'>" + json[i].qContent + "<a class= 'clickReply' style='visibility: hidden'> [답글 달기]</a></td>"
 							}else if("${authInfo.id}" != "admin"){
-								sCont += "<td colspan ='4'><img src='contextPath+resources/qna/upload/" + json[i].qFile +"' width = 50px;/><span>"
+								sCont += "<td colspan ='4'><img src=' "+contextPath+"/resources/qna/upload/" + json[i].qFile +"' width = 50px;/><span>"
 								+"</span>"+ json[i].qContent + "</td>";
 							}
 							if(memberName == json[i].qMember){
@@ -182,8 +182,8 @@ $(function(){
 					datatype:"json",
 					data:JSON.stringify(),
 					success:function(){
-						var popup = window.open('http://localhost:8080/proj21_shop/qnaModify?index=idx', '수정팝업',
-								'width=520px, height = 520px')				
+						var popup = window.open('http://localhost:8080/proj21_shop/qnaModify?index=', '수정팝업',
+								'width=520px, height = 520px')	
 					}	
 				});		 		
 			});

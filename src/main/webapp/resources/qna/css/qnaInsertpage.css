@@ -1,5 +1,136 @@
 @charset "UTF-8";
 
-#QnaSec{
-	border: 1px solid red;
+
+.InsertMain{}
+<!--이미지 영역 -->
+#QNA{}
+#QnaImg{
+	margin-right: 960px;
 }
+
+<!-- 작성하기 영역 -->
+.QnaInsert{}
+
+.QnaInsert h3{
+	margin: auto;
+	text-align: left; 
+}
+
+#QnaSec{	
+	border-top: 1px solid black;
+	text-align: left;
+	padding-bottom: 20px;
+	margin-bottom:50px;
+	box-sizing: box;
+	border-bottom: 2px solid #dcdcdc;
+	
+	width: 1000px;
+	height: 600px;
+}
+#main1{
+	margin-bottom: 10px;
+	padding-bottom:5px;
+	border-bottom: 1px solid #dcdcdc;
+	
+}
+
+#main1 label{}
+
+#main1 select{
+	margin-left: 100px;
+	width: 150px;
+}
+
+#main2{
+	margin-bottom: 10px;
+	padding-bottom:5px;
+	border-bottom: 1px solid #dcdcdc;
+}
+
+#main2 label{}
+
+#main2 input{
+	margin-left: 100px;
+	width: 140px;
+}
+
+#main3{
+	margin-bottom: 10px;
+	padding-bottom:5px;
+	border-bottom: 1px solid #dcdcdc;	
+}
+#main3 label{}
+
+#main3 input{
+	margin-left: 123px;
+	 
+}
+
+#main4{
+	margin-bottom: 10px;
+	padding-bottom:5px;
+	border-bottom: 1px solid #dcdcdc;
+}
+
+#main4 label{}
+
+#main4 input{
+	margin-left: 123px;
+}
+
+#main5{
+	margin-bottom: 10px;
+	padding-bottom:5px;
+	border-bottom: 1px solid #dcdcdc;
+}
+
+#main5 label{}
+
+#main5 input{
+	margin-left: 138px;
+	width: 400px;
+}
+#main6 label{
+	float: left;
+}
+
+#main6 textarea{
+	margin-left: 104px;
+	width: 400px;
+}
+
+#main7{}	
+
+#image_list img{
+	margin-left: 166px;
+}
+
+#insertNcancle{
+	margin-left: 450px;
+}
+	
+.insertQna{
+	margin-right: 10px;
+	width: 100px;
+	height: 40px;
+	background-color: #dcdcdc;;
+	color: black;
+	font-weight: bold;
+}
+
+.insertQna :hover{
+	background-color: black;
+	color: white;
+}
+
+.canselQna{
+	width: 100px;
+	height: 40px;
+	background-color: #dcdcdc;
+	color: black;
+	font-weight: bold;
+}
+
+
+
+

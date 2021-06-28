@@ -14,6 +14,7 @@
     var memberid = "${authInfo.id}";
     var sCont = "";
     $.get(contextPath + "/api/qnaMyOrder/" + memberid, function(json) {
+    	
        var dataLengths = json.length;
        if (dataLengths >= 1) {
           for (j = 0; j < dataLengths; j++) {
@@ -25,26 +26,35 @@
                 
                 for (i = 0; i < dataLength; i++) {
                    sCont += "<tr>";
-                   sCont += "<td id='goInsert'>"+ json[j].orderProNum + "-" + json[j].productDTO[i].orderCode[0].orderCode + "</td>"                         
-                   sCont += "<td><a href='#'>"+json[j].productDTO[i].proName +"</a></td>";                   
-                   sCont += "<td><a href='#'>"+ json[j].orderDate+"</a></td>";                   
-                   sCont += "<td><a href='#'>"+ json[j].orderProQuantity+"</a></td>";                   
-                   sCont += "<td><a href='#'>"+ json[j].orderPrice+"</a></td>";
-                   sCont += "<td><a href='#'>" + json[j].deliveryStatus+"</a></td>";              
-                   sCont += "<tr>";
                    
+                   sCont += "<td class = 'clickThis'>" + json[j].orderProNum + "-" + json[j].productDTO[i].orderCode[0].orderCode + "</td>"
+                   sCont += "<input type = 'hidden' value = "+ json[j].productDTO[i].orderCode[0].orderCode+">";
+                   sCont += "<td><a >"+json[j].productDTO[i].proName +"</a></td>";                   
+                   sCont += "<td><a >"+ json[j].orderDate+"</a></td>";                   
+                   sCont += "<td><a>"+ json[j].orderProQuantity+"</a></td>";                   
+                   sCont += "<td><a>"+ json[j].orderPrice+"</a></td>";
+                   sCont += "<td><a>" + json[j].deliveryStatus+"</a></td>";              
+                   sCont += "<tr>";     
                 }          
              } 
           }
           console.log(sCont)
           $("#load").append(sCont);
        }
-    })
-   $("#goInsert").on('click', function(){
-	   window.loaction.href= contextPath+"/qnaInsert";
-	   window.open("about:blank", "_self").close();
-   });
- });
+	    $('.clickThis').on('click',function(){
+	 	  var orderNum = $(this).next().val();
+	 	  console.log(orderNum);
+	 	  
+	 	  $("input[name=MyOrder]", opener.document).val(orderNum);	 	   
+	 	   window.opener.num = orderNum;
+
+	 	  
+	 	   window.open("about:blank", "_self").close(); 
+	    });
+    });     
+});
+
+ 
 </script>
 </head>
 <body>

@@ -72,6 +72,17 @@
 			 		}	
 			 	});							  
 			});	
+		 	// 취소하기.
+		 	$(".canselQna").on('click', function(){
+		 		var result = confirm('쓰시던 작업을 취소 하시 겠습니까?.')
+		 		
+		 		if(result){
+		 			window.location.href = contextPath + "/listPaging?page="+1 + "&pagePageNum="+ 10 + "&searchType=a&keyword=";
+		 			
+		 		}else{
+		 			location.replace()
+		 		}
+		 	});
 		   
 		   $("input[type='file']").on("change", function(e){
 				 let formData = new FormData();
@@ -114,29 +125,21 @@
 			  $('.goMyOrder').on('click', function(){				
 				  var memberId = "${authInfo.id}"; 
 				  console.log(memberId)
-				  
-				      var popup = window.open('http://localhost:8080/proj21_shop/qnaMyOrder?=${authInfo.id}', '조회',
-					'width=720px, height = 350px')
-					
-				/* selectThem = {
-					"orderMemberId": memberId	 
-				  };  */
-				  /* window.location.href = contextPath + "/qnaMyOrder?=" + memberId; */
-				 
-				  /* $. ajax({
-					  url: contextPath +  "/api/qnaMyOrder/" + memberId,
+		 				 
+				   $. ajax({
+					  url: contextPath +  "/api/qnaMyOrder/${authInfo.id}",
 				 		type:'GET',
 				 		contentType:"application/json; charset=utf-8",
 				 		datatype:"json",
-				 		data:JSON.stringify(selectThem),
+				 		data:JSON.stringify(memberId),
 				 		success:function(){
-				 			window.location.href = contextPath + "/qnaMyOrder?=" + memberId;
-				 			
+				 			var popup = window.open('http://localhost:8080/proj21_shop/qnaMyOrder?=${authInfo.id}', '조회',
+							  'width=720px, height = 350px')						
 				 		},
 				 		error:function(){
 				 			alert("조회할 상품 내역이 없습니다.")
 				 		}
-				  });	 */			
+				  });	 			
 			  });
 	});
 	
@@ -148,18 +151,14 @@
 		<jsp:include page="/WEB-INF/view/include/topbody.jsp"></jsp:include>
 		<div class="InsertMain">
 			<div id="QNA">
-				<h3>Q&A</h3>
-				<ul>
-					<li>제품 사용, 오염, 전용 박스 손상, 라벨 제거, 사음품 밑 부속 사용/분실 시, 교환/ 환불이 불가능
-						합니다.</li>
-					<li>교환을 원하시는 상품(사이즈)의 재고가 부족 시, 교환이 불가합니다.</li>
-				</ul>
+				<img id= 'QnaImg' src= "/proj21_shop/resources/qna/images/qnaLog.jpg">
 			</div>
 			<div class="QnaInsert">
 				<h3>문의 작성</h3>
 				<section id="QnaSec">
-					<div>
-						<label>문의 유형 </label> <select name="searchType" id="searchType">
+					<div id = "main1">
+						<label>문의 유형 </label>
+					    <select name="searchType" id="searchType">
 							<option>문의유형 선택</option>
 						<c:if test="${authInfo.id eq 'admin'}">
 							<option value ="공지">공지</option>
@@ -172,35 +171,34 @@
 							<option value="주문결제">주문결제</option>
 							<option value="기타">기타</option>
 						</c:if>
-						</select>
+						</select>						
 					</div>
 				<c:if test="${authInfo.id ne 'admin'}">
-					<div>
-						<label>주문 번호</label> <input type="text">
+					<div id = "main2">
+						<label>주문 번호</label>
+						<input type="text" class = "MyOrder" name = "MyOrder" readonly="readonly">
 						<button class="goMyOrder">조회</button>
 						<br>
 					</div>
 				</c:if>
 				<c:if test ="${!empty authInfo && authInfo.id ne admin}">
-						<div>	
+						<div id = "main3">	
 							<label>작성자</label><input type="text" value="${authInfo.name}"  readonly="readonly"  style="background-color: #e2e2e2"><br>
 						</div>
 				</c:if>
 					
 				<c:if test ="${!empty authInfo}">
-						<div>
+						<div id = "main4">
 							<label>이메일</label><input type="text" value="${authInfo.email}" readonly="readonly" style="background-color: #e2e2e2"><br>						
 						</div>
 				</c:if>
 					
-					<div>
-
+					<div id = "main5">
 						<label>제목</label><input type="text" name="Title"><br>
-
 					</div>
 				<c:if test="${authInfo.id ne 'admin'}">
-					<div>
-						<label>문의내용</label>
+					<div id = "main6">
+						<label>문의 내용</label>
             
 						<textarea rows="10" cols="40"  name="Content"></textarea>
 
@@ -209,7 +207,7 @@
 				</c:if>
 				
 				<c:if test="${authInfo.id eq 'admin'}">
-					<div>
+					<div id = "main6">
 						<label>공지내용</label>
 
 						<textarea rows="10" cols="40" name="Content"></textarea>
@@ -219,7 +217,7 @@
 				</c:if>
 					
 				<c:if test="${authInfo.id ne 'admin'}">	
-					<div>
+					<div id = "main7">
 						<div>
 						사진 추가
 							<input type="file" name="uploadFile"  id="addPoto" onchange="readURL(this, this.id)" multiple="multiple">
@@ -228,9 +226,11 @@
 							<img id="preview" src="/proj21_shop/resources/qna/images/fileimg.jpg" width="100" height="100">
 						</div>
 					</div>
-				</c:if>	
-					<button class = "insertQna">작성하기</button>
+				</c:if>					
 				</section>
+				<div id="insertNcancle">
+					<button class = "insertQna">작성하기</button><button class="canselQna">취소하기</button>
+				</div>
 			</div>
 		</div>
 		<jsp:include page="/WEB-INF/view/include/footer.jsp"></jsp:include>

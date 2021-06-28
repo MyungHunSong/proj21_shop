@@ -59,8 +59,7 @@
             }
             console.log(sCont)
             $("#load").append(sCont);
-         }
-         
+         }         
       })
    })
 </script>
@@ -74,7 +73,7 @@
       <section id="orderArea">
          <h3>나의 주문내역</h3>
 
-         <div class="asd">
+         <div class="asd">"C:/Users/lenovo/Desktop/옷설명서.txt"
          <table class="type11">
             <thead>
                <tr>

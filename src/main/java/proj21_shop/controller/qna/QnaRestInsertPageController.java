@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
+import proj21_shop.dto.order.OrderDTO;
 import proj21_shop.dto.qna.QnaDTO;
 import proj21_shop.service.order.MyOrderService;
 import proj21_shop.service.qna.QnaInsertService;
@@ -33,8 +35,9 @@ public class QnaRestInsertPageController {
 	
 	// 식별자를 통한 수정 버튼 -> 수정페이지
 	@GetMapping("/qnainsert/{idx}")
-	public ResponseEntity<Object> selectWhereIdxForModify(@PathVariable int idx, HttpSession session){
+	public ResponseEntity<Object> selectWhereIdxForModify(@PathVariable int idx, HttpSession session, ModelAndView mav){
 		session.setAttribute("idx", idx);
+		
 		return ResponseEntity.ok(qInsertService.selectWhereIndexForModify(idx));
 	}
 	
@@ -77,7 +80,8 @@ public class QnaRestInsertPageController {
 	}
 	
 	@PatchMapping("/qnainsert/{qIndex}")
-	public ResponseEntity<Object> ModfiyQnaForMember(@RequestBody QnaDTO qDto, HttpSession session){
+	public ResponseEntity<Object> ModfiyQnaForMember(@RequestBody QnaDTO qDto){
+		
 		return ResponseEntity.ok(qInsertService.modifyQnaForMember(qDto));
 	}
 	
@@ -95,5 +99,16 @@ public class QnaRestInsertPageController {
 		session.setAttribute("qMem", qMem);
 		
 		return ResponseEntity.ok(myOrderService.selectOrderByMember(qMem));
+	}
+	
+	// order 페이지에서 쓰넌 것
+	@GetMapping("/qnaOrderGet/{memberId}/{orderProNum}")
+	public ResponseEntity<Object> selectMyQnaOrderForNum(@PathVariable String memberId, @PathVariable int orderProNum, HttpSession session){
+		OrderDTO orderDto = new OrderDTO();
+		session.setAttribute("qnaOrderNum", orderProNum);
+		orderDto.setMemberId(memberId);
+		orderDto.setOrderProNum(orderProNum);
+		 
+		return ResponseEntity.ok(myOrderService.selectOrderDetailByMember(orderDto));
 	}
 }
