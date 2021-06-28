@@ -68,7 +68,7 @@ public class ProductListMapperTest {
 		Assert.assertNotNull(list);
 	}
 	
-	@Test
+	//@Test
 	public void test08ShowProductsSale() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		HashMap<String,Object> saleProduct = new HashMap();
@@ -86,9 +86,12 @@ public class ProductListMapperTest {
 		Assert.assertNotNull(list);
 	}
 	
-	//@Test
+	@Test
 	public void test09CountProducts() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
-		int res = mapper.selectCountByProductSale();
+		HashMap<String, Object> condition = new HashMap<String, Object>();
+		condition.put("search", "");
+		condition.put("priceRange", 0);
+		int res = mapper.selectCountByProductSale(condition);
 	}
 }

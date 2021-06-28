@@ -148,3 +148,7 @@
 .pBtn{
 	cursor: pointer;
 }
+
+.pBtn:hover{
+	color: crimson;
+}

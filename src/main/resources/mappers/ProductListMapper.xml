@@ -82,11 +82,11 @@
 	</select>
 	
 	<!--  제품 목록 세일 카운트 -->
-	<select id="selectCountByProductSale" parameterType="Integer" resultType="int">
+	<select id="selectCountByProductSale" parameterType="Map" resultType="int">
 		  select count(*)
   		   from productall
 		 where pro_size = 1 and pro_salesrate != 0
-		 <!-- <trim prefix="">
+		 <trim prefix="">
 			<if test="search != 'null'">and pro_name like concat('%',#{search},'%')</if>
 		 </trim>
 		 <trim prefix="and pro_price between">
@@ -97,7 +97,7 @@
 		 </trim>
 		 <trim prefix="">
 			<if test="priceRange == 5">and pro_price > 100000</if>
-		 </trim>  -->
+		 </trim>  
 	</select>
 
 	<!-- 메인화면 제품 목록(new,recommend,mostview,new,best,sale -->
