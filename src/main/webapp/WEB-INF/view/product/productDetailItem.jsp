@@ -214,8 +214,10 @@ $(function() {
 					selectOrderProduct(res);
 				},
 				error: function(request, status, error){
-					alert("code:"+request.status+"\n"+"message:"
-			                  +request.responseText+"\n"+"error:"+error);
+					alert("로그인창으로 이동하겠습니다.")
+					window.location.href = contextPath + "/login"
+					/* alert("code:"+request.status+"\n"+"message:"
+			                  +request.responseText+"\n"+"error:"+error); */
 				}
 			})
 		}
@@ -254,8 +256,8 @@ $(function() {
 				<input class="cal btn" type='button'onclick='count("plus")'value='+'/>
 			</div>
 			<div class='submitBtns'>
-				<input type='submit' id='cart' value='장바구니' />
-				<input type='submit' id='purchase' value='구매하기' />
+				<input type='submit' id='cart' style="cursor: pointer;" value='장바구니' />
+				<input type='submit' id='purchase' style="cursor: pointer;" value='구매하기' />
 			</div>
 		</div>
 </body>

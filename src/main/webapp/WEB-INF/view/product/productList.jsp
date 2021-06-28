@@ -239,9 +239,6 @@ $(function(){
 						}
 				})	
 		    	window.location.href = contextPath + "/productlist?proCategory=0&section=1&pageNum=1&priceRange="+priceRange+"&orderKind="+orderKind+"&search="+search;
-			}else {
-				sCont +="<div class = 'searchBlank'>검색 결과<br> 없습니다.</div>"
-				$(".productList").append(sCont);
 			}
 			
 	}) 
