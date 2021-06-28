@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class QnaInsertPageController {
 
-	@GetMapping("/qnaInsert")
-	public String insertPage() {
-		return "/qnainsert/qnaInsertpage";
-	}
+//	@GetMapping("/qnaInsert")
+//	public String insertPage() {
+//		return "/qnainsert/qnaInsertpage";
+//	}
 	
 	@GetMapping("/qnaModify")
 	public String modifyPage() {
