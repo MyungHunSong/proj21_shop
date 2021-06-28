@@ -21,7 +21,7 @@
 			<a href="modify"><img alt="membership" src="/proj21_shop/images/membership.jpg" ></a>
 		</div>
 		<div class="box3">
-			<a href="#"><img alt="bascket" src="/proj21_shop/images/basket.jpg"></a>
+			<a href="cart?memId=${authInfo.id}"><img alt="bascket" src="/proj21_shop/images/basket.jpg"></a>
 		</div>
 		<br>
 		<div class="box4">
