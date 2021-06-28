@@ -32,9 +32,10 @@ $(function(){
 	var priceRange = ${priceRange};
 	var pageNum = ${pageNum};
 	var section = ${section};
+	var search = "${search}";
 	var proSize = ["XS","S","M","L","XL"]
 	
-	$.get(contextPath + "/api/selectProductsSale/"+proCategory+"/"+section+"/"+pageNum+"/"+priceRange+"/"+orderKind+"/null",
+	$.get(contextPath + "/api/selectProductsSale/"+proCategory+"/"+section+"/"+pageNum+"/"+priceRange+"/"+orderKind+"/"+search,
 	function(json){
 		
 		var dataLength = json.length;
@@ -91,7 +92,7 @@ $(function(){
 		$(".productList *").remove(); 
 		if(sortPrice == undefined){
 			sortPrice = 0;
-			$.get(contextPath + "/api/selectProductsSale/"+proCategory+"/"+section+"/"+pageNum+"/"+sortPrice+"/"+sortOrder+"/null",
+			$.get(contextPath + "/api/selectProductsSale/"+proCategory+"/"+section+"/"+pageNum+"/"+sortPrice+"/"+sortOrder+"/"+search,
 					function(json){
 						var sCont = "";
 						var dataLength = json.length;
@@ -131,7 +132,7 @@ $(function(){
 						}
 					})
 		}else{
-			$.get(contextPath + "/api/selectProductsSale/"+proCategory+"/"+section+"/"+pageNum+"/"+sortPrice+"/"+sortOrder+"/null",
+			$.get(contextPath + "/api/selectProductsSale/"+proCategory+"/"+section+"/"+pageNum+"/"+sortPrice+"/"+sortOrder+"/"+search,
 					function(json){
 						console.log(json)
 						var dataLength = json.length;
@@ -176,7 +177,7 @@ $(function(){
 						
 					})	
 		}
-		window.location.href = contextPath + "/productlist?proCategory=0&section=1&pageNum=1&priceRange="+sortPrice+"&orderKind="+sortOrder+"&search=null";
+		window.location.href = contextPath + "/productlist?proCategory=0&section=1&pageNum=1&priceRange="+sortPrice+"&orderKind="+sortOrder+"&search="+search;
 	})
 	
 	$('.prodSearchBtn span').on('click',function(){
@@ -197,6 +198,7 @@ $(function(){
 			if(search != ''){
 				$.get(contextPath + "/api/selectProductsSale/"+proCategory+"/"+section+"/"+pageNum+"/"+priceRange+"/"+orderKind+"/"+search,
 					function(json){
+						console.log(json)
 						var dataLength = json.length;
 						
 						if(dataLength >= 1){
@@ -236,7 +238,7 @@ $(function(){
 							var popup = window.open("productDetailItem2?proNum="+proNum,'상품상세정보','width=800px, height=700px');
 						}
 				})	
-				
+		    	window.location.href = contextPath + "/productlist?proCategory=0&section=1&pageNum=1&priceRange="+priceRange+"&orderKind="+orderKind+"&search="+search;
 			}else {
 				sCont +="<div class = 'searchBlank'>검색 결과<br> 없습니다.</div>"
 				$(".productList").append(sCont);
@@ -245,8 +247,7 @@ $(function(){
 	}) 
 	
 	function totalCount(){
-		var search = $('#search').val();
-		$.get(contextPath + "/api/selectCountByProductSale/"+${priceRange}+"/null",function(json){
+		$.get(contextPath + "/api/selectCountByProductSale/"+${priceRange}+"/"+search,function(json){
 			console.log(json)
 			var page = Math.ceil(json/8)
 			var sCont = "";
@@ -270,6 +271,10 @@ $(function(){
 				$(this).attr("href",url)
 				console.log(url)
 			})
+			if(json == 0){
+				sCont +="<div class = 'searchBlank'>검색 결과<br> 없습니다.</div>"
+				$(".productList").append(sCont);
+			}
 		})
 	}
 
