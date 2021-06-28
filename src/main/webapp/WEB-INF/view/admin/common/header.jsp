@@ -63,7 +63,7 @@
 		</div>
 		</nav>
 		</header>
-
+  
 		<aside class="left-sidebar" data-sidebarbg="skin5">
 		<!-- Sidebar scroll-->
 		<div class="scroll-sidebar">

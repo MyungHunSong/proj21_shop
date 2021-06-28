@@ -130,6 +130,9 @@
 }
 </style>
 <style>
+
+
+
 tr {
 	text-align: center;
 }
