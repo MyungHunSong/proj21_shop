@@ -144,3 +144,11 @@
 	margin-top: 10px;
 	text-align: right;
 }
+
+.pBtn{
+	cursor: pointer;
+}
+
+.pBtn:hover{
+	color: crimson;
+}

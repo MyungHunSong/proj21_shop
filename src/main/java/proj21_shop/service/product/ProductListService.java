@@ -20,5 +20,5 @@ public interface ProductListService {
 	
 	//세일하는 제품 목록 페이징
 	List<ProductDTO> selectProductSale(Map<String, Object> saleProduct);
-	Integer selectCountByProductSale();
+	Integer selectCountByProductSale(Map<String, Object> condition);
 }

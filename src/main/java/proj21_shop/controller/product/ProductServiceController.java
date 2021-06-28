@@ -59,8 +59,12 @@ public class ProductServiceController {
 		return ResponseEntity.ok(service.selectProductSale(saleProduct));
 	}
 	
-	@GetMapping("/selectCountByProductSale")
-	public ResponseEntity<Object> countProdList(){
-		return ResponseEntity.ok(service.selectCountByProductSale());
+	@GetMapping("/selectCountByProductSale/{priceRange}/{search}")
+	public ResponseEntity<Object> countProdList(@PathVariable int priceRange, @PathVariable String search ){
+		HashMap<String, Object> condition = new HashMap<String, Object>();
+		
+		condition.put("search",search);
+		condition.put("priceRange",priceRange);
+		return ResponseEntity.ok(service.selectCountByProductSale(condition));
 	}
 }
