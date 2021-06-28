@@ -46,8 +46,8 @@ public class ProductListServiceImpl implements ProductListService{
 	}
 
 	@Override
-	public Integer selectCountByProductSale() {
-		return service.selectCountByProductSale();
+	public Integer selectCountByProductSale(Map<String, Object> condition) {
+		return service.selectCountByProductSale(condition);
 	}
 	
 }

@@ -53,7 +53,14 @@
 .proPriceSale{
 	font-weight: bold;
 }
+/*리뷰보기*/
+.review{
+	cursor: pointer;
+}
 
+.review:hover{
+	color: crimson;
+}
 
 /* 사이즈 */
 .productInfo select{

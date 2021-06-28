@@ -2,6 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <c:set var="orderList" value="${viewMap.orderList }" />
@@ -205,7 +206,7 @@ a {
 									<c:forEach var="order" items="${orderList }">
 										<tr style="text-align: center;">
 											<td width="100px">${order.orderProNum }-${order.orderCode }</td>
-											<td width="100px"><a href="${contextPath}/productDetail?proNum=${order.pro.proNum}"> <img width="70px" height="105px"
+											<td width="100px"><a href="${contextPath}/productDetail?proNum=${fn:substring(order.pro.proNum,0,3)}"> <img width="70px" height="105px"
 													src="${contextPath}/thumbnails?proNum=${order.pro.proNum}&fileName=${order.pro.proImgfileName}"></a></td>
 											<td width="100px">${order.pro.proName }</td>
 											<td width="100px">

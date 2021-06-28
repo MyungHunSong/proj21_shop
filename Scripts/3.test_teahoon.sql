@@ -524,3 +524,7 @@ select
 		pro_size = 1
 		and pro_name like concat('%','a', '%')
 		and pro_salesrate != 0 
+
+select * from review;		
+
+update product set re_replyCount = 12 where pro_num =  1042;

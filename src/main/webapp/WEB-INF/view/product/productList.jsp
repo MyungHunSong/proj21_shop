@@ -36,7 +36,7 @@ $(function(){
 	
 	$.get(contextPath + "/api/selectProductsSale/"+proCategory+"/"+section+"/"+pageNum+"/"+priceRange+"/"+orderKind+"/null",
 	function(json){
-		console.log(json)
+		
 		var dataLength = json.length;
 		if(dataLength >= 1){
 			var sCont = "";
@@ -74,13 +74,20 @@ $(function(){
 		function openPop(proNum){
 			var popup = window.open("productDetailItem2?proNum="+proNum,'상품상세정보','width=800px, height=700px');
 		}
+		
 	});
 	
+	/*Filter안의 조건들을 클릭하는 이벤트*/
 	$('.orderKind').on('click', 'li',function(){
 		var contextPath = "${contextPath}";
 		var sortOrder = $(this).data("order")
 		var sortPrice = $(this).data("price")
 		var proCategory = ${proCategory};
+		
+		/*사용한 검색 조건 유지*/
+		$(this).siblings().removeClass('use')
+		$(this).addClass('use')
+		
 		$(".productList *").remove(); 
 		if(sortPrice == undefined){
 			sortPrice = 0;
@@ -169,7 +176,7 @@ $(function(){
 						
 					})	
 		}
-		
+		window.location.href = contextPath + "/productlist?proCategory=0&section=1&pageNum=1&priceRange="+sortPrice+"&orderKind="+sortOrder+"&search=null";
 	})
 	
 	$('.prodSearchBtn span').on('click',function(){
@@ -236,17 +243,40 @@ $(function(){
 			}
 			
 	}) 
-		
+	
 	function totalCount(){
-		$.get(contextPath + "/api/selectCountByProductSale",function(json){
-		})	
+		var search = $('#search').val();
+		$.get(contextPath + "/api/selectCountByProductSale/"+${priceRange}+"/null",function(json){
+			console.log(json)
+			var page = Math.ceil(json/8)
+			var sCont = "";
+			for(i = 1; i < page+1; i++){
+				sCont += "<a class = 'pBtn'>  "+i+"  </a>"
+			}
+			$('#pageBtn').append(sCont)
+			$('.pBtn').on('click',function(){
+				var sortOrder = $(this).parent().prev().prev().prev().children().children().next().children('.use').data('order');
+				var sortPrice = $(this).parent().prev().prev().prev().children().next().children().next().children('.use').data('price');
+				
+				var url = "";
+				if(sortOrder == undefined){
+					sortOrder = "${orderKind}";
+				}
+				if(sortPrice == undefined){
+					sortPrice = ${priceRange}
+				}
+				url = contextPath+"/productlist?proCategory=0&section=1&pageNum="+$(this).text().trim()+"&priceRange="+sortPrice+"&orderKind="+sortOrder+"&search="+search	
+				
+				$(this).attr("href",url)
+				console.log(url)
+			})
+		})
+	}
+
+	if(proCategory == 0){
+		totalCount()
 	}
 	
-	var test = totalCount()
-	var tt = test
-	console.log(tt);
-		
-		
 })
 	
 
@@ -284,10 +314,10 @@ $(function(){
 		</div>
 	</div>
 	<div class="searchPlace">
-		<input type="text" placeholder="검색" style="padding: 5px;"><i class="fas fa-search"></i>
+		<input id = "search" type="text" placeholder="검색" style="padding: 5px; width: 300px"><i class="fas fa-search"></i>
 	</div>
 	<div class="productList"></div>
-	<div class="pageBtn"></div>
+	<div id="pageBtn"></div>
 <jsp:include page="/WEB-INF/view/include/footer.jsp"></jsp:include>
 </div>
 </body>
