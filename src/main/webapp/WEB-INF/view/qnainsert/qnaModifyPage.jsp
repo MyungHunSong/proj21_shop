@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="/proj21_shop/resources/qna/css/qnaModifyPage.css">
 <script type="text/javascript">
 $(function(){
+
 	$("input[name='uploadFile']").hide();	
 	
 	$('#preview').click(function(){
@@ -45,7 +46,9 @@ $(function(){
 		data:JSON.stringify(modifyItem),
 		success:function(){
 			alert("수정 완료")
+			 
 			window.open("about:blank", "_self").close();
+			
 			/* window.location.href =  "/proj21_shop/listPaging?page="+1 + "&pagePageNum="+ 10 + "&searchType=a&keyword="; */
 		}
 	});
@@ -140,19 +143,19 @@ function readURL(input, id){
 						</div>
 				</c:if>
 					<div>
-						<label>제목</label><input type="text" name="Title"><br>
+						<label>제목</label><input type="text" name="Title" value="${qnaDto.qTitle}"><br>
 					</div>
 				<c:if test="${authInfo.id ne 'admin'}">
 					<div>
 						<label>문의내용</label>
-						<textarea rows="10" cols="40"  name="Content"></textarea>
+						<textarea rows="10" cols="40"  name="Content" ></textarea>
 						<br>
 					</div>
 				</c:if>				
 				<c:if test="${authInfo.id eq 'admin'}">
 					<div>
 						<label>공지내용</label>
-						<textarea rows="10" cols="40" name="Content"></textarea>
+						<textarea rows="10" cols="40" name="Content" ></textarea>
 						<br>
 					</div>
 				</c:if>

@@ -193,7 +193,7 @@ $(function(){
 				data: JSON.stringify(cartNums.cartNum[0]),
 				success: function(res){
 					console.log(cartNums.cartNum[0])
-					window.location.href = contextPath+"/order?memId=${authInfo.id }";
+					window.location.href = contextPath+"/order?memId=${authInfo.id}";
 				},
 				error:function(request, status, error){
 					/* alert("code:"+request.status+"\n"+"message:"

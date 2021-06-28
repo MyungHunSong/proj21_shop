@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import proj21_shop.dto.qna.PageDTO;
+import proj21_shop.dto.qna.QnaDTO;
 import proj21_shop.dto.qna.SearchCriteria;
 import proj21_shop.service.qna.QnaInsertService;
 import proj21_shop.service.qna.QnaService;
@@ -50,6 +51,8 @@ public class QnaController {
 			
 		model.addAttribute("articles", service.listCriteria(searchCriteria));
 	    model.addAttribute("pageMaker", pageMaker);
+	    
+	
  
 	    return "/qna/qna_main";
 	}	

@@ -320,7 +320,23 @@ select * from qna;
 INSERT INTO qna
 	(q_title, q_option, q_member, q_content, q_file, q_date, q_group)
 values
-('주문에 관해서 말할께 잇어요', '제품문의', 'test01', '추천 드릴수 있는 상품이 있습니다.', 'text1234.jpg', now(),(SELECT IFNULL(MAX(q_group) + 1, 1) FROM qna b));
+('제품에 관해서 말할께 잇어요.', '제품문의', 'test01', '요러한 디자인의 제품도 있으면 좋을거 같아서 사진 한장 올려봅니다.', 'text1234.jpg', now(),(SELECT IFNULL(MAX(q_group) + 1, 1) FROM qna b));
+
+-- 관리자 공지 추가.
+INSERT INTO qna
+	(q_title, q_option, q_member, q_content, q_file, q_date, q_group)
+values
+('제품에 관해서 말할께 잇어요.', '제품문의', 'test01', '요러한 디자인의 제품도 있으면 좋을거 같아서 사진 한장 올려봅니다.', 'text1234.jpg', now(),(SELECT IFNULL(MAX(q_group) + 1, 1) FROM qna b)),
+('환불을 할려면 어떻게 하나요?', '환불문의', 'test02', '환불할시 얼만큼 시간 소요가 되나요? 돈은 다시 언제 들어오고요?',  0, now(),(SELECT IFNULL(MAX(q_group) + 1, 1) FROM qna b)),
+('환불관련공지', '공지', 'admin', '결제수단에 따라 환불규정이 각기 다르므로 아래 결제수단 별 환불 기간을 확인해주세요.
+ 무통장 계좌 : 주문 취소/반품 접수 시 입력한 환불 계좌 정보로 (평일 기준) 2~3일 이내 입금됩니다.
+ 실시간 이체 : 취소일로부터 (평일 기준) 2~3일 이내 연결 계좌로 입금됩니다.
+ 신용카드 : 카드 취소일 로부터 2~5일 이내 카드사별 개별 승인취소 확인이 가능합니다. 또는 결제일에 카드 대금이 청구되었다가 익월 카드 청구서에서 취소 확인이 가능합니다.
+ 간편 결제 : 네이버 페이 / 카카오 페이 / 페이코 (평일 기준) 일주일 이내
+ 휴대폰 결제 : 휴대폰 결제 취소' ,0 ,now(),0),
+('배송관련공지', '공지', 'admin', '오배송이 된 경우, MY PAGE > 주문 배송 조회 > 1:1 문의 작성 또는 고객센터(1644-0560)로 연락주시면 처리가 가능합니다. 빠른 처리가 가능하도록 돕겠습니다.
+불량 또는 오배송인 경우, 고객님께서는 왕복 배송비를 부담하시지 않게 교환 처리 해드립니다.', 0,now(),0);
+
 -- 회원글 삭제. (관리자가?)
 delete 
 	from qna
@@ -342,4 +358,15 @@ SELECT	*
 	FROM qna 
 WHERE q_member = 'test01';
 
+SELECT DISTINCT o.order_pro_num, o.order_code, pi2.pro_imagefilename, p.pro_num, p.pro_name, p.pro_color, p.pro_size, p.pro_price,
+		o.order_pro_quantity, o.delivery_status, o.order_date,
+		o.order_member_name , o.receiver_tel1, o.receiver_tel2,
+		o.delivery_addr1 , o.delivery_addr2, o.delivery_addr3,
+		o.request_to_delivery
+		from `order` o
+		join pro_img pi2
+		on o.pro_num = pi2.pro_num
+		join product p
+		on o.pro_num = p.pro_num
+where o.order_member_id = 'test01' and order_pro_num = 1;
 

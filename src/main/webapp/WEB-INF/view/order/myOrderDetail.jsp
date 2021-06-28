@@ -17,8 +17,7 @@
 		var sCont = "";
 
 
-		$
-				.get(
+		$.get(
 						contextPath + "/api/detailorder/" + memberId + "/"+orderProNum,
 						function(json) {
 							console.log(json);
