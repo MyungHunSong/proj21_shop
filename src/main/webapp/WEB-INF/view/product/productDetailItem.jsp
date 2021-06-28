@@ -38,18 +38,25 @@ $(function() {
 	
 	$.get(contextPath + "/api/productDetail/"+proNum, 
 	function(json) {
+		console.log(json)
 		var proSalerate = json[0].proSalesrate;
 		var proPrice = parseInt(json[0].proPrice);
 		var salePrice = ((100-proSalerate)/100)*proPrice;
 		/* 콤마 찍기용 */
 		var temp = proPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 		var add = salePrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+		/* 후기수 */
+		var reCount = 0;
+		for(i  = 0; i < json.length; i++){
+			reCount += json[i].reReplyCount
+		}
+		console.log(reCount)
 		var  sCont = "";
 				sCont += "<div class = 'productImage'><img src="+contextPath+"/resources/product/images/"+json[0].proImgfileName+"></div>";
 				sCont += "<div class = 'productInfo'>"
 				sCont += "<div class = 'productInfoName'>"
 				sCont += "<strong>"+json[0].proName+"</strong>";
-				sCont += "<span class = 'review'>"+json[0].reReplyCount+"개 리뷰 보기</span>";
+				sCont += "<span class = 'review'>"+reCount+"개 리뷰 보기</span>";
 				sCont += "</div>"
 				sCont += "<p> 조회수 : "+json[0].proHits+"</p>";
 				sCont += "<p>"+json[0].proContent+"</p>";
@@ -70,6 +77,10 @@ $(function() {
 				}
 				imgCont += "<img class = 'detailImg' src="+contextPath+"/resources/product/sizeImages/"+json[0].proCategory+".jpg>"
 				$("#productDetailImg").append(imgCont);
+				
+				$('.review').on('click',function(){
+					$('html, body').animate({scrollTop:$('#productReview').position().top}, 'slow');
+				})
 		}); 
 	
 	

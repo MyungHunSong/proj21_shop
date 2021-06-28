@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="/proj21_shop/resources/main/css/main.css">
 <meta charset="UTF-8">
 <title>회원 정보 수정</title>
 <script
@@ -69,6 +70,8 @@
 						}
 					}
 				}).open();
+		
+		
 	}
 </script>
 <link rel="stylesheet"
@@ -76,6 +79,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
+<div class="container">
 	<jsp:include page="/WEB-INF/view/include/header.jsp"></jsp:include>
 	<jsp:include page="/WEB-INF/view/include/topbody.jsp"></jsp:include>
 	<h2>회원 정보 수정</h2>
@@ -127,5 +131,6 @@
 		</form:form>
 	</section>
 	<jsp:include page="/WEB-INF/view/include/footer.jsp"></jsp:include>
+</div>	
 </body>
 </html>

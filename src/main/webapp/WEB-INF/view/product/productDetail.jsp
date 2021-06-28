@@ -27,7 +27,6 @@ $(function() {
 			$.get(contextPath + "/api/selectReviewByProNum/"+ proNum, 
 				function(json){
 					if(json.length != 0){
-						console.log(json)
 						for(i = 0; i < json.length; i++){
 								sCont += "<div class = 'reviewMembers'>"
 								sCont += "<hr style='border-radius: 10%; border-style: dashed; color: #ccc'>"
@@ -243,6 +242,8 @@ $(function() {
 						}
 					})
 				}
+				
+				
 })
 
 </script>

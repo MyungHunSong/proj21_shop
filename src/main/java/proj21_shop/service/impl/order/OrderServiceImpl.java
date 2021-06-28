@@ -94,11 +94,11 @@ public class OrderServiceImpl implements OrderService {
 			res += orderMapper.deletCart(orderDTO);
 		}
 		
-		System.out.println("총 할인 금액 >> " + totalSale);
-		System.out.println("제품 기본 할인된 금액 >> " +pSale);
-		System.out.println("제품 구입시 사용한 포인트 >> " +(totalSale-pSale));
-		System.out.println("제품 구입시 추가되는 포인트 >> "+ plusPoint);
-		System.out.println("수정될 포인트 >> "+ (plusPoint-(totalSale-pSale)) );
+//		System.out.println("총 할인 금액 >> " + totalSale);
+//		System.out.println("제품 기본 할인된 금액 >> " +pSale);
+//		System.out.println("제품 구입시 사용한 포인트 >> " +(totalSale-pSale));
+//		System.out.println("제품 구입시 추가되는 포인트 >> "+ plusPoint);
+//		System.out.println("수정될 포인트 >> "+ (plusPoint-(totalSale-pSale)) );
 		
 		memberDTO.setMemberTotalOrder(order.size());
 		memberDTO.setMemberPoint(plusPoint-(totalSale-pSale));
