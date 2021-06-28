@@ -8,6 +8,7 @@
 <title>회원 정보 수정</title>
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
 <script>
 	//본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
 	function sample4_execDaumPostcode() {
@@ -89,15 +90,16 @@
 							<option value="자신의 인생 좌우명은?">자신의 인생 좌우명은?</option>
 							<option value="자신의 보물 제1호는?">자신의 보물 제1호는?</option>
 							<option value="가장 기억에 남는 선생님 성함은?">가장 기억에 남는 선생님 성함은?</option>
-					</select></td>
+					</select> <span class="disMatch"></span></td>
 				</tr>
 				<tr>
 					<th scope="row"><label for="answer">답변</label></th>
-					<td><form:input path="memberPwdA" id="answer" /><form:errors /></td>
+					<td><form:input path="memberPwdA" id="answer" />
+					<span class = "unMatch"></span></td>
 				</tr>
 				<tr>
 					<th scope="row"><label for="tel">전화 번호</label></th>
-					<td><form:input path="memberPh"/></td>
+					<td><form:input path="memberPh" /></td>
 				</tr>
 				<tr>
 					<th scope="row"><label for="email">이메일</label></th>

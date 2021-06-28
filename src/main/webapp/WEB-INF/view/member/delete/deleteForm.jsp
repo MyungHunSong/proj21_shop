@@ -24,7 +24,7 @@
 				</tr>
 				<tr>
 					<th scope="row"><label for="passwdConfirm">비밀번호 확인</label></th>
-					<td><form:password path="passConfirm" /></td>
+					<td><form:password path="passConfirm" /><span class="disMatch"></span></td>
 				</tr>
 			</table>
 			<div>

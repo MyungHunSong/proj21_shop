@@ -78,9 +78,6 @@
 							sCon += "</tr>";
 							sCon += "<tr>";
 							sCon += "<th scope='cols'>할인합계</th>";
-							for(i = 0; i < dataLength; i++){
-								
-							}
 							sCon += "<td>" +json[0].orderDiscount + "</td>";
 							sCon += "</tr>";
 							sCon += "<tr>";

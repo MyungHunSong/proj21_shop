@@ -1,5 +1,6 @@
 package proj21_shop.dto.member;
 
+
 public class ModifyRequest {
 	private String memberId;
 	private String memberEmail;
@@ -73,6 +74,7 @@ public class ModifyRequest {
 	public void setMemberAddr3(String memberAddr3) {
 		this.memberAddr3 = memberAddr3;
 	}
+
 
 	@Override
 	public String toString() {
