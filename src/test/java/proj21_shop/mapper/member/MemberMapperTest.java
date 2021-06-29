@@ -16,6 +16,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import com.mysql.fabric.xmlrpc.base.Member;
+
 import proj21_shop.config.ContextRoot;
 import proj21_shop.dto.member.Gender;
 import proj21_shop.dto.member.MemberDTO;
@@ -52,7 +54,7 @@ public class MemberMapperTest {
 		log.debug(member.toString());
 	}
 
-	@Test
+//	@Test
 	public void test03InsertMember() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		MemberDTO member = new MemberDTO("test06", "123", "이종바", "010-1234-5678", LocalDate.of(1994, 8, 17),
@@ -90,5 +92,14 @@ public class MemberMapperTest {
 		int res = mapper.updateTotalLogin(member);
 		Assert.assertEquals(1, res);
 		
+	}
+	
+	@Test
+	public void test07selectMemberById() {
+		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
+		MemberDTO member = mapper.selectMemberById("test01");
+		Assert.assertNotNull(member);
+		log.debug(member.toString());
+
 	}
 }

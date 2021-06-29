@@ -22,6 +22,15 @@
 		<result property="memberTotalLogin" column="m_total_login" />
 		<result property="memberExit" column="m_exit" />
 	</resultMap>
+	
+	<resultMap type="MemberDTO" id="ResModifyMember">
+		<id property="memberId" column="m_id" />
+		<result property="memberPh" column="m_phone" />
+		<result property="memberEmail" column="m_email" />
+		<result property="memberAddr1" column="m_addr1" />
+		<result property="memberAddr2" column="m_addr2" />
+		<result property="memberAddr3" column="m_addr3" />
+	</resultMap>
 
 	<sql id="selectSQL">
 		select m_id, m_passwd, m_name, m_phone, m_birthday,
@@ -47,6 +56,12 @@
 		<include refid="selectSQL"></include>
 		<include refid="whereSQL"></include>
 	</select>
+	
+	<select id="selectMemberById" resultMap="ResModifyMember">
+		select m_phone, m_email, m_addr1, m_addr2, m_addr3
+  		  from member
+ 		 where m_id = #{id};
+	</select>
 
 	<insert id="insertMember" parameterType="MemberDTO">
 		insert
@@ -66,12 +81,12 @@
 
 	<update id="updateMember" parameterType="MemberDTO">
 		update member
-		set m_phone
-		= #{memberPh}, m_email = #{memberEmail}, m_addr1 =
-		#{memberAddr1},
-		m_addr2 = #{memberAddr2}, m_addr3 = #{memberAddr3}
-		where m_id =
-		#{memberId};
+		set m_phone = #{memberPh},
+			m_email = #{memberEmail},
+			m_addr1 = #{memberAddr1},
+			m_addr2 = #{memberAddr2},
+			m_addr3 = #{memberAddr3}
+		where m_id = #{memberId};
 	</update>
 
 	<update id="deleteMember" parameterType="MemberDTO">

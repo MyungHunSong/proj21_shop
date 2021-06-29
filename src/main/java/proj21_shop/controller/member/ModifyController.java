@@ -3,6 +3,7 @@ package proj21_shop.controller.member;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import proj21_shop.dto.member.AuthInfo;
+import proj21_shop.dto.member.MemberDTO;
 import proj21_shop.dto.member.ModifyRequest;
 import proj21_shop.exception.PasswordNotEqualException;
 import proj21_shop.exception.QuestionAnswerNotEqualException;
@@ -29,8 +31,18 @@ public class ModifyController {
 	private MemberModifyService memberModifyService;
 
 	@GetMapping
-	public String modify(@ModelAttribute("ModifyRequest") ModifyRequest modifyRequest) {
-		return "/member/register/modifyForm";
+	public String modify(@ModelAttribute("ModifyRequest") ModifyRequest modifyRequest, HttpSession session,HttpServletRequest request) {
+		try{AuthInfo authInfo = (AuthInfo) session.getAttribute("authInfo");
+			MemberDTO member = memberModifyService.form(authInfo.getId());
+			request.setAttribute("memberPh", member.getMemberPh());
+			request.setAttribute("memberEmail", member.getMemberEmail());
+			request.setAttribute("memberAddr1", member.getMemberAddr1());
+			request.setAttribute("memberAddr2", member.getMemberAddr2());
+			request.setAttribute("memberAddr3", member.getMemberAddr3());
+			return "/member/register/modifyForm";
+		}catch (Exception e) {
+			return "/member/login/loginForm";
+		}
 	}
 
 	@PostMapping

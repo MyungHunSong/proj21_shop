@@ -4,6 +4,7 @@ SELECT * FROM `member` m WHERE m_id = 'test01' AND m_exit != 0;
 UPDATE `member` SET m_question = '자신의 보물 제1호는?' , m_answer = '나' WHERE m_id = 'admin';
 -- 회원가입
 select * from member;
+
 desc review;
 select * from review;
 select * from `order` o2 ;
@@ -127,10 +128,17 @@ select m_question_num
   from member
  where m_id = 'skdus2421';
 
+select m_phone, m_email, m_addr1, m_addr2, m_addr3
+  from member
+ where m_id = 'test01';
+ 
 update member
    set m_phone = '010-9876-5432', m_email = 'test06@hanmail.net', m_addr1 = '12345', m_addr2 = '대구광역시 북구 침산남로 14길 5', m_addr3 = '505동 1005호'
  where m_id = 'test06';
 
+update member
+   set m_exit = 0
+ where m_id = 'test06';
 -- 주문 내역(입력 후 검색)
 select * from `order`;
 select * from `member`;
