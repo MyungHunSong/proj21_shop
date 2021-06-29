@@ -26,9 +26,9 @@
 							sCont += "<tr>";
 							sCont += "<td>" + json[0].orderProNum + "-" + json[0].productDTO[i].orderCode[0].orderCode + "</td>";
 							sCont += "<td><img src='" + contextPath +"/resources/product/images/" + json[0].productDTO[i].proImgfileName + "' width = '80' height='60'></td>";
-							sCont += "<td>" + json[0].productDTO[i].proPrice * json[0].orderProQuantity * (100-json[0].productDTO[i].proSalesrate) * 0.01 * 0.01 +"p"+ "</td>";
-							sCont += "<td>" + json[0].productDTO[i].proPrice * json[0].orderProQuantity * (100-json[0].productDTO[i].proSalesrate) * 0.01 + "</td>";
-							sCont += "<td>" + json[0].orderProQuantity+ "</td>";
+							sCont += "<td>" + json[0].productDTO[i].proPrice * json[0].productDTO[i].orderCode[0].orderProQuantity * 0.01 +"p"+ "</td>";
+							sCont += "<td>" + json[0].productDTO[i].proPrice * json[0].productDTO[i].orderCode[0].orderProQuantity  + "</td>";
+							sCont += "<td>" + json[0].productDTO[i].orderCode[0].orderProQuantity+ "</td>";
 							sCont += "<td>" + json[0].deliveryStatus+ "</td>";
 							sCont += "<td>" + json[0].orderDate+ "</td>";
 
@@ -72,14 +72,14 @@
 						 	for(i = 0; i < dataLength; i++){
 						 		/*console.log(parseInt(json[0].proName[i].proPrice)
 						 				+parseInt(json[0].proName[i].proPrice)) */
-							sum += json[0].productDTO[i].proPrice * json[0].orderProQuantity * (100-json[0].productDTO[i].proSalesrate) * 0.01;
+							sum += json[0].productDTO[i].proPrice * json[0].productDTO[i].orderCode[0].orderProQuantity * (100-json[0].productDTO[i].proSalesrate) * 0.01;
 							}
 						 	for(i = 0; i < dataLength; i++){
-						 		discount += json[0].productDTO[i].proPrice * json[0].orderProQuantity * json[0].productDTO[i].proSalesrate * 0.01;
+						 		discount += json[0].productDTO[i].proPrice * json[0].productDTO[i].orderCode[0].orderProQuantity * json[0].productDTO[i].proSalesrate * 0.01;
 
 						 	}
 						 	for(i = 0; i < json[0].productDTO.length ; i++){
-						 		price += json[0].productDTO[i].proPrice * json[0].orderProQuantity
+						 		price += json[0].productDTO[i].proPrice * json[0].productDTO[i].orderCode[0].orderProQuantity
 						 	}	
 						 	
 							sCon += "<td>" + price + "</td>";
