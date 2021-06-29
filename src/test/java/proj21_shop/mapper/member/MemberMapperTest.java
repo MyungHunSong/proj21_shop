@@ -49,7 +49,9 @@ public class MemberMapperTest {
 	@Test
 	public void test02SelectById() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
-		MemberDTO member = mapper.selectById("test01");
+		MemberDTO member = new MemberDTO();
+		member.setMemberId("test01");
+		member.setMemberPwd("123");
 		Assert.assertNotNull(member);
 		log.debug(member.toString());
 	}

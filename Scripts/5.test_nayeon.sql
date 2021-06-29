@@ -1,6 +1,8 @@
 -- nayeon test script
 SELECT * FROM ORDER;
-SELECT * FROM `member` m WHERE m_id = 'test01' AND m_exit != 0;
+select * from member;
+SELECT * FROM member WHERE m_id = 'test01' AND m_exit != 1 and m_passwd = password(123);
+
 UPDATE `member` SET m_question = '자신의 보물 제1호는?' , m_answer = '나' WHERE m_id = 'admin';
 -- 회원가입
 select * from member;

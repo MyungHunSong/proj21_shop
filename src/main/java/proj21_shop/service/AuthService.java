@@ -15,13 +15,15 @@ public class AuthService {
 	private MemberMapper mapper;
 	
 	public AuthInfo authenicate(String id, String password) {
-		MemberDTO member = mapper.selectById (id);
-		if(member==null) {
+		MemberDTO member = new MemberDTO();
+		member.setMemberId(id);
+		member.setMemberPwd(password);
+		MemberDTO newmember = mapper.selectById(member);
+		
+		if(newmember==null) {
 			throw new WrongIdPasswordException();
 		}
-		if(!member.matchPassword(password)) {
-			throw new WrongIdPasswordException();
-		}
+		
 		AuthInfo au =  new AuthInfo(member.getMemberId(), member.getMemberEmail(), member.getMemberName());
 		mapper.updateTotalLogin(member); //로그인 시 로그인 수 증가
 		au.setmPoint(member.getMemberPoint());

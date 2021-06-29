@@ -41,8 +41,8 @@
 
 	<sql id="whereSQL">
 		<where>
-			<if test="m_id != null">
-				and m_id = #{memberId} AND m_exit != 1
+			<if test="memberId != null">
+				and m_id = #{memberId} AND m_exit != 1 and m_passwd = password(#{memberPwd});
 			</if>
 		</where>
 	</sql>
@@ -51,8 +51,7 @@
 		<include refid="selectSQL"></include>
 	</select>
 
-	<select id="selectById" resultMap="ResMember"
-		parameterType="String">
+	<select id="selectById" resultMap="ResMember">
 		<include refid="selectSQL"></include>
 		<include refid="whereSQL"></include>
 	</select>

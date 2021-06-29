@@ -28,7 +28,7 @@
 					</tr>
 					<tr>
 						<td><label for="password">비밀번호 </label></td>
-						<td><input type="password" name="password" id="password" value="*23AE809DDACAF96AF0FD78ED04B6A265E05AA257"/></td>
+						<td><input type="password" name="password" id="password" value="123"/></td>
 				</table>
 				<input type="submit" value="로그인" id="selectButton" /><br> <input
 					type="button" value="회원가입" id="memberButton"
