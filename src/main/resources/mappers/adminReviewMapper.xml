@@ -50,5 +50,14 @@
 			AND pro_num like CONCAT('%',#{proNum},'%')
 	    </if>
 	</select>
-
+	
+	<delete id="deletereviews" parameterType="map">
+		DELETE from review
+		<where>
+		    re_num IN
+		    <foreach item="reNum" collection="deleteList" open="(" close=")" separator=",">
+		            #{reNum}
+		    </foreach>
+		</where>
+	</delete>
 </mapper>
