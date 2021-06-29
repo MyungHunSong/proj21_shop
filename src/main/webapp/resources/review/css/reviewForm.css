@@ -87,6 +87,7 @@ li {
 	border: 1px double #e7708d;
 	border-radius: 2px;
 	color: #fff;
+	cursor: pointer;
 }
 
 .file{

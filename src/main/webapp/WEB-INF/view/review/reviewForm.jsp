@@ -19,15 +19,13 @@
 		
 		$.get(contextPath + "/api/detailreview/" + memberId + "/"+ proNum, 
 		function(json){
-			var notice = [ '별로에요', '보통이에요', '그냥 그래요', '맘에 들어요',
-				'아주 좋아요' ];
+			var notice = [ '별로에요', '보통이에요', '그냥 그래요', '맘에 들어요', '아주 좋아요' ];
 			$(".stars .fa").click(
 					function() {
 						$(this).addClass("active");
 						$(this).prevAll().addClass("active");
 						$(this).nextAll().removeClass("active");
 						var starRate = $(this).index() + 1;
-					
 						
 						$('.print').html(
 								'<img src="images/star-lv' +starRate + '.png">'

@@ -17,6 +17,7 @@ import com.zaxxer.hikari.HikariDataSource;
 
 //DB연결용
 @Configuration
+//Transaction
 @EnableTransactionManagement
 public class ContextDataSource {
 
@@ -34,7 +35,7 @@ public class ContextDataSource {
 		}
 		return dataSource;
 	}
-	
+	//Transaction
 	@Bean
 	public PlatformTransactionManager transactionManager() {
 		return new DataSourceTransactionManager(dataSource());
