@@ -325,20 +325,16 @@ public class AdminProductController {
 		try {
 			adminProductService.deleteProducts(deleteMap);
 			//이미지 파일 삭제
-			for(int i=0; i<deleteList.size(); i++) {
-				File destDir=new File(CURR_IMAGE_REPO_PATH+"\\"+deleteList.get(i).toString());
-				FileUtils.deleteDirectory(destDir);
-			}
 			message="<script> ";
-			message+=" alert('선택한 제품 삭제를 완료하였습니다.');";
-			message+=" location.href='"+request.getContextPath()+"/admin/product/listProducts'; ";
+			message+=" alert('선택한 리뷰 삭제를 완료하였습니다.');";
+			message+=" location.href='"+request.getContextPath()+"/admin/review/listReviews'; ";
 			message+=" </script>";
 			resEnt=new ResponseEntity(message,responseHeaders,HttpStatus.CREATED);
 		}catch(Exception e) {
 			
 			message="<script> ";
-			message+=" alert('제품 삭제를 실패하셨습니다..');";
-			message+=" location.href='"+request.getContextPath()+"/admin/product/listProducts'; ";
+			message+=" alert('선택한 리뷰 삭제실패하셨습니다..');";
+			message+=" location.href='"+request.getContextPath()+"/admin/review/listReviews'; ";
 			message+=" </script>";
 			resEnt=new ResponseEntity(message,responseHeaders,HttpStatus.CREATED);
 			e.printStackTrace();
