@@ -48,8 +48,10 @@
 			 	var option = $("select[name=searchType]:visible").val();
 			 	var member = "${authInfo.name}"
 			 	var content = $("textarea[name='Content']:visible").val();
-			 	var file = document.getElementById("addPoto").files[0].name;
 			 	
+			 	if("${authInfo.id}" != "admin" && "${authInfo.name}" != "관리자"){
+			 		var file = document.getElementById("addPoto").files[0].name;
+			 	}
 			 	var insertItem = {
 			 			"qTitle": title,
 			 			"qOption":option,
