@@ -32,7 +32,7 @@ public class OrderServiceController {
 	
 	/*주문 테이블에 제품 등록*/
 	@PostMapping("/orderInfo")
-	public ResponseEntity<Object> getOrderInfo(@RequestBody List<OrderDTO> orderDTO){
+	public ResponseEntity<Object> trInsertOrder(@RequestBody List<OrderDTO> orderDTO){
 		System.out.println(orderDTO);
 		return ResponseEntity.ok(service.trInsertOrder(orderDTO));
 	}
