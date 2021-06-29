@@ -46,17 +46,25 @@
 			</if>
 		</where>
 	</sql>
-
+	
 	<select id="selectAll" resultMap="ResMember">
 		<include refid="selectSQL"></include>
 	</select>
 
-	<select id="selectById" resultMap="ResMember"
-		parameterType="String">
+	<select id="selectById" resultMap="ResMember" parameterType="String">
 		<include refid="selectSQL"></include>
 		<include refid="whereSQL"></include>
 	</select>
-	
+
+	<select id="selectByLoginId" resultMap="ResMember">
+		<include refid="selectSQL"></include>
+		<where>
+			<if test="memberId != null">
+				and m_id = #{memberId} AND m_exit != 1 and m_passwd = password(#{memberPwd});
+			</if>
+		</where>
+	</select>
+		
 	<select id="selectMemberById" resultMap="ResModifyMember">
 		select m_phone, m_email, m_addr1, m_addr2, m_addr3
   		  from member

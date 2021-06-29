@@ -45,14 +45,12 @@ public class LoginController {
         try {
             AuthInfo authInfo = authService.authenicate(loginCommand.getId(), loginCommand.getPassword());
             session.setAttribute("authInfo", authInfo);
-            Cookie rememberCookie = new Cookie("REMEMBER", loginCommand.getId());
-            rememberCookie.setPath("/");
-            if (loginCommand.isRememberId()) {
-                rememberCookie.setMaxAge(60 * 60 * 24 * 30);
-            }else {
-                rememberCookie.setMaxAge(0);
-            }
-            response.addCookie(rememberCookie);
+			/*
+			 * Cookie rememberCookie = new Cookie("REMEMBER", loginCommand.getId());
+			 * rememberCookie.setPath("/"); if (loginCommand.isRememberId()) {
+			 * rememberCookie.setMaxAge(60 * 60 * 24 * 30); }else {
+			 * rememberCookie.setMaxAge(0); } response.addCookie(rememberCookie);
+			 */
             if(loginCommand.getId().equals("admin")) {
             	
             	return "redirect:/admin/order/orderStatics";

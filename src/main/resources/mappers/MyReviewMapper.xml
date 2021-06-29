@@ -52,6 +52,7 @@
 		<result property="qTitle" column="q_title" />
 		<result property="qMember" column="q_member" />
 		<result property="qDate" column="q_date" />
+		<result property="qContent" column="q_content" />
 	</resultMap>
 
 	<select id="selectReviewByMember" resultMap="resReview">
@@ -68,7 +69,7 @@
 	</select>
 
 	<select id="selectQnaByMember" resultMap="resQna">
-		select q_index, q_file,
+		select q_index, q_file, q_content,
 		q_title, q_member, q_date
 		from qna
 		where q_member = #{memberId};

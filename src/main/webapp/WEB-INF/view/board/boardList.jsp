@@ -38,20 +38,31 @@
 				$("#load").append(sCont);
 			}
 		})
+		
+		$(".title").click(function(){
+			$(this).addClass("active");
+			
+			$(this).siblings(".desc").stop().slideUp();
+			$(this).next().stop().slideDown();
+		});
 
 		$.get(contextPath + "/api/myqna/" + memberId, function(json) {
 			var dataLength = json.length;
+			console.log(json);
 			if (dataLength >= 1) {
 				var sCont = "";
 				for (i = 0; i < dataLength; i++) {
 					sCont += "<tr>";
-					sCont += "<td>" + json[i].qIndex + "</td>";
-					sCont += "<td>" + json[i].qFile + "</td>";
-					sCont += "<td>" + json[i].qTitle + "</td>";
-					sCont += "<td>" + json[i].qMember + "</td>";
-					sCont += "<td>" + json[i].qDate + "</td>";
+					sCont += "<td><div class='title'>" + json[i].qIndex + "</div></td>";
+					sCont += "<td><div class='title'>" + json[i].qFile + "</div></td>";
+					sCont += "<td><div class='title'>" + json[i].qTitle + "</div></td>";
+					sCont += "<td><div class='title'>" + json[i].qMember + "</div></td>";
+					sCont += "<td><div class='title'>" + json[i].qDate + "</div></td>";
 					sCont += "<td> <a href = 'qnaModify?index=${idx}' class = 'qnaChange'>Q&A 수정하러 가기 </a></td>";
 					sCont += "<tr>";
+					sCont += "<div class='desc'>";
+					sCont += json[i].qContent;
+					sCont +="</div>";
 					// qnaModify?index=${idx}
 				}
 				$("#loadtable").append(sCont);
