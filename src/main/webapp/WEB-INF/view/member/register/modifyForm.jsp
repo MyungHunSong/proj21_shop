@@ -103,11 +103,11 @@
 				</tr>
 				<tr>
 					<th scope="row"><label for="tel">전화 번호</label></th>
-					<td><form:input path="memberPh" /></td>
+					<td><form:input path="memberPh" required="required"/></td>
 				</tr>
 				<tr>
 					<th scope="row"><label for="email">이메일</label></th>
-					<td><form:input path="memberEmail" /></td>
+					<td><form:input path="memberEmail" required="required"/></td>
 				</tr>
 				<tr>
 					<th scope="row"><label for="address">주소</label></th>

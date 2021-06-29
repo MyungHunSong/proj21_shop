@@ -140,7 +140,7 @@ $(function(){
 				<div class="card">
 
 					<!--membersList  -->
-					<form action="${contextPath }/admin/product/addNewProduct" method="post" enctype="multipart/form-data" id="frm_register">
+					<form action="${contextPath }/admin/product/addNewProduct" method="post" enctype="multipart/form-data" id="frm_register" >
 						<center>
 							<br>
 							<br>
@@ -151,7 +151,7 @@ $(function(){
 								<tr>
 									<td>상품 카테고리</td>
 									<td>
-										<select name="proCategory" id="proCategory">
+										<select name="proCategory" id="proCategory" >
 												<option value="1">반팔</option>
 												<option value="2">긴팔</option>
 												<option value="3">슬립리스</option>
@@ -163,7 +163,7 @@ $(function(){
 								</tr>
 								<tr>
 									<td>상품 이름</td>
-									<td class="b"><input type="text" name="proName" size="39" /></td>
+									<td class="b"><input type="text" name="proName" size="39" required="required"/></td>
 								</tr>
 								<tr>
 									<td>상품 구분</td>
@@ -177,11 +177,11 @@ $(function(){
 								</tr>
 								<tr>
 									<td>상품 가격</td>
-									<td class="b"><input type="text" name="proPrice" id="proPrice" size="39" /></td>
+									<td class="b"><input type="text" name="proPrice" id="proPrice" size="39" required="required"/></td>
 								</tr>
 								<tr>
 									<td>상품 할인율</td>
-									<td class="b"><input type="text" name="proSalesrate" id="proSalesrate" size="39" /> %</td>
+									<td class="b"><input type="text" name="proSalesrate" id="proSalesrate" size="39" required="required"/> %</td>
 								</tr>
 
 								<tr>
@@ -207,7 +207,7 @@ $(function(){
 								</tr>
 								<tr>
 									<td>상품 사이즈</td>
-									<td class="b"><select name="proSize" id="proSize">
+									<td class="b"><select name="proSize" id="proSize" >
 											<option value="1">XS</option>
 											<option value="2">S</option>
 											<option value="3" selected>M</option>
@@ -223,18 +223,18 @@ $(function(){
 								<tr>
 									<td>판매 재고</td>
 									<td class="b">
-										<input type="text" name="proQuantity" size="39" /> 개
+										<input type="text" name="proQuantity" size="39" required="required"/> 개
 									</td>
 								</tr>
 
 								<tr>
 									<td>상품 설명</td>
-									<td class="b"><textarea rows="8" cols="39" name="proContent"></textarea></td>
+									<td class="b"><textarea rows="8" cols="39" name="proContent" required="required"></textarea></td>
 								</tr>
 								<tr>
 									<td>메인 이미지 추가</td>
 									<td class="b">
-									<input type="file" value="메인 이미지 등록" id="main" name="1" onchange="readURL(this,this.id);" />
+									<input type="file" value="메인 이미지 등록" id="main" name="1" onchange="readURL(this,this.id);" required="required"/>
 									<input type="button" value="디테일 이미지 추가" onClick="fn_addFile()" />
 									</td>
 								</tr>
@@ -250,7 +250,7 @@ $(function(){
 								</tr>
 								<tr>
 									<td>상품 코드</td>
-									<td class="b"><input type="text" id="proNum" name="proNum" size="39" readonly="readonly" placeholder="클릭하여 제품 번호 생성" /></td>
+									<td class="b"><input type="text" id="proNum" name="proNum" size="39" readonly="readonly" placeholder="클릭하여 제품 번호 생성" required="required"/></td>
 								</tr>
 								<tr>
 									<td colspan="4">

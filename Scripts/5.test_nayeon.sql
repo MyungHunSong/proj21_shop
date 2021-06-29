@@ -1,5 +1,7 @@
 -- nayeon test script
 
+SELECT * FROM `member` m WHERE m_id = 'test01' AND m_exit != 0;
+UPDATE `member` SET m_question = '자신의 보물 제1호는?' , m_answer = '나' WHERE m_id = 'admin';
 -- 회원가입
 select * from member;
 desc review;
