@@ -86,49 +86,47 @@
 				<table class="type02">
 					<tr>
 						<th scope="row"><label for="name">이름</label></th>
-						<td><form:input path="memberName" /></td>
+						<td><form:input path="memberName" required="required"/></td>
 					</tr>
 					<tr>
 						<th scope="row"><label for="id">아이디</label></th>
-						<td><form:input path="memberId" /></td>
+						<td><form:input path="memberId" required="required"/><span class="unMatch"></span></td>
 					</tr>
 					<tr>
 						<th scope="row"><label for="passwd">비밀번호</label></th>
-						<td><form:password path="memberPwd"/></td>
+						<td><form:password path="memberPwd" required="required"/></td>
 					</tr>
 					<tr>
 						<th scope="row"><label for="passwdconfirm">비밀번호 확인</label></th>
-						<td><form:password path="memberPwdConfirm"/></td>
+						<td><form:password path="memberPwdConfirm"/><span class="disMatch"></span></td>
 					</tr>
 					<tr>
 						<th scope="row"><label for="email">이메일</label></th>
-						<td><form:input path="memberEmail" /></td>
+						<td><form:input path="memberEmail" required="required"/></td>
 					</tr>
 					<tr>
 						<th scope="row"><label for="tel">전화번호</label></th>
-						<td><form:input path="memberPh" /></td>
+						<td><form:input path="memberPh" required="required" /></td>
 					</tr>
 					<tr>
 						<th scope="row"><label for="birthday">생년월일</label></th>
-						<td><form:input type="Date" path="memberBirth"/></td>
+						<td><form:input type="Date" path="memberBirth" required="required"/></td>
 					</tr>
 					<tr>
 						<th scope="row"><label for="gender">성별</label></th>
-						<td><form:radiobutton path="memberGender" value="MALE" />남자 <form:radiobutton
+						<td><form:radiobutton path="memberGender" value="MALE" checked="checked"/>남자 <form:radiobutton
 								path="memberGender" value="FEMALE" />여자</td>
 					</tr>
 					<tr>
 						<th scope="row"><label for="address">주소</label></th>
-						<td><form:input type="text" id="sample4_postcode"
-							placeholder="우편번호" path="memberAddr1"/> <input
-							type="button" onclick="sample4_execDaumPostcode()"
-							value="우편번호 찾기"> <br> <form:input type="text"
-							id="sample4_roadAddress" path="memberAddr2" placeholder="도로명주소"/>
+						<td>
+							<form:input type="text" id="sample4_postcode" placeholder="우편번호" path="memberAddr1" required="required"/>
+							<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"> <br> 
+							<form:input type="text" id="sample4_roadAddress" path="memberAddr2" placeholder="도로명주소"/>
 							<input type="text" id="sample4_jibunAddress" placeholder="지번주소">
-							<span id="guide" style="color: #999; display: none"></span> <form:input
-							type="text" id="sample4_detailAddress" path="memberAddr3"
-							placeholder="상세주소"/> <input type="text"
-							id="sample4_extraAddress" placeholder="참고항목"></td>
+							<span id="guide" style="color: #999; display: none"></span>
+							<form:input type="text" id="sample4_detailAddress" path="memberAddr3" placeholder="상세주소"  required="required"/>
+							<input type="text" id="sample4_extraAddress" placeholder="참고항목"></td>
 					</tr>
 					<tr>
 						<th scope="row"><label for="confirmQuestion">본인확인질문</label></th>
@@ -141,13 +139,13 @@
 					</tr>
 					<tr>
 						<th scope="row"><label for="answer">답변</label></th>
-						<td><form:input type="text" path="memberPwdA" id="answer"/></td>
+						<td><form:input type="text" path="memberPwdA" id="answer" required="required"/></td>
 					</tr>
 				</table>
 				<div>
-					<input type="submit" value="회원가입" id="registerButton" /> <input
-						type="reset" value="초기화" id="resetButton" /> <input type="button"
-						value="취소" id="cancelButton" onClick="history.go(-1)" />
+					<input type="submit" value="회원가입" id="registerButton" />
+					<input type="reset" value="초기화" id="resetButton" /> 
+					<input type="button" value="취소" id="cancelButton" onClick="history.go(-1)" />
 				</div>
 			</form:form>
 		</section>
