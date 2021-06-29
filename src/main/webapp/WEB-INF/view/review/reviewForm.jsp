@@ -33,7 +33,6 @@
 								'<img src="images/star-lv' +starRate + '.png">'
 										+ notice[starRate - 1]);
 						
-					
 						
 						 $('.review').on("click", '[id=insert]', function(e){
 						 	  var newReview = {	proNum : json[0].proName.proNum , memberId : memberId, reviewContent : $('#reviewContent').val(),

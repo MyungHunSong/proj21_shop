@@ -49,6 +49,7 @@
 	<resultMap type="QnaDTO" id="resQna">
 		<id property="qIndex" column="q_index" />
 		<result property="qFile" column="q_file" />
+		<result property="qOption" column="q_option" />
 		<result property="qTitle" column="q_title" />
 		<result property="qMember" column="q_member" />
 		<result property="qDate" column="q_date" />
@@ -69,7 +70,7 @@
 	</select>
 
 	<select id="selectQnaByMember" resultMap="resQna">
-		select q_index, q_file, q_content,
+		select q_index, q_file, q_content, q_option,
 		q_title, q_member, q_date
 		from qna
 		where q_member = #{memberId};
