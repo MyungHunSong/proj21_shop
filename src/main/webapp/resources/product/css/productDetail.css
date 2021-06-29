@@ -86,6 +86,10 @@
 
 
 /* 수량 올라가는 부분 */
+.btn{
+	cursor: pointer;
+}
+
 .calculator{
 	display: flex;
 	align-items: center;
