@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="/proj21_shop/resources/qna/css/qnaModifyPage.css">
 <script type="text/javascript">
 $(function(){
-	var contextPath = "${contextPath}";`
+	var contextPath = "${contextPath}";
 	
 	$("input[name='uploadFile']").hide();	
 	
@@ -22,6 +22,7 @@ $(function(){
 		  
 	 	$("input[name='uploadFile']").click();
 	  });
+	
 // 수정하기.
  $(".modifyQna").on("click", function(){
 	var idx = ${idx};
@@ -38,7 +39,7 @@ $(function(){
 			"qContent" : content,
 			"qFile" : file
 	}
-	
+	//
 	
 	$.ajax({
 		url: '/proj21_shop/api/qnainsert/' + idx,
@@ -47,14 +48,17 @@ $(function(){
 		datatype:"json",
 		data:JSON.stringify(modifyItem),
 		success:function(){
-			alert("수정 완료") 
-			opener.parent.location= contextPath + "/listPaging?page="+1 + "&pagePageNum="+ 10 + "&searchType=a&keyword="; 
+			alert("수정 완료")
+			// 새로고침 
+			opener.parent.location= contextPath + "/listPaging?page="+1 + "&pagePageNum="+ 10 + "&searchType=a&keyword=";
+			// 팝업창 닫기 (완료후)
 			window.open("about:blank", "_self").close();
 			
 			
 			/* window.location.href =  "/proj21_shop/listPaging?page="+1 + "&pagePageNum="+ 10 + "&searchType=a&keyword="; */
 		}
 	});
+	//
  });
  $("input[type='file']").on("change", function(e){
 	 let formData = new FormData();
@@ -94,7 +98,7 @@ $(function(){
  }
 });
 
-function readURL(input, id){
+ function readURL(input, id){
 	
 	if(input.files && input.files[0]){
 		var reader = new FileReader();
@@ -109,8 +113,6 @@ function readURL(input, id){
 		reader.readAsDataURL(input.files[0]);
 	}
 }
-
- 
  
 </script>
 </head>
