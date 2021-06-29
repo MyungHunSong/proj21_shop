@@ -10,7 +10,7 @@
 <body>
 <center>
     <footer class="footer text-center">
-                All Rights Reserved by goldenkiwi. Designed and Developed by golden kiwi by eggmalee.
+                All Rights Reserved by UpStreet. Designed and Developed by UpStreet by members of upstreet.
           </footer>
          
 </center>

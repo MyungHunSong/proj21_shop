@@ -33,7 +33,7 @@
 	<sql id="whereSQL">
 		<where>
 			<if test="m_id != null">
-				and m_id = #{memberId}
+				and m_id = #{memberId} AND m_exit != 1
 			</if>
 		</where>
 	</sql>
