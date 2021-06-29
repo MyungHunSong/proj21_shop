@@ -61,6 +61,7 @@ public class MyReviewController {
 		/* System.out.println("newReview>"+review); */
 		try {
 			service.insertReview(review);
+			service.updateReviewCount(review.getProNum());
 			URI uri = URI.create("/api/myreview/"+review.getMemberId());
 			return ResponseEntity.created(uri).body(review.getMemberId());
 		}catch (DuplicateReviewException e) {

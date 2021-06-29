@@ -55,7 +55,8 @@
 	})
 </script>
 <link rel="stylesheet"
-	href="/proj21_shop/resources/board/css/boardList.css" />
+	href="${contextPath }/resources/board/css/boardList.css" />
+<link rel="stylesheet" href="${contextPath }/resources/order/css/memberProductCart.css">
 </head>
 <body>
 	<div class="container">
