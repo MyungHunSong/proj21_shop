@@ -18,7 +18,7 @@ public class AuthService {
 		MemberDTO member = new MemberDTO();
 		member.setMemberId(id);
 		member.setMemberPwd(password);
-		MemberDTO newmember = mapper.selectById(member);
+		MemberDTO newmember = mapper.selectByLoginId(member);
 		
 		if(newmember==null) {
 			throw new WrongIdPasswordException();
