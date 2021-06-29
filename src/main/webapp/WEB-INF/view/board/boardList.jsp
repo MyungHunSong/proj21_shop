@@ -15,6 +15,7 @@
 		var proNum = "${proNum}";
 		console.log(proNum);
 		$.get(contextPath + "/api/myreview/" + memberId, function(json) {
+			console.log(json)
 			var dataLength = json.length;
 			if (dataLength >= 1) {
 				var sCont = "";
@@ -22,10 +23,10 @@
 					sCont += "<tr>";
 					sCont += "<td>" + json[i].proName.proName + "</td>";
 					if(json[i].reviewImagefilename2 == null || json[i].reviewImagefilename2 == ""){
-						json[i].reviewImagefilename2 = "noimage.jpg"
+						json[i].reviewImagefilename2 = 'noimage.jpg'
 					}
 					if(json[i].reviewImagefilename1 == null || json[i].reviewImagefilename1 == ""){
-						json[i].reviewImagefilename1 = "noimage.jpg"
+						json[i].reviewImagefilename1 = 'noimage.jpg'
 					}
 					sCont += "<td><img src="+contextPath+"/resources/review/images/" + json[i].reviewImagefilename1 + " width='70' height='60' ><img src=" + contextPath + "/resources/review/images/" + json[i].reviewImagefilename2 + " width='70' height='60'></td>";	
 					sCont += "<td>" + json[i].reviewContent + "</td>";

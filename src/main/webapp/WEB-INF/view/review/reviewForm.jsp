@@ -59,7 +59,7 @@
 									reviewImagefilename1 : $('#imgButton1').val().replace(/C:\\fakepath\\/i, ''), reviewImagefilename2 : $('#imgButton2').val().replace(/C:\\fakepath\\/i, ''), reviewStar : starRate
 									};
 							
-							alert("data > " + data.reviewNum);
+							/* alert("data > " + data.reviewNum); */
 							$.ajax({
 								url : contextPath + "/api/myreview/"+ data.reviewNum,
 								type : 'Patch',
@@ -68,7 +68,7 @@
 								cache : false,
 								data : JSON.stringify(data),
 								success : function(data){
-									alert(data);
+									alert("등록을 완료했습니다.");
 									window.location.href = contextPath + "/board?memberId=" + memberId;
 									
 								},error:function(request, data, status, error) {
@@ -119,9 +119,9 @@
 				sConts += "<input type='file' id='imgButton1' name='imgButton1' value='json[0].reviewImagefilename1'/>";
 				sConts += "<input type='file' id='imgButton2' name='imgButton2' value='json[0].reviewImagefilename2'/>";
 				sConts += "</div><br>";
+				
+				
 				if(json[0].reviewContent == undefined){
-				sConts += "<button id='insert'>수정</button>";
-				}else if (json[0].reviewContent == null){
 				sConts += "<button id='insert'>등록</button>";
 				}else{
 				sConts += "<button id='modify'>수정</button>";
