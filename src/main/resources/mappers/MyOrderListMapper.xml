@@ -15,6 +15,7 @@
 	<resultMap type="OrderDTO" id="resOrderCode">
 		<id property="orderProNum" column="order_pro_num"/>
 		<result property="orderCode" column="order_code"/>
+		<result property="orderProQuantity" column="order_pro_quantity"/>
 	</resultMap>
 
 	<resultMap type="OrderDTO" id="resOrder">
