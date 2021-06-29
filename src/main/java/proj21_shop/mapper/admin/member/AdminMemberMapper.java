@@ -28,4 +28,5 @@ public interface AdminMemberMapper {
 	MemberDTO selectMemberByCertain(Map<String, Object> searchMap);
 	
 	int updateMember(Map<String, Object> changeMap);
+
 }
