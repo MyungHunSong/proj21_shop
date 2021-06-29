@@ -126,4 +126,9 @@
 	where re_num = #{reviewNum}
 	</update>
 	
+	<update id="updateReviewCount" parameterType="int">
+		update product
+		   set re_replyCount = re_replyCount + 1
+	   	 where pro_num = #{proNum}
+	 </update>
 </mapper>

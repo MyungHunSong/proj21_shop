@@ -47,5 +47,10 @@ public class MyReviewServiceImpl implements MyReviewService {
 		return mapper.updateReview(reviewDTO);
 	}
 
+	@Override
+	public int updateReviewCount(int proNum) {
+		return mapper.updateReviewCount(proNum);
+	}
+
 
 }

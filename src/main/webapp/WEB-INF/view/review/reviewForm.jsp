@@ -9,6 +9,7 @@
 <title>후기 작성</title>
 <link rel="stylesheet"
 	href="/proj21_shop/resources/review/css/reviewForm.css" />
+<link rel="stylesheet" href="/proj21_shop/resources/main/css/main.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 	$(function() {
@@ -121,13 +122,13 @@
 				}
 				
 				sConts += "<div class='file'>";
-				sConts += "<input type='file' id='imgButton1' name='imgButton1'/>";
-				sConts += "<input type='file' id='imgButton2' name='imgButton2'/>";
+				sConts += "<input type='file' id='imgButton1' name='imgButton1' value='json[0].reviewImagefilename1'/>";
+				sConts += "<input type='file' id='imgButton2' name='imgButton2' value='json[0].reviewImagefilename2'/>";
 				sConts += "</div><br>";
-				if(json[0].reviewContent = undefined){
-				sConts += "<button id='insert'>등록</button>";
+				if(json[0].reviewContent == undefined){
+				sConts += "<button id='insert'>수정</button>";
 				}else if (json[0].reviewContent == null){
-				sConts += "<button id='modify'>수정</button>";
+				sConts += "<button id='insert'>등록</button>";
 				}else{
 				sConts += "<button id='modify'>수정</button>";
 				}
@@ -258,6 +259,7 @@
 </script>
 </head>
 <body>
+	<div class = "container">
 	<jsp:include page="/WEB-INF/view/include/header.jsp"></jsp:include>
 	<jsp:include page="/WEB-INF/view/include/topbody.jsp"></jsp:include>
 	<h2>스타일 후기 작성</h2>
@@ -277,5 +279,6 @@
 		<br>
 			<div class="review" id="review"></div>
 		<jsp:include page="/WEB-INF/view/include/footer.jsp"></jsp:include>
+	</div>
 </body>
 </html>

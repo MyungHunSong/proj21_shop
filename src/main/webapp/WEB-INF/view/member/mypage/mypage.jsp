@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="contextPath" value="<%=request.getContextPath()%>" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,9 +8,11 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet"
-	href="/proj21_shop/resources/member/css/mypage.css" />
+	href="${contextPath }/resources/member/css/mypage.css" />
+<link rel="stylesheet" href="${contextPath }/resources/main/css/main.css">
 </head>
 <body>
+<div class="container">
 	<section id="mypage">
 		<jsp:include page="/WEB-INF/view/include/header.jsp"></jsp:include>
 		<jsp:include page="/WEB-INF/view/include/topbody.jsp"></jsp:include>
@@ -32,5 +35,6 @@
 		</div>
 		<jsp:include page="/WEB-INF/view/include/footer.jsp"></jsp:include>
 	</section>
+</div>
 </body>
 </html>

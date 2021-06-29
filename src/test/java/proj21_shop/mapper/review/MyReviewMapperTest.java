@@ -17,6 +17,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import proj21_shop.config.ContextRoot;
 import proj21_shop.dto.order.OrderDTO;
+import proj21_shop.dto.product.ProductDTO;
 import proj21_shop.dto.qna.QnaDTO;
 import proj21_shop.dto.review.ReviewDTO;
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -90,5 +91,13 @@ public class MyReviewMapperTest {
 		int res = mapper.updateReview(reviewDTO);
 		Assert.assertEquals(1, res);
 	}
+	
+	@Test
+	public void test07UpdateReviewCount() {
+		log.debug(Thread.currentThread().getStackTrace()[1].getClassName()+"()");
+		int res = mapper.updateReviewCount(1031);
+		Assert.assertEquals(1, res);
+	}
+
 	
 }

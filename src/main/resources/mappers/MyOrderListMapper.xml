@@ -8,6 +8,7 @@
 		<result property="proSize" column="pro_size"/>
 		<result property="proPrice" column="pro_price"/>
 		<result property="proImgfileName" column="pro_imagefilename" />
+		<result property="proSalesrate" column="pro_salesrate"/>
 		<collection property="orderCode" resultMap="resOrderCode"></collection>
 	</resultMap>
 	
@@ -65,7 +66,7 @@
 
 	<select id="selectOrderDetailByMember"
 		resultMap="resDetailOrder">
-		SELECT DISTINCT o.order_pro_num, o.order_code, pi2.pro_imagefilename, p.pro_num, p.pro_name, p.pro_color, p.pro_size, p.pro_price,
+		SELECT DISTINCT o.order_pro_num, o.order_code, pi2.pro_imagefilename, p.pro_num, p.pro_name, p.pro_color, p.pro_size, p.pro_price, p.pro_salesrate,
 		o.order_pro_quantity, o.delivery_status, o.order_date,
 		o.order_member_name , o.receiver_tel1, o.receiver_tel2,
 		o.delivery_addr1 , o.delivery_addr2, o.delivery_addr3,
