@@ -31,6 +31,7 @@
 	line-height: 1.5;
 	padding: 0 0 0 50px;
 }
+
 .infotable td {
 	width: 150px;
 	padding: 5px;
@@ -42,14 +43,17 @@
 	border-right: 1px solid #ccc;
 	text-align: center;
 }
+
 #chartContainer {
 	/*     padding : 0 0 0 30px;  */
 	
 }
+
 a#linkline {
 	text-decoration: none;
 	color: #FE2E2E;
 }
+
 a:hover {
 	color: #FE2E2E;
 }
@@ -207,7 +211,7 @@ function toggleDataSeries(e) {
 									<td>아이디</td>
 									<td>${member.memberId }</td>
 									<td>적립금</td>
-									<td><a href="#"><fmt:formatNumber value="${member.memberPoint}" pattern="#,###" /></a><b>  P</b></td>
+									<td><a href="#"><fmt:formatNumber value="${member.memberPoint}" pattern="#,###" /></a><b> P</b></td>
 								</tr>
 
 
@@ -217,8 +221,7 @@ function toggleDataSeries(e) {
 									<td>누적 구매액</td>
 									<td><fmt:formatNumber value="${member.memberTotalBuy}" pattern="#,###" />원</td>
 									<td>누적 주문수</td>
-									<td><a href="#"><fmt:formatNumber value="${member.memberTotalOrder}" pattern="#,###" /></a>회
-									(평균:<fmt:formatNumber value="${averageOrder}" pattern="#,###" />원)</td>
+									<td><a href="#"><fmt:formatNumber value="${member.memberTotalOrder}" pattern="#,###" /></a>회 (평균:<fmt:formatNumber value="${averageOrder}" pattern="#,###" />원)</td>
 								</tr>
 							</table>
 						</center>
@@ -284,21 +287,19 @@ function toggleDataSeries(e) {
 												<td width="100px;"><a href="${contextPath}/productDetail?proNum=${order.pro.proNum}"> <img width="70px" height="105px"
 														src="${contextPath}/thumbnails?proNum=${order.pro.proNum}&fileName=${order.pro.proImgfileName}"></a></td>
 												<td>${order.pro.proName }</td>
-												<td><c:if test="${order.pro.proColor == 1}">white /</c:if> <c:if test="${order.pro.proColor == 2}">ivory /</c:if> <c:if test="${order.pro.proColor == 3}">gray /</c:if> <c:if
-														test="${order.pro.proColor == 4}">pink /</c:if> <c:if test="${order.pro.proColor == 5}">yellow /</c:if> <c:if test="${order.pro.proColor == 6}">mint /</c:if> <c:if
-														test="${order.pro.proColor == 7}">green /</c:if> <c:if test="${order.pro.proColor == 8}">purple /</c:if> <c:if test="${order.pro.proColor == 9}">navy /</c:if> <c:if
-														test="${order.pro.proColor == 11}">black /</c:if> <c:if test="${order.pro.proColor == 12}">brown /</c:if> <c:if test="${order.pro.proColor == 13}">orange /</c:if> <c:if
-														test="${order.pro.proColor == 14}">blue /</c:if> <c:if test="${order.pro.proColor == 15}">red /</c:if> <c:if test="${order.pro.proColor == 16}">basic /</c:if> <c:if
-														test="${order.pro.proSize == 1}">XS </c:if> <c:if test="${order.pro.proSize == 2}">S </c:if> <c:if test="${order.pro.proSize == 3}">M </c:if> <c:if test="${order.pro.proSize == 4}">L </c:if>
-													<c:if test="${order.pro.proSize == 5}">XL </c:if></td>
+												<td><c:if test="${order.pro.proColor == 1}">white /</c:if> <c:if test="${order.pro.proColor == 2}">ivory /</c:if> <c:if test="${order.pro.proColor == 3}">gray /</c:if> 
+													<c:if test="${order.pro.proColor == 4}">pink /</c:if> <c:if test="${order.pro.proColor == 5}">yellow /</c:if> <c:if test="${order.pro.proColor == 6}">mint /</c:if> 
+													<c:if test="${order.pro.proColor == 7}">green /</c:if> <c:if test="${order.pro.proColor == 8}">purple /</c:if> <c:if test="${order.pro.proColor == 9}">navy /</c:if> 
+													<c:if test="${order.pro.proColor == 11}">black /</c:if> <c:if test="${order.pro.proColor == 12}">brown /</c:if> <c:if test="${order.pro.proColor == 13}">orange /</c:if> 
+													<c:if test="${order.pro.proColor == 14}">blue /</c:if> <c:if test="${order.pro.proColor == 15}">red /</c:if> <c:if test="${order.pro.proColor == 16}">basic /</c:if> 
+													
+													<c:if test="${order.pro.proSize == 1}">XS </c:if> <c:if test="${order.pro.proSize == 2}">S </c:if> <c:if test="${order.pro.proSize == 3}">M </c:if> 
+													<c:if test="${order.pro.proSize == 4}">L </c:if> <c:if test="${order.pro.proSize == 5}">XL </c:if>
+												</td>
 												<td>${order.orderMemberName }</td>
-												<td>
-												<fmt:formatNumber value="${order.orderValue*order.orderProQuantity }" pattern="#,###" />원
-												</td>
-												<td>
-												<fmt:formatNumber value="${order.orderPrice }" pattern="#,###" /> 원
-												</td>
-												<c:set var="price" value="${order.orderPrice }"/>
+												<td><fmt:formatNumber value="${order.orderValue*order.orderProQuantity }" pattern="#,###" />원</td>
+												<td><fmt:formatNumber value="${order.orderPrice }" pattern="#,###" /> 원</td>
+												<c:set var="price" value="${order.orderPrice }" />
 												<c:set var="final_total_price" value="${final_total_price+price }" />
 												<td>${order.orderDate }</td>
 												<td>${order.deliveryStatus}</td>
@@ -351,17 +352,15 @@ function toggleDataSeries(e) {
 													<c:if test="${refund.pro.proSize == 5}">XL </c:if></td>
 												<td>${refund.orderMemberName }</td>
 												<td>${refund.orderProQuantity }</td>
-												<td>
-												<fmt:formatNumber value="${refund.orderPrice }" pattern="#,###" /> 원
-											<c:set var="price" value="${refund.orderPrice }"/>
-											<c:set var="final_total_refund_price" value="${final_total_refund_price+price }" />
-												</td>
+												<td><fmt:formatNumber value="${refund.orderPrice }" pattern="#,###" /> 원 <c:set var="price" value="${refund.orderPrice }" /> <c:set var="final_total_refund_price"
+														value="${final_total_refund_price+price }" /></td>
 												<td>${refund.orderDate }</td>
 												<td>${refund.deliveryStatus}</td>
 											</tr>
 										</c:forEach>
 										<tr>
-											<td colspan="8" align="right"><strong>반품대기중인 상품 총 주문 가격 : <fmt:formatNumber value="${final_total_refund_price}" pattern="#,###" /> 원</strong></td>
+											<td colspan="8" align="right"><strong>반품대기중인 상품 총 주문 가격 : <fmt:formatNumber value="${final_total_refund_price}" pattern="#,###" /> 원
+											</strong></td>
 										</tr>
 									</table>
 								</c:when>
@@ -376,10 +375,12 @@ function toggleDataSeries(e) {
 							<c:choose>
 								<c:when test="${cartList !=null }">
 
-											<br><h3>장바구니에 담은 상품</h3><br>
-									<table> 
+									<br>
+									<h3>장바구니에 담은 상품</h3>
+									<br>
+									<table>
 
-											<tr style="text-align: center;">
+										<tr style="text-align: center;">
 											<th width="100px;">이미지</th>
 											<th width="100px;">상품명</th>
 											<th width="100px;">상품 정보</th>
@@ -389,30 +390,26 @@ function toggleDataSeries(e) {
 										</tr>
 										<c:forEach var="cart" items="${cartList }">
 											<tr style="text-align: center;">
-												<td width="100px;"><a href="${contextPath}/productDetail?proNum=${cart.cartProNum.proNum}"> <img width="70px" height="105px"
-														src="${contextPath}/thumbnails?proNum=${cart.cartProNum.proNum}&fileName=${cart.cartProNum.proImgfileName}"></a></td>
+												<td width="100px;">
+													<a href="${contextPath}/productDetail?proNum=${cart.cartProNum.proNum}"> 
+														<img width="70px" height="105px" src="${contextPath}/thumbnails?proNum=${cart.cartProNum.proNum}&fileName=${cart.cartProNum.proImgfileName}">
+													</a>
+												</td>
 												<td width="100px;">${cart.cartProNum.proName }</td>
 												<td width="100px">
-												<c:if test="${cart.cartProNum.proColor == 1}">white /</c:if> 
-												<c:if test="${cart.cartProNum.proColor == 2}">ivory /</c:if> 
-												<c:if test="${cart.cartProNum.proColor == 3}">gray /</c:if> 
-												<c:if test="${cart.cartProNum.proColor == 4}">pink /</c:if> 
-												<c:if test="${cart.cartProNum.proColor == 5}">yellow /</c:if> 
-												<c:if test="${cart.cartProNum.proColor == 6}">mint /</c:if> 
-												<c:if test="${cart.cartProNum.proColor == 7}">green /</c:if> 
-												<c:if test="${cart.cartProNum.proColor == 8}">purple /</c:if> 
-												<c:if test="${cart.cartProNum.proColor == 9}">navy /</c:if> 
-												<c:if test="${cart.cartProNum.proColor == 11}">black /</c:if> 
-												<c:if test="${cart.cartProNum.proColor == 12}">brown /</c:if> 
-												<c:if test="${cart.cartProNum.proColor == 13}">orange /</c:if> 
-												<c:if test="${cart.cartProNum.proColor == 14}">blue /</c:if> 
-												<c:if test="${cart.cartProNum.proColor == 15}">red /</c:if> 
+												${cart.cartProNum.proColor}
+												<c:if test="${cart.cartProNum.proColor == 1}">white /</c:if> <c:if test="${cart.cartProNum.proColor == 2}">ivory /</c:if> 
+												<c:if test="${cart.cartProNum.proColor == 3}">gray /</c:if> <c:if test="${cart.cartProNum.proColor == 4}">pink /</c:if> <c:if test="${cart.cartProNum.proColor == 5}">yellow /</c:if> 
+												<c:if test="${cart.cartProNum.proColor == 6}">mint /</c:if> <c:if test="${cart.cartProNum.proColor == 7}">green /</c:if> <c:if test="${cart.cartProNum.proColor == 8}">purple /</c:if> 
+												<c:if test="${cart.cartProNum.proColor == 9}">navy /</c:if> <c:if test="${cart.cartProNum.proColor == 11}">black /</c:if> <c:if test="${cart.cartProNum.proColor == 12}">brown /</c:if> 
+												<c:if test="${cart.cartProNum.proColor == 13}">orange /</c:if> <c:if test="${cart.cartProNum.proColor == 14}">blue /</c:if> <c:if test="${cart.cartProNum.proColor == 15}">red /</c:if> 
 												<c:if test="${cart.cartProNum.proColor == 16}">basic /</c:if> 
-												<c:if test="${rart.cartProNum.proSize == 1}">XS </c:if> 
-												<c:if test="${rart.cartProNum.proSize == 2}">S </c:if> 
-												<c:if test="${rart.cartProNum.proSize == 3}">M </c:if> 
-												<c:if test="${rart.cartProNum.proSize == 4}">L </c:if>
-												<c:if test="${rart.cartProNum.proSize == 5}">XL </c:if></td>
+												
+												
+												<c:if test="${cart.cartProNum.proSize == 1}">XS </c:if> <c:if test="${cart.cartProNum.proSize == 2}">S </c:if> 
+												<c:if test="${cart.cartProNum.proSize == 3}">M </c:if> <c:if test="${cart.cartProNum.proSize == 4}">L </c:if> <c:if test="${rart.cartProNum.proSize == 5}">XL </c:if>
+												
+												</td>
 												<td width="100px;"><fmt:formatNumber value="${cart.cartProNum.proPrice - (cart.cartProNum.proPrice*cart.cartProNum.proSalesrate*0.01)}" pattern="#,###" />원</td>
 												<td width="100px;">${cart.cartProQuantity}</td>
 												<td width="100px;"><fmt:formatNumber value="${(cart.cartProNum.proPrice - (cart.cartProNum.proPrice*cart.cartProNum.proSalesrate*0.01))*cart.cartProQuantity}" pattern="#,###" />원</td>
