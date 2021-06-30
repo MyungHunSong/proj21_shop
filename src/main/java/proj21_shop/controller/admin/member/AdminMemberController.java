@@ -35,6 +35,7 @@ public class AdminMemberController {
 		if (session.getAttribute("side_menu") != null) {
 			session.removeAttribute("side_menu");
 		}
+		
 		ModelAndView mav = new ModelAndView();
 //		String _section = (String) request.getParameter("section"); // 섹션값가져오기
 //		String _pageNum = (String) request.getParameter("pageNum"); // 페이지넘버가져오기

@@ -56,6 +56,7 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 		membersMap.put("allMen", allMen);
 		membersMap.put("allWomen", allWomen);
 		membersMap.put("selectedMembers", selectedMembers);
+		
 		return membersMap;
 	}
 
@@ -146,6 +147,7 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 		memberMen=adminMemberMapper.selectAllMemberMen();
 		//여자회원수 가져오기
 		memberWomen=adminMemberMapper.selectAllMemberWomen();
+		//총 회원수 가져오기
 		totalMember=adminMemberMapper.selectTotalMembers();
 		
 		
