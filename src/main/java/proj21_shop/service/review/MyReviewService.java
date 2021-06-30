@@ -18,5 +18,5 @@ public interface MyReviewService {
 	int insertReview(ReviewDTO reviewDTO);
 	int updateReview(ReviewDTO reviewDTO);
 	int updateReviewCount(int proNum);//리뷰쓸 때 리뷰수 증가
-	
+	List<QnaDTO> selectQnaContentByMember(QnaDTO qnaDTO);
 }

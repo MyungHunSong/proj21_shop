@@ -64,6 +64,13 @@ select r.re_num,p.pro_name, r.re_image, r.re_image2, r.re_content, r.re_stars, r
 	on r.pro_num = p.pro_num
  where r.re_member = 'test01';
 
+-- qna 내역
+select * from qna;
+
+select q_index, q_title, q_option, q_content, q_file 
+  from qna
+ where q_member = 'test01' and q_index = 1;
+
 -- 후기 작성
 select * from `order` o ;
 desc `order`;

@@ -327,6 +327,7 @@ a {
 													</c:when>
 												</c:choose></td>
 											<td><input type="button" value="모델 추가하기" onClick="upModel('${product.proNum}','${product.proCategory }','${product.proColor }','${product.proSize }')" /></td>
+											<td><input type="button" value="json[i].qTitle" onClick="upModel(json[i].qMember,json[i].qIndex)" /></td>
 										</tr>
 									</c:forEach>
 

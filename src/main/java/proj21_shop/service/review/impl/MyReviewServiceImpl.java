@@ -52,5 +52,10 @@ public class MyReviewServiceImpl implements MyReviewService {
 		return mapper.updateReviewCount(proNum);
 	}
 
+	@Override
+	public List<QnaDTO> selectQnaContentByMember(QnaDTO qnaDTO) {
+		return mapper.selectQnaContentByMember(qnaDTO);
+	}
+
 
 }
