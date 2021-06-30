@@ -2,15 +2,13 @@
 @import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 @import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500&display=swap');
 
-
-
-
 article{
 	margin-top:50px;
 	text-align: left;
 	padding-top: 20px;
 	width: 800px;
 	height: 800px;
+	margin-top:-30px;
 	
 }
 
@@ -19,6 +17,7 @@ article{
 	color:#ff80c0;
 	margin: 25px;
 	border-bottom: 2px solid gray;
+	padding-top: 50px;
 }
 
 .title{

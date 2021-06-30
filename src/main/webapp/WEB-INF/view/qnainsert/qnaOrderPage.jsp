@@ -7,7 +7,14 @@
 <head>
 <meta charset="UTF-8">
 <title>내 주문 상세 내역 페이지</title>
+<link rel="stylesheet" href="/proj21_shop/resources/qna/css/qnaOrderPage.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<style type="text/css">
+#bodySec td{
+	border-bottom: 1px solid gray;
+
+}
+</style>
 <script type="text/javascript">
  $(function() {
     var contextPath = "${contextPath}";
@@ -25,9 +32,8 @@
              if (dataLength >= 1) {
                 
                 for (i = 0; i < dataLength; i++) {
-                   sCont += "<tr>";
-                   
-                   sCont += "<td class = 'clickThis'>" + json[j].orderProNum + "-" + json[j].productDTO[i].orderCode[0].orderCode + "</td>"
+                   sCont += "<tr id ='bodySec'>";                   
+                   sCont += "<td class = 'clickThis' style='cursor: pointer;'>" + json[j].orderProNum + "-" + json[j].productDTO[i].orderCode[0].orderCode + "</td>"
                    sCont += "<input type = 'hidden' value = "+ json[j].productDTO[i].orderCode[0].orderCode+">";
                    sCont += "<td><a >"+json[j].productDTO[i].proName +"</a></td>";                   
                    sCont += "<td><a >"+ json[j].orderDate+"</a></td>";                   
@@ -54,18 +60,20 @@
     });     
 });
 
- 
 </script>
 </head>
 <body>
 	 <div class="container">
       <section id="orderArea">
-         <h3>나의 주문내역</h3>
+         <h3 style="text-align: center;">나의 주문내역</h3>
 
          <div class="asd">
-         <table class="type11">
-            <thead>
-               <tr>
+         <table class="type11" 
+         	style="border-spacing: 1px; 
+					width: 600px;
+					height:200px">
+            <thead style="background-color: gray;">
+               <tr >
                   <th scope="cols">주문번호</th>
                   <th scope="cols">제품정보</th>
                   <th scope="cols">주문일자</th>
@@ -74,7 +82,7 @@
                   <th scope="cols">주문상태</th>
                </tr>
             </thead>
-             <tbody id="load"></tbody>
+             <tbody id="load" style="background-color: #f4f4f4;"></tbody>
          </table>
          </div>
       </section>

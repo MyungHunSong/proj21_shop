@@ -25,39 +25,36 @@ $(function(){
 	
 // 수정하기.
  $(".modifyQna").on("click", function(){
-	var idx = ${idx};
-	var title = $("input[name=Title]:visible").val();
-	var option = $("select[name=searchType]:visible").val();		 	
-	var content = $("textarea[name='Content']:visible").val();
-	if("${authInfo.id}" != "admin" && "${authInfo.name}" != "관리자"){
-		var file = document.getElementById("addPoto").files[0].name;
-	}
-	modifyItem = {
-			"qIndex" : idx,
-			"qTitle" : title,
-			"qOption" : option,
-			"qContent" : content,
-			"qFile" : file
-	}
-	//
+    var idx = ${idx};
+    var title = $("input[name=Title]:visible").val();
+    var option = $("select[name=searchType]:visible").val();		 	
+    var content = $("textarea[name='Content']:visible").val();
+    if("${authInfo.id}" != "admin" && "${authInfo.name}" != "관리자"){
+      var file = document.getElementById("addPoto").files[0].name;
+    }
 	
-	$.ajax({
-		url: '/proj21_shop/api/qnainsert/' + idx,
-		type:'PATCH',
-		contentType:"application/json; charset=utf-8",
-		datatype:"json",
-		data:JSON.stringify(modifyItem),
-		success:function(){
-			alert("수정 완료")
-			// 새로고침 
-			opener.parent.location= contextPath + "/listPaging?page="+1 + "&pagePageNum="+ 10 + "&searchType=a&keyword=";
-			// 팝업창 닫기 (완료후)
-			window.open("about:blank", "_self").close();
-			
-			
-			/* window.location.href =  "/proj21_shop/listPaging?page="+1 + "&pagePageNum="+ 10 + "&searchType=a&keyword="; */
-		}
-	});
+    modifyItem = {
+        "qIndex" : idx,
+        "qTitle" : title,
+        "qOption" : option,
+        "qContent" : content,
+        "qFile" : file
+    };
+	
+    $.ajax({
+      url: '/proj21_shop/api/qnainsert/' + idx,
+      type:'PATCH',
+      contentType:"application/json; charset=utf-8",
+      datatype:"json",
+      data:JSON.stringify(modifyItem),
+      success:function(){
+        alert("수정 완료")
+        // 새로고침 
+        opener.parent.location= contextPath + "/listPaging?page="+1 + "&pagePageNum="+ 10 + "&searchType=a&keyword=";
+        // 팝업창 닫기 (완료후)
+        window.open("about:blank", "_self").close();
+      }
+    });
 	//
  });
  $("input[type='file']").on("change", function(e){
@@ -98,7 +95,9 @@ $(function(){
  }
 });
 
+
  function readURL(input, id){
+
 	
 	if(input.files && input.files[0]){
 		var reader = new FileReader();
@@ -121,7 +120,7 @@ $(function(){
 		<div class = "QNAmodify">
 			<h3>나의 글 수정</h3>
 			<section id="QnaSec">
-					<div>
+					<div id = 'main1'>
 						<label>문의 유형 </label> <select name="searchType" id="searchType">
 						<c:if test="${authInfo.id eq 'admin'}">
 							<option value ="공지">공지</option>
@@ -137,28 +136,28 @@ $(function(){
 						</select>
 					</div>
 				<c:if test ="${!empty authInfo && authInfo.id ne admin}">
-						<div>	
+						<div id = 'main2'>	
 							<label>작성자</label><input type="text" value="${authInfo.name}"  readonly="readonly"  style="background-color: #e2e2e2"><br>
 						</div>
 				</c:if>
 					
 				<c:if test ="${!empty authInfo}">
-						<div>
+						<div id = 'main3'>
 							<label>이메일</label><input type="text" value="${authInfo.email}" readonly="readonly" style="background-color: #e2e2e2"><br>						
 						</div>
 				</c:if>
-					<div>
+					<div id = 'main4'>
 						<label>제목</label><input type="text" name="Title" value="${qnaDto.qTitle}"><br>
 					</div>
 				<c:if test="${authInfo.id ne 'admin'}">
-					<div>
+					<div id = 'main5'>
 						<label>문의내용</label>
 						<textarea rows="10" cols="40"  name="Content" ></textarea>
 						<br>
 					</div>
 				</c:if>				
 				<c:if test="${authInfo.id eq 'admin'}">
-					<div>
+					<div id = 'main5'>
 						<label>공지내용</label>
 						<textarea rows="10" cols="40" name="Content" ></textarea>
 						<br>
@@ -166,7 +165,7 @@ $(function(){
 				</c:if>
 					
 				<c:if test="${authInfo.id ne 'admin'}">	
-					<div>
+					<div id = 'main6'>
 						<div>
 						사진 추가
 							<input type="file" name="uploadFile"  id="addPoto" onchange="readURL(this, this.id)" multiple="multiple">
@@ -176,9 +175,9 @@ $(function(){
 						</div>
 					</div>
 				</c:if>	
-					<button class ="modifyQna">수정</button>
 				</section>
 		</div>
+		<button class ="modifyQna" >수정</button>
 	</div>
 </body>
 </html>

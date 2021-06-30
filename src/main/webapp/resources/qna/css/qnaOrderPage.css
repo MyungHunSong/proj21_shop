@@ -1,0 +1,19 @@
+@charset "UTF-8";
+<!-- 섹션 영역-->
+#orderArea{
+	border: 1px solid red;
+}
+
+<!-- 테이블을 감싼 영역 -->
+.asd{}
+
+<!-- 테이블 -->
+.type11{
+	border: 1px solid black;
+}
+
+<!-- 바디 영역-->
+#load td{
+	cursor: pointer;
+}
+

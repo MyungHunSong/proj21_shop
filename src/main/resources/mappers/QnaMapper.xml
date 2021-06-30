@@ -19,9 +19,9 @@
 	
 	<sql id="search">
 		<where>
-				and q_index >0
+				and q_index >0 
 			<if test="searchType != null">
-				and q_title like concat('%', '${keyword}','%') 
+				and q_title like concat('%', '${keyword}','%')
 				<if test="searchType == 'b'.toString()">
 					and q_option like concat('%', '공지', '%')  
 					and q_title like concat('%', '${keyword}','%') 
@@ -50,7 +50,7 @@
 					and q_option like concat('%', '기타', '%') 
 					and q_title like concat('%', '${keyword}','%')
 				</if>
-			</if>
+			</if> 
 		</where>
 	</sql>
 	
