@@ -32,7 +32,7 @@ public class OrderDTO {
 	private ProductDTO pro;
 
 	@NotNull
-	@NotEmpty
+	@NotEmpty(message = "반드시 값이 있어야 합니다.")
 	private String orderMemberName;
 	
 	private int orderProQuantity;
@@ -41,19 +41,19 @@ public class OrderDTO {
 	private int orderDiscount;
 	
 	@NotNull
-	@NotEmpty
+	@NotEmpty(message = "반드시 값이 있어야 합니다.")
 	private String receiverName;
 	
 	@NotNull
-	@NotEmpty
+	@NotEmpty(message = "반드시 값이 있어야 합니다.")
 	private String receiverTel1;
 	
 	@NotNull
-	@NotEmpty
+	@NotEmpty(message = "반드시 값이 있어야 합니다.")
 	private String receiverTel2;
 	
 	@NotNull
-	@NotEmpty
+	@NotEmpty(message = "반드시 값이 있어야 합니다.")
 	private String deliveryAddr1;
 	private String deliveryAddr2;
 	private String deliveryAddr3;
@@ -66,11 +66,11 @@ public class OrderDTO {
 	private Date orderDate;
 
 	@NotNull
-	@NotEmpty
+	@NotEmpty(message = "반드시 값이 있어야 합니다.")
 	private String whoPay;
 	
 	@NotNull
-	@NotEmpty
+	@NotEmpty(message = "반드시 값이 있어야 합니다.")
 	private String whichBank;
 	private String acountNum;
 

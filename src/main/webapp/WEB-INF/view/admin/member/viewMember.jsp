@@ -408,11 +408,11 @@ function toggleDataSeries(e) {
 												<c:if test="${cart.cartProNum.proColor == 14}">blue /</c:if> 
 												<c:if test="${cart.cartProNum.proColor == 15}">red /</c:if> 
 												<c:if test="${cart.cartProNum.proColor == 16}">basic /</c:if> 
-												<c:if test="${rart.cartProNum.proSize == 1}">XS </c:if> 
-												<c:if test="${rart.cartProNum.proSize == 2}">S </c:if> 
-												<c:if test="${rart.cartProNum.proSize == 3}">M </c:if> 
-												<c:if test="${rart.cartProNum.proSize == 4}">L </c:if>
-												<c:if test="${rart.cartProNum.proSize == 5}">XL </c:if></td>
+												<c:if test="${cart.cartProNum.proSize == 1}">XS </c:if> 
+												<c:if test="${cart.cartProNum.proSize == 2}">S </c:if> 
+												<c:if test="${cart.cartProNum.proSize == 3}">M </c:if> 
+												<c:if test="${cart.cartProNum.proSize == 4}">L </c:if>
+												<c:if test="${cart.cartProNum.proSize == 5}">XL </c:if></td>
 												<td width="100px;"><fmt:formatNumber value="${cart.cartProNum.proPrice - (cart.cartProNum.proPrice*cart.cartProNum.proSalesrate*0.01)}" pattern="#,###" />¿ø</td>
 												<td width="100px;">${cart.cartProQuantity}</td>
 												<td width="100px;"><fmt:formatNumber value="${(cart.cartProNum.proPrice - (cart.cartProNum.proPrice*cart.cartProNum.proSalesrate*0.01))*cart.cartProQuantity}" pattern="#,###" />¿ø</td>
