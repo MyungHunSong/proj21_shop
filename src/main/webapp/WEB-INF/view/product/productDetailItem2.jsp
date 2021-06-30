@@ -68,8 +68,12 @@ $(function() {
 				sCont += "<span class ='proPriceSale'>"+add+"원</span>";
 				sCont +="<p><select id='size'><option value='size01'>사이즈를 선택해주세요</option>"
 				for(i = 1; i < json.length+1; i++){
+					if(json[i-1].proQuantity == 0){
+						sCont +="<option value="+i+" style = 'color:red'>"+proSize[json[i-1].proSize]+"  남은 수량: "+json[i-1].proQuantity+"</option>"
+					}else{
 						sCont +="<option value="+i+">"+proSize[json[i-1].proSize]+"  남은 수량: "+json[i-1].proQuantity+"</option>"
 					}
+				}
 				sCont += "</div>"
 			    $("#ProductLoad").append(sCont);
 				var proNum = json[2].proNum+"";
