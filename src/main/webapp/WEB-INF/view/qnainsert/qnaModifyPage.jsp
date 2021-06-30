@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="/proj21_shop/resources/qna/css/qnaModifyPage.css">
 <script type="text/javascript">
 $(function(){
-	var contextPath = "${contextPath}";`
+	var contextPath = "${contextPath}";
 	
 	$("input[name='uploadFile']").hide();	
 	
@@ -31,13 +31,14 @@ $(function(){
 	if("${authInfo.id}" != "admin" && "${authInfo.name}" != "관리자"){
 		var file = document.getElementById("addPoto").files[0].name;
 	}
+	
 	modifyItem = {
 			"qIndex" : idx,
 			"qTitle" : title,
 			"qOption" : option,
 			"qContent" : content,
 			"qFile" : file
-	}
+	};
 	
 	
 	$.ajax({
@@ -50,9 +51,6 @@ $(function(){
 			alert("수정 완료") 
 			opener.parent.location= contextPath + "/listPaging?page="+1 + "&pagePageNum="+ 10 + "&searchType=a&keyword="; 
 			window.open("about:blank", "_self").close();
-			
-			
-			/* window.location.href =  "/proj21_shop/listPaging?page="+1 + "&pagePageNum="+ 10 + "&searchType=a&keyword="; */
 		}
 	});
  });
@@ -93,7 +91,6 @@ $(function(){
 	  return true;
  }
 });
-
 function readURL(input, id){
 	
 	if(input.files && input.files[0]){
@@ -109,7 +106,6 @@ function readURL(input, id){
 		reader.readAsDataURL(input.files[0]);
 	}
 }
-
  
  
 </script>
@@ -119,7 +115,7 @@ function readURL(input, id){
 		<div class = "QNAmodify">
 			<h3>나의 글 수정</h3>
 			<section id="QnaSec">
-					<div>
+					<div id = 'main1'>
 						<label>문의 유형 </label> <select name="searchType" id="searchType">
 						<c:if test="${authInfo.id eq 'admin'}">
 							<option value ="공지">공지</option>
@@ -135,28 +131,28 @@ function readURL(input, id){
 						</select>
 					</div>
 				<c:if test ="${!empty authInfo && authInfo.id ne admin}">
-						<div>	
+						<div id = 'main2'>	
 							<label>작성자</label><input type="text" value="${authInfo.name}"  readonly="readonly"  style="background-color: #e2e2e2"><br>
 						</div>
 				</c:if>
 					
 				<c:if test ="${!empty authInfo}">
-						<div>
+						<div id = 'main3'>
 							<label>이메일</label><input type="text" value="${authInfo.email}" readonly="readonly" style="background-color: #e2e2e2"><br>						
 						</div>
 				</c:if>
-					<div>
+					<div id = 'main4'>
 						<label>제목</label><input type="text" name="Title" value="${qnaDto.qTitle}"><br>
 					</div>
 				<c:if test="${authInfo.id ne 'admin'}">
-					<div>
+					<div id = 'main5'>
 						<label>문의내용</label>
 						<textarea rows="10" cols="40"  name="Content" ></textarea>
 						<br>
 					</div>
 				</c:if>				
 				<c:if test="${authInfo.id eq 'admin'}">
-					<div>
+					<div id = 'main5'>
 						<label>공지내용</label>
 						<textarea rows="10" cols="40" name="Content" ></textarea>
 						<br>
@@ -164,7 +160,7 @@ function readURL(input, id){
 				</c:if>
 					
 				<c:if test="${authInfo.id ne 'admin'}">	
-					<div>
+					<div id = 'main6'>
 						<div>
 						사진 추가
 							<input type="file" name="uploadFile"  id="addPoto" onchange="readURL(this, this.id)" multiple="multiple">
@@ -174,9 +170,9 @@ function readURL(input, id){
 						</div>
 					</div>
 				</c:if>	
-					<button class ="modifyQna">수정</button>
 				</section>
 		</div>
+		<button class ="modifyQna" >수정</button>
 	</div>
 </body>
 </html>

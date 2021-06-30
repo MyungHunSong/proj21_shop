@@ -1,10 +1,12 @@
 package proj21_shop.controller.qna;
 
+import java.lang.ProcessBuilder.Redirect;
 import java.net.URI;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -40,29 +42,35 @@ public class QnaRestController {
 			@PathVariable int page
 			,@PathVariable int perPageNum
 			,@PathVariable String searchType
-			,@PathVariable String keyword){
+			,@PathVariable String keyword
+			,Model model, SearchCriteria searchCriteria){
 		
-		PageDTO pDto = new PageDTO();
+		
+		
+		PageDTO pageMaker = new PageDTO();
+		
+		
+		 pageMaker.setCri(searchCriteria);
+		 pageMaker.setTotalCount(service.countSearchedArticles(searchCriteria));
+		 		
+		
+			
 		SearchCriteria sCri = new SearchCriteria();
 		
 		sCri.setPage(page);
 		sCri.setPerPageNum(perPageNum);	
+		
 		sCri.setSearchType(searchType);
 		
 		if(keyword == null) {
+			System.out.println("널값 들어왔어요");
 			return ResponseEntity.ok(service.listSearch(sCri));
 		}else {
 			sCri.setKeyword(keyword);	
 		}
-				
 		System.out.println(keyword);
 		
-		QnaDTO qDto = new QnaDTO();
-		ModelAndView mav = new ModelAndView();
 		
-		mav.addObject("qDto", qDto);
-		
-		pDto .setCri(sCri);
 		return ResponseEntity.ok(service.listSearch(sCri));
 	}
 	
@@ -115,5 +123,8 @@ public class QnaRestController {
 		public ResponseEntity<Object> deleteReply(@PathVariable int qIndex, @RequestBody QnaDTO qDto){
 			return ResponseEntity.ok(qInsertService.deleteForAdmin(qDto));	
 		}
+	
+	// 검색로직
+	
 	
 }

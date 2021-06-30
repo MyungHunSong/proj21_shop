@@ -1,12 +1,7 @@
 @charset "UTF-8";
 <!--답글 커서 & 답글 페이지 보이기. -->
+<!-- 등록과 수정 영역-->
 
-
-#contentArea{
-	margin-left:10px;
-	width: 800px;
-	height: 30px;
-}
 
 .showReply{
 	display: none;
@@ -14,6 +9,7 @@
 
 .showReply.active{
 	display:revert;
+	
 }
 
 .clickReply{
@@ -38,7 +34,19 @@
 .clickContent.active{
 	 display:revert;
 }
-
+<!-- 최상위 영역-->
+.topQna{
+	margin: auto;
+	width: 1600px;
+	height: 1200px;
+}
+.topQna tr td{
+	width: 100px;
+	height: 10px;
+	padding-bottom: 20px;
+    padding-top: 20px;
+	border-bottom: 1px solid #ccc;
+}
 #qna_board{
 	margin: auto;
 }
@@ -46,7 +54,7 @@
 .qna_table{
 	margin:auto;
 	width: 1000px;
-	height:600px;
+	height: 900px;
 	margin-bottom: 100px;
 	border-spacing: 1px;
 }
@@ -57,12 +65,38 @@
 
 div .pagination{
 	list-style: none;
+	display:inline-block;
 }
 
 .pagination li{
-	 display: inline;
+	 display:inline;
 }
 
 .pagination li a{
-	list-style: none;
+	display:block;
+	margin:0 3px;
+	float:left;
+	border:1px solid #e6e6e6;
+	width:28px;
+	height:28px;
+	line-height:28px;
+	text-align:center;
+	background-color:#fff;
+	font-size:13px;
+	color:#808080;
+	text-decoration:none;
+}
+
+pagination .arrow{
+	border:1px solid #ccc;
+}
+
+pagination .prev {
+	background:#f8f8f8 url('/proj21_shop/resources/qna/images/page_prev.png') no-repeat center center;
+	margin-right:7px;
+}
+
+pagination .next {
+	background:#f8f8f8 url('/proj21_shop/resources/qna/images/page_next.png') no-repeat center center;
+	margin-left:7px;
 }

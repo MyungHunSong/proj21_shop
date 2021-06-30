@@ -1,1 +1,83 @@
 @charset "UTF-8";
+
+
+.QNAmodify{
+	text-align: left;
+	background-color: gray;
+}
+<!-- 머리영역 -->
+.QNAmodify h3{
+	border-bottom: 1px solid gray;
+	color: white;
+}
+
+.QnaSec{
+	border:1px solid black;
+}
+
+#main1{
+	border-bottom: 1px solid #f4f4f4;
+	margin-bottom: 10px;
+	padding-bottom: 5px;
+	color: white;
+}
+
+#main1 select{
+	margin-left: 30px;
+	width: 150px;
+}
+
+#main2{
+	border-bottom: 1px solid #f4f4f4;
+	margin-bottom: 10px;
+	padding-bottom: 5px;
+	color: white;
+}
+
+#main2 input{
+	margin-left: 52px;
+}
+
+#main3{
+	border-bottom: 1px solid #f4f4f4;
+	margin-bottom: 10px;
+	padding-bottom: 5px;
+	color: white;
+}
+#main3 input{
+	margin-left: 52px;
+}
+
+#main4{
+	margin-bottom: 10px;
+	color: white;
+}
+
+#main4 input{
+	margin-left: 67px;
+}
+
+#main5{
+	
+}
+
+#main5 label{
+	float: left;
+	color: white;
+}
+#main5 textarea{
+	margin-left: 10px;
+}
+
+#main6{
+	color: white;
+}
+
+<!-- 버튼 -->
+.modifyQna{
+	width: 100px;
+	height: 50px;
+	background-color: black;
+	color:white;
+	font-weight: bold;
+}
