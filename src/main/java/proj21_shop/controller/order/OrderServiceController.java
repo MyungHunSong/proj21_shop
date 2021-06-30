@@ -45,7 +45,7 @@ public class OrderServiceController {
 		customCollectionValidator.validate(orderDTO, bindingResult);
 		
 		if(bindingResult.hasErrors()) {
-			throw new BindException();
+			throw new BindException(bindingResult.toString());
 		}
 		
 		System.out.println(orderDTO);

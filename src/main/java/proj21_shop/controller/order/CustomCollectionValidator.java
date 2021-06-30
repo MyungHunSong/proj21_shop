@@ -37,6 +37,7 @@ public class CustomCollectionValidator implements Validator {
                 for (Object object : collection) {
                     validator.validate(object, errors);
                 }
+                
             } else {
                 validator.validate(target, errors);
             }

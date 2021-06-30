@@ -342,6 +342,7 @@ $(function(){
         			insertOrder(orderItems)
         			return true/* alert("빈곳을 확인해주세요.") */
         		}else {
+        			insertOrder(orderItems)
         			$.get(contextPath+"/api/lastOrderNum",
 			    	function(json){
 			    		console.log(json)
@@ -365,7 +366,7 @@ $(function(){
 <jsp:include page="/WEB-INF/view/include/header.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/view/include/topbody.jsp"></jsp:include>
 <h1 class="orderMenuTitle ">현재 주문 상품 내역</h1>
-<form name="orderform" id="orderform" method="post" class="orderform" action="/Page" onsubmit="return false;">
+<form:form modelAttribute="OrderDTO" name="orderform" id="orderform" method="post" class="orderform" action="/Page" onsubmit="return false;">
             <div class="basketdiv" id="basket">
                 <div class="row head">
 	                    <div class="subdiv">
@@ -401,6 +402,7 @@ $(function(){
 					</p>
 					<p>
 						<input id = "memberBank" type="text" placeholder="은행">
+						<form:errors path="whichBank"/>
 					</p>
 					<p>
 						<input id = "depositor" type="text" placeholder="입금자명">
@@ -481,7 +483,7 @@ $(function(){
             <input id="prodOrderBtn" class = 'orderBtns' type="submit" value="주문하기">
             <input id="canselBtn" class = 'orderBtns' type="submit" value="취소하기">
             </div>
-</form> 
+</form:form> 
         
 <jsp:include page="/WEB-INF/view/include/footer.jsp"></jsp:include>
 </div>
