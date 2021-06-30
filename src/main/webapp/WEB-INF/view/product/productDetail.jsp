@@ -55,8 +55,14 @@ $(function() {
 								sCont += "				</div>"
 								sCont += "			<div class = 'reivewContent'>"+json[i].reviewContent+"</div><br>";	
 								sCont += "			<div class = 'reviewImg'>"
-								sCont += "				<img src='/proj21_shop/resources/review/images/" + json[i].reviewImagefilename1 + "'>"
-								/* sCont += "			<img src='/proj21_shop/resources/review/images/" + json[i].reviewImagefilename2 + "' width = '70' height= '70'>" */
+								if(json[i].reviewImagefilename1 == null || json[i].reviewImagefilename1 == ""){
+									json[i].reviewImagefilename1 = "noimage.jpg" 
+								}
+									sCont += "				<img src='${contextPath}/resources/review/images/" + json[i].reviewImagefilename1 + "'>"
+								if(json[i].reviewImagefilename2 == null || json[i].reviewImagefilename2 == ""){
+									json[i].reviewImagefilename2 = "noimage.jpg" 
+								}
+									sCont += "			<img src='${contextPath}/resources/review/images/" + json[i].reviewImagefilename2 + "' width = '70' height= '70'>"
 								sCont += "			</div>"
 								sCont += "		</div>"
 								sCont += "		<div class='replyGroup'>"

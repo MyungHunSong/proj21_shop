@@ -213,8 +213,12 @@ $(function(){
 					datatype:"json",
 					data:JSON.stringify(),
 					success:function(){
-						var popup = window.open('http://localhost:8080/proj21_shop/qnaModify?index=', '수정팝업',
-								'width=520px, height = 520px')			
+
+						// 팝업창 열기
+						var popup = window.open('http://localhost:8080/proj21_shop/qnaModify?idx=' + idx, '수정팝업',
+								'width=520px, height = 520px')	
+						location.reload();		
+
 					}	
 				});		 		
 			});

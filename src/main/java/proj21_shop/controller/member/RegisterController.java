@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import proj21_shop.dto.member.RegisterRequest;
 import proj21_shop.exception.DuplicateMemberException;
+import proj21_shop.exception.PasswordNotEqualException;
 import proj21_shop.service.MemberRegisterService;
 
 @Controller
@@ -38,13 +39,25 @@ public class RegisterController {
 			return "member/register/registerForm";
 		try {
 			memberRegisterService.regist(regReq);
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('환영합니다. 포인트 2000p 증정 되었습니다.'); window.location.href='main';</script>");
+			out.flush();
 			return "member/register/registerSuccess";
 		}catch(DuplicateMemberException ex) {
 			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.println("<script>alert('이미 존재하는 회원입니다.'); history.go(-1);</script>");
-			out.flush();
+        	PrintWriter out = response.getWriter();
+        	out.println("<script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>");
+        	out.println("<script>$(function() {$('.unMatch').text('아이디 중복');})</script>");
+        	out.flush();
 			return "member/register/registerForm";
+		}catch (PasswordNotEqualException e) {
+			response.setContentType("text/html; charset=UTF-8");
+        	PrintWriter out = response.getWriter();
+        	out.println("<script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>");
+        	out.println("<script>$(function() {$('.disMatch').text('비밀번호 불일치');})</script>");
+        	out.flush();
+        	return "member/register/registerForm";
 		}
 	}
 	

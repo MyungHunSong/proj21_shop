@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import proj21_shop.dto.order.OrderDTO;
 import proj21_shop.mapper.admin.member.AdminMemberMapper;
@@ -79,10 +80,16 @@ public class AdminOrderServiceImpl implements AdminOrderService {
 		return viewMap;
 	}
 	
-	
 	@Override
+	@Transactional
 	public int changeDelivery(Map<String, Object> changeMap) {
-		return adminOrderMapper.updateDelivery(changeMap);		
+		int res = adminOrderMapper.updateDelivery(changeMap);
+		if(changeMap.get("change_deliveryStatus").equals("반품완료")) {
+			System.out.println("change_deliveryStatus================"+changeMap.get("change_deliveryStatus"));
+			res +=adminMemberMapper.updateMember(changeMap);
+			res +=adminProductMapper.updateProduct2(changeMap);
+		}
+		return res;
 	}
 
 

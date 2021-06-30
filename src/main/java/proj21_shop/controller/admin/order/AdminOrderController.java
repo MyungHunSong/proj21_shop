@@ -10,12 +10,8 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -97,11 +93,6 @@ public class AdminOrderController {
 			changeMap.put("change_orderValue", change_orderValue);
 			changeMap.put("change_orderMemberId", change_orderMemberId);
 			adminOrderService.changeDelivery(changeMap);
-			if(change_deliveryStatus.equals("반품완료")) {
-				System.out.println("change_deliveryStatus================"+change_deliveryStatus);
-			adminMemberService.changeMember(changeMap);
-			adminProductService.changeProduct(changeMap);
-			}
 		}
 		
 		pagingMap.put("orderProNum", orderProNum);

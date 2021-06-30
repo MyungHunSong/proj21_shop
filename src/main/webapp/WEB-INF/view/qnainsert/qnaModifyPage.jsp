@@ -22,37 +22,40 @@ $(function(){
 		  
 	 	$("input[name='uploadFile']").click();
 	  });
+	
 // 수정하기.
  $(".modifyQna").on("click", function(){
-	var idx = ${idx};
-	var title = $("input[name=Title]:visible").val();
-	var option = $("select[name=searchType]:visible").val();		 	
-	var content = $("textarea[name='Content']:visible").val();
-	if("${authInfo.id}" != "admin" && "${authInfo.name}" != "관리자"){
-		var file = document.getElementById("addPoto").files[0].name;
-	}
+    var idx = ${idx};
+    var title = $("input[name=Title]:visible").val();
+    var option = $("select[name=searchType]:visible").val();		 	
+    var content = $("textarea[name='Content']:visible").val();
+    if("${authInfo.id}" != "admin" && "${authInfo.name}" != "관리자"){
+      var file = document.getElementById("addPoto").files[0].name;
+    }
 	
-	modifyItem = {
-			"qIndex" : idx,
-			"qTitle" : title,
-			"qOption" : option,
-			"qContent" : content,
-			"qFile" : file
-	};
+    modifyItem = {
+        "qIndex" : idx,
+        "qTitle" : title,
+        "qOption" : option,
+        "qContent" : content,
+        "qFile" : file
+    };
 	
-	
-	$.ajax({
-		url: '/proj21_shop/api/qnainsert/' + idx,
-		type:'PATCH',
-		contentType:"application/json; charset=utf-8",
-		datatype:"json",
-		data:JSON.stringify(modifyItem),
-		success:function(){
-			alert("수정 완료") 
-			opener.parent.location= contextPath + "/listPaging?page="+1 + "&pagePageNum="+ 10 + "&searchType=a&keyword="; 
-			window.open("about:blank", "_self").close();
-		}
-	});
+    $.ajax({
+      url: '/proj21_shop/api/qnainsert/' + idx,
+      type:'PATCH',
+      contentType:"application/json; charset=utf-8",
+      datatype:"json",
+      data:JSON.stringify(modifyItem),
+      success:function(){
+        alert("수정 완료")
+        // 새로고침 
+        opener.parent.location= contextPath + "/listPaging?page="+1 + "&pagePageNum="+ 10 + "&searchType=a&keyword=";
+        // 팝업창 닫기 (완료후)
+        window.open("about:blank", "_self").close();
+      }
+    });
+	//
  });
  $("input[type='file']").on("change", function(e){
 	 let formData = new FormData();
@@ -91,7 +94,10 @@ $(function(){
 	  return true;
  }
 });
-function readURL(input, id){
+
+
+ function readURL(input, id){
+
 	
 	if(input.files && input.files[0]){
 		var reader = new FileReader();
@@ -106,7 +112,6 @@ function readURL(input, id){
 		reader.readAsDataURL(input.files[0]);
 	}
 }
- 
  
 </script>
 </head>

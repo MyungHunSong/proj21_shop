@@ -19,9 +19,8 @@ $(function(){
 	var memId =  "${memId}";
 	var cartNums = ${cartNums};
 	var consumePoint = 0;
-	
 	/* 유저 포인트 */
-	var totalMemberPoint = ${authInfo.mPoint};
+	var totalMemberPoint = ${mPoint};
 	var totalMemberPointFmt = totalMemberPoint.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"P";
 	
 	/* 원래 판매 금액 */
@@ -305,10 +304,10 @@ $(function(){
 				alert("주문이 완료 되었습니다.")
 			},
 			error:function(request, status, error){
-				alert("제품 수량이 부족합니다.");
+				/* alert("제품 수량이 부족합니다."); */
 				alert("code:"+request.status+"\n"+"message:"
 		                  +request.responseText+"\n"+"error:"+error); 
-				 window.location.href = contextPath+"/cart?memId=${authInfo.id }";  
+				/* window.location.href = contextPath+"/cart?memId=${authInfo.id }"; */  
 			} 
 		}); 
 		
@@ -340,7 +339,8 @@ $(function(){
         				$('#memberTel3').val() == "" || $('#sample4_postcode').val() == "" || $('#sample4_roadAddress').val()  == "" || $('#sample4_detailAddress').val() == "" ||
         				$('.receiver').val() == "" || $('.receiverTel1').val() == "" || $('.receiverTel2').val() == "" || $('.receiverTel3').val() == "" ||
         				$('#memberBank').val() == "" || $('#depositor').val() == "" ){
-        			return alert("빈곳을 확인해주세요.")
+        			insertOrder(orderItems)
+        			return true/* alert("빈곳을 확인해주세요.") */
         		}else {
         			insertOrder(orderItems)
         			$.get(contextPath+"/api/lastOrderNum",
@@ -366,7 +366,7 @@ $(function(){
 <jsp:include page="/WEB-INF/view/include/header.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/view/include/topbody.jsp"></jsp:include>
 <h1 class="orderMenuTitle ">현재 주문 상품 내역</h1>
-<form name="orderform" id="orderform" method="post" class="orderform" action="/Page" onsubmit="return false;">
+<form:form modelAttribute="OrderDTO" name="orderform" id="orderform" method="post" class="orderform" action="/Page" onsubmit="return false;">
             <div class="basketdiv" id="basket">
                 <div class="row head">
 	                    <div class="subdiv">
@@ -402,6 +402,7 @@ $(function(){
 					</p>
 					<p>
 						<input id = "memberBank" type="text" placeholder="은행">
+						<form:errors path="whichBank"/>
 					</p>
 					<p>
 						<input id = "depositor" type="text" placeholder="입금자명">
@@ -482,7 +483,7 @@ $(function(){
             <input id="prodOrderBtn" class = 'orderBtns' type="submit" value="주문하기">
             <input id="canselBtn" class = 'orderBtns' type="submit" value="취소하기">
             </div>
-</form> 
+</form:form> 
         
 <jsp:include page="/WEB-INF/view/include/footer.jsp"></jsp:include>
 </div>

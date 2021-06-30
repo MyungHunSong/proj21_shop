@@ -177,7 +177,10 @@ $(function(){
 						
 					})	
 		}
-		window.location.href = contextPath + "/productlist?proCategory=0&section=1&pageNum=1&priceRange="+sortPrice+"&orderKind="+sortOrder+"&search="+search;
+		if(proCategory == 0){
+			window.location.href = contextPath + "/productlist?proCategory=0&section=1&pageNum=1&priceRange="+sortPrice+"&orderKind="+sortOrder+"&search="+search;	
+		}
+		
 	})
 	
 	$('.prodSearchBtn span').on('click',function(){
@@ -237,8 +240,11 @@ $(function(){
 						function openPop(proNum){
 							var popup = window.open("productDetailItem2?proNum="+proNum,'상품상세정보','width=800px, height=700px');
 						}
-				})	
-		    	window.location.href = contextPath + "/productlist?proCategory=0&section=1&pageNum=1&priceRange="+priceRange+"&orderKind="+orderKind+"&search="+search;
+				})
+				if(proCategory == 0){
+					window.location.href = contextPath + "/productlist?proCategory=0&section=1&pageNum=1&priceRange="+priceRange+"&orderKind="+orderKind+"&search="+search;	
+				}
+		    	
 			}
 			
 	}) 

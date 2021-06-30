@@ -15,4 +15,6 @@ public interface MyReviewMapper {
 	int insertReview(ReviewDTO reviewDTO);
 	int updateReview(ReviewDTO reviewDTO);
 	ReviewDTO selectReviewByReviewNum(int reviewNum);
+	int updateReviewCount(int proNum);
+	List<QnaDTO> selectQnaContentByMember(QnaDTO qnaDTO);
 }

@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+body{
+	text-align: center;
+}
+
+#button {
+	text-align: right;
+	color: white;
+	margin-top: 10px;
+	background: #FF7696;
+	border: 1px double #e7708d;
+	border-radius: 2px;
+	color: #fff;
+	cursor: pointer;
+}

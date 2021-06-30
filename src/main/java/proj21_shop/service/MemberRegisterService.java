@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import proj21_shop.dto.member.MemberDTO;
 import proj21_shop.dto.member.RegisterRequest;
 import proj21_shop.exception.DuplicateMemberException;
+import proj21_shop.exception.PasswordNotEqualException;
 import proj21_shop.mapper.member.MemberMapper;
 
 @Service
@@ -19,6 +20,10 @@ public class MemberRegisterService {
 
 		if (member != null) {
 			throw new DuplicateMemberException("dup id"+req.getMemberId());
+		}
+		
+		if(!req.getMemberPwdConfirm().equals(req.getMemberPwd())) {
+			throw new PasswordNotEqualException();
 		}
 
 		MemberDTO newMember = new MemberDTO(req.getMemberId(), req.getMemberPwd(), req.getMemberName(),

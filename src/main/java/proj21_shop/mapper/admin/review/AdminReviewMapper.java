@@ -12,5 +12,7 @@ public interface AdminReviewMapper {
 	// 후기 삭제하기
 	// 검색 후기 수
 	int selectedTotalReviews(Map<String, Object> pagingMap);
+	// 후기 삭제하기
+	int deletereviews(Map<String, Object> pagingMap);
 	
 }

@@ -1,7 +1,12 @@
 -- nayeon test script
+SELECT * FROM ORDER;
+select * from member;
+SELECT * FROM member WHERE m_id = 'test01' AND m_exit != 1 and m_passwd = password(123);
 
+UPDATE `member` SET m_question = '자신의 보물 제1호는?' , m_answer = '나' WHERE m_id = 'admin';
 -- 회원가입
 select * from member;
+
 desc review;
 select * from review;
 select * from `order` o2 ;
@@ -13,7 +18,7 @@ values ('test06', password(123), '이종바', '010-1234-5678', '1994-08-17', 0, 
 
 delete
   from member 
- where m_id = 'test06';
+ where m_id = 'test07';
 
 -- 로그인
 select m_passwd 
@@ -59,6 +64,13 @@ select r.re_num,p.pro_name, r.re_image, r.re_image2, r.re_content, r.re_stars, r
 	on r.pro_num = p.pro_num
  where r.re_member = 'test01';
 
+-- qna 내역
+select * from qna;
+
+select q_index, q_title, q_option, q_content, q_file 
+  from qna
+ where q_member = 'test01' and q_index = 1;
+
 -- 후기 작성
 select * from `order` o ;
 desc `order`;
@@ -77,7 +89,14 @@ select o.order_member_id, pi2.pro_imagefilename, p.pro_name, p.pro_color, p.pro_
 select * from review;
 insert into review(pro_num, re_member, re_content, re_image, re_image2, re_stars)
 values (1033, 'test01', '맘에 들어요 감사합니다.', 'review_test.jpg', 'review_test.jpg', 3);
- 
+
+-- 후기 작성 시 후기 수 증가
+select * from product;
+
+update product
+   set re_replyCount = re_replyCount + 1
+ where pro_num = 1031;
+
 delete from review where re_num >= 2;
 -- 후기 수정
 select * from review;
@@ -118,10 +137,17 @@ select m_question_num
   from member
  where m_id = 'skdus2421';
 
+select m_phone, m_email, m_addr1, m_addr2, m_addr3
+  from member
+ where m_id = 'test01';
+ 
 update member
    set m_phone = '010-9876-5432', m_email = 'test06@hanmail.net', m_addr1 = '12345', m_addr2 = '대구광역시 북구 침산남로 14길 5', m_addr3 = '505동 1005호'
  where m_id = 'test06';
 
+update member
+   set m_exit = 0
+ where m_id = 'test06';
 -- 주문 내역(입력 후 검색)
 select * from `order`;
 select * from `member`;
@@ -155,7 +181,8 @@ desc `order` ;
 insert into `order`(order_member_id, order_num, pro_num, order_member_name, order_pro_quantity, order_price, order_discount, receiver_name, receiver_tel1, receiver_tel2, delivery_addr1, delivery_addr2, delivery_addr3, delivery_status, request_to_delivery, who_pay, which_bank)
 values ('test01', 210530, 5083, '이종윤', 1, 5000, 0, '이종윤', '010-1234-5678', '010-1234-5678', 54545, '대구광역시 남구 봉덕동 이천로 51', '2층', '배송준비중', '배송참고사항', '이종윤', '국민');
 
-SELECT DISTINCT o.order_pro_num, o.order_code, pi2.pro_imagefilename, p.pro_num, p.pro_name, p.pro_color, p.pro_size, p.pro_price, o.order_pro_quantity, o.delivery_status, o.order_date, o.order_member_name , o.receiver_tel1, o.receiver_tel2, o.delivery_addr1 , o.delivery_addr2, o.delivery_addr3, o.request_to_delivery
+select * from `order` o2 ;
+SELECT DISTINCT o.order_pro_num, o.order_code, pi2.pro_imagefilename, p.pro_num, p.pro_name, p.pro_color, p.pro_size, p.pro_price, p.pro_salesrate , o.order_pro_quantity, o.delivery_status, o.order_date, o.order_member_name , o.receiver_tel1, o.receiver_tel2, o.delivery_addr1 , o.delivery_addr2, o.delivery_addr3, o.request_to_delivery
   from `order` o
   join pro_img pi2 
     on o.pro_num = pi2.pro_num 
@@ -186,4 +213,5 @@ select * from member;
 delete from member where m_id = 'test06';
 
 select * from review;
+select * from product;
 

@@ -15,20 +15,25 @@ public class AdminReviewServiceImpl implements AdminReviewService {
 
 	@Autowired
 	AdminReviewMapper adminReviewMapper;
-	
+
 	@Override
 	public Map<String, Object> listReviews(Map<String, Object> pagingMap) {
-		
+
 		List<ReviewDTO> listReviews = adminReviewMapper.selectAllReviews(pagingMap);
 		int selectedReviews = adminReviewMapper.selectedTotalReviews(pagingMap);
-		
+
 		Map<String, Object> reviewsMap = new HashMap<String, Object>();
-		
+
 		reviewsMap.put("listReviews", listReviews);
 		reviewsMap.put("selectedReviews", selectedReviews);
-		
+
 		return reviewsMap;
-		
+
+	}
+
+	@Override
+	public int deleteReviews(Map<String, Object> deleteMap) {
+		return adminReviewMapper.deletereviews(deleteMap);
 	}
 
 }

@@ -736,3 +736,24 @@ SET
 	pro_sold = pro_sold-1
 WHERE
 	pro_num = ?
+	
+DELETE
+FROM
+	review
+WHERE
+	re_num=1;
+
+select *
+from review r2 ;
+select *
+from re_reply rr ;
+-- 제품 지우기 전에 제품 사진들 지우기
+delimiter $$
+create trigger delete_re_reply
+before delete on review
+for each row
+begin
+delete from re_reply
+where re_num = old.re_num;
+end $$
+delimiter ;

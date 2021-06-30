@@ -26,9 +26,9 @@
 							sCont += "<tr>";
 							sCont += "<td>" + json[0].orderProNum + "-" + json[0].productDTO[i].orderCode[0].orderCode + "</td>";
 							sCont += "<td><img src='" + contextPath +"/resources/product/images/" + json[0].productDTO[i].proImgfileName + "' width = '80' height='60'></td>";
-							sCont += "<td>" + json[0].productDTO[i].proPrice * 0.01 +"p"+ "</td>";
-							sCont += "<td>" + json[0].productDTO[i].proPrice+ "</td>";
-							sCont += "<td>" + json[0].orderProQuantity+ "</td>";
+							sCont += "<td>" + json[0].productDTO[i].proPrice * json[0].productDTO[i].orderCode[0].orderProQuantity * (100-json[0].productDTO[i].proSalesrate) * 0.01 * 0.01 +"p"+ "</td>";
+							sCont += "<td>" + json[0].productDTO[i].proPrice * json[0].productDTO[i].orderCode[0].orderProQuantity * (100-json[0].productDTO[i].proSalesrate) * 0.01  + "</td>";
+							sCont += "<td>" + json[0].productDTO[i].orderCode[0].orderProQuantity+ "</td>";
 							sCont += "<td>" + json[0].deliveryStatus+ "</td>";
 							sCont += "<td>" + json[0].orderDate+ "</td>";
 
@@ -64,6 +64,7 @@
 							$("#delivery").prepend(sConts);
 
 							sCon = "";
+							var price = 0;
 							var sum= 0;
 							var discount = 0;
 							sCon += "<tr>";
@@ -71,17 +72,25 @@
 						 	for(i = 0; i < dataLength; i++){
 						 		/*console.log(parseInt(json[0].proName[i].proPrice)
 						 				+parseInt(json[0].proName[i].proPrice)) */
-							sum += parseInt(json[0].productDTO[i].proPrice);
+							sum += json[0].productDTO[i].proPrice * json[0].productDTO[i].orderCode[0].orderProQuantity * (100-json[0].productDTO[i].proSalesrate) * 0.01;
 							}
-							sCon += "<td>" + sum + "</td>";
+						 	for(i = 0; i < dataLength; i++){
+						 		discount += json[0].productDTO[i].proPrice * json[0].productDTO[i].orderCode[0].orderProQuantity * json[0].productDTO[i].proSalesrate * 0.01;
+
+						 	}
+						 	for(i = 0; i < json[0].productDTO.length ; i++){
+						 		price += json[0].productDTO[i].proPrice * json[0].productDTO[i].orderCode[0].orderProQuantity
+						 	}	
+						 	
+							sCon += "<td>" + price + "</td>";
 							sCon += "</tr>";
 							sCon += "<tr>";
 							sCon += "<th scope='cols'>할인합계</th>";
-							sCon += "<td>" +json[0].orderDiscount + "</td>";
+							sCon += "<td>" + discount + "</td>";
 							sCon += "</tr>";
 							sCon += "<tr>";
 							sCon += "<th scope='cols'>최종 결제 금액</th>";
-							sCon += "<td>" + (sum - json[0].orderDiscount) + "</td>";
+							sCon += "<td>" + sum + "</td>";
 							sCon += "</tr>";
 							sCon += "<tr>";
 							sCon += "<th scope='cols'>예상적립금 </th>";

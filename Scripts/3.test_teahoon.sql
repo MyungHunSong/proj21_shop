@@ -1,10 +1,15 @@
 -- LEE TaeHoon TEST scripts
 show tables;
 
+select cart_num, c.cart_member_id, c.cart_pro_num, cart_pro_quantity, p.pro_imagefilename, p.pro_name, p.pro_price,p.pro_size, p.pro_salesrate, p.pro_color 
+ 		  from cart c join productall p on c.cart_pro_num = p.pro_num 
+
 select *
   from cart;
+ 
 SELECT * 
   FROM `ORDER`;
+ 
 select *
   from member;
  
@@ -13,16 +18,22 @@ select *
  
  select *
   from pro_img;
+ 
 select *
   from qna;
+ 
 select *
   from re_reply;
+ 
 select *
   from review;
+ 
 select *
   from Address;
+ 
 select *
   from admin;
+ 
 select order_code,order_member_id,o.pro_num,order_pro_num,order_member_name,order_pro_quantity,order_price,order_discount,receiver_name,receiver_tel1,receiver_tel2,delivery_addr1,delivery_addr2,delivery_addr3,delivery_status,request_to_delivery,order_date,who_pay,which_bank,pro_name,pro_price,pro_salesrate,pro_cre_date,pro_status,pro_color,pro_size,re_replyCount,pro_imagefilename,pro_img_state
   from `order` o join productall p on o.pro_num = p.pro_num 
 where order_member_id = 'test01';

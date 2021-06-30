@@ -66,8 +66,8 @@ CREATE TABLE proj21_shop.REVIEW (
 	pro_num       INT           NULL     COMMENT '제품번호', -- 제품번호
 	re_member     VARCHAR(100)  NULL     COMMENT 'm_Id', -- 후기작성자
 	re_content    VARCHAR(3000) NULL     COMMENT '후기내용', -- 후기내용
-	re_image      VARCHAR(100)  NULL     COMMENT '후기이미지', -- 후기이미지
-	re_image2     VARCHAR(100)  NULL     COMMENT '후기이미지2', -- 후기이미지2
+	re_image      VARCHAR(100) Null default 'noimage.jpg'    COMMENT '후기이미지', -- 후기이미지
+	re_image2     VARCHAR(100)  NULL default 'noimage.jpg'    COMMENT '후기이미지2', -- 후기이미지2
 	re_date       DATETIME      default current_timestamp NULL     COMMENT 'default current_timestamp', -- 후기일
 	re_stars      INT           NULL     COMMENT '별점' -- 별점
 )

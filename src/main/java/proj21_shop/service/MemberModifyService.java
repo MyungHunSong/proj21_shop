@@ -1,6 +1,5 @@
 package proj21_shop.service;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,21 +14,26 @@ public class MemberModifyService {
 	@Autowired
 	private MemberMapper mapper;
 
+	public MemberDTO form(String id) {
+		MemberDTO member = mapper.selectMemberById(id);
+		return member;
+	}
+
 	public void modify(String id, ModifyRequest req) {
 		MemberDTO member = mapper.selectById(id);
-		
+
 		if (!member.getMemberPwdQ().equals(req.getMemberPwdQ())) {
 			throw new QuestionNotEqualException();
 		}
-		
+
 		if (!member.getMemberPwdA().equals(req.getMemberPwdA())) {
 			throw new QuestionAnswerNotEqualException();
 		}
-		
-			member = new MemberDTO(id, req.getMemberPh(), req.getMemberAddr1(), req.getMemberAddr2(),
-					req.getMemberAddr3(), req.getMemberEmail());
-					mapper.updateMember(member);
-			
-		
+
+		member = new MemberDTO(id, req.getMemberPh(), req.getMemberAddr1(), req.getMemberAddr2(), req.getMemberAddr3(),
+				req.getMemberEmail());
+		mapper.updateMember(member);
+
 	}
+
 }

@@ -13,8 +13,8 @@ body {
 }
 
 .asd{
-	padding-left: 100px;
-	padding-right: 100px;
+	padding-left: 130px;
+	padding-right: 130px;
 }
 
 a{	color: black;
@@ -24,6 +24,20 @@ a{	color: black;
 
 a:hover{
 	color: red;
+}
+.bringContent{
+	background-color: #383838;
+    border: 1px solid #888888;
+    color: #ffffff;
+    cursor: pointer;
+    letter-spacing: -1px;
+    padding: 3px 5px;
+    margin: 2px 3px;
+    width: auto;
+    word-break: keep-all;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 0.9375em;
 }
 
 table.type11 {

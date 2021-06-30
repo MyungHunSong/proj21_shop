@@ -1,18 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="<%=request.getContextPath()%>" />    
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/proj21_shop/resources/include/css/header.css">
 <script>
-	$(function(){
-		$('.headerImg').click(function(){
-			location.href='main';
+$(function(){
+	$('.headerImg').click(function(){
+		location.href='main';
+	})
+
+	if("${authInfo.id }" != null){
+		$.get("${contextPath}/api/existOrderMember/${authInfo.id }",function(json){
+			console.log(json)
+			var sCont = "";
+				sCont += "<p class='login_member mem_id'><strong>"+json.memberId+"</strong>님 반갑습니다.</p>"
+				sCont += "<p class='login_member point'>포인트: <strong>"+json.memberPoint+"P</strong>입니다</p>"
+			$('#memberIdAndPoint').append(sCont)
 		})
-	});
+	}
+	
+});
 	
 	
 </script>
@@ -46,8 +57,7 @@
 		</ul>
 			<c:if test="${!empty authInfo }">
 			<br>
-					<p class="login_member mem_id"><strong>${authInfo.id }</strong>님 반갑습니다.</p>
-					<p class="login_member point">포인트: <strong>${authInfo.mPoint }P</strong>입니다</p>
+				<div id="memberIdAndPoint">	</div>					
 			</c:if>
 			<c:if test="${empty authInfo }">
 				<br>

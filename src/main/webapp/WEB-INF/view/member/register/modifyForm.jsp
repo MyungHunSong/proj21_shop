@@ -1,10 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="contextPath" value="<%=request.getContextPath()%>" />
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="/proj21_shop/resources/main/css/main.css">
+<link rel="stylesheet" href="${contextPath }/resources/member/css/modifyForm.css">
+<link rel="stylesheet" href="${contextPath }/resources/main/css/main.css">
 <meta charset="UTF-8">
 <title>회원 정보 수정</title>
 <script
@@ -74,8 +76,6 @@
 		
 	}
 </script>
-<link rel="stylesheet"
-	href="/proj21_shop/resources/member/css/modifyForm.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
@@ -103,24 +103,23 @@
 				</tr>
 				<tr>
 					<th scope="row"><label for="tel">전화 번호</label></th>
-					<td><form:input path="memberPh" /></td>
+					<td><form:input path="memberPh" required="required" value="${memberPh}"/></td>
 				</tr>
 				<tr>
 					<th scope="row"><label for="email">이메일</label></th>
-					<td><form:input path="memberEmail" /></td>
+					<td><form:input path="memberEmail" required="required" value="${memberEmail}"/></td>
 				</tr>
 				<tr>
 					<th scope="row"><label for="address">주소</label></th>
-					<td><form:input type="text" id="sample4_postcode"
-							placeholder="우편번호" path="memberAddr1" /> <input type="button"
-						onclick="sample4_execDaumPostcode()" value="우편번호 찾기"> <br>
-						<form:input type="text" id="sample4_roadAddress"
-							path="memberAddr2" placeholder="도로명주소" /> <input type="text"
-						id="sample4_jibunAddress" placeholder="지번주소"> <span
-						id="guide" style="color: #999; display: none"></span> <form:input
-							type="text" id="sample4_detailAddress" path="memberAddr3"
-							placeholder="상세주소" /> <input type="text"
-						id="sample4_extraAddress" placeholder="참고항목"></td>
+					<td>
+						<form:input type="text" id="sample4_postcode" placeholder="우편번호" path="memberAddr1" value="${memberAddr1}" />
+					 	<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"> <br>
+						<form:input type="text" id="sample4_roadAddress" path="memberAddr2" placeholder="도로명주소" value="${memberAddr2}" />
+						<input type="text" id="sample4_jibunAddress" placeholder="지번주소">
+						<span nid="guide" style="color: #999; display: none"></span>
+						<form:input type="text" id="sample4_detailAddress" path="memberAddr3" placeholder="상세주소" value="${memberAddr3}"/>
+						<input type="text" id="sample4_extraAddress" placeholder="참고항목">
+					</td>
 				</tr>
 			</table>
 			<div>

@@ -1,5 +1,7 @@
 package proj21_shop.controller.admin.review;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -7,11 +9,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import proj21_shop.service.admin.review.AdminReviewService;
@@ -85,4 +93,41 @@ public class AdminReviewController {
 	mav.setViewName("admin/review/listReviews2");
 	return mav;
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="deleteReviews", method= RequestMethod.POST)
+	public ResponseEntity deleteProducts(String[] _delete_val,
+									HttpServletRequest request, HttpServletResponse response) {
+		
+		ArrayList<String> deleteList=new ArrayList<String>();
+		for(String value : _delete_val) { //삭제할 제품 번호 리스트에 추가
+			System.out.println(value);
+			deleteList.add(value);
+		}
+		String message=null;
+		ResponseEntity resEnt=null;
+		HttpHeaders responseHeaders=new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+		Map<String,Object> deleteMap=new HashMap();
+		deleteMap.put("deleteList", deleteList);
+		try {
+			adminReviewService.deleteReviews(deleteMap);
+			message="<script> ";
+			message+=" alert('선택한 제품 삭제를 완료하였습니다.');";
+			message+=" location.href='"+request.getContextPath()+"/admin/review/listReviews'; ";
+			message+=" </script>";
+			resEnt=new ResponseEntity(message,responseHeaders,HttpStatus.CREATED);
+		}catch(Exception e) {
+			
+			message="<script> ";
+			message+=" alert('제품 삭제를 실패하셨습니다..');";
+			message+=" location.href='"+request.getContextPath()+"/admin/product/listProducts'; ";
+			message+=" </script>";
+			resEnt=new ResponseEntity(message,responseHeaders,HttpStatus.CREATED);
+			e.printStackTrace();
+		}
+		
+		return resEnt;
+	}
+	
 }

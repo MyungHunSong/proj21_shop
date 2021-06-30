@@ -10,23 +10,34 @@
 <link rel="stylesheet" href="/proj21_shop/resources/product/css/productDetail.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-function count(type)  {
-    // 결과를 표시할 element
-   	    var resultElement = document.getElementById('result');
 
-    // 현재 화면에 표시된 값
-    	let number = resultElement.innerText;
-
-    // 더하기/빼기
-   	 if(type === 'plus') {
-       	 number = parseInt(number) + 1;
-   	 }else if(type === 'minus' && number > 0)  {
-      	  number = parseInt(number) - 1;
-     }
-     // 결과 출력
-     	resultElement.innerText = number;
-}
 $(function() {
+	/*숫자 증가 감소*/
+	/*재고 수량 만큼만 증가 가능*/
+	var useNum = 0;
+	
+	function count(useNum){
+		$('.btn').on('click',function(){
+			var status = $(this).val();
+			var num = $('#result').text();
+			var intNum = parseInt(num);
+			var quantity = $("#size option:checked").text();
+			var colon = quantity.indexOf(':');
+			useNum = quantity.substring(colon+2)
+			
+			if(status == '+' && intNum < useNum){
+				intNum++
+				console.log(intNum)	
+			}else if(status == '-' && intNum > 0){
+				intNum --
+				console.log(intNum)
+			}
+			
+			$('#result').text(intNum)
+		})
+	}
+	
+	count(useNum)
 	
 	var contextPath = "${contextPath}";
 	var proNum = ${proNum};
@@ -81,6 +92,7 @@ $(function() {
 				$('.review').on('click',function(){
 					$('html, body').animate({scrollTop:$('#productReview').position().top}, 'slow');
 				})
+				
 		}); 
 	
 	
@@ -251,9 +263,9 @@ $(function() {
 		<section id="ProductLoad"></section>
 		<div class="productRight">
 			<div class="calculator">
-				<input class="cal btn" type='button'onclick='count("minus")'value='-'/>
+				<input class="cal btn plus" type='button' value='-'/>
 				<div class="cal" id = "result">0</div>
-				<input class="cal btn" type='button'onclick='count("plus")'value='+'/>
+				<input class="cal btn minus" type='button' value='+'/>
 			</div>
 			<div class='submitBtns'>
 				<input type='submit' id='cart' style="cursor: pointer;" value='장바구니' />

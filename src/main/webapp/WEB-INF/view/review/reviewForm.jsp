@@ -9,6 +9,7 @@
 <title>후기 작성</title>
 <link rel="stylesheet"
 	href="/proj21_shop/resources/review/css/reviewForm.css" />
+<link rel="stylesheet" href="/proj21_shop/resources/main/css/main.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 	$(function() {
@@ -18,21 +19,18 @@
 		
 		$.get(contextPath + "/api/detailreview/" + memberId + "/"+ proNum, 
 		function(json){
-			var notice = [ '별로에요', '보통이에요', '그냥 그래요', '맘에 들어요',
-				'아주 좋아요' ];
+			var notice = [ '별로에요', '보통이에요', '그냥 그래요', '맘에 들어요', '아주 좋아요' ];
 			$(".stars .fa").click(
 					function() {
 						$(this).addClass("active");
 						$(this).prevAll().addClass("active");
 						$(this).nextAll().removeClass("active");
 						var starRate = $(this).index() + 1;
-					
 						
 						$('.print').html(
 								'<img src="images/star-lv' +starRate + '.png">'
 										+ notice[starRate - 1]);
 						
-					
 						
 						 $('.review').on("click", '[id=insert]', function(e){
 						 	  var newReview = {	proNum : json[0].proName.proNum , memberId : memberId, reviewContent : $('#reviewContent').val(),
@@ -60,7 +58,7 @@
 									reviewImagefilename1 : $('#imgButton1').val().replace(/C:\\fakepath\\/i, ''), reviewImagefilename2 : $('#imgButton2').val().replace(/C:\\fakepath\\/i, ''), reviewStar : starRate
 									};
 							
-							alert("data > " + data.reviewNum);
+							/* alert("data > " + data.reviewNum); */
 							$.ajax({
 								url : contextPath + "/api/myreview/"+ data.reviewNum,
 								type : 'Patch',
@@ -69,7 +67,7 @@
 								cache : false,
 								data : JSON.stringify(data),
 								success : function(data){
-									alert(data);
+									alert("등록을 완료했습니다.");
 									window.location.href = contextPath + "/board?memberId=" + memberId;
 									
 								},error:function(request, data, status, error) {
@@ -82,10 +80,6 @@
 							
 							
 						});
-						
-						
-						
-					
 						
 			})
 			
@@ -121,13 +115,13 @@
 				}
 				
 				sConts += "<div class='file'>";
-				sConts += "<input type='file' id='imgButton1' name='imgButton1'/>";
-				sConts += "<input type='file' id='imgButton2' name='imgButton2'/>";
+				sConts += "<input type='file' id='imgButton1' name='imgButton1' value='json[0].reviewImagefilename1'/>";
+				sConts += "<input type='file' id='imgButton2' name='imgButton2' value='json[0].reviewImagefilename2'/>";
 				sConts += "</div><br>";
-				if(json[0].reviewContent = undefined){
+				
+				
+				if(json[0].reviewContent == undefined){
 				sConts += "<button id='insert'>등록</button>";
-				}else if (json[0].reviewContent == null){
-				sConts += "<button id='modify'>수정</button>";
 				}else{
 				sConts += "<button id='modify'>수정</button>";
 				}
@@ -258,6 +252,7 @@
 </script>
 </head>
 <body>
+	<div class = "container">
 	<jsp:include page="/WEB-INF/view/include/header.jsp"></jsp:include>
 	<jsp:include page="/WEB-INF/view/include/topbody.jsp"></jsp:include>
 	<h2>스타일 후기 작성</h2>
@@ -277,5 +272,6 @@
 		<br>
 			<div class="review" id="review"></div>
 		<jsp:include page="/WEB-INF/view/include/footer.jsp"></jsp:include>
+	</div>
 </body>
 </html>

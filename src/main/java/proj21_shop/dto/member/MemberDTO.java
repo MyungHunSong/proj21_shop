@@ -221,12 +221,6 @@ public class MemberDTO {
 		this.memberExit = memberExit;
 	}
 
-	public boolean matchPassword(String password) {
-		System.out.println("this.memberPwd : " + this.memberPwd);
-		System.out.println("password : " + password);
-		return this.memberPwd.equals(password);
-	}
-
 	@Override
 	public String toString() {
 		return String.format(
