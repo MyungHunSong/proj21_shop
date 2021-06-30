@@ -14,15 +14,13 @@
 $(function(){
 	$("#searchBtn").on("click", function(event){
 		var test = $("#keywordInput").val();
-		
-		if(test==null || test==""){
-			alert("값을 입력해야 합니다.");
-		}
-		
+				
 		if(test != null){
 		self.location= "/proj21_shop/listPaging${pageMaker.makeQuery(1)}"
 		+"&searchType=" +$("select option:selected").val()
 		+"&keyword=" + encodeURIComponent($("#keywordInput").val());
+		}else if(test == null || test == ""){
+			alert("공백이 존재 합니다.")
 		}
 			
 	}) 
