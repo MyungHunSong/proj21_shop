@@ -3,11 +3,14 @@ package proj21_shop.dto.order;
 import java.sql.Date;
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import proj21_shop.dto.member.MemberDTO;
 import proj21_shop.dto.product.ProductDTO;
 import proj21_shop.dto.product.ProductImageDTO;
+
 
 public class OrderDTO {
 
@@ -27,25 +30,39 @@ public class OrderDTO {
 
 	private ProductDTO pro;
 
-
+	@NotNull
 	private String orderMemberName;
+	
 	private int orderProQuantity;
 	private int orderValue;// 각각 제품가격 (각각의 제품 할인율 적용)
 	private int orderPrice;// 총 가격
 	private int orderDiscount;
+	
+	@NotNull
 	private String receiverName;
+	
+	@NotNull
 	private String receiverTel1;
+	
+	@NotNull
 	private String receiverTel2;
+	
+	@NotNull
 	private String deliveryAddr1;
 	private String deliveryAddr2;
 	private String deliveryAddr3;
+	
+	
 	private String deliveryStatus;
 	private String requestToDelivery;
 
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date orderDate;
 
+	@NotNull
 	private String whoPay;
+	
+	@NotNull
 	private String whichBank;
 	private String acountNum;
 

@@ -19,9 +19,8 @@ $(function(){
 	var memId =  "${memId}";
 	var cartNums = ${cartNums};
 	var consumePoint = 0;
-	
 	/* 유저 포인트 */
-	var totalMemberPoint = ${authInfo.mPoint};
+	var totalMemberPoint = ${mPoint};
 	var totalMemberPointFmt = totalMemberPoint.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"P";
 	
 	/* 원래 판매 금액 */
