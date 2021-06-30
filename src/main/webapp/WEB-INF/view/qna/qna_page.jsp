@@ -79,8 +79,6 @@
 	size: 30px;
 }
 
-
-
 </style>
 <script type="text/javascript">
 var keyword = "${keyword}";
