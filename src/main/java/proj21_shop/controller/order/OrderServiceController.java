@@ -1,9 +1,16 @@
 package proj21_shop.controller.order;
 
+import java.net.BindException;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +27,8 @@ import proj21_shop.service.order.OrderService;
 @RequestMapping("/api")
 public class OrderServiceController {
 
+	private final CustomCollectionValidator customCollectionValidator = new CustomCollectionValidator();
+	
 	@Autowired
 	private OrderService service;
 	
@@ -30,9 +39,15 @@ public class OrderServiceController {
 		return ResponseEntity.ok(member);
 	}
 	
-	/*주문 테이블에 제품 등록*/
+	/*주문하기*/
 	@PostMapping("/orderInfo")
-	public ResponseEntity<Object> trInsertOrder(@RequestBody List<OrderDTO> orderDTO){
+	public ResponseEntity<Object> trInsertOrder(@RequestBody @Valid List<OrderDTO> orderDTO, BindingResult bindingResult) throws BindException{
+		customCollectionValidator.validate(orderDTO, bindingResult);
+		
+		if(bindingResult.hasErrors()) {
+			throw new BindException();
+		}
+		
 		System.out.println(orderDTO);
 		return ResponseEntity.ok(service.trInsertOrder(orderDTO));
 	}
