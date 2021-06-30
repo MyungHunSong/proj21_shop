@@ -12,6 +12,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -118,6 +120,8 @@ public class AdminProductController {
 	public ResponseEntity addNewProduct(MultipartHttpServletRequest multipartRequest, HttpServletResponse response) throws Exception {
 		multipartRequest.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
+		
+		
 		String imageFileName = null;
 		Map<String, Object> newProductMap = new HashMap();
 		Map<String, Object> newProductMap2 = new HashMap();
@@ -175,7 +179,7 @@ public class AdminProductController {
 				}
 			}
 			message = "<script> ";
-			message += " alert('새상품이 등록외었습니다.');";
+			message += " alert('새상품이 등록되었습니다.');";
 			message += " location.href='" + multipartRequest.getContextPath() + "/admin/product/addNewProductForm';";
 			message += " </script>";
 
@@ -189,7 +193,7 @@ public class AdminProductController {
 				}
 			}
 			message = "<script> ";
-			message += " alert('새상품 등록 실패');";
+			message += " alert('새상품 등록 실패 : 이미 있는 제품입니다.');";
 			message += " location.href='" + multipartRequest.getContextPath() + "/admin/product/addNewProductForm';";
 			message += " </script>";
 		}
@@ -206,8 +210,10 @@ public class AdminProductController {
 		return mav;
 	}
 
+	//제품 사진 폴더 생성
 	private List<ProductImageDTO> upload(MultipartHttpServletRequest multipartRequest) throws IOException {
-
+		
+		//multipartRequest에 있는 제품이름들을 가져온다.
 		Iterator fileNames2 = multipartRequest.getFileNames();
 		while (fileNames2.hasNext()) {
 			String fileName = (String) fileNames2.next(); // 파일 네임
@@ -215,7 +221,8 @@ public class AdminProductController {
 			String originalFileName = mFile.getOriginalFilename(); // 오리지널 파일 네임
 			System.out.println("originalFileName>>=" + originalFileName);
 		}
-
+		
+		//가져온 파일들을 리스트에 넣어준다.
 		List<ProductImageDTO> fileList = new ArrayList<ProductImageDTO>();
 		Iterator<String> fileNames = multipartRequest.getFileNames();
 		while (fileNames.hasNext()) {
@@ -239,15 +246,15 @@ public class AdminProductController {
 			
 			File file = new File(CURR_IMAGE_REPO_PATH + "\\" + fileName);
 			System.out.println(file.getPath());
-			if (mFile.getSize() != 0) {
+			if (mFile.getSize() != 0) { //유무 확인
 				System.out.println("mFile.getSize()============="+mFile.getSize());
 				System.out.println("!file.exists()======="+!file.exists());
 				System.out.println("file.getParentFile()========="+file.getParentFile());
-				if (!file.exists()) {
+				if (!file.exists()) { //위치가 존재하지 않으면 폴더 생성후 파일 생성한다.
 					if (file.getParentFile().mkdirs()) {
 						file.createNewFile();
 					}
-				}
+				}//FileInputStream 등을 사용하지 않아도 transferTo() 를 사용하면 아주 쉽게 파일을 저장할 수 있다
 				mFile.transferTo(new File(CURR_IMAGE_REPO_PATH + "\\" + originalFileName));
 			}
 		}
