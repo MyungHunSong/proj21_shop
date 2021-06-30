@@ -121,10 +121,10 @@
 				<if test="reviewContent neq null">
 		 	  	 	re_content = #{reviewContent},
 		 		</if>
-			 	<if test="reviewImagefilename1 neq null">
+			 	<if test="reviewImagefilename1 neq ''">
 		 		    re_image = #{reviewImagefilename1},
 		 		</if>
-		 		<if test="reviewImagefilename2 neq null">
+		 		<if test="reviewImagefilename2 neq ''">
 		 	 	    re_image2 = #{reviewImagefilename2},
 		 		</if>
 		 		<if test="reviewStar neq null">
