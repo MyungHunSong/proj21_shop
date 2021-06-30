@@ -3,6 +3,7 @@ package proj21_shop.dto.order;
 import java.sql.Date;
 import java.util.List;
 
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -31,6 +32,7 @@ public class OrderDTO {
 	private ProductDTO pro;
 
 	@NotNull
+	@NotEmpty
 	private String orderMemberName;
 	
 	private int orderProQuantity;
@@ -39,15 +41,19 @@ public class OrderDTO {
 	private int orderDiscount;
 	
 	@NotNull
+	@NotEmpty
 	private String receiverName;
 	
 	@NotNull
+	@NotEmpty
 	private String receiverTel1;
 	
 	@NotNull
+	@NotEmpty
 	private String receiverTel2;
 	
 	@NotNull
+	@NotEmpty
 	private String deliveryAddr1;
 	private String deliveryAddr2;
 	private String deliveryAddr3;
@@ -60,9 +66,11 @@ public class OrderDTO {
 	private Date orderDate;
 
 	@NotNull
+	@NotEmpty
 	private String whoPay;
 	
 	@NotNull
+	@NotEmpty
 	private String whichBank;
 	private String acountNum;
 

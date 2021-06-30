@@ -304,10 +304,10 @@ $(function(){
 				alert("주문이 완료 되었습니다.")
 			},
 			error:function(request, status, error){
-				alert("제품 수량이 부족합니다.");
+				/* alert("제품 수량이 부족합니다."); */
 				alert("code:"+request.status+"\n"+"message:"
 		                  +request.responseText+"\n"+"error:"+error); 
-				 window.location.href = contextPath+"/cart?memId=${authInfo.id }";  
+				/* window.location.href = contextPath+"/cart?memId=${authInfo.id }"; */  
 			} 
 		}); 
 		
@@ -339,9 +339,9 @@ $(function(){
         				$('#memberTel3').val() == "" || $('#sample4_postcode').val() == "" || $('#sample4_roadAddress').val()  == "" || $('#sample4_detailAddress').val() == "" ||
         				$('.receiver').val() == "" || $('.receiverTel1').val() == "" || $('.receiverTel2').val() == "" || $('.receiverTel3').val() == "" ||
         				$('#memberBank').val() == "" || $('#depositor').val() == "" ){
-        			return alert("빈곳을 확인해주세요.")
-        		}else {
         			insertOrder(orderItems)
+        			return true/* alert("빈곳을 확인해주세요.") */
+        		}else {
         			$.get(contextPath+"/api/lastOrderNum",
 			    	function(json){
 			    		console.log(json)
