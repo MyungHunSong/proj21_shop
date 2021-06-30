@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import proj21_shop.dto.order.OrderDTO;
+import proj21_shop.dto.qna.QnaDTO;
 import proj21_shop.dto.review.ReviewDTO;
 import proj21_shop.exception.DuplicateReviewException;
 import proj21_shop.service.review.MyReviewService;
@@ -38,6 +39,14 @@ public class MyReviewController {
 	@GetMapping("/myqna/{memberId}")
 	public ResponseEntity<Object> myqna(@PathVariable String memberId) {
 		return ResponseEntity.ok(service.selectQnaByMember(memberId));
+	}
+	
+	@GetMapping("/myqnacontent/{qMember}/{qIndex}")
+	public ResponseEntity<Object> myqnacontent(@PathVariable String qMember, @PathVariable int qIndex) {
+		QnaDTO qnaDTO = new QnaDTO();
+		qnaDTO.setqMember(qMember);
+		qnaDTO.setqIndex(qIndex);
+		return ResponseEntity.ok(service.selectQnaContentByMember(qnaDTO));
 	}
 
 	@GetMapping("/detailreview/{memberId}/{proNum}")

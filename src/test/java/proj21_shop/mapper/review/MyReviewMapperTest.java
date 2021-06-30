@@ -99,5 +99,13 @@ public class MyReviewMapperTest {
 		Assert.assertEquals(1, res);
 	}
 
-	
+	@Test
+	public void test08SelectQnaContentByMember() {
+		log.debug(Thread.currentThread().getStackTrace()[1].getClassName()+"()");
+		QnaDTO qnaDTO = new QnaDTO();
+		qnaDTO.setqMember("test01");
+		qnaDTO.setqIndex(1);
+		List<QnaDTO> list = mapper.selectQnaContentByMember(qnaDTO);
+		Assert.assertNotNull(list);
+	}
 }

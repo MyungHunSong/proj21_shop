@@ -13,7 +13,7 @@ public class AuthService {
 
 	@Autowired
 	private MemberMapper mapper;
-	
+	 
 	public AuthInfo authenicate(String id, String password) {
 		MemberDTO member = new MemberDTO();
 		member.setMemberId(id);
