@@ -8,6 +8,8 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class ProductController {
  
+	/*내가 사용할 매핑주소 : /productlist , view 위치와 이름 : product/productList */
+	/*@RequestParam proCategory,section,pageNum,priceRange,orderKind,search */
 	@GetMapping("/productlist")
 	public ModelAndView getProductListByProCategory(
 				@RequestParam(value = "proCategory") Integer proCategory,
@@ -26,20 +28,15 @@ public class ProductController {
 		return mav;
 	}
 	 
+	/*내가 사용할 매핑주소 : /productDetail, view 위치와 이름 : product/productDetail*/
+	/*@RequestParam proNum*/
 	@GetMapping("/productDetail")
 	public ModelAndView getProductDetailByProNum(@RequestParam(value = "proNum") Integer proNum) {
 		ModelAndView mav = new ModelAndView("product/productDetail", "proNum",proNum);
 		return mav;
 	}
 	
-	@GetMapping("/productDetailItem")
-	public ModelAndView getProductDetailItem(
-			@RequestParam(value = "proNum") Integer proNum) {
-		ModelAndView mav = new ModelAndView("product/productDetailItem" ,"proNum",proNum);
-		return mav;
-	}
-	
-	/*팝업용*/
+	/*팝업용 : 장바구니 버튼만 표시 하기 위해 만듬*/
 	@GetMapping("/productDetailItem2")
 	public ModelAndView getProductDetailItem2(
 			@RequestParam(value = "proNum") Integer proNum) {
@@ -47,9 +44,4 @@ public class ProductController {
 		return mav;
 	}
 	
-	@GetMapping("/productsSaleList")
-	public ModelAndView productsSaleList() {
-		ModelAndView mav = new ModelAndView();
-		return mav;
-	} 
 }

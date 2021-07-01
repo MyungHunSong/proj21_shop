@@ -36,6 +36,8 @@ public class ProductServiceController {
 		return ResponseEntity.ok(service.selectProductMain(condition));
 	} 
 	
+	/*옷목록 화면 검색 및 조건별 정렬*/
+	/*세일인 옷은 페이징 까지 포함*/
 	/*제품목록화면에서 여러조건(orderKind,priceRange,proCategory)으로 옷목록 검색 및 페이징*/
 	@GetMapping("/selectProductsSale/{proCategory}/{section}/{pageNum}/{priceRange}/{orderKind}/{search}")
 	public ResponseEntity<Object> selectProductsSale(@PathVariable Integer proCategory, @PathVariable Integer section, @PathVariable Integer pageNum, 
@@ -59,6 +61,7 @@ public class ProductServiceController {
 		return ResponseEntity.ok(service.selectProductSale(saleProduct));
 	}
 	
+	/*페이징 : 총 검색 결과 수 구하기*/
 	@GetMapping("/selectCountByProductSale/{priceRange}/{search}")
 	public ResponseEntity<Object> countProdList(@PathVariable int priceRange, @PathVariable String search ){
 		HashMap<String, Object> condition = new HashMap<String, Object>();
