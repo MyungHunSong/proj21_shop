@@ -70,9 +70,13 @@ public class CartServiceController {
 		return ResponseEntity.ok(service.updateCart(cart));
 	}
 	
-	/* 장바구니 추가 하기전 검색 CartDTO cart = new CartDTO();를 만들자(매개변수로 받으면 안됌) 
-	 *  view 만들자(productAll) 
-	 */
+	
+	/* 오류 생겼던 것들
+	     장바구니 추가 하기전 검색 CartDTO cart = new CartDTO();를 만들자(매개변수로 받으면 안됌) view 만들자(productAll) */
+	
+	/* 장바구니 버튼 사용할경우
+	 * 장바구니 내에서 회원아이디,제품 번호로 검색 있으면 update 없으면 insert를 하기위해 만든 검색문  
+	 * 장바구니에서 회원아이디로 검색 한 목록 (로그인 안한경우 MemberNotLoginException예외 생성) */
 	@GetMapping("/selectCartByIdAndProNum/{memberId}/{proNum}")
 	public ResponseEntity<Object> selectProductByMemberIdAndProNum(@PathVariable String memberId, @PathVariable int proNum){
 		
@@ -99,6 +103,7 @@ public class CartServiceController {
 		return ResponseEntity.ok(list);
 	}
 	
+	/*장바구니번호를 검색후 주문페이지로 이동 */
 	@GetMapping("/chooseProductCart/{cartNum}")
 	public ResponseEntity<Object> getChooseCarts(@PathVariable int cartNum){
 		
@@ -110,8 +115,11 @@ public class CartServiceController {
 		return ResponseEntity.ok(list);
 	}
 	
+	/* 구입하기 버튼을 사용할경우
+	 * (회원 아이디로 제품이 있나 검색한후 있으면 장바구니의 제품을 업데이트(수량만) 없으면 장바구니에 인서트후 구매페이지로 이동)*/
 	@PostMapping("/useOrderProductBtn")
 	public ResponseEntity<Object> useOrderProductBtm(@RequestBody CartDTO cartDTO){
 		return ResponseEntity.ok(service.useProductOrderBtn(cartDTO));
 	}
+	
 }

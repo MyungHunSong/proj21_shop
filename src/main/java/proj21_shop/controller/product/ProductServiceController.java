@@ -61,6 +61,7 @@ public class ProductServiceController {
 		return ResponseEntity.ok(service.selectProductSale(saleProduct));
 	}
 	
+	/*페이징 : 총 검색 결과 수 구하기*/
 	@GetMapping("/selectCountByProductSale/{priceRange}/{search}")
 	public ResponseEntity<Object> countProdList(@PathVariable int priceRange, @PathVariable String search ){
 		HashMap<String, Object> condition = new HashMap<String, Object>();

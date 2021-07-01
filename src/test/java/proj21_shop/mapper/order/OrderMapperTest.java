@@ -17,6 +17,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import proj21_shop.config.ContextRoot;
+import proj21_shop.dto.cart.CartDTO;
 import proj21_shop.dto.member.AddressDTO;
 import proj21_shop.dto.member.MemberDTO;
 import proj21_shop.dto.order.OrderDTO;
@@ -142,7 +143,7 @@ public class OrderMapperTest {
 		Assert.assertEquals(1,res);
 	}
 
-	@Test
+	//@Test
 	public void test08LastOrderNum() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		int res = mapper.selectLastOrderNum();

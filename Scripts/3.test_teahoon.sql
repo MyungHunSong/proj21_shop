@@ -3,9 +3,10 @@ show tables;
 
 select cart_num, c.cart_member_id, c.cart_pro_num, cart_pro_quantity, p.pro_imagefilename, p.pro_name, p.pro_price,p.pro_size, p.pro_salesrate, p.pro_color 
  		  from cart c join productall p on c.cart_pro_num = p.pro_num 
-
-select *
-  from cart;
+ 
+ select c.cart_pro_num , p.pro_quantity 
+   from cart c join product p on c.cart_pro_num = p.pro_num 
+where cart_num = 52;
  
 SELECT * 
   FROM `ORDER`;
