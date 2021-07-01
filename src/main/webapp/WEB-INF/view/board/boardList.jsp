@@ -35,7 +35,7 @@
 				var sCont = "";
 				for (i = 0; i < dataLength; i++) {
 					sCont += "<tr>";
-					sCont += "<td>" + json[i].proName.proName + "</td>";
+					sCont += "<td><a href='productDetail?proNum="+ json[i].proNum + "'>" + json[i].proName.proName + "</a></td>";
 					if(json[i].reviewImagefilename2 == null || json[i].reviewImagefilename2 == ""){
 						json[i].reviewImagefilename2 = 'noimage.jpg'
 					}
