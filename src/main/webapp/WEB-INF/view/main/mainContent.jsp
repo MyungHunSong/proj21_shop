@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="/proj21_shop/resources/main/css/mainContent.css">
+<link rel="stylesheet" href="${contextPath }/resources/main/css/mainContent.css">
 
 </head>
 <body>

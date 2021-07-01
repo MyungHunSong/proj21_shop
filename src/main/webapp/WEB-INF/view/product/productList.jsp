@@ -7,8 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>옷 목록화면</title>
-<link rel="stylesheet" href="/proj21_shop/resources/product/css/productList.css">
-<link rel="stylesheet" href="/proj21_shop/resources/main/css/main.css">
+<link rel="stylesheet" href="${contextPath }/resources/product/css/productList.css">
+<link rel="stylesheet" href="${contextPath }/resources/main/css/main.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">

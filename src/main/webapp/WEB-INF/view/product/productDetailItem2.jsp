@@ -6,8 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="/proj21_shop/resources/main/css/main.css">
-<link rel="stylesheet" href="/proj21_shop/resources/product/css/productDetail2.css">
+<link rel="stylesheet" href="${contextPath }/resources/main/css/main.css">
+<link rel="stylesheet" href="${contextPath }/resources/product/css/productDetail2.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $(function() {

@@ -7,9 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Main</title>
-<link rel="stylesheet" href="/proj21_shop/resources/main/css/main.css">
+<link rel="stylesheet" href="${contextPath }/resources/main/css/main.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
-<link rel="stylesheet" href="/proj21_shop/resources/main/css/mainProductList.css">
+<link rel="stylesheet" href="${contextPath }/resources/main/css/mainProductList.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script   src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script   src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
