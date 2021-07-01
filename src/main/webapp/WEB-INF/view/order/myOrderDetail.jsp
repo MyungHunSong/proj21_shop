@@ -25,7 +25,7 @@
 							for(i = 0; i < dataLength; i++){
 							sCont += "<tr>";
 							sCont += "<td>" + json[0].orderProNum + "-" + json[0].productDTO[i].orderCode[0].orderCode + "</td>";
-							sCont += "<td><img src='" + contextPath +"/resources/product/images/" + json[0].productDTO[i].proImgfileName + "' width = '80' height='60'></td>";
+							sCont += "<td><a href='productDetail?proNum="+ json[0].productDTO[i].proNum + "'><img src='" + contextPath +"/resources/product/images/" + json[0].productDTO[i].proImgfileName + "' width = '80' height='60'></a></td>";
 							sCont += "<td>" + json[0].productDTO[i].proPrice * json[0].productDTO[i].orderCode[0].orderProQuantity * (100-json[0].productDTO[i].proSalesrate) * 0.01 * 0.01 +"P"+ "</td>";
 							sCont += "<td>" + json[0].productDTO[i].proPrice * json[0].productDTO[i].orderCode[0].orderProQuantity * (100-json[0].productDTO[i].proSalesrate) * 0.01  + "</td>";
 							sCont += "<td>" + json[0].productDTO[i].orderCode[0].orderProQuantity+ "</td>";
