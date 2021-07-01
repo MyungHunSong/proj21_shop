@@ -40,7 +40,7 @@ public class ProductServiceController {
 	/*세일인 옷은 페이징 까지 포함*/
 	/*제품목록화면에서 여러조건(orderKind,priceRange,proCategory)으로 옷목록 검색 및 페이징*/
 	@GetMapping("/selectProductsSale/{proCategory}/{section}/{pageNum}/{priceRange}/{orderKind}/{search}")
-	public ResponseEntity<Object> selectProductsSale(@PathVariable Integer proCategory, @PathVariable Integer section, @PathVariable Integer pageNum, 
+	public ResponseEntity<Object> selectProductsList(@PathVariable Integer proCategory, @PathVariable Integer section, @PathVariable Integer pageNum, 
 		@PathVariable Integer priceRange, @PathVariable String orderKind, @PathVariable String search){
 		HashMap<String,Object> saleProduct = new HashMap<>();
 		saleProduct.put("search",search);
