@@ -1,27 +1,25 @@
 @charset "UTF-8";
 
 h3{
-	text-align: center;
+	font-size: 83px; 
 }
 
 #deleteFormArea{
 	display:flex;
 	justify-content:center;
-	align-items:center;
-	margin: auto;
 	
 }
 
 table.type02 {
 	border-collapse: separate;
 	border-spacing: 1px;
-	text-align: left;
 	line-height: 1.5;
 	border-top: 1px solid #ccc;
 	margin: 20px 10px;
 }
 
 table.type02 th {
+	font-size: 20px;
 	width: 150px;
 	padding: 10px;
 	font-weight: bold;
@@ -33,29 +31,35 @@ table.type02 th {
 table.type02 td {
 	width: 350px;
 	padding: 10px;
-	vertical-align: top;
 	border-bottom: 1px solid #ccc;
 }
 
-#deleteButton {
-	color: white;
-	margin-top: 10px;
-	background: #FF7696;
-	border: 1px double #e7708d;
-	border-radius: 2px;
-	text-align: center;
+.disMatch{
+	color: red;	
 }
 
-#cancelButton {
-	color: white;
-	margin-top: 10px;
-	background: #FF7696;
-	border: 1px double #e7708d;
-	border-radius: 2px;
-	color: #fff;
-	text-align: center;
+#hint{
+	font-size: 15px;
+    padding: 4px;
+
 }
 
+.button{
+	border: 1px solid #ccc;
+	width: 150px;
+	padding : 5px;
+	font-size: 20px;
+	cursor: pointer;
+	background: black;
+	color: white;
+	margin: 5px;
+}
+
+.button:hover{
+	border: 1px solid #ccc;
+	background: white;
+	color: black;
+}
 div{
 	text-align: center;
 }

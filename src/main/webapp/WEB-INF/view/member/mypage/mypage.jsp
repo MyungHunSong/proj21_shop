@@ -13,10 +13,10 @@
 </head>
 <body>
 <div class="container">
-	<section id="mypage">
 		<jsp:include page="/WEB-INF/view/include/header.jsp"></jsp:include>
 		<jsp:include page="/WEB-INF/view/include/topbody.jsp"></jsp:include>
-		<h3>마이페이지</h3>
+		<h1>마이페이지</h1>
+		<section id="mypage">
 		<div class="box1">
 			<a href="board?memberId=${authInfo.id}"><img alt="board" src="/proj21_shop/images/board.jpg"></a>
 		</div>

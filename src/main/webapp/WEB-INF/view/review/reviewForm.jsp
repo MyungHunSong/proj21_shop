@@ -146,7 +146,7 @@
 				}
 				
 				sConts += "<div class='file'>";
-				sConts += "<input type='file' id='imgButton1' name='imgButton1' value='json[0].reviewImagefilename1'/>";
+				sConts += "<input type='file' id='imgButton1' name='imgButton1' value='json[0].reviewImagefilename1'/><br>";
 				sConts += "<input type='file' id='imgButton2' name='imgButton2' value='json[0].reviewImagefilename2'/>";
 				sConts += "</div><br>";
 				

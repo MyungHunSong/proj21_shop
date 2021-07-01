@@ -63,8 +63,8 @@
       })
    })
 </script>
-<link rel="stylesheet"
-   href="/proj21_shop/resources/order/css/myOrderList.css" />
+<link rel="stylesheet" href="${contextPath }/resources/order/css/myOrderList.css" />
+<link rel="stylesheet" href="${contextPath }/resources/main/css/main.css">
 </head>
 <body>
    <div class="container">
@@ -72,17 +72,16 @@
       <jsp:include page="/WEB-INF/view/include/topbody.jsp"></jsp:include>
       <section id="orderArea">
          <h3>나의 주문내역</h3>
-
-         <div class="asd">"C:/Users/lenovo/Desktop/옷설명서.txt"
+         <div class="asd">
          <table class="type11">
             <thead>
                <tr>
-                  <th scope="cols">주문번호</th>
-                  <th scope="cols">제품정보</th>
-                  <th scope="cols">주문일자</th>
-                  <th scope="cols">주문수량</th>
-                  <th scope="cols">주문금액</th>
-                  <th scope="cols">주문상태</th>
+                  <th>주문번호</th>
+                  <th>제품정보</th>
+                  <th>주문일자</th>
+                  <th>주문수량</th>
+                  <th>주문금액</th>
+                  <th>주문상태</th>
                </tr>
             </thead>
             <tbody id="load"></tbody>
