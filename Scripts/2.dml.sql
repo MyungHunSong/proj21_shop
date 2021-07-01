@@ -377,16 +377,30 @@ values
 INSERT INTO qna
 	(q_title, q_option, q_member, q_content, q_file, q_date, q_group)
 values
-('제품에 관해서 말할께 잇어요.', '제품문의', 'test01', '요러한 디자인의 제품도 있으면 좋을거 같아서 사진 한장 올려봅니다.', 'text1234.jpg', now(),(SELECT IFNULL(MAX(q_group) + 1, 1) FROM qna b)),
-('환불을 할려면 어떻게 하나요?', '환불문의', 'test02', '환불할시 얼만큼 시간 소요가 되나요? 돈은 다시 언제 들어오고요?',  0, now(),(SELECT IFNULL(MAX(q_group) + 1, 1) FROM qna b)),
-('환불관련공지', '공지', '관리자', '결제수단에 따라 환불규정이 각기 다르므로 아래 결제수단 별 환불 기간을 확인해주세요.
- 무통장 계좌 : 주문 취소/반품 접수 시 입력한 환불 계좌 정보로 (평일 기준) 2~3일 이내 입금됩니다.
- 실시간 이체 : 취소일로부터 (평일 기준) 2~3일 이내 연결 계좌로 입금됩니다.
- 신용카드 : 카드 취소일 로부터 2~5일 이내 카드사별 개별 승인취소 확인이 가능합니다. 또는 결제일에 카드 대금이 청구되었다가 익월 카드 청구서에서 취소 확인이 가능합니다.
- 간편 결제 : 네이버 페이 / 카카오 페이 / 페이코 (평일 기준) 일주일 이내
- 휴대폰 결제 : 휴대폰 결제 취소' ,0 ,now(),0),
-('배송관련공지', '공지', '관리자', '오배송이 된 경우, MY PAGE > 주문 배송 조회 > 1:1 문의 작성 또는 고객센터(1644-0560)로 연락주시면 처리가 가능합니다. 빠른 처리가 가능하도록 돕겠습니다.
-불량 또는 오배송인 경우, 고객님께서는 왕복 배송비를 부담하시지 않게 교환 처리 해드립니다.', 0,now(),0);
+('제품에 관해서 말할께 잇어요.', '제품문의', '이종가', '요러한 디자인의 제품도 있으면 좋을거 같아서 사진 한장 올려봅니다.', 'blueSleev1.jpg', now(),(SELECT IFNULL(MAX(q_group) + 1, 1) FROM qna b)),
+('환불을 할려면 어떻게 하나요?', '환불문의', '이종가', '환불할시 얼만큼 시간 소요가 되나요? 돈은 다시 언제 들어오고요?',  0, now(),(SELECT IFNULL(MAX(q_group) + 1, 1) FROM qna b)),
+('결제에 관해서..', '주문결제', '이종가', '무통장 결제를 원하는대 어디에 가면 계좌번호가 나오나요?', 'blueSleev1.jpg', now(),(SELECT IFNULL(MAX(q_group) + 1, 1) FROM qna b)),
+('관리자님', '주문결제', '이종가', '환불이 안돼여..', 'blueSleev1.jpg', now(), (SELECT IFNULL(MAX(q_group) + 1, 1) FROM qna b)),
+('아아아아아아', '주문결제', '이종가', '잘못된거 같은데요?..', 'blueSleev1.jpg',now(), (SELECT IFNULL(MAX(q_group) + 1, 1) FROM qna b)),
+('엥? 돈을 갈취 하는건가?', '주문결제?', '이종가', '돈이왜 500언더 빠져나가죠?..', 'blueSleev1.jpg',now(), (SELECT IFNULL(MAX(q_group) + 1, 1) FROM qna b)),
+('이게뭐조', '주문결제', '이종가', '먼데..', 'blueSleev1.jpg', now(),(SELECT IFNULL(MAX(q_group) + 1, 1) FROM qna b)),
+('할말이 없네요', '기타', '이종가', '사이트가 퍽하면 터져가지고 제대로된 쇼핑을 할수가 없습니다. 살려주세요.', 'blueSleev1.jpg',now(),(SELECT IFNULL(MAX(q_group) + 1, 1) FROM qna b)),
+('제발', '기타', '이종가', '배송시간이 너무 많이 걸리는거 같은데요?..', 'blueSleev1.jpg',now(),(SELECT IFNULL(MAX(q_group) + 1, 1) FROM qna b)),
+('건의드리고 싶은데', '기타', '이종가', '먼데.. 아니 검색이 잘 안대잔아요', 'blueSleev1.jpg',now(),(SELECT IFNULL(MAX(q_group) + 1, 1) FROM qna b)),
+('제발', '기타', '이종가', '먼데..', 'blueSleev1.jpg',now(),(SELECT IFNULL(MAX(q_group) + 1, 1) FROM qna b)),
+('이건', '기타', '이종가', 'ㅋㅋㅋㅋ어이가 없네..', 'blueSleev1.jpg',now(),(SELECT IFNULL(MAX(q_group) + 1, 1) FROM qna b)),
+('환불관련공지', '공지', '관리자', 
+'결제수단에 따라 환불규정이 각기 다르므로 아래 결제수단 별 환불 기간을 확인해주세요.
+무통장 계좌 : 주문 취소/반품 접수 시 입력한 환불 계좌 정보로 (평일 기준) 2~3일 이내 입금됩니다.
+실시간 이체 : 취소일로부터 (평일 기준) 2~3일 이내 연결 계좌로 입금됩니다.
+신용카드 : 카드 취소일 로부터 2~5일 이내 카드사별 개별 승인취소 확인이 가능합니다.
+또는 결제일에 카드 대금이 청구되었다가 익월 카드 청구서에서 취소 확인이 가능합니다.
+간편 결제 : 네이버 페이 / 카카오 페이 / 페이코 (평일 기준) 일주일 이내
+휴대폰 결제 : 휴대폰 결제 취소' 
+,0 ,now(),(SELECT IFNULL(MAX(q_group) + 1, 1) FROM qna b)),
+('배송관련공지', '공지', '관리자', '오배송이 된 경우, MY PAGE > 주문 배송 조회 > 1:1 문의 작성 또는 고객센터(1644-0560)로 연락주시면 처리가 가능합니다.
+ 빠른 처리가 가능하도록 돕겠습니다.
+불량 또는 오배송인 경우, 고객님께서는 왕복 배송비를 부담하시지 않게 교환 처리 해드립니다.', 0,now(),(SELECT IFNULL(MAX(q_group) + 1, 1) FROM qna b));
 -- 후기
 INSERT INTO review
 (pro_num, re_member, re_content, re_image, re_image2, re_stars)

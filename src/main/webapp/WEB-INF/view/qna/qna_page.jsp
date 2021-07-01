@@ -29,6 +29,7 @@
 	padding: 10px;
 	margin-top: 15px;
 	background-color: black;
+	font-size: 25px;
 }
 .tableTitle td{
 	color: white;
@@ -79,6 +80,36 @@
 	size: 30px;
 }
 
+<!-- 수정 삭제 버튼 바뀌기-->
+td button{
+	margin: auto;
+}
+
+.modifyMyQna{
+	border: 1px solid;
+	background-color: white;
+	color:#ccc;
+	cursor: pointer;
+	size: 10px;
+}
+
+.deleteMyQna{
+	margin-left:10px;
+	border: 1px solid;
+	background-color: white;
+	color:#ccc;
+	cursor: pointer;
+	size: 10px;
+}
+
+button.hover1 :hover {
+	color: #048ef;
+}
+button.hover2 :hover {
+	color: #048ef;
+}
+<!-- 수정 삭제 버튼 바뀌기-->
+
 </style>
 <script type="text/javascript">
 var keyword = "${keyword}";
@@ -106,19 +137,27 @@ $(function(){
 				for(i = 0; i<dateLength; i++){
 					
 					if(json[i].qStep == 0){
-							sCont += "<tr class='mainTable'>";
-							if(json[i].qOp == "공지"){
-							sCont += "<td class = 'clickOption' style='color:red;'>"+json[i].qOp + "</td>";
+						
+							sCont += "<tr class='mainTable'>";														
+							 if(json[i].qOp == "공지"){
+								sCont += "<td class = 'clickOption' style='color:red; background-color:pink;' >"+json[i].qOp + "</td>";
+								sCont += "<input type = 'hidden' value = "+ json[i].qIndex +">";
+								sCont += "<input type = 'hidden' value="+ json[i].qGroup +">";	
+								sCont += "<td class = 'clickOption' style='background-color:pink;'>" + json[i].qMember + "</td>";
+								sCont += "<td class = 'clickOption' style='background-color:pink;'>" + json[i].qOption + "</td>";
+								sCont += "<td class = 'clickOption' style='background-color:pink;'>" + json[i].qTitle + "</td>";
+								sCont += "<td class = 'clickOption' style='background-color:pink;'>" + json[i].qDate + "</td>";
+								sCont += "<td class = 'qHit' style='background-color:pink;'>" + json[i].qHit + "</td>";
 							}else{
 								sCont += "<td class = 'clickOption'>"+json[i].qOp + "</td>";
-							}
-							sCont += "<input type = 'hidden' value = "+ json[i].qIndex +">";
-							sCont += "<input type = 'hidden' value="+ json[i].qGroup +">";						
-							sCont += "<td class = 'clickOption'>" + json[i].qMember + "</td>";
-							sCont += "<td class = 'clickOption'>" + json[i].qOption + "</td>";
-							sCont += "<td class = 'clickOption'>" + json[i].qTitle + "</td>";
-							sCont += "<td class = 'clickOption'>" + json[i].qDate + "</td>";
-							sCont += "<td class = 'qHit'>" + json[i].qHit + "</td>";
+								sCont += "<input type = 'hidden' value = "+ json[i].qIndex +">";
+								sCont += "<input type = 'hidden' value="+ json[i].qGroup +">";						
+								sCont += "<td class = 'clickOption'>" + json[i].qMember + "</td>";
+								sCont += "<td class = 'clickOption'>" + json[i].qOption + "</td>";
+								sCont += "<td class = 'clickOption'>" + json[i].qTitle + "</td>";
+								sCont += "<td class = 'clickOption'>" + json[i].qDate + "</td>";
+								sCont += "<td class = 'qHit'>" + json[i].qHit + "</td>";
+							 } 
 							sCont += "</tr>";
 								
 								sCont += "<tr class = 'clickContent'>";
@@ -126,9 +165,9 @@ $(function(){
 							if("${authInfo.id}" == "admin" && "${authInfo.name}" == "관리자"){	
 								
 								if(json[i].qOption == "공지"){
-									sCont += "<td colspan ='4'>        " + json[i].qContent + "</td>";	
+									sCont += "<td colspan ='4' style='word-wrap:break-word;'>" + json[i].qContent + "</td>";	
 								}else{
-									sCont += "<td colspan ='4'>" + json[i].qContent + "<a class= 'clickReply' style='color:red; cursor:pointer;'> [답글 달기]</a></td>";	
+									sCont += "<td colspan ='4' style='word-wrap:break-word;'>" + json[i].qContent + "<a class= 'clickReply' style='color:red; cursor:pointer;'> [답글 달기]</a></td>";	
 								}
 							}else if("${authInfo.id}" != "admin" && "${authInfo.name}" != "관리자"){
 								if(json[i].qOption == "공지"){
@@ -139,12 +178,10 @@ $(function(){
 								}else{
 									sCont += "<td colspan ='5'><img src=' "+contextPath+"/resources/qna/upload/" + json[i].qFile +" ' style='width: 90px; height: 140px; ' /><p style='border-top:1px solid gray'>"
 									+ json[i].qContent + "</p></td>";		
-								}
-								
-								
+								}	
 							}
 							if(memberName == json[i].qMember){
-								sCont += "<td colspan='1'><button class='modifyMyQna'>수정</button><button class='deleteMyQna'>삭제</button></td>"
+								sCont += "<td colspan='1'><button   class='modifyMyQna hover1'>수정</button><button class='deleteMyQna hover2'>삭제</button></td>"
 							}
 							sCont += "</tr>"
 						
@@ -170,6 +207,7 @@ $(function(){
 									+"<button type = 'submit' class = 'addContent'>등록</button>"
 									+"<button type = 'submit' class = 'modifyContent'>수정</button></td>";
 					sCont += "</tr>";
+					
 					
 				}
 				$("#load").append(sCont);

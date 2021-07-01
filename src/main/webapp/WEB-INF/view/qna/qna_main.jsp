@@ -47,7 +47,7 @@ $(function(){
 		<nav>
 			<ul class="btn">
 				<li class = 'faqPage'>FAQ<p>자주 묻는 질문</p></li>
-				<li class = 'qnaPage'>Q&A<p>문의하기.</p></li>
+				<li class = 'qnaPage'>Q&A<p>문의하기</p></li>
 			</ul>
 		</nav>
 		
