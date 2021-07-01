@@ -35,7 +35,6 @@
  </section>
 
  <!-- 바로가기에 맞는 옷목록 부분  -->
- 
 <section id="recommend" >
 	<h1 class="title">RECOMMEND</h1>
  	<div id="RECOMMEND" class="productList"></div>
