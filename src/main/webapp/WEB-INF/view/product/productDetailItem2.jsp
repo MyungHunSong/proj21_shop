@@ -125,8 +125,9 @@ $(function() {
 					}
 				},
 				error : function(request, status, error){
-					alert("로그인창으로 이동하겠습니다.")
-					window.location.href = contextPath + "/login"
+					alert("로그인이 필요한 서비스 입니다.")
+					window.close();
+					/* window.location.href = contextPath + "/login" */
 				}
 			})
 					
@@ -156,7 +157,7 @@ $(function() {
 					},
 					error : function(request, status, error){
 						alert("장바구니에 등록 되었습니다.")
-						window.location.href = contextPath + "/login"
+						/* window.location.href = contextPath + "/login" */
 					}   
 				}) 
 		}
