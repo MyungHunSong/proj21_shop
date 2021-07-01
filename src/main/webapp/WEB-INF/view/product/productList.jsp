@@ -35,6 +35,7 @@ $(function(){
 	var search = "${search}";
 	var proSize = ["XS","S","M","L","XL"]
 	
+	/*검색(proCategory,priceRange,orderKind,search) 및 페이징(section,pageNum)을 위한 조건들을 넣은 제품목록 검색문*/
 	$.get(contextPath + "/api/selectProductsSale/"+proCategory+"/"+section+"/"+pageNum+"/"+priceRange+"/"+orderKind+"/"+search,
 	function(json){
 		
@@ -85,7 +86,7 @@ $(function(){
 		var sortPrice = $(this).data("price")
 		var proCategory = ${proCategory};
 		
-		/*사용한 검색 조건 유지*/
+		/*사용한 검색 조건 유지(원래use가 있었다면 다른 곳을 클릭하면 같은 형제들의 use생성된곳을 삭제 후 클릭한곳에 use를 추가)*/
 		$(this).siblings().removeClass('use')
 		$(this).addClass('use')
 		
@@ -177,6 +178,9 @@ $(function(){
 						
 					})	
 		}
+		/*세일인 경우에만 페이징을 사용하기 위해
+		   주소에 있는 값들을 사용하기 위해 페이지를 변경시켰다.
+		*/
 		if(proCategory == 0){
 			window.location.href = contextPath + "/productlist?proCategory=0&section=1&pageNum=1&priceRange="+sortPrice+"&orderKind="+sortOrder+"&search="+search;	
 		}
@@ -241,6 +245,8 @@ $(function(){
 							var popup = window.open("productDetailItem2?proNum="+proNum,'상품상세정보','width=800px, height=700px');
 						}
 				})
+				
+				/*세일인 경우에만 페이징을 사용하기 위해*/
 				if(proCategory == 0){
 					window.location.href = contextPath + "/productlist?proCategory=0&section=1&pageNum=1&priceRange="+priceRange+"&orderKind="+orderKind+"&search="+search;	
 				}
@@ -258,6 +264,8 @@ $(function(){
 				sCont += "<a class = 'pBtn'>  "+i+"  </a>"
 			}
 			$('#pageBtn').append(sCont)
+			
+			/*filter의 조건들을 클릭하면 해당하는 조건들의 클래스에 use 가 생기고 그 값들을 받아온후 사용*/
 			$('.pBtn').on('click',function(){
 				var sortOrder = $(this).parent().prev().prev().prev().children().children().next().children('.use').data('order');
 				var sortPrice = $(this).parent().prev().prev().prev().children().next().children().next().children('.use').data('price');

@@ -13,9 +13,9 @@
 
 $(function() {
 	/*숫자 증가 감소*/
-	/*재고 수량 만큼만 증가 가능*/
 	var useNum = 0;
 	
+	/*재고 수량 만큼만 증가 가능하도록 하는 함수*/
 	function count(useNum){
 		$('.btn').on('click',function(){
 			var status = $(this).val();
@@ -47,6 +47,8 @@ $(function() {
 	var proColor =["0","white", "ivory", "gray", "pink", "yellow", "mint", "green", "purple", "navy", "10", "black", "brown", "orange", "blue", "red", "basic"];
 	var num = 0;
 	
+	/*제품 번호를 배열로 받아와서 제품 상세 검색 
+	    배열로 받아온 이유 : 재고량을 각각 표시하기 위해서*/
 	$.get(contextPath + "/api/productDetail/"+proNum, 
 	function(json) {
 		console.log(json)
@@ -209,6 +211,7 @@ $(function() {
 	        }
 		});
 		
+		/*바로 구매하기 버튼을 사용해서 주문 페이지로 넘어가기 위한 함수*/
 		function useOrderBtn(){
 			var orderProd = {
 					  "cartProQuantity": parseInt($('#result').text()),

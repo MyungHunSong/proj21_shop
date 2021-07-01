@@ -7,9 +7,6 @@ import proj21_shop.dto.review.ReviewReplyDTO;
 
 public interface ReviewReplyService {
 	
-	/*Ajax시 넣어줄 rerepNum*/
-	int selectMaxReRepNum();
-	
 	/* 후기 목록 */
 	List<ReviewDTO> selectReviewByProNum(int proNum);
 	

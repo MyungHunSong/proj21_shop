@@ -11,10 +11,11 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $(function() {
-	/*숫자 증가 감소*/
-	/*재고 수량 만큼만 증가 가능*/
-	var useNum = 0;
+	/*제품 목록 페이지에서 팝업으로 사용하기 위한 jsp 바로 수량과 사이즈를 선택후 장바구니에 넣는 기능이 있다*/
 	
+	/*숫자 증가 감소*/
+	var useNum = 0;
+	/*재고 수량 만큼만 증가 가능하도록 하는 함수*/
 	function count(useNum){
 		$('.btn').on('click',function(){
 			var status = $(this).val();
@@ -45,6 +46,8 @@ $(function() {
 	var proColor =["0","white", "ivory", "gray", "pink", "yellow", "mint", "green", "purple", "navy", "10", "black", "brown", "orange", "blue", "red", "basic"];
 	var num = 0;
 	
+	/*제품 번호를 배열로 받아와서 제품 상세 검색 
+    배열로 받아온 이유 : 재고량을 각각 표시하기 위해서*/
 	$.get(contextPath + "/api/productDetail/"+proNum, 
 	function(json) {
 		var proSalerate = json[0].proSalesrate;

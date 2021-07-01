@@ -20,12 +20,7 @@ public class ReviewReplyServiceController {
 	@Autowired
 	private ReviewReplyService service;
 	
-	@GetMapping("/selectMaxReRepNum")
-	public ResponseEntity<Object> selectMaxReRepNum(){
-		return ResponseEntity.ok(service.selectMaxReRepNum());
-	}
-	
-	/* 후기 목록 */
+	/*제품별 후기 목록 */
 	@GetMapping("/selectReviewByProNum/{proNum}")
 	public ResponseEntity<Object> selectReviewByProNum(@PathVariable int proNum){
 		return ResponseEntity.ok(service.selectReviewByProNum(proNum));
