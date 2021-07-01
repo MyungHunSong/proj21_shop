@@ -29,7 +29,6 @@ $(function(){
 		self.location = "/proj21_shop/listPaging${pageMaker.makeQuery(1)}"
 		+"&searchType=" +$("select option:selected").val();
 	})
-	
 }); 
 </script>
 
@@ -39,6 +38,13 @@ $(function(){
 }
 #insertQnaPage{
 	text-decoration:none !important;
+	width:25px;
+	color: #ccc;	
+}
+
+search_qna #insertQnaPage:hover{
+	background-color:gray;
+	color:#048ef;
 }
 
 
@@ -74,7 +80,7 @@ $(function(){
 				<button type="button" id="goList">목록</button>
 				
 				<c:if test="${empty authInfo}">
-					<a id='insertQnaPage' href="login">글쓰기[로그인 필요]</a>					
+					<a id='insertQnaPage' href="login">글 작성하기[로그인 필요]</a>					
 				</c:if>
 				<c:if test="${!empty authInfo}">
 					<a id = 'insertQnaPage'  href="<c:url value="/qnaInsert" />">글 작성 하기</a>

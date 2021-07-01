@@ -1,6 +1,5 @@
 package proj21_shop.controller.qna;
 
-import java.lang.ProcessBuilder.Redirect;
 import java.net.URI;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 import proj21_shop.dto.qna.PageDTO;
 import proj21_shop.dto.qna.QnaDTO;

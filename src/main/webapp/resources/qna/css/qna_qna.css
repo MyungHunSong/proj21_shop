@@ -91,12 +91,12 @@ pagination .arrow{
 	border:1px solid #ccc;
 }
 
-pagination .prev {
-	background:#f8f8f8 url('/proj21_shop/resources/qna/images/page_prev.png') no-repeat center center;
+pagination .arrow prev {
+	background:#f8f8f8 url('/proj21_shop/resources/qna/images/page_prev.jpg') no-repeat center center;
 	margin-right:7px;
 }
 
-pagination .next {
-	background:#f8f8f8 url('/proj21_shop/resources/qna/images/page_next.png') no-repeat center center;
+pagination .arrow next {
+	background:#f8f8f8 url('/proj21_shop/resources/qna/images/page_prev.jpg') no-repeat center center;
 	margin-left:7px;
 }
