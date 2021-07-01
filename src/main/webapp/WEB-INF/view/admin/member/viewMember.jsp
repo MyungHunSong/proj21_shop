@@ -14,7 +14,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>È¸¿ø Á¤º¸ ¼öÁ¤</title>
+<title>íšŒì› ì •ë³´ ìˆ˜ì •</title>
 <style>
 @media ( min-width : 767.98px) {
 	.card {
@@ -31,6 +31,7 @@
 	line-height: 1.5;
 	padding: 0 0 0 50px;
 }
+
 .infotable td {
 	width: 150px;
 	padding: 5px;
@@ -42,14 +43,17 @@
 	border-right: 1px solid #ccc;
 	text-align: center;
 }
+
 #chartContainer {
 	/*     padding : 0 0 0 30px;  */
 	
 }
+
 a#linkline {
 	text-decoration: none;
 	color: #FE2E2E;
 }
+
 a:hover {
 	color: #FE2E2E;
 }
@@ -84,14 +88,14 @@ var options = {
    exportEnabled: true,
    animationEnabled: true,
    title:{
-      text: "${member.memberName} ´Ô »çÀÌÆ® ÀÌ¿ëÇöÈ²"
+      text: "${member.memberName} ë‹˜ ì‚¬ì´íŠ¸ ì´ìš©í˜„í™©"
    },
    subtitles: [{
       text: ""
    }],
    
    axisY: {
-      title: "¹æ¹®¼ö",
+      title: "ë°©ë¬¸ìˆ˜",
       titleFontColor: "#4F81BC",
       lineColor: "#4F81BC",
       labelFontColor: "#4F81BC",
@@ -99,7 +103,7 @@ var options = {
       includeZero: false
    },
    axisY2: {
-      title: "Æò±Õ ÁÖ¹®°¡°İ",
+      title: "í‰ê·  ì£¼ë¬¸ê°€ê²©",
       titleFontColor: "#C0504E",
       lineColor: "#C0504E",
       labelFontColor: "#C0504E",
@@ -115,10 +119,10 @@ var options = {
    },
    data: [{
       type: "spline",
-      name: "¹æ¹®¼ö",
+      name: "ë°©ë¬¸ìˆ˜",
       showInLegend: true,
       xValueFormatString: "MMM YYYY",
-      yValueFormatString: "#,##0 È¸",
+      yValueFormatString: "#,##0 íšŒ",
       dataPoints: [
          { x: new Date(2020, 8,  1),  y: 5 },
          { x: new Date(2020, 9,  1),  y: 8 },
@@ -135,11 +139,11 @@ var options = {
    },
    {
       type: "spline",
-      name: "Æò±Õ ÁÖ¹®°¡°İ",
+      name: "í‰ê·  ì£¼ë¬¸ê°€ê²©",
       axisYType: "secondary",
       showInLegend: true,
       xValueFormatString: "MMM YYYY",
-      yValueFormatString: "#,##0.#¿ø",
+      yValueFormatString: "#,##0.#ì›",
       dataPoints: [
          { x: new Date(2020, 8,  1),  y: 390340 },
          { x: new Date(2020, 9,  1),  y: 200150 },
@@ -180,14 +184,14 @@ function toggleDataSeries(e) {
 					<div class="comment-widgets scrollable">
 						<br> <br>
 						<center>
-							<h2>È¸¿ø ¸ñ·Ï</h2>
+							<h2>íšŒì› ëª©ë¡</h2>
 							<hr>
 							<form id="frm_search" action="${contextPath }/admin/member/searchMember" method="post">
 								<table>
 									<tr id="search">
-										<td>È¸¿ø</td>
-										<td colspan="5"><input type="text" placeholder="ÀÌ¸§ È¤Àº ¾ÆÀÌµğ" width="150" name="memberSearch" /></td>
-										<td><input type="button" onClick="document.getElementById('frm_search').submit();" value="°Ë»ö" /></td>
+										<td>íšŒì›</td>
+										<td colspan="5"><input type="text" placeholder="ì´ë¦„ í˜¹ì€ ì•„ì´ë””" width="150" name="memberSearch" /></td>
+										<td><input type="button" onClick="document.getElementById('frm_search').submit();" value="ê²€ìƒ‰" /></td>
 									</tr>
 								</table>
 
@@ -199,26 +203,25 @@ function toggleDataSeries(e) {
 							<table border="1" class="infotable">
 
 								<tr>
-									<td colspan="6">È°µ¿ Á¤º¸</td>
+									<td colspan="6">í™œë™ ì •ë³´</td>
 								</tr>
 								<tr>
-									<td>ÀÌ¸§</td>
+									<td>ì´ë¦„</td>
 									<td>${member.memberName }</td>
-									<td>¾ÆÀÌµğ</td>
+									<td>ì•„ì´ë””</td>
 									<td>${member.memberId }</td>
-									<td>Àû¸³±İ</td>
-									<td><a href="#"><fmt:formatNumber value="${member.memberPoint}" pattern="#,###" /></a><b>  P</b></td>
+									<td>ì ë¦½ê¸ˆ</td>
+									<td><a href="#"><fmt:formatNumber value="${member.memberPoint}" pattern="#,###" /></a><b> P</b></td>
 								</tr>
 
 
 								<tr>
-									<td>¹æ¹®¼ö</td>
-									<td><fmt:formatNumber value="${member.memberTotalLogin}" pattern="#,###" />È¸</td>
-									<td>´©Àû ±¸¸Å¾×</td>
-									<td><fmt:formatNumber value="${member.memberTotalBuy}" pattern="#,###" />¿ø</td>
-									<td>´©Àû ÁÖ¹®¼ö</td>
-									<td><a href="#"><fmt:formatNumber value="${member.memberTotalOrder}" pattern="#,###" /></a>È¸
-									(Æò±Õ:<fmt:formatNumber value="${averageOrder}" pattern="#,###" />¿ø)</td>
+									<td>ë°©ë¬¸ìˆ˜</td>
+									<td><fmt:formatNumber value="${member.memberTotalLogin}" pattern="#,###" />íšŒ</td>
+									<td>ëˆ„ì  êµ¬ë§¤ì•¡</td>
+									<td><fmt:formatNumber value="${member.memberTotalBuy}" pattern="#,###" />ì›</td>
+									<td>ëˆ„ì  ì£¼ë¬¸ìˆ˜</td>
+									<td><a href="#"><fmt:formatNumber value="${member.memberTotalOrder}" pattern="#,###" /></a>íšŒ (í‰ê· :<fmt:formatNumber value="${averageOrder}" pattern="#,###" />ì›)</td>
 								</tr>
 							</table>
 						</center>
@@ -233,50 +236,50 @@ function toggleDataSeries(e) {
 						<center>
 							<table>
 								<caption>
-									<Strong>°í°´ µ¥ÀÌÅÍ</Strong>
+									<Strong>ê³ ê° ë°ì´í„°</Strong>
 								</caption>
 
 								<tr>
-									<td colspan="2">¹è¼ÛÁßÀÎ »óÇ°</td>
+									<td colspan="2">ë°°ì†¡ì¤‘ì¸ ìƒí’ˆ</td>
 									<td><a href="${contextPath }/admin/order/listOrders">${onDelivery} <c:if test="${onDelivery ==null }">0</c:if>
-									</a>°Ç</td>
+									</a>ê±´</td>
 								</tr>
 								<tr>
 									<td>===============</td>
 								</tr>
 								<tr>
-									<td colspan="2">¹İÇ°´ë±âÁßÀÎ »óÇ°</td>
+									<td colspan="2">ë°˜í’ˆëŒ€ê¸°ì¤‘ì¸ ìƒí’ˆ</td>
 									<td><a href="${contextPath }/admin/member/viewMember?memberId=${member.memberId}">${onRefund} <c:if test="${onRefund ==null }">0</c:if>
-									</a>°Ç</td>
+									</a>ê±´</td>
 								</tr>
 								<tr>
 									<td>===============</td>
 								</tr>
 								<tr>
-									<td colspan="2">Àå¹Ù±¸´Ï¿¡ ´ãÀº »óÇ°</td>
+									<td colspan="2">ì¥ë°”êµ¬ë‹ˆì— ë‹´ì€ ìƒí’ˆ</td>
 									<td><a href="${contextPath }/admin/member/viewMember?memberId=${member.memberId}">${onCart} <c:if test="${onCart ==null }">0</c:if>
-									</a>°Ç</td>
+									</a>ê±´</td>
 								</tr>
 							</table>
 							<br> <br>
-							<!--¹è¼Û ÁßÀÎ »óÇ°  -->
+							<!--ë°°ì†¡ ì¤‘ì¸ ìƒí’ˆ  -->
 							<c:choose>
 								<c:when test="${orderList !=null }">
 
 									<br>
-									<h3>¹è¼ÛÁß or ¹è¼Û ÁØºñÁßÀÎ »óÇ°</h3>
+									<h3>ë°°ì†¡ì¤‘ or ë°°ì†¡ ì¤€ë¹„ì¤‘ì¸ ìƒí’ˆ</h3>
 									<br>
 
 									<table>
 										<tr style="text-align: center;">
-											<td width="100px">ÀÌ¹ÌÁö</td>
-											<td width="100px">»óÇ°¸í</td>
-											<td width="100px">»óÇ° Á¤º¸</td>
-											<td width="100px">ÁÖ¹®ÀÚ</td>
-											<td width="100px">±¸¸Å °¡°İ</td>
-											<td width="100px">ÁÖ¹® ÃÑ °¡°İ</td>
-											<td width="100px">°áÁ¦ ÀÏÀÚ</td>
-											<td width="100px">¹è¼Û »óÅÂ</td>
+											<td width="100px">ì´ë¯¸ì§€</td>
+											<td width="100px">ìƒí’ˆëª…</td>
+											<td width="100px">ìƒí’ˆ ì •ë³´</td>
+											<td width="100px">ì£¼ë¬¸ì</td>
+											<td width="100px">êµ¬ë§¤ ê°€ê²©</td>
+											<td width="100px">ì£¼ë¬¸ ì´ ê°€ê²©</td>
+											<td width="100px">ê²°ì œ ì¼ì</td>
+											<td width="100px">ë°°ì†¡ ìƒíƒœ</td>
 										</tr>
 										<c:set var="final_total_price" value="0" />
 										<c:forEach var="order" items="${orderList }">
@@ -284,56 +287,54 @@ function toggleDataSeries(e) {
 												<td width="100px;"><a href="${contextPath}/productDetail?proNum=${order.pro.proNum}"> <img width="70px" height="105px"
 														src="${contextPath}/thumbnails?proNum=${order.pro.proNum}&fileName=${order.pro.proImgfileName}"></a></td>
 												<td>${order.pro.proName }</td>
-												<td><c:if test="${order.pro.proColor == 1}">white /</c:if> <c:if test="${order.pro.proColor == 2}">ivory /</c:if> <c:if test="${order.pro.proColor == 3}">gray /</c:if> <c:if
-														test="${order.pro.proColor == 4}">pink /</c:if> <c:if test="${order.pro.proColor == 5}">yellow /</c:if> <c:if test="${order.pro.proColor == 6}">mint /</c:if> <c:if
-														test="${order.pro.proColor == 7}">green /</c:if> <c:if test="${order.pro.proColor == 8}">purple /</c:if> <c:if test="${order.pro.proColor == 9}">navy /</c:if> <c:if
-														test="${order.pro.proColor == 11}">black /</c:if> <c:if test="${order.pro.proColor == 12}">brown /</c:if> <c:if test="${order.pro.proColor == 13}">orange /</c:if> <c:if
-														test="${order.pro.proColor == 14}">blue /</c:if> <c:if test="${order.pro.proColor == 15}">red /</c:if> <c:if test="${order.pro.proColor == 16}">basic /</c:if> <c:if
-														test="${order.pro.proSize == 1}">XS </c:if> <c:if test="${order.pro.proSize == 2}">S </c:if> <c:if test="${order.pro.proSize == 3}">M </c:if> <c:if test="${order.pro.proSize == 4}">L </c:if>
-													<c:if test="${order.pro.proSize == 5}">XL </c:if></td>
+												<td><c:if test="${order.pro.proColor == 1}">white /</c:if> <c:if test="${order.pro.proColor == 2}">ivory /</c:if> <c:if test="${order.pro.proColor == 3}">gray /</c:if> 
+													<c:if test="${order.pro.proColor == 4}">pink /</c:if> <c:if test="${order.pro.proColor == 5}">yellow /</c:if> <c:if test="${order.pro.proColor == 6}">mint /</c:if> 
+													<c:if test="${order.pro.proColor == 7}">green /</c:if> <c:if test="${order.pro.proColor == 8}">purple /</c:if> <c:if test="${order.pro.proColor == 9}">navy /</c:if> 
+													<c:if test="${order.pro.proColor == 11}">black /</c:if> <c:if test="${order.pro.proColor == 12}">brown /</c:if> <c:if test="${order.pro.proColor == 13}">orange /</c:if> 
+													<c:if test="${order.pro.proColor == 14}">blue /</c:if> <c:if test="${order.pro.proColor == 15}">red /</c:if> <c:if test="${order.pro.proColor == 16}">basic /</c:if> 
+													
+													<c:if test="${order.pro.proSize == 1}">XS </c:if> <c:if test="${order.pro.proSize == 2}">S </c:if> <c:if test="${order.pro.proSize == 3}">M </c:if> 
+													<c:if test="${order.pro.proSize == 4}">L </c:if> <c:if test="${order.pro.proSize == 5}">XL </c:if>
+												</td>
 												<td>${order.orderMemberName }</td>
-												<td>
-												<fmt:formatNumber value="${order.orderValue*order.orderProQuantity }" pattern="#,###" />¿ø
-												</td>
-												<td>
-												<fmt:formatNumber value="${order.orderPrice }" pattern="#,###" /> ¿ø
-												</td>
-												<c:set var="price" value="${order.orderPrice }"/>
+												<td><fmt:formatNumber value="${order.orderValue*order.orderProQuantity }" pattern="#,###" />ì›</td>
+												<td><fmt:formatNumber value="${order.orderPrice }" pattern="#,###" /> ì›</td>
+												<c:set var="price" value="${order.orderPrice }" />
 												<c:set var="final_total_price" value="${final_total_price+price }" />
 												<td>${order.orderDate }</td>
 												<td>${order.deliveryStatus}</td>
 											</tr>
 										</c:forEach>
 										<tr>
-											<td colspan="8" align="right"><strong>¹è¼ÛÁßÀÎ »óÇ° ÃÑ ÁÖ¹® °¡°İ : <fmt:formatNumber value="${final_total_price }" pattern="#,###" />¿ø
+											<td colspan="8" align="right"><strong>ë°°ì†¡ì¤‘ì¸ ìƒí’ˆ ì´ ì£¼ë¬¸ ê°€ê²© : <fmt:formatNumber value="${final_total_price }" pattern="#,###" />ì›
 											</strong></td>
 										</tr>
 									</table>
 								</c:when>
 								<c:otherwise>
 									<br>
-									<h3>¹è¼ÛÁßÀÎ »óÇ°ÀÌ ¾ø½À´Ï´Ù.</h3>
+									<h3>ë°°ì†¡ì¤‘ì¸ ìƒí’ˆì´ ì—†ìŠµë‹ˆë‹¤.</h3>
 									<br>
 								</c:otherwise>
 							</c:choose>
-							<!-- ¹İÇ°´ë±âÁßÀÎ »óÇ°  -->
+							<!-- ë°˜í’ˆëŒ€ê¸°ì¤‘ì¸ ìƒí’ˆ  -->
 							<c:choose>
 								<c:when test="${refundList !=null }">
 									<br>
-									<h3>¹İÇ°´ë±âÁßÀÎ »óÇ°</h3>
+									<h3>ë°˜í’ˆëŒ€ê¸°ì¤‘ì¸ ìƒí’ˆ</h3>
 									<br>
 									<table>
 										<tr style="text-align: center;">
-											<td width="100px">ÀÌ¹ÌÁö</td>
-											<td width="100px">»óÇ°¸í</td>
-											<td width="100px">»óÇ° Á¤º¸</td>
-											<td width="100px">ÁÖ¹®ÀÚ</td>
+											<td width="100px">ì´ë¯¸ì§€</td>
+											<td width="100px">ìƒí’ˆëª…</td>
+											<td width="100px">ìƒí’ˆ ì •ë³´</td>
+											<td width="100px">ì£¼ë¬¸ì</td>
 
-											<td width="100px">°³¼ö</td>
-											<td width="100px">±¸¸Å °¡°İ</td>
+											<td width="100px">ê°œìˆ˜</td>
+											<td width="100px">êµ¬ë§¤ ê°€ê²©</td>
 
-											<td width="100px">°áÁ¦ ÀÏÀÚ</td>
-											<td width="100px">¹è¼Û »óÅÂ</td>
+											<td width="100px">ê²°ì œ ì¼ì</td>
+											<td width="100px">ë°°ì†¡ ìƒíƒœ</td>
 										</tr>
 
 										<c:set var="final_total_refund_price" value="0" />
@@ -351,71 +352,68 @@ function toggleDataSeries(e) {
 													<c:if test="${refund.pro.proSize == 5}">XL </c:if></td>
 												<td>${refund.orderMemberName }</td>
 												<td>${refund.orderProQuantity }</td>
-												<td>
-												<fmt:formatNumber value="${refund.orderPrice }" pattern="#,###" /> ¿ø
-											<c:set var="price" value="${refund.orderPrice }"/>
-											<c:set var="final_total_refund_price" value="${final_total_refund_price+price }" />
-												</td>
+												<td><fmt:formatNumber value="${refund.orderPrice }" pattern="#,###" /> ì› <c:set var="price" value="${refund.orderPrice }" /> <c:set var="final_total_refund_price"
+														value="${final_total_refund_price+price }" /></td>
 												<td>${refund.orderDate }</td>
 												<td>${refund.deliveryStatus}</td>
 											</tr>
 										</c:forEach>
 										<tr>
-											<td colspan="8" align="right"><strong>¹İÇ°´ë±âÁßÀÎ »óÇ° ÃÑ ÁÖ¹® °¡°İ : <fmt:formatNumber value="${final_total_refund_price}" pattern="#,###" /> ¿ø</strong></td>
+											<td colspan="8" align="right"><strong>ë°˜í’ˆëŒ€ê¸°ì¤‘ì¸ ìƒí’ˆ ì´ ì£¼ë¬¸ ê°€ê²© : <fmt:formatNumber value="${final_total_refund_price}" pattern="#,###" /> ì›
+											</strong></td>
 										</tr>
 									</table>
 								</c:when>
 								<c:otherwise>
 									<br>
-									<h3>¹İÇ° ´ë±â ÁßÀÎ »óÇ°ÀÌ ¾ø½À´Ï´Ù.</h3>
+									<h3>ë°˜í’ˆ ëŒ€ê¸° ì¤‘ì¸ ìƒí’ˆì´ ì—†ìŠµë‹ˆë‹¤.</h3>
 									<br>
 								</c:otherwise>
 							</c:choose>
 
-							<!--Àå¹Ù±¸´Ï¿¡ ´ãÀº »óÇ° -->
+							<!--ì¥ë°”êµ¬ë‹ˆì— ë‹´ì€ ìƒí’ˆ -->
 							<c:choose>
 								<c:when test="${cartList !=null }">
 
-											<br><h3>Àå¹Ù±¸´Ï¿¡ ´ãÀº »óÇ°</h3><br>
-									<table> 
+									<br>
+									<h3>ì¥ë°”êµ¬ë‹ˆì— ë‹´ì€ ìƒí’ˆ</h3>
+									<br>
+									<table>
 
-											<tr style="text-align: center;">
-											<th width="100px;">ÀÌ¹ÌÁö</th>
-											<th width="100px;">»óÇ°¸í</th>
-											<th width="100px;">»óÇ° Á¤º¸</th>
-											<th width="100px;">±¸¸Å °¡°İ</th>
-											<th width="100px;">¼ö·®</th>
-											<th width="100px;">ÇÕ°è</th>
+										<tr style="text-align: center;">
+											<th width="100px;">ì´ë¯¸ì§€</th>
+											<th width="100px;">ìƒí’ˆëª…</th>
+											<th width="100px;">ìƒí’ˆ ì •ë³´</th>
+											<th width="100px;">êµ¬ë§¤ ê°€ê²©</th>
+											<th width="100px;">ìˆ˜ëŸ‰</th>
+											<th width="100px;">í•©ê³„</th>
 										</tr>
 										<c:forEach var="cart" items="${cartList }">
 											<tr style="text-align: center;">
-												<td width="100px;"><a href="${contextPath}/productDetail?proNum=${cart.cartProNum.proNum}"> <img width="70px" height="105px"
-														src="${contextPath}/thumbnails?proNum=${cart.cartProNum.proNum}&fileName=${cart.cartProNum.proImgfileName}"></a></td>
+												<td width="100px;">
+													<a href="${contextPath}/productDetail?proNum=${cart.cartProNum.proNum}"> 
+														<img width="70px" height="105px" src="${contextPath}/thumbnails?proNum=${cart.cartProNum.proNum}&fileName=${cart.cartProNum.proImgfileName}">
+													</a>
+												</td>
 												<td width="100px;">${cart.cartProNum.proName }</td>
 												<td width="100px">
-												<c:if test="${cart.cartProNum.proColor == 1}">white /</c:if> 
-												<c:if test="${cart.cartProNum.proColor == 2}">ivory /</c:if> 
-												<c:if test="${cart.cartProNum.proColor == 3}">gray /</c:if> 
-												<c:if test="${cart.cartProNum.proColor == 4}">pink /</c:if> 
-												<c:if test="${cart.cartProNum.proColor == 5}">yellow /</c:if> 
-												<c:if test="${cart.cartProNum.proColor == 6}">mint /</c:if> 
-												<c:if test="${cart.cartProNum.proColor == 7}">green /</c:if> 
-												<c:if test="${cart.cartProNum.proColor == 8}">purple /</c:if> 
-												<c:if test="${cart.cartProNum.proColor == 9}">navy /</c:if> 
-												<c:if test="${cart.cartProNum.proColor == 11}">black /</c:if> 
-												<c:if test="${cart.cartProNum.proColor == 12}">brown /</c:if> 
-												<c:if test="${cart.cartProNum.proColor == 13}">orange /</c:if> 
-												<c:if test="${cart.cartProNum.proColor == 14}">blue /</c:if> 
-												<c:if test="${cart.cartProNum.proColor == 15}">red /</c:if> 
+												${cart.cartProNum.proColor}
+												<c:if test="${cart.cartProNum.proColor == 1}">white /</c:if> <c:if test="${cart.cartProNum.proColor == 2}">ivory /</c:if> 
+												<c:if test="${cart.cartProNum.proColor == 3}">gray /</c:if> <c:if test="${cart.cartProNum.proColor == 4}">pink /</c:if> <c:if test="${cart.cartProNum.proColor == 5}">yellow /</c:if> 
+												<c:if test="${cart.cartProNum.proColor == 6}">mint /</c:if> <c:if test="${cart.cartProNum.proColor == 7}">green /</c:if> <c:if test="${cart.cartProNum.proColor == 8}">purple /</c:if> 
+												<c:if test="${cart.cartProNum.proColor == 9}">navy /</c:if> <c:if test="${cart.cartProNum.proColor == 11}">black /</c:if> <c:if test="${cart.cartProNum.proColor == 12}">brown /</c:if> 
+												<c:if test="${cart.cartProNum.proColor == 13}">orange /</c:if> <c:if test="${cart.cartProNum.proColor == 14}">blue /</c:if> <c:if test="${cart.cartProNum.proColor == 15}">red /</c:if> 
 												<c:if test="${cart.cartProNum.proColor == 16}">basic /</c:if> 
+
 												<c:if test="${cart.cartProNum.proSize == 1}">XS </c:if> 
 												<c:if test="${cart.cartProNum.proSize == 2}">S </c:if> 
 												<c:if test="${cart.cartProNum.proSize == 3}">M </c:if> 
 												<c:if test="${cart.cartProNum.proSize == 4}">L </c:if>
 												<c:if test="${cart.cartProNum.proSize == 5}">XL </c:if></td>
-												<td width="100px;"><fmt:formatNumber value="${cart.cartProNum.proPrice - (cart.cartProNum.proPrice*cart.cartProNum.proSalesrate*0.01)}" pattern="#,###" />¿ø</td>
+                        
+												<td width="100px;"><fmt:formatNumber value="${cart.cartProNum.proPrice - (cart.cartProNum.proPrice*cart.cartProNum.proSalesrate*0.01)}" pattern="#,###" />ì›</td>
 												<td width="100px;">${cart.cartProQuantity}</td>
-												<td width="100px;"><fmt:formatNumber value="${(cart.cartProNum.proPrice - (cart.cartProNum.proPrice*cart.cartProNum.proSalesrate*0.01))*cart.cartProQuantity}" pattern="#,###" />¿ø</td>
+												<td width="100px;"><fmt:formatNumber value="${(cart.cartProNum.proPrice - (cart.cartProNum.proPrice*cart.cartProNum.proSalesrate*0.01))*cart.cartProQuantity}" pattern="#,###" />ì›</td>
 											</tr>
 
 										</c:forEach>
@@ -423,7 +421,7 @@ function toggleDataSeries(e) {
 								</c:when>
 								<c:otherwise>
 									<br>
-									<h3>Àå¹Ù±¸´Ï¿¡ ´ã±ä »óÇ°ÀÌ¾ø½À´Ï´Ù.</h3>
+									<h3>ì¥ë°”êµ¬ë‹ˆì— ë‹´ê¸´ ìƒí’ˆì´ì—†ìŠµë‹ˆë‹¤.</h3>
 									<br>
 								</c:otherwise>
 

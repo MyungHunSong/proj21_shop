@@ -5,6 +5,7 @@ import java.util.List;
 import proj21_shop.dto.cart.CartDTO;
 
 public interface CartMapper {
+	
 	/* 장바구니 제품 여부 */
 	String flagInCart(String MemberId);
 	
@@ -25,5 +26,4 @@ public interface CartMapper {
 	
 	/*장바구니 수량 수정*/
 	int updateCart(CartDTO cart);
-
 }

@@ -7,9 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Main</title>
-<link rel="stylesheet" href="/proj21_shop/resources/main/css/main.css">
+<link rel="stylesheet" href="${contextPath }/resources/main/css/main.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
-<link rel="stylesheet" href="/proj21_shop/resources/main/css/mainProductList.css">
+<link rel="stylesheet" href="${contextPath }/resources/main/css/mainProductList.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script   src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script   src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
@@ -31,6 +31,7 @@ $(function(){
 	var proSize = ["XS","S","M","L","XL"]
 	var proStatus = ["RECOMMEND","BEST","SALE","NEW" ]
 	
+	/*sCont 누적값을 처리 할수 있으면 반복문 개선 가능*/
 	$.get(contextPath + "/api/selectProductsMain/"+proStatus[0],
 			function(json){
 				var dataLength = json.length;
@@ -69,7 +70,7 @@ $(function(){
 				function openPop(proNum){
 					var popup = window.open("productDetailItem2?proNum="+proNum,'상품상세정보','width=800px, height=700px');
 				}
-			});
+	});
 	$.get(contextPath + "/api/selectProductsMain/"+proStatus[1],
 			function(json){
 				var dataLength = json.length;
@@ -108,7 +109,7 @@ $(function(){
 				function openPop(proNum){
 					var popup = window.open("productDetailItem2?proNum="+proNum,'상품상세정보','width=800px, height=700px');
 				}
-			});
+	});
 	$.get(contextPath + "/api/selectProductsMain/"+proStatus[2],
 			function(json){
 				var dataLength = json.length;
@@ -147,7 +148,7 @@ $(function(){
 				function openPop(proNum){
 					var popup = window.open("productDetailItem2?proNum="+proNum,'상품상세정보','width=800px, height=700px');
 				}
-			});
+	});
 	$.get(contextPath + "/api/selectProductsMain/"+proStatus[3],
 			function(json){
 				var dataLength = json.length;
@@ -187,7 +188,9 @@ $(function(){
 				function openPop(proNum){
 					var popup = window.open("productDetailItem2?proNum="+proNum,'상품상세정보','width=800px, height=700px');
 				}
-			});
+	});
+	
+	/* 메인화면 (RECOMMEND,SALE,NEW,BEST) 클릭시 해당 목록으로 이동*/
 	$('.listRemocon').on('click',function(){
 		var listRemocon = $(this).text();
 		if(listRemocon == "RECOMMEND"){

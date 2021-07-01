@@ -20,6 +20,7 @@ $(function(){
 	
 	$.get(contextPath + "/api/memberProductCart/"+memId,
 		function(json){
+			console.log(json)
 			var dataLength = json.length;
 			if(dataLength >= 1){
 				var sCont = "";
@@ -41,7 +42,7 @@ $(function(){
 					sCont +=			"<div class='num'>"
 					sCont +=				"<div class='updown'> "
 					sCont +=       			"<input type='hidden' name='p_price' id='p_price1' class='p_price' value="+((100-json[i].cartProNum.proSalesrate)*json[i].cartProNum.proPrice)/100+"/>"
-					sCont +=					"<span class='up1' onclick='javascript:basket.changePNum("+i+");'><button id = 'upBtn' value="+json[i].cartNum+" class='up fas fa-arrow-alt-circle-up countBtn upBtn'></button></span>"
+					sCont +=					"<span class='up1' onclick='javascript:basket.changePNum("+i+","+json[i].cartProNum.proQuantity+");'><button id = 'upBtn' value="+json[i].cartNum+" class='up fas fa-arrow-alt-circle-up countBtn upBtn'></button></span>"
 					sCont +=					"<input type='text' name='p_num"+i+"' id='p_num"+i+"' size='2' maxlength='4' class='p_num' value="+json[i].cartProQuantity+" onkeyup='javascript:basket.changePNum("+i+");' readonly>"
 					sCont +=					"<span onclick='javascript:basket.changePNum("+i+");'><button id = 'downBtn' value="+json[i].cartNum+" class='fas fa-arrow-alt-circle-down down countBtn downBtn'></button></span>"
 					sCont +=				"</div>"
@@ -59,22 +60,25 @@ $(function(){
 				
 			}
 			
+			/* 개별 삭제용 버튼 */
 			$('.delButton').on("click",function(){
 				var numItem = $(this).parent().parent().children('.p_del').val()
 				var cartNum = parseInt(numItem.split('/'));
 				delCart(cartNum)
 			})
 			
+			/* 제품 수량 변경용 버튼 */
 			$('.upBtn').on("click", function(){
 				var cartNum = $(this).val();
 				var countNum = $(this).parent().parent().children('.p_num').val()
-				var cN = parseInt(countNum)+1
+				var cN = parseInt(countNum)
 				if(cN == 99){
 					cN = 98;
 				}
 				count(cartNum, cN)
 			}) 
 
+			/* 제품 수량 변경용 버튼 */
 			$('.downBtn').on("click", function(){
 				var cartNum = $(this).val();
 				var countNum = $(this).parent().parent().children('.p_num').val()

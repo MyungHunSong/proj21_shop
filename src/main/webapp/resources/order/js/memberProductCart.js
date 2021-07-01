@@ -45,13 +45,14 @@ let basket = {
         document.querySelector('#sum_p_num').textContent = '상품개수: ' + this.totalCount.formatNumber() + '개';
         document.querySelector('#sum_p_price').textContent = '합계금액: ' + this.totalPrice.formatNumber() + '원';
     },
-    //개별 수량 변경
-    changePNum: function (pos) {
+    //개별 수량 변경(index값과 제품재고량을 받아서 수행), 재고 보다 많은 수량으로 변경 하지 못한다.
+    changePNum: function (pos,quantity) {
+    	console.log(quantity)
         var item = document.querySelector('input[name=p_num'+pos+']');
         var p_num = parseInt(item.getAttribute('value'));
         var newval = event.target.classList.contains('up') ? p_num+1 : event.target.classList.contains('down') ? p_num-1 : event.target.value;
         
-        if (parseInt(newval) < 1 || parseInt(newval) > 99) { return false; }
+        if (parseInt(newval) < 1 || parseInt(newval) > quantity) { return false; }
 		
         item.setAttribute('value', newval);
         item.value = newval;

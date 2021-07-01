@@ -49,6 +49,7 @@
 		<collection property="reviewReplys" resultMap="ResReviewReply"></collection>
 	</resultMap>	
 	
+	<!-- 제품별 후기 목록  -->
 	<select id="selectReviewByProNum" resultMap="ResReview">
 	     select r.re_num, p.pro_color,r.pro_num, r.re_member, r.re_content, r.re_image,re_image2,re_date,re_stars, p.pro_name, p.pro_imagefilename, p.pro_size,re_rep_num,re_rep_member,re_rep_content,re_rep_date 
   		  from review r 
@@ -61,10 +62,6 @@
 		 select re_rep_num,re_num,re_rep_member,re_rep_content,re_rep_date
   		  from re_reply
 		where re_rep_member = #{reRepMember} and re_rep_num = #{reRepNum}
-	</select>
-	
-	<select id="selectMaxReRepNum"  resultType="int">
-		SELECT MAX(re_rep_num)+1 FROM re_reply
 	</select>
 	
 </mapper>

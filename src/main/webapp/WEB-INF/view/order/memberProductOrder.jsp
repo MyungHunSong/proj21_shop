@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="/proj21_shop/resources/main/css/main.css">
+<link rel="stylesheet" href="${contextPath }/resources/main/css/main.css">
 <link rel="stylesheet" href="${contextPath }/resources/order/css/memberOrderProduct.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -45,6 +45,7 @@ $(function(){
 	
 	var proSize = ["0","XS","S","M","L","XL"]
 	
+	/*배열로 받아온 카트번호를 이용해 주문할 제품 목록 검색*/
 	for(j = 0; j < cartNums.length; j++){
 		$.get(contextPath + "/api/chooseProductCart/"+cartNums[j],
 			function(json){
@@ -183,7 +184,7 @@ $(function(){
 		newOrderPrice = sumOrderPrice - consumePoint
 		
 		
-		
+		/*정규표현식 적용 및 포인트 사용시 예외처리*/
 		if(!regexp.test(consumePoint)){
 			$('#memberPoint').text("숫자를 입력해주세요")
 		}else if(consumePoint <= totalMemberPoint){
@@ -225,8 +226,6 @@ $(function(){
 					$('#sample4_detailAddress').val(json.memberAddr3)
 				})
 					
-					
-						/* $('#memberName').val("이태훈") */
 			}else if(chooseInfo == "newMemberInfo"){
 				$("input:radio[name='setSameMemberInfo']").prop("checked",false)
 				$('#memberName').val("")
@@ -245,6 +244,7 @@ $(function(){
 		}
 	})
 	
+	/*수령자 정보가 구매자 정보와 같을 시 체크*/
 	$("input:radio[name='setSameMemberInfo']").on("click",function(){
 		if($(this).is(":checked") == true){
 			$('.receiver').val($('#memberName').val())

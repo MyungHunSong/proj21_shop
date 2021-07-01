@@ -119,7 +119,7 @@ private static final Log log = LogFactory.getLog(MemberOrderMapperTest.class);
 		log.debug("proNum >>" + res);
 	}
 
-	@Test
+	//@Test
 	public void test07ChooseCartByCartNum() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		
@@ -131,4 +131,5 @@ private static final Log log = LogFactory.getLog(MemberOrderMapperTest.class);
 		List<CartDTO> list = mapper.chooseCartByMemberId(cartNum);
 		Assert.assertNotNull(list);
 	}
+	
 }

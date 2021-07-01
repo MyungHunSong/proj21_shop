@@ -7,9 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <title>상품상세정보</title>
-<link rel="stylesheet" href="/proj21_shop/resources/main/css/main.css">
-<link rel="stylesheet" href="/proj21_shop/resources/product/css/productDetail.css">
-<link rel="stylesheet" href="/proj21_shop/resources/product/css/star.css" />
+<link rel="stylesheet" href="${contextPath }/resources/main/css/main.css">
+<link rel="stylesheet" href="${contextPath }/resources/product/css/productDetail.css">
+<link rel="stylesheet" href="${contextPath }/resources/product/css/star.css" />
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 // 제이쿼리 시작
@@ -23,7 +23,8 @@ $(function() {
 			 /*스타일 후기 보기*/
 			 var notice = [ '별로에요', '보통이에요', '그냥 그래요', '맘에 들어요','아주 좋아요' ];
 			 var  sCont = "";	
-			 
+			
+			/*제품별 후기 검색*/
 			$.get(contextPath + "/api/selectReviewByProNum/"+ proNum, 
 				function(json){
 					if(json.length != 0){
@@ -48,7 +49,7 @@ $(function() {
 								sCont += "				</div>"
 								sCont += "			</div>"
 								sCont += "		<div class = 'reviewList'>"
-								sCont += "			<img class = 'prodImg' src='/proj21_shop/resources/product/images/" + json[i].proImagefilename.proImagefilename + "' width = '70' height= '70'>"
+								sCont += "			<img class = 'prodImg' src='/proj21_shop/resources/product/images/" + json[i].proImagefilename.proImagefilename + "' width = '70'>"
 								sCont += "				<div class = 'proAndMemInfo'>"
 								sCont += "					<span>" + json[i].proName.proName+"</span><br>"
 								sCont += "					<span>"+proColor[json[i].proName.proColor] +"/"+proSize[json[i].proName.proSize]+ "</span><br>"
@@ -62,7 +63,7 @@ $(function() {
 								if(json[i].reviewImagefilename2 == null || json[i].reviewImagefilename2 == ""){
 									json[i].reviewImagefilename2 = "noimage.jpg" 
 								}
-									sCont += "			<img src='${contextPath}/resources/review/images/" + json[i].reviewImagefilename2 + "' width = '70' height= '70'>"
+									sCont += "			<img src='${contextPath}/resources/review/images/" + json[i].reviewImagefilename2 + "' width = '70'>"
 								sCont += "			</div>"
 								sCont += "		</div>"
 								sCont += "		<div class='replyGroup'>"
@@ -148,7 +149,7 @@ $(function() {
 						}
 						
 					})
-					
+					/* 수정버튼 클릭시 */
 					$('.updateBtn').on('click',function(){
 						var useNum = $(this).prev().val()
 						var reRepNum = useNum.substring(0, useNum.length-1)
@@ -171,6 +172,7 @@ $(function() {
 						}
 					})
 					
+					/* 삭제버튼 클릭시 */
 					$('.deleteBtn').on('click',function(){
 						var useNum = $(this).prev().prev().val()
 						var reRepNum = useNum.substring(0, useNum.length-1)
@@ -189,7 +191,7 @@ $(function() {
 					
 				})
 				
-				
+				/* 댓글 인서트 */
 				function insertReviewReply(reply){
 					
 					$.ajax({
@@ -210,6 +212,7 @@ $(function() {
 					})
 				}//insertReviewReply
 				
+				/* 댓글 업데이트 */
 				function updateReviewReply(reviewReply){
 					$.ajax({
 						url : contextPath + '/api/updateReviewReply/'+reviewReply.reRepNum,
@@ -230,6 +233,7 @@ $(function() {
 					})
 				} 
 				
+				/* 댓글 삭제 */
 				function deleteReviewReply(delItem){
 					console.log(delItem)
 					$.ajax({
