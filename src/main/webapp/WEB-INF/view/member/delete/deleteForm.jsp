@@ -23,16 +23,16 @@
 			<table class="type02">
 				<tr>
 					<th scope="row"><label for="passwd">비밀번호</label></th>
-					<td><form:password path="password" /></td>
+					<td><form:password path="password" id="hint"/></td>
 				</tr>
 				<tr>
 					<th scope="row"><label for="passwdConfirm">비밀번호 확인</label></th>
-					<td><form:password path="passConfirm" /><span class="disMatch"></span></td>
+					<td><form:password path="passConfirm" id="hint"/><span class="disMatch"></span></td>
 				</tr>
 			</table>
 			<div>
-				<input type="submit" value="탈퇴하기" id="deleteButton" /> <input
-					type="button" value="취소" id="cancelButton" onClick="history.go(-1)" />
+				<input type="submit" value="탈퇴하기" class="button" /> <input
+					type="button" value="취소" class="button" onClick="history.go(-1)" />
 			</div>
 		</form:form>
 	</section>

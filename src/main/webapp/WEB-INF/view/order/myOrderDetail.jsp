@@ -26,7 +26,7 @@
 							sCont += "<tr>";
 							sCont += "<td>" + json[0].orderProNum + "-" + json[0].productDTO[i].orderCode[0].orderCode + "</td>";
 							sCont += "<td><img src='" + contextPath +"/resources/product/images/" + json[0].productDTO[i].proImgfileName + "' width = '80' height='60'></td>";
-							sCont += "<td>" + json[0].productDTO[i].proPrice * json[0].productDTO[i].orderCode[0].orderProQuantity * (100-json[0].productDTO[i].proSalesrate) * 0.01 * 0.01 +"p"+ "</td>";
+							sCont += "<td>" + json[0].productDTO[i].proPrice * json[0].productDTO[i].orderCode[0].orderProQuantity * (100-json[0].productDTO[i].proSalesrate) * 0.01 * 0.01 +"P"+ "</td>";
 							sCont += "<td>" + json[0].productDTO[i].proPrice * json[0].productDTO[i].orderCode[0].orderProQuantity * (100-json[0].productDTO[i].proSalesrate) * 0.01  + "</td>";
 							sCont += "<td>" + json[0].productDTO[i].orderCode[0].orderProQuantity+ "</td>";
 							sCont += "<td>" + json[0].deliveryStatus+ "</td>";
@@ -94,7 +94,7 @@
 							sCon += "</tr>";
 							sCon += "<tr>";
 							sCon += "<th scope='cols'>예상적립금 </th>";
-							sCon += "<td>"+ sum * 0.01 + "p</td>";
+							sCon += "<td>"+ sum * 0.01 + "P</td>";
 							sCon += "</tr>";
 							
 							$("#pay").prepend(sCon);
@@ -102,9 +102,8 @@
 						})
 	})
 </script>
-<link rel="stylesheet" href="/proj21_shop/resources/main/css/main.css">
-<link rel="stylesheet"
-	href="/proj21_shop/resources/order/css/myOrderDetail.css" />
+<link rel="stylesheet" href="${contextPath }/resources/order/css/myOrderDetail.css" />
+<link rel="stylesheet" href="${contextPath }/resources/main/css/main.css">
 </head>
 </head>
 <body>
@@ -112,32 +111,30 @@
 		<jsp:include page="/WEB-INF/view/include/header.jsp"></jsp:include>
 		<jsp:include page="/WEB-INF/view/include/topbody.jsp"></jsp:include>
 	</div>
-	<div class="test1">
+	<div class="container">
 	<h2>상세주문내역</h2>
 	<table class="type11">
 		<thead>
 			<tr>
-				<th scope="cols">주문번호</th>
-				<th scope="cols">상품정보</th>
-				<th scope="cols">포인트 적립</th>
-				<th scope="cols">주문금액</th>
-				<th scope="cols">주문수량</th>
-				<th scope="cols">주문상태</th>
-				<th scope="cols">주문일</th>
-				<th scope="cols">비고</th>
+				<th>주문번호</th>
+				<th>상품정보</th>
+				<th>포인트 적립</th>
+				<th>주문금액</th>
+				<th>주문수량</th>
+				<th>주문상태</th>
+				<th>주문일</th>
+				<th id="blank">비고</th>
 			</tr>
 		</thead>
 		<tbody id="load"></tbody>
 	</table>
 	<div class="test">
-		<img alt="주문안내" src="/proj21_shop/images/orderInfo.jpg">
-		<h3>배송지 정보</h3>
+		<img alt="주문안내" src="${contextPath }/images/orderInfo.jpg">
+		<h2>배송지 정보</h2>
 	</div>
 		<table class="type04" id="delivery"></table>
-			<h3>최종 결제 정보</h3>
+			<h2>최종 결제 정보</h2>
 			<table class="type04" id="pay"></table>
-	</div>
-	<div class="container">
 		<jsp:include page="/WEB-INF/view/include/footer.jsp"></jsp:include>
 	</div>
 </body>

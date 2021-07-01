@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>QnA 내용</title>
+<link rel="stylesheet" href="${contextPath }/resources/main/css/main.css">
 <link rel="stylesheet" href="${contextPath }/resources/qna/css/qna_content.css" />
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
@@ -29,8 +30,10 @@
 </script>
 </head>
 <body>
-	<h1>Q&A 내용</h1>
-	<div id = "load"></div>
-	<input type= 'button' onclick='exit()' value='취소' id="button">
+	<div class="container">
+		<h1>Q&A 내용</h1>
+		<div id = "load"></div>
+		<input type= 'button' onclick='exit()' value='취소' id="button">
+	</div>
 </body>
 </html>

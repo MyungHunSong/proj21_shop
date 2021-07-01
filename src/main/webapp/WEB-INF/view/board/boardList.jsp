@@ -90,8 +90,8 @@
 		
 	})
 </script>
-<link rel="stylesheet"
-	href="${contextPath }/resources/board/css/boardList.css" />
+<link rel="stylesheet" href="${contextPath }/resources/board/css/boardList.css" />
+<link rel="stylesheet" href="${contextPath }/resources/main/css/main.css">
 </head>
 <body>
 	<div class="container">
@@ -103,12 +103,12 @@
 				<table class="type11">
 					<thead>
 						<tr>
-							<th scope="cols">제품정보</th>
-							<th scope="cols">착샷</th>
-							<th scope="cols">후기내용</th>
-							<th scope="cols">별점</th>
-							<th scope="cols">작성일</th>
-							<th scope="cols">수정</th>
+							<th>제품정보</th>
+							<th>착샷</th>
+							<th>후기내용</th>
+							<th>별점</th>
+							<th>작성일</th>
+							<th id="modify">수정</th>
 						</tr>
 					</thead>
 					<tbody id="load"></tbody>
@@ -122,7 +122,7 @@
 							<th>문의제목</th>
 							<th>작성자</th>
 							<th>작성일</th>
-							<th>수정</th>
+							<th id="modify">수정</th>
 						</tr>
 					</thead>
 					<tbody id="loadtable"></tbody>

@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+h1{
+    font-size: 83px;
+}
+
 #mypage {
 	text-align: center;
 }

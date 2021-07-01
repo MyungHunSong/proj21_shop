@@ -32,7 +32,7 @@ public class ModifyController {
 
 	@GetMapping
 	public String modify(@ModelAttribute("ModifyRequest") ModifyRequest modifyRequest, HttpSession session,HttpServletRequest request) {
-		try{AuthInfo authInfo = (AuthInfo) session.getAttribute("authInfo");
+		AuthInfo authInfo = (AuthInfo) session.getAttribute("authInfo");
 			MemberDTO member = memberModifyService.form(authInfo.getId());
 			request.setAttribute("memberPh", member.getMemberPh());
 			request.setAttribute("memberEmail", member.getMemberEmail());
@@ -40,9 +40,6 @@ public class ModifyController {
 			request.setAttribute("memberAddr2", member.getMemberAddr2());
 			request.setAttribute("memberAddr3", member.getMemberAddr3());
 			return "/member/register/modifyForm";
-		}catch (Exception e) {
-			return "/login";
-		}
 	}
 
 	@PostMapping

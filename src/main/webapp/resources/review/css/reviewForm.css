@@ -11,6 +11,8 @@
 
 h2 {
 	text-align: center;
+	color: #505050;
+    font-size: 35px;
 }
 
 body {
@@ -70,27 +72,34 @@ li {
 }
 
 #insert {
-	text-align: right;
-	color: white;
-	margin: 5px;
-	background: #FF7696;
-	border: 1px double #e7708d;
-	border-radius: 2px;
-	color: #fff;
-	cursor: pointer;
+	border: 1px solid #ccc;
+    width: 150px;
+    padding: 5px;
+    font-size: 20px;
+    cursor: pointer;
+    background: black;
+    color: white;
+    margin: 5px;
 }
 
 #modify {
-	text-align: right;
-	color: white;
-	margin: 5px;
-	background: #FF7696;
-	border: 1px double #e7708d;
-	border-radius: 2px;
-	color: #fff;
-	cursor: pointer;
+	border: 1px solid #ccc;
+    width: 150px;
+    padding: 5px;
+    font-size: 20px;
+    cursor: pointer;
+    background: black;
+    color: white;
+    margin: 5px;
 }
 
-.file{
-	text-align: flex;
+#insert {
+	border: 1px solid #ccc;
+    width: 150px;
+    padding: 5px;
+    font-size: 20px;
+    cursor: pointer;
+    background: black;
+    color: white;
+    margin: 5px;
 }

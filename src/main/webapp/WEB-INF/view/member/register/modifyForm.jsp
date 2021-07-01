@@ -98,34 +98,34 @@
 				</tr>
 				<tr>
 					<th scope="row"><label for="answer">답변</label></th>
-					<td><form:input path="memberPwdA" id="answer" />
+					<td><form:input path="memberPwdA" id="hint" />
 					<span class = "unMatch"></span></td>
 				</tr>
 				<tr>
 					<th scope="row"><label for="tel">전화 번호</label></th>
-					<td><form:input path="memberPh" required="required" value="${memberPh}"/></td>
+					<td><form:input path="memberPh" required="required" value="${memberPh}" id="hint"/></td>
 				</tr>
 				<tr>
 					<th scope="row"><label for="email">이메일</label></th>
-					<td><form:input path="memberEmail" required="required" value="${memberEmail}"/></td>
+					<td><form:input path="memberEmail" required="required" value="${memberEmail}" id="hint"/></td>
 				</tr>
 				<tr>
 					<th scope="row"><label for="address">주소</label></th>
 					<td>
 						<form:input type="text" id="sample4_postcode" placeholder="우편번호" path="memberAddr1" value="${memberAddr1}" />
-					 	<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"> <br>
+					 	<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" id="findButton"> <br>
 						<form:input type="text" id="sample4_roadAddress" path="memberAddr2" placeholder="도로명주소" value="${memberAddr2}" />
 						<input type="text" id="sample4_jibunAddress" placeholder="지번주소">
-						<span nid="guide" style="color: #999; display: none"></span>
+						<span id="guide" style="color: #999; display: none"></span>
 						<form:input type="text" id="sample4_detailAddress" path="memberAddr3" placeholder="상세주소" value="${memberAddr3}"/>
 						<input type="text" id="sample4_extraAddress" placeholder="참고항목">
 					</td>
 				</tr>
 			</table>
 			<div>
-				<input type="submit" value="회원정보수정" id="registerButton" /> <input
-					type="reset" value="초기화" id="resetButton" /> <input type="button"
-					value="취소" id="cancelButton" onClick="history.go(-1)" />
+				<input type="submit" value="회원정보수정" class="button" /> <input
+					type="reset" value="초기화" class="button" /> <input type="button"
+					value="취소" class="button" onClick="history.go(-1)" />
 			</div>
 		</form:form>
 	</section>
