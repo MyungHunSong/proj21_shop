@@ -52,6 +52,7 @@
 						 	  });
 						})
 						
+						
 						$('.review').on("click", '[id=modify]', function(e){
 							e.preventDefault();
 							var data = {reviewNum : json[0].reviewNum, reviewContent : $('#reviewContent').val(),
@@ -82,6 +83,36 @@
 						});
 						
 			})
+			
+			$('.review').on("click", '[id=modify]', function(e){
+							e.preventDefault();
+							var starRate = json[0].reviewStar;
+							var data = {reviewNum : json[0].reviewNum, reviewContent : $('#reviewContent').val(),
+									reviewImagefilename1 : $('#imgButton1').val().replace(/C:\\fakepath\\/i, ''), reviewImagefilename2 : $('#imgButton2').val().replace(/C:\\fakepath\\/i, ''), reviewStar : starRate
+									};
+							
+							/* alert("data > " + data.reviewNum); */
+							$.ajax({
+								url : contextPath + "/api/myreview/"+ data.reviewNum,
+								type : 'Patch',
+								contentType : "application/json;charset=utf-8",
+								datatype : "json",
+								cache : false,
+								data : JSON.stringify(data),
+								success : function(data){
+									alert("등록을 완료했습니다.");
+									window.location.href = contextPath + "/board?memberId=" + memberId;
+									
+								},error:function(request, data, status, error) {
+								 	alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error); 
+									window.location.href = contextPath + "/board?memberId=" + memberId;
+									}
+
+								
+							})
+							
+							
+						});
 			
 			
 			console.log(json);
@@ -115,15 +146,17 @@
 				}
 				
 				sConts += "<div class='file'>";
-				sConts += "<input type='file' id='imgButton1' name='imgButton1' value='json[0].reviewImagefilename1'/>";
-				sConts += "<input type='file' id='imgButton2' name='imgButton2' value='json[0].reviewImagefilename2'/>";
+				sConts += "<input type='file' id='imgButton1' name='imgButton1' value="+json[0].reviewImagefilename1+"/>";
+				sConts += "<input type='file' id='imgButton2' name='imgButton2' value="+json[0].reviewImagefilename2+"/>";
 				sConts += "</div><br>";
 				
 				
 				if(json[0].reviewContent == undefined){
 				sConts += "<button id='insert'>등록</button>";
+				sConts += "<input type='button' value='취소' onclick='history.go(-1)' id='insert'>";
 				}else{
 				sConts += "<button id='modify'>수정</button>";
+				sConts += "<input type='button' value='취소' onclick='history.go(-1)' id='modify'>";
 				}
 				
 				sConts += "<div class='bigPictureWrapper'>";

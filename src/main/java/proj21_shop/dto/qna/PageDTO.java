@@ -76,13 +76,13 @@ public class PageDTO {
 	
 	private String encoding(String keyword) {
 		if(keyword == null || keyword.trim().length() == 0) {
-			return "";
+			return " ";
 		}
 		
 		try {
 			return URLEncoder.encode(keyword, "UTF-8");
 		}catch (UnsupportedEncodingException e) {
-			return "";
+			return " ";
 		}
 	}
 	

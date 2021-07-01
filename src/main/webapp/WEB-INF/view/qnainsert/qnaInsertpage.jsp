@@ -136,7 +136,7 @@
 				 		data:JSON.stringify(memberId),
 				 		success:function(){
 				 			var popup = window.open('http://localhost:8080/proj21_shop/qnaMyOrder?=${authInfo.id}', '조회',
-							  'width=720px, height = 350px')						
+							  'width=620px, height = 350px')						
 				 		},
 				 		error:function(){
 				 			alert("조회할 상품 내역이 없습니다.")

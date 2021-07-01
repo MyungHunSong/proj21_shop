@@ -101,11 +101,4 @@ public class ReviewReplyMapperTest {
 		Assert.assertNotNull(b);
 	}
 
-	@Test
-	public void test05selectMemberId() {
-		log.debug(Thread.currentThread().getStackTrace()[1].getClassName()+"()");
-		
-		int res = service.selectMaxReRepNum();
-		System.out.println(res);
-	}
 }

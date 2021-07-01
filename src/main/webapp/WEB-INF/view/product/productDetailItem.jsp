@@ -6,16 +6,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="/proj21_shop/resources/main/css/main.css">
-<link rel="stylesheet" href="/proj21_shop/resources/product/css/productDetail.css">
+<link rel="stylesheet" href="${contextPath }/resources/main/css/main.css">
+<link rel="stylesheet" href="${contextPath }/resources/product/css/productDetail.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 
 $(function() {
 	/*숫자 증가 감소*/
-	/*재고 수량 만큼만 증가 가능*/
 	var useNum = 0;
 	
+	/*재고 수량 만큼만 증가 가능하도록 하는 함수*/
 	function count(useNum){
 		$('.btn').on('click',function(){
 			var status = $(this).val();
@@ -47,6 +47,8 @@ $(function() {
 	var proColor =["0","white", "ivory", "gray", "pink", "yellow", "mint", "green", "purple", "navy", "10", "black", "brown", "orange", "blue", "red", "basic"];
 	var num = 0;
 	
+	/*제품 번호를 배열로 받아와서 제품 상세 검색 
+	    배열로 받아온 이유 : 재고량을 각각 표시하기 위해서*/
 	$.get(contextPath + "/api/productDetail/"+proNum, 
 	function(json) {
 		console.log(json)
@@ -77,8 +79,12 @@ $(function() {
 				sCont += "<span class ='proPriceSale'>"+add+"원</span>";
 				sCont +="<p><select id='size'><option value='size01'>사이즈를 선택해주세요</option>"
 				for(i = 1; i < json.length+1; i++){
+					if(json[i-1].proQuantity == 0){
+						sCont +="<option value="+i+" style = 'color:red'>"+proSize[json[i-1].proSize]+"  남은 수량: "+json[i-1].proQuantity+"</option>"
+					}else{
 						sCont +="<option value="+i+">"+proSize[json[i-1].proSize]+"  남은 수량: "+json[i-1].proQuantity+"</option>"
 					}
+				}
 				sCont += "</div>"
 			    $("#ProductLoad").append(sCont);
 				var proNum = json[2].proNum+"";
@@ -205,6 +211,7 @@ $(function() {
 	        }
 		});
 		
+		/*바로 구매하기 버튼을 사용해서 주문 페이지로 넘어가기 위한 함수*/
 		function useOrderBtn(){
 			var orderProd = {
 					  "cartProQuantity": parseInt($('#result').text()),

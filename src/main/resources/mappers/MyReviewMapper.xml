@@ -104,33 +104,39 @@
 		where o.order_member_id = #{memberId} and p.pro_num = #{proNum}
 	</select>
 	
+	<select id="selectQnaContentByMember" resultMap="resQna">
+		select q_index, q_title, q_option, q_content, q_file 
+  	  	  from qna
+ 	 	 where q_member = #{qMember} and q_index = #{qIndex}
+	</select>
+	
 	<insert id="insertReview" parameterType="ReviewDTO">
-	insert into review(pro_num, re_member, re_content, re_image, re_image2, re_stars)
-	values (#{proNum}, #{memberId}, #{reviewContent}, #{reviewImagefilename1}, #{reviewImagefilename2}, #{reviewStar});
+		insert into review(pro_num, re_member, re_content, re_image, re_image2, re_stars)
+		values (#{proNum}, #{memberId}, #{reviewContent}, #{reviewImagefilename1}, #{reviewImagefilename2}, #{reviewStar});
 	</insert>
 	
 	<update id="updateReview" parameterType="ReviewDTO">
-	update review
-		<set>
-			<if test="reviewContent neq null">
-		 	   re_content = #{reviewContent},
-		 	</if>
-		 	<if test="reviewImagefilename1 neq null">
-		 	   re_image = #{reviewImagefilename1},
-		 	</if>
-		 	<if test="reviewImagefilename2 neq null">
-		 	   re_image2 = #{reviewImagefilename2},
-		 	</if>
-		 	<if test="reviewStar neq null">
-		 	   re_stars = #{reviewStar},
-		 	</if>
-	 	</set>
-	where re_num = #{reviewNum}
+		update review
+			<set>
+				<if test="reviewContent neq null">
+		 	  	 	re_content = #{reviewContent},
+		 		</if>
+			 	<if test="reviewImagefilename1 neq ''">
+		 		    re_image = #{reviewImagefilename1},
+		 		</if>
+		 		<if test="reviewImagefilename2 neq ''">
+		 	 	    re_image2 = #{reviewImagefilename2},
+		 		</if>
+		 		<if test="reviewStar neq null">
+		 	 	   re_stars = #{reviewStar},
+		 		</if>
+	 		</set>
+		where re_num = #{reviewNum}
 	</update>
 	
 	<update id="updateReviewCount" parameterType="int">
 		update product
 		   set re_replyCount = re_replyCount + 1
 	   	 where pro_num = #{proNum}
-	 </update>
+	</update>
 </mapper>

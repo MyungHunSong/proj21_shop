@@ -41,7 +41,7 @@ public class ModifyController {
 			request.setAttribute("memberAddr3", member.getMemberAddr3());
 			return "/member/register/modifyForm";
 		}catch (Exception e) {
-			return "/member/login/loginForm";
+			return "/login";
 		}
 	}
 

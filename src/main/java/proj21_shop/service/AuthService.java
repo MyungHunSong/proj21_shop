@@ -13,7 +13,7 @@ public class AuthService {
 
 	@Autowired
 	private MemberMapper mapper;
-	
+	 
 	public AuthInfo authenicate(String id, String password) {
 		MemberDTO member = new MemberDTO();
 		member.setMemberId(id);
@@ -24,9 +24,10 @@ public class AuthService {
 			throw new WrongIdPasswordException();
 		}
 		
-		AuthInfo au =  new AuthInfo(member.getMemberId(), member.getMemberEmail(), member.getMemberName());
-		mapper.updateTotalLogin(member); //로그인 시 로그인 수 증가
-		au.setmPoint(member.getMemberPoint());
+		AuthInfo au =  new AuthInfo(newmember.getMemberId(), newmember.getMemberEmail(), newmember.getMemberName());
+		mapper.updateTotalLogin(newmember); //로그인 시 로그인 수 증가
+		au.setmPoint(newmember.getMemberPoint());
+		System.out.println(au);
 		return au;
 	}
 }

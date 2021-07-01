@@ -72,7 +72,7 @@ li {
 #insert {
 	text-align: right;
 	color: white;
-	margin-top: 10px;
+	margin: 5px;
 	background: #FF7696;
 	border: 1px double #e7708d;
 	border-radius: 2px;
@@ -83,7 +83,7 @@ li {
 #modify {
 	text-align: right;
 	color: white;
-	margin-top: 10px;
+	margin: 5px;
 	background: #FF7696;
 	border: 1px double #e7708d;
 	border-radius: 2px;

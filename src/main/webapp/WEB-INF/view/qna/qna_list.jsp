@@ -13,9 +13,16 @@
 <script>
 $(function(){
 	$("#searchBtn").on("click", function(event){
+		var test = $("#keywordInput").val();
+				
+		if(test != null){
 		self.location= "/proj21_shop/listPaging${pageMaker.makeQuery(1)}"
 		+"&searchType=" +$("select option:selected").val()
 		+"&keyword=" + encodeURIComponent($("#keywordInput").val());
+		}else if(test == null || test == ""){
+			alert("공백이 존재 합니다.")
+		}
+			
 	}) 
 	
 	$("#goList").on("click", function(event){
@@ -28,7 +35,7 @@ $(function(){
 
 <style type="text/css">
 .search_qna{
-	margin-bottom: 20px;
+	margin-bottom: 80px;
 }
 #insertQnaPage{
 	text-decoration:none !important;
@@ -60,16 +67,17 @@ $(function(){
 					<option value="g"><c:out value="${searchCriteria.searchType eq 'g' ? 'selected' : ' '}"/>주문결제</option>
 					<option value="h"><c:out value="${searchCriteria.searchType eq 'h' ? 'selected' : ' '}"/>기타</option>
 				</select>
-				<input type="text" class = "search_control"
+
+				<input type="text" class ="search_control"
 				 name="keyword" id="keywordInput"  value = "${searchCriteria.keyword}" placeholder="검색어를 입력해 주세요">
 				<button type="button" id="searchBtn">검색</button>
 				<button type="button" id="goList">목록</button>
 				
 				<c:if test="${empty authInfo}">
-					<a id='insertQnaPage' href="login">글쓰기[로그인이 필요한 서비스 입니다.]</a>					
+					<a id='insertQnaPage' href="login">글쓰기[로그인 필요]</a>					
 				</c:if>
 				<c:if test="${!empty authInfo}">
-					<a id = 'insertQnaPage'  href="<c:url value="/qnaInsert" />">글쓰기</a>
+					<a id = 'insertQnaPage'  href="<c:url value="/qnaInsert" />">글 작성 하기</a>
 				</c:if>
 				<!-- value 이름과 getMapping 이름을 일치 시켜 줘야한다. -->
 		</div>

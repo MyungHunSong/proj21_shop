@@ -45,6 +45,7 @@ public class LoginController {
         try {
             AuthInfo authInfo = authService.authenicate(loginCommand.getId(), loginCommand.getPassword());
             session.setAttribute("authInfo", authInfo);
+            System.out.println("LoginController >>> "+authInfo);
 			/*
 			 * Cookie rememberCookie = new Cookie("REMEMBER", loginCommand.getId());
 			 * rememberCookie.setPath("/"); if (loginCommand.isRememberId()) {

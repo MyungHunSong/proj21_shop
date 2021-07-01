@@ -49,7 +49,7 @@ public class AuthInfo {
 
 	@Override
 	public String toString() {
-		return String.format("AuthInfo [id=%s, email=%s, name=%s]", id, email, name);
+		return String.format("AuthInfo [id=%s, email=%s, name=%s, mPoint=%s]", id, email, name, mPoint);
 	}
 
 	

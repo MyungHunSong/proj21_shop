@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="/proj21_shop/resources/main/css/mainContent.css">
+<link rel="stylesheet" href="${contextPath }/resources/main/css/mainContent.css">
 
 </head>
 <body>
@@ -35,7 +35,6 @@
  </section>
 
  <!-- 바로가기에 맞는 옷목록 부분  -->
- 
 <section id="recommend" >
 	<h1 class="title">RECOMMEND</h1>
  	<div id="RECOMMEND" class="productList"></div>

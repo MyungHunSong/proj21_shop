@@ -16,15 +16,14 @@
 	display: none;
 }
 #contentArea{
+	margin-left:10px;
 	width: 800px;
-	height: 30px;
+	height: 100px;
 }
 
 #contentArea button{
 	margin-left:10px;
 }
-
-
 
 .tableTitle{
 	padding: 10px;
@@ -52,9 +51,11 @@
 }
 .clickContent #detailContent{
 	text-align: center;
+	font-size: 15px;
+	font-weight: bold;
 }
 .clickContent td{
-	background-color: #E1F6FA;
+	/* background-color: #E1F6FA; */
 	text-align: left;
 	border-bottom: 1px solid #ccc;
 }
@@ -63,6 +64,9 @@
 	box-sizing: box;
 }
 .showReply #classReply{
+	text-align: center;
+	font-size: 15px;
+	font-weight: bold;
 }
 .showReply td{
 	background-color: #E1F6FA;
@@ -70,37 +74,44 @@
 	cursor: pointer;
 }
 
-div.topQna{
-	width: 1000px;
-	height: 800px;
-	margin: auto;
+<!-- 답글 달기의 등록 수정 -->
+.clickReplyTd button{
+	size: 30px;
 }
+
 </style>
 <script type="text/javascript">
+var keyword = "${keyword}";
 $(function(){
 	var contextPath = "${contextPath}";
 	var page=${page};
 	var perPageNum=${perPageNum};
 	var searchType ="${searchType}";
-	var keyword = "${keyword}";
+	
 	
 	// 회원 이름.
 	var memberName = "${authInfo.name}";
 	console.log(memberName)
-	
+	// 
 	$.get(
 			contextPath + "/api/qna/"+ page +"/" + perPageNum + "/" + searchType + "/" + keyword,
-	
 	function(json){
 		var dateLength = json.length;
-			if(dateLength >= 1){
-				var sCont = "";
-				console.log(json[0].qGroup)
-				
+		var sCont = "";
+		if(dateLength <= 0){	
+			 window.location.href = contextPath + "/listPaging?page="+page + "&pagePageNum="+ perPageNum + "&searchType=" + searchType + "&keyword=";
+			 alert("조회된 결과가 없습니다.")			
+		}else if(dateLength >= 1){
+							
 				for(i = 0; i<dateLength; i++){
+					
 					if(json[i].qStep == 0){
 							sCont += "<tr class='mainTable'>";
-							sCont += "<td class = 'clickOption'>"+json[i].qOp + "</td>"; 
+							if(json[i].qOp == "공지"){
+							sCont += "<td class = 'clickOption' style='color:red;'>"+json[i].qOp + "</td>";
+							}else{
+								sCont += "<td class = 'clickOption'>"+json[i].qOp + "</td>";
+							}
 							sCont += "<input type = 'hidden' value = "+ json[i].qIndex +">";
 							sCont += "<input type = 'hidden' value="+ json[i].qGroup +">";						
 							sCont += "<td class = 'clickOption'>" + json[i].qMember + "</td>";
@@ -111,12 +122,26 @@ $(function(){
 							sCont += "</tr>";
 								
 								sCont += "<tr class = 'clickContent'>";
-								sCont += "<td id='detailContent'>내용:</td>";	
-							if("${authInfo.id}" == "admin"){	
-								sCont += "<td colspan ='5'>" + json[i].qContent + "<a class= 'clickReply'> [답글 달기]</a></td>";
-							}else if("${authInfo.id}" != "admin"){
-								sCont += "<td colspan ='4'><img src=' "+contextPath+"/resources/qna/upload/" + json[i].qFile +"' width = 50px;/><span>"
-								+"</span>"+ json[i].qContent + "</td>";
+								sCont += "<td id='detailContent'> content </td><br>";	
+							if("${authInfo.id}" == "admin" && "${authInfo.name}" == "관리자"){	
+								
+								if(json[i].qOption == "공지"){
+									sCont += "<td colspan ='4'>        " + json[i].qContent + "</td>";	
+								}else{
+									sCont += "<td colspan ='4'>" + json[i].qContent + "<a class= 'clickReply' style='color:red; cursor:pointer;'> [답글 달기]</a></td>";	
+								}
+							}else if("${authInfo.id}" != "admin" && "${authInfo.name}" != "관리자"){
+								if(json[i].qOption == "공지"){
+									sCont += "<td colspan ='5'>        "+ json[i].qContent + "</td>";
+								}else if("${authInfo.name}" == json[i].qMember){
+									sCont += "<td colspan ='4'><img src=' "+contextPath+"/resources/qna/upload/" + json[i].qFile +"' style='width: 90px; height: 140px;'/><p style='border-top:1px solid gray'>"
+									+ json[i].qContent + "</p></td>";		
+								}else{
+									sCont += "<td colspan ='5'><img src=' "+contextPath+"/resources/qna/upload/" + json[i].qFile +" ' style='width: 90px; height: 140px; ' /><p style='border-top:1px solid gray'>"
+									+ json[i].qContent + "</p></td>";		
+								}
+								
+								
 							}
 							if(memberName == json[i].qMember){
 								sCont += "<td colspan='1'><button class='modifyMyQna'>수정</button><button class='deleteMyQna'>삭제</button></td>"
@@ -126,23 +151,27 @@ $(function(){
 					}else if(json[i].qStep == 1){
 							sCont += "<tr class='showReply'>";
 							sCont += "<input type = 'hidden' value = "+ json[i].qIndex +">";
-							sCont += "<td id = 'classReply' coslpan='1'>→답변</td> " 
-							sCont += "<td colspan='5'> " +json[i].qContent+ "<td>";
-						if("${authInfo.id}" == "admin"){
-							sCont += " <td colspan><button type = 'button' class = 'deleteContent' >삭제</button></td>";
+						if("${authInfo.id}" != "admin" && "${authInfo.name}" != "관리자"){
+							sCont += "<td id = 'classReply' coslpan='1' >답변</td> " 
+							sCont += "<td colspan='4'> " +json[i].qContent+ "<td>";
+						}else{
+							sCont += "<td id = 'classReply' coslpan='1'>답변</td> " 
+							sCont += "<td colspan='3'> " +      json[i].qContent+ "<td>";
+							sCont += " <td colspan='1'><button type = 'button' class = 'deleteContent' >삭제</button></td>";
 						}
-							sCont += "</tr>";						
 						
+							sCont += "</tr>";												
 					}
 					
-					sCont += "<tr class ='clickReplyTd' type='hidden' >";	
-					sCont += "<td colspan='6' float='left'>관리자<p><label value="+ json[i].qMember +">" + "</label></p><br>"
+					sCont += "<tr class ='clickReplyTd' type='hidden' >";
+					sCont += "<td style='font-size: 15px; font-weight: bold; '>관리자</td>"
+					sCont += "<td colspan='5' float='left' ><br>"
 									+ "<textarea id='contentArea' name='contentArea'></textarea><br>"
-									+"<button type = 'button' class = 'addContent'>등록</button>"
-									+"<button type = 'button' class = 'modifyContent'>수정</button></td>";
-					sCont += "</tr>";			
+									+"<button type = 'submit' class = 'addContent'>등록</button>"
+									+"<button type = 'submit' class = 'modifyContent'>수정</button></td>";
+					sCont += "</tr>";
+					
 				}
-			
 				$("#load").append(sCont);
 			}
 			
@@ -164,7 +193,7 @@ $(function(){
 					data:JSON.stringify(deleteItem),
 					success:function(){
 						alert("삭제 했습니다.");
-						window.location.href = contextPath + "/listPaging?page="+page + "&pagePageNum="+ perPageNum + "&searchType=" + searchType + "&keyword=";
+						location.reload();				
 					},
 					error:function(){
 						alert("삭제 실패.")
@@ -182,10 +211,12 @@ $(function(){
 					datatype:"json",
 					data:JSON.stringify(),
 					success:function(){
+
 						// 팝업창 열기
 						var popup = window.open('http://localhost:8080/proj21_shop/qnaModify?idx=' + idx, '수정팝업',
 								'width=520px, height = 520px')	
 						location.reload();		
+
 					}	
 				});		 		
 			});
@@ -215,8 +246,7 @@ $(function(){
 					
 				});
 			});
-			
-			
+					
 			// 답글 수정.
 			$('.modifyContent').on('click', function(){
 				var idx = $(this).parent().parent().next().children().val();
@@ -254,8 +284,10 @@ $(function(){
 					if($(this).parent().next().hasClass('active')){
 						
 					$(this).next().next().next().next().next().next().next().text(cnt)
-						$('.clickOption').parent().next().removeClass('active');
+						$(this).parent().next().removeClass('active');
+					
 						$('.showReply').parent().next().next().next().removeClass('active');
+						
 						$(this).parent().next().next().removeClass('active');
 						$(this).parent().next().next().next().removeClass('active');
 						
@@ -313,18 +345,21 @@ $(function(){
 			$(".addContent").on('click', function(){
 				console.log($("textarea[name='contentArea']:visible").val())
 				var group = $(this).parent().parent().prev().prev().children().next().next().val();
+				var content= $("textarea[name='contentArea']:visible").val();
 				
 				console.log(group)
-				
-				
-				
 				var insertItem = {
 					    "qTitle": "null",
 					    "qMember": "admin",
-					    "qContent": $("textarea[name='contentArea']:visible").val(),
+					    "qContent": content,					 
 					    "qGroup": group,
 					    "qStep": 1
 					  }
+				if(content == null && content == ""){
+					alert("내용을 입력해 주세요")
+					return;
+				}
+				
 				
 					$.ajax({
 							url:contextPath +"/api/qna/",
@@ -332,11 +367,9 @@ $(function(){
 							contentType:"application/json; charset=utf-8",
 							datatype:"json",
 							data:JSON.stringify(insertItem),
-							success:function(){
+							success:function(){							
 									alert('완료')
-									location.reload();	
-								
-								
+									location.reload();					
 							},
 							error:function(){
 								alert("실패")
@@ -368,11 +401,12 @@ $(function(){
 			</table>
 
 			<!-- 페이징 -->
+		
 			<div class="div_pagenation">
 			<ul class="pagination">
 				<c:if test="${pageMaker.prev}">	
 						<!-- (uri을 이용한)검색조건 수정. -->
-				<li><a href="/proj21_shop/listPaging${pageMaker.makeSearch(pageMaker.startPage - 1)}">[이전]</a></li> 
+				<li><a href="/proj21_shop/listPaging${pageMaker.makeSearch(pageMaker.startPage - 1)}" class="arrow prev"></a></li> 
 				</c:if>
 
 				<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}"
@@ -384,8 +418,8 @@ $(function(){
 				
 				<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 					<li>
-							<!-- 검색조건 수정. -->
-						<a href="/proj21_shop/listPaging${pageMaker.makeSearch(pageMaker.endPage+1)}">[다음]</a> 
+						<!-- 검색조건 수정. -->
+						<a href="/proj21_shop/listPaging${pageMaker.makeSearch(pageMaker.endPage+1)}" class="arrow next"></a> 
 					</li>
 				</c:if>
 			</ul>
