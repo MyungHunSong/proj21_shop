@@ -247,7 +247,15 @@ values
 INSERT INTO review
 (pro_num, re_member, re_content, re_image, re_image2, re_stars)
 values
-(6163, 'test01', '완전 싸고 좋습니다. 강추드립니다.', 'review_test.jpg', 'review_test.jpg', 5);
+(6022, 'test02', '핏이 세미 오버하면서 레귤러한 느낌이라 단독으로 입기 참 좋네요. 상체 발달형분들도 무난하게 입을 듯 해요.', 'review_test1.jpg', 'review_test2.jpg', 5),
+(6022, 'test01', '베이지색 바지와 코디하면 색상 조화가 좋아요. 핏을 잘 잡아줘서 누가 입어도 잘 어울릴 듯 해요.', 'review_test3.jpg', 'review_test4.jpg', 5),
+(6023, 'test01', '평소 M사이즈 입으시는 분들은 딱 적당하고 시보리가 탄탄해서 좋습니다. 안감이 기모라서 봄, 가을, 겨울에 입을 수 있을 것 같아요.', 'review_test5.jpg', 'review_test6.jpg', 5),
+(4113, 'test01', '생각보다 두꺼워서 무게감 있습니다. 저는 오버핏으로 L구매 했는데 정핏은 M사시면 될 것 같아요.', 'review_test7.jpg', 'review_test8.jpg', 5),
+(5023, 'test01', '입었을 때 조금 크다 느꼈지만 원래 그렇게 입는 옷이니까 예뻐요. 색감도 좋고 안에 반팔 입고 걸칠라 했는데 두꺼워서 그냥 셔츠만 입어도 좋을 것 같아요.', 'review_test9.jpg', 'review_test10.jpg', 5),
+(6013, 'test01', '딱 찾고있던 크롭 기장의 스웨트 셔츠입니다. 자수 포인트 퀄리티도 좋고 재질도 좋아요.', 'review_test11.jpg', 'review_test12.jpg',5),
+(6033, 'test01', '간절기에 어울리는 재질입니다. 살짝 밑부분 기장이 더 짧았으면 좋았을 듯 해요.', 'review_test13.jpg', 'review_test14.jpg', 4);
+
+
 
 insert   
    into review (pro_num, re_member, re_content, re_image, re_stars)
