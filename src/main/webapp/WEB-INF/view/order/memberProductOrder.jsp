@@ -74,7 +74,7 @@ $(function(){
 									sCont +=  	  		"</div>"
 									sCont +=		"</div>"
 									sCont +=		"<div class='subdiv'>"
-									sCont +=			"<div class='basketprice'>"+point+"P</div>"
+									sCont +=			"<div class='basketprice'>"+comma(point)+"P</div>"
 									sCont +=			"<div class='num'>"
 									sCont +=				"<div class='updown'> "
 									sCont +=					"<input type='text' name='pNum"+i+"' id='pNum"+i+"' size='2' maxlength='4' class='pNum' value="+json[i].cartProQuantity+" onkeyup='javascript:basket.changePNum("+i+");' readonly>"
@@ -339,8 +339,7 @@ $(function(){
         				$('#memberTel3').val() == "" || $('#sample4_postcode').val() == "" || $('#sample4_roadAddress').val()  == "" || $('#sample4_detailAddress').val() == "" ||
         				$('.receiver').val() == "" || $('.receiverTel1').val() == "" || $('.receiverTel2').val() == "" || $('.receiverTel3').val() == "" ||
         				$('#memberBank').val() == "" || $('#depositor').val() == "" ){
-        			insertOrder(orderItems)
-        			return true/* alert("빈곳을 확인해주세요.") */
+        			return alert("빈곳을 확인해주세요.") 
         		}else {
         			insertOrder(orderItems)
         			$.get(contextPath+"/api/lastOrderNum",
@@ -354,7 +353,10 @@ $(function(){
         }
     }
 	
-	
+	/*숫자 3자리수 표시*/
+	function comma(price){
+		return price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+	}
 	
 })
 
