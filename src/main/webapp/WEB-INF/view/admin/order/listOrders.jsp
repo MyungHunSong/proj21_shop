@@ -7,6 +7,7 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <c:set var="orderList" value="${viewMap.orderList }" />
 <c:set var="totOrders" value="${viewMap.totOrders }" />
+<c:set var="totWaitingDelivery" value="${viewMap.totWaitingDelivery }" />
 <c:set var="totOnDelivery" value="${viewMap.totOnDelivery }" />
 <c:set var="totDoneDelivery" value="${viewMap.totDoneDelivery }" />
 <c:set var="totWaitingRefundDelivery" value="${viewMap.totWaitingRefundDelivery }" />
@@ -138,13 +139,15 @@ a {
 						<ul class="smallul">
 							<li>전체&nbsp;<a href="${contextPath }/admin/order/listOrders?total=total">${totOrders }</a>건 |
 							</li>
-							<li>배송중&nbsp;<a href="${contextPath }/admin/order/listOrders?direct_deliveryStatus=배송중">${totOnDelivery }</a> 건|
+							<li>배송중&nbsp;<a href="${contextPath }/admin/order/listOrders?deliveryStatus=배송중">${totOnDelivery }</a> 건|
 							</li>
-							<li>배송완료&nbsp;<a href="${contextPath }/admin/order/listOrders?direct_deliveryStatus=배송완료">${totDoneDelivery }</a>건 |
+							<li>배송준비중&nbsp;<a href="${contextPath }/admin/order/listOrders?deliveryStatus=배송준비중">${totWaitingDelivery }</a> 건|
 							</li>
-							<li>반품대기중&nbsp;<a href="${contextPath }/admin/order/listOrders?direct_deliveryStatus=반품대기중">${totWaitingRefundDelivery }</a>건 |
+							<li>배송완료&nbsp;<a href="${contextPath }/admin/order/listOrders?deliveryStatus=배송완료">${totDoneDelivery }</a>건 |
 							</li>
-							<li>반품완료&nbsp;<a href="${contextPath }/admin/order/listOrders?direct_deliveryStatus=반품완료">${totDoneRefundDelivery }</a>건 |
+							<li>반품대기중&nbsp;<a href="${contextPath }/admin/order/listOrders?deliveryStatus=반품대기중">${totWaitingRefundDelivery }</a>건 |
+							</li>
+							<li>반품완료&nbsp;<a href="${contextPath }/admin/order/listOrders?deliveryStatus=반품완료">${totDoneRefundDelivery }</a>건 |
 							</li>
 						</ul>
 					</div>

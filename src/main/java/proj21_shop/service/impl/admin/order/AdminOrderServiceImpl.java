@@ -59,19 +59,27 @@ public class AdminOrderServiceImpl implements AdminOrderService {
 	public Map<String, Object> getOrderList(Map<String, Object> pagingMap) {
 	Map<String,Object> viewMap=new HashMap();
 	
-		int totOrders,totOnDelivery,totDoneDelivery,selectedTotal,totWaitingRefundDelivery,totDoneRefundDelivery=0;
+		int totOrders,totOnDelivery,totDoneDelivery,selectedTotal,totWaitingRefundDelivery,totDoneRefundDelivery,totWaitingDelivery=0;
 		
 		//orderList 가져오기
 		List<OrderDTO> orderList=adminOrderMapper.selectOrderList(pagingMap); 
 		totOrders=adminOrderMapper.selectTotalOrders();
 		totOnDelivery=adminOrderMapper.selectAllOnDelivery();
+		totWaitingDelivery=adminOrderMapper.selectAllWaitingDelivery();
 		totDoneDelivery=adminOrderMapper.selectAllTotDoneDelivery();
 		totWaitingRefundDelivery=adminOrderMapper.selectAllWaitingRefund();
 		totDoneRefundDelivery=adminOrderMapper.selectAllDoneRefund();
 		selectedTotal=adminOrderMapper.selectedTotal(pagingMap);
 		
+		System.out.println("service안의 totOrders==>>>"+totOrders);
+		System.out.println("service안의 totOnDelivery==>>>"+totOnDelivery);
+		System.out.println("service안의 totDoneDelivery==>>>"+totDoneDelivery);
+		System.out.println("service안의 totWaitingRefundDelivery==>>>"+totWaitingRefundDelivery);
+		System.out.println("service안의 totDoneRefundDelivery==>>>"+totDoneRefundDelivery);
+		
 		viewMap.put("orderList", orderList);
 		viewMap.put("totOrders", totOrders);
+		viewMap.put("totWaitingDelivery", totWaitingDelivery);
 		viewMap.put("totOnDelivery", totOnDelivery);
 		viewMap.put("totDoneDelivery", totDoneDelivery);
 		viewMap.put("totWaitingRefundDelivery", totWaitingRefundDelivery);

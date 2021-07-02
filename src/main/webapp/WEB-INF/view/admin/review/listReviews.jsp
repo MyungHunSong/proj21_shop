@@ -253,7 +253,7 @@ text-align: left;
 									<c:forEach var="page" begin="1" end="${selectedReviews/20+1 }" step="1">
 										<c:choose>
 											<c:when test="${page==pageNum }">
-												<a class="sel-page"
+												<a class="sel-page" style="color: red;  font-size: 40px; padding-left: 8px; "
 													href="${contextPath }/admin/review/listReviews?
 													section=1
 													&pageNum=${page}
@@ -262,7 +262,7 @@ text-align: left;
 													${page} </a>
 											</c:when>
 											<c:otherwise>
-												<a class="no-uline"
+												<a class="no-uline" style=" font-size: 20px; padding-left: 5px; "
 													href="${contextPath }/admin/review/listReviews?
 													section=1
 													&pageNum=${page}

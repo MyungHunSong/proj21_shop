@@ -18,20 +18,20 @@
 		<h1>마이페이지</h1>
 		<section id="mypage">
 		<div class="box1 box">
-			<a href="board?memberId=${authInfo.id}"><img alt="board" src="/proj21_shop/images/board.jpg"></a>
+			<a href="board?memberId=${authInfo.id}"><img alt="board" src="${contextPath }/images/board.jpg"></a>
 		</div>
 		<div class="box2 box">
-			<a href="modify"><img alt="membership" src="/proj21_shop/images/membership.jpg" ></a>
+			<a href="modify"><img alt="membership" src="${contextPath }/images/membership.jpg" ></a>
 		</div>
 		<div class="box3 box">
-			<a href="cart?memId=${authInfo.id}"><img alt="bascket" src="/proj21_shop/images/basket.jpg"></a>
+			<a href="cart?memId=${authInfo.id}"><img alt="bascket" src="${contextPath }/images/basket.jpg"></a>
 		</div>
 		<br>
 		<div class="box4 box">
-			<a href="myorder?memberId=${authInfo.id}"><img alt="order" src="/proj21_shop/images/order.jpg"></a>
+			<a href="myorder?memberId=${authInfo.id}"><img alt="order" src="${contextPath }/images/order.jpg"></a>
 		</div>
 		<div class="box5 box">
-			<a href ="delete"><img alt="quit" src="/proj21_shop/images/quit.jpg"></a>
+			<a href ="delete"><img alt="quit" src="${contextPath }/images/quit.jpg"></a>
 		</div>
 		<jsp:include page="/WEB-INF/view/include/footer.jsp"></jsp:include>
 	</section>
