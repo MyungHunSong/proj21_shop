@@ -61,8 +61,18 @@ table.type04 th {
 }
 
 table.type04 td {
-	width: 350px;
+	width: 397px;
 	padding: 10px;
 	vertical-align: top;
 	border-bottom: 1px solid #ccc;
+}
+
+.discountItem{
+	font-size: 13px;
+    font-weight: 100;
+    margin-left: 65px;
+}
+.pointEx{
+	font-size: 12px;
+    font-weight: 100;
 }

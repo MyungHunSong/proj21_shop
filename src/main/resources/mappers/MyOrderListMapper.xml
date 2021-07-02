@@ -43,8 +43,8 @@
 		<result property="deliveryAddr1" column="delivery_addr1" />
 		<result property="deliveryAddr2" column="delivery_addr2" />
 		<result property="deliveryAddr3" column="delivery_addr3" />
-		<result property="requestToDelivery"
-			column="request_to_delivery" />
+		<result property="requestToDelivery" column="request_to_delivery" />
+		<result property="orderDiscount" column = "order_discount"/>
 		<collection property="productDTO" resultMap="resProduct">
 			<result property="proNum" column="pro_num"/>
 			<result property="proName" column="pro_name" />
@@ -67,7 +67,7 @@
 
 	<select id="selectOrderDetailByMember"
 		resultMap="resDetailOrder">
-		SELECT DISTINCT o.order_pro_num, o.order_code, pi2.pro_imagefilename, p.pro_num, p.pro_name, p.pro_color, p.pro_size, p.pro_price, p.pro_salesrate,
+		SELECT DISTINCT o.order_price, o.order_discount,o.order_pro_num, o.order_code, pi2.pro_imagefilename, p.pro_num, p.pro_name, p.pro_color, p.pro_size, p.pro_price, p.pro_salesrate,
 		o.order_pro_quantity, o.delivery_status, o.order_date,
 		o.order_member_name , o.receiver_tel1, o.receiver_tel2,
 		o.delivery_addr1 , o.delivery_addr2, o.delivery_addr3,
