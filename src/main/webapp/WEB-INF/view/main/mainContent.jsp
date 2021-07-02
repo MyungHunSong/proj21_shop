@@ -13,10 +13,9 @@
 <section id="home-main-section-slider">
 	<div class="homeMainSliderContainer">
   		<div class="slider">
-    		<div><a href=""><img src="resources/banner/slide1.jpg"></a></div>
-    		<div><a href=""><img src="resources/banner/slide2.jpg"></a></div>
-    		<div><a href=""><img src="resources/banner/slide3.jpg"></a></div>
-    		<div><a href=""><img src="resources/banner/slide4.jpg"></a></div>
+	  		<c:forEach var="i" begin="1" end="4">
+	  			<div><a href=""><img src='resources/banner/slide${i }.jpg' style="width: 1500px;"></a></div>
+	  		</c:forEach>
   		</div>
  	</div>
  </section>
