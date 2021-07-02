@@ -8,10 +8,10 @@
 <head>
 <meta charset="UTF-8">
 <title>고객센터</title>
-<link rel="stylesheet" href="/proj21_shop/resources/qna/css/qna_faq.css">
-<link rel="stylesheet" href="/proj21_shop/resources/main/css/main.css">
-<link rel="stylesheet" href="/proj21_shop/resources/qna/css/qna_main.css">
-<link rel="stylesheet" href="/proj21_shop/resources/qna/css/qna_faq.css">
+<link rel="stylesheet" href="${contextPath}/resources/qna/css/qna_faq.css">
+<link rel="stylesheet" href="${contextPath}/resources/main/css/main.css">
+<link rel="stylesheet" href="${contextPath}/resources/qna/css/qna_main.css">
+<link rel="stylesheet" href="${contextPath}/resources/qna/css/qna_faq.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript">

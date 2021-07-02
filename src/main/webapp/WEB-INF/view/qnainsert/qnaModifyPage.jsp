@@ -9,9 +9,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <meta charset="UTF-8">
 <title>수정 페이지</title>
-<link rel="stylesheet" href="/proj21_shop/resources/qna/css/qna_qna.css">
-<link rel="stylesheet" href="/proj21_shop/resources/main/css/main.css">
-<link rel="stylesheet" href="/proj21_shop/resources/qna/css/qnaModifyPage.css">
+<link rel="stylesheet" href="${contextPath}/resources/qna/css/qna_qna.css">
+<link rel="stylesheet" href="${contextPath}/resources/main/css/main.css">
+<link rel="stylesheet" href="${contextPath}/resources/qna/css/qnaModifyPage.css">
 <script type="text/javascript">
 $(function(){
 	var contextPath = "${contextPath}";
@@ -42,7 +42,7 @@ $(function(){
     };
 	
     $.ajax({
-      url: '/proj21_shop/api/qnainsert/' + idx,
+      url: '${contextPath}/api/qnainsert/' + idx,
       type:'PATCH',
       contentType:"application/json; charset=utf-8",
       datatype:"json",
@@ -69,7 +69,7 @@ $(function(){
 	formData.append("uploadFile", fileObj);
 	
 	 $.ajax({
-		  url: '/proj21_shop/api/uploadAjaxAction',
+		  url: '${contextPath}/api/uploadAjaxAction',
 		  processData : false,
 		  contentType : false,
 		  data : formData,
@@ -171,7 +171,7 @@ $(function(){
 							<input type="file" name="uploadFile"  id="addPoto" onchange="readURL(this, this.id)" multiple="multiple">
 						</div>
 						<div id="image_list">
-							<img id="preview" src="/proj21_shop/resources/qna/images/fileimg.jpg" width="100" height="100">
+							<img id="preview" src="${contextPath}/resources/qna/images/fileimg.jpg" width="100" height="100">
 						</div>
 					</div>
 				</c:if>	

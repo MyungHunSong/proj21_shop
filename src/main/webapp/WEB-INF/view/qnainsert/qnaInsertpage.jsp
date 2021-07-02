@@ -6,9 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="/proj21_shop/resources/main/css/main.css">
+<link rel="stylesheet" href="${contextPath}/resources/main/css/main.css">
 <link rel="stylesheet"
-	href="/proj21_shop/resources/qna/css/qnaInsertpage.css">
+	href="${contextPath}/resources/qna/css/qnaInsertpage.css">
 <title>글쓰기 작성</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script
@@ -35,7 +35,6 @@
 	$(function(){
 			$("input[name='uploadFile']").hide();
 			var contextPath = "${contextPath}";
-			
 	 	
 		 	 $('#preview').click(function(){
 		  
@@ -135,7 +134,7 @@
 				 		datatype:"json",
 				 		data:JSON.stringify(memberId),
 				 		success:function(){
-				 			var popup = window.open('http://localhost:8080/proj21_shop/qnaMyOrder?=${authInfo.id}', '조회',
+				 			var popup = window.open('http://localhost:8080${contextPath}/qnaMyOrder?=${authInfo.id}', '조회',
 							  'width=620px, height = 350px')						
 				 		},
 				 		error:function(){
@@ -153,7 +152,7 @@
 		<jsp:include page="/WEB-INF/view/include/topbody.jsp"></jsp:include>
 		<div class="InsertMain">
 			<div id="QNA">
-				<img id= 'QnaImg' src= "/proj21_shop/resources/qna/images/qnaLog.jpg">
+				<img id= 'QnaImg' src= "${contextPath}/resources/qna/images/qnaLog.jpg">
 			</div>
 			<div class="QnaInsert">
 				<h3>문의 작성</h3>
@@ -225,7 +224,7 @@
 							<input type="file" name="uploadFile"  id="addPoto" onchange="readURL(this, this.id)" multiple="multiple">
 						</div>
 						<div id="image_list">
-							<img id="preview" src="/proj21_shop/resources/qna/images/fileimg.jpg" width="100" height="100">
+							<img id="preview" src="${contextPath}/resources/qna/images/fileimg.jpg" width="100" height="100">
 						</div>
 					</div>
 				</c:if>					
