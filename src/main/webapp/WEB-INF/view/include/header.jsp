@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="/proj21_shop/resources/include/css/header.css">
+<link rel="stylesheet" href="${contextPath }/resources/include/css/header.css">
 <script>
 $(function(){
 	$('.headerImg').click(function(){
@@ -45,9 +45,14 @@ $(function(){
 			
 			<c:if test="${!empty authInfo }">
 				<li><a href="register" id="memberShip" style="display: none">회원가입</a></li>
-			</c:if>		
+			</c:if>
+			
 			
 			<li><a href="mypage">마이페이지</a></li>
+			
+			<c:if test="${authInfo.id == 'admin' }">
+			<li><a href="${contextPath}/admin/order/orderStatics">관리자페이지</a></li>
+			</c:if>
 			
 			<li><a href='<c:url value="/listPaging?page=1&perPageNum=10&searchType=a&keyword="/>'>고객센터</a></li>
 
@@ -62,7 +67,7 @@ $(function(){
 			<c:if test="${empty authInfo }">
 				<br>
 			</c:if>
-	<div class="main_img"><img alt="헤더 오른쪽 옷걸이" src="/proj21_shop/resources/banner/headerR.jpg" class="headerImg" ></div>
+	<div class="main_img"><img alt="헤더 오른쪽 옷걸이" src="${contextPath }/resources/banner/headerR.jpg" class="headerImg" ></div>
 	</header>
 </body>
 </html>

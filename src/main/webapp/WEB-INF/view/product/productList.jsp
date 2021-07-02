@@ -261,7 +261,9 @@ $(function(){
 			var page = Math.ceil(json/8)
 			var sCont = "";
 			for(i = 1; i < page+1; i++){
-				sCont += "<a class = 'pBtn'>  "+i+"  </a>"
+				if(pageNum == 1){
+					sCont += "<a class = 'pBtn'>  "+i+"  </a>"
+				}
 			}
 			$('#pageBtn').append(sCont)
 			
