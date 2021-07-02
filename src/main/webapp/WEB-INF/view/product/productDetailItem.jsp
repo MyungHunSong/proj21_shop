@@ -113,7 +113,7 @@ $(function() {
 		
 			if(parseInt($('#result').text()) == 0){
 				return alert("수량을 선택해주세요");
-			}
+			} 
 			selectCartByMemberIdAndProNum(memberId, proNum)
 		}) 
 	
