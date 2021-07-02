@@ -45,7 +45,7 @@
                      sCont += "<td><a href='detailorder?memberId="
                          + json[j].memberId + "&orderProNum=" + json[j].orderProNum + "&proNum="
                          + json[j].productDTO[i].proNum + "'>"
-                         + json[j].orderPrice+"</a></td>";
+                         + comma(json[j].orderPrice)+"원</a></td>";
                      sCont += "<td><a href='detailorder?memberId="
                          + json[j].memberId + "&orderProNum=" + json[j].orderProNum + "&proNum="
                          + json[j].productDTO[i].proNum + "'>"
@@ -61,6 +61,10 @@
             $("#load").append(sCont);
          }         
       })
+      /*숫자 3자리수 표시*/
+		function comma(price){
+			return price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+		}
    })
 </script>
 <link rel="stylesheet" href="${contextPath }/resources/order/css/myOrderList.css" />

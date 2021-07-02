@@ -105,6 +105,8 @@
 							sCon += "</tr>";
 							
 							$("#pay").prepend(sCon);
+							
+							/*숫자 3자리수 표시*/
 							function comma(price){
 								return price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
 							}
