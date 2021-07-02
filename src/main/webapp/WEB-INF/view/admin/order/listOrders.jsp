@@ -225,7 +225,7 @@ a {
 											<c:if test="${order.pro.proColor == 13}">orange /</c:if>
 										 	<c:if test="${order.pro.proColor == 14}">blue /</c:if>
 											<c:if test="${order.pro.proColor == 15}">red /</c:if> 
-											<c:if test="${order.pro.proColor == 16}">basic /</c:if>
+											<c:if test="${order.pro.proColor == 16}">beige /</c:if>
 											</li><li>    
 											<c:if test="${order.pro.proSize == 1}">XS /</c:if>
 											<c:if test="${order.pro.proSize == 2}">S /</c:if>
