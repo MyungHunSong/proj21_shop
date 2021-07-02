@@ -46,7 +46,7 @@
 					sCont += "<td>" + json[i].reviewContent + "</td>";
 					sCont += "<td>" + json[i].reviewStar + "</td>";
 					sCont += "<td>" + json[i].reviewDate + "</td>";
-					sCont += "<td><a href='detailreview?memberId=" + memberId +"&proNum=" + json[i].proNum + "'>후기수정 하러가기</a></td>";
+					sCont += "<td><a href='detailreview?memberId=" + memberId +"&proNum=" + json[i].proNum + "'>후기 수정</a></td>";
 					sCont += "<tr>";
 				}
 
@@ -72,7 +72,7 @@
 				    console.log(json[i].qIndex);
 					sCont += "<td>" + json[i].qMember + "</div></td>";
 					sCont += "<td>" + json[i].qDate + "</td>";
-					sCont += "<td> <a href = 'qnaModify?idx=" + json[i].qIndex +"' class = 'qnaChange'>Q&A 수정하러 가기 </a></td>";
+					sCont += "<td> <a href = 'qnaModify?idx=" + json[i].qIndex +"' class = 'qnaChange'>Q&A 수정 </a></td>";
 					sCont += "</tr>";
 					
 					// qnaModify?index=${idx}
@@ -101,6 +101,13 @@
 			<div class="asd">
 				<h3>내가 쓴 후기</h3>
 				<table class="type11">
+					  <colgroup>
+					    <col width="15%"/>
+					    <col width="15%"/>
+					    <col width="30%"/>
+					    <col width="10%"/>
+					    <col width="20%"/>
+					  </colgroup>
 					<thead>
 						<tr>
 							<th>제품정보</th>

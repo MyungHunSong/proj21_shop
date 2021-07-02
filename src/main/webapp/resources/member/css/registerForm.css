@@ -14,6 +14,7 @@ h2{
 }
 
 table.type02 {
+	text-align: left;
 	border-collapse: separate;
 	border-spacing: 1px;
 	line-height: 1.5;
@@ -94,7 +95,7 @@ table.type02 td {
 	background: black;
 	color: white;
 	margin-right: 5px;
-	margin-top: 20px;
+	margin-top: 30px;
 }
 
 .button:hover{
