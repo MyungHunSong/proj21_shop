@@ -1,3 +1,4 @@
+<%@page import="proj21_shop.dto.review.ReviewDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -119,7 +120,7 @@ a {
 }
 
 .pleft {
-	text-align: left;
+text-align: left;
 }
 
 .smallul {
@@ -147,7 +148,7 @@ a {
 							<table style="width: 100%;">
 								<tr>
 									<td colspan="2">&nbsp;&nbsp;</td>
-									<td colspan="5" class="pleft">멤버 ID : <input type="text" name="memberId" placeholder="멤버 ID를 입력하세요" id="memberId" />
+									<td colspan="5" class="pleft" >멤버 ID : <input style="margin-left: 14.3px;" type="text" name="memberId" placeholder="멤버 ID를 입력하세요" id="memberId" />
 									</td>
 								</tr>
 								<tr>
@@ -176,7 +177,7 @@ a {
 								<th>별점</th>
 								<th>리뷰 작성일</th>
 							</tr>
-
+							
 							<c:choose>
 								<c:when test="${empty reviewsList }">
 									<h1>등록된 리뷰가 없습니다.</h1>
@@ -189,7 +190,28 @@ a {
 											<td><a href="${contextPath }/productDetail?proNum=${reviews.proNum}">${reviews.memberId }</a></td>
 											<td><a href="${contextPath }/productDetail?proNum=${reviews.proNum}">${reviews.proNum }</a></td>
 											<td><a href="${contextPath }/productDetail?proNum=${reviews.proNum}">${reviews.proName.proName }</a></td>
-											<td><a href="${contextPath }/productDetail?proNum=${reviews.proNum}">${reviews.reviewImagefilename1 }</a> <a href="${contextPath }/productDetail?proNum=${reviews.proNum}">${reviews.reviewImagefilename2 }</a></td>
+											
+											<td>
+											<a href="${contextPath }/productDetail?proNum=${reviews.proNum}">
+											<c:choose>
+											<c:when test="${reviews.reviewImagefilename2 == null || reviews.reviewImagefilename2 == ''}">
+											<img src= "${contextPath }/resources/review/images/noimage.jpg" width='70' height='60'/>
+											</c:when>
+											<c:otherwise>
+											<img src= "${contextPath }/resources/review/images/${reviews.reviewImagefilename2 }" width='70' height='60'/>
+											</c:otherwise>
+											</c:choose>
+											<c:choose>
+											<c:when test="${reviews.reviewImagefilename1 == null || reviews.reviewImagefilename1 == ''}">
+											<img src= "${contextPath }/resources/review/images/noimage.jpg" width='70' height='60'/>
+											</c:when>
+											<c:otherwise>
+											<img src= "${contextPath }/resources/review/images/${reviews.reviewImagefilename1 }" width='70' height='60'/>
+											</c:otherwise>
+											</c:choose>
+											</a>
+											</td>
+											
 											<td><a href="${contextPath }/productDetail?proNum=${reviews.proNum}">${reviews.reviewContent }</a></td>
 											<td><a href="${contextPath }/productDetail?proNum=${reviews.proNum}">${reviews.reviewStar }</a> 점</td>
 											<td><a href="${contextPath }/productDetail?proNum=${reviews.proNum}">${reviews.reviewDate }</a></td>

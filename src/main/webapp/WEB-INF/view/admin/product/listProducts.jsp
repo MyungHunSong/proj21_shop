@@ -200,7 +200,7 @@ a {
 					</center>
 					<hr>
 
-					<%-- <div id="listProductsByStatus">
+					<div id="listProductsByStatus">
 						<ul class="smallul">
 							<li>전체&nbsp;${totProducts }건&nbsp;&nbsp;|</li>
 							<li>신제품&nbsp;${newProducts }건&nbsp;&nbsp;|</li>
@@ -209,7 +209,7 @@ a {
 							<li>할인중&nbsp;${offProducts }건&nbsp;&nbsp;|</li>
 							<li>품절&nbsp;${outProducts }건</li>
 						</ul>
-					</div> --%>
+					</div>
 					<br>
 					<br>
 					<br>
@@ -327,7 +327,6 @@ a {
 													</c:when>
 												</c:choose></td>
 											<td><input type="button" value="모델 추가하기" onClick="upModel('${product.proNum}','${product.proCategory }','${product.proColor }','${product.proSize }')" /></td>
-											<td><input type="button" value="json[i].qTitle" onClick="upModel(json[i].qMember,json[i].qIndex)" /></td>
 										</tr>
 									</c:forEach>
 

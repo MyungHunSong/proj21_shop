@@ -12,8 +12,12 @@ select *
   from `order`;
 select *
   from pro_img;
+select count(DISTINCT SUBSTR(pro_num,1,3))
+  from product
+ WHERE pro_category = 3;
 select *
-  from product;
+  from product
+ WHERE pro_category = 3;
 select *
   from qna;
 select *
