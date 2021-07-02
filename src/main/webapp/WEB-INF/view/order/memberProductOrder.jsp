@@ -291,7 +291,7 @@ $(function(){
 			}
 			orderItem[i].whoPay = $('#depositor').val();
 			orderItem[i].whichBank = $('#memberBank').val();
-			orderItem[i].orderPrice=sumOrderPrice;
+			orderItem[i].orderPrice= sumOrderPrice - totalMemberPoint;
 			orderItem[i].orderDiscount= parseInt(salePrice);
 		}
 		$.ajax({
@@ -365,6 +365,7 @@ $(function(){
 <div class="container">
 <jsp:include page="/WEB-INF/view/include/header.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/view/include/topbody.jsp"></jsp:include>
+<h1 style="font-size: 70px">주문 내역</h1>
 <h1 class="orderMenuTitle ">현재 주문 상품 내역</h1>
 <form:form modelAttribute="OrderDTO" name="orderform" id="orderform" method="post" class="orderform" action="/Page" onsubmit="return false;">
             <div class="basketdiv" id="basket">

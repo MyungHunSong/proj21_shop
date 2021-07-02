@@ -214,7 +214,7 @@ $(function(){
 <div class="container">
 <jsp:include page="/WEB-INF/view/include/header.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/view/include/topbody.jsp"></jsp:include>
-
+	<h1 style="font-size: 70px">장바구니</h1>
 	<form name="orderform" id="orderform" method="post" class="orderform" action="/Page" onsubmit="return false;">
             <input type="hidden" name="cmd" value="order">
             <div class="basketdiv" id="basket">
