@@ -1,7 +1,8 @@
 @charset "UTF-8";
 
 h2{
-	font-size: 83px; 
+	font-size: 70px; 
+	color: #505050;
 }
 
 #registerFormArea{
@@ -92,7 +93,8 @@ table.type02 td {
 	cursor: pointer;
 	background: black;
 	color: white;
-	margin: 5px;
+	margin-right: 5px;
+	margin-top: 20px;
 }
 
 .button:hover{
