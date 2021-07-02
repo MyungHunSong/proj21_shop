@@ -16,7 +16,7 @@ $(function(){
 		var test = $("#keywordInput").val();
 				
 		if(test != null){
-		self.location= "/proj21_shop/listPaging${pageMaker.makeQuery(1)}"
+		self.location= "${contextPath}/listPaging${pageMaker.makeQuery(1)}"
 		+"&searchType=" +$("select option:selected").val()
 		+"&keyword=" + encodeURIComponent($("#keywordInput").val());
 		}else if(test == null || test == ""){
@@ -26,7 +26,7 @@ $(function(){
 	}) 
 	
 	$("#goList").on("click", function(event){
-		self.location = "/proj21_shop/listPaging${pageMaker.makeQuery(1)}"
+		self.location = "${contextPath}/listPaging${pageMaker.makeQuery(1)}"
 		+"&searchType=" +$("select option:selected").val();
 	})
 }); 

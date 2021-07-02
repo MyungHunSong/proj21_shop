@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>내 주문 상세 내역 페이지</title>
-<link rel="stylesheet" href="/proj21_shop/resources/qna/css/qnaOrderPage.css">
+<link rel="stylesheet" href="${contextPath}/resources/qna/css/qnaOrderPage.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <style type="text/css">
 #bodySec td{

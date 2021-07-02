@@ -10,7 +10,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <meta charset="UTF-8">
 <title>QNA페이지</title>
-<link rel="stylesheet" href="/proj21_shop/resources/qna/css/qna_qna.css">
+<link rel="stylesheet" href="${contextPath}/resources/qna/css/qna_qna.css">
 <style type="text/css">
 .showReply{
 	display: none;
@@ -251,7 +251,7 @@ $(function(){
 					success:function(){
 
 						// 팝업창 열기
-						var popup = window.open('http://localhost:8080/proj21_shop/qnaModify?idx=' + idx, '수정팝업',
+						var popup = window.open('http://localhost:8080${contextPath}/qnaModify?idx=' + idx, '수정팝업',
 								'width=520px, height = 520px')	
 						location.reload();		
 
@@ -444,20 +444,20 @@ $(function(){
 			<ul class="pagination">
 				<c:if test="${pageMaker.prev}">	
 						<!-- (uri을 이용한)검색조건 수정. -->
-				<li><a href="/proj21_shop/listPaging${pageMaker.makeSearch(pageMaker.startPage - 1)}" class="arrow prev"></a></li> 
+				<li><a href="${contextPath}/listPaging${pageMaker.makeSearch(pageMaker.startPage - 1)}" class="arrow prev"></a></li> 
 				</c:if>
 
 				<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}"
 					var="idx">
 					<li <c:out value="${pageMaker.cri.page == idx}"/>>
 							<!-- 검색조건 수정. -->
-						<a href="/proj21_shop/listPaging${pageMaker.makeSearch(idx)}" class ="go_other">${idx}</a>
+						<a href="${contextPath}/listPaging${pageMaker.makeSearch(idx)}" class ="go_other">${idx}</a>
 				</c:forEach>
 				
 				<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 					<li>
 						<!-- 검색조건 수정. -->
-						<a href="/proj21_shop/listPaging${pageMaker.makeSearch(pageMaker.endPage+1)}" class="arrow next"></a> 
+						<a href="${contextPath}/listPaging${pageMaker.makeSearch(pageMaker.endPage+1)}" class="arrow next"></a> 
 					</li>
 				</c:if>
 			</ul>
