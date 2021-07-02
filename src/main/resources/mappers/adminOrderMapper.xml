@@ -75,25 +75,25 @@
 	<select id="selectAllOnDelivery" resultType="int" parameterType="String">
 		select count(*)
 		from `order`
-		where delivery_status='배송 중'
+		where delivery_status='배송중'
 	</select>
 	<!-- 배송 완료 수 -->
 	<select id="selectAllTotDoneDelivery" resultType="int" parameterType="String">
 		select count(*)
 		from `order`
-		where delivery_status='배송 완료'
+		where delivery_status='배송완료'
 	</select>
 	<!-- 환불 완료 수 -->
 	<select id="selectAllDoneRefund" resultType="int" parameterType="String">
 		select count(*)
 		from `order`
-		where delivery_status='반품 완료'
+		where delivery_status='반품완료'
 	</select>
 	<!-- 환불 대기 수 -->
 	<select id="selectAllWaitingRefund" resultType="int" parameterType="String">
 		select count(*)
 		from `order`
-		where delivery_status='반품 대기중'
+		where delivery_status='반품대기중'
 	</select>
 
 	<select id="selectOrderList" resultMap="orderResult" parameterType="map">
