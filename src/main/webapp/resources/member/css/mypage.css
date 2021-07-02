@@ -1,7 +1,8 @@
 @charset "UTF-8";
 
 h1{
-    font-size: 83px;
+    font-size: 70px; 
+	color: #505050;
 }
 
 #mypage {

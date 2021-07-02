@@ -32,8 +32,8 @@
 							sCont += "<td>" + json[0].deliveryStatus+ "</td>";
 							sCont += "<td>" + json[0].orderDate+ "</td>";
 
-							sCont += "<td><a href='detailreview?memberId=" + memberId +"&proNum=" + json[0].productDTO[i].proNum + "'>후기작성 하러가기</a><br><a href='requestRefund?orderProNum="+json[0].orderProNum+"&orderCode="+json[0].productDTO[i].orderCode[0].orderCode+"&memberId="+memberId+"'>반품 요청</a></td>";
-
+							sCont += "<td><div class = 'btnItems'><a class='button' href='detailreview?memberId=" + memberId +"&proNum=" + json[0].productDTO[i].proNum + "'>후기작성</a>"
+							sCont += "<a class='button' href='requestRefund?orderProNum="+json[0].orderProNum+"&orderCode="+json[0].productDTO[i].orderCode[0].orderCode+"&memberId="+memberId+"''>반품요청</a></div></td>";
 							
 							}
 							
@@ -123,7 +123,7 @@
 				<th>주문수량</th>
 				<th>주문상태</th>
 				<th>주문일</th>
-				<th id="blank">비고</th>
+				<th>비고</th>
 			</tr>
 		</thead>
 		<tbody id="load"></tbody>
