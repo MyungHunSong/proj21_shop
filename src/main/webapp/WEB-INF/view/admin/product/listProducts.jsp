@@ -367,29 +367,29 @@ a {
 									<c:forEach var="page" begin="1" end="${selectedProducts/20+1 }" step="1">
 										<c:choose>
 											<c:when test="${page==pageNum }">
-												<a class="sel-page"
+												<a class="sel-page" style="color: red;  font-size: 40px; padding-left: 8px; "
 													href="${contextPath }/admin/product/listProducts?
-								section=${section}
-								&pageNum=${page}
-								&proName=${keyword}
-								&proCategory=${proCategory}
-								&orderPrice=${orderPrice}
-								&orderSalesRate=${orderSalesRate}
-								&orderHits=${orderHits}
-								&proStatus=${proStatus}">
+													section=${section}
+													&pageNum=${page}
+													&proName=${keyword}
+													&proCategory=${proCategory}
+													&orderPrice=${orderPrice}
+													&orderSalesRate=${orderSalesRate}
+													&orderHits=${orderHits}
+													&proStatus=${proStatus}">
 													${page} </a>
 											</c:when>
 											<c:otherwise>
-												<a class="no-uline"
+												<a class="no-uline" style=" font-size: 20px; padding-left: 5px; "
 													href="${contextPath }/admin/product/listProducts?
-								section=${section}
-								&pageNum=${page}
-								&proName=${keyword}
-								&proCategory=${proCategory}
-								&orderPrice=${orderPrice}
-								&orderSalesRate=${orderSalesRate}
-								&orderHits=${orderHits}
-								&proStatus=${proStatus}">
+													section=${section}
+													&pageNum=${page}
+													&proName=${keyword}
+													&proCategory=${proCategory}
+													&orderPrice=${orderPrice}
+													&orderSalesRate=${orderSalesRate}
+													&orderHits=${orderHits}
+													&proStatus=${proStatus}">
 													${page } </a>
 											</c:otherwise>
 										</c:choose>

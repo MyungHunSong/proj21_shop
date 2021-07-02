@@ -11,6 +11,9 @@ select *
 select *
   from `order`;
 select *
+  from `order`
+where delivery_status='배송중';
+select *
   from pro_img;
 select count(DISTINCT SUBSTR(pro_num,1,3))
   from product

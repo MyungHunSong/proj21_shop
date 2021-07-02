@@ -198,12 +198,15 @@ $(function(){
 			$('#memberPoint').text("사용 가능한 포인트를 초과하였습니다.")
 			$('.sumPSale').text(oldPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"P")
 			$('.sumPOrderprice').text(oldOrderPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"원")
+			console.log(oldOrderPrice)
 		}else if(newOrderPrice < 0){
 				$('.sumPSale').text(sumPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"P")
 				$('.sumPOrderprice').text("0원")
 		}
-		
-		
+		if(consumePoint > oldOrderPrice){
+			$('.sumPSale').text("0P")
+			$('.sumPOrderprice').text(oldOrderPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"원")
+		}
 	})
 	
 	
@@ -474,7 +477,7 @@ $(function(){
             </table>
             <div class="payInfo">
 	            <p>적립금 사용 : 
-	            	<input type="text" class="usePoint" value="0"> P<input type="checkbox" name="checkPoint" class="checkPoint" >
+	            	<input type="number" class="usePoint" value="0"> P<input type="checkbox" name="checkPoint" class="checkPoint" >
 	            	<span>모두사용</span>
 	            	<span style="font-size: 14px; color: #444444;">  사용가능한 포인트 : </span> 
 	            	<span id="memberPoint" style="font-size: 14px; color: #444444;"></span>
