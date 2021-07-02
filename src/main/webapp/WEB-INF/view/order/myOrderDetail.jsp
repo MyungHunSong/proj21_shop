@@ -26,8 +26,8 @@
 							sCont += "<tr>";
 							sCont += "<td>" + json[0].orderProNum + "-" + json[0].productDTO[i].orderCode[0].orderCode + "</td>";
 							sCont += "<td><a href='productDetail?proNum="+ json[0].productDTO[i].proNum + "'><img src='" + contextPath +"/resources/product/images/" + json[0].productDTO[i].proImgfileName + "' width = '80' height='60'></a></td>";
-							sCont += "<td>" + json[0].productDTO[i].proPrice * json[0].productDTO[i].orderCode[0].orderProQuantity * (100-json[0].productDTO[i].proSalesrate) * 0.01 * 0.01 +"P"+ "</td>";
-							sCont += "<td>" + json[0].productDTO[i].proPrice * json[0].productDTO[i].orderCode[0].orderProQuantity * (100-json[0].productDTO[i].proSalesrate) * 0.01  + "</td>";
+							sCont += "<td>" + comma(json[0].productDTO[i].proPrice * json[0].productDTO[i].orderCode[0].orderProQuantity * (100-json[0].productDTO[i].proSalesrate) * 0.01 * 0.01) +"P"+ "</td>";
+							sCont += "<td>" + comma(json[0].productDTO[i].proPrice * json[0].productDTO[i].orderCode[0].orderProQuantity * (100-json[0].productDTO[i].proSalesrate) * 0.01)  + "원</td>";
 							sCont += "<td>" + json[0].productDTO[i].orderCode[0].orderProQuantity+ "</td>";
 							sCont += "<td>" + json[0].deliveryStatus+ "</td>";
 							sCont += "<td>" + json[0].orderDate+ "</td>";
@@ -64,9 +64,13 @@
 							$("#delivery").prepend(sConts);
 
 							sCon = "";
-							var price = 0;
+							var orderPrice = 0;
+							var newPrice = 0;
 							var sum= 0;
+							/*원래 제품 할인되는 금액*/
 							var discount = 0;
+							/*최종 할인 금액 = 원래 제품 할인되는 금액 + 제품구매시 사용한 포인트*/
+							var finalDiscount = 0;
 							sCon += "<tr>";
 							sCon += "<th scope='cols'>상품합계</th>";
 						 	for(i = 0; i < dataLength; i++){
@@ -76,30 +80,37 @@
 							}
 						 	for(i = 0; i < dataLength; i++){
 						 		discount += json[0].productDTO[i].proPrice * json[0].productDTO[i].orderCode[0].orderProQuantity * json[0].productDTO[i].proSalesrate * 0.01;
-
-						 	}
+						 	} 
+						 	finalDiscount = json[0].orderDiscount
 						 	for(i = 0; i < json[0].productDTO.length ; i++){
-						 		price += json[0].productDTO[i].proPrice * json[0].productDTO[i].orderCode[0].orderProQuantity
+						 		orderPrice += json[0].productDTO[i].proPrice * json[0].productDTO[i].orderCode[0].orderProQuantity 
+						 		newPrice += json[0].productDTO[i].proPrice * json[0].productDTO[i].orderCode[0].orderProQuantity * (100-json[0].productDTO[i].proSalesrate) * 0.01
 						 	}	
 						 	
-							sCon += "<td>" + price + "</td>";
+						 	var finalPrice = orderPrice-finalDiscount
+						 	var usePoint = finalDiscount - discount
+							sCon += "<td>" + comma(orderPrice) + "원</td>";
 							sCon += "</tr>";
 							sCon += "<tr>";
 							sCon += "<th scope='cols'>할인합계</th>";
-							sCon += "<td>" + discount + "</td>";
+							sCon += "<td>" + comma(finalDiscount) + "원 <span class = 'discountItem'>사용한 포인트/제품 할인 금액 "+ comma(usePoint) +"P/"+ comma(discount) +"원</span></td>";
 							sCon += "</tr>";
 							sCon += "<tr>";
 							sCon += "<th scope='cols'>최종 결제 금액</th>";
-							sCon += "<td>" + sum + "</td>";
+							sCon += "<td>" + comma(finalPrice) + "원</td>";
 							sCon += "</tr>";
 							sCon += "<tr>";
-							sCon += "<th scope='cols'>예상적립금 </th>";
-							sCon += "<td>"+ sum * 0.01 + "P</td>";
+							sCon += "<th scope='cols'>예상적립금<br><span class = 'pointEx'>기존 할인된 제품 가격의 1%</span> </th>";
+							sCon += "<td>"+ comma(newPrice * 0.01) + "P</td>";
 							sCon += "</tr>";
 							
 							$("#pay").prepend(sCon);
-							
+							function comma(price){
+								return price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+							}
 						})
+						
+						
 	})
 </script>
 <link rel="stylesheet" href="${contextPath }/resources/order/css/myOrderDetail.css" />
