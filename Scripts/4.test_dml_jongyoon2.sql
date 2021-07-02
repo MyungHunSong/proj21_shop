@@ -255,13 +255,30 @@ values
 (6013, 'test01', '딱 찾고있던 크롭 기장의 스웨트 셔츠입니다. 자수 포인트 퀄리티도 좋고 재질도 좋아요.', 'review_test11.jpg', 'review_test12.jpg',5),
 (6033, 'test01', '간절기에 어울리는 재질입니다. 살짝 밑부분 기장이 더 짧았으면 좋았을 듯 해요.', 'review_test13.jpg', 'review_test14.jpg', 4);
 
+-- 후기 적히는 곳 마다 제품에서 후기수 +
+update product 
+	 set re_replyCount = 2
+where pro_num = 6022;
 
+update product 
+	 set re_replyCount = 1
+where pro_num = 6023;
 
-insert   
-   into review (pro_num, re_member, re_content, re_image, re_stars)
-values (4041, 'test01', '따뜻하네요','404Review1.jpg',4),
-		   (4042, 'test02', '색이 예쁘네요','404Review2.jpg',4);
+update product 
+	 set re_replyCount = 1
+where pro_num = 4113;
 
+update product 
+	 set re_replyCount = 1
+where pro_num = 5023;
+
+update product 
+	 set re_replyCount = 1
+where pro_num = 6013;
+
+update product 
+	 set re_replyCount = 1
+where pro_num = 6033;
 
 -- 후기 댓글 
 INSERT INTO proj21_shop.re_reply

@@ -49,7 +49,7 @@ $(function() {
 								sCont += "				</div>"
 								sCont += "			</div>"
 								sCont += "		<div class = 'reviewList'>"
-								sCont += "			<img class = 'prodImg' src='/proj21_shop/resources/product/images/" + json[i].proImagefilename.proImagefilename + "' width = '70'>"
+								sCont += "			<img class = 'prodImg' src='${contextPath}/resources/product/images/" + json[i].proImagefilename.proImagefilename + "' width = '70'>"
 								sCont += "				<div class = 'proAndMemInfo'>"
 								sCont += "					<span>" + json[i].proName.proName+"</span><br>"
 								sCont += "					<span>"+proColor[json[i].proName.proColor] +"/"+proSize[json[i].proName.proSize]+ "</span><br>"
