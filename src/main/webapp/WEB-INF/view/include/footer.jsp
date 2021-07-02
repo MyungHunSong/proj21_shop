@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="contextPath" value="<%=request.getContextPath()%>" /> 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="/proj21_shop/resources/include/css/footer.css">
+<link rel="stylesheet" href="${contextPath }/resources/include/css/footer.css">
 <script>
 	/*위, 아래 이동 jquery문*/
 	$(function(){
@@ -27,7 +29,7 @@
 	<footer>
 		<section class="bottom1">
 		<h3>
-			<img alt="푸터 하단 가로등 이미지" src="/proj21_shop/resources/banner/footerL.jpg" id="footerImg">							
+			<img alt="푸터 하단 가로등 이미지" src="${contextPath }/resources/banner/footerL.jpg" id="footerImg">							
 		</h3>	
 		</section>
 		<section class="bottom2">
@@ -41,7 +43,7 @@
 			<p>예금주: <span>이태훈</span></p>
 		</section>
 		<div id="scrollMenu">
-			<p><img alt="리모컨 버튼 이미지" src="/proj21_shop/resources/banner/updown.jpg" class="updownImg"></p>
+			<p><img alt="리모컨 버튼 이미지" src="${contextPath }/resources/banner/updown.jpg" class="updownImg"></p>
 			
 			<p><img id="go_top" alt="상단으로 이동하기" 
 			src="http://cdn1-aka.makeshop.co.kr/design/smblue111/wib_2020/img/top_go.png"></p>

@@ -261,7 +261,12 @@ $(function(){
 			var page = Math.ceil(json/8)
 			var sCont = "";
 			for(i = 1; i < page+1; i++){
-				sCont += "<a class = 'pBtn'>  "+i+"  </a>"
+				if(pageNum == i){
+					sCont += "<a class = 'pBtn' style='color: red;'>  "+i+"  </a>"
+				}else	{
+					sCont += "<a class = 'pBtn'>  "+i+"  </a>"	
+				}
+				
 			}
 			$('#pageBtn').append(sCont)
 			
@@ -299,6 +304,7 @@ $(function(){
 </script>
 </head>
 <body>
+<a style="color: red;"></a>
 <div class="container">
 <jsp:include page="/WEB-INF/view/include/header.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/view/include/topbody.jsp"></jsp:include>
