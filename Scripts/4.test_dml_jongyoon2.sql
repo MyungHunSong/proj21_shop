@@ -280,6 +280,7 @@ update product
 	 set re_replyCount = 1
 where pro_num = 6033;
 
+
 -- 후기 댓글 
 INSERT INTO proj21_shop.re_reply
 (re_num, re_rep_member,re_rep_content)
