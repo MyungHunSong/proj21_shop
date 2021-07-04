@@ -61,7 +61,6 @@ $(function() {
 				sCont += "<div class = 'productInfo'>"
 				sCont += "<div class = 'productInfoName'>"
 				sCont += "<strong>"+json[0].proName+"</strong>";
-				sCont += "<span class = 'review'>"+json[0].reReplyCount+"개 리뷰 보기</span>";
 				sCont += "</div>"
 				sCont += "<p> 조회수 : "+json[0].proHits+"</p>";
 				sCont += "<p>"+json[0].proContent+"</p>";

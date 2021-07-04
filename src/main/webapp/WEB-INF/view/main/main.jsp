@@ -67,7 +67,7 @@ $(function(){
 				})
 				
 				function openPop(proNum){
-					var popup = window.open("productDetailItem2?proNum="+proNum,'상품상세정보','width=800px, height=700px');
+					var popup = window.open("productDetailItem2?proNum="+proNum,'상품상세정보','width=1070px, height=600px');
 				}
 	});
 	$.get(contextPath + "/api/selectProductsMain/"+proStatus[1],
@@ -106,7 +106,7 @@ $(function(){
 				})
 				
 				function openPop(proNum){
-					var popup = window.open("productDetailItem2?proNum="+proNum,'상품상세정보','width=800px, height=700px');
+					var popup = window.open("productDetailItem2?proNum="+proNum,'상품상세정보','width=1070px, height=600px');
 				}
 	});
 	$.get(contextPath + "/api/selectProductsMain/"+proStatus[2],
@@ -145,7 +145,7 @@ $(function(){
 				})
 				
 				function openPop(proNum){
-					var popup = window.open("productDetailItem2?proNum="+proNum,'상품상세정보','width=800px, height=700px');
+					var popup = window.open("productDetailItem2?proNum="+proNum,'상품상세정보','width=1070px, height=600px');
 				}
 	});
 	$.get(contextPath + "/api/selectProductsMain/"+proStatus[3],
