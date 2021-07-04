@@ -74,7 +74,7 @@ $(function(){
 		})
 		
 		function openPop(proNum){
-			var popup = window.open("productDetailItem2?proNum="+proNum,'상품상세정보','width=800px, height=700px');
+			var popup = window.open("productDetailItem2?proNum="+proNum,'상품상세정보','width=1070px, height=600px');
 		}
 		
 	});
@@ -85,10 +85,6 @@ $(function(){
 		var sortOrder = $(this).data("order")
 		var sortPrice = $(this).data("price")
 		var proCategory = ${proCategory};
-		
-		/*사용한 검색 조건 유지(원래use가 있었다면 다른 곳을 클릭하면 같은 형제들의 use생성된곳을 삭제 후 클릭한곳에 use를 추가)*/
-		$(this).siblings().removeClass('use')
-		$(this).addClass('use')
 		
 		$(".productList *").remove(); 
 		if(sortPrice == undefined){
@@ -129,7 +125,7 @@ $(function(){
 						})
 						
 						function openPop(proNum){
-							var popup = window.open("productDetailItem2?proNum="+proNum,'상품상세정보','width=800px, height=700px');
+							var popup = window.open("productDetailItem2?proNum="+proNum,'상품상세정보','width=1070px, height=600px');
 						}
 					})
 		}else{
@@ -169,7 +165,7 @@ $(function(){
 							})
 							
 							function openPop(proNum){
-								var popup = window.open("productDetailItem2?proNum="+proNum,'상품상세정보','width=800px, height=700px');
+								var popup = window.open("productDetailItem2?proNum="+proNum,'상품상세정보','width=1070px, height=600px');
 							}
 						}else{
 							sCont +="<div class = 'searchBlank'>검색 결과<br> 없습니다.</div>"
@@ -270,19 +266,8 @@ $(function(){
 			}
 			$('#pageBtn').append(sCont)
 			
-			/*filter의 조건들을 클릭하면 해당하는 조건들의 클래스에 use 가 생기고 그 값들을 받아온후 사용*/
 			$('.pBtn').on('click',function(){
-				var sortOrder = $(this).parent().prev().prev().prev().children().children().next().children('.use').data('order');
-				var sortPrice = $(this).parent().prev().prev().prev().children().next().children().next().children('.use').data('price');
-				
-				var url = "";
-				if(sortOrder == undefined){
-					sortOrder = "${orderKind}";
-				}
-				if(sortPrice == undefined){
-					sortPrice = ${priceRange}
-				}
-				url = contextPath+"/productlist?proCategory=0&section=1&pageNum="+$(this).text().trim()+"&priceRange="+sortPrice+"&orderKind="+sortOrder+"&search="+search	
+				url = contextPath+"/productlist?proCategory=0&section=1&pageNum="+$(this).text().trim()+"&priceRange= ${priceRange}&orderKind=${orderKind}&search="+search	
 				
 				$(this).attr("href",url)
 				console.log(url)
