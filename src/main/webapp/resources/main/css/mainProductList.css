@@ -1,9 +1,9 @@
 @charset "UTF-8";
 
 .productList{
-	display: flex;
-	flex-wrap: wrap;
-    align-items: center;
+	margin: 0 auto;
+    display: block;
+    width: 1280px;
 }
 
 .productList a{
@@ -15,6 +15,7 @@
 	border-radius: 10px;
 	margin-top: 100px;
 	background-color: #F2F2F2;
+	display: inline-block;
 }
 
 .item:hover{

@@ -262,7 +262,7 @@ $(function(){
 			var sCont = "";
 			for(i = 1; i < page+1; i++){
 				if(pageNum == i){
-					sCont += "<a class = 'pBtn' style='color: red;'>  "+i+"  </a>"
+					sCont += "<a class = 'pBtn' style='color: red; font-size : 20px;'>  "+i+"  </a>"
 				}else	{
 					sCont += "<a class = 'pBtn'>  "+i+"  </a>"	
 				}
@@ -304,7 +304,6 @@ $(function(){
 </script>
 </head>
 <body>
-<a style="color: red;"></a>
 <div class="container">
 <jsp:include page="/WEB-INF/view/include/header.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/view/include/topbody.jsp"></jsp:include>
