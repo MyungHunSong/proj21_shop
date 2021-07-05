@@ -149,20 +149,21 @@
 	<select id="selectedTotal" parameterType="map" resultType="int">
 		select count(distinct order_pro_num)
 		  from `order`
-		 <![CDATA[where order_member_id > 0 ]]>
-		<choose>
-			<when test="orderProNum != null">
-				and order_pro_num = #{orderProNum}
-			</when>
-			<otherwise>
-			</otherwise>
-		</choose>
-		<if test="deliveryStatus !=null and total !=null and !deliveryStatus.equals('all') and !deliveryStatus.equals('')">
-			and delivery_status=#{deliveryStatus}
-		</if>
-		<if test="orderMemberName !=null">
-			and order_member_name like CONCAT('%',#{keyword},'%')
-		</if>
+		<where>
+			<choose>
+				<when test="orderProNum != null and orderProNum.equals('')">
+					and order_pro_num = #{orderProNum}
+				</when>
+				<otherwise>
+				</otherwise>
+			</choose>
+			<if test="deliveryStatus !=null and !deliveryStatus.equals('')">
+				and delivery_status=#{deliveryStatus}
+			</if>
+			<if test="orderMemberName !=null and orderMemberName.equals('')">
+				and order_member_name like CONCAT('%',#{orderMemberName},'%')
+			</if>
+		</where>
 	</select>
 
 	<delete id="deleteOrder" parameterType="map">

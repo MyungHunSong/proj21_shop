@@ -6,10 +6,13 @@
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <c:set var="orderList" value="${viewMap.orderList }" />
+<c:set var="section" value="${viewMap.section }" />
+<c:set var="pageNum" value="${viewMap.pageNum }" />
 <c:set var="totOrders" value="${viewMap.totOrders }" />
 <c:set var="totWaitingDelivery" value="${viewMap.totWaitingDelivery }" />
 <c:set var="totOnDelivery" value="${viewMap.totOnDelivery }" />
 <c:set var="totDoneDelivery" value="${viewMap.totDoneDelivery }" />
+<c:set var="selectedTotal" value="${viewMap.selectedTotal }" />
 <c:set var="totWaitingRefundDelivery" value="${viewMap.totWaitingRefundDelivery }" />
 <c:set var="totDoneRefundDelivery" value="${viewMap.totDoneRefundDelivery }" />
 
@@ -281,7 +284,6 @@ a {
 								</c:when>
 							</c:choose>
 						</table>
-
 						<c:if test="${selectedTotal !=null}">
 							<c:choose>
 								<c:when test="${selectedTotal >100 }">
@@ -296,8 +298,8 @@ a {
 											<!--페이지수가 10일때 다음으로 next나오게 하기  -->
 											<a href="${contextPath }/admin/order/listOrders?section=${section+1}&pageNum=${section*20+1}">&nbsp; next</a>
 										</c:if>
-
 									</c:forEach>
+									
 								</c:when>
 								<c:when test="${selectedTotal==100 }">
 									<c:forEach var="page" begin="1" end="10" step="1">
@@ -309,7 +311,7 @@ a {
 									<c:forEach var="page" begin="1" end="${selectedTotal/10+1 }" step="1">
 										<c:choose>
 											<c:when test="${page==pageNum }">
-												<a class="sel-page"
+												<a class="sel-page" style="color: red;  font-size: 40px; padding-left: 8px; "
 													href="${contextPath }/admin/order/listOrders?
 															section=${section}
 															&pageNum=${page}
@@ -320,7 +322,7 @@ a {
 												</a>
 											</c:when>
 											<c:otherwise>
-												<a class="no-uline"
+												<a class="no-uline"  style=" font-size: 20px; padding-left: 5px; "
 													href="${contextPath }/admin/order/listOrders?
 																			section=${section}
 																			&pageNum=${page}
