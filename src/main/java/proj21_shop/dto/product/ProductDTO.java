@@ -3,6 +3,10 @@ package proj21_shop.dto.product;
 import java.sql.Date;
 import java.util.List;
 
+import javax.validation.constraints.NotBlank;
+
+import com.sun.istack.internal.NotNull;
+
 import proj21_shop.dto.order.OrderDTO;
 
 public class ProductDTO {
@@ -10,7 +14,9 @@ public class ProductDTO {
 	private int proNum;
 	private int proCategory;
 	private String proName;
+	@NotNull
 	private int proPrice;
+	@NotBlank(message = "빈칸이 있으면 안됩니다.")
 	private String proContent; // 제품 설명
 	private List<OrderDTO> orderCode;//제품 각각의 주문번호
 

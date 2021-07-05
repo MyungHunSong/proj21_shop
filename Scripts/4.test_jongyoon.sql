@@ -2,6 +2,11 @@
 show tables;
 select *
   from address;
+select count(cart_num)
+  from cart
+ WHERE cart_member_Id = 'test01';
+select *
+  from cart;
 select *
   from admin;
 select *

@@ -45,8 +45,6 @@ public class AdminOrderController {
 	@RequestMapping("listOrders")
 	public ModelAndView listOrders (HttpServletRequest request, HttpServletResponse reponse,
 							@RequestParam(value="orderProNum" , required=false) String orderProNum,
-							@RequestParam(value="section", required=false) String _section,
-							@RequestParam(value="pageNum", required=false) String _pageNum,
 							@RequestParam(value="total", required=false) String total,
 							@RequestParam(value="orderMemberName", required=false) String orderMemberName,
 							@RequestParam(value="deliveryStatus", required=false) String deliveryStatus,
@@ -69,7 +67,8 @@ public class AdminOrderController {
 		System.out.println("누구냐 ? "+session.getAttribute("authInfo"));
 		ModelAndView mav=new ModelAndView();
 		Map<String,Object> pagingMap=new HashMap();
-		
+		String _section = (String) request.getParameter("section");
+		String _pageNum = (String) request.getParameter("pageNum");
 		int section=Integer.parseInt((_section==null)? "1" : _section);
 		int pageNum=Integer.parseInt((_pageNum==null)? "1" : _pageNum);
 		
@@ -95,10 +94,10 @@ public class AdminOrderController {
 			adminOrderService.changeDelivery(changeMap);
 		}
 		
-		pagingMap.put("orderProNum", orderProNum);
 		pagingMap.put("section", section);
 		pagingMap.put("pageNum", pageNum);
 		pagingMap.put("total", total);
+		pagingMap.put("orderProNum", orderProNum);
 		pagingMap.put("orderMemberName", orderMemberName);
 		pagingMap.put("deliveryStatus", deliveryStatus);
 		pagingMap.put("orderPrice", orderPrice);
@@ -124,13 +123,9 @@ public class AdminOrderController {
 		viewMap.put("orderPrice", orderPrice);
 		viewMap.put("orderValue", orderValue);
 	
-		mav.setViewName("admin/order/listOrders");
 		mav.addObject("viewMap",viewMap);
+		mav.setViewName("admin/order/listOrders");
+		
 		return mav;
-		
-		
 	}
-	
-
-
 }
