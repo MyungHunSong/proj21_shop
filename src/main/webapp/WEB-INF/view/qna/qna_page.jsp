@@ -251,7 +251,7 @@ $(function(){
 					success:function(){
 
 						// 팝업창 열기
-						var popup = window.open('http://localhost:8080${contextPath}/qnaModify?idx=' + idx, '수정팝업',
+						var popup = window.open('http://localhost:8080${contextPath}/qnaUpdate?idx=' + idx, '수정팝업',
 								'width=520px, height = 520px')	
 						location.reload();		
 
