@@ -123,6 +123,7 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 			CartDTO memId = new CartDTO();
 			memId.setMemberId(mem);
 			cartList = cartMapper.selectCartByMemberId(memId);
+			onCart = cartMapper.selectCountCart(MemberId);
 		}
 
 		returnMap.put("member", member);

@@ -37,7 +37,7 @@
 <script src="${contextPath}/resources/admin/dist/js/pages/chart/chart-page-init.js"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>새 상품 등록</title>
 <style>
 table {
 	min-width: 100%;
@@ -163,7 +163,9 @@ $(function(){
 								</tr>
 								<tr>
 									<td>상품 이름</td>
-									<td class="b"><input type="text" name="proName" size="39" required="required"/></td>
+									<td class="b">
+									<input type="text" name="proName" size="39" />
+									</td>
 								</tr>
 								<tr>
 									<td>상품 구분</td>
@@ -177,11 +179,11 @@ $(function(){
 								</tr>
 								<tr>
 									<td>상품 가격</td>
-									<td class="b"><input type="text" name="proPrice" id="proPrice" size="39" required="required"/></td>
+									<td class="b"><input type="text" name="proPrice" id="proPrice" size="39"/></td>
 								</tr>
 								<tr>
 									<td>상품 할인율</td>
-									<td class="b"><input type="text" name="proSalesrate" id="proSalesrate" size="39" required="required"/> %</td>
+									<td class="b"><input type="text" name="proSalesrate" id="proSalesrate" size="39"/> %</td>
 								</tr>
 
 								<tr>
@@ -223,18 +225,18 @@ $(function(){
 								<tr>
 									<td>판매 재고</td>
 									<td class="b">
-										<input type="text" name="proQuantity" size="39" required="required"/> 개
+										<input type="text" name="proQuantity" size="39" /> 개
 									</td>
 								</tr>
 
 								<tr>
 									<td>상품 설명</td>
-									<td class="b"><textarea rows="8" cols="39" name="proContent" required="required"></textarea></td>
+									<td class="b"><textarea rows="8" cols="39" name="proContent" ></textarea></td>
 								</tr>
 								<tr>
 									<td>메인 이미지 추가</td>
 									<td class="b">
-									<input type="file" value="메인 이미지 등록" id="main" name="1" onchange="readURL(this,this.id);" required="required"/>
+									<input type="file" value="메인 이미지 등록" id="main" name="1" onchange="readURL(this,this.id);" />
 									<input type="button" value="디테일 이미지 추가" onClick="fn_addFile()" />
 									</td>
 								</tr>
@@ -250,7 +252,7 @@ $(function(){
 								</tr>
 								<tr>
 									<td>상품 코드</td>
-									<td class="b"><input type="text" id="proNum" name="proNum" size="39" readonly="readonly" placeholder="클릭하여 제품 번호 생성" required="required"/></td>
+									<td class="b"><input type="text" id="proNum" name="proNum" size="39" readonly="readonly" placeholder="클릭하여 제품 번호 생성" /></td>
 								</tr>
 								<tr>
 									<td colspan="4">

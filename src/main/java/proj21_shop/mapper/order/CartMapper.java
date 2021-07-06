@@ -26,4 +26,6 @@ public interface CartMapper {
 	
 	/*장바구니 수량 수정*/
 	int updateCart(CartDTO cart);
+	
+	String selectCountCart(String MemberId);
 }

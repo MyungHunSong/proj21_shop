@@ -53,10 +53,9 @@
 
 .qna_table{
 	margin:auto;
-	width: 1000px;
-	height: 900px;
+	width: 1000px;	
 	margin-bottom: 100px;
-	border-spacing: 1px;
+	border-spacing: 0px;
 }
 
 .div_pagenation{

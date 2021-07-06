@@ -72,16 +72,15 @@
 					sCont += "<td>" + json[i].qIndex + "</td>";
 					sCont += "<td>" + json[i].qFile + "</div></td>";
 				    sCont += "<td><input class = 'bringContent' type='button' value=" + json[i].qTitle + "></td>";
-				    /* console.log(json[i].qTitle);
-				    console.log(json[i].qMember);
-				    console.log(json[i].qIndex); */
+
+				   	//sCont += "<input type='hidden' value=" +json[i].qIndex +  ">"
 					sCont += "<td>" + json[i].qMember + "</div></td>";
 					sCont += "<td>" + json[i].qDate + "</td>";
-					//QNA 수정하는 페이지로 이동
-					sCont += "<td> <a href = 'qnaModify?idx=" + json[i].qIndex +"' class = 'qnaChange'>Q&A 수정 </a></td>";
+					sCont += "<td> <a href='#' style='cursor:pointer;' class='updateMyQna'>Q&A 수정 </a><input type='hidden' value=" +json[i].qIndex +  "></td>";
+
 					sCont += "</tr>";
 					
-					// qnaModify?index=${idx}
+					
 				}
 				$("#loadtable").append(sCont);
 			}
@@ -91,7 +90,26 @@
 				var qMember = $(this).parent().next().text()
 				var qIndex = $(this).parent().prev().prev().text()
 				upModel(qMember,qIndex)
+
 			})
+			// QNA 수정페이지 팝업창.
+			$('.updateMyQna').on('click', function(){
+				console.log($(this))
+				var idx = $(this).next().val();
+				console.log(idx)
+				$.ajax({
+					url: contextPath + "/api/qnainsert/"+ idx,
+					type:"GET",
+					contentType:"application/json; charset=utf-8",
+					datatype:"json",
+					data:JSON.stringify(),
+					success:function(){
+						// 팝업창 열기
+						var popup = window.open('http://localhost:8080${contextPath}/qnaUpdate?idx=' + idx, '수정팝업',
+								'width=520px, height = 520px')		
+					}	
+				});		 		
+			});	
 		
 		})
 		
