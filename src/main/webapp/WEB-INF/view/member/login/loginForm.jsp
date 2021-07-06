@@ -19,6 +19,7 @@
 <jsp:include page="/WEB-INF/view/include/topbody.jsp"></jsp:include>
 	<h1>회원 로그인</h1>
 	<section id="loginFormArea">
+	<!-- 요청 파라미터의 값을 로그인 커맨드 객체로 넘겨주기  -->
 		<form:form modelAttribute="loginCommand">
 			<div>
 				<table>
@@ -31,6 +32,7 @@
 						<td><input type="password" name="password" id="password" value="123"/></td>
 				</table>
 				<input type="submit" value="로그인" class="button" />
+				<!-- 회원가입 페이지로 이동 -->
 				<input type="button" value="회원가입" class="button" onClick="location.href='register'" />
 			</div>
 		</form:form>

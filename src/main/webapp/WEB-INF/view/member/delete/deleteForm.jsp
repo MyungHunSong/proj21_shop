@@ -17,6 +17,7 @@
 	<jsp:include page="/WEB-INF/view/include/header.jsp"></jsp:include>
 	<jsp:include page="/WEB-INF/view/include/topbody.jsp"></jsp:include>
 	<h3>회원탈퇴</h3>
+	<!-- 요청 파라미터의 값을 삭제 커맨드 객체로 넘겨주기  -->
 	<section id="deleteFormArea">
 		<form:form modelAttribute="DeleteRequest">
 			<form:errors />
