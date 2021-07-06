@@ -78,7 +78,7 @@ public class QnaRestInsertPageController {
 		
 	
 	}
-	
+	// 내글 수정 restful
 	@PatchMapping("/qnainsert/{qIndex}")
 	public ResponseEntity<Object> ModfiyQnaForMember(@RequestBody QnaDTO qDto){
 		
