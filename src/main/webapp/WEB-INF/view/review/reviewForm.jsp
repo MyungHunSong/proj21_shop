@@ -115,29 +115,66 @@
 						});
 			
 			
-			console.log(json);
+			console.log(json.length);
 			console.log(memberId);
+			
+			/* 사이즈 화면에 띄우기 */
 			for(i = 0; i < json.length; i++){
 				var proSize = ["none","XS","S","M","L","XL"];
 			}
-			
+			/* 별점 세팅하기 */
 			for(i = 1; i < json[0].reviewStar+1; i++){
 				$('.s'+i).addClass('active');
 				$('.print').html('<img src="images/star-lv' +i + '.png">' + notice[i-1]);
 				
 			}
-		
+			
+			/* 컬러 화면에 띄우기 */
+	 		var proColor = "";
+			switch(json[0].proName.proColor){
+				case 1:	proColor = "white";
+						break;
+				case 2:	proColor = "ivory";
+						break;
+				case 3:	proColor = "gray";
+						break;
+				case 4:	proColor = "pink";
+						break;
+				case 5:	proColor = "yellow";
+						break;
+				case 6:	proColor = "mint";
+						break;
+				case 7:	proColor = "green";
+						break;
+				case 8:	proColor = "purple";
+						break;
+				case 9:	proColor = "navy";
+						break;
+				case 11: proColor = "black";
+						break;
+				case 12: proColor = "brown";
+						break;
+				case 13: proColor = "orange";
+						break;
+				case 14: proColor = "blue";
+						break;
+				case 15: proColor = "red";
+						break;
+				case 16: proColor = "beige";
+						break;
+			}
 			
 			var sCont = "";
 				sCont += "<img src='/proj21_shop/resources/product/images/" + json[0].proName.proImgfileName + "' width = '70' height= '70'>" 
 				sCont += "<ul>"
 				sCont += "<li>" + json[0].proName.proName + "</li>"
-				sCont += "<li>" + json[0].proName.proColor +"</li>" 
+				sCont += "<li>" + proColor +"</li>" 
 				sCont += "<li>" + proSize[json[0].proName.proSize] +"</li>" 
 				sCont += "</ul>"
 				
 				$("#load").append(sCont);
 			
+			/* 원래 작성된 리뷰이면 화면에 기존에 작성된 후기내용 세팅 */
 			var sConts ="";
 				if(json[0].reviewContent == undefined){
 					sConts += "<textarea id='reviewContent' cols='45' rows='10' placeholder='상품에 대한 평가를 20자 이상 작성해 주세요'></textarea><br>";	
@@ -152,7 +189,7 @@
 
 				sConts += "</div><br>";
 				
-				
+				/* 이미 작성된 리뷰라면 수정 버튼 나오게 하고 새로 작성되는 리뷰라면 등록 버튼 나오게 하기 */
 				if(json[0].reviewContent == undefined){
 				sConts += "<button id='insert'>등록</button>";
 				sConts += "<input type='button' value='취소' onclick='history.go(-1)' id='insert'>";

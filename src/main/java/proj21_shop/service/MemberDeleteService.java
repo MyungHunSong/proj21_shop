@@ -13,14 +13,14 @@ import proj21_shop.mapper.member.MemberMapper;
 public class MemberDeleteService {
 	@Autowired
 	private MemberMapper mapper;
+	
+	public MemberDTO select(MemberDTO member, DeleteRequest req) {
+		MemberDTO newMember = mapper.selectByIdPwd(member);
+		member.setMemberPwd(req.getPassword());
+		return newMember;
+	}
 
-	public void delete(String id, DeleteRequest req) {
-		MemberDTO member = mapper.selectById(id);
-		if (member.getMemberPwd().equals(req.getPassword()) && req.getPassConfirm().equals(req.getPassword())) {
-			member = new MemberDTO(id, 0);
-			mapper.deleteMember(member);
-		} else {
-			throw new PasswordNotEqualException();
-		}
+	public void delete(MemberDTO newMember) {
+		mapper.deleteMember(newMember);
 	}
 }

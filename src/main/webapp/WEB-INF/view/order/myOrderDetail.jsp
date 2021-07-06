@@ -31,8 +31,9 @@
 							sCont += "<td>" + json[0].productDTO[i].orderCode[0].orderProQuantity+ "</td>";
 							sCont += "<td>" + json[0].deliveryStatus+ "</td>";
 							sCont += "<td>" + json[0].orderDate+ "</td>";
-
+							/* 후기 작성하는 페이지로 이동 */
 							sCont += "<td><div class = 'btnItems'><a class='button' href='detailreview?memberId=" + memberId +"&proNum=" + json[0].productDTO[i].proNum + "'>후기작성</a>"
+							/* 반품 요청하는 버튼 */
 							sCont += "<a class='button' href='requestRefund?orderProNum="+json[0].orderProNum+"&orderCode="+json[0].productDTO[i].orderCode[0].orderCode+"&memberId="+memberId+"''>반품요청</a></div></td>";
 							
 							}

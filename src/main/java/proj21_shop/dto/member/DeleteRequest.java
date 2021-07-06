@@ -20,4 +20,11 @@ public class DeleteRequest {
 		this.passConfirm = passConfirm;
 	}
 
+	@Override
+	public String toString() {
+		return String.format("DeleteRequest [password=%s, passConfirm=%s]", password, passConfirm);
+	}
+	
+	
+
 }

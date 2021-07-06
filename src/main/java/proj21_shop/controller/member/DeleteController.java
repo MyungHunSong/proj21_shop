@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import proj21_shop.dto.member.AuthInfo;
 import proj21_shop.dto.member.DeleteRequest;
+import proj21_shop.dto.member.MemberDTO;
 import proj21_shop.exception.PasswordNotEqualException;
+import proj21_shop.exception.WrongIdPasswordException;
 import proj21_shop.service.MemberDeleteService;
 
 @Controller
@@ -38,7 +40,22 @@ public class DeleteController {
 		}
 		try {
 			AuthInfo authInfo = (AuthInfo) session.getAttribute("authInfo");
-			memberDeleteService.delete(authInfo.getId(), req);
+			MemberDTO member = new MemberDTO();
+			member.setMemberId(authInfo.getId());
+			member.setMemberPwd(req.getPassword());
+			MemberDTO newmember = memberDeleteService.select(member, req);
+			
+			if(newmember==null) {
+				throw new PasswordNotEqualException();
+			}
+			
+			if(!req.getPassConfirm().equals(req.getPassword())) {
+				throw new PasswordNotEqualException();
+			}
+			
+			memberDeleteService.delete(newmember);
+			
+			
 		} catch (PasswordNotEqualException e) {
 			response.setContentType("text/html; charset=UTF-8");
         	PrintWriter out = response.getWriter();

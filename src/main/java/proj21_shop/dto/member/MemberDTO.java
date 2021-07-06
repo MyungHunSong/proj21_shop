@@ -36,12 +36,14 @@ public class MemberDTO {
 	public MemberDTO() {
 	}
 
-	public MemberDTO(String memberId, int memberExit) {
+
+	public MemberDTO(String memberId, String memberPwd) {
 		super();
 		this.memberId = memberId;
-		this.memberExit = memberExit;
+		this.memberPwd = memberPwd;
 	}
- 
+
+
 	public MemberDTO(String memberId, String memberPh, String memberAddr1, String memberAddr2, String memberAddr3, String memberEmail) {
 		super();
 		this.memberId = memberId;

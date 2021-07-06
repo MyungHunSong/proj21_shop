@@ -83,6 +83,7 @@
 	<jsp:include page="/WEB-INF/view/include/header.jsp"></jsp:include>
 	<jsp:include page="/WEB-INF/view/include/topbody.jsp"></jsp:include>
 	<h2>회원 정보 수정</h2>
+	<!-- 요청 파라미터의 값을 수정 커맨드 객체로 넘겨주기  -->
 	<section id="modifyFormArea">
 		<form:form modelAttribute="ModifyRequest">
 			<table class="type02">
@@ -112,6 +113,7 @@
 				<tr>
 					<th scope="row"><label for="address">주소</label></th>
 					<td>
+						<!-- 다음 주소 api 사용 -->
 						<form:input type="text" id="sample4_postcode" placeholder="우편번호" path="memberAddr1" value="${memberAddr1}" />
 					 	<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" id="findButton"> <br>
 						<form:input type="text" id="sample4_roadAddress" path="memberAddr2" placeholder="도로명주소" value="${memberAddr2}" />

@@ -11,6 +11,8 @@
 <script type="text/javascript">
 	var contextPath = "${contextPath}";
 	var memberId = "${memberId}";
+	
+	/* QNA 내용 보는 팝업 띄우기 */
 	function upModel(qMember, qIndex) {
 		console.log(qMember)
 		console.log(qIndex)
@@ -35,7 +37,9 @@
 				var sCont = "";
 				for (i = 0; i < dataLength; i++) {
 					sCont += "<tr>";
+					//제품 이름 클릭하면 제품 상세 페이지로 이동 
 					sCont += "<td><a href='productDetail?proNum="+ json[i].proNum + "'>" + json[i].proName.proName + "</a></td>";
+					//후기 이미지가 없을 때 noImage 띄우기
 					if(json[i].reviewImagefilename2 == null || json[i].reviewImagefilename2 == ""){
 						json[i].reviewImagefilename2 = 'noimage.jpg'
 					}
@@ -46,6 +50,7 @@
 					sCont += "<td>" + json[i].reviewContent + "</td>";
 					sCont += "<td>" + json[i].reviewStar + "</td>";
 					sCont += "<td>" + json[i].reviewDate + "</td>";
+					//후기 수정 하는 페이지로 이동
 					sCont += "<td><a href='detailreview?memberId=" + memberId +"&proNum=" + json[i].proNum + "'>후기 수정</a></td>";
 					sCont += "<tr>";
 				}
@@ -67,10 +72,12 @@
 					sCont += "<td>" + json[i].qIndex + "</td>";
 					sCont += "<td>" + json[i].qFile + "</div></td>";
 				    sCont += "<td><input class = 'bringContent' type='button' value=" + json[i].qTitle + "></td>";
+
 				   	//sCont += "<input type='hidden' value=" +json[i].qIndex +  ">"
 					sCont += "<td>" + json[i].qMember + "</div></td>";
 					sCont += "<td>" + json[i].qDate + "</td>";
 					sCont += "<td> <a href='#' style='cursor:pointer;' class='updateMyQna'>Q&A 수정 </a><input type='hidden' value=" +json[i].qIndex +  "></td>";
+
 					sCont += "</tr>";
 					
 					
@@ -78,6 +85,7 @@
 				$("#loadtable").append(sCont);
 			}
 			
+			/* QNA 버튼 눌렀을 때 팝업 띄우기 위해 넘겨줘야 할 값 정의하고 함수로 팝업 띄우기  */
 			$('.bringContent').on('click',function(){
 				var qMember = $(this).parent().next().text()
 				var qIndex = $(this).parent().prev().prev().text()
