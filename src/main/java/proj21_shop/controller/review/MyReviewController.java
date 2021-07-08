@@ -29,18 +29,21 @@ public class MyReviewController {
 
 	@Autowired
 	private MyReviewService service;
-
+	
 	// @PathVariable => 경로를 변수화 해주는 어노테이션.
+	/* 내가 쓴 후기 목록 */
 	@GetMapping("/myreview/{memberId}")
 	public ResponseEntity<Object> myreview(@PathVariable String memberId) {
 		return ResponseEntity.ok(service.selectReviewByMember(memberId));
 	}
 
+	/* 내가 쓴 qna 목록 */
 	@GetMapping("/myqna/{memberId}")
 	public ResponseEntity<Object> myqna(@PathVariable String memberId) {
 		return ResponseEntity.ok(service.selectQnaByMember(memberId));
 	}
 	
+	/* 내가 쓴 qna 내용 */
 	@GetMapping("/myqnacontent/{qMember}/{qIndex}")
 	public ResponseEntity<Object> myqnacontent(@PathVariable String qMember, @PathVariable int qIndex) {
 		QnaDTO qnaDTO = new QnaDTO();
@@ -49,6 +52,7 @@ public class MyReviewController {
 		return ResponseEntity.ok(service.selectQnaContentByMember(qnaDTO));
 	}
 
+	/* 내가 쓴 후기 내용 */
 	@GetMapping("/detailreview/{memberId}/{proNum}")
 	public ResponseEntity<Object> mydetailreview(@PathVariable String memberId, @PathVariable int proNum) {
 		ReviewDTO reviewDTO = new ReviewDTO();
@@ -65,6 +69,7 @@ public class MyReviewController {
 
 	}
 
+	/* 후기 입력 */
 	@PostMapping("/myreview/")
 	public ResponseEntity<Object> newReview(@RequestBody ReviewDTO review){
 		/* System.out.println("newReview>"+review); */
@@ -78,6 +83,7 @@ public class MyReviewController {
 		}
 	}
 	
+	/* 후기 수정 */
 	@PatchMapping("/myreview/{reviewNum}")
 	public ResponseEntity<Object> updateReview(@PathVariable int reviewNum, @RequestBody ReviewDTO review){
 		System.out.println("updateMember>" + review);

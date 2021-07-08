@@ -27,12 +27,14 @@ public class RegisterController {
 	@Autowired
 	private MemberRegisterService memberRegisterService;
 	
+	/* 회원 가입 페이지로 이동 */
 	@GetMapping
 	public String register(Model model) {
 		model.addAttribute("RegisterRequest", new RegisterRequest());
 		return "member/register/registerForm";
 	}
 	
+	/* 회원 가입 */
 	@PostMapping
 	public String Register(@ModelAttribute("RegisterRequest") RegisterRequest regReq, Errors errors, Model model, HttpServletResponse response) throws IOException {
 		if(errors.hasErrors())
