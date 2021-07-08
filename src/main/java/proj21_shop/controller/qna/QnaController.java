@@ -45,6 +45,7 @@ public class QnaController {
 	    
 	    // model로 jsp 페이지에서 쓸것들을 지정해준거다.
 		model.addAttribute("page",page);
+		// 검색문 MyBatis 에서 받아오기.
 		model.addAttribute("perPageNum", searchCriteria.getPerPageNum());
 		model.addAttribute("searchType", searchCriteria.getSearchType());
 		model.addAttribute("keyword", searchCriteria.getKeyword());
