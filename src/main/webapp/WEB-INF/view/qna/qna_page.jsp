@@ -209,6 +209,7 @@ $(function(){
 					sCont += "</tr>";
 					
 					
+					
 				}
 				$("#load").append(sCont);
 			}
@@ -317,6 +318,7 @@ $(function(){
 					var group = $(this).next().next().val();
 					
 					var cnt = parseInt($(this).next().next().next().next().next().next().next().text())
+					console.log(cnt)					
 					$(this).next().next().next().next().next().next().next().text(cnt + 1)
 					
 					if($(this).parent().next().hasClass('active')){

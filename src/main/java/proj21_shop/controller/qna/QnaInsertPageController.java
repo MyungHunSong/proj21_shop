@@ -6,13 +6,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class QnaInsertPageController {
 
-	
+	 // 글작성하기 페이지
 	  @GetMapping("/qnaInsert")
 	  public String insertPage() 
 	  { return
 	  "/qnainsert/qnaInsertpage"; }
 	 
-	  // 공지사항 목록에서 -> 수정 팝업
+	 // 공지사항 목록에서 -> 수정 팝업
 	@GetMapping("/qnaModify")
 	public String modifyPage() {
 		return "/qnainsert/qnaModifyPage";
