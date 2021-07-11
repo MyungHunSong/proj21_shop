@@ -39,19 +39,19 @@ public class DeleteController {
 			return "/member/delete/deleteForm";
 		}
 		try {
-			AuthInfo authInfo = (AuthInfo) session.getAttribute("authInfo");
+			AuthInfo authInfo = (AuthInfo) session.getAttribute("authInfo");	//세션에 있는 회원정보의 아이디로 회원정보 검색
 			MemberDTO member = new MemberDTO();
 			member.setMemberId(authInfo.getId());
-			member.setMemberPwd(req.getPassword());
+			member.setMemberPwd(req.getPassword());		//폼에 입력한 비밀번호와 회원정보의 비밀번호 비교
 			MemberDTO newmember = memberDeleteService.select(member, req);
 			
 			if(newmember==null) {
 				throw new PasswordNotEqualException();
-			}
+			}	//폼에 입력한 비밀번호와 회원정보의 비밀번호가 다를 시에 예외 던져주기
 			
 			if(!req.getPassConfirm().equals(req.getPassword())) {
 				throw new PasswordNotEqualException();
-			}
+			}	//폼에 입력한 비밀번호와 비밀번호 확인이 다를시 예외 던져주기
 			
 			memberDeleteService.delete(newmember);
 			
@@ -63,11 +63,11 @@ public class DeleteController {
         	out.println("<script>$(function() {$('.disMatch').text('비밀번호 불일치');})</script>");
         	out.flush();
 			return "/member/delete/deleteForm";
-		}
+		}	//폼에 '비밀번호 불일치' 띄워주기
 		response.setContentType("text/html; charset=UTF-8");
     	PrintWriter out = response.getWriter();
     	out.println("<script>alert('그동안 이용해주셔서 감사합니다.');  window.location.href='logout';</script>");
     	out.flush();
-		return "/main/main";
+		return "/main/main";	//회원 탈퇴 완료 한 후 메세지 띄워주기
 	}
 }
