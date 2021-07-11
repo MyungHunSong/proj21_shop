@@ -1,6 +1,6 @@
 package proj21_shop.dto.qna;
-// 검색기준 dto
 
+// 페이징에 필요한 dto (갯수) perPageNum(한페이지에 최대로 보여질 게시물 수)
 public class Criteria {
 		private int page;
 	    private int perPageNum;

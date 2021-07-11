@@ -40,7 +40,7 @@ public class QnaRestInsertPageController {
 		
 		return ResponseEntity.ok(qInsertService.selectWhereIndexForModify(idx));
 	}
-	
+	// 회원일시 내 qna 작성하기.
 	@PostMapping("/qnainsert/")
 	public ResponseEntity<Object> InsertQnaForMember(@RequestBody QnaDTO qDto){
 		try {
@@ -78,7 +78,7 @@ public class QnaRestInsertPageController {
 		
 	
 	}
-	
+	// 내글 수정 restful
 	@PatchMapping("/qnainsert/{qIndex}")
 	public ResponseEntity<Object> ModfiyQnaForMember(@RequestBody QnaDTO qDto){
 		
@@ -90,10 +90,11 @@ public class QnaRestInsertPageController {
 		return ResponseEntity.ok(qInsertService.deleteQnaForMember(qDto));
 		
 	}
-	// Myorder Page 에서 끌어와서 쓰는것.
+	// Myorder Page 에서 끌어와서 쓰는것.	
 	@Autowired
 	private MyOrderService myOrderService;
 	
+	// 내 주문내역을 조회하기 위해서 가져온것이다.
 	@GetMapping("/qnaMyOrder/{qMem}")
 	public ResponseEntity<Object> selectMyQnaOrder(@PathVariable String qMem, HttpSession session){
 		session.setAttribute("qMem", qMem);

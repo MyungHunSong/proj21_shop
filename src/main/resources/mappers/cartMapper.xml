@@ -46,6 +46,13 @@
         <include refid="whereSQL"></include>
 	</select>
 	
+	<!-- 장바구니에 몇개의 제품이?? -->
+	<select id="selectCountCart" parameterType="String" resultType="String">
+		select count(cart_num)
+		  from cart
+		 WHERE cart_member_Id = #{memberId};
+	</select>
+	
 	<select id="chooseCartByMemberId" resultMap="ResCart">
 		<include refid="selectSQL"></include>
 		<where>

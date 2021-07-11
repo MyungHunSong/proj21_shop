@@ -29,7 +29,6 @@
                            + json[j].memberId + "&orderProNum=" + json[j].orderProNum + "&proNum="
                            + json[j].productDTO[i].proNum + "'>"
                            + json[j].orderProNum + "-" + json[j].productDTO[i].orderCode[0].orderCode + "</a></td>"
-                           
                      sCont += "<td><a href='detailorder?memberId="
                          + json[j].memberId + "&orderProNum=" + json[j].orderProNum + "&proNum="
                          + json[j].productDTO[i].proNum + "'>"

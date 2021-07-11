@@ -2,6 +2,7 @@ package proj21_shop.controller.admin.product;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.BindException;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -20,6 +21,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,6 +31,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import proj21_shop.controller.order.CustomCollectionValidator;
 import proj21_shop.dto.product.ProductDTO;
 import proj21_shop.dto.product.ProductImageDTO;
 import proj21_shop.service.admin.product.AdminProductService;
@@ -37,7 +40,7 @@ import proj21_shop.service.admin.product.AdminProductService;
 @RequestMapping("/admin/product/")
 public class AdminProductController {
 	private static final String CURR_IMAGE_REPO_PATH = "D:\\shop\\file_repo";
-
+	private final CustomCollectionValidator customCollectionValidator = new CustomCollectionValidator();
 	@Autowired
 	AdminProductService adminProductService;
 
@@ -115,7 +118,8 @@ public class AdminProductController {
 
 		return mav;
 	}
-
+	
+	
 	@RequestMapping(value = "addNewProduct", method = RequestMethod.POST)
 	public ResponseEntity addNewProduct(MultipartHttpServletRequest multipartRequest, HttpServletResponse response) throws Exception {
 		multipartRequest.setCharacterEncoding("utf-8");
@@ -136,7 +140,25 @@ public class AdminProductController {
 		System.out.println(multipartRequest.getParameter("proSalesrate"));
 		System.out.println(multipartRequest.getParameter("proPrice"));
 		System.out.println(multipartRequest.getParameter("proStatus"));
-
+		
+		String message = null;
+		String proNameCheck=multipartRequest.getParameter("proName").trim();
+		String proPriceCheck=multipartRequest.getParameter("proPrice").trim();
+		String proSalesrateCheck=multipartRequest.getParameter("proSalesrate").trim();
+		String proQuantityCheck=multipartRequest.getParameter("proQuantity").trim();
+		String proContentCheck=multipartRequest.getParameter("proContent").trim();
+		String proNumCheck=multipartRequest.getParameter("proNum").trim();
+		
+		ResponseEntity resEntity = null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+		
+		if(proNameCheck.isEmpty() || proPriceCheck.isEmpty() ||proSalesrateCheck.isEmpty() ||proQuantityCheck.isEmpty() ||proContentCheck.isEmpty() ||proNumCheck.isEmpty() ) {
+			message = "<script> ";
+			message += " alert('빈칸이 존재합니다. 확인해 주세요.');";
+			message += " location.href='" + multipartRequest.getContextPath() + "/admin/product/addNewProductForm';";
+			message += " </script>";
+		}else {
 		Enumeration enu = multipartRequest.getParameterNames();
 		while (enu.hasMoreElements()) {
 			String name = (String) enu.nextElement();			String value = multipartRequest.getParameter(name);
@@ -152,10 +174,8 @@ public class AdminProductController {
 //			}
 //			newProductMap.put("imageFileList", imageFileList);
 //		}
-		String message = null;
-		ResponseEntity resEntity = null;
-		HttpHeaders responseHeaders = new HttpHeaders();
-		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+		
+		
 
 		try {
 			newProductMap.put("proContent", multipartRequest.getParameter("proContent"));
@@ -169,7 +189,9 @@ public class AdminProductController {
 			newProductMap.put("proSalesrate", Integer.parseInt(multipartRequest.getParameter("proSalesrate")));
 			newProductMap.put("proPrice", Integer.parseInt(multipartRequest.getParameter("proPrice")));
 			adminProductService.addNewProduct(newProductMap);
+			
 			String proNum = multipartRequest.getParameter("proNum");
+			
 			if (imageFileList != null && imageFileList.size() != 0) {
 				for (ProductImageDTO productImageDTO : imageFileList) {
 					imageFileName = productImageDTO.getProImagefilename();
@@ -193,13 +215,15 @@ public class AdminProductController {
 				}
 			}
 			message = "<script> ";
-			message += " alert('새상품 등록 실패 : 이미 있는 제품입니다.');";
+			message += " alert('새상품 등록 실패 : 이미 있는 제품이거나 , 사진이 없습니다.');";
 			message += " location.href='" + multipartRequest.getContextPath() + "/admin/product/addNewProductForm';";
 			message += " </script>";
+		}
 		}
 		resEntity = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
 
 		return resEntity;
+		
 	}
 
 	@RequestMapping("addNewProductForm")

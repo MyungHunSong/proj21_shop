@@ -226,7 +226,34 @@ INSERT INTO proj21_shop.`order`(order_code,order_member_id,pro_num,order_pro_num
 (	28	,		'test09'		,	5081	,	9	,		'되도록'		,	1	,	166750	,	4500		,		'이종윤'		,		'010-1234-5678'		,		'010-1234-5678'		,	54572	,		'대구광역시 남구 봉덕동 이천로 73	',		'25층'		,		'배송완료'		,	    '부재 시 경비실에 맡겨 주세요'	,	    '아무개'		,		'국민'),
 (	29	,		'test09'		,	1111	,	9	,		'되도록'		,	1	,	166750	,	250		,		'이종윤'		,		'010-1234-5678'		,		'010-1234-5678'		,	54573	,		'대구광역시 남구 봉덕동 이천로 74	',		'26층'		,		'배송완료'		,	    '부재 시 경비실에 맡겨 주세요'	,	    '아무개'		,		'국민 ');
 
-
+-- 제품 구매시 총 구매가격 UPDATE +
+update `member` 
+	 set m_total_buy = 40500,m_total_order = 1,m_total_login=12
+where m_id = 'test01';
+update `member` 
+	 set m_total_buy = 121500,m_total_order = 1,m_total_login=6
+where m_id = 'test02';
+update `member` 
+	 set m_total_buy = 126000,m_total_order = 1,m_total_login=7
+where m_id = 'test03';
+update `member` 
+	 set m_total_buy = 297000,m_total_order = 1,m_total_login=5
+where m_id = 'test04';
+update `member` 
+	 set m_total_buy = 42750,m_total_order = 1,m_total_login=11
+where m_id = 'test05';
+update `member` 
+	 set m_total_buy = 104750,m_total_order = 1,m_total_login=11
+where m_id = 'test06';
+update `member` 
+	 set m_total_buy = 44350,m_total_order = 1,m_total_login=16
+where m_id = 'test07';
+update `member` 
+	 set m_total_buy = 184500,m_total_order = 1,m_total_login=13
+where m_id = 'test08';
+update `member` 
+	 set m_total_buy = 166750,m_total_order = 1,m_total_login=19
+where m_id = 'test09';
 
 -- Q&A
 INSERT INTO qna

@@ -84,6 +84,7 @@ public class AdminOrderServiceImpl implements AdminOrderService {
 		viewMap.put("totDoneDelivery", totDoneDelivery);
 		viewMap.put("totWaitingRefundDelivery", totWaitingRefundDelivery);
 		viewMap.put("totDoneRefundDelivery", totDoneRefundDelivery);
+		viewMap.put("selectedTotal", selectedTotal);
 		
 		return viewMap;
 	}

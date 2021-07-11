@@ -11,6 +11,8 @@
 <script type="text/javascript">
 	var contextPath = "${contextPath}";
 	var memberId = "${memberId}";
+	
+	/* QNA 내용 보는 팝업 띄우기 */
 	function upModel(qMember, qIndex) {
 		console.log(qMember)
 		console.log(qIndex)
@@ -35,7 +37,9 @@
 				var sCont = "";
 				for (i = 0; i < dataLength; i++) {
 					sCont += "<tr>";
+					//제품 이름 클릭하면 제품 상세 페이지로 이동 
 					sCont += "<td><a href='productDetail?proNum="+ json[i].proNum + "'>" + json[i].proName.proName + "</a></td>";
+					//후기 이미지가 없을 때 noImage 띄우기
 					if(json[i].reviewImagefilename2 == null || json[i].reviewImagefilename2 == ""){
 						json[i].reviewImagefilename2 = 'noimage.jpg'
 					}
@@ -46,6 +50,7 @@
 					sCont += "<td>" + json[i].reviewContent + "</td>";
 					sCont += "<td>" + json[i].reviewStar + "</td>";
 					sCont += "<td>" + json[i].reviewDate + "</td>";
+					//후기 수정 하는 페이지로 이동
 					sCont += "<td><a href='detailreview?memberId=" + memberId +"&proNum=" + json[i].proNum + "'>후기 수정</a></td>";
 					sCont += "<tr>";
 				}
@@ -65,26 +70,52 @@
 				for (i = 0; i < dataLength; i++) {
 					sCont += "<tr>";
 					sCont += "<td>" + json[i].qIndex + "</td>";
-					sCont += "<td>" + json[i].qFile + "</div></td>";
+					if(json[i].qFile == null || json[i].qFile == ""){
+						json[i].qFile = 'noimage.jpg'
+					}
+					sCont += "<td><img src="+contextPath+"/resources/qna/images/" + json[i].qFile  + " width='70' height='60'></td>";
 				    sCont += "<td><input class = 'bringContent' type='button' value=" + json[i].qTitle + "></td>";
-				    console.log(json[i].qTitle);
-				    console.log(json[i].qMember);
-				    console.log(json[i].qIndex);
+				   	//sCont += "<input type='hidden' value=" +json[i].qIndex +  ">"
 					sCont += "<td>" + json[i].qMember + "</div></td>";
 					sCont += "<td>" + json[i].qDate + "</td>";
-					sCont += "<td> <a href = 'qnaModify?idx=" + json[i].qIndex +"' class = 'qnaChange'>Q&A 수정 </a></td>";
+					sCont += "<td> <a href='#' style='cursor:pointer;' class='updateMyQna'>Q&A 수정 </a><input type='hidden' value=" +json[i].qIndex +  "></td>";
+
 					sCont += "</tr>";
 					
-					// qnaModify?index=${idx}
+					
 				}
 				$("#loadtable").append(sCont);
 			}
 			
+			/* QNA 버튼 눌렀을 때 팝업 띄우기 위해 넘겨줘야 할 값 정의하고 함수로 팝업 띄우기  */
 			$('.bringContent').on('click',function(){
 				var qMember = $(this).parent().next().text()
 				var qIndex = $(this).parent().prev().prev().text()
 				upModel(qMember,qIndex)
+
 			})
+			// QNA 수정페이지 팝업창.
+			$('.updateMyQna').on('click', function(){
+				var idx = $(this).next().val();
+				var popupX = (window.screen.width / 2) - 400;
+				var popupY = (window.screen.height / 2) - 325;
+				
+				
+				console.log(idx)
+				$.ajax({
+					url: contextPath + "/api/qnainsert/"+ idx,
+					type:"GET",
+					contentType:"application/json; charset=utf-8",
+					datatype:"json",
+					data:JSON.stringify(),
+					success:function(){						
+						
+						// 팝업창 열기
+						var popup = window.open('http://localhost:8080${contextPath}/qnaUpdate?idx=' + idx, '수정팝업',
+								'width=520px, height = 520px','status=no,left=' + popupX + ', top=' + popupY)		
+					}	
+				});		 		
+			});	
 		
 		})
 		

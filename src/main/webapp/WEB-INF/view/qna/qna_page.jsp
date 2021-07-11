@@ -209,6 +209,7 @@ $(function(){
 					sCont += "</tr>";
 					
 					
+					
 				}
 				$("#load").append(sCont);
 			}
@@ -251,7 +252,7 @@ $(function(){
 					success:function(){
 
 						// 팝업창 열기
-						var popup = window.open('http://localhost:8080${contextPath}/qnaModify?idx=' + idx, '수정팝업',
+						var popup = window.open('http://localhost:8080${contextPath}/qnaUpdate?idx=' + idx, '수정팝업',
 								'width=520px, height = 520px')	
 						location.reload();		
 
@@ -317,6 +318,7 @@ $(function(){
 					var group = $(this).next().next().val();
 					
 					var cnt = parseInt($(this).next().next().next().next().next().next().next().text())
+					console.log(cnt)					
 					$(this).next().next().next().next().next().next().next().text(cnt + 1)
 					
 					if($(this).parent().next().hasClass('active')){

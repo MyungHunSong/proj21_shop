@@ -79,6 +79,7 @@
 		<jsp:include page="/WEB-INF/view/include/header.jsp"></jsp:include>
 		<jsp:include page="/WEB-INF/view/include/topbody.jsp"></jsp:include>
 		<h2>회원가입</h2>
+		<!-- 요청 파라미터의 값을 등록 커맨드 객체로 넘겨주기  -->
 		<section id="registerFormArea">
 			<form:form modelAttribute="RegisterRequest">
 			<form:errors/>
@@ -113,12 +114,13 @@
 					</tr>
 					<tr>
 						<th scope="row"><label for="gender">성별</label></th>
-						<td><form:radiobutton path="memberGender" value="MALE" checked="checked"/>남자 <form:radiobutton
-								path="memberGender" value="FEMALE" />여자</td>
+						<td><form:radiobutton path="memberGender" value="MALE" checked="checked"/>남자 
+						<form:radiobutton path="memberGender" value="FEMALE" />여자</td>
 					</tr>
 					<tr>
 						<th scope="row"><label for="address">주소</label></th>
 						<td>
+							<!-- 다음 주소 api 사용 -->
 							<form:input type="text" id="sample4_postcode" placeholder="우편번호" path="memberAddr1" required="required"/>
 							<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" id="findButton"> <br> 
 							<form:input type="text" id="sample4_roadAddress" path="memberAddr2" placeholder="도로명주소"/>
@@ -143,7 +145,9 @@
 				</table>
 				<div>
 					<input type="submit" value="회원가입" class="button" />
-					<input type="reset" value="초기화" class="button" /> 
+					<!-- 폼에 세팅되어 있는 값 리셋해주는 버튼 -->
+					<input type="reset" value="초기화" class="button" />
+					<!-- 이전 페이지로 돌아가는 버튼 --> 
 					<input type="button" value="취소" class="button" onClick="history.go(-1)" />
 				</div>
 			</form:form>
