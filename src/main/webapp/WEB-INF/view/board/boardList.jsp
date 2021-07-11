@@ -96,8 +96,11 @@
 			})
 			// QNA 수정페이지 팝업창.
 			$('.updateMyQna').on('click', function(){
-				console.log($(this))
 				var idx = $(this).next().val();
+				var popupX = (window.screen.width / 2) - 400;
+				var popupY = (window.screen.height / 2) - 325;
+				
+				
 				console.log(idx)
 				$.ajax({
 					url: contextPath + "/api/qnainsert/"+ idx,
@@ -105,10 +108,11 @@
 					contentType:"application/json; charset=utf-8",
 					datatype:"json",
 					data:JSON.stringify(),
-					success:function(){
+					success:function(){						
+						
 						// 팝업창 열기
 						var popup = window.open('http://localhost:8080${contextPath}/qnaUpdate?idx=' + idx, '수정팝업',
-								'width=520px, height = 520px')		
+								'width=520px, height = 520px','status=no,left=' + popupX + ', top=' + popupY)		
 					}	
 				});		 		
 			});	

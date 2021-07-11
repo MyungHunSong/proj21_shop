@@ -35,6 +35,7 @@ public class QnaRestController {
 
 	// @PathVariable => 경로를 변수화 해주는 어노테이션.
 	// @PathVariable 을 사용하지 않았을 경우 도메인 /no = 1, @pathVariable을 사용할 경우 도메인 /1
+	// Qna 게시판에서 목록은 json data를 쓰기 때문에 restpul 또한 해주었다.
 	@GetMapping("/qna/{page}/{perPageNum}/{searchType}/{keyword}")
 	public ResponseEntity<Object> qna(
 			@PathVariable int page
@@ -43,16 +44,11 @@ public class QnaRestController {
 			,@PathVariable String keyword
 			,Model model, SearchCriteria searchCriteria){
 		
-		
-		
 		PageDTO pageMaker = new PageDTO();
-		
 		
 		 pageMaker.setCri(searchCriteria);
 		 pageMaker.setTotalCount(service.countSearchedArticles(searchCriteria));
 		 		
-		
-			
 		SearchCriteria sCri = new SearchCriteria();
 		
 		sCri.setPage(page);
@@ -67,12 +63,11 @@ public class QnaRestController {
 			sCri.setKeyword(keyword);	
 		}
 		System.out.println(keyword);
-		
-		
+				
 		return ResponseEntity.ok(service.listSearch(sCri));
 	}
 	
-	
+	// keyword(검색문 을 비사용시 전체 목록을 뛰어주기 위해서 사용한것.
 	@GetMapping("/qna/{page}/{perPageNum}/{searchType}")
 	public ResponseEntity<Object> qna(
 			@PathVariable int page
@@ -112,17 +107,15 @@ public class QnaRestController {
 		}	
 	}
 	
+	// 공지사항 수정하기.
 	@PostMapping("/qna/{qIndex}")
 	public ResponseEntity<Object> updateReply(@PathVariable int qIndex, @RequestBody QnaDTO qDto){
 		return ResponseEntity.ok(qInsertService.modifyForAdmin(qDto));
 	}
-	
+	// 답글을 삭제
 	@DeleteMapping("/qna/{qIndex}")
 		public ResponseEntity<Object> deleteReply(@PathVariable int qIndex, @RequestBody QnaDTO qDto){
 			return ResponseEntity.ok(qInsertService.deleteForAdmin(qDto));	
 		}
-	
-	// 검색로직
-	
-	
+			
 }
