@@ -31,7 +31,7 @@
 								'<img src="images/star-lv' +starRate + '.png">'
 										+ notice[starRate - 1]);
 						
-						
+						/* 리뷰 등록 */
 						 $('.review').on("click", '[id=insert]', function(e){
 						 	  var newReview = {	proNum : json[0].proName.proNum , memberId : memberId, reviewContent : $('#reviewContent').val(),
 						 						reviewImagefilename1 : $('#imgButton1').val().replace(/C:\\fakepath\\/i, ''), reviewImagefilename2 : $('#imgButton2').val().replace(/C:\\fakepath\\/i, ''), reviewStar : starRate};
@@ -52,7 +52,7 @@
 						 	  });
 						})
 						
-						
+						/* 리뷰 수정*/
 						$('.review').on("click", '[id=modify]', function(e){
 							e.preventDefault();
 							var data = {reviewNum : json[0].reviewNum, reviewContent : $('#reviewContent').val(),
@@ -84,9 +84,10 @@
 						
 			})
 			
+			/* 리뷰  수정 */
 			$('.review').on("click", '[id=modify]', function(e){
 							e.preventDefault();
-							var starRate = json[0].reviewStar;
+							var starRate = json[0].reviewStar;	//별점을 선택하지 않았을 때 원래 있던 별점으로 세팅
 							var data = {reviewNum : json[0].reviewNum, reviewContent : $('#reviewContent').val(),
 									reviewImagefilename1 : $('#imgButton1').val().replace(/C:\\fakepath\\/i, ''), reviewImagefilename2 : $('#imgButton2').val().replace(/C:\\fakepath\\/i, ''), reviewStar : starRate
 									};
@@ -165,7 +166,7 @@
 			}
 			
 			var sCont = "";
-				sCont += "<img src='/proj21_shop/resources/product/images/" + json[0].proName.proImgfileName + "' width = '70' height= '70'>" 
+				sCont += "<img src='/resources/product/images/" + json[0].proName.proImgfileName + "' width = '70' height= '70'>" 
 				sCont += "<ul>"
 				sCont += "<li>" + json[0].proName.proName + "</li>"
 				sCont += "<li>" + proColor +"</li>" 

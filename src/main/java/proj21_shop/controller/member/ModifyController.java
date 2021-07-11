@@ -30,18 +30,20 @@ public class ModifyController {
 	@Autowired
 	private MemberModifyService memberModifyService;
 
+	/* 회원 정보 수정하는 페이지로 이동 */
 	@GetMapping
 	public String modify(@ModelAttribute("ModifyRequest") ModifyRequest modifyRequest, HttpSession session,HttpServletRequest request) {
-		AuthInfo authInfo = (AuthInfo) session.getAttribute("authInfo");
+		AuthInfo authInfo = (AuthInfo) session.getAttribute("authInfo");	//세션에서 로그인 한 회원의 정보를 가져오기
 			MemberDTO member = memberModifyService.form(authInfo.getId());
-			request.setAttribute("memberPh", member.getMemberPh());
+			request.setAttribute("memberPh", member.getMemberPh());	//회원의 원래 정보 세팅
 			request.setAttribute("memberEmail", member.getMemberEmail());
 			request.setAttribute("memberAddr1", member.getMemberAddr1());
 			request.setAttribute("memberAddr2", member.getMemberAddr2());
 			request.setAttribute("memberAddr3", member.getMemberAddr3());
 			return "/member/register/modifyForm";
 	}
-
+	
+	/* 회원 정보 수정 */
 	@PostMapping
 	public String Modify(@ModelAttribute("ModifyRequest") ModifyRequest modifyRequest, Errors errors,
 			HttpSession session, HttpServletResponse response) throws IOException {
