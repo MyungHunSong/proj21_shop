@@ -8,8 +8,8 @@
 <meta charset="UTF-8">
 <title>후기 작성</title>
 <link rel="stylesheet"
-	href="/proj21_shop/resources/review/css/reviewForm.css" />
-<link rel="stylesheet" href="/proj21_shop/resources/main/css/main.css">
+	href="${contextPath }/resources/review/css/reviewForm.css" />
+<link rel="stylesheet" href="${contextPath }/resources/main/css/main.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 	$(function() {
@@ -165,7 +165,7 @@
 			}
 			
 			var sCont = "";
-				sCont += "<img src='/proj21_shop/resources/product/images/" + json[0].proName.proImgfileName + "' width = '70' height= '70'>" 
+				sCont += "<img src='/resources/product/images/" + json[0].proName.proImgfileName + "' width = '70' height= '70'>" 
 				sCont += "<ul>"
 				sCont += "<li>" + json[0].proName.proName + "</li>"
 				sCont += "<li>" + proColor +"</li>" 

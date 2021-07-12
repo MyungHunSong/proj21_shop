@@ -104,6 +104,14 @@ table.type02 td {
 	color: black;
 }
 
+.disMatch{
+	color: red;
+}
+
+.unMatch{
+	color: red;	
+}
+
 div{
 	text-align: center;
 }

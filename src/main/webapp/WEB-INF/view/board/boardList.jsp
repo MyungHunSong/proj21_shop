@@ -70,7 +70,7 @@
 				for (i = 0; i < dataLength; i++) {
 					sCont += "<tr>";
 					sCont += "<td>" + json[i].qIndex + "</td>";
-					sCont += "<td>" + json[i].qFile + "</div></td>";
+					sCont += "<td><img src="+contextPath+"/resources/qna/images/" + json[i].qFile + " width='70' height='60' ></div></td>";
 				    sCont += "<td><input class = 'bringContent' type='button' value=" + json[i].qTitle + "></td>";
 
 				   	//sCont += "<input type='hidden' value=" +json[i].qIndex +  ">"
