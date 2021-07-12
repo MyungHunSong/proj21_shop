@@ -173,10 +173,12 @@ $(function(){
 								if(json[i].qOption == "공지"){
 									sCont += "<td colspan ='5'>        "+ json[i].qContent + "</td>";
 								}else if("${authInfo.name}" == json[i].qMember){
-									sCont += "<td colspan ='4'><img src=' "+contextPath+"/resources/qna/upload/" + json[i].qFile +"' style='width: 90px; height: 140px;'/><p style='border-top:1px solid gray'>"
+									console.log(json)
+									sCont += "<td colspan ='4'><img src='"+contextPath+"/resources/qna/upload/" + json[i].qFile +"' style='width: 90px; height: 140px;'/><p style='border-top:1px solid gray'>"
 									+ json[i].qContent + "</p></td>";		
 								}else{
-									sCont += "<td colspan ='5'><img src=' "+contextPath+"/resources/qna/upload/" + json[i].qFile +" ' style='width: 90px; height: 140px; ' /><p style='border-top:1px solid gray'>"
+									console.log(json)
+									sCont += "<td colspan ='5'><img src='"+contextPath+"/resources/qna/upload/" + json[i].qFile +" ' style='width: 90px; height: 140px; ' /><p style='border-top:1px solid gray'>"
 									+ json[i].qContent + "</p></td>";		
 								}	
 							}
