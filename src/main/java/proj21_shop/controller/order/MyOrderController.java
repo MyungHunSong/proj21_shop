@@ -25,12 +25,14 @@ public class MyOrderController {
 	@Autowired
 	AdminOrderService adminOrderService;
 	
+	/* 주문 목록 */
 	@GetMapping("/myorder")
 	public ModelAndView getMyOrder(@RequestParam(value="memberId") String memberId) {
 		ModelAndView mav = new ModelAndView("order/myOrderList", "memberId", memberId);
 		return mav;
 	}
 	
+	/* 주문 상세 목록 */
 	@GetMapping("/detailorder")
 	public ModelAndView getMyOrderDetail(@RequestParam(value="memberId") String memberId, @RequestParam(value="orderProNum")int orderProNum) {
 		ModelAndView mav = new ModelAndView("order/myOrderDetail", "memberId", memberId);
@@ -38,6 +40,7 @@ public class MyOrderController {
 		return mav;
 	}
 	
+	/* 반품 요청 */
 	@RequestMapping("/requestRefund")
 	public ResponseEntity requestRefund(HttpServletRequest request, HttpServletResponse response,
 			@RequestParam(value="orderCode") String orderCode,

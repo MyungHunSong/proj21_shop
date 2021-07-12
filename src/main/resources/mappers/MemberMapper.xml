@@ -55,7 +55,8 @@
 		<include refid="selectSQL"></include>
 		<include refid="whereSQL"></include>
 	</select>
-
+	
+	<!-- 로그인 시에 아이디와 비밀번호 확인하는 용 -->
 	<select id="selectByLoginId" resultMap="ResMember">
 		<include refid="selectSQL"></include>
 		<where>
@@ -64,13 +65,15 @@
 			</if>
 		</where>
 	</select>
-		
+	
+	<!-- 회원 정보 수정 시에 기존 회원정보 검색하는 용 -->
 	<select id="selectMemberById" resultMap="ResModifyMember">
 		select m_phone, m_email, m_addr1, m_addr2, m_addr3
   		  from member
  		 where m_id = #{id};
 	</select>
 	
+	<!-- 회원 탈퇴시 회원 아이디와 비밀번호 검색하는 용 -->
 	<select id="selectByIdPwd" resultMap="ResMember">
 		<include refid="selectSQL"></include>
 		<where>
@@ -80,6 +83,7 @@
 		</where>
 	</select>
 
+	<!-- 회원 가입 -->
 	<insert id="insertMember" parameterType="MemberDTO">
 		insert
 		into member(m_id,
@@ -96,6 +100,7 @@
 
 	</insert>
 
+	<!-- 회원정보 수정 -->
 	<update id="updateMember" parameterType="MemberDTO">
 		update member
 		set m_phone = #{memberPh},
@@ -105,14 +110,16 @@
 			m_addr3 = #{memberAddr3}
 		where m_id = #{memberId};
 	</update>
-
+	
+	<!-- 회원 탈퇴 -->
 	<update id="deleteMember" parameterType="MemberDTO">
 		update member
 		set m_exit
 		= 1
 		where m_id = #{memberId};
 	</update>
-
+	
+	<!-- 로그인 시 로그인 수 증가 -->
 	<update id="updateTotalLogin" parameterType="MemberDTO">
 		update member
 		set m_total_login = m_total_login + 1

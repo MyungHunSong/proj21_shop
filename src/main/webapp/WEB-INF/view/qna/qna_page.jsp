@@ -173,10 +173,12 @@ $(function(){
 								if(json[i].qOption == "공지"){
 									sCont += "<td colspan ='5'>        "+ json[i].qContent + "</td>";
 								}else if("${authInfo.name}" == json[i].qMember){
-									sCont += "<td colspan ='4'><img src=' "+contextPath+"/resources/qna/upload/" + json[i].qFile +"' style='width: 90px; height: 140px;'/><p style='border-top:1px solid gray'>"
+									console.log(json)
+									sCont += "<td colspan ='4'><img src='"+contextPath+"/resources/qna/upload/" + json[i].qFile +"' style='width: 90px; height: 140px;'/><p style='border-top:1px solid gray'>"
 									+ json[i].qContent + "</p></td>";		
 								}else{
-									sCont += "<td colspan ='5'><img src=' "+contextPath+"/resources/qna/upload/" + json[i].qFile +" ' style='width: 90px; height: 140px; ' /><p style='border-top:1px solid gray'>"
+									console.log(json)
+									sCont += "<td colspan ='5'><img src='"+contextPath+"/resources/qna/upload/" + json[i].qFile +" ' style='width: 90px; height: 140px; ' /><p style='border-top:1px solid gray'>"
 									+ json[i].qContent + "</p></td>";		
 								}	
 							}
@@ -207,6 +209,7 @@ $(function(){
 									+"<button type = 'submit' class = 'addContent'>등록</button>"
 									+"<button type = 'submit' class = 'modifyContent'>수정</button></td>";
 					sCont += "</tr>";
+					
 					
 					
 				}
@@ -317,6 +320,7 @@ $(function(){
 					var group = $(this).next().next().val();
 					
 					var cnt = parseInt($(this).next().next().next().next().next().next().next().text())
+					console.log(cnt)					
 					$(this).next().next().next().next().next().next().next().text(cnt + 1)
 					
 					if($(this).parent().next().hasClass('active')){

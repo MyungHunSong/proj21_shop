@@ -18,10 +18,10 @@ public class AuthService {
 		MemberDTO member = new MemberDTO();
 		member.setMemberId(id);
 		member.setMemberPwd(password);
-		MemberDTO newmember = mapper.selectByLoginId(member);
+		MemberDTO newmember = mapper.selectByLoginId(member);	//폼에 입력한 아이디와 비밀번호가 일치하는 회원을 검색
 		
 		if(newmember==null) {
-			throw new WrongIdPasswordException();
+			throw new WrongIdPasswordException();	//일치하는 회원이 없다면 예외 던져주기
 		}
 		
 		AuthInfo au =  new AuthInfo(newmember.getMemberId(), newmember.getMemberEmail(), newmember.getMemberName());

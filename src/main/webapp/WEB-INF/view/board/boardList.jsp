@@ -36,9 +36,10 @@
 			if (dataLength >= 1) {
 				var sCont = "";
 				for (i = 0; i < dataLength; i++) {
+					var proNum = json[i].proNum+""
 					sCont += "<tr>";
 					//제품 이름 클릭하면 제품 상세 페이지로 이동 
-					sCont += "<td><a href='productDetail?proNum="+ json[i].proNum + "'>" + json[i].proName.proName + "</a></td>";
+					sCont += "<td><a href='productDetail?proNum="+ proNum.substring(0,3) + "'>" + json[i].proName.proName + "</a></td>";
 					//후기 이미지가 없을 때 noImage 띄우기
 					if(json[i].reviewImagefilename2 == null || json[i].reviewImagefilename2 == ""){
 						json[i].reviewImagefilename2 = 'noimage.jpg'
@@ -51,7 +52,7 @@
 					sCont += "<td>" + json[i].reviewStar + "</td>";
 					sCont += "<td>" + json[i].reviewDate + "</td>";
 					//후기 수정 하는 페이지로 이동
-					sCont += "<td><a href='detailreview?memberId=" + memberId +"&proNum=" + json[i].proNum + "'>후기 수정</a></td>";
+					sCont += "<td><a href='detailreview?memberId=" + memberId +"&proNum=" + proNum + "'>후기 수정</a></td>";
 					sCont += "<tr>";
 				}
 
@@ -71,8 +72,10 @@
 					sCont += "<tr>";
 					sCont += "<td>" + json[i].qIndex + "</td>";
 					sCont += "<td><img src="+contextPath+"/resources/qna/images/" + json[i].qFile + " width='70' height='60' ></div></td>";
+					if(json[i].qFile == null || json[i].qFile == ""){
+						json[i].qFile = 'noimage.jpg'
+					}
 				    sCont += "<td><input class = 'bringContent' type='button' value=" + json[i].qTitle + "></td>";
-
 				   	//sCont += "<input type='hidden' value=" +json[i].qIndex +  ">"
 					sCont += "<td>" + json[i].qMember + "</div></td>";
 					sCont += "<td>" + json[i].qDate + "</td>";
@@ -94,8 +97,11 @@
 			})
 			// QNA 수정페이지 팝업창.
 			$('.updateMyQna').on('click', function(){
-				console.log($(this))
 				var idx = $(this).next().val();
+				var popupX = (window.screen.width / 2) - 400;
+				var popupY = (window.screen.height / 2) - 325;
+				
+				
 				console.log(idx)
 				$.ajax({
 					url: contextPath + "/api/qnainsert/"+ idx,
@@ -103,10 +109,11 @@
 					contentType:"application/json; charset=utf-8",
 					datatype:"json",
 					data:JSON.stringify(),
-					success:function(){
+					success:function(){						
+						
 						// 팝업창 열기
 						var popup = window.open('http://localhost:8080${contextPath}/qnaUpdate?idx=' + idx, '수정팝업',
-								'width=520px, height = 520px')		
+								'width=520px, height = 520px','status=no,left=' + popupX + ', top=' + popupY)		
 					}	
 				});		 		
 			});	

@@ -16,11 +16,13 @@ public class MyOrderRestController {
 	@Autowired
 	private MyOrderService service;
 
+	/* 주문 목록 */
 	@GetMapping("/myorder/{memberId}")
 	public ResponseEntity<Object> myorder(@PathVariable String memberId) {
 		return ResponseEntity.ok(service.selectOrderByMember(memberId));
 	}
 	
+	/* 주문 상세 목록 */
 	@GetMapping("detailorder/{memberId}/{orderProNum}")
 	public ResponseEntity<Object> myorderdetail(@PathVariable String memberId, @PathVariable int orderProNum){
 		OrderDTO orderDTO = new OrderDTO();

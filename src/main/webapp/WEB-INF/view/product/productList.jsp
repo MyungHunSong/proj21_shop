@@ -261,8 +261,7 @@ $(function(){
 					sCont += "<a class = 'pBtn' style='color: red; font-size : 20px;'>  "+i+"  </a>"
 				}else	{
 					sCont += "<a class = 'pBtn'>  "+i+"  </a>"	
-				}
-				
+				}	
 			}
 			$('#pageBtn').append(sCont)
 			

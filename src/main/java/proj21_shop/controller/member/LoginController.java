@@ -27,15 +27,13 @@ public class LoginController {
 	@Autowired
     private AuthService authService;
 
+	/* 로그인 페이지로 이동 */
     @GetMapping
-    public String form(LoginCommand loginCommand, @CookieValue(value="REMEMBER", required = false) Cookie rCookie) {
-    	if (rCookie != null) {
-            loginCommand.setId(rCookie.getValue());
-            loginCommand.setRememberId(true);
-        }
+	public String form(LoginCommand loginCommand) {
         return "/member/login/loginForm";
     }
-
+    
+    
     @PostMapping
     public String submit(LoginCommand loginCommand, Errors errors, HttpSession session, HttpServletResponse response) throws IOException {
 
@@ -43,20 +41,13 @@ public class LoginController {
             return "/member/login/loginForm";
 
         try {
-            AuthInfo authInfo = authService.authenicate(loginCommand.getId(), loginCommand.getPassword());
-            session.setAttribute("authInfo", authInfo);
+            AuthInfo authInfo = authService.authenicate(loginCommand.getId(), loginCommand.getPassword());//폼에 입력한 아이디와 비밀번호와 일치하는 회원이 있는지 확인
+            session.setAttribute("authInfo", authInfo);//세션에 로그인 정보 저장
             System.out.println("LoginController >>> "+authInfo);
-			/*
-			 * Cookie rememberCookie = new Cookie("REMEMBER", loginCommand.getId());
-			 * rememberCookie.setPath("/"); if (loginCommand.isRememberId()) {
-			 * rememberCookie.setMaxAge(60 * 60 * 24 * 30); }else {
-			 * rememberCookie.setMaxAge(0); } response.addCookie(rememberCookie);
-			 */
             if(loginCommand.getId().equals("admin")) {
             	
             	return "redirect:/admin/order/orderStatics";
             }
-      			  
             return "redirect:/main";
 
         }catch (WrongIdPasswordException ex) {
