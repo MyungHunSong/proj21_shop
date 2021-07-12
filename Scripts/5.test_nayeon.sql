@@ -2,6 +2,7 @@
 SELECT * FROM ORDER;
 select * from member;
 SELECT * FROM member WHERE m_id = 'test01' AND m_exit != 1 and m_passwd = password(123);
+delete from member where m_id = 'test06';
 
 select * from `member`
 where m_id = 'test01' and m_exit != 1 and m_passwd = password(123);
@@ -15,6 +16,8 @@ select * from member;
 
 desc review;
 select * from review;
+delete from review where re_num=102;
+
 select * from `order` o2 ;
 desc member;
 
@@ -217,7 +220,8 @@ select m_id, m_passwd, m_name, m_phone, m_birthday, m_gender, m_addr1, m_addr2, 
 select * from member;
  
 delete from member where m_id = 'test06';
-
+delete from review where re_num = 101;
 select * from review;
 select * from product;
+select * from qna;
 

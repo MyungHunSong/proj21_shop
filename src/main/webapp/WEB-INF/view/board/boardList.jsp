@@ -71,10 +71,10 @@
 				for (i = 0; i < dataLength; i++) {
 					sCont += "<tr>";
 					sCont += "<td>" + json[i].qIndex + "</td>";
+					sCont += "<td><img src="+contextPath+"/resources/qna/images/" + json[i].qFile + " width='70' height='60' ></div></td>";
 					if(json[i].qFile == null || json[i].qFile == ""){
 						json[i].qFile = 'noimage.jpg'
 					}
-					sCont += "<td><img src="+contextPath+"/resources/qna/images/" + json[i].qFile  + " width='70' height='60'></td>";
 				    sCont += "<td><input class = 'bringContent' type='button' value=" + json[i].qTitle + "></td>";
 				   	//sCont += "<input type='hidden' value=" +json[i].qIndex +  ">"
 					sCont += "<td>" + json[i].qMember + "</div></td>";

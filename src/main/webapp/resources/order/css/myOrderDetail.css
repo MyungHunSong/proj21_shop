@@ -1,37 +1,43 @@
 @charset "UTF-8";
 
-h2{
+h2 {
 	text-align: left;
 	color: #505050;
-    font-size: 30px;
+	font-size: 30px;
 }
+
 .test img {
 	display: block;
 }
 
-a{	color: black;
-	text-decoration:none;
+a {
+	color: #0080ff;
 }
 
-.button{
+.wrap {
+	text-align: left;
+	color: #505050;
+}
+
+.button {
 	background-color: #383838;
-    border: 1px solid #888888;
-    color: #ffffff;
-    cursor: pointer;
-    letter-spacing: -1px;
-    padding: 3px 5px;
-    margin: 2px 3px;
-    width: auto;
-    word-break: keep-all;
-    border-radius: 5px;
-    text-decoration: none;
-    font-size: 0.9375em;
+	border: 1px solid #888888;
+	color: #ffffff;
+	cursor: pointer;
+	letter-spacing: -1px;
+	padding: 3px 5px;
+	margin: 2px 3px;
+	width: auto;
+	word-break: keep-all;
+	border-radius: 5px;
+	text-decoration: none;
+	font-size: 0.9375em;
 }
 
-.btnItems{
+.btnItems {
 	display: flex;
-    flex-direction: column;
-    align-items: center;
+	flex-direction: column;
+	align-items: center;
 }
 
 table.type11 {
@@ -80,12 +86,13 @@ table.type04 td {
 	border-bottom: 1px solid #ccc;
 }
 
-.discountItem{
+.discountItem {
 	font-size: 13px;
-    font-weight: 100;
-    margin-left: 65px;
+	font-weight: 100;
+	margin-left: 65px;
 }
-.pointEx{
+
+.pointEx {
 	font-size: 12px;
-    font-weight: 100;
+	font-weight: 100;
 }
