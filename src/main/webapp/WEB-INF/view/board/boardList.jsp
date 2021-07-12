@@ -36,9 +36,10 @@
 			if (dataLength >= 1) {
 				var sCont = "";
 				for (i = 0; i < dataLength; i++) {
+					var proNum = json[i].proNum+""
 					sCont += "<tr>";
 					//제품 이름 클릭하면 제품 상세 페이지로 이동 
-					sCont += "<td><a href='productDetail?proNum="+ json[i].proNum + "'>" + json[i].proName.proName + "</a></td>";
+					sCont += "<td><a href='productDetail?proNum="+ proNum.substring(0,3) + "'>" + json[i].proName.proName + "</a></td>";
 					//후기 이미지가 없을 때 noImage 띄우기
 					if(json[i].reviewImagefilename2 == null || json[i].reviewImagefilename2 == ""){
 						json[i].reviewImagefilename2 = 'noimage.jpg'
@@ -51,7 +52,7 @@
 					sCont += "<td>" + json[i].reviewStar + "</td>";
 					sCont += "<td>" + json[i].reviewDate + "</td>";
 					//후기 수정 하는 페이지로 이동
-					sCont += "<td><a href='detailreview?memberId=" + memberId +"&proNum=" + json[i].proNum + "'>후기 수정</a></td>";
+					sCont += "<td><a href='detailreview?memberId=" + memberId +"&proNum=" + proNum + "'>후기 수정</a></td>";
 					sCont += "<tr>";
 				}
 
