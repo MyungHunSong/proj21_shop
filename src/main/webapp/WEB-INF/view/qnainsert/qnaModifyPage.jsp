@@ -49,10 +49,11 @@ $(function(){
       data:JSON.stringify(modifyItem),
       success:function(){
         alert("수정 완료")
-        // 새로고침 
-        opener.parent.location= contextPath + "/listPaging?page="+1 + "&pagePageNum="+ 10 + "&searchType=a&keyword=";
+               
         // 팝업창 닫기 (완료후)
         window.open("about:blank", "_self").close();
+     	// 새로고침
+        opener.parent.location= contextPath + "/listPaging?page="+1 + "&pagePageNum="+ 10 + "&searchType=a&keyword=";
       }
     });
  });

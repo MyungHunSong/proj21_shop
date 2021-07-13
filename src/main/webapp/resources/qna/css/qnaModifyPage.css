@@ -3,7 +3,7 @@
 
 .QNAmodify{
 	text-align: left;
-	background-color: gray;
+	background-color: white;
 }
 <!-- 머리영역 -->
 .QNAmodify h3{
@@ -19,7 +19,7 @@
 	border-bottom: 1px solid #f4f4f4;
 	margin-bottom: 10px;
 	padding-bottom: 5px;
-	color: white;
+	color: black;
 }
 
 #main1 select{
@@ -31,7 +31,7 @@
 	border-bottom: 1px solid #f4f4f4;
 	margin-bottom: 10px;
 	padding-bottom: 5px;
-	color: white;
+	color: black;
 }
 
 #main2 input{
@@ -42,7 +42,7 @@
 	border-bottom: 1px solid #f4f4f4;
 	margin-bottom: 10px;
 	padding-bottom: 5px;
-	color: white;
+	color: black;
 }
 #main3 input{
 	margin-left: 52px;
@@ -50,7 +50,7 @@
 
 #main4{
 	margin-bottom: 10px;
-	color: white;
+	color: black;
 }
 
 #main4 input{
@@ -63,14 +63,14 @@
 
 #main5 label{
 	float: left;
-	color: white;
+	color: black;
 }
 #main5 textarea{
 	margin-left: 10px;
 }
 
 #main6{
-	color: white;
+	color: black;
 }
 
 <!-- 버튼 -->
