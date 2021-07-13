@@ -17,6 +17,8 @@ a {
 .wrap {
 	text-align: left;
 	color: #505050;
+	font-family: 'Verdana', "gulim", "굴림", sans-serif;
+	font-size: 12px;
 }
 
 .button {
