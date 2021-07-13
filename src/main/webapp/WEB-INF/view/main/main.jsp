@@ -25,6 +25,7 @@
 		  autoHover:true
       });
    });
+   
 $(function(){
 	var contextPath = "${contextPath}";
 	var proSize = ["XS","S","M","L","XL"]
