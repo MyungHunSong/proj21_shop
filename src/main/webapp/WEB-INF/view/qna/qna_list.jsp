@@ -37,9 +37,45 @@ $(function(){
 	margin-bottom: 80px;
 }
 #insertQnaPage{
+	border-radius:2px;
+	padding:3px;
 	text-decoration:none !important;
 	width:25px;
-	color: #ccc;	
+	color: white;
+	background: black;	
+}
+
+#searchBtn{
+	border:none;
+	cursor:pointer;
+	color: white;
+	background: black;	
+}
+
+#searchBtn:hover{
+	color: black;
+	background: white;	
+}
+
+#goList{
+	border:none;
+	cursor:pointer;
+	color: white;
+	background: black;	
+}
+
+#goList:hover{
+	color: black;
+	background: white;	
+}
+
+#insertQnaPage:hover{
+	border-radius:2px;
+	padding:3px;
+	text-decoration:none !important;
+	width:25px;
+	color: black;
+	background: white;	
 }
 
 search_qna #insertQnaPage:hover{

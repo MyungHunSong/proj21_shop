@@ -111,27 +111,48 @@
 }
 	
 .insertQna{
+	cursor:pointer;
+	
 	margin-right: 10px;
 	width: 100px;
 	height: 40px;
-	background-color: #dcdcdc;;
-	color: black;
+	background-color: black;
+	color: white;
+	
 	font-weight: bold;
 }
 
-.insertQna :hover{
+.insertQna:hover{
+	background-color: white;;
+	color: black;
+}
+
+.goMyOrder{
+	cursor:pointer;
 	background-color: black;
 	color: white;
 }
 
+.goMyOrder:hover{
+	cursor:pointer;
+	background-color: white;
+	color:  black;
+	border:none;
+}
+
 .canselQna{
+	cursor:pointer;
 	width: 100px;
 	height: 40px;
-	background-color: #dcdcdc;
-	color: black;
+	background-color: black;
+	color: white;
 	font-weight: bold;
 }
 
-
+.canselQna:hover{
+	
+	background-color: white;;
+	color: black;
+}
 
 
