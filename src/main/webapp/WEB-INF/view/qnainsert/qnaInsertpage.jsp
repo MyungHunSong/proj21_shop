@@ -45,7 +45,7 @@
 		   $(".insertQna").on('click', function(){
 			  	var title = $("input[name=Title]:visible").val();
 			 	var option = $("select[name=searchType]:visible").val();
-			 	var member = "${authInfo.name}"
+			 	var member = "${authInfo.id}"
 			 	var content = $("textarea[name='Content']:visible").val();
 			 	
 			 	if("${authInfo.id}" != "admin" && "${authInfo.name}" != "관리자"){
@@ -135,7 +135,7 @@
 				 		data:JSON.stringify(memberId),
 				 		success:function(){
 				 			var popup = window.open('http://localhost:8080${contextPath}/qnaMyOrder?=${authInfo.id}', '조회',
-							  'width=620px, height = 350px')						
+							  'width=550px, height = 450px')						
 				 		},
 				 		error:function(){
 				 			alert("조회할 상품 내역이 없습니다.")
@@ -152,7 +152,11 @@
 		<jsp:include page="/WEB-INF/view/include/topbody.jsp"></jsp:include>
 		<div class="InsertMain">
 			<div id="QNA">
-				<img id= 'QnaImg' src= "${contextPath}/resources/qna/images/qnaLog.jpg">
+				<h3 style="text-align: left; font-size: 30px;">Q&A</h3>
+				<ul style="text-align: left;">
+					<li style="color: red;">제품 사용, 오염, 전용 박스 손상, 라벨 제거, 사은품 밑 부속 사용/분실 시, 교환/환불이 불가능 합니다.</li>
+					<li style="color: red;">교환을 원하시는 상품(사이즈)의 재고가 부족 시, 교환이 불가합니다.</li>
+				</ul>
 			</div>
 			<div class="QnaInsert">
 				<h3>문의 작성</h3>
@@ -184,7 +188,7 @@
 				</c:if>
 				<c:if test ="${!empty authInfo && authInfo.id ne admin}">
 						<div id = "main3">	
-							<label>작성자</label><input type="text" value="${authInfo.name}"  readonly="readonly"  style="background-color: #e2e2e2"><br>
+							<label>작성자</label><input type="text" value="${authInfo.id}"  readonly="readonly"  style="background-color: #e2e2e2"><br>
 						</div>
 				</c:if>
 					
@@ -224,7 +228,7 @@
 							<input type="file" name="uploadFile"  id="addPoto" onchange="readURL(this, this.id)" multiple="multiple">
 						</div>
 						<div id="image_list">
-							<img id="preview" src="${contextPath}/resources/qna/images/fileimg.jpg" width="100" height="100">
+							<img id="preview" src="${contextPath}/resources/qna/images/fileimg.jpg" width="100" height="100" style="cursor: pointer;">
 						</div>
 					</div>
 				</c:if>					

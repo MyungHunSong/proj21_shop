@@ -11,7 +11,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <style type="text/css">
 #bodySec td{
-	border-bottom: 1px solid gray;
+	border-bottom: 1px solid;
 
 }
 </style>
@@ -37,9 +37,9 @@
                    sCont += "<input type = 'hidden' value = "+ json[j].productDTO[i].orderCode[0].orderCode+">";
                    sCont += "<td><a >"+json[j].productDTO[i].proName +"</a></td>";                   
                    sCont += "<td><a >"+ json[j].orderDate+"</a></td>";                   
-                   sCont += "<td><a>"+ json[j].orderProQuantity+"</a></td>";                   
-                   sCont += "<td><a>"+ json[j].orderPrice+"</a></td>";
-                   sCont += "<td><a>" + json[j].deliveryStatus+"</a></td>";              
+                   sCont += "<td style='text-align: right;'><a>"+ json[j].orderProQuantity+"</a></td>";                   
+                   sCont += "<td style='text-align: right;'><a>"+ json[j].orderPrice+"</a></td>";
+                   sCont += "<td style='text-align: center;'><a>" + json[j].deliveryStatus+"</a></td>";              
                    sCont += "<tr>";     
                 }          
              } 
@@ -72,17 +72,17 @@
          	style="border-spacing: 1px; 
 					width: 600px;
 					height:200px">
-            <thead style="background-color: gray;">
+            <thead style="background-color: black;">
                <tr >
-                  <th scope="cols">주문번호</th>
+                  <th scope="cols">번호</th>
                   <th scope="cols">제품정보</th>
                   <th scope="cols">주문일자</th>
-                  <th scope="cols">주문수량</th>
-                  <th scope="cols">주문금액</th>
+                  <th scope="cols">수량</th>
+                  <th scope="cols">금액</th>
                   <th scope="cols">주문상태</th>
                </tr>
             </thead>
-             <tbody id="load" style="background-color: #f4f4f4;"></tbody>
+             <tbody id="load"></tbody>
          </table>
          </div>
       </section>
