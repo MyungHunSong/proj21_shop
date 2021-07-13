@@ -27,6 +27,7 @@ select *
 select *
   from review;
 
+delete from qna where q_title= 'null';
 
  
 -- 1-1.qna작성시 인서트문이다.
@@ -233,7 +234,7 @@ select q_index,q_title,q_option, q_member,q_content,q_file,q_date,q_hits,q_group
 					from qna
 			where q_index > 0 
 			order by	 field(q_op, '공지') desc, q_group desc;
-limit 10, 10;
+limit 0, 10;
 
 delete 
 	from qna 
@@ -262,8 +263,8 @@ insert into qna(q_member,q_content, q_group,q_date,q_step);
 values('admin', '넵 다시한번 확인 했습니다.',1, now(), 1)
 
 -- 3-2. 회원용 qna 삭제 (qna, 답글 같이 삭제 되야함)
-delete from qna where q_index = 3;
-delete from qna where q_group = 3;
+select * from qna;
+delete from qna where q_index = 196 or q_group = 137;
 
 -- 3-3. qna 검색창.
 select q_index,q_title,q_option,q_member,q_content,q_file,q_date,q_hits,q_group,q_indent,q_step,
@@ -371,10 +372,3 @@ INSERT INTO qna
  	end 
  from qna);
 
-
-SELECT CASE
-    SELECT CASE WHEN @AmountPaid > (SELECT q_title, q_option, q_member, q_content, q_file, q_date, q_group from qna where q_member = '관리자' and q_member = 'admin') then
-    INSERT INTO qna (q_title, q_option, q_member, q_content, q_file, q_date, q_group) values('이게 문가요?', '안대노', 'test01', '이게너무 안대여', 'text123.jpg', now(), (SELECT IFNULL(MAX(q_group) + 1, 1) FROM qna b))
-    WHEN @AmountPaid = (SELECT q_title, q_option, q_member, q_content, q_file, q_date, q_group from qna where q_member = '관리자' and 'admin') THEN
-    INSERT INTO qna(q_title, q_option, q_member, q_content, q_file, q_date, q_group) values('저입니다', '공지', '관리자', '이게너무 안대여', 0, now(), (SELECT IFNULL(MAX(q_group) + 1, 1) FROM qna b))
-end;

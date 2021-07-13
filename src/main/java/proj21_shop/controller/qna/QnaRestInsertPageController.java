@@ -60,8 +60,10 @@ public class QnaRestInsertPageController {
 		String upload = request.getSession().getServletContext().getRealPath("/");
 		
 		String imgUploadPath = upload +"resources"+ File.separator + "qna" + File.separator +"upload";
+		
 		System.out.println(imgUploadPath);
 		for(MultipartFile multipartFile : uploadFile) {
+			
 			// 파일 이름
 			String uploadFileName = multipartFile.getOriginalFilename();
 			

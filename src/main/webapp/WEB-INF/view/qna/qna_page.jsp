@@ -219,12 +219,14 @@ $(function(){
 				var idx = $(this).parent().parent().prev().children().next().val();
 				var group = $(this).parent().parent().prev().children().next().next().val();
 				
+				console.log(group)
+				
 				deleteItem ={
 						"qIndex" : idx,
 						"qGroup":group
 				}
 				console.log(deleteItem)
-				$.ajax({
+				 $.ajax({
 					url : contextPath + "/api/qnaDelete",
 					type:"DELETE",
 					contentType:"application/json; charset=utf-8",
@@ -237,7 +239,7 @@ $(function(){
 					error:function(){
 						alert("삭제 실패.")
 					}
-				});
+				}); 
 			});
 				
 			// 내가쓴글 수정하기 누르면 수정 페이지로.
@@ -250,11 +252,9 @@ $(function(){
 					datatype:"json",
 					data:JSON.stringify(),
 					success:function(){
-
 						// 팝업창 열기
-						var popup = window.open('http://localhost:8080${contextPath}/qnaUpdate?idx=' + idx, '수정팝업',
-								'width=520px, height = 520px')	
-						location.reload();		
+						var popup = window.open('http://localhost:8080${contextPath}/qnaModify?idx=' + idx, '수정팝업',
+								'width=520px, height = 520px')									
 
 					}	
 				});		 		

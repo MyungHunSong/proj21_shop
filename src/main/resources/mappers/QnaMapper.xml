@@ -163,7 +163,7 @@
 		<delete id="deleteQnaForMember">
 			delete 
 				from qna 
-			where q_index = #{qIndex} and q_group = #{qGroup} or q_group = 0
+			where q_index = #{qIndex} or q_group = #{qGroup}
 		</delete>
 		<!-- 회원 수정시 식별자 번호를 통해서 들어가기. -->
 		<select id="selectWhereIndexForModify" resultMap="ArticleResultMap">
