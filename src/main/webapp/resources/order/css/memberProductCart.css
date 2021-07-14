@@ -199,4 +199,11 @@
 
 .orderBtn{
 	cursor: pointer;
+	color: white;
+	background: black;
+}
+
+.orderBtn:hover{
+	color: black;
+	background: white;
 }

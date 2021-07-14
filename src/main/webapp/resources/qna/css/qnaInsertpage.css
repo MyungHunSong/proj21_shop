@@ -106,19 +106,15 @@
 	margin-left: 166px;
 }
 
-#insertNcancle{
-	margin-left: 450px;
-}
 	
 .insertQna{
 	cursor:pointer;
-	
+	border:none;
 	margin-right: 10px;
 	width: 100px;
 	height: 40px;
 	background-color: black;
 	color: white;
-	
 	font-weight: bold;
 }
 
@@ -129,6 +125,7 @@
 
 .goMyOrder{
 	cursor:pointer;
+	border:none;
 	background-color: black;
 	color: white;
 }
@@ -150,7 +147,7 @@
 }
 
 .canselQna:hover{
-	
+	border:none;
 	background-color: white;;
 	color: black;
 }
