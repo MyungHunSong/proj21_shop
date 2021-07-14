@@ -135,7 +135,7 @@
 				 		data:JSON.stringify(memberId),
 				 		success:function(){
 				 			var popup = window.open('http://localhost:8080${contextPath}/qnaMyOrder?=${authInfo.id}', '조회',
-							  'width=550px, height = 450px')						
+							  'width=620px, height = 450px')						
 				 		},
 				 		error:function(){
 				 			alert("조회할 상품 내역이 없습니다.")
@@ -233,10 +233,10 @@
 					</div>
 				</c:if>					
 				</section>
+			</div>
 				<div id="insertNcancle">
 					<button class = "insertQna">작성하기</button><button class="canselQna">취소하기</button>
 				</div>
-			</div>
 		</div>
 		<jsp:include page="/WEB-INF/view/include/footer.jsp"></jsp:include>
 	</div>

@@ -259,7 +259,7 @@ where m_id = 'test09';
 INSERT INTO qna
 	(q_title, q_option, q_member, q_content, q_file, q_date, q_group)
 values
-('제품에 관해서 말할께 잇어요.', '제품문의', '이종가', '요러한 디자인의 제품도 있으면 좋을거 같아서 사진 한장 올려봅니다.', 'blueSleev1.jpg', now(),(SELECT IFNULL(MAX(q_group) + 1, 1) FROM qna b)),
+('제품에 관해서 말할께 잇어요.', '제품문의', 'test01', '요러한 디자인의 제품도 있으면 좋을거 같아서 사진 한장 올려봅니다.', 'blueSleev1.jpg', now(),(SELECT IFNULL(MAX(q_group) + 1, 1) FROM qna b)),
 ('환불을 할려면 어떻게 하나요?', '환불문의', '이종가', '환불할시 얼만큼 시간 소요가 되나요? 돈은 다시 언제 들어오고요?',  'blueSleev1.jpg', now(),(SELECT IFNULL(MAX(q_group) + 1, 1) FROM qna b)),
 ('결제에 관해서..', '주문결제', '이종가', '무통장 결제를 원하는대 어디에 가면 계좌번호가 나오나요?', 'blueSleev1.jpg', now(),(SELECT IFNULL(MAX(q_group) + 1, 1) FROM qna b)),
 ('관리자님', '주문결제', '이종가', '환불이 안돼여..', 'blueSleev1.jpg', now(), (SELECT IFNULL(MAX(q_group) + 1, 1) FROM qna b)),

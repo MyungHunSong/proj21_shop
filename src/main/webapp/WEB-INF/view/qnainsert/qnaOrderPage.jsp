@@ -10,10 +10,14 @@
 <link rel="stylesheet" href="${contextPath}/resources/qna/css/qnaOrderPage.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <style type="text/css">
-#bodySec td{
-	border-bottom: 1px solid;
 
-}
+	#bodySec td{
+		border-bottom: 1px solid;
+	}
+	#bodySec{
+		height: 38px;
+	}
+
 </style>
 <script type="text/javascript">
  $(function() {
@@ -68,10 +72,7 @@
          <h3 style="text-align: center;">나의 주문내역</h3>
 
          <div class="asd">
-         <table class="type11" 
-         	style="border-spacing: 1px; 
-					width: 600px;
-					height:200px">
+         <table class="type11" style="border-spacing: 0px; width: 600px;">
             <thead style="background-color: black;">
                <tr >
                   <th scope="cols">번호</th>

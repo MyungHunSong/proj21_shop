@@ -63,7 +63,7 @@
 		
 		
 		$.get(contextPath + "/api/myqna/" + memberId, function(json) {
-			
+			console.log(json)
 			var dataLength = json.length;
 			console.log(json);
 			if (dataLength >= 1) {
