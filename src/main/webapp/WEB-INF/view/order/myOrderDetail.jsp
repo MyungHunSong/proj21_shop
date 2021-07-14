@@ -129,6 +129,14 @@
 	</div>
 	<div class="container">
 	<h2>상세주문내역</h2>
+	<div class='wrap'>
+			<ul>
+				<li>동일한 주문 번호라도 2개 이상의 브랜드에서 주문하신 경우 출고지 주소가 달라 각각 출고됩니다. (택배 박스를 2개 이상 수령 가능)</li>
+				<li>출고 완료 직후 교환/환불 요청을 하더라도 상품을 수령하신 후 택배 업체를 통해 보내주셔야 처리 가능합니다.</li>
+				<li>별도의 구매 확정이 없더라도 상품 발송 후 9일이 지난 경우에는 자동 구매 확정됩니다.</li>
+				<li>자세한 내용은 <a href="${contextPath}listPaging?page=1&perPageNum=10&searchType=a&keyword=">QNA</a>를 확인하여 주시기 바랍니다.</li>
+			</ul>
+		</div>
 	<table class="type11">
 		<thead>
 			<tr>
@@ -145,14 +153,6 @@
 		<tbody id="load"></tbody>
 	</table>
 	<div class="test">
-		<div class='wrap'>
-			<ul>
-				<li>동일한 주문 번호라도 2개 이상의 브랜드에서 주문하신 경우 출고지 주소가 달라 각각 출고됩니다. (택배 박스를 2개 이상 수령 가능)</li>
-				<li>출고 완료 직후 교환/환불 요청을 하더라도 상품을 수령하신 후 택배 업체를 통해 보내주셔야 처리 가능합니다.</li>
-				<li>별도의 구매 확정이 없더라도 상품 발송 후 9일이 지난 경우에는 자동 구매 확정됩니다.</li>
-				<li>자세한 내용은 <a href="${contextPath}listPaging?page=1&perPageNum=10&searchType=a&keyword=">QNA</a>를 확인하여 주시기 바랍니다.</li>
-			</ul>
-		</div>
 		<h2>배송지 정보</h2>
 	</div>
 		<table class="type04" id="delivery"></table>
