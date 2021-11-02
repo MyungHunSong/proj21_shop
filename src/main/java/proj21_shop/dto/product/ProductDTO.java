@@ -4,8 +4,7 @@ import java.sql.Date;
 import java.util.List;
 
 import javax.validation.constraints.NotBlank;
-
-import com.sun.istack.internal.NotNull;
+import javax.validation.constraints.NotNull;
 
 import proj21_shop.dto.order.OrderDTO;
 
