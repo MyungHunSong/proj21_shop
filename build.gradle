@@ -84,10 +84,8 @@ implementation group: 'javax.activation', name: 'activation', version: '1.1.1'
 
 // jackson-datatype-jsr310
 	implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.12.3'
-
-
-    testImplementation 'junit:junit:4.13'
-    
+	
+    testImplementation 'junit:junit:4.13'    
 	// about tiles
 	implementation group: 'org.apache.tiles', name: 'tiles-core', version: '3.0.7'
 	implementation group: 'org.apache.tiles', name: 'tiles-jsp', version: '3.0.7'
@@ -98,7 +96,5 @@ implementation group: 'javax.activation', name: 'activation', version: '1.1.1'
 	implementation group: 'org.json', name: 'json', version: '20210307'
 	// 썸네일 생성
 	implementation group: 'net.coobird', name: 'thumbnailator', version: '0.4.8'
-
-
 
 }
