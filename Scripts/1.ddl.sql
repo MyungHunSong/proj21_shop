@@ -1,8 +1,8 @@
 -- 쇼핑몰_팀
-DROP SCHEMA IF EXISTS proj21_shop;
+/*DROP SCHEMA IF EXISTS proj21_shop;*/
 
 -- 쇼핑몰_팀
-CREATE SCHEMA proj21_shop;
+/*CREATE SCHEMA proj21_shop;*/
 
 -- 회원
 CREATE TABLE proj21_shop.MEMBER (
