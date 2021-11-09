@@ -28,7 +28,7 @@ public class MvcConfig implements WebMvcConfigurer {
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
 		configurer.enable();
 	}
-	//dd
+
 	/* JSP를 통해서 컨트롤러의 실행 결과를 보여주기 위한 설정 */
 	@Override
 	public void configureViewResolvers(ViewResolverRegistry registry) {
@@ -37,12 +37,16 @@ public class MvcConfig implements WebMvcConfigurer {
 	}
 	
 
-//	/* 메인으로 바로 보내기*/
+	/* 메인으로 바로 보내기*/
 //	@Override
 //	public void addViewControllers(ViewControllerRegistry registry) {
 //		registry.addViewController("/include/main").setViewName("main");
 //	}
 	
+	/* 인터셉터 사용 이유?
+	 * 1. 특정 url 진입 시 로그인이 된(인가된) 사용자가 접근 해야함.
+	 * 2. 특정 url 진입 시 Jwt와 같은 토큰을 검사해야 함
+	 * 3. 특정 url의 경우 계정의 권한에 따라 접근을 막아야 함(물론 view 단에서도 처리 가능) */
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(authCheckInterceptor()).addPathPatterns("/cart/**");
