@@ -284,6 +284,7 @@
 <body>
 	<div class="page-wrapper">
 		<div class="container-fluid">
+		<!-- 첫번째 그래프 -->
 			<div class="row">
 				<div class="col-md-12">
 					<div class="card">
@@ -301,6 +302,9 @@
 					</div>
 				</div>
 			</div>
+		<!-- 첫번째 그래프 끝 -->
+		
+		<!-- 두번째 그래프 -->
 			<div class="row">
 				<div class="col-md-6">
 					<div class="card">
@@ -326,6 +330,9 @@
 					</div>
 				</div>
 			</div>
+		<!-- 두번째 그래프 끝 -->
+		
+		<!-- 세번째 그래프 -->
 			<div class="row">
 				<div class="col-md-12">
 					<div class="card">
@@ -337,7 +344,9 @@
 					</div>
 				</div>
 			</div>
-
+		<!-- 세번째 그래프 끝 -->
+		
+		<!-- 마지막 영역 -->
 			<div class="row">
 				<div class="col-12">
 					<div class="card">
@@ -383,6 +392,7 @@
 					</div>
 				</div>
 			</div>
+			<!-- 마지막 영역 끝 -->
 		</div>
 	</div>
 

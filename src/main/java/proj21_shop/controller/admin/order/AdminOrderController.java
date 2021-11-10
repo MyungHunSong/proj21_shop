@@ -38,6 +38,7 @@ public class AdminOrderController {
 		// 이곳 viewMap, viewMap2는 orderStatics 그래프에 사용할꺼임.
 		Map<String, Object> viewMap = adminOrderService.getOrderStatics();
 		mav.setViewName("admin/order/orderStatics");
+		// addObject로 지정한 viewMap은 jsp에서 사용할수 있음.
 		mav.addObject("viewMap", viewMap);
 		mav.addObject("viewMap2", adminMemberService.getMemberStatics());
 		System.out.println(mav);
