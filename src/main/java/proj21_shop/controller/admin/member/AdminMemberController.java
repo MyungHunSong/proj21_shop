@@ -37,19 +37,12 @@ public class AdminMemberController {
 		}
 		
 		ModelAndView mav = new ModelAndView();
-//		String _section = (String) request.getParameter("section"); // 섹션값가져오기
-//		String _pageNum = (String) request.getParameter("pageNum"); // 페이지넘버가져오기
-
-//		int section = Integer.parseInt(((_section == null) ? "1" : _section)); // int로 변환
-//		int pageNum = Integer.parseInt(((_pageNum == null) ? "1" : _pageNum));
 
 		Map<String, Object> pagingMap = new HashMap<String, Object>();
 
 		session.setAttribute("side_menu", "side_member");
 		session.setAttribute("width", "600");
-//		
-//		System.out.println("section : " + section);
-//		System.out.println("pageNum : " + pageNum);
+
 		System.out.println("memberTotalBuy : " + memberTotalBuy);
 		System.out.println("memberTotalOrder : " + memberTotalOrder);
 		System.out.println("memberGender : " + memberGender);
@@ -63,8 +56,7 @@ public class AdminMemberController {
 		// 최종으로 jsp에 보내줄 Map생성 이쪽에 membersList 그리고 Paging,section번호까지 담아서 보내줄거임
 		Map<String, Object> membersMap = adminMemberService.listMembers(pagingMap);
 		System.out.println("key : " + membersMap.get("membersList"));
-//		membersMap.put("section", section);
-//		membersMap.put("pageNum", pageNum);
+
 		System.out.println("memberTotalBuy2 : " + memberTotalBuy);
 		System.out.println("memberTotalOrder2 : " + memberTotalOrder);
 		System.out.println("memberGender2 : " + memberGender);
@@ -108,7 +100,8 @@ public class AdminMemberController {
 			System.out.println("컨트롤러 에서 memberId : " + memberId);
 			System.out.println("컨트롤러 에서  memberKeyword " + memberKeyword);
 		}
-
+		// 좌표는 여기다. 여기 이친구를 그래프 사용시 써줄꺼다.
+		// 멤버 상세 정보 받아옴.
 		viewMap = adminMemberService.viewMember(searchMap);
 		mav.setViewName("admin/member/viewMember");
 

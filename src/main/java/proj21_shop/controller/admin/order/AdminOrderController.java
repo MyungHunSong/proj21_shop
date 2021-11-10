@@ -34,6 +34,8 @@ public class AdminOrderController {
 	public ModelAndView searchMember(HttpServletRequest request, HttpServletResponse response) {
 		log.info("orderStatics() 진입");
 		ModelAndView mav = new ModelAndView();
+		
+		// 이곳 viewMap, viewMap2는 orderStatics 그래프에 사용할꺼임.
 		Map<String, Object> viewMap = adminOrderService.getOrderStatics();
 		mav.setViewName("admin/order/orderStatics");
 		mav.addObject("viewMap", viewMap);

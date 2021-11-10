@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR" isELIgnored="false"%>
+<!-- 송명훈 추가. jstl사용 -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="contextPath" value="<%=request.getContextPath()%>" />
+
+<!-- 그래프 사용 방법 
+위치:AdminOrderController. viewmaps-->
 <c:set var="totalRevenue" value="${viewMap.totalRevenue }" />
 <c:set var="totalOrderCount" value="${viewMap.totalOrderCount }" />
 <c:set var="memberMen" value="${viewMap2.memberMen }" />
@@ -17,7 +21,6 @@
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <title>Annual Sales - 2021</title>
 <!-- chart -->
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
@@ -27,9 +30,10 @@
 <script src="${contextPath}/resources/admin/dist/js/sidebarmenu.js"></script>
 <script>
 			$(function () {
-				
-				
+								
 				// CanvasJS column chart to show revenue from Jan 2020 - Dec 2020
+				// CanvasJs 사이트에서 스크립문 복사 붙여넣기
+				//1. 첫번째 보일 차트
 				var revenueColumnChart = new CanvasJS.Chart("revenue-column-chart", {
 					animationEnabled: true,
 					backgroundColor: "transparent",
@@ -62,9 +66,7 @@
 								{ x: new Date("1 Mar 2021"), y: 4180200 },
 								{ x: new Date("1 Apr 2021"), y: 3106900 },
 								{ x: new Date("1 May 2021"), y: 4033800 },
-								{ x: new Date("1 Jun 2021"), y: ${totalRevenue} },
-								
-								
+								{ x: new Date("1 Jun 2021"), y: ${totalRevenue} },								
 							]
 						}
 					]
@@ -73,6 +75,7 @@
 				revenueColumnChart.render();
 				
 				//CanvasJS pie chart to show product wise annual revenue for 2015
+				// 피자 모양 차트
 				var productsRevenuePieChart = new CanvasJS.Chart("products-revenue-pie-chart", {
 					animationEnabled: true,
 					theme: "theme2",
@@ -108,6 +111,7 @@
 				productsRevenuePieChart.render();
 				
 				//CanvasJS spline chart to show orders from Jan 2015 to Dec 2015
+				
 				var ordersSplineChart = new CanvasJS.Chart("orders-spline-chart", {
 					animationEnabled: true,
 					backgroundColor: "transparent",
@@ -150,7 +154,7 @@
 				ordersSplineChart.render();
 				
 			});
-			
+			// 성별 차트 -시작-			
 			window.onload = function () {
 				var totalVisitors = 50;
 				var visitorsData = {
@@ -227,13 +231,14 @@
 				   legend: {
 				      fontFamily: "calibri",
 				      fontSize: 14,
-				      itemTextFormatter: function (e) {
+					      itemTextFormatter: function (e) {
 				         return e.dataPoint.name + ": " + Math.round(e.dataPoint.y / totalVisitors * 100) + "%";  
 				      }
 				   },
 				   data: []
 				};
-				
+				// 성별 차트 -엔딩-
+					
 				var visitorsDrilldownedChartOptions = {
 				   animationEnabled: true,
 				   theme: "light2",
@@ -388,12 +393,15 @@
 
 <script src="${contextPath}/resources/admin/dist/js/jquery.ui.touch-punch-improved.js"></script>
 <script src="${contextPath}/resources/admin/dist/js/jquery-ui.min.js"></script>
+
 <!-- CDN 사용 -->
 <script src="${contextPath}/resources/admin/assets/libs/popper.js/dist/umd/popper.min.js"></script>
 <script src="${contextPath}/resources/admin/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+
 <!-- Bootstrap tether Core JavaScript -->
 <script src="${contextPath}/resources/admin/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- slimscrollbar scrollbar JavaScript -->
+
 <!-- Bullet chart -->
 <script src="${contextPath}/resources/admin/assets/extra-libs/sparkline/sparkline.js"></script>
 <!--Wave Effects -->
