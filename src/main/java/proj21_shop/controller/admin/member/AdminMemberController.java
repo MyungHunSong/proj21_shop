@@ -39,7 +39,8 @@ public class AdminMemberController {
 		ModelAndView mav = new ModelAndView();
 
 		Map<String, Object> pagingMap = new HashMap<String, Object>();
-
+		
+		// 이건 머꼬?
 		session.setAttribute("side_menu", "side_member");
 		session.setAttribute("width", "600");
 
@@ -55,19 +56,23 @@ public class AdminMemberController {
 
 		// 최종으로 jsp에 보내줄 Map생성 이쪽에 membersList 그리고 Paging,section번호까지 담아서 보내줄거임
 		Map<String, Object> membersMap = adminMemberService.listMembers(pagingMap);
+		
 		System.out.println("key : " + membersMap.get("membersList"));
-
 		System.out.println("memberTotalBuy2 : " + memberTotalBuy);
 		System.out.println("memberTotalOrder2 : " + memberTotalOrder);
 		System.out.println("memberGender2 : " + memberGender);
 		System.out.println("keyword2 : " + keyword);
+		
 		membersMap.put("memberTotalBuy", memberTotalBuy);
 		membersMap.put("memberTotalOrder", memberTotalOrder);
 		membersMap.put("memberGender", memberGender);
 		membersMap.put("keyword", keyword);
-		mav.addObject("membersMap", membersMap); // 회원정보를 담은 membersMap를 바인딩
+		
+		// 회원정보를 담은 membersMap를 바인딩
+		mav.addObject("membersMap", membersMap); 
 		mav.setViewName("admin/member/listMembers");
-		System.out.println("mav" + mav);
+		
+		System.out.println("here_mav : " + mav);
 
 		return mav;
 	}

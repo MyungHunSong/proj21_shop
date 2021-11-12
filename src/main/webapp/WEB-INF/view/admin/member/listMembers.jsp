@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<!-- 사용할 객체 나열 -->
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <c:set var="membersList" value="${membersMap.membersList }" />
 <c:set var="totMembers" value="${membersMap.totMembers }" />
@@ -98,6 +99,7 @@ a {
 		var memberTotalOrder = $('#memberTotalOrder').val();
 		var memberGender = $('input:radio[name=memberGender]:checked').val();
 		var keyword = $('#memberName').val();
+		
 		console.log(memberTotalBuy)
 		console.log(memberTotalOrder)
 		console.log(memberGender)
@@ -125,6 +127,9 @@ a {
 	<h2>회원 목록</h2>
 	<hr>
 	<section>
+	
+	<!-- 어디 모델 -> 컨트롤러를 타고 왔나. -->
+	<!-- 좌표는: proj21_shop.controller.admin.member/AdminMemberController -->
 		<div id="listOrdersByStatus">
 			<ul class="smallul">
 				<li>회원&nbsp;<a href="${contextPath }/admin/member/listMembers">${totMembers }</a> 건|</li>
@@ -133,6 +138,7 @@ a {
 			</ul>
 		</div>
 	</section>
+	
 	<br><br>
 	<form action="${contextPath }/admin/membmer/listMembers" method="post" id="frm_search">
 		<table>

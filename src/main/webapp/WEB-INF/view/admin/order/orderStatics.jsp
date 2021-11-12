@@ -406,17 +406,21 @@
 
 <!-- CDN 사용 -->
 <script src="${contextPath}/resources/admin/assets/libs/popper.js/dist/umd/popper.min.js"></script>
+
+<!-- 맨윗 메뉴 슬라이더. -->
 <script src="${contextPath}/resources/admin/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
 
+ 
 <!-- Bootstrap tether Core JavaScript -->
 <script src="${contextPath}/resources/admin/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- slimscrollbar scrollbar JavaScript -->
-
 <!-- Bullet chart -->
 <script src="${contextPath}/resources/admin/assets/extra-libs/sparkline/sparkline.js"></script>
 <!--Wave Effects -->
 <script src="${contextPath}/resources/admin/dist/js/waves.js"></script>
-<!--Menu sidebar 사용-->
+ 
+ 
+ <!--Menu sidebar 사용-->
 
 <!--Custom JavaScript sidebar 애니메이션 효과를 주기 위한 UI 파일 -->
 <!-- 날짜 데이터 출력 및 수정 js -->
