@@ -50,52 +50,61 @@
 		select if(count(*)=0,'false','true')
 		from `order`
 	</select>
+	
 	<!-- 총 판매 금액 -->
 	<select id="getTotalRevenue" resultType="int">
 		select sum(order_pro_quantity * order_price)
 		from `order`
 	</select>
+	
 	<!-- 총 주문 건 수 -->
 	<select id="getTotalOrderCount" resultType="int">
 		select count(distinct order_pro_num)
 		from `order`
 	</select>
+	
 	<!-- 총 주문 수 -->
 	<select id="selectTotalOrders" resultType="int">
 		select count(*)
 		from `order`
 	</select>
+	
 	<!-- 배송 준비 중 수 -->
 	<select id="selectAllWaitingDelivery" resultType="int" parameterType="String">
 		select count(*)
 		from `order`
 		where delivery_status='배송준비중'
 	</select>
+	
 	<!-- 배송 중 수 -->
 	<select id="selectAllOnDelivery" resultType="int" parameterType="String">
 		select count(*)
 		from `order`
 		where delivery_status='배송중'
 	</select>
+	
 	<!-- 배송 완료 수 -->
 	<select id="selectAllTotDoneDelivery" resultType="int" parameterType="String">
 		select count(*)
 		from `order`
 		where delivery_status='배송완료'
 	</select>
+	
 	<!-- 환불 완료 수 -->
 	<select id="selectAllDoneRefund" resultType="int" parameterType="String">
 		select count(*)
 		from `order`
 		where delivery_status='반품완료'
 	</select>
+	
 	<!-- 환불 대기 수 -->
 	<select id="selectAllWaitingRefund" resultType="int" parameterType="String">
 		select count(*)
 		from `order`
 		where delivery_status='반품대기중'
 	</select>
-
+	
+	<!-- 머지 이건?  -->
 	<select id="selectOrderList" resultMap="orderResult" parameterType="map">
 		SELECT	DISTINCT a.*, c.pro_imagefilename ,	p.pro_name
   		  FROM (SELECT FORMAT(@ROWNUM := @ROWNUM + 1, 0) AS rn, order_code,	order_pro_num, order_date, order_pro_quantity,

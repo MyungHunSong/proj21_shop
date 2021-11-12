@@ -129,7 +129,7 @@ a {
 	<section>
 	
 	<!-- 어디 모델 -> 컨트롤러를 타고 왔나. -->
-	<!-- 좌표는: proj21_shop.controller.admin.member/AdminMemberController -->
+	<!-- Controller 경로 : proj21_shop.controller.admin.member/AdminMemberController -->
 		<div id="listOrdersByStatus">
 			<ul class="smallul">
 				<li>회원&nbsp;<a href="${contextPath }/admin/member/listMembers">${totMembers }</a> 건|</li>
@@ -140,6 +140,8 @@ a {
 	</section>
 	
 	<br><br>
+	
+	<!-- Controller 경로:proj21_shop.controller.admin.member/AdminMemberControlle   -->
 	<form action="${contextPath }/admin/membmer/listMembers" method="post" id="frm_search">
 		<table>
 			<tr>
@@ -148,6 +150,7 @@ a {
 					회원 이름 : <input type="text" name="memberName" placeholder="회원 이름을 입력하세요" id="memberName" />				
 				 </td>
 			</tr>
+			<!-- Controller 경로 :  proj21_shop.controller.admin.member/AdminMemberController  -->
 			<tr>
 				<td colspan="2">회원성별 구분&nbsp;&nbsp;</td>
 				<td colspan="5" class="pleft">
@@ -157,6 +160,7 @@ a {
 				</td>
 			</tr>
 			<tr>
+			
 				<td colspan="2">회원 분류&nbsp;&nbsp;</td>
 				<td colspan="5" class="pleft">
 					
@@ -215,47 +219,9 @@ a {
 		</c:choose>
 	</table>
 	<br>
-	 	<%-- <c:if test="${totMembers !=null}">
-			<c:choose>
-				<c:when test="${selectedMembers >200 }">
-					<c:forEach var="page" begin="1" end="20" step="1">
-						<c:if test="${section >1 && page==1 }"> <!--페이지번호가 1일때 pre나오게 하기 -->
-							<a href="${contextPath }/admin/member/listMembers?section=${section-1}&pageNum=${(section-1)*20+1}">%nbsp; pre </a>
-						</c:if>
-							<a href="${contextPath }/admin/member/listMembers?section=${section}&pageNum=${page}">${(section-1)*20+page }</a>
-						<c:if test="${page==10} }"><!--페이지수가 10일때 다음으로 next나오게 하기  -->
-							<a href="${contextPath }/admin/member/listMembers?section=${section+1}&pageNum=${section*20+1}">&nbsp; next</a>
-						</c:if>	
-						
-					</c:forEach>
-				</c:when>
-				
-				<c:when test="${selectedMembers <200 }">
-					<c:forEach var="page" begin="1" end="${selectedMembers/20+1 }" step="1">
-						<c:choose>
-							<c:when test="${page==pageNum }">
-								<a class="sel-page" href="${contextPath }/admin/member/listMembers?
-								&order_total_buy=${memberTotalBuy}
-								&order_total_order=${memberTotalOrder}
-								&member_gender=${memberGender}
-								&keyword=${keyword}"
-								>${page }</a>
-							</c:when>
-							<c:otherwise>
-								<a class="no-uline" href="${contextPath }/admin/member/listMembers?
-								&order_total_buy=${memberTotalBuy}
-								&order_total_order=${memberTotalOrder}
-								&member_gender=${memberGender}
-								&keyword=${keyword}">${page }</a>
-							</c:otherwise>
-						</c:choose>
-					</c:forEach>
-				</c:when>
-			</c:choose>
-		</c:if> --%>
 	</form>
-    </div>
-    </div>
+   </div>
+  </div>
     <!-- column -->
     </div>
             <!-- ============================================================== -->

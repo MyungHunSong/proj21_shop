@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
+
+<!-- Controller 경로 : proj21_shop.controller.admin.member/AdminMemberController -->
 <c:set var="member" value="${viewMap.member }" />
 <c:set var="averageOrder" value="${viewMap.averageOrder }" />
 <c:set var="onDelivery" value="${viewMap.onDelivery }" />
@@ -78,6 +80,8 @@ a:hover {
 <script src="${contextPath}/resources/admin/assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
 <script src="${contextPath}/resources/admin/dist/js/pages/chart/chart-page-init.js"></script>
 <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+
+<!-- 그래프 function Cnavas Js -->
 <script>
 window.onload = function () {
 var options = {
@@ -155,6 +159,7 @@ var options = {
       ]
    }]
 };
+
 $("#chartContainer").CanvasJSChart(options);
 function toggleDataSeries(e) {
    if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
@@ -166,6 +171,7 @@ function toggleDataSeries(e) {
 }
 }
 </script>
+
 <script>
 </script>
 </head>
@@ -174,6 +180,7 @@ function toggleDataSeries(e) {
 		<!-- ============================================================== -->
 		<!-- Start Page Content -->
 		<!-- ============================================================== -->
+		
 		<div class="row">
 			<div class="col-12">
 				<div class="card">

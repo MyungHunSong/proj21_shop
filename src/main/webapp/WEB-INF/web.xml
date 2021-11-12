@@ -60,7 +60,10 @@
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-
-
+	
+	<!-- 잠시 공부를 위한 세션 유지시간 늘리기. -->
+	<session-config>
+		<session-timeout>60</session-timeout>
+	</session-config>
 
 </web-app>

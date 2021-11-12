@@ -76,7 +76,8 @@ public class AdminMemberController {
 
 		return mav;
 	}
-
+	
+	// viewMember.jsp 페이지 컨트롤러. 
 	@RequestMapping("viewMember")
 	public ModelAndView viewMember(@RequestParam(value = "memberId", required = false) String memberId,
 			@RequestParam(value = "memberKeyword", required = false) String memberKeyword, HttpServletRequest request,
@@ -86,6 +87,8 @@ public class AdminMemberController {
 			session.removeAttribute("side_menu");
 		}
 		session.setAttribute("side_menu", "side_member");
+		
+		// 모델 선언
 		ModelAndView mav = new ModelAndView();
 		Map searchMap = new HashMap();
 		Map<String, Object> viewMap = new HashMap();
@@ -105,8 +108,10 @@ public class AdminMemberController {
 			System.out.println("컨트롤러 에서 memberId : " + memberId);
 			System.out.println("컨트롤러 에서  memberKeyword " + memberKeyword);
 		}
-		// 좌표는 여기다. 여기 이친구를 그래프 사용시 써줄꺼다.
+		
+		
 		// 멤버 상세 정보 받아옴.
+		// 좌표는 여기다. 여기 이친구를 그래프 사용시 써줄꺼다.
 		viewMap = adminMemberService.viewMember(searchMap);
 		mav.setViewName("admin/member/viewMember");
 
@@ -125,7 +130,8 @@ public class AdminMemberController {
 		mav.setViewName("redirect:/admin/member/listMembers");
 		return mav;
 	}
-
+	
+	// listMember.jsp 검색 : 멤버 이름 검색하는 컨트롤러.
 	@RequestMapping(value = "searchMember", method = { RequestMethod.POST })
 	public ModelAndView searchMember(@RequestParam(value = "memberSearch", required = false) String memberSearch, RedirectAttributes redir,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -148,7 +154,6 @@ public class AdminMemberController {
 	
 	mav.addObject("viewMap",viewMap);
 	mav.setViewName("admin/member/memberStatics");
-	return mav;		
-	
+	return mav;			
 }
 }
