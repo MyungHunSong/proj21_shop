@@ -214,7 +214,11 @@ function toggleDataSeries(e) {
 									<td>아이디</td>
 									<td>${member.memberId }</td>
 									<td>적립금</td>
-									<td><a href="#"><fmt:formatNumber value="${member.memberPoint}" pattern="#,###" /></a><b> P</b></td>
+									<td>
+										<!-- fmt:formatNumber => 내가 원하는 방식으로 숫자를 찍는법 -->
+										<a href="#">
+											<fmt:formatNumber value="${member.memberPoint}" pattern="#,###" />
+										</a><b> P</b></td>
 								</tr>
 
 
@@ -224,7 +228,11 @@ function toggleDataSeries(e) {
 									<td>누적 구매액</td>
 									<td><fmt:formatNumber value="${member.memberTotalBuy}" pattern="#,###" />원</td>
 									<td>누적 주문수</td>
-									<td><a href="#"><fmt:formatNumber value="${member.memberTotalOrder}" pattern="#,###" /></a>회 (평균:<fmt:formatNumber value="${averageOrder}" pattern="#,###" />원)</td>
+									<td>
+										<a href="#">
+											<fmt:formatNumber value="${member.memberTotalOrder}" pattern="#,###" />
+										</a>회 (평균:<fmt:formatNumber value="${averageOrder}" pattern="#,###" />원)
+									</td>
 								</tr>
 							</table>
 						</center>
@@ -270,9 +278,9 @@ function toggleDataSeries(e) {
 								<c:when test="${orderList !=null }">
 
 									<br>
-									<h3>배송중 or 배송 준비중인 상품</h3>
+										<h3>배송중 or 배송 준비중인 상품</h3>
 									<br>
-
+									
 									<table>
 										<tr style="text-align: center;">
 											<td width="100px">이미지</td>
@@ -285,7 +293,11 @@ function toggleDataSeries(e) {
 											<td width="100px">배송 상태</td>
 										</tr>
 										<c:set var="final_total_price" value="0" />
+										
+										<!-- forEach 문을 사용해 orderList가져온다. -->
 										<c:forEach var="order" items="${orderList }">
+										
+										<!-- Controller 겅로 : proj21_shop.controller.product -->
 											<tr style="text-align: center;">
 												<td width="100px;"><a href="${contextPath}/productDetail?proNum=${order.pro.proNum}"> <img width="70px" height="105px"
 														src="${contextPath}/thumbnails?proNum=${order.pro.proNum}&fileName=${order.pro.proImgfileName}"></a></td>

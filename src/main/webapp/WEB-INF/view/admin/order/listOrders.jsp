@@ -54,6 +54,7 @@
 			type:"post",
 			data:{"change_deliveryStatus" : deliveryStatus, "change_orderProNum" : orderProNum, "change_orderMemberId" : orderMemberId,
 				"change_orderCode" : orderCode, "change_orderProQuantity" : orderProQuantity, "change_proNum" : proNum, "change_orderValue" : orderValue},
+				
 			success:function(data){
 				alert("배송상태 수정을 완료했습니다.");
 				location.href='${contextPath}/admin/order/listOrders';

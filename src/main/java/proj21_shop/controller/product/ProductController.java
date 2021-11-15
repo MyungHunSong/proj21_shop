@@ -30,6 +30,7 @@ public class ProductController {
 	 
 	/*내가 사용할 매핑주소 : /productDetail, view 위치와 이름 : product/productDetail*/
 	/*@RequestParam proNum*/
+	// viewMember.jsp에 배송중 or 배송중인 상품.
 	@GetMapping("/productDetail")
 	public ModelAndView getProductDetailByProNum(@RequestParam(value = "proNum") Integer proNum) {
 		ModelAndView mav = new ModelAndView("product/productDetail", "proNum",proNum);
