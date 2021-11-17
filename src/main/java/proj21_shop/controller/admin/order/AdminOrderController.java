@@ -59,11 +59,12 @@ public class AdminOrderController {
 							@RequestParam(value="change_orderCode", required=false) String change_orderCode,
 							@RequestParam(value="change_orderProQuantity", required=false) String change_orderProQuantity,
 							@RequestParam(value="change_proNum", required=false) String change_proNum,
-							@RequestParam(value="change_orderValue", required=false) String change_orderValue,
+							@RequestParam(value="change_orderValue", required=false) String change_orderValue,  
 							@RequestParam(value="change_orderMemberId", required=false) String change_orderMemberId
 			) {
 		log.info("listOrders() 진입");
 		HttpSession session=request.getSession();
+		
 		if(session.getAttribute("side_menu") !=null){
 			session.removeAttribute("side_menu");
 		}
@@ -85,6 +86,7 @@ public class AdminOrderController {
 			System.out.println("change_proNum===== :"+change_proNum);
 			System.out.println("change_orderValue===== :"+change_orderValue);
 			System.out.println("change_orderMemberId===== :"+change_orderMemberId);
+			
 			Map<String,Object> changeMap=new HashMap();
 			//배송상태 수정
 			changeMap.put("change_deliveryStatus", change_deliveryStatus);
@@ -126,7 +128,9 @@ public class AdminOrderController {
 		viewMap.put("deliveryStatus", deliveryStatus);
 		viewMap.put("orderPrice", orderPrice);
 		viewMap.put("orderValue", orderValue);
-	
+		
+		
+		// viewMap.jsp의 배송중인 상품 갯수.
 		mav.addObject("viewMap",viewMap);
 		mav.setViewName("admin/order/listOrders");
 		

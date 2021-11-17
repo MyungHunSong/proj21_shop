@@ -4,6 +4,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
+<!-- 파워포인트 활동현황 페이지. 기능: 이름 검색, 그래프, 배송중인 상품 -->
+
 <!-- Controller 경로 : proj21_shop.controller.admin.member/AdminMemberController -->
 <c:set var="member" value="${viewMap.member }" />
 <c:set var="averageOrder" value="${viewMap.averageOrder }" />
@@ -297,7 +299,7 @@ function toggleDataSeries(e) {
 										<!-- forEach 문을 사용해 orderList가져온다. -->
 										<c:forEach var="order" items="${orderList }">
 										
-										<!-- Controller 겅로 : proj21_shop.controller.product -->
+										<!-- Controller 겅로 : proj21_shop.controller.product/ProductController -->
 											<tr style="text-align: center;">
 												<td width="100px;"><a href="${contextPath}/productDetail?proNum=${order.pro.proNum}"> <img width="70px" height="105px"
 														src="${contextPath}/thumbnails?proNum=${order.pro.proNum}&fileName=${order.pro.proImgfileName}"></a></td>
