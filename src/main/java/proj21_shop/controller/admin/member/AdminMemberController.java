@@ -69,6 +69,8 @@ public class AdminMemberController {
 		membersMap.put("keyword", keyword);
 		
 		// 회원정보를 담은 membersMap를 바인딩
+
+		
 		mav.addObject("membersMap", membersMap); 
 		mav.setViewName("admin/member/listMembers");
 		

@@ -4,6 +4,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
+
+<!-- Controller 경로: proj21_shop.controller.admin.review/AdminReviewController -->
 <c:set var="reviewsList" value="${reviewsMap.listReviews}" />
 <c:set var="selectedReviews" value="${reviewsMap.selectedReviews}" />
 <html>
@@ -19,12 +21,15 @@
 <script src="${contextPath}/resources/admin/dist/js/sidebarmenu.js"></script>
 <title>회원정보 리스트</title>
 <script>
+	<!-- 검색 함수 -->
 	$(document).ready(function() {
 
 		$("input[id='search_option']").click(function() {
 			var memberId = $('#memberId').val();
+			<!-- 굳이 제품 코드를? -->
 			var proNum = $('#proNum').val();
-
+			
+			<!-- 멤버 서칭시 다시금 컨테이너 불러오기. -->
 			$('#container').load('${contextPath}/admin/review/listReviews', {
 				memberId : memberId,
 				proNum : proNum
@@ -149,7 +154,7 @@ text-align: left;
 								<tr>
 									<td colspan="2">&nbsp;&nbsp;</td>
 									<td colspan="5" class="pleft" >멤버 ID : <input style="margin-left: 14.3px;" type="text" name="memberId" placeholder="멤버 ID를 입력하세요" id="memberId" />
-									</td>
+								</td>
 								</tr>
 								<tr>
 									<td colspan="2">&nbsp;&nbsp;</td>
@@ -220,7 +225,9 @@ text-align: left;
 								</c:when>
 							</c:choose>
 							<tr>
-								<td colspan="8" style="text-align: left;"><input type="button" value="삭제하기" id="delete" /></td>
+								<td colspan="8" style="text-align: left;">
+								<input type="button" value="삭제하기" id="delete" />
+								</td>
 							</tr>
 						</table>
 
@@ -230,6 +237,7 @@ text-align: left;
 									<c:forEach var="page" begin="1" end="10" step="1">
 
 										<c:if test="${section >1 && page==1 }">
+										
 											<!--페이지번호가 1일때 pre나오게 하기 -->
 											<a href="${contextPath }/admin/review/listReviews?section=${section-1}&pageNum=${(section-1)*20+1}">%nbsp; pre </a>
 										</c:if>
@@ -237,6 +245,7 @@ text-align: left;
 										<a href="${contextPath }/admin/review/listReviews?section=${section}&pageNum=${page}">${(section-1)*20 + page }</a>
 
 										<c:if test="${page==20} }">
+																				
 											<!--페이지수가 10일때 다음으로 next나오게 하기  -->
 											<a href="${contextPath }/admin/review/listReviews?section=${section+1}&pageNum=${section*10+1}">&nbsp; next</a>
 										</c:if>
@@ -248,7 +257,7 @@ text-align: left;
 										<a href="#"> ${page } </a>
 									</c:forEach>
 								</c:when>
-
+								
 								<c:when test="${selectedReviews < 200 }">
 									<c:forEach var="page" begin="1" end="${selectedReviews/20+1 }" step="1">
 										<c:choose>
@@ -268,7 +277,7 @@ text-align: left;
 													&pageNum=${page}
 													&memberId=${memberId}
 													&proNum=${proNum}">
-													${page } </a>
+													${page }</a>
 											</c:otherwise>
 										</c:choose>
 									</c:forEach>

@@ -1,6 +1,5 @@
 package proj21_shop.controller.admin.review;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -9,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -30,7 +28,8 @@ public class AdminReviewController {
 	
 	@Autowired
 	AdminReviewService adminReviewService;
-
+	
+	//listReview.jsp 페이지 사용을 위한것
 	@RequestMapping("listReviews")
 	public ModelAndView listReviews(
 			@RequestParam(value = "memberId", required = false) String memberId,
@@ -65,7 +64,9 @@ public class AdminReviewController {
 		pagingMap.put("proNum", proNum);
 
 		reviewsMap = adminReviewService.listReviews(pagingMap);
+		
 		System.out.println("key : " + reviewsMap.get("listReviews"));
+		
 		reviewsMap.put("section", section);
 		reviewsMap.put("pageNum", pageNum);
 		reviewsMap.put("memberId", memberId);
@@ -77,6 +78,7 @@ public class AdminReviewController {
 		System.out.println("reviewsMap :proNum=" + proNum);
 
 		mav.addObject("reviewsMap", reviewsMap);
+		
 		System.out.println("key : " + reviewsMap.get("section"));
 		mav.setViewName("admin/review/listReviews");
 
@@ -106,7 +108,9 @@ public class AdminReviewController {
 		}
 		String message=null;
 		ResponseEntity resEnt=null;
+		// 쓰지도않 는거 
 		HttpHeaders responseHeaders=new HttpHeaders();
+		
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		Map<String,Object> deleteMap=new HashMap();
 		deleteMap.put("deleteList", deleteList);
