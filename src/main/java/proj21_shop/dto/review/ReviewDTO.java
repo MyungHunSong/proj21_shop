@@ -17,6 +17,7 @@ public class ReviewDTO {
 	private String reviewContent;
 	private String reviewImagefilename1;
 	private String reviewImagefilename2;
+	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date reviewDate;
 	private int reviewReplyCount;
@@ -25,7 +26,7 @@ public class ReviewDTO {
 
 	public ReviewDTO() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public ReviewDTO(String memberId, int proNum, String reviewContent, String reviewImagefilename1, String reviewImagefilename2, int reviewStar) {

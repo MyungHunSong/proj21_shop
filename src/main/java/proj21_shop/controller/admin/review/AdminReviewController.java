@@ -29,7 +29,7 @@ public class AdminReviewController {
 	@Autowired
 	AdminReviewService adminReviewService;
 	
-	//listReview.jsp 페이지 사용을 위한것
+	//listReview.jsp  사용을 위한것
 	@RequestMapping("listReviews")
 	public ModelAndView listReviews(
 			@RequestParam(value = "memberId", required = false) String memberId,
@@ -41,11 +41,12 @@ public class AdminReviewController {
 		}
 		session.setAttribute("side_menu", "side_product");
 
-		System.out.println("RequestParam==memberId :" + memberId);
-		System.out.println("RequestParam==proNum :" + proNum);
+		System.out.println("RequestParam == memberId :" + memberId);
+		System.out.println("RequestParam == proNum :" + proNum);
 
 		ModelAndView mav = new ModelAndView();
-
+		
+		// 페이징을 위한 paginMap
 		Map<String, Object> pagingMap = new HashMap();
 		
 		Map<String, Object> reviewsMap = new HashMap();
@@ -53,8 +54,8 @@ public class AdminReviewController {
 		String _pageNum = (String) request.getParameter("pageNum");
 		String _section = (String) request.getParameter("section");
 
-		System.out.println("RequestParam==_section :" + _section);
-		System.out.println("RequestParam==_pageNum :" + _pageNum);
+		System.out.println("this_RequestParam==_section :" + _section);
+		System.out.println("this_RequestParam==_pageNum :" + _pageNum);
 		int section = Integer.parseInt(((_section == null) ? "1" : _section));
 		int pageNum = Integer.parseInt(((_pageNum == null) ? "1" : _pageNum));
 

@@ -16,6 +16,7 @@
 			<result property="proName" column="pro_name" />
 			<result property="proImgfileName" column="pro_imagefilename" />
 			<result property="proNum" column="pro_num" />
+			
 			<result property="proColor" column="pro_color" />
 			<result property="proSize" column="pro_size" />
 		</association>
@@ -33,6 +34,7 @@
 	<if test="proNum !=null and !proNum.equals('')">
 				   AND p.pro_num like CONCAT('%',#{proNum},'%')
 	</if>
+	<!-- Sql 구문을 활용한 페이징 -->
 			) AS a
 	 WHERE rn BETWEEN (#{section,jdbcType=NUMERIC}-1)*200 + (#{pageNum,jdbcType=NUMERIC}-1)*20+1
 		  AND (#{section,jdbcType=NUMERIC}-1)*200 + #{pageNum,jdbcType=NUMERIC}*20

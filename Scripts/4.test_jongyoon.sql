@@ -212,7 +212,7 @@ SELECT a.*
 				AND b.pro_category=1
 				AND b.pro_status='판매중'
 				AND b.pro_name LIKE CONCAT('%','','%')
-		 ORDER BY b.pro_price DESC
+		 ORDERSELECT a.* BY b.pro_price DESC
 		    	 ,b.pro_salesrate DESC
 		 		 ,b.pro_hits DESC
 		 		 ,b.pro_num)a
