@@ -146,6 +146,7 @@ input {
 			})
 </script>
 <body>
+	<!-- Controller 경로 :proj21_shop.controller.admin.product/AdminProductController 의 addNewProduct 매핑경로 -->
 	<div class="container-fluid">
 
 		<div class="row">

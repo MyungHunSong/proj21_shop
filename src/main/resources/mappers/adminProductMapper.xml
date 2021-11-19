@@ -110,6 +110,7 @@
 	</select>
 	
 	<!-- 조건 별 제품 리스트 뽑아오기 -->
+	<!-- 메인 리스트에 뿌려줄 것들 검색, 제품목로, 페이징 등 -->
 	<select id="selectAllProducts" resultMap="adminProductResult">
 		SELECT a.*
   		  FROM (SELECT @ROWNUM := @ROWNUM+1 AS rn ,b.*,c.pro_imagefilename

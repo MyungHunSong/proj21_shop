@@ -55,7 +55,7 @@ public class AdminProductController {
 			@RequestParam(value = "proHits", required = false) String proHits,
 			@RequestParam(value = "proSold", required = false) String proSold,
 			HttpServletRequest request, HttpServletResponse response) {
-		HttpSession session = request.getSession();
+	HttpSession session = request.getSession();
 		if (session.getAttribute("side_menu") != null) {
 			session.removeAttribute("side_menu");
 		}
@@ -74,6 +74,7 @@ public class AdminProductController {
 		
 		Map<String, Object> productsMap = new HashMap();
 		
+		// 자주 사용하는데 왜 섹션을 요청 하는거지? 모르겠다.
 		String _section = (String) request.getParameter("section");
 		String _pageNum = (String) request.getParameter("pageNum");
 
@@ -121,6 +122,7 @@ public class AdminProductController {
 	
 	
 	@RequestMapping(value = "addNewProduct", method = RequestMethod.POST)
+	//  MultipartHttpServletRequest 다중 파일 업로드 사용을 위한 객체
 	public ResponseEntity addNewProduct(MultipartHttpServletRequest multipartRequest, HttpServletResponse response) throws Exception {
 		multipartRequest.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
@@ -159,7 +161,9 @@ public class AdminProductController {
 			message += " location.href='" + multipartRequest.getContextPath() + "/admin/product/addNewProductForm';";
 			message += " </script>";
 		}else {
+			
 		Enumeration enu = multipartRequest.getParameterNames();
+		
 		while (enu.hasMoreElements()) {
 			String name = (String) enu.nextElement();			String value = multipartRequest.getParameter(name);
 			newProductMap2.put(name, value);
@@ -168,15 +172,8 @@ public class AdminProductController {
 		List<ProductImageDTO> imageFileList = upload(multipartRequest);
 		
 		newProductMap.put("imageFileList", imageFileList);
-//		if(imageFileList !=null && imageFileList.size() !=0) { //null check
-//			for(ProductImageDTO productImageDTO : imageFileList) {
-//				productImageDTO.setProRegister(register); 
-//			}
-//			newProductMap.put("imageFileList", imageFileList);
-//		}
-		
-		
 
+		
 		try {
 			newProductMap.put("proContent", multipartRequest.getParameter("proContent"));
 			newProductMap.put("proStatus", multipartRequest.getParameter("proStatus"));
@@ -290,6 +287,7 @@ public class AdminProductController {
 		
 		Map<String,Object> productMap=new HashMap();
 		Enumeration enu=request.getParameterNames();
+		
 		while(enu.hasMoreElements()) {
 			String name=(String)enu.nextElement();
 			String value=request.getParameter(name);
@@ -319,6 +317,7 @@ public class AdminProductController {
 		
 		return resEnt;
 	}
+	
 	@RequestMapping("upModelForm")
 	public ModelAndView addNewModelForm(@RequestParam(value="proNum") String proNum,
 			  @RequestParam(value="proCategory") String proCategory,

@@ -9,6 +9,7 @@
 <title>회원정보 리스트</title>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
+
 <!--membersMap으로 가져와서 변수명 간단하게 새로 지정  -->
 <c:set var="productsList" value="${productsMap.productsList}" />
 <c:set var="modelList" value="${productsMap.modelList}" />
@@ -75,6 +76,8 @@
 				proStatus : proStatus
 			});
 		});
+		
+		
 
 		$("#ck_all").click(function() {
 			if ($("#ck_all").prop("checked")) {
@@ -199,7 +202,7 @@ a {
 						<h2>상품 목록</h2>
 					</center>
 					<hr>
-
+					<!-- Controller 경로 : proj21_shop.controller.admin.product/AdminProductController 의 listProducts 파트  -->
 					<div id="listProductsByStatus">
 						<ul class="smallul">
 							<li>전체&nbsp;${totProducts }건&nbsp;&nbsp;|</li>
@@ -213,6 +216,7 @@ a {
 					<br>
 					<br>
 					<br>
+					<!-- Controller 경로 : proj21_shop.controller.admin.product/AdminProductController  -->
 					<form action="${contextPath }/admin/product/listProducts" method="post" id="frm_search">
 						<table style="width: 100%;">
 							<tr>
@@ -262,6 +266,7 @@ a {
 					<hr>
 
 					<form method="post" action="${contextPath }/admin/product/deleteProducts" id="frm_delete">
+					<!-- 여기서 부터 제품 보여주는 목록. -->
 						<table border="1" style="border-color: #ddd #ddd #848484 #ddd; width: 100%;">
 							<tr style="color: white;">
 								<th>전체 선택&nbsp;<input type="checkbox" id="ck_all" /></th>

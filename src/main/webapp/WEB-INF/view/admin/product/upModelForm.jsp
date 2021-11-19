@@ -52,7 +52,7 @@ function Submit(){
 <body>
 	<h1>상품 모델 추가하기</h1>
 			
-			
+	<!-- Controller 경로 : proj21_shop.controller.admin.product/AdminProductController 에 upModelForm 매핑 -->		
 	<form method="post" name="modelform" action="${contextPath}/admin/product/upModel">
 	<table>
 	<tr>
@@ -106,7 +106,8 @@ function Submit(){
 	
 	<tr>
 		<td>판매 재고 :</td>
-		<td><!--지금 애 스트링으로 받아옴  -->
+		<td>
+		<!--지금 애 스트링으로 받아옴  -->
 			<input type="text" name="proQuantity" value="${proQuantity }"/>개		
 		</td>
 	</tr>

@@ -70,49 +70,13 @@ $(function(){
 	
 	/*리뷰목록*/
 	function listReivew(){
-		/* var section = ${section}
-		var pageNum = ${pageNum} */
+		
 		var memberId = $("#memberId").text();
 		var proNum = $("#proNum").text();
 		
 		console.log(memberId)
 		console.log(proNum)
-		/* $.ajax({
-			type : "Get",
-			async : false,
-			url : "${contextPath}/api/listReviews2/1/1/test01/1",
-			traditional : true,
-			success : function(json) {
-				var sCont = "";
-				console.log(json)
-				console.log(json.length)
-				console.log(json.selectedReviews)
-				if(json.selectedReviews > 0){
-					for(i = 0; i < json.selectedReviews; i++){
-						var proNum = json.listReviews[i].proNum+"";
-						console.log(proNum.substring(0,3))
-						
-						sCont += "	<tr style='text-align: center;'>"
-						sCont += "	<td><input type='checkbox' name='checkRow' value="+json.listReviews[i].reviewNum+"></td>"
-						sCont += "	<td><a href='${contextPath }/productDetail?proNum="+proNum.substring(0,3)+">"+json.listReviews[i].memberId+"</a></td>"
-						sCont += "	<td><a href='${contextPath }/productDetail?proNum="+proNum.substring(0,3)+">"+json.listReviews[i].proNum+"</a></td>"
-						sCont += "	<td><a href='${contextPath }/productDetail?proNum="+proNum.substring(0,3)+">"+json.listReviews[i].proName.proName+"</a></td>"
-						sCont += "	<td><a href='${contextPath }/productDetail?proNum="+proNum.substring(0,3)+">"+json.listReviews[i].reviewImagefilename1+"</a> <a href='${contextPath }/productDetail?proNum="+proNum.substring(0,3)+">"+json.listReviews[i].reviewImagefilename2+"</a></td>"
-						sCont += "	<td><a href='${contextPath }/productDetail?proNum="+proNum.substring(0,3)+">"+json.listReviews[i].reviewContent+"</a></td>"
-						sCont += "	<td><a href='${contextPath }/productDetail?proNum="+proNum.substring(0,3)+">"+json.listReviews[i].reviewStar+"</a> 점</td>"
-						sCont += "	<td><a href='${contextPath }/productDetail?proNum="+proNum.substring(0,3)+">"+json.listReviews[i].reviewDate+"</a></td>"
-						sCont += "	</tr>"
-					}
-					$('.listReviews').append(sCont)
-				}else{
-					sCont +="<h1>등록된 리뷰가 없습니다.</h1>"
-					$('.listReviews').append(sCont)
-				}
-			},
-			error : function(data, textStatus) {
-				alert("에러");
-			} */
-		};	
+				};	
 		$("#search_option").on("click",function(){
 			var memberId = $("#memberId").text();
 			var proNum = $("#proNum").text();
@@ -236,26 +200,6 @@ a {
 							</thead>
 							<tbody class="listReviews"></tbody>	
 							
-							<%-- <c:choose>
-								<c:when test="${empty reviewsList }">
-									<h1>등록된 리뷰가 없습니다.</h1>
-								</c:when>
-
-								<c:when test="${ reviewsList !=null}">
-									<c:forEach var="reviews" items="${reviewsList}">
-										<tr style="text-align: center;">
-											<td><input type="checkbox" name="checkRow" value="${reviews.reviewNum }" /></td>
-											<td><a href="${contextPath }/productDetail?proNum=${reviews.proNum}">${reviews.memberId }</a></td>
-											<td><a href="${contextPath }/productDetail?proNum=${reviews.proNum}">${reviews.proNum }</a></td>
-											<td><a href="${contextPath }/productDetail?proNum=${reviews.proNum}">${reviews.proName.proName }</a></td>
-											<td><a href="${contextPath }/productDetail?proNum=${reviews.proNum}">${reviews.reviewImagefilename1 }</a> <a href="${contextPath }/productDetail?proNum=${reviews.proNum}">${reviews.reviewImagefilename2 }</a></td>
-											<td><a href="${contextPath }/productDetail?proNum=${reviews.proNum}">${reviews.reviewContent }</a></td>
-											<td><a href="${contextPath }/productDetail?proNum=${reviews.proNum}">${reviews.reviewStar }</a> 점</td>
-											<td><a href="${contextPath }/productDetail?proNum=${reviews.proNum}">${reviews.reviewDate }</a></td>
-										</tr>
-									</c:forEach>
-								</c:when>
-							</c:choose> --%>
 							<tr>
 								<td colspan="8" style="text-align: left;"><input type="button" value="삭제하기" id="delete" /></td>
 							</tr> 
