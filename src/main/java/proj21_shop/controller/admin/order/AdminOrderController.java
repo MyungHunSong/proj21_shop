@@ -45,7 +45,7 @@ public class AdminOrderController {
 		System.out.println(mav);
 		return mav;
 	}
-
+	// listOrders.jsp 를위한 Controller
 	@RequestMapping("listOrders")
 	public ModelAndView listOrders (HttpServletRequest request, HttpServletResponse reponse,
 							@RequestParam(value="orderProNum" , required=false) String orderProNum,
