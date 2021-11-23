@@ -21,10 +21,12 @@ public class ProductServiceController {
 	private ProductListService service;
 	
 	/* 옷 상세보기 */
+	// main.jsp 의 $.get(proj21_shop/api/selectProductsMain/ + proStatus 영역) 
 	@GetMapping("/productDetail/{proNum}")
 	public ResponseEntity<Object> productDetail(@PathVariable int proNum){
 		service.updateProhits(Integer.parseInt(proNum+"1"));
 		List<ProductDTO> product= service.showProductDetailByProNum(proNum);
+		System.out.println("/productDetail/{proNum} 영역 >>>: " + product);
 		return ResponseEntity.ok(product);
 	}
 	
@@ -36,8 +38,8 @@ public class ProductServiceController {
 		return ResponseEntity.ok(service.selectProductMain(condition));
 	} 
 	
-	/*옷목록 화면 검색 및 조건별 정렬*/
-	/*세일인 옷은 페이징 까지 포함*/
+	/*옷목록 화면 검색 및 조건별 정렬 , 위치 : productList.jsp 의 .get(contextPath/api/ 블라블라)*/
+	/*세일인 옷은 페이징 까지 포함 ? 다른거는*/ 
 	/*제품목록화면에서 여러조건(orderKind,priceRange,proCategory)으로 옷목록 검색 및 페이징*/
 	@GetMapping("/selectProductsSale/{proCategory}/{section}/{pageNum}/{priceRange}/{orderKind}/{search}")
 	public ResponseEntity<Object> selectProductsList(@PathVariable Integer proCategory, @PathVariable Integer section, @PathVariable Integer pageNum, 
@@ -50,13 +52,15 @@ public class ProductServiceController {
 		saleProduct.put("priceRange",priceRange);
 		saleProduct.put("orderKind",orderKind);
 		
-		System.out.println("proCategory"+proCategory);
-		System.out.println("section"+section);
-		System.out.println("pageNum"+pageNum);
-		System.out.println("priceRange"+priceRange);
-		System.out.println("orderKind"+orderKind);
-		System.out.println("saleProduct"+saleProduct);
-		System.out.println("search"+search);
+		System.out.println("'key' => proCategory = "+proCategory);
+		System.out.println("'key' => section = "+section);
+		System.out.println("'key' => pageNum = "+pageNum);
+		System.out.println("'key' => priceRange ="+priceRange);
+		System.out.println("'key' => orderKind ="+orderKind);
+		System.out.println("'key' => search = " + search);
+		
+		System.out.println("'key' => saleProduct ="+saleProduct);
+		System.out.println("'key' => search ="+search);
 		
 		return ResponseEntity.ok(service.selectProductSale(saleProduct));
 	}

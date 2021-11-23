@@ -25,26 +25,34 @@
 		  autoHover:true
       });
    });
-   
+<!-- 하나의 json데이터 함수영역
+	ProductServiceController -> /productDetail/{proNum} 매핑 영역을 걸쳐감
+-->
 $(function(){
 	var contextPath = "${contextPath}";
 	var proSize = ["XS","S","M","L","XL"]
 	var proStatus = ["RECOMMEND","BEST","SALE","NEW" ]
 	
 	/*sCont 누적값을 처리 할수 있으면 반복문 개선 가능*/
+	<!-- main.jsp 옷상세보기 영역 -->
 	$.get(contextPath + "/api/selectProductsMain/"+proStatus[0],
 			function(json){
 				var dataLength = json.length;
+				
+				
 				if(dataLength >= 1){
+										
 					var sCont = "";
 					for(i = 0; i < dataLength; i++){
-						var proNum =json[i].proNum+"" 
+						var proNum =json[i].proNum+""
+						console.log(proNum);
 						sCont += "<div class='item'>";
 						sCont += "			<div><a href='productDetail?proNum=" + proNum.substring(0,3) + "'><img src="+  contextPath+"/thumbnails?proNum="+proNum.substring(0,3)+"3&fileName="+json[i].proImgfileName+"></a></div>";
 						sCont += "			<div class='detail'>"
 						sCont += "				<div class='proTitle'>"
 						sCont += "					<span class='proName'>"+ json[i].proName +"</span><br>"
-						sCont +="					<span class='price'>"+ (json[i].proPrice*(100-json[i].proSalesrate)/100).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") +"원</span>"       
+						sCont +="					<span class='price'>"+ (json[i].proPrice*(100-json[i].proSalesrate)/100).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") +"원</span>"
+						console.log((json[i].proPrice*(100-json[i].proSalesrate)/100).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","));
 						sCont +="				</div>"
 						sCont +="				<div class='info'>"
 						sCont +="					<div class='size'>"
@@ -58,8 +66,10 @@ $(function(){
 				        sCont +="		<button class='add-cart'>Add to Cart</button>"
 				        sCont +="</div>"
 					}
+					
 					$("#"+proStatus[0]).append(sCont);
 				} 
+				<!-- cart 팝업 옵션 -->
 				$('.add-cart').on('click',function(){
 					var uri = $(this).prev().prev().children().attr("href")
 					var proNum = uri.substring(uri.length,uri.length-3)

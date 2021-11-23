@@ -494,8 +494,7 @@ where pro_size = 1 and pro_salesrate != 0;
 SELECT DISTINCT 
 	a.*
 FROM
-	(select
-				FORMAT(@ROWNUM := @ROWNUM + 1, 0) as rn,
+	(select	FORMAT(@ROWNUM := @ROWNUM + 1, 0) as rn,
 								pro_num,
 								pro_category,
 								pro_name,
@@ -511,7 +510,7 @@ FROM
       from
 			  (select  @ROWNUM := 0 ) R, productall
   			   where  pro_size = 1 and pro_salesrate != 0
-  			     order by pro_hits desc) a
+  			     order by pro_hits desc) a /* 순서를 맞춰서 정렬하기 위해 번호를 부여함*/
   where pro_size = 1
 	AND rn BETWEEN (1-1)* 100 +(1-1)* 8 + 1 AND (1-1)* 100 +1* 8;
 
@@ -537,7 +536,6 @@ select
 	where
 		pro_size = 1
 		and pro_name like concat('%','a', '%')
-
 		and pro_salesrate != 0; 
 
 	

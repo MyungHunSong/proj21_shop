@@ -20,6 +20,8 @@ $(function() {
 		$('.btn').on('click',function(){
 			var status = $(this).val();
 			var num = $('#result').text();
+			
+			<!-- 수량 파악 -->
 			var intNum = parseInt(num);
 			var quantity = $("#size option:checked").text();
 			var colon = quantity.indexOf(':');
@@ -86,6 +88,7 @@ $(function() {
 					}
 				}
 				sCont += "</div>"
+				
 			    $("#ProductLoad").append(sCont);
 				var proNum = json[2].proNum+"";
 				var imgCont = "";

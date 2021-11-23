@@ -12,6 +12,8 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
+
+<!-- 홈페이지 카테고리 영역 -->
 $(function(){
 	$(".size span, .color span").on({
 		"click" : clickFnc
@@ -36,6 +38,8 @@ $(function(){
 	var proSize = ["XS","S","M","L","XL"]
 	
 	/*검색(proCategory,priceRange,orderKind,search) 및 페이징(section,pageNum)을 위한 조건들을 넣은 제품목록 검색문*/
+	<!-- Controller 영역 : proj21_shop.controller.product/ProductServiceController 의 /selectProductsSale/{proCategory}/{section}/{pageNum}/{priceRange}/{orderKind}/{search} 맵핑 -->
+	<!-- main.jsp의 영역과 똑같은 방식으로 적용 -->
 	$.get(contextPath + "/api/selectProductsSale/"+proCategory+"/"+section+"/"+pageNum+"/"+priceRange+"/"+orderKind+"/"+search,
 	function(json){
 		
@@ -92,6 +96,7 @@ $(function(){
 			$.get(contextPath + "/api/selectProductsSale/"+proCategory+"/"+section+"/"+pageNum+"/"+sortPrice+"/"+sortOrder+"/"+search,
 					function(json){
 						var sCont = "";
+						console.log(json)
 						var dataLength = json.length;
 						if(dataLength >= 1){
 							for(i = 0; i < dataLength; i++){
@@ -250,11 +255,12 @@ $(function(){
 			}
 			
 	}) 
-	
+	<!-- Controller 경로 : proj21_shop.controller.product/ProductServiceController 의 /selectCountByProductSale/{priceRange}/{search} -->
 	function totalCount(){
 		$.get(contextPath + "/api/selectCountByProductSale/"+${priceRange}+"/"+search,function(json){
 			console.log(json)
 			var page = Math.ceil(json/8)
+			console.log(page)
 			var sCont = "";
 			for(i = 1; i < page+1; i++){
 				if(pageNum == i){
