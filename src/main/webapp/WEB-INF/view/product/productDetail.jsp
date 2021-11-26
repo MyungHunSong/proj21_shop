@@ -71,6 +71,8 @@ $(function() {
 								sCont += "			<input type= 'text' class= 'replyContent' name='replyContent' placeholder='내용을 입력하세요.'>"
 								sCont += "	    	<button class = 'commentInsertBtn' name='commentInsertBtn'>댓글</button>"
 								sCont += "		</div>"
+								
+								<!-- (댓글시 보이는 테이블) 리뷰가 1개 이상이면 보일 테이블 -->
 								if(json[i].reviewReplys[0].reRepNum != 0){
 									for(j = 0; j < json[i].reviewReplys.length; j++){
 										sCont += "<div class='commentArea'>"
@@ -87,7 +89,8 @@ $(function() {
 									}
 								}
 								sCont += "</div>"
-						 }                                                                                                                          
+						 }
+						<!-- 아니면 이게 뜨도록 -->
 					}else{                                                                                                                                      
 							$('.star-rating').text("")
 							sCont += "<p class = 'noReview'>후기가 없습니다.</p>" 

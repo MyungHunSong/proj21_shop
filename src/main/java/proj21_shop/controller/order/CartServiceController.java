@@ -30,6 +30,7 @@ public class CartServiceController {
 	
 	/* 장바구니 */
 	/* 장바구니 목록 */
+	// memberPorductCart.jsp에  cart목록에 데이터를 뿌려준다.
 	@GetMapping("/memberProductCart/{memId}")
 	public ResponseEntity<Object> getCarts(@PathVariable String memId){
 		MemberDTO mem = new MemberDTO();
@@ -38,18 +39,20 @@ public class CartServiceController {
 		CartDTO cart = new CartDTO();
 		cart.setMemberId(mem);
 		
+		System.out.println("here is CartService => " + (cart));
+		
 		List<CartDTO> list = service.showCartsByMemberId(cart);
 		
 		return ResponseEntity.ok(list);
 	}
 
-	/* 장바구니 삭제 */
+	/* 장바구니 삭제  (단일 형식으로)*/
 	@DeleteMapping("/memberProductCart/{cart_num}")
 	public ResponseEntity<Object> delCartByCartNum(@PathVariable int cart_num){
 		return ResponseEntity.ok(service.deleteCart(cart_num));
 	}
 	
-	/* 장바구니 항목 리스트로 검색 후 삭제*/
+	/* 장바구니 항목 리스트로 검색 후 삭제 (여러개 선택시)*/
 	@PostMapping("/memberProductCarts")
 	public ResponseEntity<Object> delCartsByCartNums(@RequestBody List<Integer> cart_num){
 		/*cart_num = "[23,43,25]"*/ 
@@ -94,11 +97,12 @@ public class CartServiceController {
 		return ResponseEntity.ok(service.showCartsByMemberId(cart));
 	} 
 	
-	/*선택된 장바구니번호를 검색후 주문페이지로 이동 */
+	/*선택된 장바구니번호를 검색후 주문페이지로 이동 memberProductOrder.jsp에 위치 */
 	@PostMapping("/chooseProductCarts")
 	public ResponseEntity<Object> chooseCartsByCartNums(@RequestBody List<Integer> cartNums,HttpSession session){
 		/*cartNum = "[23,43,25]"*/
-		List<CartDTO> list = service.chooseCartByMemberId(cartNums);  
+		// 여러개 혹은 단일
+		List<CartDTO> list = service.chooseCartByMemberId(cartNums);
 		session.setAttribute("cartNums", cartNums);
 		return ResponseEntity.ok(list);
 	}

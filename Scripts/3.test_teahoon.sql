@@ -543,8 +543,14 @@ SELECT * FROM product;
 select *  from productall where pro_status = '추천' order by pro_price desc limit 8;
 
 		and pro_salesrate != 0 
-
-select * from review;		
-
+		
 update product set re_replyCount = 12 where pro_num =  1042;
 
+-- 후기 갯수 보이기
+select count(r.pro_num) 
+	from product p join review r on p.pro_num = r.pro_num
+	where r.pro_num = 6163; 
+
+select * from product
+	where pro_name like concat('%', 'black', '%'); 
+-- 리뷰 받아 와야하는데 이상한데서 받ㅇ아옴

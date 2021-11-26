@@ -23,7 +23,5 @@ public interface ReviewReplyMapper {
 	int updateReviewReply(ReviewReplyDTO reviewReply);
 	
 	/* 댓글 삭제 */
-	int deleteReviewReply(ReviewReplyDTO reviewReply);
-	
-	
+	int deleteReviewReply(ReviewReplyDTO reviewReply);	
 }

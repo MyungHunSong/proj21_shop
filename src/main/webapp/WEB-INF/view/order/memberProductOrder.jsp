@@ -49,6 +49,7 @@ $(function(){
 	for(j = 0; j < cartNums.length; j++){
 		$.get(contextPath + "/api/chooseProductCart/"+cartNums[j],
 			function(json){
+			console.log(json)
 				var dataLength = json.length;
 					if(dataLength >= 1){
 						var sCont = "";
@@ -63,6 +64,8 @@ $(function(){
 									}
 								
 									orderItems.push(orderItem)
+								
+									
 									
 									sCont += "<div class='row data'>"
 									sCont +=		"<div class='subdiv'>"

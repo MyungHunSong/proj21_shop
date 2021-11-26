@@ -21,8 +21,9 @@
 						contextPath + "/api/detailorder/" + memberId + "/"+orderProNum,
 						function(json) {
 							console.log(json);
-							
+							<!-- productDTO.length를 왜 사용 하는가? -->
 							var dataLength = json[0].productDTO.length;
+							console.log(dataLength)
 							for(i = 0; i < dataLength; i++){
 							var proNum = json[0].productDTO[i].proNum + ""
 							sCont += "<tr>";

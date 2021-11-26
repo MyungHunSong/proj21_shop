@@ -13,6 +13,7 @@
 <title>장바구니</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
+<!-- Controller 경로 : proj21_shop.controller.order/CartServiceController.java (json을 위한 형식)  -->
 $(function(){
 	
 	var contextPath = "${contextPath}";
@@ -25,7 +26,8 @@ $(function(){
 			if(dataLength >= 1){
 				var sCont = "";
 				for(i = 0; i < dataLength; i++){
-					
+			
+					console.log(json[i].cartProNum)
 					var proSize = ["none","XS","S","M","L","XL"];
 					var point = parseInt((100-json[i].cartProNum.proSalesrate)*json[i].cartProNum.proPrice*0.0001*json[i].cartProQuantity);
 					
@@ -115,6 +117,7 @@ $(function(){
 	
 		// 모두 체크
 		$("#allCheck").click(function checkAll(){
+			console.log("#allCheck")
 				if(orderform.remove.length == undefined){
 					orderform.remove.checked = orderform.allCheck.checked;
 				}else{
@@ -126,6 +129,7 @@ $(function(){
 		}); 
 			
 		//#delButton을 누르면 체크박스 타입이고 name = remove인 input이 체크 되었는지 확인 후 값을 얻어내서 cartNum에 값을 저장하고 ajax를 이용해 단일삭제
+		//( 위치 : proj21_shop.controller.order/CartServiceController.java )
 		$('#delButton').on("click", function(){
 				
 				/* 여러개 체크된값 가져오기 */
@@ -134,7 +138,7 @@ $(function(){
  					var item = $(this).val();
  					data_arr.push(item);
  			})	
- 				
+ 			// 반복문 사용후 push로 인한 값들을 형식에 맞게 사용후 넣어주자.	
 			var cartNums = {cartNum : [data_arr]}; 
 			delCarts(cartNums)				 
 		});
@@ -157,7 +161,7 @@ $(function(){
 			});
 		}
 		
-		// 단일 삭제 하기
+		// 단일 삭제 하기 (proj21_shop.controller.order/CartServiceController.java )
 		function delCart(cartNum){
 			 $.ajax({
 				url: contextPath + "/api/memberProductCart/" + cartNum,

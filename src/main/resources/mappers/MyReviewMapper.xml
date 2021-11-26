@@ -123,7 +123,7 @@
 		 		</if>
 			 	<if test="reviewImagefilename1 neq ''">
 		 		    re_image = #{reviewImagefilename1},
-		 		</if>
+		 		</if>0
 		 		<if test="reviewImagefilename2 neq ''">
 		 	 	    re_image2 = #{reviewImagefilename2},
 		 		</if>

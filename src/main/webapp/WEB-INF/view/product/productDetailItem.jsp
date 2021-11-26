@@ -60,10 +60,12 @@ $(function() {
 		/* 콤마 찍기용 */
 		var temp = proPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 		var add = salePrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
-		/* 후기수 */
+		
+		/* 후기수 어데서 가와야 돼냐? */
 		var reCount = 0;
 		for(i  = 0; i < json.length; i++){
 			reCount += json[i].reReplyCount
+			console.log(reCount)
 		}
 		console.log(reCount)
 		var  sCont = "";
@@ -71,7 +73,12 @@ $(function() {
 				sCont += "<div class = 'productInfo'>"
 				sCont += "<div class = 'productInfoName'>"
 				sCont += "<strong>"+json[0].proName+"</strong>";
-				sCont += "<span class = 'review'>"+reCount+"개 리뷰 보기</span>";
+				if(reCount == 0){
+				sCont += "<span class = 'review'>작성된 리뷰가 없습니다.</span>";
+				
+				}else{
+					sCont += "<span class = 'review'>"+reCount+"개 리뷰 보기</span>";
+				}
 				sCont += "</div>"
 				sCont += "<p> 조회수 : "+json[0].proHits+"</p>";
 				sCont += "<p>"+json[0].proContent+"</p>";

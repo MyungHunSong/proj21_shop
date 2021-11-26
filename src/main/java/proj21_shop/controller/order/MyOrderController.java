@@ -29,14 +29,17 @@ public class MyOrderController {
 	@GetMapping("/myorder")
 	public ModelAndView getMyOrder(@RequestParam(value="memberId") String memberId) {
 		ModelAndView mav = new ModelAndView("order/myOrderList", "memberId", memberId);
+		System.out.println("일반 상세 주문 Order 경로 : " + mav);
 		return mav;
 	}
 	
-	/* 주문 상세 목록 */
+	/* 주문 상세 목록 MyOrderDetail.jsp 페이지 */
 	@GetMapping("/detailorder")
 	public ModelAndView getMyOrderDetail(@RequestParam(value="memberId") String memberId, @RequestParam(value="orderProNum")int orderProNum) {
 		ModelAndView mav = new ModelAndView("order/myOrderDetail", "memberId", memberId);
 		mav.addObject("orderProNum", orderProNum);
+		
+		System.out.println("고급 상세 주문 Order 경로 addObject 사용 : " + mav);
 		return mav;
 	}
 	
@@ -63,7 +66,7 @@ public class MyOrderController {
 		message+=" location.href='"+request.getContextPath()+"/myorder?memberId="+memberId+"';";
 		message+=" </script>";
 		
-		resEnt=new ResponseEntity(message,responseHeaders,HttpStatus.OK);
+		resEnt= new ResponseEntity(message,responseHeaders,HttpStatus.OK);
 		
 		return resEnt;
 		
