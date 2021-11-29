@@ -51,6 +51,7 @@ public class QnaRestController {
 		 		
 		SearchCriteria sCri = new SearchCriteria();
 		
+		
 		sCri.setPage(page);
 		sCri.setPerPageNum(perPageNum);	
 		

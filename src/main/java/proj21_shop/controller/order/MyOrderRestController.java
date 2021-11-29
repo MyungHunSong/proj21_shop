@@ -22,7 +22,7 @@ public class MyOrderRestController {
 		return ResponseEntity.ok(service.selectOrderByMember(memberId));
 	}
 	
-	/* 주문 상세 목록 */
+	/* 주문 상세 목록  view 경로 : myOrderDetail.jsp 의 api/detailorder/ json*/
 	@GetMapping("detailorder/{memberId}/{orderProNum}")
 	public ResponseEntity<Object> myorderdetail(@PathVariable String memberId, @PathVariable int orderProNum){
 		OrderDTO orderDTO = new OrderDTO();

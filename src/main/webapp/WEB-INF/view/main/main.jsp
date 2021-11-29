@@ -25,9 +25,7 @@
 		  autoHover:true
       });
    });
-<!-- 하나의 json데이터 함수영역
-	ProductServiceController -> /productDetail/{proNum} 매핑 영역을 걸쳐감
--->
+<!-- 하나의 json데이터 함수영역 ProductServiceController -> /productDetail/{proNum} 매핑 영역을 걸쳐감-->
 $(function(){
 	var contextPath = "${contextPath}";
 	var proSize = ["XS","S","M","L","XL"]

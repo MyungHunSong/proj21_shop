@@ -9,6 +9,7 @@
 <title>주문</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
+<!-- Controller 경로 : proj21_shop.controller.order/MyOrderRestController 에 있다.  -->
    $(function() {
       var contextPath = "${contextPath}";
       var memberId = "${memberId}";
@@ -58,9 +59,10 @@
             }
             console.log(sCont)
             $("#load").append(sCont);
+            debugger;
          }         
       })
-      /*숫자 3자리수 표시*/
+      /*숫자 3자리수 표시 메서드로 따로빼서 활용 하는거 매우 좋았으.*/
 		function comma(price){
 			return price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
 		}

@@ -13,6 +13,8 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="${contextPath }/resources/order/js/memberAddress.js"></script>  
 <script type="text/javascript">
+
+<!-- Controller 경로 :  proj21_shop.controller.order/CartServiceController 영역의 postMapping -->
 $(function(){
 	
 	var contextPath = "${contextPath}";
