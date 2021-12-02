@@ -57,6 +57,7 @@ public class LoginController {
         	PrintWriter out = response.getWriter();
         	
         	// 여기에 그걸 담아보면 어떨까? 아이디는 맞고 비번은 틀렸다? 비밀번호가 일치하지 않습니다 => 아이디창에 아이디는 그대로 나두고 비밀번호는 새로 치도록
+        	// 실제 저장된 비밀번호 값 loginCommand.getPassword() 내가 html 내에서 로그인한 password값 일치 => 로그인 불일치 => 아이디 혹 비밀번호가 일치하지 않습니다.
         	out.println("<script>alert('로그인 정보를 확인해주세요.'); history.go(-1);</script>");
         	out.flush();
             return "/member/login/loginForm";
