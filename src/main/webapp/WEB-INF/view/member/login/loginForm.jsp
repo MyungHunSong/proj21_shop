@@ -19,7 +19,8 @@
 <jsp:include page="/WEB-INF/view/include/topbody.jsp"></jsp:include>
 	<h1>회원 로그인</h1>
 	<section id="loginFormArea">
-	<!-- 요청 파라미터의 값을 로그인 커맨드 객체로 넘겨주기  -->
+	<!-- 요청 파라미터의 값을 로그인 커맨드 객체로 넘겨주기
+	Controller 경로 : proj21_shop.controller.member/LoginController  -->
 		<form:form modelAttribute="loginCommand">
 			<div>
 				<table>
@@ -28,8 +29,8 @@
 						<td><input type="text" name="id" id="id"></td>
 					</tr>
 					<tr>
-						<td><label for="password">비밀번호 </label></td>
-						<td><input type="password" name="password" id="password" value="123"/></td>
+						<td><label for="password">비밀번호 </label></td>										
+						<td><input type="password" name="password" id="password" value="${authinfo.password}"/></td>
 				</table>
 				<input type="submit" value="로그인" class="button" />
 				<!-- 회원가입 페이지로 이동 -->

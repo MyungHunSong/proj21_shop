@@ -33,7 +33,7 @@ public class LoginController {
         return "/member/login/loginForm";
     }
     
-    
+    // HttpSession 을 사용해서 로그인 정보를 유지 시켰다. (다른 jsp 페이지 에서도 활용가능하다)
     @PostMapping
     public String submit(LoginCommand loginCommand, Errors errors, HttpSession session, HttpServletResponse response) throws IOException {
 
@@ -43,16 +43,20 @@ public class LoginController {
         try {
             AuthInfo authInfo = authService.authenicate(loginCommand.getId(), loginCommand.getPassword());//폼에 입력한 아이디와 비밀번호와 일치하는 회원이 있는지 확인
             session.setAttribute("authInfo", authInfo);//세션에 로그인 정보 저장
+            
             System.out.println("LoginController >>> "+authInfo);
-            if(loginCommand.getId().equals("admin")) {
-            	
-            	return "redirect:/admin/order/orderStatics";
+            System.out.println("loginCommand.password >>> " + loginCommand.getPassword());
+   
+            if(loginCommand.getId().equals("admin")) { 	
+            	return "redirect:/admin/order/orderStatics"; // 관리자일시 관리자 view페이지로 보내주는 역할을 한다.
             }
             return "redirect:/main";
 
         }catch (WrongIdPasswordException ex) {
         	response.setContentType("text/html; charset=UTF-8");
         	PrintWriter out = response.getWriter();
+        	
+        	// 여기에 그걸 담아보면 어떨까? 아이디는 맞고 비번은 틀렸다? 비밀번호가 일치하지 않습니다 => 아이디창에 아이디는 그대로 나두고 비밀번호는 새로 치도록
         	out.println("<script>alert('로그인 정보를 확인해주세요.'); history.go(-1);</script>");
         	out.flush();
             return "/member/login/loginForm";

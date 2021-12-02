@@ -43,7 +43,7 @@ public class RegisterController {
 			memberRegisterService.regist(regReq);
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('환영합니다. 포인트 2000p 증정 되었습니다.'); window.location.href='main';</script>");
+			out.println("<script>alert('환영합니다. 포인트 2000p 증정 되었습니다.'); window.location.href='login';</script>");
 			out.flush();
 			return "member/register/registerSuccess";
 		}catch(DuplicateMemberException ex) {
